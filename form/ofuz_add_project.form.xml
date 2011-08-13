@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[55]]></idform>
+    <name><![CDATA[ofuz_add_project]]></name>
+    <descr><![CDATA[]]></descr>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[]]></header>
+    <row><![CDATA[
+                  <div class="marginform">[iduser]
+                      <span class="text8"><?php echo _('Project name'); ?></span><br />
+                      [name]
+                  </div>
+                  <div class="marginform">
+                      <span class="text8"><?php echo _('Company');?></span><br />
+					  [company]
+                  </div>
+                  <div class="dottedline"></div>
+				  <?php
+					$do_prj_limit = new UserPlan();
+					$user_can_add_prj = $do_prj_limit->canUserAddProject();
+				    $plan = $_SESSION\['do_User'\]->plan.'_p';
+				  ?>
+                  <div class="section20">
+					  <?php if($user_can_add_prj) { ?>
+                      <input type="submit" value="<?php echo _('Add this project');?>" />
+					  <?php } else { ?>
+					  <input type="button" value="<?php echo _('Add this project');?>" onclick="document.location.href='/upgrade_your_account.php?msg=<?php echo $plan; ?>'" />
+					  <?php } ?>
+                  </div>
+        ]]></row>
+    <footer><![CDATA[]]></footer>
+  </form>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="send_email">
+    <rdata type="default">True</rdata>
+    <rdata type="checked_value">True</rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">Send welcome email?</rdata>
+    <rdata type="fieldtype">strFBFieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    
+  </rfield>
+  <rfield name="thankyou_page">
+    <rdata type="fieldtype">PageBuilderFilesListBox</rdata>
+    <rdata type="label">Thankyou Page</rdata>
+  </rfield>
+</registry>  

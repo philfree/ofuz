@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="databasetype">
+    <rdata type="hidden">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="label">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">Field Label</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="size">30</rdata>
+    <rdata type="maxlenght">150></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="hidden">
+    <rdata type="default">0</rdata>
+    <rdata type="checked_value">1</rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">Hidden</rdata>
+    <rdata type="fieldtype">strFBFieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+  </rfield>
+  <rfield name="readonly">
+    <rdata type="default">0</rdata>
+    <rdata type="checked_value">1</rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">Readonly</rdata>
+    <rdata type="fieldtype">strFBFieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+  </rfield>
+  <rfield name="css_form_class">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">CSS class</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="size">50</rdata>
+    <rdata type="maxlenght">150></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">PageBuilderFieldListStyles</rdata>
+  </rfield>
+</registry>

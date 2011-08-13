@@ -1,0 +1,22 @@
+html { overflow-y: scroll; }
+a, a:visited { color: #000000; text-decoration: none; outline: none; }
+body { margin: 0; padding: 0; text-align: center; background-color: #badde1;
+       background-image: url("/images/ofuz_profile_page_bg.gif"); background-repeat: repeat-x;
+       font-family: arial, helvetica, verdana, geneva, sans-serif; font-size: 14px; }
+form { margin: 0; padding: 0; }
+img { border: none; }
+
+.layout_center { width: 300px; margin: 0 auto; text-align: left; }
+.layout_full { text-align: left; background-color: #ffffff; }
+.layout_top { position: relative; width: 300px; height: 100px; background-image: url("/images/ofuz_logo_profile_bg.png"); }
+.layout_main { width: 300px; height: auto; background-color: #ffffff; }
+.layout_bottom { width: 300px; height: 135px; background-image: url("/images/ofuz_profile_leaves.png"); }
+.layout_headline { padding: 18px 25px; font-size: 18px; }
+.layout_lineitems { float: left; width: 200px; }
+.layout_lineitem { width: 200px; height: 24px; line-height: 24px; white-space: nowrap; overflow: hidden; }
+.layout_add { float: right; width: 91px; z-index: 2; background-color: #ffffff; }
+.layout_clear { clear: both; }
+.profile_icon { width: 16px; margin-right: 10px; vertical-align: middle; }
+.profile_button { width: 91px; height: 26px; margin-bottom: 12px; padding: 0; border: 0; }
+.profile_photo { position: absolute; top: 10px; right: 0; width: 80px; height: 80px; overflow: hidden; }
+.layout_address { padding: 10px 25px; background-color: #ffffff; }

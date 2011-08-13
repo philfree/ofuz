@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+  <savedquery>
+    <idsavedquery><![CDATA[]]></idsavedquery>
+    <qname><![CDATA[contacts_search]]></qname>
+    <query><![CDATA[ SELECT contact.idcontact as idcontact,contact.firstname as firstname,contact.lastname as lastname,contact.company as company,contact.position as position,contact_email.email_address as email_address, contact_phone.phone_number, contact_phone.phone_type
+    FROM contact 
+            LEFT JOIN contact_email ON contact.idcontact = contact_email.idcontact 
+            LEFT JOIN contact_phone ON contact.idcontact = contact_phone.idcontact
+    WHERE contact.iduser = [do_User->iduser]
+     AND ( contact.firstname like '%[search_keyword]%'
+        OR contact.lastname like '%[search_keyword]%'
+        OR contact.company like '%[search_keyword]%')
+    GROUP BY contact.idcontact
+]]></query>
+    <qorder><![CDATA[]]></qorder>
+    <qpos><![CDATA[]]></qpos>
+    <tablenames><![CDATA[contact]]></tablenames>
+  </savedquery>

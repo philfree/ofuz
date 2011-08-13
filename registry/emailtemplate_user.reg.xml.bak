@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idemailtemplate_user">
+    <rdata type="textline">5:10</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="databasetype">integer</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="iduser">
+    <rdata type="default">[do_User->iduser]</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="textline">5:10</rdata>
+    <rdata type="databasetype">integer</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="subject">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="bodytext">
+    <rdata type="databasetype">text</rdata>
+    <rdata type="textarea">40:10:</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="htmleditor"></rdata>
+    <rdata type="label"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style">visibility:hidden;</rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeText</rdata>
+  </rfield>
+  <rfield name="name">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="sendername">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="senderemail">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="language">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="default">en_US</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Language</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="bodyhtml">
+    <rdata type="databasetype">text</rdata>
+    <rdata type="label">Message</rdata>
+    <rdata type="bold">Yes</rdata>
+    <rdata type="italic">Yes</rdata>
+    <rdata type="underline">Yes</rdata>
+    <rdata type="strikethrough">Yes</rdata>
+    <rdata type="removeFormat">Yes</rdata>
+    <rdata type="insertUnorderedList">Yes</rdata>
+    <rdata type="indent">Yes</rdata>
+    <rdata type="outdent">Yes</rdata>
+    <rdata type="createLink">Yes</rdata>
+    <rdata type="unlink">Yes</rdata>
+    <rdata type="hiliteColor">Yes</rdata>
+    <rdata type="foreColor">Yes</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="undo">No</rdata>
+    <rdata type="redo">No</rdata>
+    <rdata type="cut">No</rdata>
+    <rdata type="copy">No</rdata>
+    <rdata type="paste">No</rdata>
+    <rdata type="selectAll">No</rdata>
+    <rdata type="subscript">No</rdata>
+    <rdata type="superscript">No</rdata>
+    <rdata type="insertOrderedList">No</rdata>
+    <rdata type="insertHorizontalRule">No</rdata>
+    <rdata type="justifyLeft">No</rdata>
+    <rdata type="justifyRight">No</rdata>
+    <rdata type="justifyCenter">No</rdata>
+    <rdata type="justifyFull">No</rdata>
+    <rdata type="delete">No</rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="readonly">0</rdata>
+    <rdata type="fieldtype">DijitEditor</rdata>
+    <rdata type="height">10</rdata>
+  </rfield>
+</registry>

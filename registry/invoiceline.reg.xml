@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idinvoiceline">
+    <rdata type="label">idinvoiceline</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="idinvoice">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Invoice Id</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:14</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="description">
+    <rdata type="default"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="htmleditor"></rdata>
+    <rdata type="label">Description</rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textarea">50:50:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeText</rdata>
+  </rfield>
+  <rfield name="price">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Amount</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+  <rfield name="qty">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Quatity</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+  <rfield name="total">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Total</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+  <rfield name="item">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Item</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="line_tax">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Line Tax</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+  <rfield name="discounted_amount">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Line Discounted Amount</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+  <rfield name="taxed_amount">
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Line Taxed Amount</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+  </rfield>
+</registry>

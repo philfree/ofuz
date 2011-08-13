@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+  <report>
+    <name><![CDATA[Name of the Report]]></name>
+    <idreport><![CDATA[0]]></idreport>
+    <descr><![CDATA[
+    // Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+    This is the header report of the default tpl]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[
+<TABLE class="tableform">
+  <TR>
+    ]]></header>
+    <row><![CDATA[
+  <TD class="tabletdheader">[fieldlabel]</TD>
+    ]]></row>
+    <footer><![CDATA[
+</TR>
+    ]]></footer>
+    <recprow><![CDATA[Number of records that need to be proceed for each row template]]></recprow>
+  </report>

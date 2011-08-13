@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+  <savedquery>
+    <idsavedquery><![CDATA[]]></idsavedquery>
+    <qname><![CDATA[all_contacts]]></qname>
+    <query><![CDATA[ 
+	SELECT * FROM [do_Contacts->sql_view_name]
+	ORDER BY [do_Contacts->sql_view_order]
+	LIMIT [do_Contacts->sql_qry_start],[do_Contacts->sql_view_limit]
+
+]]></query>
+    <qorder><![CDATA[ ]]></qorder>
+    <qpos><![CDATA[ ]]></qpos>
+    <tablenames><![CDATA[contact]]></tablenames>
+  </savedquery>

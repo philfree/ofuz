@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[56]]></idform>
+    <name><![CDATA[ofuz_add_contact_notes]]></name>
+    <descr><![CDATA[]]></descr>
+    <idquery><![CDATA[]]></idquery>
+    <header><![CDATA[]]></header>
+    <row><![CDATA[
+                 [idcontact][date_added] 
+                 [note]
+        ]]></row>
+                 <footer><![CDATA[<div class="section20">
+                     <input type="submit" value="<?php echo _('Add this note');?>" style="float: right;" />
+                   </div>]]></footer>
+  </form>

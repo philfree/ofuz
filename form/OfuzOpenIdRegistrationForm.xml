@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<form>
+    <idForm><![CDATA[]]></idForm>
+    <idquery><![CDATA[0]]></idquery>
+    <name><![CDATA[OfuzOpenIdRegistrationForm]]></name>
+    <header><![CDATA[
+        Your identity is now verified. But since this is the first time you've signed in with your OpenID, we need some additional information.	
+        <table class="tableform" width="400">
+    ]]></header>
+    <row><![CDATA[
+        <tr>
+        </tr>
+        <tr>
+            <td class="tdformlabel"></td>
+            <td class="tabletdformfield">[iduser]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel">First Name(*)</td>
+            <td class="tabletdformfield">[firstname]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel">Middle Name</td>
+            <td class="tabletdformfield">[middlename]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel">Last Name(*)</td>
+            <td class="tabletdformfield">[lastname]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel">Email(*)</td>
+            <td class="tabletdformfield">[email]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel">Company name</td>
+            <td class="tabletdformfield">[company]</td>
+        </tr>
+        <tr>
+            <td class="tabletdformfield" colspan="2">[isadmin][regdate][openid]</td>
+        <tr> 
+            <td colspan="2" align="right"><input type="submit" /></td>
+        </tr>
+        ]]></row>
+        <footer><![CDATA[</table>Fields with a (*) are required.]]></footer>
+        <descr><![CDATA[
+            This is the registration form.  It lets users enter their personal info and select a username and password.
+            <template>
+<?php
+    $send_email = "[send_email]";
+    $thankyoupage = "[thankyou_page]";
+    $f_regForm = new reportForm($conx, "openid_regForm") ;
+    $f_regForm->setAddRecord();
+    if ($send_email) {
+        $f_regForm->event->addEvent("registration.sendEmail", 1002);
+        $f_regForm->event->addParam("templatename", "registrationthank");
+    }
+    $f_regForm->event->addEvent("mydb.addParamToDisplayNext", 5050) ;
+    $f_regForm->event->addParam("errorpage", $_SERVER\['PHP_SELF'\]);
+    $f_regForm->setUrlNext($thankyoupage);
+    $f_regForm->setForm();
+    $f_regForm->execute();
+    if($message) { echo "<b>$message</b>"; }
+?>
+            </template>
+        ]]></descr>
+</form>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<registry>
+
+  <rfield name="Page_to_display_next">
+    <rdata type="listfile">./:.php:0</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxFile</rdata>
+  </rfield>
+
+</registry>

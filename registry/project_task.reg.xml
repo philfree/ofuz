@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idproject_task">
+    <rdata type="label">idproject_task</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="idtask">
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="idproject">
+    <rdata type="default">[do_project->idproject]</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">idproject</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">14:14</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="progress">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">progress</rdata>
+    <rdata type="minvalue">0</rdata>
+    <rdata type="maxvalue">100</rdata>
+    <rdata type="interval">10</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="allowcallback"></rdata>
+    <rdata type="callbackmethodname"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="fieldtype">DijitHorizontalSlider</rdata>
+  </rfield>
+  <rfield name="drop_box_code">
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="priority">
+    <rdata type="default">0</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">priority</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="hrs_work_expected">
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+    <rdata type="default">0.00</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Hours of work expected</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+  </rfield>
+</registry>

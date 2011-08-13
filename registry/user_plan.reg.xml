@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="iduser_plan">
+    <rdata type="label">iduser_plan</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="plan">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Plan</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="invoices">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Invoices</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="contacts">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Contacts</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="projects">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Projects</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="emails">
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Emails</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+  </rfield>
+</registry>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+  <report>
+    <idreport><![CDATA[0]]></idreport>
+    <name><![CDATA[mailingtools.ListEmailTemplates]]></name>
+    <descr><![CDATA[Liste name and subject of emails templates for edition.]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <idquery><![CDATA[mailingtools.allemailtemplates]]></idquery>
+    <header><![CDATA[<?php
+     global $orderdir, $orderfield, $recordpos, $mydb_num, $PHP_SELF  ;
+ $currentpage = basename($PHP_SELF) ;
+ $revent = new RecordEvent("emailtemplate") ;
+ $revent->setFormPage("adminformrecordedit.php");
+ $oevent = new Event("mydb.tableorder") ;
+ $revent->addParam("goto", $currentpage) ;  
+ $revent->addParam("deleteconfirm", "no") ;
+ $revent->addParam("mydb_num", $mydb_num) ;
+ $revent->setEventControler("eventcontroler.php"); ?>
+<a href="<?php echo $revent->getUrlAdd(); ?>">Create a New Email Template</a>
+<TABLE class="tableform">
+  <TR class="tabletrheader">
+    <TD class="tabletdformfield"></TD>
+    <TD class="tabletdformfield">Name</TD>
+    <TD class="tabletdformfield">Subject</TD>
+    <TD class="tabletdformfield">Sender Email</TD>  
+    <TD class="tabletdformfield"></TD>
+    <TD class="tabletdformfield"></TD>
+  </TR>]]></header>
+    <row><![CDATA[<TR bgcolor="<?php if ($bgcolor=="#C7F5E7") { $bgcolor="#D0F5C5"; } else { $bgcolor="#C7F5E7";} echo $bgcolor; ?>">
+  <TD class="tabletdformfield">[thumbnail]</TD>
+  <TD class="tabletdformfield">[name]</TD>
+  <TD class="tabletdformfield">[subject]</TD>
+  <TD class="tabletdformfield">[senderemail]</TD>
+  <TD><a href="<?php echo $revent->getUrlEdit("[noreg:idemailtemplate:]"); ?>">Update</a></TD>
+  <TD><a href="<?php echo $revent->getUrlDelete("[noreg:idemailtemplate:]") ; ?>" onclick=" return confirm('Are you sure you want to delete this Email template ?')">Delete</a></TD>
+</TR>]]></row>
+    <footer><![CDATA[</TABLE>]]></footer>
+    <recprow><![CDATA[0]]></recprow>
+  </report>

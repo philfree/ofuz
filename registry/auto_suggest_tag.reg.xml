@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<registry>
+	<rfield name="idtag">
+		<rdata type="label">idtag</rdata>
+		<rdata type="readonly">1</rdata>
+		<rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="tag_name">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="label">Tags</rdata>
+	<rdata type="field_to_display">tag_name</rdata>
+	<rdata type="object_method">Tag->getAllTagNamesForUser()</rdata>
+    <rdata type="saved_query"></rdata>
+    <rdata type="css_form_class"></rdata>
+	<rdata type="addevent">Tag->eventChangeTagNameVar:5</rdata>
+    <rdata type="fieldtype">DijitComboBox</rdata>
+  </rfield>
+</registry>

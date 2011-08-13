@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idproject_sharing">
+    <rdata type="label">idproject_sharing</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="idcoworkers">
+    <rdata type="fieldtype">strFBFieldTypeListBox</rdata>
+    <rdata type="label">Company</rdata>
+    <rdata type="list">user:iduser:coworker_name:0:project_add_coworkers</rdata>
+  </rfield>
+</registry>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<registry>
+  
+  <rfield name="reason">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Note</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="cols">110</rdata>
+    <rdata type="row">2</rdata>
+    <rdata type="css_form_class">Verdana</rdata>
+    <rdata type="fieldtype">OfuzExpandingTextArea</rdata>
+  </rfield>
+  
+</registry>

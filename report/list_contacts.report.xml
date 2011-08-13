@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+  <report>
+    <idreport><![CDATA[555]]></idreport>
+    <name><![CDATA[list_contacts]]></name>
+    <idquery><![CDATA[all_contacts]]></idquery>
+    <descr><![CDATA[list Contacts with link on the name for details.]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <recprow><![CDATA[0]]></recprow>
+    <header><![CDATA[
+<script language="javascript">
+ function showedit(id) {
+   //alert(id);
+  // editrec = document.getElementById("editrec"+id);
+  // editrec.style.display="block";
+  // $("editrec"+id).show();
+ }
+
+</script>
+<?php
+      $currentpage = $_SERVER\['PHP_SELF'\];
+      $e_detail = new Event("mydb.gotoPage");
+      $e_detail->addParam("goto", "contact.php");
+      $e_detail->addParam("idcontact","[idcontact]");
+      $e_detail->addParam("tablename", "contact");
+      $e_detail->requestSave("eDetail_contact", $currentpage);
+      
+      $e_detail_com = new Event("mydb.gotoPage");
+      $e_detail_com->addParam("goto", "company.php");
+      $e_detail_com->addParam("idcompany","[idcompany]");
+      $e_detail_com->addParam("tablename", "company");
+      $e_detail_com->requestSave("eDetail_company", $currentpage);      
+         
+?>
+]]></header>
+    <row><![CDATA[
+<?php 
+      $e_detail->addParam("idcontact","[idcontact]");
+      $e_detail_com->addParam("idcompany","[idcompany]");
+        
+      $picture = "[noquote:picture:]";
+	  
+	  $do_contact = new Contact();
+	  $cont_image_url = $do_contact->getContactPicture('[idcontact]');
+
+	  /*
+      if ($picture == ''){
+          $cont_image_url = '/images/empty_avatar.gif';
+      }else{
+	  if(preg_match("/facebook.com/",$picture,$matches) || preg_match("/fbcdn/",$picture,$matches)){
+              $cont_image_url = $picture;
+          }else{
+              $cont_image_url = "/dbimage/".$picture;
+          }
+      }
+	  */
+?>
+<div class="contacts" id="cid[idcontact]" onclick="fnHighlight('[idcontact]')">
+    <div class="contacts_main">
+        <input type="checkbox" name="ck\[\]" id="ck[idcontact]" value="[idcontact]" class="contact_checkbox" onclick="fnHighlight('[idcontact]')" style="visibility:hidden;" />
+        <img src="<?php echo $cont_image_url;?>" width="34" height="34" alt="" />
+    </div>
+    <div class="contacts_desc">
+      <span class="contacts_name"><a href="<?php echo $e_detail->getUrl(); ?>" onclick="allowHighlight=false;">[firstname]&nbsp;[lastname]</a></span><br />
+      <?php if (strlen("[noquote:position:]")>0) { ?><i>[position]</i> at <?php } ?><a href="<?php echo $e_detail_com->getUrl(); ?>" onclick="allowHighlight=false;">[company]</a>
+    </div>
+    <div class="contacts_email">
+      [phone_number]<br/>
+      <a href="mailto:[email_address]">[email_address]</a><br/>
+	  <i>[tags]</i>
+    </div>
+</div>
+<div class="spacerblock_2"></div>
+<div class="solidline"></div><div id="[idcontact]" class="message_box"></div>]]></row>
+    <footer><![CDATA[
+]]></footer>
+  </report>

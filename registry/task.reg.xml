@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idtask">
+    <rdata type="label">idtask</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <!--<rfield name="task_description">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Task Description</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="css_form_class">Verdana</rdata>
+    <rdata type="css_form_style">width: 100%</rdata>
+    <rdata type="fieldtype">DijitExpandingTextArea</rdata>
+  </rfield>-->
+  <rfield name="task_description">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Task Description</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="cols">30</rdata>
+    <rdata type="row">2</rdata>
+    <rdata type="css_form_class">Verdana</rdata>
+    <rdata type="fieldtype">OfuzExpandingTextArea</rdata>
+  </rfield>
+  <rfield name="due_date">
+    <rdata type="label">Due Date</rdata>
+    <rdata type="listlabels">Today:Tomorrow:This week:Next week:This month:Later</rdata>
+    <rdata type="listvalues">Today:Tomorrow:This week:Next week:This month:Later</rdata>
+    <rdata type="default">Today</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+  </rfield>
+  <rfield name="category">
+    <rdata type="label">Category</rdata>
+    <rdata type="list">task_category:idtask_category:name::users_task_category:</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBox</rdata>
+  </rfield>
+  <rfield name="iduser">
+    <rdata type="default">[do_User->iduser]</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">User</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">14:14</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="due_date_dateformat">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Due Date</rdata>
+    <rdata type="datetype">dd-MM-y</rdata>
+    <rdata type="errormessage">Wrong date format</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="fieldtype">DijitDateTextBox</rdata>
+  </rfield>
+  <rfield name="status">
+    <rdata type="label">Task Status</rdata>
+    <rdata type="listlabels">open:closed</rdata>
+    <rdata type="listvalues">open:closed</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+  </rfield>
+  <rfield name="date_completed">
+    <rdata type="datesql">Y/m/d::</rdata>
+    <rdata type="databasetype">date</rdata>
+    <rdata type="label">Completed Date</rdata>
+    <rdata type="fieldtype">strFBFieldTypeDateSQL</rdata>
+  </rfield>
+  <rfield name="idcontact">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">Contact</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="from_note">
+    <rdata type="default">0</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">From Note</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">1:1</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="is_sp_date_set">
+    <rdata type="label">Is Specific Date Set</rdata>
+    <rdata type="listlabels">Yes:No</rdata>
+    <rdata type="listvalues">Yes:No</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+  </rfield>
+  <rfield name="task_category">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="label">Task Category</rdata>
+    <rdata type="table_name"></rdata>
+    <rdata type="field_to_display">task_category</rdata>
+    <rdata type="object_method">Task->getDistinctCategoryForUser()</rdata>
+    <rdata type="saved_query"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="addevent">Task->eventSetTaskCategory:99</rdata>
+    <rdata type="fieldtype">DijitComboBox</rdata>
+  </rfield>
+</registry>

@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idinvoice">
+    <rdata type="label">idinvoice</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="num">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Unique Number</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:10</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="iduser">
+    <rdata type="default">[do_User->iduser]</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="idcompany">
+    <rdata type="label">Company</rdata>
+    <rdata type="list">company:idcompany:name:0:companies_user_dropdown</rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBox</rdata>
+  </rfield>
+ 
+  
+  <!--<rfield name="idcompany">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  -->
+  <rfield name="idterms">
+    <rdata type="label">Terms</rdata>
+    <rdata type="list">terms:idterms:term_desc::</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBox</rdata>
+  </rfield>
+  <!--<rfield name="description">
+    <rdata type="default"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="htmleditor"></rdata>
+    <rdata type="label">Description</rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textarea">50:10:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeText</rdata>
+  </rfield>-->
+  <rfield name="description">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Description</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="css_form_class">Verdana</rdata>
+    <rdata type="css_form_style">width: 100%</rdata>
+    <rdata type="fieldtype">DijitExpandingTextArea</rdata>
+  </rfield>
+  <rfield name="amount">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Amount</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+  <rfield name="datepaid">
+    <rdata type="datesql">Y/m/d::</rdata>
+    <rdata type="databasetype">date</rdata>
+    <rdata type="label">Date Paid</rdata>
+    <rdata type="fieldtype">strFBFieldTypeDateSQL</rdata>
+  </rfield>
+  <rfield name="datecreated">
+    <rdata type="datesql">Y/m/d:today:1</rdata>
+    <rdata type="databasetype">date</rdata>
+    <rdata type="label">Date Created</rdata>
+    <rdata type="fieldtype">strFBFieldTypeDateSQL</rdata>
+  </rfield>
+  <rfield name="status">
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+    <rdata type="label">Invoice Status</rdata>
+    <rdata type="listlabels">New:Sent:Paid:Partial</rdata>
+    <rdata type="listvalues">New:Sent:Paid:Partial</rdata>
+	<rdata type="emptydefault">no</rdata>
+  </rfield>
+  <rfield name="qty">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Quatity</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+</registry>

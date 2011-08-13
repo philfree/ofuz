@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+  <report>
+    <idreport><![CDATA[0]]></idreport>
+    <name><![CDATA[interactive_report.header.tpl]]></name>
+    <idquery><![CDATA[0]]></idquery>
+    <descr><![CDATA[        // Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+        This is the header report of the search report template]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <recprow><![CDATA[0]]></recprow>
+    <header><![CDATA[<?php  global $orderdir, $orderfield, $recordpos, $mydb_num, $PHP_SELF, $cfg_eventcontroler, $report_[tablename]_search  ;
+    $currentpage = basename($_SERVER\['PHP_SELF'\]) ;
+    
+    if (strlen("[display_search]") > 0) {    
+        $e_set_search = new Event("mydb.setSearch"); 
+        $e_set_search->addParam("search_string", "report_[tablename]_search");
+        $e_set_search->addParam("goto", $currentpage);
+        echo $e_set_search->getFormHeader();
+        echo $e_set_search->getFormEvent();
+        ?>
+            Search for: <input type="text" name="search_value" value="<?php echo $report_[tablename]_search; ?>">
+            <input type="submit" name="Submit" value="Go">   
+            <?php 
+                $e_clear_search = new Event("mydb.clearSearch") ; 
+                $e_clear_search->addParam("search_string", "report_[tablename]_search") ; 
+                $e_clear_search->addParam("goto", $currentpage);     
+            ?>
+            <a href="<?=$e_clear_search->getUrl()?>" class="navlinks">Show All Records</a>
+        <?php
+        echo $e_set_search->getFormFooter();            
+    }
+    
+    if (strlen("[display_detail_link]")>0) {    
+        $e_detail = new Event("mydb.gotoPage");
+        $e_detail->addParam("goto", "[detailpage]");
+        $e_detail->addParam("id[tablename]", "");
+        $e_detail->addParam("tablename", "[tablename]");
+        if (strlen("[detail_field1_to_save]") > 0) {
+            $e_detail->addParam("[detail_field1_to_save]", "");
+        }
+        if (strlen("[detail_field2_to_save]") > 0) {
+            $e_detail->addParam("[detail_field2_to_save]", "");
+        }
+        if (strlen("[detail_field3_to_save]") > 0) {
+            $e_detail->addParam("[detail_field3_to_save]", "");
+        }
+        if (strlen("[detail_field4_to_save]") > 0) {
+            $e_detail->addParam("[detail_field4_to_save]", "");
+        }
+        $e_detail->requestSave("eDetail_[tablename]", $currentpage);
+        
+    }
+    
+    if (strlen("[display_delete_link]") > 0 || strlen("[display_update_link]") > 0 || strlen("[display_add_link]")>0) {
+    
+        $revent = new RecordEvent("[tablename]") ;    
+        $revent->setFormPage("[formpage]");
+        $revent->setPrimaryKeyVar("[primarykey]");
+        if (strlen("[registryname]") > 0) {
+        $revent->addParam("registryname", "[registryname]");
+        }    
+        $revent->addParam("goto", $currentpage) ;
+        $revent->addParam("deleteconfirm", "no") ;
+        $revent->addParam("mydb_num", $mydb_num) ;
+        if ($cfg_eventcontroler == "") { $cfg_eventcontroler = "[eventcontroler]"; }
+        $revent->setEventControler($cfg_eventcontroler);
+        $revent->requestSave("manageData", $currentpage) ; 
+    
+    }
+    
+    $oevent = new Event("mydb.tableorder") ;
+    $oevent->addParam("goto", $currentpage);
+    $oevent->addParam("orderfield", $orderfield) ;
+    $oevent->addParam("orderdir", $orderdir) ;
+    $oevent->addParam("recordpos", $recordpos) ;
+    $oevent->addParam("mydb_num", $mydb_num) ;    
+    $oevent->setEventControler($cfg_eventcontroler);
+    
+    if (strlen("[display_add_link]") > 0) {
+    ?>
+    <a href="<?php echo $revent->getUrlAdd()?>" class="linkadd">Add New</a>
+    <?php } ?>
+    <TABLE class="tableform">
+    <TR><?php
+        if (strlen("[display_delete_link]")>0) { echo "<TD class=\"tabletdheader\"></TD>"; }
+        if (strlen("[display_update_link]")>0)  { echo "<TD class=\"tabletdheader\"></TD>"; }
+        if (strlen("[display_detail_link]")>0)  { echo "<TD class=\"tabletdheader\"></TD>"; }
+     ?>
+        ]]></header>
+    <row><![CDATA[    <TD class="tabletdheader">
+    <?php  if ($orderfield == "[fieldname]" && $orderdir=="ASC") {
+    $neworderdir = "DESC" ;
+    } else {
+    $neworderdir = "ASC";
+    } $oevent->editParam("recordpos", 0) ;
+    $oevent->editParam("orderfield", "[fieldname]") ;
+    $oevent->editParam("orderdir", $neworderdir) ;?><a href="<?php echo $oevent->getUrl();?>" class="linkheader">[fieldlabel]</a>
+    </TD>
+        ]]></row>
+    <footer><![CDATA[    </tr>
+        ]]></footer>
+  </report>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+  <report>
+    <idreport><![CDATA[555]]></idreport>
+    <name><![CDATA[list_contacts]]></name>
+    <idquery><![CDATA[all_contacts]]></idquery>
+    <descr><![CDATA[list Contacts with link on the name for details.]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <recprow><![CDATA[0]]></recprow>
+    <header><![CDATA[
+<script language="javascript">
+ function showedit(id) {
+   //alert(id);
+  // editrec = document.getElementById("editrec"+id);
+  // editrec.style.display="block";
+  // $("editrec"+id).show();
+ }
+
+</script>
+<?php
+      $currentpage = $_SERVER\['PHP_SELF'\];
+      $e_detail = new Event("mydb.gotoPage");
+      $e_detail->addParam("goto", "i_contact.php");
+      $e_detail->addParam("idcontact","[idcontact]");
+      $e_detail->addParam("tablename", "contact");
+      $e_detail->requestSave("eDetail_contact", $currentpage);
+      
+      $e_detail_com = new Event("mydb.gotoPage");
+      $e_detail_com->addParam("goto", "i_company.php");
+      $e_detail_com->addParam("idcompany","[idcompany]");
+      $e_detail_com->addParam("tablename", "company");
+      $e_detail_com->requestSave("eDetail_company", $currentpage);      
+         
+?>
+]]></header>
+    <row><![CDATA[
+<?php 
+      $e_detail->addParam("idcontact","[idcontact]");
+      $e_detail_com->addParam("idcompany","[idcompany]");
+?>
+<div class="mobile_contact" id="cid[idcontact]"><!-- onclick="fnHighlight('[idcontact]')" -->
+   <!-- lets temporary comments this to simplify more the mobile version
+     <div class="contact_main">
+        <input type="checkbox" name="ck\[\]" id="ck[idcontact]" value="[idcontact]" class="contact_checkbox" onclick="fnHighlight('[idcontact]')" />
+       <img src="images/temp_contact.gif" width="34" height="34" alt="" />
+    </div> -->
+    <div class="mobile_contact_desc">
+      <div><a class="mobile_contact_links" style="font-weight:bold;" href="<?php echo $e_detail->getUrl(); ?>">[firstname]&nbsp;[lastname]</a></div>
+      <?php if (strlen("[noreg:position:]")>0) { ?><i>[position]</i> at <?php } ?>
+      <?php if (strlen("[noquote:company:]")>0) { ?><a class="mobile_contact_links" href="<?php echo $e_detail_com->getUrl(); ?>">[company]</a><br/><?php } ?>    
+      <?php if (strlen("[noreg:phone_number:]") > 0) { ?>[phone_number]<br/> <?php } ?>
+      <a class="mobile_contact_links" href="mailto:[email_address]">[email_address]</a>
+    </div>
+</div>
+<div class="solidline"></div>]]></row>
+    <footer><![CDATA[
+<script type="text/javascript">
+// Sample javascript to manage the hover and display specific layers or link.
+ //$(".contact_desc").hover(
+ //  function () {
+ //    $(this).append("<span>Hello</span>");
+ //  },
+  // function () {
+ //    $(this).find("span:last").remove();
+ //  }
+ // )
+</script>]]></footer>
+  </report>

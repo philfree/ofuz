@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idcontact_rss_feed">
+    <rdata type="label">idcontact_rss_feed</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="idcontact">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Contact</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:15</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="rss_feed_url">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">RSS Feed URL</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">20:200</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="username">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Username</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">20:100</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="feed_type">
+    <rdata type="label">Feed Type</rdata>
+    <rdata type="listlabels">blog:twitter:flicker:youtube</rdata>
+    <rdata type="listvalues">blog:twitter:flicker:youtube</rdata>
+    <rdata type="default">blog</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+  </rfield>
+  <rfield name="import_to_note">
+    <rdata type="fieldtype">strFBFieldTypeCheckBox</rdata>
+    <rdata type="label">Import feed content to the notes</rdata>
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+</registry>

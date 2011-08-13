@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idemailtemplate">
+    <rdata type="readonly">1</rdata>
+    <rdata type="label">idemailtemplate</rdata>
+    <rdata type="fieldtype">FieldTypeInt</rdata>
+  </rfield>
+  <rfield name="subject">
+    <rdata type="label">Subject</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+  </rfield>
+  <rfield name="bodytext">
+    <rdata type="label">Body, Text</rdata>
+    <rdata type="textarea">50:10</rdata>
+    <rdata type="fieldtype">FieldTypeText</rdata>
+  </rfield>
+  <rfield name="bodyhtml">
+    <rdata type="label">Body, HTML</rdata>
+    <rdata type="textarea">50:10:</rdata>
+    <rdata type="html">1</rdata>
+    <rdata type="htmleditor">Click here to open the editor</rdata>
+    <rdata type="fieldtype">FieldTypeText</rdata>
+  </rfield>
+  <rfield name="name">
+    <rdata type="label">Template Name</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+  </rfield>
+  <rfield name="sendername">
+    <rdata type="label">Sender Name</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+  </rfield>
+  <rfield name="senderemail">
+    <rdata type="label">Sender Email</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+  </rfield>
+  <rfield name="thumbnail">
+    <rdata type="label">thumbnail</rdata>
+    <rdata type="picture">dbimage</rdata>
+    <rdata type="showpicture">1</rdata>
+    <rdata type="fieldtype">FieldTypeFile</rdata>
+  </rfield>
+  <rfield name="internal">
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Internal template</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+  </rfield>
+    <rfield name="language">
+    <rdata type="default">en_US</rdata>
+    <rdata type="label">Language</rdata>
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+  </rfield>
+</registry>

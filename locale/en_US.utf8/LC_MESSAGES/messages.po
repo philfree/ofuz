@@ -1,0 +1,3113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-09-01 09:44-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: invoice.php:134 class/block/PaymentLogBlock.class.php:25
+msgid "Payments Log"
+msgstr ""
+
+#: invoice.php:149 invoice.php:331 settings_auto_responder_email_edit.php:169
+#: class/block/PaymentLogBlock.class.php:46 invoices_unpaid.php:150
+msgid "Cancel"
+msgstr ""
+
+#: invoice.php:152 class/block/PaymentLogBlock.class.php:49
+msgid "Add payment "
+msgstr ""
+
+#: invoice.php:152 class/block/PaymentLogBlock.class.php:49
+msgid " with the Note: "
+msgstr ""
+
+#: invoice.php:152 class/block/PaymentLogBlock.class.php:49
+msgid " or with the amount you want."
+msgstr ""
+
+#: invoice.php:168 invoice.php:170 class/block/PaymentLogBlock.class.php:66
+#: class/block/PaymentLogBlock.class.php:68
+msgid "Amount :"
+msgstr ""
+
+#: invoice.php:171 class/block/PaymentLogBlock.class.php:69
+#: class/ContactNotes.class.php:226 class/ProjectDiscuss.class.php:191
+#: class/ProjectDiscuss.class.php:211
+msgid "Note :"
+msgstr ""
+
+#: invoice.php:173 class/block/PaymentLogBlock.class.php:71 payment_add.php:46
+#: payment_add.php:53
+msgid "Add Payment"
+msgstr ""
+
+#: invoice.php:176 class/block/PaymentLogBlock.class.php:74
+msgid "No, I'll add later"
+msgstr ""
+
+#: invoice.php:195 class/block/ProjectAddCoworkerBlock.class.php:80
+#: class/block/ProjectAddCoworkerBlock.class.php:107
+#: class/block/PaymentLogBlock.class.php:92
+msgid "Remove"
+msgstr ""
+
+#: invoice.php:229
+msgid "Please enter the Email address : "
+msgstr ""
+
+#: invoice.php:259 invoice.php:377 invoice_view.php:246
+#: invoice_pay_auth.php:68 class/Invoice.class.php:3028
+msgid "Invoice"
+msgstr ""
+
+#: invoice.php:282 invoice_view.php:181 invoice_print.php:124
+#: class/Invoice.class.php:1331 invoice_edit.php:595 invoice_pdf.php:116
+#: invoice_print_bck.php:82
+msgid "Date Created"
+msgstr ""
+
+#: invoice.php:295 invoice_view.php:194
+msgid "Invoice Status"
+msgstr ""
+
+#: invoice.php:300
+msgid "INVOICE:"
+msgstr ""
+
+#: invoice.php:309
+msgid "Convert to Invoice"
+msgstr ""
+
+#: invoice.php:317
+msgid "Send Quote By Email"
+msgstr ""
+
+#: invoice.php:319
+msgid "Send Invoice By Email"
+msgstr ""
+
+#: invoice.php:321
+msgid "Edit"
+msgstr ""
+
+#: invoice.php:329 settings_email_templ.php:87
+msgid "Delete"
+msgstr ""
+
+#: invoice.php:329
+msgid "Are you sure you want to Delete?'"
+msgstr ""
+
+#: invoice.php:331
+msgid "Are you sure you want to Cancel?'"
+msgstr ""
+
+#: invoice.php:335 invoice_view.php:218
+msgid "Print"
+msgstr ""
+
+#: invoice.php:336
+msgid "Client Link"
+msgstr ""
+
+#: invoice.php:341
+msgid "Generate pdf"
+msgstr ""
+
+#: invoice.php:350
+msgid "Upload Logo"
+msgstr ""
+
+#: invoice.php:359 invoice_view.php:231
+msgid "FROM"
+msgstr ""
+
+#: invoice.php:366 invoice_view.php:236
+msgid "TO"
+msgstr ""
+
+#: invoice.php:369
+msgid "view customer details"
+msgstr ""
+
+#: invoice.php:382 gettext_non_php.php:17 invoices_bkp.php:432
+#: invoice_view.php:251 invoice_print.php:133 class/Invoice.class.php:230
+#: class/Invoice.class.php:1336 invoice_add_bck.php:399 invoices.php:328
+#: invoice_edit.php:598 invoice_pdf.php:121 invoice_add.php:690
+#: invoice_print_bck.php:86 invoices_unpaid.php:159
+msgid "Due Date"
+msgstr ""
+
+#: invoice.php:387 invoice.php:485 invoice_view.php:256 invoice_print.php:142
+#: class/Invoice.class.php:1339 invoice_pdf.php:124 invoice_print_bck.php:90
+msgid "Amount Due"
+msgstr ""
+
+#: invoice.php:392 invoice_view.php:261 invoice_print.php:150
+#: class/Invoice.class.php:1344 invoice_add_bck.php:402 invoice_edit.php:601
+#: invoice_pdf.php:129 invoice_add.php:693 invoice_print_bck.php:99
+msgid "Terms"
+msgstr ""
+
+#: invoice.php:406 invoice_view.php:275 invoice_print.php:162
+#: class/Invoice.class.php:1356 invoice_add_bck.php:417 invoice_edit.php:621
+#: invoice_pdf.php:141 invoice_add.php:708 invoice_print_bck.php:108
+msgid "Item"
+msgstr ""
+
+#: invoice.php:408 invoice_view.php:277 invoice_add_bck.php:419
+#: invoice_edit.php:623 invoice_add.php:710
+msgid "Qty."
+msgstr ""
+
+#: invoice.php:409 invoice_view.php:278 invoice_print.php:164
+#: class/Invoice.class.php:1358 invoice_add_bck.php:420 invoice_edit.php:624
+#: invoice_pdf.php:143 invoice_add.php:711 invoice_print_bck.php:110
+msgid "Price"
+msgstr ""
+
+#: invoice.php:415 invoice_view.php:284 invoice_print.php:171
+#: invoice_pdf.php:148
+msgid "Tax(%)"
+msgstr ""
+
+#: invoice.php:417 invoice.php:470 invoice_view.php:286 invoice_view.php:338
+#: invoice_print.php:173 class/Invoice.class.php:231
+#: class/Invoice.class.php:1366 class/Invoice.class.php:1413
+#: invoice_add_bck.php:421 invoice_edit.php:626 invoice_pdf.php:151
+#: invoice_add.php:713 invoice_print_bck.php:112
+msgid "Total"
+msgstr ""
+
+#: invoice.php:451 invoice_view.php:320 invoice_add_bck.php:442
+#: invoice_edit.php:636 invoice_add.php:734
+msgid "Subtotal"
+msgstr ""
+
+#: invoice.php:457 invoice_view.php:325 class/Invoice.class.php:1402
+#: invoice_add_bck.php:446 invoice_edit.php:640 invoice_add.php:738
+msgid "Discount"
+msgstr ""
+
+#: invoice.php:465 invoice_view.php:333 class/Invoice.class.php:1363
+#: class/Invoice.class.php:1408 invoice_add_bck.php:450 invoice_edit.php:644
+#: invoice_add.php:742
+msgid "Tax"
+msgstr ""
+
+#: invoice.php:474 invoice_view.php:342 class/Invoice.class.php:1416
+msgid "Amount Paid"
+msgstr ""
+
+#: invoice.php:478 invoice_view.php:346 class/Invoice.class.php:1418
+msgid "Balance Due"
+msgstr ""
+
+#: invoice.php:487 invoice_view.php:353
+msgid "Note"
+msgstr ""
+
+#: task_category.php:71 tasks_completed.php:86 gettext_non_php.php:45
+msgid "Add a task"
+msgstr ""
+
+#: task_category.php:86
+msgid "Your Task Categories"
+msgstr ""
+
+#: task_category.php:87 tasks.php:178 tasks_completed.php:102
+msgid "Upcoming"
+msgstr ""
+
+#: task_category.php:87 tasks.php:178 tasks_completed.php:102
+msgid "Completed"
+msgstr ""
+
+#: tasks.php:150 includes/x_ofuz_hooks_plugin.conf.inc.php:79
+msgid "Tasks"
+msgstr ""
+
+#: tasks.php:173
+msgid "Tasks By Date"
+msgstr ""
+
+#: tasks.php:175
+msgid "Task By Projects"
+msgstr ""
+
+#: tasks.php:216
+msgid "Overdue"
+msgstr ""
+
+#: tasks.php:219 tasks.php:270 tasks.php:285
+msgid "More..."
+msgstr ""
+
+#: tasks.php:266
+msgid "This Month"
+msgstr ""
+
+#: merge_automated.php:30 merge_contacts.php:49
+msgid "Merge Contacts"
+msgstr ""
+
+#: merge_automated.php:51
+msgid ""
+"You have choosen to merge some contacts which are shared by some of your co-"
+"workers and you do not have access to merge them. Here are the contacts that "
+"are not permitted to be merged:"
+msgstr ""
+
+#: merge_automated.php:72
+msgid "Contacts are merged successfully."
+msgstr ""
+
+#: merge_automated.php:74
+msgid "Please wait page will be redirected in 5 seconds."
+msgstr ""
+
+#: merge_automated.php:83
+msgid "An Error ocured while merging. Please try again"
+msgstr ""
+
+#: merge_automated.php:84 merge_contacts.php:60
+msgid "Click To Back"
+msgstr ""
+
+#: contact_sendemail.php:122
+msgid "Send Message"
+msgstr ""
+
+#: contact_sendemail.php:127
+msgid "Select an email template"
+msgstr ""
+
+#: contact_sendemail.php:128
+msgid "New Template"
+msgstr ""
+
+#: contact_sendemail.php:137
+msgid "Manage your templates"
+msgstr ""
+
+#: contact_sendemail.php:138
+msgid "Insert a merge field"
+msgstr ""
+
+#: contact_sendemail.php:141 settings_email_templ.php:111
+msgid "merge field"
+msgstr ""
+
+#: contact_sendemail.php:142 settings_email_templ.php:112
+msgid "First Name"
+msgstr ""
+
+#: contact_sendemail.php:143 settings_email_templ.php:113
+msgid "Last Name"
+msgstr ""
+
+#: contact_sendemail.php:144 settings_email_templ.php:114
+msgid "Position"
+msgstr ""
+
+#: contact_sendemail.php:145 gettext_non_php.php:20 gettext_non_php.php:42
+#: settings_email_templ.php:115 contact_edit.php:110 project.php:259
+msgid "Company"
+msgstr ""
+
+#: contact_sendemail.php:158 contact.php:563 task.php:446
+msgid "You have an unsaved note draft on : "
+msgstr ""
+
+#: contact_sendemail.php:162 contact.php:566 task.php:449
+msgid "Copy this"
+msgstr ""
+
+#: contact_sendemail.php:162 contact.php:566 task.php:449
+msgid "Discard this"
+msgstr ""
+
+#: contact_sendemail.php:173
+msgid "Content is saved as a draft"
+msgstr ""
+
+#: contact_sendemail.php:202
+msgid "Subject: "
+msgstr ""
+
+#: contact_sendemail.php:207 contact.php:635 task.php:505
+msgid "Save As Draft"
+msgstr ""
+
+#: contact_sendemail.php:213 class/Contact.class.php:1155
+msgid "Send Mailing"
+msgstr ""
+
+#: settings_export.php:30 settings_invoice.php:30 settings_info.php:32
+#: settings_auto_responder_add.php:117 settings_twitter.php:33
+#: settings_twitter.php:37 drop_box_task.php:93
+#: settings_discussion_alert.php:30 settings_auto_responder_email_edit.php:106
+#: settings_ggears.php:30 sync.php:30 settings_email_templ.php:97
+#: api_key.php:30 settings_auto_responder_edit.php:72 email_stream.php:86
+#: settings_myinfo.php:30 settings_auto_responder_email.php:99
+#: setting_template.php:53 settings_wf.php:95 settings_auto_responder.php:56
+msgid "Account Settings"
+msgstr ""
+
+#: settings_export.php:31 class/OfuzUserInterface.class.php:82
+#: class/OfuzUserInterface.class.php:84 class/Sync.class.php:31
+#: class/OfuzUtilsi18n.class.php:82 class/OfuzUtilsi18n.class.php:84
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:213
+msgid "Export"
+msgstr ""
+
+#: settings_export.php:45
+msgid "Export My Contacts"
+msgstr ""
+
+#: settings_invoice.php:31 class/OfuzUserInterface.class.php:72
+#: class/OfuzUserInterface.class.php:74 class/OfuzUtilsi18n.class.php:72
+#: class/OfuzUtilsi18n.class.php:74
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:197
+msgid "Invoice Settings"
+msgstr ""
+
+#: settings_invoice.php:69 settings_invoice.php:87
+msgid "Logo"
+msgstr ""
+
+#: settings_invoice.php:73 settings_invoice.php:92 settings_invoice.php:126
+#: settings_invoice.php:141 settings_invoice.php:169 settings_invoice.php:185
+#: settings_invoice.php:208 settings_invoice.php:223 settings_invoice.php:243
+#: settings_invoice.php:257 class/ContactNotes.class.php:262
+#: class/ProjectDiscuss.class.php:200 class/ProjectDiscuss.class.php:213
+#: task.php:432 contact_sendemail_save_template.php:85 project.php:289
+#: invoice_add.php:755
+msgid "Save"
+msgstr ""
+
+#: settings_invoice.php:119 settings_invoice.php:137
+msgid "Authorized.net details"
+msgstr ""
+
+#: settings_invoice.php:119 settings_invoice.php:164
+#: class/ContactNotes.class.php:411 class/ProjectDiscuss.class.php:1063
+msgid "delete"
+msgstr ""
+
+#: settings_invoice.php:120 settings_invoice.php:138
+msgid "Login :"
+msgstr ""
+
+#: settings_invoice.php:122 settings_invoice.php:139
+msgid "Transaction Key :"
+msgstr ""
+
+#: settings_invoice.php:164 settings_invoice.php:181
+msgid "Paypal details"
+msgstr ""
+
+#: settings_invoice.php:165 settings_invoice.php:182
+msgid "Paypal Business Email :"
+msgstr ""
+
+#: settings_invoice.php:204 settings_invoice.php:219
+msgid "Currency details"
+msgstr ""
+
+#: settings_invoice.php:205 settings_invoice.php:220
+msgid "Select Currency :"
+msgstr ""
+
+#: settings_invoice.php:240 settings_invoice.php:254
+msgid "Date Format"
+msgstr ""
+
+#: merge_contacts.php:59
+msgid "You should have atleat 2 Contacts to be merged"
+msgstr ""
+
+#: merge_contacts.php:95 class/block/ContactDetailBlock.class.php:45
+#: ContactDetail.class.php:48 plugin/ContactDetail/ContactDetail.class.php:45
+#: company_edit.php:79 contact_edit.php:125 settings_myinfo.php:93
+msgid "Email"
+msgstr ""
+
+#: merge_contacts.php:109 class/block/ContactDetailBlock.class.php:54
+#: ContactDetail.class.php:57 plugin/ContactDetail/ContactDetail.class.php:54
+#: contact_edit.php:133 settings_myinfo.php:104
+msgid "IM"
+msgstr ""
+
+#: merge_contacts.php:124 company.php:100
+#: class/block/ContactDetailBlock.class.php:68 ContactDetail.class.php:71
+#: plugin/ContactDetail/ContactDetail.class.php:68 company_edit.php:88
+#: contact_edit.php:137 settings_myinfo.php:115
+msgid "Website"
+msgstr ""
+
+#: merge_contacts.php:138 company.php:74 settings_myinfo.php:124
+#: invoice_add_bck.php:393 invoice_edit.php:589 invoice_add.php:684
+msgid "Address"
+msgstr ""
+
+#: merge_contacts.php:143
+msgid "Address Type :"
+msgstr ""
+
+#: merge_contacts.php:144 company.php:77
+msgid "Address :"
+msgstr ""
+
+#: merge_contacts.php:145 company.php:79
+msgid "Street :"
+msgstr ""
+
+#: merge_contacts.php:146
+msgid "Zipcode :"
+msgstr ""
+
+#: merge_contacts.php:147 company.php:80
+msgid "City :"
+msgstr ""
+
+#: merge_contacts.php:148 company.php:81
+msgid "State :"
+msgstr ""
+
+#: merge_contacts.php:149 company.php:82
+msgid "Country :"
+msgstr ""
+
+#: merge_contacts.php:163
+msgid "Feed Type :"
+msgstr ""
+
+#: merge_contacts.php:164
+msgid "RSS Feed URL :"
+msgstr ""
+
+#: merge_contacts.php:165
+msgid "Username :"
+msgstr ""
+
+#: merge_contacts.php:174 fb_ofuz_login_verification.php:97
+msgid "Continue"
+msgstr ""
+
+#: tw_import_friends.php:29
+msgid "Import Contacts From Twitter"
+msgstr ""
+
+#: tw_import_friends.php:72
+msgid "Your Twitter contacts have been successfully imported."
+msgstr ""
+
+#: tw_import_friends.php:73
+msgid "Go to the Contact Page"
+msgstr ""
+
+#: settings_info.php:33 class/OfuzUserInterface.class.php:15
+#: class/OfuzUserInterface.class.php:17 class/OfuzUtilsi18n.class.php:15
+#: class/OfuzUtilsi18n.class.php:17
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:110
+msgid "My Information"
+msgstr ""
+
+#: web_form_thankyou.php:40
+msgid "Thank You !!"
+msgstr ""
+
+#: company.php:60 contact_add.php:41
+msgid "Add a new contact"
+msgstr ""
+
+#: company.php:63
+msgid "Company Information"
+msgstr ""
+
+#: company.php:78
+msgid "Type :"
+msgstr ""
+
+#: company.php:89 class/block/ContactDetailBlock.class.php:35
+#: ContactDetail.class.php:38 plugin/ContactDetail/ContactDetail.class.php:35
+#: company_edit.php:75 contact_edit.php:121 settings_myinfo.php:83
+msgid "Phone"
+msgstr ""
+
+#: company.php:116
+msgid "People in this Company"
+msgstr ""
+
+#: company.php:226
+msgid "Edit this Company"
+msgstr ""
+
+#: company.php:229
+msgid "Add a Note About "
+msgstr ""
+
+#: company.php:255
+msgid "more options"
+msgstr ""
+
+#: company.php:258 contact_portal.php:153
+msgid "Attach a file: "
+msgstr ""
+
+#: company.php:260 contact_portal.php:160
+msgid "When this happened: "
+msgstr ""
+
+#: company.php:264 gettext_non_php.php:51 contact.php:641
+#: contact_portal.php:166
+msgid "Add this note"
+msgstr ""
+
+#: company.php:287
+msgid " on "
+msgstr ""
+
+#: company.php:323 contact.php:717 contact.php:778
+#: class/ContactNotes.class.php:417
+#: class/workfeed/WorkFeedContactNote.class.php:30
+#: class/workfeed/WorkFeedContactNotePortal.class.php:31
+msgid "more ..."
+msgstr ""
+
+#: settings_export_user_ofuz_ac.php:30
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:221
+msgid "My Account Backup"
+msgstr ""
+
+#: tasks_completed.php:101
+msgid "Your completed tasks"
+msgstr ""
+
+#: gettext_non_php.php:6
+msgid "Task name"
+msgstr ""
+
+#: gettext_non_php.php:7 class/Task.class.php:645 class/Task.class.php:687
+msgid "When's it due?"
+msgstr ""
+
+#: gettext_non_php.php:8
+msgid "Set Date"
+msgstr ""
+
+#: gettext_non_php.php:9
+msgid "When's it due? (Specific Date)"
+msgstr ""
+
+#: gettext_non_php.php:10
+msgid "Reset"
+msgstr ""
+
+#: gettext_non_php.php:11 gettext_non_php.php:14
+msgid "Choose or Type a category"
+msgstr ""
+
+#: gettext_non_php.php:12
+msgid "Add this task"
+msgstr ""
+
+#: gettext_non_php.php:13
+msgid "Edit Category"
+msgstr ""
+
+#: gettext_non_php.php:15
+msgid "Optionally select a project"
+msgstr ""
+
+#: gettext_non_php.php:16
+msgid "Task Description"
+msgstr ""
+
+#: gettext_non_php.php:18
+msgid "Category"
+msgstr ""
+
+#: gettext_non_php.php:19 project.php:257
+msgid "Project name"
+msgstr ""
+
+#: gettext_non_php.php:21
+msgid "Add this project"
+msgstr ""
+
+#: gettext_non_php.php:22
+msgid "Choose or Type Email address:"
+msgstr ""
+
+#: gettext_non_php.php:23 gettext_non_php.php:33
+msgid "Invite to join your co-workers"
+msgstr ""
+
+#: gettext_non_php.php:24
+msgid "First Name(*)"
+msgstr ""
+
+#: gettext_non_php.php:25
+msgid "Last Name(*)"
+msgstr ""
+
+#: gettext_non_php.php:26
+msgid "Email(*)"
+msgstr ""
+
+#: gettext_non_php.php:27
+msgid "Company name"
+msgstr ""
+
+#: gettext_non_php.php:28
+msgid "Username(*)"
+msgstr ""
+
+#: gettext_non_php.php:29
+msgid "Password(*)"
+msgstr ""
+
+#: gettext_non_php.php:30
+msgid "Register Now"
+msgstr ""
+
+#: gettext_non_php.php:31
+msgid "Fields with a (*) are required."
+msgstr ""
+
+#: gettext_non_php.php:32
+msgid "Email Address: "
+msgstr ""
+
+#: gettext_non_php.php:34
+msgid "Terms:"
+msgstr ""
+
+#: gettext_non_php.php:35
+msgid "Company:"
+msgstr ""
+
+#: gettext_non_php.php:36 invoice_edit.php:607 invoice_add.php:699
+msgid "Description:"
+msgstr ""
+
+#: gettext_non_php.php:37
+msgid "Amount:"
+msgstr ""
+
+#: gettext_non_php.php:38
+msgid "Quantity:"
+msgstr ""
+
+#: gettext_non_php.php:39 contact_edit.php:93
+msgid "First name"
+msgstr ""
+
+#: gettext_non_php.php:40 contact_edit.php:99
+msgid "Last name"
+msgstr ""
+
+#: gettext_non_php.php:41 contact_edit.php:106
+msgid "Title"
+msgstr ""
+
+#: gettext_non_php.php:43 contact_edit.php:115
+msgid "Picture"
+msgstr ""
+
+#: gettext_non_php.php:44
+msgid "Add this person"
+msgstr ""
+
+#: gettext_non_php.php:46 class/ContactNotes.class.php:228
+#: class/ProjectDiscuss.class.php:192 task.php:494
+msgid "More Options"
+msgstr ""
+
+#: gettext_non_php.php:47 contact.php:627
+msgid "Attach a file:"
+msgstr ""
+
+#: gettext_non_php.php:48 contact.php:629
+msgid "When this happened:"
+msgstr ""
+
+#: gettext_non_php.php:49
+msgid ""
+"This is the registration form.  It lets users enter their personal info and "
+"select a username and password."
+msgstr ""
+
+#: gettext_non_php.php:50 class/RegisteredUser.class.php:162
+#: class/Invoice.class.php:1707 class/Invoice.class.php:1759 web_form.php:82
+msgid "Submit"
+msgstr ""
+
+#: gettext_non_php.php:52
+msgid "Add this Company"
+msgstr ""
+
+#: unsubscribe_message.php:15
+msgid "Ofuz :: Contact Unsubscribe"
+msgstr ""
+
+#: unsubscribe_message.php:51
+msgid "Opt-out"
+msgstr ""
+
+#: settings_auto_responder_add.php:93 settings_email_templ.php:73
+msgid "My Email Templates"
+msgstr ""
+
+#: settings_auto_responder_add.php:118 class/OfuzUserInterface.class.php:35
+#: class/OfuzUserInterface.class.php:37 class/OfuzUtilsi18n.class.php:35
+#: class/OfuzUtilsi18n.class.php:37
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:141
+#: settings_auto_responder.php:59
+msgid "Auto Responder"
+msgstr ""
+
+#: settings_auto_responder_add.php:133
+#: settings_auto_responder_email_edit.php:141
+#: settings_auto_responder_email.php:134
+msgid "Select Email Template"
+msgstr ""
+
+#: settings_auto_responder_add.php:176 settings_auto_responder_edit.php:112
+#: settings_auto_responder.php:84
+msgid "Auto Responder Name"
+msgstr ""
+
+#: settings_auto_responder_add.php:177
+#: settings_auto_responder_email_edit.php:163 settings_email_templ.php:130
+#: settings_email_templ.php:140 settings_auto_responder_email.php:155
+msgid "Subject"
+msgstr ""
+
+#: settings_auto_responder_add.php:178 settings_auto_responder_edit.php:113
+#: settings_auto_responder.php:85
+msgid "Tag Name"
+msgstr ""
+
+#: settings_auto_responder_add.php:179
+msgid "Number Of Days to send"
+msgstr ""
+
+#: settings_auto_responder_add.php:180
+#: settings_auto_responder_email_edit.php:166 settings_email_templ.php:131
+#: settings_email_templ.php:141 settings_auto_responder_email.php:157
+msgid "Message"
+msgstr ""
+
+#: settings_auto_responder_add.php:181 settings_email_templ.php:142
+#: contact_web_form.php:71 settings_auto_responder_email.php:158
+#: settings_wf.php:128 settings_wf.php:162 settings_auto_responder.php:86
+msgid "Create"
+msgstr ""
+
+#: contact_import_parse.php:46
+msgid "Match Fields"
+msgstr ""
+
+#: contact_import_parse.php:51
+msgid "Step 2 of 2: "
+msgstr ""
+
+#: contact_import_parse.php:51
+msgid "Map your CSV fields with Database Fields."
+msgstr ""
+
+#: contact_import_parse.php:89 class/Sync.class.php:26
+msgid "Import"
+msgstr ""
+
+#: settings_twitter.php:40 class/OfuzUserInterface.class.php:45
+#: class/OfuzUserInterface.class.php:47 class/OfuzUtilsi18n.class.php:45
+#: class/OfuzUtilsi18n.class.php:47
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:157
+msgid "Twitter Setup"
+msgstr ""
+
+#: settings_twitter.php:47
+msgid "Your Ofuz account is integrated with your Twitter account: "
+msgstr ""
+
+#: settings_twitter.php:53
+msgid "Click"
+msgstr ""
+
+#: settings_twitter.php:53
+msgid "HERE"
+msgstr ""
+
+#: settings_twitter.php:53
+msgid "to import your Twitter contacts."
+msgstr ""
+
+#: settings_twitter.php:55
+msgid "Your account is not yet integrated with Twitter. "
+msgstr ""
+
+#: settings_twitter.php:56
+msgid "Please click "
+msgstr ""
+
+#: settings_twitter.php:57 user_login.php:117 user_login.php:119
+#: settings_auto_responder_email.php:193 settings_auto_responder.php:120
+msgid "here"
+msgstr ""
+
+#: settings_twitter.php:58
+msgid " to allow Ofuz to access your Twitter data."
+msgstr ""
+
+#: invoices_bkp.php:7 invoices_bkp.php:294
+#: class/block/ContactInvoiceBlock.class.php:18
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:97 invoices.php:7
+#: invoices.php:190
+msgid "Invoices"
+msgstr ""
+
+#: invoices_bkp.php:186 class/block/InvoicesMonthlyGraphBlock.class.php:22
+msgid "This "
+msgstr ""
+
+#: invoices_bkp.php:205 class/block/InvoicesMonthlyGraphBlock.class.php:52
+msgid "Quotes"
+msgstr ""
+
+#: invoices_bkp.php:208 class/block/InvoicesMonthlyGraphBlock.class.php:55
+msgid "Invoiced"
+msgstr ""
+
+#: invoices_bkp.php:211 class/block/InvoicesMonthlyGraphBlock.class.php:58
+msgid "Pending Payment"
+msgstr ""
+
+#: invoices_bkp.php:214 invoices_bkp.php:380
+#: class/block/InvoicesMonthlyGraphBlock.class.php:61
+#: class/Invoice.class.php:3031 invoices.php:276
+msgid "Paid"
+msgstr ""
+
+#: invoices_bkp.php:217 class/block/InvoicesMonthlyGraphBlock.class.php:64
+#: class/Invoice.class.php:3034
+msgid "Past Due"
+msgstr ""
+
+#: invoices_bkp.php:230 class/block/InvoicesYTDBlock.class.php:17
+msgid "Invoices Year to date "
+msgstr ""
+
+#: invoices_bkp.php:232 class/block/InvoicesYTDBlock.class.php:19
+msgid "Totals for"
+msgstr ""
+
+#: invoices_bkp.php:280 invoices.php:176
+msgid "( hide totals )"
+msgstr ""
+
+#: invoices_bkp.php:284 invoices.php:180 invoices_unpaid.php:141
+msgid "Sending Emails......"
+msgstr ""
+
+#: invoices_bkp.php:333 invoices.php:229
+msgid "You have payments which are not yet applied to invoices."
+msgstr ""
+
+#: invoices_bkp.php:333 invoices.php:229
+msgid "Click here."
+msgstr ""
+
+#: invoices_bkp.php:348 invoices.php:244
+msgid "Showing:"
+msgstr ""
+
+#: invoices_bkp.php:362 class/Invoice.class.php:3022 invoices.php:258
+msgid "Quote"
+msgstr ""
+
+#: invoices_bkp.php:367 invoices.php:263
+msgid "New"
+msgstr ""
+
+#: invoices_bkp.php:372 class/Invoice.class.php:3025 invoices.php:268
+msgid "Sent"
+msgstr ""
+
+#: invoices_bkp.php:376 invoices.php:272
+msgid "Partial"
+msgstr ""
+
+#: invoices_bkp.php:385 class/Invoice.class.php:2034 invoices.php:281
+msgid "All"
+msgstr ""
+
+#: invoices_bkp.php:404 invoices.php:300
+msgid "View all invoices"
+msgstr ""
+
+#: invoices_bkp.php:417 invoices.php:313
+msgid "show totals"
+msgstr ""
+
+#: invoices_bkp.php:423 invoices.php:319
+msgid "show past due"
+msgstr ""
+
+#: invoices_bkp.php:430 invoice_print.php:117 class/Invoice.class.php:1323
+#: class/Invoice.class.php:1995 invoices.php:326 invoice_pdf.php:108
+#: invoice_print_bck.php:78 invoices_unpaid.php:157
+msgid "Invoice #"
+msgstr ""
+
+#: invoices_bkp.php:431 invoices.php:327 invoices_unpaid.php:158
+msgid "Client"
+msgstr ""
+
+#: invoices_bkp.php:433 invoices.php:329 invoices_unpaid.php:160
+msgid "Total Paid"
+msgstr ""
+
+#: invoices_bkp.php:434 invoices.php:330 invoices_unpaid.php:161
+msgid "Total Due"
+msgstr ""
+
+#: invoices_bkp.php:435 invoices.php:331
+msgid "Status"
+msgstr ""
+
+#: drop_box_task.php:94
+msgid "Drop Box Task Setup"
+msgstr ""
+
+#: drop_box_task.php:116
+msgid "You do not have a drop box email id yet"
+msgstr ""
+
+#: drop_box_task.php:117 email_stream.php:109
+msgid "Generate one by clicking "
+msgstr ""
+
+#: settings_discussion_alert.php:31
+msgid "Discussion Email Alert Setup"
+msgstr ""
+
+#: settings_discussion_alert.php:46 settings_ggears.php:67
+msgid "Turn Off"
+msgstr ""
+
+#: invoice_view.php:115
+msgid "Payments"
+msgstr ""
+
+#: invoice_view.php:142
+msgid "Other invoice due"
+msgstr ""
+
+#: invoice_view.php:202
+msgid "Pay With Paypal"
+msgstr ""
+
+#: invoice_view.php:205
+msgid "Pay with Credit card"
+msgstr ""
+
+#: invoice_view.php:219
+msgid "Download"
+msgstr ""
+
+#: invoice_view.php:356
+msgid "Invoice generated by "
+msgstr ""
+
+#: events/pagebuilder.ImageFieldResize.inc.php:67
+msgid ""
+"File format not supported. gif, png and jpg format are currently supported"
+msgstr ""
+
+#: fb_import_friends.php:27 fb_connect.php:81
+msgid "Import Contacts From Facebook"
+msgstr ""
+
+#: vcard_import.php:30
+msgid "Import Contacts from vCard"
+msgstr ""
+
+#: vcard_import.php:34
+msgid "Select your vCard File"
+msgstr ""
+
+#: vcard_import.php:37
+msgid "Ofuz supports importing contacts from vCard."
+msgstr ""
+
+#: vcard_import.php:39
+msgid ""
+"To start import, browse to locate your file and click on the Import button."
+msgstr ""
+
+#: vcard_import.php:60
+msgid "File Location: "
+msgstr ""
+
+#: vcard_import.php:62
+msgid "Set Tag "
+msgstr ""
+
+#: vcard_import.php:62
+msgid " on the imported contacts."
+msgstr ""
+
+#: invoice_paypal_notify.php:55
+msgid "This transaction has been approved."
+msgstr ""
+
+#: invoice_pay_auth.php:27 invoice_pay_paypal.php:26
+msgid ""
+"Your page session has been expired. Please go back to the Invoice page and "
+"try again."
+msgstr ""
+
+#: invoice_pay_auth.php:90 invoice_pay_paypal.php:98
+msgid "Total due :"
+msgstr ""
+
+#: settings_auto_responder_email_edit.php:110
+#: settings_auto_responder_email.php:104 settings_auto_responder_email.php:109
+msgid "Auto Responder "
+msgstr ""
+
+#: settings_auto_responder_email_edit.php:110
+msgid " - email template edit "
+msgstr ""
+
+#: settings_auto_responder_email_edit.php:164
+#: settings_auto_responder_email.php:156
+msgid "Send it in"
+msgstr ""
+
+#: settings_auto_responder_email_edit.php:164
+#: settings_auto_responder_email.php:156
+msgid "day(s)"
+msgstr ""
+
+#: settings_auto_responder_email_edit.php:168 settings_email_templ.php:132
+#: settings_auto_responder_edit.php:115 contact_sendemail_save_template.php:82
+msgid "Update"
+msgstr ""
+
+#: invite_as_cw.php:88
+msgid "Invite as co-worker"
+msgstr ""
+
+#: invite_as_cw.php:136
+msgid " is already a co-worker"
+msgstr ""
+
+#: invite_as_cw.php:137 invite_as_cw.php:140
+msgid "I would like to invite someone else."
+msgstr ""
+
+#: invite_as_cw.php:139 co_worker_search.php:178
+msgid "Invitation sent, waiting for confirmation"
+msgstr ""
+
+#: invite_as_cw.php:143 invite_as_cw.php:147
+msgid "No, this is not the contact I know.Let me send the invitation to:"
+msgstr ""
+
+#: invite_as_cw.php:158
+msgid "To invite "
+msgstr ""
+
+#: invite_as_cw.php:158
+msgid "please choose or type Email address:"
+msgstr ""
+
+#: settings_ggears.php:31
+msgid "Google Gears Setup"
+msgstr ""
+
+#: settings_ggears.php:63
+msgid "Turn On"
+msgstr ""
+
+#: timesheet_worklogs.php:80
+msgid ""
+"You are trying to access a project which you are not realted to. Please "
+"check the URL"
+msgstr ""
+
+#: sync.php:31
+msgid "Synchronization"
+msgstr ""
+
+#: invoice_print.php:73
+msgid "From : "
+msgstr ""
+
+#: invoice_print.php:79
+msgid "To :"
+msgstr ""
+
+#: invoice_print.php:92 class/Invoice.class.php:1295 invoice_pdf.php:80
+msgid "Q U O T E"
+msgstr ""
+
+#: invoice_print.php:94 class/Invoice.class.php:1297 invoice_pdf.php:82
+msgid "I N V O I C E"
+msgstr ""
+
+#: invoice_print.php:115 class/Invoice.class.php:1321 invoice_pdf.php:106
+msgid "Quote #"
+msgstr ""
+
+#: invoice_print.php:163 invoice_add_bck.php:418 invoice_print_bck.php:109
+msgid "Description"
+msgstr ""
+
+#: invoice_print.php:165 class/Invoice.class.php:1359 invoice_pdf.php:144
+#: invoice_print_bck.php:111
+msgid "Quantity"
+msgstr ""
+
+#: invoice_print.php:229 invoice_pdf.php:183 invoice_print_bck.php:157
+msgid "Subtotal:"
+msgstr ""
+
+#: invoice_print.php:244 invoice_print_bck.php:172
+msgid "Discount -"
+msgstr ""
+
+#: invoice_print.php:259 invoice_pdf.php:193
+msgid "Tax + :"
+msgstr ""
+
+#: invoice_print.php:270 invoice_pdf.php:198 invoice_print_bck.php:184
+msgid "Total :"
+msgstr ""
+
+#: invoice_print.php:282 invoice_pdf.php:201 invoice_print_bck.php:195
+msgid "Amount Paid :"
+msgstr ""
+
+#: invoice_print.php:294 invoice_pdf.php:203 invoice_print_bck.php:206
+msgid "Balance Due :"
+msgstr ""
+
+#: fb_logout.php:23
+msgid "Logging out ...."
+msgstr ""
+
+#: co_workers.php:5 includes/ofuz_navtabs.php:35 includes/ofuz_navtabs.php:38
+msgid "Co-Workers"
+msgstr ""
+
+#: co_workers.php:65 contacts.php:278
+msgid "Search"
+msgstr ""
+
+#: co_workers.php:69 co_worker_search.php:61
+msgid "Search Users by their first or last name to add as co-workers:"
+msgstr ""
+
+#: co_workers.php:97 co_worker_search.php:86
+msgid "Invitations"
+msgstr ""
+
+#: co_workers.php:110 co_worker_search.php:99
+msgid "Invitations Rejected"
+msgstr ""
+
+#: co_workers.php:130 co_worker_search.php:118
+msgid "Invitations Pending"
+msgstr ""
+
+#: co_workers.php:168
+msgid ""
+"The following User(s) are waiting for approval from you to become co-workers."
+msgstr ""
+
+#: co_workers.php:209
+msgid "Your co-workers :"
+msgstr ""
+
+#: co_workers.php:248 co_workers.php:252
+#, php-format
+msgid "You shared %d contacts"
+msgstr ""
+
+#: co_workers.php:250 co_workers.php:252 co_workers.php:259 co_workers.php:263
+#, php-format
+msgid "and %d projects"
+msgstr ""
+
+#: co_workers.php:258 co_workers.php:262
+#, php-format
+msgid "%s shared %d contacts"
+msgstr ""
+
+#: co_workers.php:280
+msgid "Choose co-workers for sharing the contacts :"
+msgstr ""
+
+#: co_workers.php:282
+msgid "Share"
+msgstr ""
+
+#: co_workers.php:311
+msgid "You have no co-workers"
+msgstr ""
+
+#: contact.php:7
+msgid "Contact detail"
+msgstr ""
+
+#: contact.php:482 class/OfuzList.class.php:171
+#: class/OfuzListContact.class.php:35
+msgid "at"
+msgstr ""
+
+#: contact.php:518
+msgid "Add"
+msgstr ""
+
+#: contact.php:546
+msgid "Its a good time to set the next date when to contact"
+msgstr ""
+
+#: contact.php:546
+msgid " with a "
+msgstr ""
+
+#: contact.php:546
+msgid "Follow UP task"
+msgstr ""
+
+#: contact.php:576 task.php:459
+msgid "Note is saved as a draft"
+msgstr ""
+
+#: contact.php:616
+msgid " more options"
+msgstr ""
+
+#: contact.php:620 class/ContactNotes.class.php:254
+msgid "Who can view this note:"
+msgstr ""
+
+#: contact.php:621 class/ContactNotes.class.php:255
+#: class/ProjectDiscuss.class.php:196 task.php:503
+msgid "Just me"
+msgstr ""
+
+#: contact.php:622 class/ContactNotes.class.php:256
+#: class/ProjectDiscuss.class.php:197 task.php:504
+msgid "My co-workers and I"
+msgstr ""
+
+#: contact.php:623
+#, php-format
+msgid "%s %s and I"
+msgstr ""
+
+#: contact.php:624
+#, php-format
+msgid "Me, co-workers and %s %s"
+msgstr ""
+
+#: contact.php:631
+msgid "Hours Worked:"
+msgstr ""
+
+#: contact.php:633
+msgid "Send a copy to this contact: "
+msgstr ""
+
+#: contact.php:662
+#, php-format
+msgid "%s's Notes:"
+msgstr ""
+
+#: contact.php:693 contact.php:707 contact.php:753 contact.php:767
+#: class/ContactNotes.class.php:403 class/ContactNotes.class.php:413
+#: class/ProjectDiscuss.class.php:1056 class/ProjectDiscuss.class.php:1065
+#: task.php:560 task.php:571 public_task.php:181 public_task.php:192
+msgid "Star this note to move it on top"
+msgstr ""
+
+#: contact.php:715 contact.php:776 class/ContactNotes.class.php:415
+#: class/ProjectDiscuss.class.php:1067 task.php:582 public_task.php:197
+msgid "Delete this note"
+msgstr ""
+
+#: contact.php:762
+msgid "delete "
+msgstr ""
+
+#: contact.php:775 task.php:576 task.php:578 contact_portal.php:215
+#: contact_portal.php:261
+msgid "Added By :"
+msgstr ""
+
+#: contact.php:776 class/block/ContactDetailBlock.class.php:21
+#: class/ContactNotes.class.php:415 class/ProjectDiscuss.class.php:1067
+#: task.php:362 task.php:582 public_task.php:197 ContactDetail.class.php:24
+#: plugin/ContactDetail/ContactDetail.class.php:21
+msgid "edit"
+msgstr ""
+
+#: class/ContactWebsite.class.php:165 class/ContactWebsite.class.php:218
+msgid "Back to the Source of the Article"
+msgstr ""
+
+#: class/CompanyAddress.class.php:49
+msgid "Address:"
+msgstr ""
+
+#: class/WebFormField.class.php:43 class/WebFormField.class.php:65
+msgid "Selected"
+msgstr ""
+
+#: class/WebFormField.class.php:43 class/WebFormField.class.php:65
+msgid "Label"
+msgstr ""
+
+#: class/WebFormField.class.php:43 class/WebFormField.class.php:65
+msgid "Size in characters"
+msgstr ""
+
+#: class/Breadcrumb.class.php:46
+msgid "You recently viewed"
+msgstr ""
+
+#: class/OfuzUserInterface.class.php:20 class/OfuzUserInterface.class.php:22
+#: class/OfuzUtilsi18n.class.php:20 class/OfuzUtilsi18n.class.php:22
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:117 settings_myinfo.php:31
+msgid "My Profile"
+msgstr ""
+
+#: class/OfuzUserInterface.class.php:25 class/OfuzUserInterface.class.php:27
+#: class/OfuzUtilsi18n.class.php:25 class/OfuzUtilsi18n.class.php:27
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:125
+msgid "Web Forms"
+msgstr ""
+
+#: class/OfuzUserInterface.class.php:30 class/OfuzUserInterface.class.php:32
+#: class/OfuzUtilsi18n.class.php:30 class/OfuzUtilsi18n.class.php:32
+#: settings_email_templ.php:98 includes/x_ofuz_hooks_plugin.conf.inc.php:133
+msgid "Email Templates"
+msgstr ""
+
+#: class/OfuzUserInterface.class.php:40 class/OfuzUserInterface.class.php:42
+#: class/OfuzUtilsi18n.class.php:40 class/OfuzUtilsi18n.class.php:42
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:149
+msgid "Sync"
+msgstr ""
+
+#: class/OfuzUserInterface.class.php:51 class/OfuzUserInterface.class.php:53
+#: class/OfuzUtilsi18n.class.php:51 class/OfuzUtilsi18n.class.php:53
+#: api_key.php:31 includes/x_ofuz_hooks_plugin.conf.inc.php:165
+msgid "API Key"
+msgstr ""
+
+#: class/OfuzUserInterface.class.php:56 class/OfuzUserInterface.class.php:58
+#: class/OfuzUtilsi18n.class.php:56 class/OfuzUtilsi18n.class.php:58
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:173
+msgid "Email Stream"
+msgstr ""
+
+#: class/OfuzUserInterface.class.php:62 class/OfuzUserInterface.class.php:64
+#: class/OfuzUtilsi18n.class.php:62 class/OfuzUtilsi18n.class.php:64
+msgid "Task Discussion Email Alert"
+msgstr ""
+
+#: class/OfuzUserInterface.class.php:67 class/OfuzUserInterface.class.php:69
+#: class/OfuzUtilsi18n.class.php:67 class/OfuzUtilsi18n.class.php:69
+msgid "Google Gears"
+msgstr ""
+
+#: class/OfuzUserInterface.class.php:77 class/OfuzUserInterface.class.php:79
+#: class/OfuzUtilsi18n.class.php:77 class/OfuzUtilsi18n.class.php:79
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:205 cancel_account.php:30
+msgid "Cancel Account"
+msgstr ""
+
+#: class/MultiRecord.class.php:30 class/MultiRecord.class.php:111
+msgid "Delete this fields"
+msgstr ""
+
+#: class/MultiRecord.class.php:42 class/MultiRecord.class.php:81
+#: class/InvoiceLine.class.php:103 invoice_add.php:718
+msgid "Add another"
+msgstr ""
+
+#: class/MultiRecord.class.php:68
+msgid "Delete this field"
+msgstr ""
+
+#: class/block/ContactTasksBlock.class.php:15
+msgid "Contact Tasks"
+msgstr ""
+
+#: class/block/ContactTasksBlock.class.php:66
+msgid "Tasks Related to this Contact"
+msgstr ""
+
+#: class/block/ProjectsAddProjectBlock.class.php:16
+msgid "Add a project"
+msgstr ""
+
+#: class/block/NotesAndDiscussionBlock.class.php:16 index.php:168
+#: daily_notes.php:39 timesheet.php:54
+msgid "Notes & Discussion"
+msgstr ""
+
+#: class/block/ProjectAddTaskDropboxBlock.class.php:16
+msgid "Add Task Dropbox"
+msgstr ""
+
+#: class/block/ProjectAddTaskDropboxBlock.class.php:30
+msgid "Use the following drop box to add a task for this project."
+msgstr ""
+
+#: class/block/ProjectAddCoworkerBlock.class.php:18
+msgid "Add a Co-worker"
+msgstr ""
+
+#: class/block/ProjectAddCoworkerBlock.class.php:20
+msgid "Co-workers"
+msgstr ""
+
+#: class/block/ProjectAddCoworkerBlock.class.php:70
+msgid "Participating co-workers:"
+msgstr ""
+
+#: class/block/ProjectAddCoworkerBlock.class.php:88
+msgid ""
+"If you want to share this project with others, add co-workers to your Ofuz "
+"account"
+msgstr ""
+
+#: class/block/ProjectAddCoworkerBlock.class.php:91
+#: class/Project.class.php:238
+msgid "add co-workers"
+msgstr ""
+
+#: class/block/ProjectDiscussionEmailAlertBlock.class.php:16
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:181
+msgid "Discussion Email Alert"
+msgstr ""
+
+#: class/block/ProjectDiscussionEmailAlertBlock.class.php:54
+msgid ""
+"You have turned off email alert for this project.<br /> If you want to get "
+"email alerts for this project please turn it on. <br />"
+msgstr ""
+
+#: class/block/ProjectDiscussionEmailAlertBlock.class.php:61
+msgid ""
+"Your email alert for the project discussion is set on by default. You can "
+"turn off if you do not want to receive emails for this project discussion."
+"<br />"
+msgstr ""
+
+#: class/block/ContactDetailBlock.class.php:21 ContactDetail.class.php:24
+#: plugin/ContactDetail/ContactDetail.class.php:21
+msgid "Contact Information"
+msgstr ""
+
+#: class/block/TimesheetBlock.class.php:16 index.php:168 daily_notes.php:39
+#: timesheet.php:53 timesheet.php:54
+msgid "Timesheet"
+msgstr ""
+
+#: class/block/TaskDropBoxBlock.class.php:16
+msgid "Task Drop Box"
+msgstr ""
+
+#: class/block/TaskDropBoxBlock.class.php:33
+msgid "Use the following Email Id to create a note :"
+msgstr ""
+
+#: class/block/TaskDropBoxBlock.class.php:39
+msgid "No drop box code is generated"
+msgstr ""
+
+#: class/block/TaskDropBoxBlock.class.php:40
+msgid "Generate one by"
+msgstr ""
+
+#: class/block/TaskDropBoxBlock.class.php:40
+msgid "clicking here"
+msgstr ""
+
+#: class/block/DashboardTodaysTask.class.php:16
+msgid "Today's Tasks"
+msgstr ""
+
+#: class/block/DashboardTodaysTask.class.php:16
+msgid "All Tasks"
+msgstr ""
+
+#: class/block/ContactShareFileNoteBlock.class.php:18
+msgid "share files and notes"
+msgstr ""
+
+#: class/block/TaskOwnerBlock.class.php:16
+msgid "Task Owner"
+msgstr ""
+
+#: class/block/TaskOwnerBlock.class.php:34 project.php:303
+msgid "Change the task owner"
+msgstr ""
+
+#: class/block/TaskOwnerBlock.class.php:45
+msgid "Hide"
+msgstr ""
+
+#: class/block/TasksAddTaskBlock.class.php:16
+#: class/block/ContactAddTaskBlock.class.php:15
+msgid "Add a Task"
+msgstr ""
+
+#: class/block/TaskProgressBlock.class.php:16
+msgid "Progress"
+msgstr ""
+
+#: class/block/ContactTagSearchBlock.class.php:23
+msgid "Search by tags"
+msgstr ""
+
+#: class/block/ContactAddTaskBlock.class.php:17
+msgid "add new task"
+msgstr ""
+
+#: class/block/RecurrentInvoiceBlock.class.php:26
+msgid "Recurrent Invoice"
+msgstr ""
+
+#: class/block/RecurrentInvoiceBlock.class.php:42
+msgid "This invoice repeats every"
+msgstr ""
+
+#: class/block/RecurrentInvoiceBlock.class.php:44
+msgid "This invoice repeats"
+msgstr ""
+
+#: class/block/RecurrentInvoiceBlock.class.php:44
+msgid "every"
+msgstr ""
+
+#: class/block/RecurrentInvoiceBlock.class.php:48
+msgid "The next invoice will be generated on "
+msgstr ""
+
+#: class/block/ProjectAddProjectTaskBlock.class.php:17
+msgid "Add a Project Task"
+msgstr ""
+
+#: class/block/ContactSubTagSearchBlock.class.php:20
+msgid "Narrow your search"
+msgstr ""
+
+#: class/TaskCategory.class.php:71 class/Task.class.php:654
+#: class/Task.class.php:696 task.php:432 project.php:289
+msgid "cancel"
+msgstr ""
+
+#: class/Note.class.php:245 class/Note.class.php:249
+msgid "has been removed"
+msgstr ""
+
+#: class/Contact.class.php:1257 class/Contact.class.php:1275
+msgid "<br>"
+msgstr ""
+
+#: class/Contact.class.php:1267
+msgid " has send the following message using ofuz"
+msgstr ""
+
+#: class/Contact.class.php:1272
+msgid "<br>Notification can not be sent to "
+msgstr ""
+
+#: class/Feedback.class.php:59
+msgid "Send Us Feedback"
+msgstr ""
+
+#: class/Feedback.class.php:63
+msgid ""
+"Let us know what you think. &nbsp; Likes, dislikes, questions, comments, "
+"bugs, or anything."
+msgstr ""
+
+#: class/Feedback.class.php:70
+msgid "Thank You"
+msgstr ""
+
+#: class/Feedback.class.php:74
+msgid ""
+"Your comments are valuable to us. &nbsp; We appreciate your taking the time "
+"to help make Ofuz even better."
+msgstr ""
+
+#: class/Sync.class.php:24 class/Sync.class.php:29
+msgid "Email : "
+msgstr ""
+
+#: class/Ofuz_Emailer.class.php:80
+msgid "Click here"
+msgstr ""
+
+#: class/Ofuz_Emailer.class.php:80
+msgid "to unsubscribe from this email series"
+msgstr ""
+
+#: class/ContactNotes.class.php:229
+msgid "Attached to a project"
+msgstr ""
+
+#: class/ContactNotes.class.php:237
+msgid "Select Project"
+msgstr ""
+
+#: class/ContactNotes.class.php:239
+msgid "You do not have Project."
+msgstr ""
+
+#: class/ContactNotes.class.php:257
+msgid " and I"
+msgstr ""
+
+#: class/ContactNotes.class.php:258
+msgid "Me, co-workers and "
+msgstr ""
+
+#: class/ContactNotes.class.php:262 class/ContactNotes.class.php:272
+#: class/Message.class.php:235 class/ProjectDiscuss.class.php:200
+#: class/ProjectDiscuss.class.php:213 class/ProjectDiscuss.class.php:221
+#: class/Invoice.class.php:220
+msgid "close"
+msgstr ""
+
+#: class/UserSettings.class.php:98
+msgid "Please Enter Login and Transacton Key for Authorized.net"
+msgstr ""
+
+#: class/UserSettings.class.php:124 class/UserSettings.class.php:163
+#: class/UserSettings.class.php:254 class/UserSettings.class.php:289
+msgid "Data Updated"
+msgstr ""
+
+#: class/UserSettings.class.php:137 class/UserSettings.class.php:172
+msgid "Data Deleted"
+msgstr ""
+
+#: class/UserSettings.class.php:145
+msgid "Please Enter Paypal Business Email"
+msgstr ""
+
+#: class/UserSettings.class.php:182
+msgid "Australian dollar"
+msgstr ""
+
+#: class/UserSettings.class.php:184
+msgid "Brazilian real"
+msgstr ""
+
+#: class/UserSettings.class.php:186
+msgid "British pound"
+msgstr ""
+
+#: class/UserSettings.class.php:188
+msgid "Canadian dollar"
+msgstr ""
+
+#: class/UserSettings.class.php:190
+msgid "Euro"
+msgstr ""
+
+#: class/UserSettings.class.php:192
+msgid "Hong Kong dollar"
+msgstr ""
+
+#: class/UserSettings.class.php:194
+msgid "Indian rupee"
+msgstr ""
+
+#: class/UserSettings.class.php:196
+msgid "Japanese yen"
+msgstr ""
+
+#: class/UserSettings.class.php:198
+msgid "New Zealand dollar"
+msgstr ""
+
+#: class/UserSettings.class.php:200
+msgid "Swiss franc"
+msgstr ""
+
+#: class/UserSettings.class.php:202
+msgid "United States dollar"
+msgstr ""
+
+#: class/AutoResponder.class.php:22
+msgid "Please provide one name for the autoresponder"
+msgstr ""
+
+#: class/AutoResponder.class.php:25
+msgid "Please Select One Tag"
+msgstr ""
+
+#: class/PaymentInvoice.class.php:113
+msgid "Note:"
+msgstr ""
+
+#: class/PaymentInvoice.class.php:113
+msgid "Amount Not Added : "
+msgstr ""
+
+#: class/User.class.php:280 class/RegisteredUser.class.php:94
+msgid "Wrong Username or Password"
+msgstr ""
+
+#: class/User.class.php:284 class/User.class.php:508
+#: class/RegisteredUser.class.php:98
+msgid "User name"
+msgstr ""
+
+#: class/User.class.php:292 class/User.class.php:516
+#: class/RegisteredUser.class.php:106
+msgid "Password"
+msgstr ""
+
+#: class/User.class.php:343 class/RegisteredUser.class.php:576
+msgid "Your password has been sent to: "
+msgstr ""
+
+#: class/User.class.php:346 class/RegisteredUser.class.php:579
+msgid "No user found with that email address"
+msgstr ""
+
+#: class/User.class.php:384 class/RegisteredUser.class.php:464
+msgid "Wrong login or password"
+msgstr ""
+
+#: class/User.class.php:401
+msgid ""
+"Seems like you have registered through facebook. Please login with facebook !"
+msgstr ""
+
+#: class/User.class.php:435
+msgid "Your account is not currently active, contact our tech support at "
+msgstr ""
+
+#: class/User.class.php:443
+msgid "Wrong Login !"
+msgstr ""
+
+#: class/User.class.php:628
+msgid ""
+"Sorry! But seems like you are not connected to facebook. Please connect "
+"first."
+msgstr ""
+
+#: class/OfuzList.class.php:147
+msgid "closed"
+msgstr ""
+
+#: class/OfuzList.class.php:149
+msgid "progress"
+msgstr ""
+
+#: class/OfuzCancelAccount.class.php:44
+msgid "Please Provide a reason before cancelling the account"
+msgstr ""
+
+#: class/Task.class.php:60
+msgid "Task Completed:"
+msgstr ""
+
+#: class/Task.class.php:639 class/Task.class.php:681
+msgid "When's it due? (Specific Date) (YYYY/mm/dd)"
+msgstr ""
+
+#: class/Task.class.php:650 class/Task.class.php:692
+msgid "Choose a category"
+msgstr ""
+
+#: class/Task.class.php:653 class/Task.class.php:695
+msgid "Save this task"
+msgstr ""
+
+#: class/Task.class.php:654 task.php:432
+msgid "or"
+msgstr ""
+
+#: class/PaymentLog.class.php:84
+msgid "Payment has been deducted from the invoice."
+msgstr ""
+
+#: class/PaymentLog.class.php:88
+msgid ""
+"This Payment can not be deleted since it is shared with multiple invoices."
+msgstr ""
+
+#: class/WebFormUser.class.php:26
+msgid "Please select some labels"
+msgstr ""
+
+#: class/ProjectDiscuss.class.php:194
+msgid "Hours Worked : "
+msgstr ""
+
+#: class/ProjectDiscuss.class.php:195
+msgid "File : "
+msgstr ""
+
+#: class/ProjectDiscuss.class.php:196 task.php:502
+msgid "Who can edit ? "
+msgstr ""
+
+#: class/ProjectDiscuss.class.php:290 daily_notes.php:129
+msgid "Attachment"
+msgstr ""
+
+#: class/ProjectDiscuss.class.php:890
+msgid "Select Week"
+msgstr ""
+
+#: class/ProjectDiscuss.class.php:1065 task.php:569 public_task.php:190
+msgid "Task Discussion"
+msgstr ""
+
+#: class/ProjectDiscuss.class.php:1069
+#: class/workfeed/WorkFeedProjectDiscuss.class.php:38 task.php:586
+#: public_task.php:201
+msgid "more..."
+msgstr ""
+
+#: class/Project.class.php:231 class/ProjectTask.class.php:373
+msgid "Select One"
+msgstr ""
+
+#: class/Project.class.php:237
+msgid "Add this co-worker"
+msgstr ""
+
+#: class/Project.class.php:238
+msgid "not in this list ? "
+msgstr ""
+
+#: class/Project.class.php:241
+msgid "No co-workers found. To share this project with others"
+msgstr ""
+
+#: class/Project.class.php:241
+msgid "invite co-workers"
+msgstr ""
+
+#: class/Project.class.php:430
+msgid "Co-worker is assigned successfuly for the project"
+msgstr ""
+
+#: class/Project.class.php:432
+msgid "Co-worker is already assigned this project"
+msgstr ""
+
+#: class/Project.class.php:436
+msgid "You must select a co-worker"
+msgstr ""
+
+#: class/Authnet.class.php:218 class/Authnet.class.php:225
+msgid "You have selected Invalid date."
+msgstr ""
+
+#: class/InvoiceLine.class.php:81 class/InvoiceLine.class.php:169
+msgid "Delete this item"
+msgstr ""
+
+#: class/InvoiceLine.class.php:95 class/InvoiceLine.class.php:182
+msgid "Item Description"
+msgstr ""
+
+#: class/RegisteredUser.class.php:163
+msgid "Your Password has been sent"
+msgstr ""
+
+#: class/RegisteredUser.class.php:164
+msgid "Enter your email address"
+msgstr ""
+
+#: class/RegisteredUser.class.php:249
+msgid "Wrong_login_or_password"
+msgstr ""
+
+#: class/RegisteredUser.class.php:386
+msgid "Log out successful"
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectDiscuss.class.php:31
+msgid "has added a note on discussion"
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectDiscuss.class.php:33
+msgid "in project "
+msgstr ""
+
+#: class/workfeed/WorkFeedContactNote.class.php:25
+#: class/workfeed/WorkFeedContactNotePortal.class.php:26
+msgid "has a note from"
+msgstr ""
+
+#: class/workfeed/WorkFeedRssFeedImport.class.php:23
+msgid "posted in"
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectTask.class.php:34
+msgid "Ownership of the task"
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectTask.class.php:36
+#: class/workfeed/WorkFeedProjectTask.class.php:41
+#: class/workfeed/WorkFeedProjectTask.class.php:47
+#: class/workfeed/WorkFeedProjectTask.class.php:53
+#: class/workfeed/WorkFeedProjectTask.class.php:57
+#: class/workfeed/WorkFeedProjectTask.class.php:63
+#: class/workfeed/WorkFeedProjectTask.class.php:70
+#: class/workfeed/WorkFeedProjectTask.class.php:76
+msgid "on project"
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectTask.class.php:37
+#: class/workfeed/WorkFeedProjectTask.class.php:64
+#: class/workfeed/WorkFeedProjectTask.class.php:71
+msgid "has been changed to"
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectTask.class.php:42
+msgid "has been closed by "
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectTask.class.php:48
+msgid "has been re-opened by"
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectTask.class.php:54
+msgid "has been set to "
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectTask.class.php:54
+#: class/workfeed/WorkFeedProjectTask.class.php:59
+#: class/workfeed/WorkFeedProjectTask.class.php:64
+#: class/workfeed/WorkFeedProjectTask.class.php:71
+msgid "by"
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectTask.class.php:58
+msgid "is renamed as "
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectTask.class.php:62
+msgid "Category of "
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectTask.class.php:69
+msgid "Due date of"
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectTask.class.php:74
+msgid "A new task"
+msgstr ""
+
+#: class/workfeed/WorkFeedProjectTask.class.php:77
+msgid "has been added by"
+msgstr ""
+
+#: class/Invoice.class.php:219
+msgid "Past due invoices"
+msgstr ""
+
+#: class/Invoice.class.php:220
+msgid "send email reminder"
+msgstr ""
+
+#: class/Invoice.class.php:224
+msgid "Would you like add payment from the remaining "
+msgstr ""
+
+#: class/Invoice.class.php:228
+msgid "Number"
+msgstr ""
+
+#: class/Invoice.class.php:229
+msgid "Contact"
+msgstr ""
+
+#: class/Invoice.class.php:232
+msgid "Due"
+msgstr ""
+
+#: class/Invoice.class.php:348
+msgid "Successfully email sent to: "
+msgstr ""
+
+#: class/Invoice.class.php:350
+msgid "Unable to send email to "
+msgstr ""
+
+#: class/Invoice.class.php:606 class/Invoice.class.php:635
+msgid ""
+"Recurrent Value is not correct.To set as Recurrent edit the invoice and "
+"enter numeric value"
+msgstr ""
+
+#: class/Invoice.class.php:611
+msgid "Invoice could be created. Possible reason Contact Missing."
+msgstr ""
+
+#: class/Invoice.class.php:1448 class/Invoice.class.php:1495
+#: class/Invoice.class.php:1590
+msgid "Invalid amount has been entered"
+msgstr ""
+
+#: class/Invoice.class.php:1450
+msgid ""
+"The payment received is greater than the invoice amount, do you want to "
+"apply "
+msgstr ""
+
+#: class/Invoice.class.php:1465
+msgid "Payment has been added"
+msgstr ""
+
+#: class/Invoice.class.php:1592
+msgid "Amount is greater than the total due"
+msgstr ""
+
+#: class/Invoice.class.php:1641 class/Invoice.class.php:1732
+msgid "Total Amount"
+msgstr ""
+
+#: class/Invoice.class.php:1648
+msgid "Please Select Your Payment Method"
+msgstr ""
+
+#: class/Invoice.class.php:1651
+msgid "American Express"
+msgstr ""
+
+#: class/Invoice.class.php:1652
+msgid "Master Card"
+msgstr ""
+
+#: class/Invoice.class.php:1653
+msgid "Visa"
+msgstr ""
+
+#: class/Invoice.class.php:1659
+msgid "Credit Card Number"
+msgstr ""
+
+#: class/Invoice.class.php:1664
+msgid "CVV number"
+msgstr ""
+
+#: class/Invoice.class.php:1671
+msgid "Card Expiration Month - Year"
+msgstr ""
+
+#: class/Invoice.class.php:1674 class/Invoice.class.php:2035
+msgid "January"
+msgstr ""
+
+#: class/Invoice.class.php:1675 class/Invoice.class.php:2036
+msgid "February"
+msgstr ""
+
+#: class/Invoice.class.php:1676 class/Invoice.class.php:2037
+msgid "March"
+msgstr ""
+
+#: class/Invoice.class.php:1677 class/Invoice.class.php:2038
+msgid "April"
+msgstr ""
+
+#: class/Invoice.class.php:1678 class/Invoice.class.php:2039
+msgid "May"
+msgstr ""
+
+#: class/Invoice.class.php:1679 class/Invoice.class.php:2040
+msgid "June"
+msgstr ""
+
+#: class/Invoice.class.php:1680 class/Invoice.class.php:2041
+msgid "July"
+msgstr ""
+
+#: class/Invoice.class.php:1681 class/Invoice.class.php:2042
+msgid "August"
+msgstr ""
+
+#: class/Invoice.class.php:1682 class/Invoice.class.php:2043
+msgid "September"
+msgstr ""
+
+#: class/Invoice.class.php:1683 class/Invoice.class.php:2044
+msgid "October"
+msgstr ""
+
+#: class/Invoice.class.php:1684 class/Invoice.class.php:2045
+msgid "November"
+msgstr ""
+
+#: class/Invoice.class.php:1685 class/Invoice.class.php:2046
+msgid "December"
+msgstr ""
+
+#: class/Invoice.class.php:1779
+msgid ""
+"The Total Amount entered is greater than the invoice amount. Please re-enter."
+msgstr ""
+
+#: class/Invoice.class.php:1819
+msgid "This transaction has been approved. Thank you for your payment"
+msgstr ""
+
+#: class/Invoice.class.php:1995
+msgid "has been accepted by"
+msgstr ""
+
+#: class/Tag.class.php:435
+msgid "Select Tag to remove"
+msgstr ""
+
+#: class/Export.class.php:75
+msgid "As on "
+msgstr ""
+
+#: class/Export.class.php:76
+msgid "Total Contacts : "
+msgstr ""
+
+#: class/ProjectTask.class.php:369 class/ProjectTask.class.php:381
+msgid "No co-worker found for this project"
+msgstr ""
+
+#: class/ProjectTask.class.php:379
+msgid "Change Owner"
+msgstr ""
+
+#: class/ProjectTask.class.php:568
+msgid "Select Task"
+msgstr ""
+
+#: class/ProjectTask.class.php:577
+msgid "You do not have Tasks for this Project."
+msgstr ""
+
+#: task.php:391
+msgid "Task Category :"
+msgstr ""
+
+#: task.php:415
+msgid "Due Date : "
+msgstr ""
+
+#: task.php:416
+msgid "Hours of work expected :"
+msgstr ""
+
+#: task.php:427
+msgid "Task Status"
+msgstr ""
+
+#: task.php:427 project.php:281
+msgid "Open"
+msgstr ""
+
+#: task.php:427 project.php:281
+msgid "Closed"
+msgstr ""
+
+#: task.php:439
+msgid "Get into the discussion:"
+msgstr ""
+
+#: task.php:497
+msgid "Hours Worked"
+msgstr ""
+
+#: task.php:499
+msgid "Attach a file"
+msgstr ""
+
+#: task.php:501
+msgid "When this happened"
+msgstr ""
+
+#: task.php:508
+msgid "Add this item"
+msgstr ""
+
+#: task.php:525 public_task.php:146
+msgid "This task is closed"
+msgstr ""
+
+#: task.php:530 public_task.php:151
+msgid "discussion"
+msgstr ""
+
+#: settings_email_templ.php:54 public_profile_vcard.php:123
+#: public_profile_vcard.php:127
+msgid "Go Back"
+msgstr ""
+
+#: settings_email_templ.php:129 settings_email_templ.php:139
+msgid "Template Name"
+msgstr ""
+
+#: api_key.php:46
+msgid "Your API Key is : "
+msgstr ""
+
+#: api_key.php:50
+msgid "You do not yet have an API key. "
+msgstr ""
+
+#: api_key.php:51
+msgid "Please generate one "
+msgstr ""
+
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:58 includes/ofuz_navtabs.php:67
+#: index.php:5
+msgid "Dashboard"
+msgstr ""
+
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:68 includes/ofuz_navtabs.php:68
+#: daily_notes.php:147 timesheet.php:148
+msgid "Contacts"
+msgstr ""
+
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:86 daily_notes.php:97
+#: projects.php:50 timesheet.php:80
+msgid "Projects"
+msgstr ""
+
+#: includes/x_ofuz_hooks_plugin.conf.inc.php:189
+msgid "Offline Support"
+msgstr ""
+
+#: includes/footer_notes.php:9
+msgid "Did you know? "
+msgstr ""
+
+#: includes/footer_notes.php:13
+msgid "You can create Notes via email by using your"
+msgstr ""
+
+#: includes/footer_notes.php:13
+msgid "create-a-note-by-email"
+msgstr ""
+
+#: includes/footer_notes.php:13
+msgid "stream addresses."
+msgstr ""
+
+#: includes/footer_notes.php:16
+msgid "You can create tasks via email by using your"
+msgstr ""
+
+#: includes/footer_notes.php:16
+msgid "create-a-task-by-email"
+msgstr ""
+
+#: includes/footer_notes.php:16
+msgid "dropbox addresses."
+msgstr ""
+
+#: includes/ofuz_navtabs.php:42
+msgid "Settings"
+msgstr ""
+
+#: includes/ofuz_navtabs.php:53
+msgid "Logout"
+msgstr ""
+
+#: payment_add.php:44 invoice_add_bck.php:377 invoice_add.php:651
+msgid "Add Invoice"
+msgstr ""
+
+#: payment_add.php:45
+msgid "Add Quote"
+msgstr ""
+
+#: settings_auto_responder_edit.php:75
+msgid "Auto Responder - "
+msgstr ""
+
+#: contacts.php:212 contacts.php:214
+msgid "add new contact"
+msgstr ""
+
+#: contacts.php:219 company_add.php:36
+msgid "Add a new company"
+msgstr ""
+
+#: contacts.php:251
+msgid "Showing contacts with tags:"
+msgstr ""
+
+#: contacts.php:263
+msgid "Find someone by typing their name or company"
+msgstr ""
+
+#: contacts.php:289
+msgid "View contacts:"
+msgstr ""
+
+#: contacts.php:292
+msgid "Recently added"
+msgstr ""
+
+#: contacts.php:293
+msgid "Recently modified"
+msgstr ""
+
+#: contacts.php:294
+msgid "Recently viewed"
+msgstr ""
+
+#: contacts.php:295
+msgid "With recent activity"
+msgstr ""
+
+#: contacts.php:296
+msgid "Alphabetically"
+msgstr ""
+
+#: contacts.php:312
+msgid "With the selected contacts you can:"
+msgstr ""
+
+#: contacts.php:313
+msgid "Delete them"
+msgstr ""
+
+#: contacts.php:325 contacts.php:328 contacts.php:330 contacts.php:331
+msgid "or "
+msgstr ""
+
+#: contacts.php:325
+msgid "Un-Share Contact"
+msgstr ""
+
+#: contacts.php:328
+msgid "Share With Co-Workers"
+msgstr ""
+
+#: contacts.php:330
+msgid "Merge in one"
+msgstr ""
+
+#: contacts.php:331
+msgid "Send a Message"
+msgstr ""
+
+#: contacts.php:332 project.php:313
+msgid "select all"
+msgstr ""
+
+#: contacts.php:332 project.php:313
+msgid "select none"
+msgstr ""
+
+#: contact_web_form.php:17 contact_web_form_url.php:17
+msgid "Ofuz :: Contacts Web Form Creator"
+msgstr ""
+
+#: contact_web_form.php:40 settings_wf.php:96
+msgid "Web Form Builder"
+msgstr ""
+
+#: contact_web_form.php:62 settings_wf.php:119 settings_wf.php:153
+msgid "Form Title"
+msgstr ""
+
+#: contact_web_form.php:64 settings_wf.php:121 settings_wf.php:155
+msgid "Form Description"
+msgstr ""
+
+#: contact_web_form.php:68 settings_wf.php:125 settings_wf.php:159
+msgid "Tags for those contacts"
+msgstr ""
+
+#: contact_web_form.php:69 settings_wf.php:126 settings_wf.php:160
+msgid "Web address to take the user after submitting the form"
+msgstr ""
+
+#: contact_web_form.php:70 settings_wf.php:127 settings_wf.php:161
+msgid "Receive an email alert when someone submit the form"
+msgstr ""
+
+#: co_worker_search.php:57
+msgid "Seacrh"
+msgstr ""
+
+#: co_worker_search.php:161
+msgid "Search Result"
+msgstr ""
+
+#: co_worker_search.php:176
+msgid "Already a co-worker"
+msgstr ""
+
+#: co_worker_search.php:180 co_worker_search.php:183
+msgid "Add as co-worker"
+msgstr ""
+
+#: co_worker_search.php:191
+msgid "No Result Found"
+msgstr ""
+
+#: co_worker_search.php:196
+msgid "Can't find the user? Send an invitation by email"
+msgstr ""
+
+#: cancel_account.php:31
+msgid "Please give us the reason for Cancellation"
+msgstr ""
+
+#: cancel_account.php:58
+msgid "Yes Cancel and delete all my information"
+msgstr ""
+
+#: google_translator_et.php:55
+msgid "Language Translator for Emailtemplate"
+msgstr ""
+
+#: plugin/PluginSettingTest/PluginSettingTest.class.php:18
+#: plugin/SamplePlugIn/PluginSettingSample.class.php:18
+msgid "Test Setting"
+msgstr ""
+
+#: plugin/PluginSettingTest/sqlfusion.php:3
+#: plugin/SamplePlugIn/SettingContentSample.php:3
+msgid ""
+"Welcome to SQLFusion. This is a sample page for the Setting Tab with the "
+"Plugin."
+msgstr ""
+
+#: plugin/PluginSettingTest/sqlfusion.php:5
+#: plugin/SamplePlugIn/SettingContentSample.php:5
+msgid ""
+"Creating setting with Plugin is very simple with Ofuz Plugin API. Give it a "
+"try and we are sure you will love this !!"
+msgstr ""
+
+#: plugin/SamplePlugIn/TabContentSample.php:3 plugin/HomeTab/sqlfusion.php:3
+msgid "Welcome to SQLFusion. This is a sample page for the plugin Tab."
+msgstr ""
+
+#: plugin/SamplePlugIn/TabContentSample.php:5 plugin/HomeTab/sqlfusion.php:5
+msgid ""
+"Creating Tab with Plugin is very simple with Ofuz Plugin API. Give it a try "
+"and we are sure you will love this !!"
+msgstr ""
+
+#: company_edit.php:35
+msgid "Edit Company"
+msgstr ""
+
+#: company_edit.php:84 contact_edit.php:141
+msgid "Contact Address"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:83
+msgid "No server specified"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:91 blog/wp-includes/class-pop3.php:103
+#: blog/wp-includes/class-pop3.php:124 blog/wp-includes/class-pop3.php:247
+#: blog/wp-includes/class-pop3.php:301 blog/wp-includes/class-pop3.php:312
+#: blog/wp-includes/class-pop3.php:360 blog/wp-includes/class-pop3.php:394
+#: blog/wp-includes/class-pop3.php:427 blog/wp-includes/class-pop3.php:526
+#: blog/wp-includes/class-pop3.php:549
+msgid "Error "
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:116
+msgid "no login ID submitted"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:119 blog/wp-includes/class-pop3.php:139
+msgid "connection not established"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:136 blog/wp-includes/class-pop3.php:172
+msgid "No password submitted"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:144
+msgid "Authentication failed"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:163 blog/wp-includes/class-pop3.php:206
+#: blog/wp-includes/class-pop3.php:231 blog/wp-includes/class-pop3.php:273
+#: blog/wp-includes/class-pop3.php:347 blog/wp-includes/class-pop3.php:387
+#: blog/wp-includes/class-pop3.php:417 blog/wp-includes/class-pop3.php:451
+#: blog/wp-includes/class-pop3.php:514 blog/wp-includes/class-pop3.php:582
+msgid "No connection to server"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:169
+msgid "No login ID submitted"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:177
+msgid "No server banner"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:177 blog/wp-includes/class-pop3.php:187
+msgid "abort"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:187
+msgid "apop authentication failed"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:324
+msgid "Premature end of list"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:457
+msgid "Empty command string"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:477
+msgid "connection does not exist"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:587
+msgid "No msg number submitted"
+msgstr ""
+
+#: blog/wp-includes/class-pop3.php:593
+msgid "Command failed "
+msgstr ""
+
+#: email_stream.php:87
+msgid "Email Stream Setup"
+msgstr ""
+
+#: email_stream.php:107
+msgid "Dear "
+msgstr ""
+
+#: email_stream.php:108
+msgid "You do not have an email stream id yet"
+msgstr ""
+
+#: contact_edit.php:42
+msgid "Edit Contact"
+msgstr ""
+
+#: contact_import.php:30 gSync.php:63
+msgid "Import Contacts"
+msgstr ""
+
+#: contact_import.php:34
+msgid "Step 1 of 2: "
+msgstr ""
+
+#: contact_import.php:34
+msgid "Select the .CSV File"
+msgstr ""
+
+#: contact_import.php:36
+msgid "Ofuz supports importing records from .csv"
+msgstr ""
+
+#: contact_import.php:36
+msgid "Comma Separated Values"
+msgstr ""
+
+#: contact_import.php:36
+msgid "files"
+msgstr ""
+
+#: contact_import.php:37
+msgid ""
+"To start import, browse to locate file .csv file and click on the Next "
+"button to continue."
+msgstr ""
+
+#: tab_template.php:9 setting_template.php:15
+msgid "Parameter missing !!!"
+msgstr ""
+
+#: tab_template.php:24
+msgid "-Plug-in content page not defined, exiting now"
+msgstr ""
+
+#: tab_template.php:80
+msgid "Plugin Content Not Found !!"
+msgstr ""
+
+#: user_login.php:117
+msgid "If you have not registered yet, please do so "
+msgstr ""
+
+#: user_login.php:119
+msgid "If you forgot your password, you can retrieve it "
+msgstr ""
+
+#: user_login.php:143
+msgid "You can also sign into our mobile version"
+msgstr ""
+
+#: contact_portal.php:90
+msgid "Welcome to the "
+msgstr ""
+
+#: contact_portal.php:90
+msgid " portal"
+msgstr ""
+
+#: contact_portal.php:112
+msgid "Add a Note or File"
+msgstr ""
+
+#: contact_portal.php:171
+msgid " Notes:"
+msgstr ""
+
+#: contact_portal.php:309
+msgid "Added By"
+msgstr ""
+
+#: settings_auto_responder_email.php:104
+msgid " - email template add form"
+msgstr ""
+
+#: settings_auto_responder_email.php:106 settings_auto_responder_email.php:111
+msgid "Add a new email"
+msgstr ""
+
+#: settings_auto_responder_email.php:109
+msgid " - Email templates"
+msgstr ""
+
+#: settings_auto_responder_email.php:184
+msgid "Delete this Auto Responder Email"
+msgstr ""
+
+#: settings_auto_responder_email.php:193
+msgid "You do not have any auto responder Email Templates for "
+msgstr ""
+
+#: index.php:165
+#, php-format
+msgid "%s 's Work Feed:"
+msgstr ""
+
+#: index.php:168 daily_notes.php:39 timesheet.php:54
+msgid "Work Feed"
+msgstr ""
+
+#: invoice_add_bck.php:357 invoice_edit.php:532 invoice_add.php:631
+msgid "Recurrent Invoice?"
+msgstr ""
+
+#: invoice_add_bck.php:364 invoice_edit.php:552 invoice_add.php:638
+msgid "Set this invoice as recurrent"
+msgstr ""
+
+#: invoice_add_bck.php:366 invoice_edit.php:554 invoice_add.php:640
+msgid "Repeat this invoice every: <br />"
+msgstr ""
+
+#: invoice_add_bck.php:369 invoice_edit.php:557 invoice_add.php:643
+msgid "(like every 2 Months or every 3 Days)"
+msgstr ""
+
+#: invoice_add_bck.php:390 invoice_edit.php:586 invoice_add.php:681
+msgid "Contact/Company"
+msgstr ""
+
+#: invoice_add_bck.php:454 invoice_edit.php:648 invoice_add.php:746
+msgid "Balance"
+msgstr ""
+
+#: daily_notes.php:38
+msgid "Daily Notes & Discussion"
+msgstr ""
+
+#: daily_notes.php:70
+msgid "Previous Day"
+msgstr ""
+
+#: daily_notes.php:70
+msgid "Next Day"
+msgstr ""
+
+#: daily_notes.php:74
+msgid "Today"
+msgstr ""
+
+#: daily_notes.php:80
+msgid "Notes With Hours"
+msgstr ""
+
+#: daily_notes.php:84
+msgid "All Task"
+msgstr ""
+
+#: daily_notes.php:94
+msgid "All Users"
+msgstr ""
+
+#: daily_notes.php:119
+msgid "Note By "
+msgstr ""
+
+#: daily_notes.php:122
+msgid "Time Worked"
+msgstr ""
+
+#: daily_notes.php:122 daily_notes.php:159 timesheet.php:110 timesheet.php:159
+msgid "hrs"
+msgstr ""
+
+#: daily_notes.php:159
+msgid "Time Recorded"
+msgstr ""
+
+#: upgrade_plan.php:146 upgrade_plan.php:175 upgrade_plan.php:206
+msgid "Your current plan"
+msgstr ""
+
+#: fb_ofuz_login_verification.php:64
+msgid ""
+"Thank you for connecting to Ofuz with facebook connect.  <br/>\n"
+"\t\t               If you already have a username and password at Ofuz "
+"please sign in bellow to connect your facebook account to Ofuz.</br>\n"
+"\t\t\t\t\t   Otherwize just provide us with your email address to create a "
+"new account."
+msgstr ""
+
+#: fb_ofuz_login_verification.php:81
+msgid "If you are a new ofuz user please enter your email address bellow"
+msgstr ""
+
+#: fb_ofuz_login_verification.php:96
+msgid "Your email address: "
+msgstr ""
+
+#: setting_template.php:20
+msgid "Plug-in class not found exiting"
+msgstr ""
+
+#: setting_template.php:31
+msgid "Plug-in setting content not defined, exiting now"
+msgstr ""
+
+#: setting_template.php:68
+msgid "Plugin Setting Content Not Found !!"
+msgstr ""
+
+#: contact_sendemail_save_template.php:15
+msgid "Ofuz :: Contacts Send Email Save Template"
+msgstr ""
+
+#: contact_sendemail_save_template.php:44
+msgid "Save Template"
+msgstr ""
+
+#: contact_sendemail_save_template.php:75
+msgid "Name for this email template:  "
+msgstr ""
+
+#: contact_sendemail_save_template.php:83
+msgid "or click here to continue"
+msgstr ""
+
+#: contact_sendemail_save_template.php:91
+msgid " or click here to continue without saving"
+msgstr ""
+
+#: contact_add.php:27
+msgid "Other ways to add people"
+msgstr ""
+
+#: contact_add.php:32
+msgid "Import from vCard"
+msgstr ""
+
+#: contact_add.php:33
+msgid "Import from CSV"
+msgstr ""
+
+#: contact_add.php:34
+msgid "Import from Google"
+msgstr ""
+
+#: contact_add.php:35
+msgid "Import from Facebook"
+msgstr ""
+
+#: contact_add.php:36
+msgid "Create a Web Form"
+msgstr ""
+
+#: invoice_edit.php:565
+msgid "Edit Invoice"
+msgstr ""
+
+#: invoice_edit.php:608 invoice_add.php:700
+msgid "Discount (%) :"
+msgstr ""
+
+#: invoice_edit.php:614 invoice_add.php:701
+msgid "Add Tax (%)"
+msgstr ""
+
+#: invoice_edit.php:625 invoice_add.php:712
+msgid "Tax (%)"
+msgstr ""
+
+#: contact_share_settings.php:105
+msgid "Share files and Notes"
+msgstr ""
+
+#: contact_share_settings.php:141
+msgid "The link bellow is a place where you and "
+msgstr ""
+
+#: contact_share_settings.php:141
+msgid " can share files, documents and notes with you."
+msgstr ""
+
+#: contact_share_settings.php:150
+msgid "Generate a new address link"
+msgstr ""
+
+#: contact_share_settings.php:151
+msgid "Stop sharing"
+msgstr ""
+
+#: contact_share_settings.php:157
+msgid "Set a personalized message"
+msgstr ""
+
+#: contact_share_settings.php:185
+msgid "Click Here to Turn On <br>File Sharing with "
+msgstr ""
+
+#: import_contacts.php:43
+msgid "Start by importing your contacts:"
+msgstr ""
+
+#: import_contacts.php:56
+msgid "Skip Importing Contacts"
+msgstr ""
+
+#: gSync.php:65
+msgid ""
+"It imports only the active contacts from Gmail.So it doesn't import contact "
+"with no name."
+msgstr ""
+
+#: gSync.php:69
+msgid "Export Contacts"
+msgstr ""
+
+#: gSync.php:70
+msgid "Contacts will be exported from Ofuz which have atleast one emailid."
+msgstr ""
+
+#: fb_connect.php:94
+msgid ""
+"Oops ! something wrong, seems like the facebook session is no longer valid, "
+"please clear the bowser cookies and retry. We appriciate your patience"
+msgstr ""
+
+#: fb_connect.php:158
+msgid "Facebook contacts has been imported successfully"
+msgstr ""
+
+#: fb_connect.php:163
+msgid "Please connect to facebook first"
+msgstr ""
+
+#: fb_connect.php:165
+msgid ""
+"If you are already connected to facebook please wait for few seconds, page "
+"will be auromatically redirected"
+msgstr ""
+
+#: project.php:96
+msgid "Are you sure you want to Close the selected Task ?"
+msgstr ""
+
+#: project.php:103
+msgid ""
+"Are you sure you want to change the selected task to a different project ?"
+msgstr ""
+
+#: project.php:221
+msgid "-- All Participants --"
+msgstr ""
+
+#: project.php:230
+msgid "-- All Task Categories --"
+msgstr ""
+
+#: project.php:258
+msgid "Effort estimated in hours"
+msgstr ""
+
+#: project.php:281
+msgid "Project Status"
+msgstr ""
+
+#: project.php:282
+msgid "Project accesibility"
+msgstr ""
+
+#: project.php:282
+msgid "Public"
+msgstr ""
+
+#: project.php:282
+msgid "Private"
+msgstr ""
+
+#: project.php:302
+msgid "With the selected Task you can:"
+msgstr ""
+
+#: project.php:303 project.php:305
+msgid ":"
+msgstr ""
+
+#: project.php:305 project.php:309
+msgid " or "
+msgstr ""
+
+#: project.php:305
+msgid "move it to an other project"
+msgstr ""
+
+#: project.php:308
+msgid "Move"
+msgstr ""
+
+#: project.php:310
+msgid "Close them all"
+msgstr ""
+
+#: projects.php:53
+msgid "Open Projects"
+msgstr ""
+
+#: projects.php:59
+msgid "Closed Projects"
+msgstr ""
+
+#: user_register.php:45
+msgid "Please check the URL"
+msgstr ""
+
+#: contact_web_form_url.php:40
+msgid "Web Form Url"
+msgstr ""
+
+#: contact_web_form_url.php:54 settings_wf.php:132
+msgid "The url for the web form "
+msgstr ""
+
+#: contact_web_form_url.php:54 settings_wf.php:132
+msgid " is "
+msgstr ""
+
+#: contact_web_form_url.php:59 settings_wf.php:137
+msgid "Embed code to insert in your blog or web site"
+msgstr ""
+
+#: contact_web_form_url.php:67
+msgid "Back"
+msgstr ""
+
+#: public_profile_vcard.php:122
+msgid "<b>Contact is sent.</b>"
+msgstr ""
+
+#: public_profile_vcard.php:125
+msgid "<b>Error Sending Email, Please try again.</b>"
+msgstr ""
+
+#: google_translator_msg.php:55
+msgid "Language Translator for Message"
+msgstr ""
+
+#: timesheet.php:107
+msgid "Per Tasks:"
+msgstr ""
+
+#: timesheet.php:122
+msgid "Per Participants:"
+msgstr ""
+
+#: timesheet.php:159
+msgid " spent with "
+msgstr ""
+
+#: invoices_unpaid.php:151
+msgid "You can apply the amount "
+msgstr ""
+
+#: invoices_unpaid.php:151
+msgid " for the Note"
+msgstr ""
+
+#: invoices_unpaid.php:151
+msgid "to any of the following invoices."
+msgstr ""
+
+#: settings_wf.php:71
+msgid "My Web Forms"
+msgstr ""
+
+#: settings_auto_responder.php:61
+msgid "Create New"
+msgstr ""
+
+#: settings_auto_responder.php:109
+msgid "Delete this Auto Responder"
+msgstr ""
+
+#: settings_auto_responder.php:109
+msgid "Do you really want to delete?"
+msgstr ""
+
+#: settings_auto_responder.php:120
+msgid "You do not have any auto responder. To add click "
+msgstr ""

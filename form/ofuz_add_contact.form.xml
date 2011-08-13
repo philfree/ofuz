@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[56]]></idform>
+    <name><![CDATA[ofuz_add_contact]]></name>
+    <descr><![CDATA[]]></descr>
+    <idquery><![CDATA[]]></idquery>
+    <header><![CDATA[]]></header>
+    <row><![CDATA[
+                  <table class="tplain">
+                    <tr>
+                      <td>
+                        <div class="in280x20">
+                          <?php echo _('First name');?><br />
+                          [firstname]
+                        </div>
+                      </td>
+                      <td>
+                        <div class="in280x20">
+                          <?php echo _('Last name');?><br />
+                          [lastname]
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                  <div class="in290x18">
+                    <?php echo _('Title');?><br />
+                    [position]
+                  </div>
+                  <div class="in290x18">
+                    <?php echo _('Company');?><br />
+                    [company][idcompany][iduser]
+                   </div>
+                   <div class="in290x18">
+                     <?php echo _('Picture');?><br />
+                     [picture]
+                  </div>
+                   <div class="dashedline"></div>
+                   
+        ]]></row>
+                 <footer><![CDATA[<div class="section20">
+                     <input type="submit" value="<?php echo _('Add this person');?>" />
+                   </div>]]></footer>
+  </form>

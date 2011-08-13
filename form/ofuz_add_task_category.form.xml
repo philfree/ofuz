@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[55]]></idform>
+    <name><![CDATA[ofuz_add_task]]></name>
+    <descr><![CDATA[]]></descr>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[]]></header>
+    <row><![CDATA[
+                  <span class="headline11">Add a task Category</span>
+                  <div class="marginform">[iduser]
+                      [name]
+                    </div>
+                    <div class="dottedline"></div>
+                    <div class="section20">
+                      <input type="submit" value="Add this task category" />
+                     </div>
+        ]]></row>
+    <footer><![CDATA[]]></footer>
+  </form>

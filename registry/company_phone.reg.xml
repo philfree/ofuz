@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idcompany_phone">
+    <rdata type="label">idcompany_phone</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="phone_number">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Phone Number</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">20:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="phone_type">
+    <rdata type="label">Type</rdata>
+    <rdata type="listlabels">Work:Home:Mobile:Pager:Skype:Other:Fax</rdata>
+    <rdata type="listvalues">Work:Home:Mobile:Pager:Skype:Other:Fax</rdata>
+    <rdata type="default">Work</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+  </rfield>
+  <rfield name="idcompany">
+    <rdata type="label">Company</rdata>
+    <rdata type="list">company:idcompany:name::</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBox</rdata>
+  </rfield>
+</registry>

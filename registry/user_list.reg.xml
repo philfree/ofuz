@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="iduser">
+    <rdata type="label">idusers</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="firstname">
+    <rdata type="default">[getfields;firstname]</rdata>
+    <rdata type="label">First Name</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="required">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="lastname">
+    <rdata type="default">[getfields;lastname]</rdata>
+    <rdata type="label">Last Name</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="required">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="email">
+    <rdata type="default">[getfields;email]</rdata>
+    <rdata type="label">Email</rdata>
+    <rdata type="textline">20:100</rdata>
+    <rdata type="email">1</rdata>
+    <rdata type="required">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeEmail</rdata>
+  </rfield>
+  <rfield name="phone">
+    <rdata type="default">[getfields;phone]</rdata>
+    <rdata type="label">Phone</rdata>
+    <rdata type="textline">20:50</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="company">
+    <rdata type="default">[getfields;company]</rdata>
+    <rdata type="label">Company name</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="position">
+    <rdata type="default">[getfields;position]</rdata>
+    <rdata type="label">Position</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="username">
+    <rdata type="default">[getfields;username]</rdata>
+    <rdata type="label">Username</rdata>
+    <rdata type="textline">20:40</rdata>
+    <rdata type="access">login</rdata>
+    <rdata type="required">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeLogin</rdata>
+  </rfield>
+  <rfield name="regdate">
+    <rdata type="hidden">1</rdata>
+    <rdata type="datesql">d/m/Y:today:1:1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeDateSQL</rdata>
+  </rfield>
+</registry>

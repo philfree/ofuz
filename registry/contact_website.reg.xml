@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idcontact_website">
+    <rdata type="label">idcontact_website</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="website">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Website</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:100</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="website_type">
+    <rdata type="label">Type</rdata>
+    <rdata type="listlabels">Company:Personal:Blog:Twitter:Other</rdata>
+    <rdata type="listvalues">Company:Personal:Blog:Twitter:Other</rdata>
+    <rdata type="default">Company</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+  </rfield>
+  <rfield name="idcontact">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Contact</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:15</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="feed_last_fetch">
+    <rdata type="datef">::</rdata>
+    <rdata type="label">Feed Last Fetch</rdata>
+    <rdata type="fieldtype">strfFBFieldTypeDate</rdata>
+  </rfield>
+  <rfield name="feed_auto_fetch">
+    <rdata type="default">None</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Feed Auto Fetch</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+</registry>

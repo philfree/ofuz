@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+  <savedquery>
+    <idsavedquery><![CDATA[]]></idsavedquery>
+    <qname><![CDATA[registration_search_users]]></qname>
+    <query><![CDATA[select * from user where 
+       firstname like '%[report_user_search]%'
+    or lastname like '%[report_user_search]%'
+    or email like '%[report_user_search]%'
+    or username like '%[report_user_search]%'
+    or phone like '%[report_user_search]%'
+    or position like '%[report_user_search]%'
+    
+
+]]></query>
+    <qorder><![CDATA[order by lastname, firstname]]></qorder>
+    <qpos><![CDATA[]]></qpos>
+    <tablenames><![CDATA[user]]></tablenames>
+  </savedquery>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idautoresponder">
+    <rdata type="label">idautoresponder</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="iduser">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">User</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+ 
+  <rfield name="name">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Name</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+ 
+ 
+  <rfield name="tag_name">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="label">Emails</rdata>
+    <rdata type="table_name"></rdata>
+    <rdata type="field_to_display">tag_name</rdata>
+    <rdata type="object_method">Tag->getAllTagNamesForUser()</rdata>
+    <rdata type="saved_query"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="fieldtype">DijitComboBox</rdata>
+  </rfield>
+  
+</registry>

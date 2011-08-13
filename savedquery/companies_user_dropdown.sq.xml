@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+  <savedquery>
+    <idsavedquery><![CDATA[]]></idsavedquery>
+    <qname><![CDATA[companies_user_dropdown]]></qname>
+    <query><![CDATA[
+    SELECT company.idcompany,
+           company.name 
+     FROM company 
+     WHERE company.iduser = [do_User->iduser]
+	 AND company.name <> ""
+	 ORDER BY company.name
+]]></query>
+    <qorder><![CDATA[]]></qorder>
+    <qpos><![CDATA[]]></qpos>
+    <tablenames><![CDATA[company]]></tablenames>
+  </savedquery>

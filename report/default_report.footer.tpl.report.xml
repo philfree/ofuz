@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+  <report>
+    <name><![CDATA[Name of the Report]]></name>
+    <idreport><![CDATA[0]]></idreport>
+    <descr><![CDATA[
+	// Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+	This is the row report of the default tpl]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[
+</table>
+    ]]></header>
+    <row><![CDATA[
+
+     ]]></row>
+    <footer><![CDATA[
+	<div class="reportfooter">
+<?php 
+$oevent->editParam("orderdir", $orderdir) ; 
+$oevent->editParam("orderfield", $orderfield) ; 
+$oevent->editParam("recordpos", 0) ; 
+  $totalrows = $this->getTotalRows($this->squery->table) ;  
+ if ($totalrows > $this->max_rows && $this->max_rows > 0) {
+?> 
+<a href="<?php echo $oevent->getUrl()?>" class="reportnavlink">Start</a>   
+<?php   
+  $prevnum = $recordpos - $this->max_rows ; 
+  if($prevnum < 0) { $prevnum = 0 ; } ;  
+  $oevent->editParam("recordpos", $prevnum) ; 
+?> 
+<a href="<?php echo $oevent->getUrl()?>" class="reportnavlink">Previous</a> 
+<?php   
+        $page = 0;
+        for ($i=0; $i<$totalrows; $i=$i+$this->max_rows) {
+            $page++;
+            $oevent->editParam("recordpos", $i) ; ?>
+                <a href="<?php echo $oevent->getUrl()?>" class="reportnavlink"><?php echo $page; ?></a> 
+                <?php
+       }
+  $nextnum = $recordpos + $this->max_rows ; 
+  if($nextnum >= $totalrows) { 
+    $nextnum = $totalrows - $this->max_rows; 
+  } 
+  $oevent->editParam("recordpos", $nextnum) ; 
+?> 
+<a href="<?php echo $oevent->getUrl()?>" class="reportnavlink">Next</a> 
+<?php  
+  $lastnum = $totalrows - $this->max_rows ; 
+  $oevent->editParam("recordpos", $lastnum) ;  
+?>  
+<a href="<?php echo $oevent->getUrl();?>" class="reportnavlink">End</a>  
+<?php  } ?>
+   </div>
+    ]]></footer>
+    <recprow><![CDATA[0]]></recprow>
+  </report>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idcontact_instant_message">
+    <rdata type="label">idcontact_instant_message</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="idcontact">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Contact Id</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:14</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="im_options">
+    <rdata type="label">IM Options</rdata>
+    <rdata type="listlabels">Work:Personal:Other</rdata>
+    <rdata type="listvalues">Work:Personal:Other</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+  </rfield>
+  <rfield name="im_type">
+    <rdata type="label">IM Type</rdata>
+    <rdata type="listlabels">AIM:MSN:ICQ:Jabber:Yahoo:Skype:Google Talk:Other</rdata>
+    <rdata type="listvalues">AIM:MSN:ICQ:Jabber:Yahoo:Skype:Google Talk:Other</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+  </rfield>
+  <rfield name="im_username">
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">IM Username</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">20:100</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+  </rfield>
+</registry>
