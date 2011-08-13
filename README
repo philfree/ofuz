@@ -1,0 +1,29 @@
+OFuz from source code
+=====================
+
+Introduction
+------------
+Ofuz is a platform for freelancer to manage Contacts, Tasks, Project and Invoices.
+Clean un simplified user interface, it uses a concept of Co-Workers to work with other freelancers and customers on 
+projects and client relations.
+
+You can try it on our hosted version at:
+http://www.ofuz.com/
+
+An installable version is available at:
+http://ofuz.com/opensource/
+
+All questions will be answered on the forum
+http://ofuz.com/opensource/forum/
+
+
+Source code on GITHub
+------
+
+The source code is hosted on GitHub
+https://github.com/philfree/ofuz
+
+To get the source code version working we have instructions in the wiki
+http://ofuz.com/opensource/wiki/
+
+
