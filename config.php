@@ -61,9 +61,9 @@
   //$_SESSION["cfg_lang"] = $cfg_lang ;
   // Database connexions :
 
-  $conx = new sqlConnect("root", "sqlf490") ;
+  $conx = new sqlConnect("ofuzdev", "d3v5") ;
   $conx->setHostname("localhost") ;
-  $conx->setDatabase("ofuz") ;
+  $conx->setDatabase("ofuzdev") ;
   // Directory where pas is located
   $conx->setBaseDirectory($cfg_local_pasdir) ;
   // Directory where the project is located unless your config.php file is outside your project tree is should be "./"
