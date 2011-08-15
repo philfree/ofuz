@@ -161,25 +161,25 @@
   define('OFUZ_TTL_SHORT', 7200); 
   define('OFUZ_TTL', 86400);
   define('OFUZ_TTL_LONG', 864000);
-  define('OFUZ_API_KEY', '6e83c8eb9995f1cf5c98547e3c717ca0');  // internal user management to Philippe's account
+  define('OFUZ_API_KEY', '');  
   
   define('OFUZ_COM', 'http://www.ofuz.com');
-  define('OFUZ_NET', 'http://dev.ofuz.net');
+  define('OFUZ_NET', 'http://ofuz.localhost');
   define('EMAIL_DOMAIN', 'ofuz.net');
 
   //path
   define('XML_EXPORT', 'xml_export/');
 
-  define('FACEBOOK_API_KEY','94f92a9218ba8e82bb89af78ea4915a3');
-  define('FACEBOOK_APP_SECRET','addc6284f9ea2c548f92334ee1313371');
+  define('FACEBOOK_API_KEY','');
+  define('FACEBOOK_APP_SECRET','');
   define('FACEBOOK_XD_RECEIVER_HTTP','http://www.ofuz.net/xd_receiver.htm');
   define('FACEBOOK_XD_RECEIVER_HTTPS','https://www.ofuz.net/xd_receiver.htm');
 
-  define('TWITTER_CONSUMER_KEY','sRbRJ3cwJLHyVYPAy71Qvg');
-  define('TWITTER_CONSUMER_SECRET','Eur6OZm2X79ycJrriZRhRal0XRYIGagQfRmq9qONnY');
+  define('TWITTER_CONSUMER_KEY','');
+  define('TWITTER_CONSUMER_SECRET','');
 
   
-  define('ENC_SECRECT_KEY','i am legent'); // This is just for SQLFusion Do not disclose
+  define('ENC_SECRECT_KEY','Opensource Rules'); // This is just for SQLFusion Do not disclose
   define('OFUZ_RESTAPIKEY_GEN_SECRECT_KEY','OFUZ_API_AUTHENTICATION_MD5_SECRET_KEY');
   
   // Detect the path to be used for url in emails or forwarded link or message
