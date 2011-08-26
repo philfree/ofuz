@@ -9,7 +9,7 @@
   * It also has 2 extra params in setContent() i.e. url_path and url_name
   * @author SQLFusion's Dream Team <info@sqlfusion.com>
   * @package OfuzCore
-  * @license ##License##
+  * @license GNU Affero General Public License
   * @version 0.6
   * @date 2010-11-13
   * @since 0.6

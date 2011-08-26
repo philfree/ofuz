@@ -1,14 +1,14 @@
 <?php 
-/**COPYRIGHTS**/ 
+/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/ 
 // Copyright 2008 - 2011 all rights reserved, SQLFusion LLC, info@sqlfusion.com
-/**COPYRIGHTS**/
+/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
     /**
      * Contact class
      * Using the DataObject
      * @author SQLFusion's Dream Team <info@sqlfusion.com>
      * @package OfuzCore
-     * @license ##License##
+     * @license GNU Affero General Public License
      * @version 0.6
      * @date 2010-09-03
      * @since 0.1

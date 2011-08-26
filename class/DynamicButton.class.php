@@ -7,7 +7,7 @@
       *
       * @author SQLFusion's Dream Team <info@sqlfusion.com>
       * @package OfuzCore
-      * @license ##License##
+      * @license GNU Affero General Public License
       * @version 0.6
       * @date 2010-09-04
       * @since 0.6

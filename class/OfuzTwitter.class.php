@@ -1,7 +1,7 @@
 <?php
-/**COPYRIGHTS**/ 
+/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/ 
 // Copyright 2008 - 2011 all rights reserved, SQLFusion LLC, info@sqlfusion.com
-/**COPYRIGHTS**/
+/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
 require_once 'Zend/Oauth/Consumer.php';
 require_once 'Zend/Service/Twitter.php';

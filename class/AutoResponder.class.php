@@ -1,6 +1,6 @@
 <?php
 // Copyright 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
-/**COPYRIGHTS**/
+/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
    /** 
     * AutoResponder 
@@ -9,7 +9,7 @@
     * if the user decide to keep it it will save it in the db for reuse if not it dies with the session.
     * @author SQLFusion's Dream Team <info@sqlfusion.com>
     * @package OfuzCore
-    * @license ##License##
+    * @license GNU Affero General Public License
     * @version 0.6
     * @date 2010-09-04
     * @since 0.6
