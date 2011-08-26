@@ -1,7 +1,7 @@
 <?php
-/**COPYRIGHTS**/ 
+/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/ 
 // Copyright 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
-/**COPYRIGHTS**/
+/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 ?>    <!-- 
      // for some unknown reason this doesn't work on Chrome and safari.
      <base href="<?php echo $GLOBALS['cfg_ofuz_site_http_base']; ?>"> //-->

@@ -1,7 +1,7 @@
 <?php 
-/**COPYRIGHTS**/ 
+/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/ 
 // Copyright 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
-/**COPYRIGHTS**/
+/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
 // Code to load FB JS API skip if the file name is in the array
 $arry_dont_load_api = Array("fb_connect.php");

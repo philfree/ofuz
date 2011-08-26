@@ -34,7 +34,7 @@
 		$do_user = new User();
 		$total_users = $do_user->getTotalUsers();
 	?>
-		<tr class="total_users"><td colspan="10">Total Users: <?php echo $total_users; ?></td></tr>
+		<tr class="total_users"><td colspan="9">Total Users: <?php echo $total_users; ?></td></tr>
 		<tr class="report_heading">
                         <td>Id User</td>
 			<td>User</td>
@@ -44,8 +44,7 @@
 			<td>Total Tasks</td>
 			<td>Total Discussions</td>
 			<td>Total Invoices</td>
-   <td>Total Emails sent</td>
-   <td>Last Login</td>
+                        <td>Last Login</td>
 		</tr>
 	<?php  
 
@@ -67,7 +66,6 @@
 			<td><?php echo $do_report->getData("total_tasks") ; ?></td>
 			<td><?php echo $do_report->getData("total_discussion") ; ?></td>
 			<td><?php echo $do_report->getData("total_invoices") ; ?></td>
-   <td><?php echo $do_report->getData("total_email_sent") ; ?></td>
                         <td><?php echo $do_report->getData("last_login") ; ?></td>
 		</tr>
 
@@ -79,10 +77,9 @@
 	</tbody>
 	</table>
 
-        <div class="spacerblock_80"></div>
-    </div>
+	<div class="spacerblock_80"></div>
     <div class="layout_footer"></div>
-</div>
+	</div>
 </td><td class="layout_rmargin"></td></tr></table>
 <?php include_once('includes/ofuz_facebook.php'); ?>
 </body>

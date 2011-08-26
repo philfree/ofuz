@@ -1,5 +1,5 @@
 <?php 
-/**COPYRIGHTS**/ 
+/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/ 
 // Copyrights 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 
     $pageTitle = 'Ofuz :: '._('Co-Workers');
@@ -45,7 +45,7 @@ $(document).ready(function() {
     });
 
 function showSharedDetail(divid){
-  $("#"+divid).slideToggle("slow");
+  $("#"+divid).fadeIn("slow");
 }
 
 function hideSharedDetail(divid){
@@ -62,11 +62,6 @@ function hideSharedDetail(divid){
     <div class="spacerblock_20"></div>
     <table class="layout_columns"><tr><td class="layout_lcolumn">
 	<?php
-	  if(isset($_GET["message"])){
-	      $message = new Message();
-	      $message->setContent(_(htmlentities($_GET["message"])));
-	      $message->displayMessage();
-	  }
 	  $GLOBALS['page_name'] = 'os_co_worker';
 	  include_once('plugin_block.php');
 	?>
@@ -78,7 +73,7 @@ function hideSharedDetail(divid){
                           <?php
                             $_SESSION['do_coworker']->getAllRequest(); //Get all the requests
                             if($_SESSION['do_coworker']->getNumrows()){
-                              echo '<br /><b>'._('The following User(s) are waiting for approval from you to become Co-Workers.').'</b><br />';
+                              echo '<br /><b>'._('The following User(s) are waiting for approval from you to become co-workers.').'</b><br />';
                               while($_SESSION['do_coworker']->next()){
                                 $user_name = $_SESSION['do_User']->getFullName($_SESSION['do_coworker']->iduser);
 
@@ -107,7 +102,7 @@ function hideSharedDetail(divid){
                             $contact_ids = $_POST['ck'];
                             $set_share = true; // Request comes from Contact page
                           }
-                          $_SESSION['do_coworker']->getAllCoWorker(); //Get all the Co-Workers
+                          $_SESSION['do_coworker']->getAllCoWorker(); //Get all the co-workers
                           if (!is_object($_SESSION['do_contact_sharing'])) {
                             $do_contact_sharing = new ContactSharing();
                             $do_contact_sharing->sessionPersistent("do_contact_sharing", "index.php", 36000);
@@ -119,11 +114,11 @@ function hideSharedDetail(divid){
                                   $do_Contacts->sessionPersistent("do_Contacts", "index.php", 36000);
                               }
                                if(!$set_share){ // If not having POST vales
-                                  echo '<b>'._('Your Co-Workers :').'</b><br /><br />';
+                                  echo '<b>'._('Your co-workers :').'</b><br /><br />';
                                   $user_coworker = new User();
                                   while($_SESSION['do_coworker']->next()){
                                       $user_coworker->getId($_SESSION['do_coworker']->idcoworker);
-                                      // Get the contacts shared for this Co-Worker
+                                      // Get the contacts shared for this co-worker
                                       $shared_contacts = $_SESSION['do_contact_sharing']->getSharedContacts($_SESSION['do_coworker']->idcoworker);
                                       if($shared_contacts && is_array($shared_contacts)){ 
                                         $ids_shared_as_user = implode(",",$shared_contacts);
@@ -146,7 +141,7 @@ function hideSharedDetail(divid){
                                       $e_shared_contacts_from_coworker_filter->addParam("coworker",$_SESSION['do_coworker']->idcoworker);
                                       $no_cont_shared = $_SESSION['do_contact_sharing']->countSharedContacts($_SESSION['do_coworker']->idcoworker);
                                       $no_cont_shared_by_co_worker =$_SESSION['do_contact_sharing']->countSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
-                                      echo '<div style="width:auto;"><a style="color:#C52EAD;" href="#" onclick = "showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" >'
+                                      echo '<div style="width:auto;"><a onmouseover = "showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" onmouseout = "hideSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\')">'
                                               .$user_coworker->getFullName().
                                             '</a></div>
                                              &nbsp;';
@@ -156,20 +151,20 @@ function hideSharedDetail(divid){
 				      
 				      echo '<div id ="'.$_SESSION['do_coworker']->idcoworker.'" style="display:none;">';
                                       if ($no_cont_shared > 0) {
-					echo $e_shared_contacts_filter->getLink( 
-                                         '<span>
+					//$e_shared_contacts_filter->getLink( 
+                                        echo  '<span>
                                                '.sprintf(_('You shared %d contacts'), $no_cont_shared).' 
                                             </span>
-                                            &nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;');
+                                            &nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;';
                                       }else{
 					  echo '<span>'.sprintf(_('You shared %d contacts'), $no_cont_shared).'</span>&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;';
 				      }
 
                                       if ($no_cont_shared_by_co_worker > 0) {
-				      echo $e_shared_contacts_from_coworker_filter->getLink(
-                                          '<span>' 
+				      //$e_shared_contacts_from_coworker_filter->getLink(
+                                      echo    '<span>' 
                                                .sprintf(_("%s shared %d contacts"), $user_coworker->firstname, $no_cont_shared_by_co_worker)
-                                            .'</span>&nbsp;'.sprintf(_('and %d projects'),$no_proj_shared_by_co_worker));
+                                            .'</span>&nbsp;'.sprintf(_('and %d projects'),$no_proj_shared_by_co_worker);
                                       }else{
 					  echo '<span>' 
                                                .sprintf(_("%s shared %d contacts"), $user_coworker->firstname, $no_cont_shared_by_co_worker)
@@ -190,7 +185,7 @@ function hideSharedDetail(divid){
                                    echo $e_share_cont->getFormHeader();
                                    echo $e_share_cont->getFormEvent();
 
-                                   echo '<b>'._('Choose Co-Workers for sharing the contacts :').'</b><br />';
+                                   echo '<b>'._('Choose co-workers for sharing the contacts :').'</b><br />';
                                    echo '<div id="coworker_ctlbar" style="display: none;">';
                                    echo '<span class="redlink"><a href="#" onclick="setContactForCoworker(); return false;" style="font-size:20px;">'._('Share').'</a></span>';
                                    echo '</div>';
@@ -221,7 +216,7 @@ function hideSharedDetail(divid){
                                 echo '</form>';
                               }
                            }else{
-                               echo '<b>'. _('You have no Co-Workers').'</b>';
+                               echo '<b>'. _('You have no co-workers').'</b>';
                            }
                      ?>
         </div>

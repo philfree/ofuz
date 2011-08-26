@@ -121,7 +121,7 @@ $e_emailForm->setSecure(false);
             <div class="choose_plan_line3">(outbound)</div>
             <div class="spacerblock_5"></div>
             <div class="choose_plan_line2"><span class="text_blue">unlimited</span> users</div>
-            <div class="choose_plan_line3">(Co-Workers)</div>
+            <div class="choose_plan_line3">(co-workers)</div>
             <div class="spacerblock_5"></div>
             <div class="choose_plan_line2"><span class="text_blue">unlimited</span> projects</div>
             <div class="choose_plan_line3">&nbsp;</div>
@@ -150,7 +150,7 @@ $e_emailForm->setSecure(false);
             <div class="choose_plan_line3">(outbound)</div>
             <div class="spacerblock_5"></div>
             <div class="choose_plan_line2"><span class="text_blue">unlimited</span> users</div>
-            <div class="choose_plan_line3">(Co-Workers)</div>
+            <div class="choose_plan_line3">(co-workers)</div>
             <div class="spacerblock_5"></div>
             <div class="choose_plan_line2"><span class="text_blue">unlimited</span> projects</div>
             <div class="choose_plan_line3">&nbsp;</div>
@@ -180,7 +180,7 @@ $e_emailForm->setSecure(false);
             <div class="choose_plan_line3">(outbound)</div>
             <div class="spacerblock_5"></div>
             <div class="choose_plan_line2"><span class="text_blue">unlimited</span> users</div>
-            <div class="choose_plan_line3">(Co-Workers)</div>
+            <div class="choose_plan_line3">(co-workers)</div>
             <div class="spacerblock_5"></div>
             <div class="choose_plan_line2"><span class="text_blue">5</span> projects</div>
             <div class="choose_plan_line3">(as owner)</div>

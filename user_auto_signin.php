@@ -20,7 +20,7 @@
 	  if ($do_contact->getNumRows() > 1) { 
 		  header("Location: /");
 	  } else {
-		  header("Location: /welcome_to_ofuz.php");
+		  header("Location: /import_contacts.php");
 	  }
 	  
   } else { header("Location: /user_login.php"); }

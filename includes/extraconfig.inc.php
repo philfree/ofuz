@@ -7,7 +7,6 @@
    * Extra config, load config settings from packages.
    * Needed to load classes before session started.
    **/
-
     include_once($cfg_local_pasdir."class/BaseObject.class.php") ;
     include_once($cfg_local_pasdir."class/".$cfg_local_db."/sqlConnect.class.php") ;
     include_once($cfg_local_pasdir."class/".$cfg_local_db."/sqlQuery.class.php") ;
@@ -48,11 +47,11 @@
   define("RADRIA_EVENT_ABSOLUTE_PATH", true);
 
 //  Log errors in the pas_errro.log file:
-  define("RADRIA_LOG_ERROR", true);
+  define("RADRIA_LOG_ERROR", false);
 //  Display errors in generated web pages:
   define("RADRIA_DISPLAY_ERROR", false);
 //  Log general message/debug log in the pas_run.log:
-  define("RADRIA_LOG_RUNLOG", true);
+  define("RADRIA_LOG_RUNLOG", false);
 //  Display message/debug log in generated web pages:
   define("RADRIA_DISPLAY_RUNLOG", false);
 
@@ -72,3 +71,4 @@
   define("RADRIA_LOG_RUN_DATAOBJECT", false);
   define("RADRIA_LOG_RUN_MYDB_EVENTS", false);
   
+?>
