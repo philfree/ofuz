@@ -125,7 +125,7 @@ function fnHighlight(area) {
     }
 }
 function fnSelAll() {
-	expandContactsOnSelectAll();
+	//expandContactsOnSelectAll();
     $("input:checkbox").each(function(){this.checked=true;});
     $("div.contacts").css("background-color", "#ffffdd");
 }
