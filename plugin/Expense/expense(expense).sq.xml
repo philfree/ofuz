@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+  <savedquery>
+    <idsavedquery><![CDATA[6]]></idsavedquery>
+    <qname><![CDATA[expense(expense)]]></qname>
+    <query><![CDATA[select * from expense where idexpense=[idexpense]]]></query>
+    <qorder><![CDATA[]]></qorder>
+    <qpos><![CDATA[]]></qpos>
+    <tablenames><![CDATA[expense]]></tablenames>
+  </savedquery>

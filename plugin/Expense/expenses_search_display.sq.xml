@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+  <savedquery>
+    <idsavedquery><![CDATA[]]></idsavedquery>
+    <qname><![CDATA[expenses_search_display]]></qname>
+    <query><![CDATA[select * from expense where 
+   month(daterecieve) = '[expense_view_month]' 
+and year(daterecieve) = '[expense_view_year]' and (
+daterecieve like '%[report_expense_search]%' 
+or description like '%[report_expense_search]%' 
+or amount like '%[report_expense_search]%' 
+or type like '%[report_expense_search]%' 
+or checknum like '%[report_expense_search]%' )
+]]></query>
+    <qorder><![CDATA[order by daterecieve asc]]></qorder>
+    <qpos><![CDATA[]]></qpos>
+    <tablenames><![CDATA[expense]]></tablenames>
+  </savedquery>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idexpense_import">
+    <rdata type="label">idexpense_import</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">FieldTypeInt</rdata>
+  </rfield>
+  <rfield name="category">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Category</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">40:60</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+  </rfield>
+  <rfield name="debit_date">
+    <rdata type="datesql">m/d/Y:::</rdata>
+    <rdata type="label">Date debited</rdata>
+    <rdata type="fieldtype">FieldTypeDateSQL</rdata>
+  </rfield>
+  <rfield name="description">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Description</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">70:250</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+  </rfield>
+  <rfield name="payment_method">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Payment from</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">40:60</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+  </rfield>
+  <rfield name="amount">
+    <rdata type="fieldtype">FieldTypeFloat</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Amount</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">6:</rdata>
+  </rfield>
+</registry>

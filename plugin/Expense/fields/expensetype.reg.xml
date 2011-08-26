@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idexpensetype">
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="label">idexpensetype</rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="readonly">1</rdata>
+  </rfield>
+  <rfield name="name">
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="label">Name</rdata>
+    <rdata type="textline">20:80</rdata>
+  </rfield>
+</registry>
