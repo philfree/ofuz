@@ -1,1 +1,0 @@
-this file was created on Sat. 29th January 2011 at 17:43:26, after ecoder checked the permissions of the folder /var/www/dev.ofuz.net/Zend/.
