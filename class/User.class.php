@@ -1348,6 +1348,59 @@ class User extends RegisteredUser {
         }
 
     }
+    
+      /**
+     * Custom method for inactive user backup delete_inactive_users page.
+     * @param object $evtcl
+    */
+    function eventDeleteInactiveUsers() {
+          
+       $q = new sqlQuery($this->getDbCon()); 
+/*
+ * Test query
+ * $sql = "select u.iduser as iduser 
+				from user u left join login_audit la on u.iduser = la.iduser 
+				left join invoice inv on u.iduser=inv.iduser 
+				left join task t on u.iduser=t.iduser 
+				left join project p on u.iduser=p.iduser 
+				where datediff(curdate(),date(la.last_login)) >= '10' 
+				group by u.iduser 
+				having (count(inv.iduser >= 0) and (count(p.iduser)>=0) and (count(t.iduser)>=0))";	    */
+				    
+		$sql = "select u.iduser as iduser 
+				from user u left join login_audit la on u.iduser = la.iduser 
+				left join invoice inv on u.iduser=inv.iduser 
+				left join task t on u.iduser=t.iduser 
+				left join project p on u.iduser=p.iduser 
+				where datediff(curdate(),date(la.last_login)) >= '60' 
+				group by u.iduser 
+				having (count(inv.iduser >= 10) and (count(p.iduser)>=10) and (count(t.iduser)>=10))";	    
+	 
+        $q->query($sql);		    
+         
+        $nums = $q->getNumRows();
+         
+        if ($nums >= 1) {
+			while($q->fetch()) {
+				$iduser = $q->getData('iduser');
+				
+				if(($iduser == 'NULL')||(empty($iduser)))
+				{
+					$nums = 0;	
+					
+				}
+				else
+				{
+					$expxml = new OfuzExportXML();
+					$expxml->exportUserAccountandDelete($iduser);
+				}
+				
+			}
+		}
+		$msg = "$nums user record has been deleted";
+		return $msg;
+
+    }
 
 }
 

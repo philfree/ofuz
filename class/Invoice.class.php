@@ -3160,7 +3160,7 @@ class Invoice extends DataObject {
   }
 
   /**
-   * This fetches invoice details for a particular Contact for particular User
+   * This fetches invoice details for a particular Contact for loggedin User
    * @param inteher  $idcontact
    * @return query object
    */
@@ -3172,5 +3172,17 @@ class Invoice extends DataObject {
     $this->query($sql);
   }
 
+/**
+   * This fetches invoice details for a particular Contact for particular User [Inactive Users].
+   * @param inteher  $idcontact
+   * @return query object
+   */
+  function getContactInvoiceDetailsWithUser($idcontact,$iduser) {
+    $sql = "SELECT *
+            FROM {$this->table}
+            WHERE iduser = {$iduser} AND idcontact = {$idcontact}
+           ";
+    $this->query($sql);
+  }
 }
 ?>
