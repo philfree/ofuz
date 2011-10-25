@@ -1,6 +1,6 @@
 <?php 
 // Copyright 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
-/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
+/**COPYRIGHTS**/
     /**
      * Invoice class
      * Using the DataObject
@@ -38,7 +38,7 @@
      *
      * @author SQLFusion's Dream Team <info@sqlfusion.com>
      * @package OfuzCore
-     * @license GNU Affero General Public License
+     * @license ##License##
      * @version 0.6
      * @date 2010-09-03
      * @since 0.4
@@ -1047,7 +1047,7 @@ class Invoice extends DataObject {
         $idinvoice = $evtcl->id;
         $idcontact = $evtcl->contact;
 //echo $idinvoice.":".$idcontact;exit();
-        $this->sendInvoiceByEmail($idinvoice,$idcontact,$_SESSION['do_User']->iduser);
+		$this->sendInvoiceByEmail($idinvoice,$idcontact,$_SESSION['do_User']->iduser);
         /*$do_contact = new Contact();
         $do_user_rel = new UserRelations();
         $do_contact->getId($idcontact);
@@ -1161,7 +1161,7 @@ class Invoice extends DataObject {
                                         'recurrence_type'=>$recurrence_type,
                                         'next_due_date'=>$next_due_date
                                         );
-    
+    //echo "<pre>";print_r($email_data); echo"</pre>";die();
             $emailer = new Radria_Emailer();
             $emailer->setEmailTemplate($email_template);
             $emailer->mergeArray($email_data);
@@ -1924,7 +1924,10 @@ class Invoice extends DataObject {
         $idinvoice = $this->idinvoice;
         $idcontact = $this->idcontact;
 	
-	
+		$do_contact_cust = new Contact();
+		$do_contact_cust->getId($_SESSION['do_invoice']->idcontact);
+		$customer_name = $do_contact_cust->firstname.' '.$do_contact_cust->lastname;
+			
         $do_contact = new Contact();
         $do_contact->getId($idcontact);
         $contact_name = $do_contact->firstname.' '.$do_contact->lastname;
@@ -1954,7 +1957,7 @@ class Invoice extends DataObject {
             //$email_template->setSubject($do_user_data->company." Payment Confirmation for Invoice: ".$this->num);
             
             $signature = $do_user_data->company.'<br />'.$do_user_data->firstname.' '.$do_user_data->lastname;
-            $email_data = Array('name' => $contact_name,
+            $email_data = Array('name' => $customer_name,
                                         'company'=>$do_user_data->company,
                                         'description'=>$_SESSION['do_invoice']->desc,
                                         'signature'=>$signature,
@@ -1965,7 +1968,7 @@ class Invoice extends DataObject {
                                           'username'=>$do_user_data->firstname,
                                           'invoice_num' => $_SESSION['do_invoice']->num
                                         );
-    
+    //echo"<pre>";print_r($email_data);echo"</pre>";die();
             $emailer = new Radria_Emailer();
             $emailer->setEmailTemplate($email_template);
             $emailer->mergeArray($email_data);

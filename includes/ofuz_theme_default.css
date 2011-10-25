@@ -227,7 +227,29 @@ margin-bottom: 5px;
 .pad1020 { padding: 10px 20px; }
 .pad20 { padding: 10px 20px; }
 .vpad20 { padding: 20px 0; }
-.vpad10 { padding: 10px 0; }
+.vpad10 { padding: 20px 20px; }
+
+#item_text{
+	margin:10px 100px 10px 43px;
+	line-height: 18px;
+}
+
+#more_item_text {
+background-color: #1d8cd7;
+color: white;
+padding: 3px 8px 3px;
+text-shadow: 1px 1px black;
+font-size: 12px;
+-moz-border-radius: 3px;-khtml-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;
+}
+
+#more_item_text:hover {
+background-color: #135e91;
+}
+
+#item_title{
+font-size: 12px;
+}
 
 .text_black { color: #000000; }
 .text_fuscia { color: #c52687; }
