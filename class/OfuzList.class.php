@@ -12,11 +12,11 @@ class OfuzList extends BaseObject {
   public $uniq_key;
 
   public function __construct($obj_name) {
-	
-	if(is_object($obj_name)){
-	    $this->obj = $obj_name ;
+ 
+ if(is_object($obj_name)){
+     $this->obj = $obj_name ;
             $this->data = $obj_name;
-	}
+ }
   }
 
   /**
@@ -50,11 +50,11 @@ class OfuzList extends BaseObject {
   }
 
   function getDataList(){
-	return $this->data_list ;
+ return $this->data_list ;
   }
 
   function setObject($display_object){
-	$this->display_object = $display_object ;
+ $this->display_object = $display_object ;
   }
 
   function getDisplayObject(){
@@ -71,28 +71,29 @@ class OfuzList extends BaseObject {
   public function displayList(){
       $class_name = get_class($this->obj);
 
-      if ($class_name == 'ProjectTask') { echo '<ul id="project_tasks">',"\n"; }
+      if ($class_name == 'ProjectTask' || $class_name='Task') { echo '<ul id="project_tasks">',"\n"; }
       while($this->obj->next()){
           echo $this->getRowStart(); 
           $this->displayRow($class_name) ;
           echo $this->getRowEnd();
       }
-      if ($class_name == 'ProjectTask') { echo '</ul>',"\n"; }
+      if ($class_name == 'ProjectTask' || $class_name='Task') { echo '</ul>',"\n"; }
+  
   }
   
   public function getRowStart() {
     $html = '';
     if (!empty($this->uniq_key)) {
-    	if ($this->getMultiSelect()) {
-       		$html .= '<div class="ofuz_list_contact" id="cid'.$this->getUniqRow().'" onclick="fnHighlight(\''.$this->getUniqRow().'\')"><table><tr><td><input type="checkbox" name="ck[]" id="ck'.$this->getUniqRow().'" value="'.$this->getUniqRow().'" class="ofuz_list_checkbox" onclick="fnHighlight(\''.$this->getUniqRow().'\')" /></td>';
-    	} else { $html .= '<div class="ofuz_list_contact" <table><tr>'; }
+     if ($this->getMultiSelect()) {
+         $html .= '<div class="ofuz_list_contact" id="cid'.$this->getUniqRow().'" onclick="fnHighlight(\''.$this->getUniqRow().'\')"><table><tr><td><input type="checkbox" name="ck[]" id="ck'.$this->getUniqRow().'" value="'.$this->getUniqRow().'" class="ofuz_list_checkbox" onclick="fnHighlight(\''.$this->getUniqRow().'\')" /></td>';
+     } else { $html .= '<div class="ofuz_list_contact" <table><tr>'; }
     }
     return $html;
   }
   public function getRowEnd() { 
     $html = '';
     if (!empty($this->uniq_key)) {
-    	if ($this->getMultiSelect()) {
+     if ($this->getMultiSelect()) {
             $html .= '</tr></table></div>';
             $html .= '<div class="spacerblock_2"></div><div class="solidline"></div><div id="'.$this->getUniqRow().'" class="message_box"></div>';
         } else { 
@@ -105,9 +106,9 @@ class OfuzList extends BaseObject {
   /**
   */
   public function displayRow($class_name){
-  	$html = '';
+   $html = '';
     switch($class_name){
-	    case 'ProjectTask':
+     case 'ProjectTask':
             $contact_full_name = '';
             if($this->obj->idcontact) {
                 $do_contact = new Contact();
@@ -181,7 +182,7 @@ class OfuzList extends BaseObject {
                 $html .= '<div class="ptask_handle"></div>';
             }
             $html .= '</li>'."\n";
-		    break;
+      break;
         case 'Contact':
             $html .= '<div class="ofuz_list_contact" id="cid'.$this->obj->idcontact.'" onclick="fnHighlight(\''.$this->obj->idcontact.'\')"><table><tr>';
             $html .= '<td class="ofuz_list_contact_col1">
@@ -208,6 +209,116 @@ class OfuzList extends BaseObject {
             $html .= '</tr></table></div>';
             $html .= '<div class="spacerblock_2"></div><div class="solidline"></div><div id="'.$this->obj->idcontact.'" class="message_box"></div>';
             break;
+          
+          case 'Task':
+            $contact_full_name = '';
+            if($this->obj->idcontact) {
+                $do_contact = new Contact();
+                $contact_full_name = ' ('.$do_contact->getContactName($this->obj->idcontact).')';
+            }
+            $progress_pixels = $this->obj->progress;
+            
+            if (!is_numeric($progress_pixels) || $progress_pixels < 0 || $progress_pixels > 100) $progress_pixels = '0';
+            if(empty($this->obj->due_date_dateformat) || $this->obj->due_date_dateformat == '' || $this->obj->due_date_dateformat == '0000-00-00'){
+                $bg_color = 'style = "background-color:#ffffff;"';
+                $color = "#ffffff" ;
+                $change_to = "#ffffdd";
+                $ddtasks = "ddtasks";
+                
+            }elseif(strtotime($this->obj->due_date_dateformat) == strtotime(date("Y-m-d"))){
+                $bg_color = 'style = "background-color:#b8eacc;"';
+                $color = "#b8eacc" ;
+                $change_to = "#b8eaaa";
+                $ddtasks = "ddtasks_today";
+            }elseif(strtotime($this->obj->due_date_dateformat) < strtotime(date("Y-m-d")) ){
+                $bg_color = 'style = "background-color:#ffe9ce;"';
+                $color = "#ffe9ce" ;
+                $change_to = "#ffe9ad";
+                $ddtasks = "ddtasks_overdue";
+            }else{
+                $bg_color = 'style = "background-color:#ffffff;"';
+                $color = "#ffffff" ;
+                $change_to = "#ffffdd";
+                $ddtasks = "ddtasks";
+            }
+                $strike_class = '';
+                if($this->obj->status == 'closed'){
+                    $strike_class = ' class="ptask_closed"';
+                    $bg_color = 'style = "background-color:#ffffff;"';
+                    $color = "#ffffff" ;
+                    $change_to = "#ffffdd";
+                    $ddtasks = "ddtasks";
+                }
+            //$task_class = 'ptask_name';    
+            //$ddtask_ul = 'ddtasks';
+            if($this->obj->access == 'Public'){
+                $html .= '<li id="pt_'.$this->obj->idtask.'" class="ddtasks">'.
+                            '<div class="ptask_name" onclick = "" id="list'.$this->obj->idtask.'" >
+                                <span class="task_category">'.$this->obj->task_category.'</span>&nbsp;
+                                <span'.$strike_class.'><a href="/PublicTask/'.$this->obj->idproject_task.'" >'.$this->obj->task_description.'</a>'.$contact_full_name.'</span>
+                              </div>'.
+                            '<div class="ptask_progbar1">';
+            }else{
+                //$task_class = 'ptask_name';      
+                if($this->getMultiSelect() === true ){
+                    $html .= '<li id="pt_'.$this->obj->idtask.'" class="'.$ddtasks.'" '.$bg_color.'>
+                              <div class="ptask_name" onclick="fnHighlight(\''.$this->obj->idtask.'\',\''.$color.'\',\''.$change_to.'\')" id="list'.$this->obj->idtask.'"> 
+                                  <span><input type="checkbox" name="ck[]" id="ck'.$this->obj->idtask.'" value="'.$this->obj->idtask.'" class="ofuz_list_checkbox" onclick="fnHighlight(\''.$this->obj->idtask.'\',\''.$color.'\',\''.$change_to.'\')" /></span>
+                                  <span class="task_category">'.$this->obj->task_category.'</span>&nbsp;
+                                  <span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a>'.$contact_full_name.'</span>
+
+                                
+
+
+                              </div><div class="ptask_progbar1">';
+
+
+                 /*$img_url = '<img src="/images/discussion.png" width="16" height="16" alt="" />';
+               $html .='&nbsp;&nbsp;<b>
+                        <a href="/Task/'.$this->obj->idproject_task.'">'.$do_task_project->name.'</b></a>
+                          &nbsp;&nbsp;<a href="'.$project_task_url.'">'.$img_url.'</a>';*/
+
+
+
+
+
+
+
+                }else{
+                    $html .= '<li id="pt_'.$this->obj->idtask.'" class="'.$ddtasks.'">
+                              <div class="'.$task_class.'" id="list'.$this->obj->idtask.'"> 
+                                  <span class="task_category">'.$this->obj->task_category.'</span>&nbsp;
+                                  <span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a>'.$contact_full_name.'</span>
+                              </div><div class="ptask_progbar1">';
+                }
+            }
+            if ($this->obj->status == 'closed') {
+                $html .= _('closed').'<div class="ptask_progbar3" style="width: 100px;"></div></div>'."\n";
+            } else {
+                $html .= _('progress').'<div class="ptask_progbar2" style="width: '.$progress_pixels.'px;"></div></div>'."\n";
+            }
+            if($this->obj->access != 'Public'){
+                $html .= '<div class="ptask_handle"></div>';
+            }
+            $html .= '</li>'."\n";
+      break;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
     echo $html;
   }

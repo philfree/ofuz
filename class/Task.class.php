@@ -347,11 +347,22 @@ class Task extends DataObject {
 
     function getAllTasksToday(){
       $today = date('Y-m-d');
-      $this->query("SELECT * FROM task WHERE DATEDIFF(due_date_dateformat,'".$today."') = 0  
+      /*$this->query("SELECT * FROM task WHERE DATEDIFF(due_date_dateformat,'".$today."') = 0  
       AND due_date_dateformat <> '0000-00-00' AND status = 'open' 
       AND iduser = ".$_SESSION['do_User']->iduser." 
-      ORDER BY due_date_dateformat");
+      ORDER BY due_date_dateformat");*/
+
+       $this->query("SELECT * FROM task t 
+                     INNER JOIN project_task p 
+                     ON t.idtask=p.idtask
+                     WHERE DATEDIFF(t.due_date_dateformat,'".$today."') = 0  
+                     AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open' 
+                     AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     ORDER BY t.due_date_dateformat");   
+
     }
+
+
 
     /**
      * Method to get the task which is overdue
@@ -359,11 +370,20 @@ class Task extends DataObject {
     */ 
     function getAllTasksOverdue(){
       $today = date('Y-m-d');
-      $this->query("select * from task where DATEDIFF(due_date_dateformat,'".$today."') < 0
+      /*$this->query("select * from task where DATEDIFF(due_date_dateformat,'".$today."') < 0
        AND due_date_dateformat <> '0000-00-00' AND status = 'open' 
        AND iduser = ".$_SESSION['do_User']->iduser." 
-       ORDER BY   due_date_dateformat LIMIT 10");
+       ORDER BY   due_date_dateformat LIMIT 10");*/
+
+      $this->query("SELECT * FROM task t 
+                     INNER JOIN project_task p 
+                     ON t.idtask=p.idtask
+                     where DATEDIFF(t.due_date_dateformat,'".$today."') < 0
+                     AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open' 
+                     AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     ORDER BY   t.due_date_dateformat LIMIT 10");   
     }
+
 
     function eventAjaxGetAllTasksOverdue(EventControler $evtcl) {
       $today = date('Y-m-d');
@@ -390,10 +410,21 @@ class Task extends DataObject {
     */ 
     function getAllTasksTomorrow(){
       $today = date('Y-m-d');
-      $this->query("select * from task where DATEDIFF(due_date_dateformat,'".$today."') = 1
+      /*$this->query("select * from task where DATEDIFF(due_date_dateformat,'".$today."') = 1
       AND due_date_dateformat <> '0000-00-00' AND status = 'open'
       AND iduser = ".$_SESSION['do_User']->iduser." 
-      ORDER BY due_date_dateformat");
+      ORDER BY due_date_dateformat");*/
+
+      $this->query("SELECT * FROM task t 
+                     INNER JOIN project_task p 
+                     ON t.idtask=p.idtask
+                     WHERE  DATEDIFF(t.due_date_dateformat,'".$today."') = 1
+                     AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open'
+                     AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     ORDER BY t.due_date_dateformat");   
+
+
+
     }
 
     /**
@@ -402,11 +433,21 @@ class Task extends DataObject {
     */ 
     function getAllTasksThisWeek(){
       $today = date('Y-m-d');
-      $this->query("select * from task where DATEDIFF(due_date_dateformat,'".$today."') >=2 
+     /* $this->query("select * from task where DATEDIFF(due_date_dateformat,'".$today."') >=2 
       AND DATEDIFF(due_date_dateformat,'".$today."') < 8
       AND due_date_dateformat <> '0000-00-00' AND status = 'open'
       AND iduser = ".$_SESSION['do_User']->iduser." 
-       ORDER BY due_date_dateformat");
+       ORDER BY due_date_dateformat");*/
+
+      $this->query("SELECT * FROM task t 
+                     INNER JOIN project_task p 
+                     ON t.idtask=p.idtask
+                     WHERE  DATEDIFF(t.due_date_dateformat,'".$today."') >=2 
+                     AND DATEDIFF(t.due_date_dateformat,'".$today."') < 8
+                     AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open'
+                     AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     ORDER BY t.due_date_dateformat");  
+
     }
 
     /**
@@ -415,11 +456,23 @@ class Task extends DataObject {
     */
     function getAllTasksNextWeek(){
       $today = date('Y-m-d');
-      $this->query("select * from task where DATEDIFF(due_date_dateformat,'".$today."') >7 
+      /*$this->query("select * from task where DATEDIFF(due_date_dateformat,'".$today."') >7 
       AND DATEDIFF(due_date_dateformat,'".$today."') < 15
       AND due_date_dateformat <> '0000-00-00' AND status = 'open'
       AND iduser = ".$_SESSION['do_User']->iduser." 
-       ORDER BY due_date_dateformat");
+       ORDER BY due_date_dateformat");*/
+
+       $this->query("SELECT * FROM task t 
+                     INNER JOIN project_task p 
+                     ON t.idtask=p.idtask
+                     WHERE  DATEDIFF(t.due_date_dateformat,'".$today."') >7 
+                     AND DATEDIFF(t.due_date_dateformat,'".$today."') < 15
+                     AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open'
+                     AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     ORDER BY t.due_date_dateformat"); 
+    
+
+
     }
 
     /**
@@ -430,11 +483,25 @@ class Task extends DataObject {
       $today = date('Y-m-d'); //cur_year-cur_month
 	  $later_date = date('Y-m');
       //$this->query("SELECT * FROM task WHERE (due_date_dateformat = '0000-00-00' OR DATEDIFF(due_date_dateformat,'".$today."') >15 ) AND status = 'open' AND iduser = ".$_SESSION['do_User']->iduser." ORDER BY due_date_dateformat DESC LIMIT 20");
-      $this->query("SELECT * FROM task WHERE (due_date_dateformat = '0000-00-00' OR DATE_FORMAT( due_date_dateformat, '%Y-%m' ) > '".$later_date."' ) AND status = 'open' AND iduser = ".$_SESSION['do_User']->iduser." 
+     /* $this->query("SELECT * FROM task WHERE (due_date_dateformat = '0000-00-00' OR DATE_FORMAT( due_date_dateformat, '%Y-%m' ) > '".$later_date."' ) AND status = 'open' AND iduser = ".$_SESSION['do_User']->iduser." 
 	   AND `due_date` != 'Tomorrow'
 	   AND `due_date` != 'This week'
 	   AND `due_date` != 'Next week'
-	  ORDER BY due_date_dateformat DESC LIMIT 20");
+	  ORDER BY due_date_dateformat DESC LIMIT 20");*/
+      
+      $this->query("SELECT * FROM task t 
+                     INNER JOIN project_task p 
+                     ON t.idtask=p.idtask
+                     WHERE (t.due_date_dateformat = '0000-00-00' OR DATE_FORMAT( t.due_date_dateformat, '%Y-%m' ) > '".$later_date."' ) AND t.status = 'open' AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     AND `due_date` != 'Tomorrow'
+                     AND `due_date` != 'This week'
+                     AND `due_date` != 'Next week'
+                     ORDER BY t.due_date_dateformat DESC LIMIT 20");  
+
+  
+     
+
+
 
     }
 
@@ -897,6 +964,15 @@ class Task extends DataObject {
        }else{ return false;}
     }
 
+
+
+     function viewTaskList($access='Private') {
+        $this->access = $access;
+        $OfuzList = new OfuzList($this);
+        $OfuzList->setMultiSelect(true);
+        $OfuzList->displayList();
+      }
+  
 
 
 }
