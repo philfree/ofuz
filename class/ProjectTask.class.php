@@ -381,6 +381,7 @@ class ProjectTask extends Task {
    */
 
     function renderChangeTaskOwnerList($idproject=""){
+
       $do_proj = new Project();
       if($idproject == ""){
       $do_proj->idproject = $this->idproject;
@@ -405,7 +406,6 @@ class ProjectTask extends Task {
       }
       return $output;
     }
-
 
 
     /**
@@ -643,7 +643,8 @@ class ProjectTask extends Task {
       * Event method change multiple Task Owner
     */
     function eventChangeOwnerMultiple(EventControler $evctl){ 
-      $task_ids = $evctl->ck;
+      $task_ids = $evctl->ck;        
+
       if($evctl->fields["co_worker"] != '' && is_array($task_ids) && count($task_ids)>0 ){
           foreach($task_ids as $idtask){
               $this->changeTaskOwner($evctl->fields["co_worker"],$idtask);
@@ -680,5 +681,71 @@ class ProjectTask extends Task {
         }
         
     }
+
+
+
+
+
+
+
+     function eventRenderChangeTaskOwnerList(EventControler $evtcl){
+      $idproject = $evtcl->idproject;
+  
+      $f_explode=explode(',',$idproject);
+  
+      $result= array();
+     foreach($f_explode as $nf_explode){
+       $s_explode= explode('-',$nf_explode);
+       if(in_array($s_explode[1],$result)==false){
+        array_push($result,$s_explode[1]);
+       }
+      }
+  
+    $id='';
+    foreach($result as $s_result){
+      $id.=$s_result.',';
+    }
+
+    $idproject= rtrim($id,',');
+
+ 
+
+      $do_proj = new Project();
+      if($idproject == ""){
+      $do_proj->idproject = $this->idproject;
+      }else{$do_proj->idproject = $idproject ;}
+      $co_workers = $do_proj->getTaskCoWorkers();
+      $output = '';
+      if(!$co_workers){
+          $output .= '<br />'._('No Co-Worker found for this project').'<br />';
+      }else{  
+          if(is_array($co_workers)){
+              $output .='<select name="fields[co_worker]">';
+              $output .='<option value="">'._('Select One').'</option>';
+              foreach($co_workers as $co_workers){
+                  $selected = '';
+                  $output .= '<option value="'.$co_workers["idcoworker"].'" '.$selected.'>'.$co_workers["firstname"].' '.$co_workers["lastname"].'</option>';
+              }
+              $output .= '</select>';
+              $output .='<input value="'._('Change Owner').'" type="submit">';
+          }else{
+              $output .= '<br />'._('No Co-Worker found for this project').'<br />';
+          }
+      }
+      echo  $output;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 ?>

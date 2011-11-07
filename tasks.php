@@ -43,27 +43,71 @@
         if (allowHighlight == false) return;
         var ck=$("#ck"+area);
         var div=$("#pt_"+area);
+
         var ctlbar=$("#contacts_ctlbar");
         ck.attr("checked",(ck.is(":checked")?"":"checked"));
         if (ck.is(":checked")) {
             //div.css("background-color", "#ffffdd");
             div.css("background-color", change_to);
             if(ctlbar.is(":hidden"))ctlbar.slideDown("fast");
+
+            var count_checkbox_checked = 0 ;       
+            var selected_tasks= new Array();
+            $("input:checkbox").each(function(){
+                if(this.checked == true){              
+                   selected_tasks[count_checkbox_checked] = $(this).val();                 
+                   count_checkbox_checked++ ;            
+                }
+                
+            });
+
+
+             $.ajax({
+                    type: "GET",
+                  <?php
+                    $e_getOwners = new Event("ProjectTask->eventRenderChangeTaskOwnerList");
+                    $e_getOwners->setEventControler("ajax_evctl.php");
+                    $e_getOwners->setSecure(false);
+                  ?>
+                    url: "<?php echo $e_getOwners->getUrl(); ?>",
+                    data: "idproject="+selected_tasks,
+                    success: function(result){
+                    $("#co_workers").html(result);
+              }
+            });
         } else {
             //div.css("background-color", "#ffffff");
             div.css("background-color", color);
             //if($("input:checked").length==0)ctlbar.slideUp("fast");
             var all_checked = true;
+           
+           
+
+            var selected_tasks= new Array();
             var count_checkbox_checked = 0 ;
             $("input:checkbox").each(function(){
-                if(this.checked == true){
-                  count_checkbox_checked++ ;
-                }
+                if(this.checked == true){ 
+                   selected_tasks[count_checkbox_checked] = $(this).val();
+                   count_checkbox_checked++ ;
+                  }
             });
+
+         
+
+
+
+
+
             if(count_checkbox_checked == 0){
                 all_checked = false;
+            }     
+
+
+
+            if(all_checked == false ) {               
+                ctlbar.slideUp("fast");
+                 $('#co_workers').html('');
             }
-            if(all_checked == false ) ctlbar.slideUp("fast");
         }
     }
 
@@ -89,15 +133,36 @@
     }
 
     function fnSelAll() {
+         var count_checkbox_checked = 0 ;
+         var selected_tasks= new Array();
         $("input:checkbox").each(function(){
             this.checked=true;
+            if(this.checked == true){                                 
+                  selected_tasks[count_checkbox_checked] = jQuery(this).val();
+                  count_checkbox_checked++ ;   
+                }
         });
+        $.ajax({
+          type: "GET",
+        <?php
+            $e_getOwners = new Event("ProjectTask->eventRenderChangeTaskOwnerList");
+            $e_getOwners->setEventControler("ajax_evctl.php");
+            $e_getOwners->setSecure(false);
+            ?>
+        url: "<?php echo $e_getOwners->getUrl(); ?>",
+        data: "idproject="+selected_tasks,
+        success: function(result){
+            $("#co_workers").html(result);
+        }
+    });
+
         $("li.ddtasks").css("background-color", "#ffffdd");
         $("li.ddtasks_today").css("background-color", "#b8eaaa");
         $("li.ddtasks_overdue").css("background-color", "#ffe9ad");
     }
     function fnSelNone() {
         $("input:checkbox").each(function(){this.checked=false;});
+        $('#co_workers').html('');
         $("li.ddtasks").css("background-color", "#ffffff");
         $("li.ddtasks_today").css("background-color", "#b8eacc");
         $("li.ddtasks_overdue").css("background-color", "#ffe9ce");
@@ -205,6 +270,7 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
 
 
 <div id="contacts_ctlbar" style="display: none;">
+    <div id ="co_workers"></div>
     <?php 
         $_SESSION['do_project']->getAllProjects();
         echo '<select name="project_id">'.$_SESSION['do_project']->getProjectsSelectOptions($_SESSION['do_project_task']->idproject).'</select>';
