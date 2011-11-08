@@ -727,7 +727,7 @@ class ProjectTask extends Task {
                   $output .= '<option value="'.$co_workers["idcoworker"].'" '.$selected.'>'.$co_workers["firstname"].' '.$co_workers["lastname"].'</option>';
               }
               $output .= '</select>';
-              $output .='<input value="'._('Change Owner').'" type="submit">';
+              $output .='<input value="'._('Assign Task To').'" type="submit">';
           }else{
               $output .= '<br />'._('No Co-Worker found for this project').'<br />';
           }

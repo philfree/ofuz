@@ -38,6 +38,48 @@
  
  <?php include_once('includes/ofuz_js.inc.php'); ?>
 
+
+ /* $(document).ready(function(){
+    $('.ofuz_list_checkbox').click(function(){    
+            var count_checkbox_checked = 0 ;       
+            var selected_tasks= new Array();
+            var ctlbar=$("#contacts_ctlbar");
+            $("input:checkbox").each(function(){
+                if(this.checked == true){  
+                   var div=$(".ofuz_list_checkbox");
+                   div.css("background-color", "#ffffdd")
+                   selected_tasks[count_checkbox_checked] = $(this).val();
+               
+                 
+                   count_checkbox_checked++ ;
+                  }               
+            });
+
+
+          if(count_checkbox_checked!=0){                   
+                    if(ctlbar.is(":hidden"))ctlbar.slideDown("fast");
+                    $.ajax({
+                        type: "GET",
+                        <?php
+                          $e_getOwners = new Event("ProjectTask->eventRenderChangeTaskOwnerList");
+                          $e_getOwners->setEventControler("ajax_evctl.php");
+                          $e_getOwners->setSecure(false);
+                        ?>
+                        url: "<?php echo $e_getOwners->getUrl(); ?>",
+                        data: "idproject="+selected_tasks,
+                        success: function(result){
+                                 $("#co_workers").html(result);
+                                }
+                          });
+           }else{
+                   ctlbar.slideUp("fast");
+                  $("#co_workers").html('');
+               }
+
+  });
+});*/
+
+
     var allowHighlight = true;
     function fnHighlight(area,color,change_to) {
         if (allowHighlight == false) return;
@@ -45,15 +87,77 @@
         var div=$("#pt_"+area);
 
         var ctlbar=$("#contacts_ctlbar");
-        ck.attr("checked",(ck.is(":checked")?"":"checked"));
-        if (ck.is(":checked")) {
-            //div.css("background-color", "#ffffdd");
-            div.css("background-color", change_to);
-            if(ctlbar.is(":hidden"))ctlbar.slideDown("fast");
+        var count_checkbox_checked = 0 ;       
+        var selected_tasks= new Array();
 
-            var count_checkbox_checked = 0 ;       
-            var selected_tasks= new Array();
-            $("input:checkbox").each(function(){
+        $("input:checkbox").each(function(){
+                if(this.checked == true){                  
+                   selected_tasks[count_checkbox_checked] = $(this).val();                
+                   count_checkbox_checked++ ;                   
+                  }               
+            });
+  
+        if(count_checkbox_checked!=0){
+            if (ck.is(":checked")){
+                div.css("background-color", change_to);
+                    if(ctlbar.is(":hidden"))ctlbar.slideDown("fast");
+                        $.ajax({
+                            type: "GET",
+                            <?php
+                              $e_getOwners = new Event("ProjectTask->eventRenderChangeTaskOwnerList");
+                              $e_getOwners->setEventControler("ajax_evctl.php");
+                              $e_getOwners->setSecure(false);
+                            ?>
+                            url: "<?php echo $e_getOwners->getUrl(); ?>",
+                            data: "idproject="+selected_tasks,
+                            success: function(result){
+                                    $("#co_workers").html(result);
+                                    }
+                              });
+            }else{
+                 div.css("background-color", color);
+                   if(count_checkbox_checked!=0){
+                      if(ctlbar.is(":hidden"))ctlbar.slideDown("fast");
+                           $.ajax({
+                              type: "GET",
+                               <?php
+                               $e_getOwners = new Event("ProjectTask->eventRenderChangeTaskOwnerList");
+                               $e_getOwners->setEventControler("ajax_evctl.php");
+                               $e_getOwners->setSecure(false);
+                               ?>
+                               url: "<?php echo $e_getOwners->getUrl(); ?>",
+                               data: "idproject="+selected_tasks,
+                               success: function(result){
+                                         $("#co_workers").html(result);
+                                         }
+                            });
+                      }
+                 }
+       }else{
+          div.css("background-color", color);
+          ctlbar.slideUp("fast");
+          $("#co_workers").html('');
+       }
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        //ck.attr("checked",(ck.is(":checked")?"":"unchecked"));
+
+      /*  if (ck.is(":checked")){
+          $("input:checkbox").each(function(){
                 if(this.checked == true){              
                    selected_tasks[count_checkbox_checked] = $(this).val();                 
                    count_checkbox_checked++ ;            
@@ -62,22 +166,30 @@
             });
 
 
-             $.ajax({
-                    type: "GET",
-                  <?php
-                    $e_getOwners = new Event("ProjectTask->eventRenderChangeTaskOwnerList");
-                    $e_getOwners->setEventControler("ajax_evctl.php");
-                    $e_getOwners->setSecure(false);
-                  ?>
-                    url: "<?php echo $e_getOwners->getUrl(); ?>",
-                    data: "idproject="+selected_tasks,
-                    success: function(result){
-                    $("#co_workers").html(result);
-              }
-            });
+          alert("first if");
+            //div.css("background-color", "#ffffdd");
+            div.css("background-color", change_to);
+            if(count_checkbox_checked!=0){
+                if(ctlbar.is(":hidden"))ctlbar.slideDown("fast");
+                alert(count_checkbox_checked);
+                  $.ajax({
+                          type: "GET",
+                        <?php
+                          $e_getOwners = new Event("ProjectTask->eventRenderChangeTaskOwnerList");
+                          $e_getOwners->setEventControler("ajax_evctl.php");
+                          $e_getOwners->setSecure(false);
+                        ?>
+                          url: "<?php echo $e_getOwners->getUrl(); ?>",
+                          data: "idproject="+selected_tasks,
+                          success: function(result){
+                          $("#co_workers").html(result);
+                    }
+                  });
+            }
         } else {
             //div.css("background-color", "#ffffff");
             div.css("background-color", color);
+          alert("esle");
             //if($("input:checked").length==0)ctlbar.slideUp("fast");
             var all_checked = true;
            
@@ -104,12 +216,13 @@
 
 
 
-            if(all_checked == false ) {               
+            if(all_checked == false ) { 
+                $('#co_workers').html('');
                 ctlbar.slideUp("fast");
-                 $('#co_workers').html('');
+                 
             }
         }
-    }
+    }*/
 
     function closeTaskMul(){
       if (confirm("<?php echo _('Are you sure you want to Close the selected Task ?');?>")) {
@@ -273,9 +386,9 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
     <div id ="co_workers"></div>
     <?php 
         $_SESSION['do_project']->getAllProjects();
-        echo '<select name="project_id">'.$_SESSION['do_project']->getProjectsSelectOptions($_SESSION['do_project_task']->idproject).'</select>';
-        echo '<input type="button" onclick = "changeProjMul();return false;" value="'._('Assign Task To').'">';
-        echo '<br/>'._(' or ').' '._('change due date')._(':');
+        //echo '<select name="project_id">'.$_SESSION['do_project']->getProjectsSelectOptions($_SESSION['do_project_task']->idproject).'</select>';
+        //echo '<input type="button" onclick = "changeProjMul();return false;" value="'._('Assign Task To').'">';
+        echo (' or ').' '._('change due date')._(':');
         // OO style using FieldsForm object to generate a field. The same thing we have on task.php to generate due_date but using JS and HTML
         $field_due_date_mul = new DijitDateTextBox("due_date_mul");
         $field_due_date_mul->datetype = 'dd-MM-y';
