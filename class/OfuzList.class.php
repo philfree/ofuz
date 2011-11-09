@@ -251,6 +251,7 @@ class OfuzList extends BaseObject {
                 }
             //$task_class = 'ptask_name';    
             //$ddtask_ul = 'ddtasks';
+
             if($this->obj->access == 'Public'){
                 $html .= '<li id="pt_'.$this->obj->idtask.'" class="ddtasks">'.
                             '<div class="ptask_name" onclick = "" id="list'.$this->obj->idtask.'" >
@@ -312,23 +313,6 @@ class OfuzList extends BaseObject {
             }
             $html .= '</li>'."\n";
       break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
     echo $html;
   }

@@ -29,57 +29,9 @@
     $do_list_project_task->viewProjectTasks();
 ?>
 
-
-
-
-
 <script type="text/javascript">
     //<![CDATA[
- 
- <?php include_once('includes/ofuz_js.inc.php'); ?>
-
-
- /* $(document).ready(function(){
-    $('.ofuz_list_checkbox').click(function(){    
-            var count_checkbox_checked = 0 ;       
-            var selected_tasks= new Array();
-            var ctlbar=$("#contacts_ctlbar");
-            $("input:checkbox").each(function(){
-                if(this.checked == true){  
-                   var div=$(".ofuz_list_checkbox");
-                   div.css("background-color", "#ffffdd")
-                   selected_tasks[count_checkbox_checked] = $(this).val();
-               
-                 
-                   count_checkbox_checked++ ;
-                  }               
-            });
-
-
-          if(count_checkbox_checked!=0){                   
-                    if(ctlbar.is(":hidden"))ctlbar.slideDown("fast");
-                    $.ajax({
-                        type: "GET",
-                        <?php
-                          $e_getOwners = new Event("ProjectTask->eventRenderChangeTaskOwnerList");
-                          $e_getOwners->setEventControler("ajax_evctl.php");
-                          $e_getOwners->setSecure(false);
-                        ?>
-                        url: "<?php echo $e_getOwners->getUrl(); ?>",
-                        data: "idproject="+selected_tasks,
-                        success: function(result){
-                                 $("#co_workers").html(result);
-                                }
-                          });
-           }else{
-                   ctlbar.slideUp("fast");
-                  $("#co_workers").html('');
-               }
-
-  });
-});*/
-
-
+<?php include_once('includes/ofuz_js.inc.php'); ?>
     var allowHighlight = true;
     function fnHighlight(area,color,change_to) {
         if (allowHighlight == false) return;
@@ -140,17 +92,6 @@
        }
 
   }
-
-
-
-
-
-
-
-
-
-
-
 
 
         
@@ -231,15 +172,8 @@
       }
     }
 
-    function changeProjMul(){
-        if (confirm("<?php echo _('Are you sure you want to change the selected task to a different project ?');?>")) {
-            $("#do_list_project_task__eventChangeOwnerMultiple_mydb_events_100_").attr("value", "do_list_project_task->eventChangeProjectForTaskMultiple");
-            $("#do_list_project_task__eventChangeOwnerMultiple").submit();
-        }
-    }
-
     function changeDueDateMul(){
-        if (confirm("<?php echo _('Are you sure you want to change due date of selected task ?');?>")) {
+        if (confirm("<?php echo _('Are you sure you want to change due date of selected task ?');?>")) {           
             $("#do_list_project_task__eventChangeOwnerMultiple_mydb_events_100_").attr("value", "do_list_project_task->eventChangeDueDateMultiple");
             $("#do_list_project_task__eventChangeOwnerMultiple").submit();
         }
@@ -301,12 +235,7 @@
         $("#when_due").show(0);
         document.getElementById('sp_date_selected').value = "";
     }
-<?php
-$e_PrioritySort = new Event("ProjectTask->eventAjaxPrioritySort");
-$e_PrioritySort->setEventControler("ajax_evctl.php");
-$e_PrioritySort->setSecure(false);
-$strPrioritySortURL = $e_PrioritySort->getUrl();
-?>
+         
     function moveTasks(TorB) {
         var priorities="",checked="",unchecked="";
         var priorities=$("#project_tasks").sortable("toArray");
@@ -327,93 +256,144 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
         $.get("<?php echo $strPrioritySortURL; ?>&"+priorities, function(){window.location.reload();});
     }
 
-    $(document).ready(function() {
+   /* $(document).ready(function() {
         $("div[id^=templt]").hover(function(){$("div[id^=trashcan]",this).show("slow");},function(){$("div[id^=trashcan]",this).hide("slow");});
         $("#project_tasks").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
             update:function(){
             var priorities=$("#project_tasks").sortable("serialize");
             $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
         });
-    });
+    });*/
+
+
+     function showAllTasksLater(){
+        $.ajax({
+            type: "GET",
+            <?php
+            $e_task_later = new Event("Task->eventAjaxGetAllTasksLater");
+            $e_task_later->setEventControler("ajax_evctl.php");
+            $e_task_later->setSecure(false);
+            ?>
+            url: "<?php echo $e_task_later->getUrl(); ?>",
+            data: "",
+            success: function(tasks_later){
+                $("#tasks_later")[0].innerHTML = tasks_later;
+                $("#tasks_options").hide();
+            }
+        });
+
+    }
+
+    function showAllTasksThisMonth(){
+        $.ajax({
+            type: "GET",
+            <?php
+            $e_task_thismonth = new Event("Task->eventAjaxGetAllTasksThisMonth");
+            $e_task_thismonth->setEventControler("ajax_evctl.php");
+            $e_task_thismonth->setSecure(false);
+            ?>
+            url: "<?php echo $e_task_thismonth->getUrl(); ?>",
+            data: "",
+            success: function(tasks_this_month){
+                $("#tasks_thismonth")[0].innerHTML = tasks_this_month;
+                $("#tasks_options_this_month").hide();
+            }
+        });
+
+    }
+
+    function showAllTasksOverdue(){
+
+        $.ajax({
+            type: "GET",
+            <?php
+            $e_task_overdue = new Event("Task->eventAjaxGetAllTasksOverdue");
+            $e_task_overdue->setEventControler("ajax_evctl.php");
+            $e_task_overdue->setSecure(false);
+            ?>
+            url: "<?php echo $e_task_overdue->getUrl(); ?>",
+            data: "",
+            success: function(tasks_overdue){
+                $("#tasks_overdue")[0].innerHTML = tasks_overdue;
+                $("#tasks_options_overdue").hide();
+            }
+        });
+
+    }
     //]]>
 </script>
 
-
-
 <?php $do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
-<table class="layout_columns"><tr><td class="layout_lmargin"></td><td>
-<div class="layout_content">
-<?php $thistab = _('Tasks'); include_once('includes/ofuz_navtabs.php'); ?>
-<?php $do_breadcrumb = new Breadcrumb(); $do_breadcrumb->getBreadcrumbs(); ?>
-    <div class="grayline1"></div>
-    <div class="spacerblock_20"></div>
-     <table class="layout_columns">
-      <tr>
-	<td class="layout_lcolumn">
-	  <?php
-	  include_once('plugin_block.php');
-	  ?>
-	</td>
-	<td class="layout_rcolumn">
-	  <?php
-            $msg = new Message(); 
-	    if ($msg->getMessageFromContext("tasks")) {
-		    echo $msg->displayMessage();
-	    }
-          ?>
-        <!--<div class="tasktop">-->
+  <table class="layout_columns">
+      <tr><td class="layout_lmargin"></td>
+          <td>
+              <div class="layout_content">
+                    <?php $thistab = _('Tasks'); include_once('includes/ofuz_navtabs.php'); ?>
+                    <?php $do_breadcrumb = new Breadcrumb(); $do_breadcrumb->getBreadcrumbs(); ?>
+                  <div class="grayline1"></div>
+                  <div class="spacerblock_20"></div>
+                   <table class="layout_columns">
+                      <tr>
+                        <td class="layout_lcolumn">
+                            <?php include_once('plugin_block.php');?>
+                        </td>
+                        <td class="layout_rcolumn">
+                          <?php
+                              $msg = new Message(); 
+                              if ($msg->getMessageFromContext("tasks")) {
+                                  echo $msg->displayMessage();
+                              }
+                            ?>
+                            <!--<div class="tasktop">-->
         
-         <div class="mainheader pad20">
-            <span class="headline14">Your tasks</span>
-            <?php
-                  if($_GET['t'] == 't'){$_SESSION['remember_task_on'] = '';}
-                  if($_GET['t']=='p' || $_SESSION['remember_task_on']== 'Project'){
-                        $link_html = '<a href=/tasks.php?t=t>'._('Tasks By Date').'</a><span class="headerlinksI">|</span>';
-                  }else{
-                        $link_html = '<a href=/tasks.php?t=p>'._('Task By Projects').'</a><span class="headerlinksI">|</span>';
-                  }
-            ?>
-            <span class="headerlinks"><?php echo $link_html;?><?php echo _('Upcoming');?><span class="headerlinksI">|</span><a href="tasks_completed.php"><?php echo _('Completed');?></a></span>
-            <!--<span class="headerlinksI">|</span><a href="ofuz_demo_tasks3.php">Assigned</a></span>//-->
-        </div>
+                            <div class="mainheader pad20">
+                                <span class="headline14">Your tasks</span>
+                                <?php
+                                      if($_GET['t'] == 't'){$_SESSION['remember_task_on'] = '';}
+                                      if($_GET['t']=='p' || $_SESSION['remember_task_on']== 'Project'){
+                                            $link_html = '<a href=/tasks.php?t=t>'._('Tasks By Date').'</a><span class="headerlinksI">|</span>';
+                                      }else{
+                                            $link_html = '<a href=/tasks.php?t=p>'._('Task By Projects').'</a><span class="headerlinksI">|</span>';
+                                      }
+                                ?>
+                                <span class="headerlinks"><?php echo $link_html;?><?php echo _('Upcoming');?><span class="headerlinksI">|</span><a href="tasks_completed.php"><?php echo _('Completed');?></a></span>
+                                <!--<span class="headerlinksI">|</span><a href="ofuz_demo_tasks3.php">Assigned</a></span>//-->
+                            </div>
+
+
+                            <?php 
+                            $do_proj_task_operation = new ProjectTask();
+                            $e_set_close = new Event("do_list_project_task->eventChangeOwnerMultiple");
+                            $e_set_close->addEventAction("mydb.gotoPage", 304);
+                            $e_set_close->addParam("goto", "tasks.php");
+                            echo $e_set_close->getFormHeader();
+                            echo $e_set_close->getFormEvent();
+                              ?>
 
 
 
-
-
-
-<div id="contacts_ctlbar" style="display: none;">
-    <div id ="co_workers"></div>
-    <?php 
-        $_SESSION['do_project']->getAllProjects();
-        //echo '<select name="project_id">'.$_SESSION['do_project']->getProjectsSelectOptions($_SESSION['do_project_task']->idproject).'</select>';
-        //echo '<input type="button" onclick = "changeProjMul();return false;" value="'._('Assign Task To').'">';
-        echo (' or ').' '._('change due date')._(':');
-        // OO style using FieldsForm object to generate a field. The same thing we have on task.php to generate due_date but using JS and HTML
-        $field_due_date_mul = new DijitDateTextBox("due_date_mul");
-        $field_due_date_mul->datetype = 'dd-MM-y';
-        //$field_due_date_mul->name = 'due_date_mul';
-        $form_fields = new FieldsForm();
-        $form_fields->addField($field_due_date_mul);
-        echo $form_fields->due_date_mul ;
-        // Ends Here 
-        echo '<input type="button" onclick = "changeDueDateMul();return false;" value="'._('Change Due Date').'">';
-        //echo '<br/>',_(' or '),'<span class="redlink"><a href="#" onclick="moveTasks(0);return false;">'._('Promote them to the top').'</a></span>';        
-        echo '<br/>',_(' or '),'<span class="redlink"><a href="#" onclick="closeTaskMul();return false;">'._('Close the Selected Task').'</a></span>';        
-    ?>
-        <div class="spacerblock_10"></div>
-     <span class="sasnlinks">( <span class="bluelink"><a href="#" onclick="fnSelAll(); return false;"><?php echo _('select all'); ?></a></span> | <span class="bluelink"><a href="#" onclick="fnSelNone(); return false;"><?php echo _('select none');?></a></span> )</span>
- </div>
-
-
-
-
-
-
-
-
-
-
+                            <div id="contacts_ctlbar" style="display: none;">
+                              <div id ="co_workers"></div>
+                                <?php 
+                                  // $_SESSION['do_project']->getAllProjects();
+                                    //echo '<select name="project_id">'.$_SESSION['do_project']->getProjectsSelectOptions($_SESSION['do_project_task']->idproject).'</select>';
+                                    //echo '<input type="button" onclick = "changeProjMul();return false;" value="'._('Assign Task To').'">';
+                                    echo (' or ').' '._('change due date')._(':');
+                                    // OO style using FieldsForm object to generate a field. The same thing we have on task.php to generate due_date but using JS and HTML
+                                    $field_due_date_mul = new DijitDateTextBox("due_date_mul");
+                                    $field_due_date_mul->datetype = 'dd-MM-y';
+                                    //$field_due_date_mul->name = 'due_date_mul';
+                                    $form_fields = new FieldsForm();
+                                    $form_fields->addField($field_due_date_mul);
+                                    echo $form_fields->due_date_mul ;
+                                    // Ends Here 
+                                    echo '<input type="button" onclick = "changeDueDateMul();return false;" value="'._('Change Due Date').'">';
+                                    //echo '<br/>',_(' or '),'<span class="redlink"><a href="#" onclick="moveTasks(0);return false;">'._('Promote them to the top').'</a></span>';        
+                                    echo '<br/>',_(' or '),'<span class="redlink"><a href="#" onclick="closeTaskMul();return false;">'._('Close the Selected Task').'</a></span>';        
+                                ?>
+                              <div class="spacerblock_10"></div>
+                              <span class="sasnlinks">( <span class="bluelink"><a href="#" onclick="fnSelAll(); return false;"><?php echo _('select all'); ?></a></span> | <span class="bluelink"><a href="#" onclick="fnSelNone(); return false;"><?php echo _('select none');?></a></span> )</span>
+                            </div>
 
 
 
@@ -426,8 +406,7 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
                     $last_project = 0;
                     echo '<div class="tasks">';
                     while($do_task->next()){
-                          if($last_project != $do_task->idproject ){
-                              //echo '<br />';
+                          if($last_project != $do_task->idproject ){                              
                               echo '<div ><br /><b><a href="/Project/'.$do_task->idproject.'">'.$do_task->name.'</a></b></div>';
                           }
                           $last_project = $do_task->idproject;
@@ -444,160 +423,150 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
             }else{
                   $_SESSION['remember_task_on'] = '';
             ?>
-            
+        </div>
+
+<!--Over Due Tasks---->
 
             <?php
-				$num_tasks_overdue = $do_task->getNumAllTasksOverdue();
+                $num_tasks_overdue = $do_task->getNumAllTasksOverdue();
                 $do_task->getAllTasksOverdue();
-				$num_tasks_overdue_limit = $do_task->getNumRows();
+                $num_tasks_overdue_limit = $do_task->getNumRows();
                 if ($do_task->getNumRows()) {
-
-
              ?>
             <div class="tasks">
                 <div class="headline10" style="color: #ff0000;"><?php echo _('Overdue');?></div>
+                  
+                    <div class="contentfull">
+                      <div class="ddtasks">
+                        <div id="tasks_overdue">
+                            <?php  echo $do_task->viewTaskList(); //echo $do_task->viewTasks(); ?>
+                         </div>
+                          <?php if($num_tasks_overdue > 10) { ?>
+                            <div id="tasks_options_overdue"><a href="#" onclick="showAllTasksOverdue(); return false;"><?php echo _('More...');?></a></div>
+                          <?php } ?>
+                      </div>
+                      <?php  
+                          }
+                          /*$do_task->getAllTasksToday();
+                          if ($do_task->getNumRows()) {*/
+                      ?>
+					</div>
+			</div>
 
-				<div id="tasks_overdue">
- <div class="contentfull">
-            <div class="ddtasks">
-
-
-
-<?php  echo $do_task->viewTaskList(); //echo $do_task->viewTasks(); ?></div>
-			<?php if($num_tasks_overdue > 10) { ?>
-				<div id="tasks_options_overdue"><a href="#" onclick="showAllTasksOverdue(); return false;"><?php echo _('More...');?></a></div>
-			<?php } ?>
-            </div>
-            <?php  
-                }
-                /*$do_task->getAllTasksToday();
-                if ($do_task->getNumRows()) {*/
-             ?>
-
-        </div>
-       </div>
-
-            <div class="tasks_today"> 
-                <div class="headline10">Today</div>
-              <div class="contentfull">
-            <div class="ddtasks">
-
-
-
-            <?php
-               $do_task->getAllTasksToday();
-               $do_task->query($do_task->getSqlQuery());
-
-                if($do_task->getNumRows()){
-                  echo $do_task->viewTaskList();
-                }
-            ?>
-                <?php //echo $do_task->viewTasks(); ?>
-            </div>
-            </div>
+		<?php
+           $do_task->getAllTasksToday();
+           $do_task->query($do_task->getSqlQuery());
+           if($do_task->getNumRows()){
+			?>
+			
+	       <div class="tasks_today"> 
+				<div class="headline10">Today</div>
+					<div class="contentfull">
+						<div class="ddtasks">
+							<?php                 
+								echo $do_task->viewTaskList();
+								}
+							?>
+							<?php //echo $do_task->viewTasks(); ?>
+						</div>
+					</div>
           </div>
             <?php 
                 //}
                /* $do_task->getAllTasksTomorrow();
                 if ($do_task->getNumRows()) {*/
              ?>
-            <div class="tasks">
-                  
-                <div class="headline10">Tomorrow</div>
-
-             <div class="contentfull">
-            <div class="ddtasks">
-
-
-             <?php
-  
+             
+			<?php
               $do_task->getAllTasksTomorrow();
               $do_task->query($do_task->getSqlQuery());
-
                 if($do_task->getNumRows()){
-                  echo $do_task->viewTaskList();
-                }
-             ?>
-                <?php //echo $do_task->viewTasks(); ?>
-            </div>
-          </div>
-        </div>
+             ?>      
+             
+            <div class="tasks">                  
+                <div class="headline10">Tomorrow</div>
+					<div class="contentfull">
+						<div class="ddtasks">
+						<?php            
+							echo $do_task->viewTaskList();
+							}
+						?>
+						<?php //echo $do_task->viewTasks(); ?>
+						</div>
+					</div>
+			</div>
 
             <?php
                /* }
                 $do_task->getAllTasksThisWeek();
                 if ($do_task->getNumRows()) {*/
              ?>
-            <div class="tasks">
-                <div class="headline10">This week</div>
-                  <div class="contentfull">
-                  <div class="ddtasks">
-
              <?php
                 $do_task->getAllTasksThisWeek();
                 $do_task->query($do_task->getSqlQuery());
-
-                if($do_task->getNumRows()){
-                  echo $do_task->viewTaskList();
-                }
+				    if($do_task->getNumRows()){
             ?>
-
-
-            
-                <?php //echo $do_task->viewTasks(); ?>
-            </div>
-           </div>
+             
+            <div class="tasks">
+                <div class="headline10">This week</div>
+                  <div class="contentfull">
+					<div class="ddtasks">
+						<?php
+							echo $do_task->viewTaskList();
+							}
+						?>
+						<?php //echo $do_task->viewTasks(); ?>
+					</div>
+				</div>
           </div>
             <?php 
                /* }
                 $do_task->getAllTasksNextWeek();
                 if ($do_task->getNumRows()) {*/
              ?>
+             
+             
+             <?php 
+                $do_task->getAllTasksNextWeek();
+                $do_task->query($do_task->getSqlQuery());
+                if($do_task->getNumRows()){
+			?>
             <div class="tasks">
                 <div class="headline10">Next week</div>
                    <div class="contentfull">
-                   <div class="ddtasks">          
-
-                <?php
-  
-                    $do_task->getAllTasksNextWeek();
-                    $do_task->query($do_task->getSqlQuery());
-
-                    if($do_task->getNumRows()){
-                      echo $do_task->viewTaskList();
-                    }
-          ?>
-            
-
-                <?php //echo $do_task->viewTasks(); ?>
-            </div>
-            </div>
+						<div class="ddtasks">          
+						<?php                
+							echo $do_task->viewTaskList();
+							}
+						?>
+						<?php //echo $do_task->viewTasks(); ?>
+						</div>
+					</div>
             </div>
             <?php 
-                //}
-				$num_tasks_this_month = $do_task->getNumAllTasksThisMonth();
+                $num_tasks_this_month = $do_task->getNumAllTasksThisMonth();
                 $do_task->getAllTasksThisMonth();
-				$num_tasks_this_month_limit = $do_task->getNumRows();
+                $do_task->query($do_task->getSqlQuery());
+                $num_tasks_this_month_limit = $do_task->getNumRows();
                 if ($do_task->getNumRows()) {
 			?>
             <div class="tasks">
                 <div class="headline10"><?php echo _('This Month');?></div>
-                <div id="tasks_thismonth"><?php echo $do_task->viewTasks(); ?></div>
-            </div>
-				<?php if($num_tasks_this_month > 20) { ?>
-				<div id="tasks_options_this_month"><a href="#" onclick="showAllTasksThisMonth(); return false;"><?php echo _('More...')?></a></div>
-				<?php } ?>
-            <?php 
-                }
+					<div id="tasks_thismonth">
+					<?php echo $do_task->viewTaskList();//echo $do_task->viewTasks(); ?></div>
+					</div>
+					<?php if($num_tasks_this_month > 20) { ?>
+						<div id="tasks_options_this_month"><a href="#" onclick="showAllTasksThisMonth(); return false;"><?php echo _('More...')?></a></div>
+					<?php } ?>
+				<?php 
+					}
 
-				$num_tasks_later = $do_task->getNumAllTasksLater();
-                $do_task->getAllTasksLater();
-
-             $do_task->query($do_task->getSqlQuery());
-
-			$num_twenty_tasks = $do_task->getNumRows();
-                if ($do_task->getNumRows()) {
-             ?>
+					$num_tasks_later = $do_task->getNumAllTasksLater();
+					$do_task->getAllTasksLater();
+					$do_task->query($do_task->getSqlQuery());
+					$num_twenty_tasks = $do_task->getNumRows();
+					if ($do_task->getNumRows()) {
+				?>
             <div class="tasks">
                 <div class="headline10">Later</div>              
              <div class="contentfull">
