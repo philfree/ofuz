@@ -543,6 +543,11 @@ class ProjectTask extends Task {
      */
     function eventAjaxPrioritySort(EventControler $event_controler) {
         $q = new sqlQuery($this->getDbCon());
+          echo "aneesj";
+              echo $event_controler->pt;
+      print_r($event_controler->pt);
+          exit;
+
         foreach ($event_controler->pt as $priority => $idtask) {
             $q->query("UPDATE project_task SET priority = $priority WHERE idtask = $idtask");
         }
@@ -642,7 +647,7 @@ class ProjectTask extends Task {
     /**
       * Event method change multiple Task Owner
     */
-    function eventChangeOwnerMultiple(EventControler $evctl){ 
+    function eventChangeOwnerMultiple(EventControler $evctl){
       $task_ids = $evctl->ck;       
       if (preg_match("/-/",$task_ids[0])) {
           $taskid=$evctl->ck;

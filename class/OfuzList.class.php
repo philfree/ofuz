@@ -71,7 +71,7 @@ class OfuzList extends BaseObject {
   public function displayList(){
       $class_name = get_class($this->obj);
 
-      if ($class_name == 'ProjectTask' || $class_name='Task') { echo '<ul id="project_tasks">',"\n"; }
+      if ($class_name == 'ProjectTask') {echo '<ul id="project_tasks">',"\n"; }
       while($this->obj->next()){
           echo $this->getRowStart(); 
           $this->displayRow($class_name) ;
@@ -251,6 +251,8 @@ class OfuzList extends BaseObject {
                 }
             //$task_class = 'ptask_name';    
             //$ddtask_ul = 'ddtasks';
+
+                 $html .='<ul id="project_tasks">';
 
             if($this->obj->access == 'Public'){
                 $html .= '<li id="pt_'.$this->obj->idtask.'" class="ddtasks">'.

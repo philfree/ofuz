@@ -25,13 +25,27 @@
     $do_contact_task = new Contact();
 
 
-    $do_list_project_task = new ProjectTask();                    
-    $do_list_project_task->viewProjectTasks();
+   /* $do_list_project_task = new ProjectTask();                    
+    $do_list_project_task->viewProjectTasks();*/
+
+
+    if(!is_object($_SESSION['do_list_project_task'])){
+        $do_project_task = new ProjectTask();
+        $do_project_task->sessionPersistent("do_list_project_task", "projects.php", OFUZ_TTL);
+    }
+
+
+
 ?>
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  
 
 <script type="text/javascript">
     //<![CDATA[
 <?php include_once('includes/ofuz_js.inc.php'); ?>
+    
     var allowHighlight = true;
     function fnHighlight(area,color,change_to) {
         if (allowHighlight == false) return;
@@ -235,7 +249,15 @@
         $("#when_due").show(0);
         document.getElementById('sp_date_selected').value = "";
     }
-         
+      
+
+
+<?php
+$e_PrioritySort = new Event("ProjectTask->eventAjaxPrioritySort");
+$e_PrioritySort->setEventControler("ajax_evctl.php");
+$e_PrioritySort->setSecure(false);
+$strPrioritySortURL = $e_PrioritySort->getUrl();
+?>   
     function moveTasks(TorB) {
         var priorities="",checked="",unchecked="";
         var priorities=$("#project_tasks").sortable("toArray");
@@ -256,15 +278,14 @@
         $.get("<?php echo $strPrioritySortURL; ?>&"+priorities, function(){window.location.reload();});
     }
 
-   /* $(document).ready(function() {
+    $(document).ready(function() {
         $("div[id^=templt]").hover(function(){$("div[id^=trashcan]",this).show("slow");},function(){$("div[id^=trashcan]",this).hide("slow");});
         $("#project_tasks").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
             update:function(){
             var priorities=$("#project_tasks").sortable("serialize");
             $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
         });
-    });*/
-
+    });
 
      function showAllTasksLater(){
         $.ajax({
@@ -284,7 +305,7 @@
 
     }
 
-    function showAllTasksThisMonth(){
+   function showAllTasksThisMonth(){
         $.ajax({
             type: "GET",
             <?php
@@ -303,7 +324,6 @@
     }
 
     function showAllTasksOverdue(){
-
         $.ajax({
             type: "GET",
             <?php
@@ -502,7 +522,7 @@
                 if ($do_task->getNumRows()) {*/
              ?>
              <?php
-                $do_task->getAllTasksThisWeek();
+               echo $do_task->getAllTasksThisWeek();
                 $do_task->query($do_task->getSqlQuery());
 				    if($do_task->getNumRows()){
             ?>
@@ -552,14 +572,18 @@
 			?>
             <div class="tasks">
                 <div class="headline10"><?php echo _('This Month');?></div>
-					<div id="tasks_thismonth">
-					<?php echo $do_task->viewTaskList();//echo $do_task->viewTasks(); ?></div>
-					</div>
-					<?php if($num_tasks_this_month > 20) { ?>
-						<div id="tasks_options_this_month"><a href="#" onclick="showAllTasksThisMonth(); return false;"><?php echo _('More...')?></a></div>
-					<?php } ?>
-				<?php 
-					}
+                 <div class="contentfull">
+                    <div id="tasks_thismonth">
+                      <div class="ddtasks">
+                        <?php echo $do_task->viewTaskList();//echo $do_task->viewTasks(); ?>
+                      </div>                         
+                   </div>
+                 </div>
+                   <?php if($num_tasks_this_month > 20) { ?>
+                   <div id="tasks_options_this_month"><a href="#" onclick="showAllTasksThisMonth(); return false;"><?php echo _('More...')?></a></div>
+                   <?php } ?>
+                   <?php 
+                    }
 
 					$num_tasks_later = $do_task->getNumAllTasksLater();
 					$do_task->getAllTasksLater();
