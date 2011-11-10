@@ -444,8 +444,7 @@ class Task extends DataObject {
                      LEFT JOIN project_task p 
                      ON t.idtask=p.idtask
                      WHERE DATEDIFF(due_date_dateformat,'".$today."') = 1
-                     AND due_date_dateformat <> '0000-00-00'
-                     
+                     AND due_date_dateformat <> '0000-00-00'                     
                      AND status = 'open'
                      AND iduser = ".$_SESSION['do_User']->iduser." 
                      ORDER BY due_date_dateformat");

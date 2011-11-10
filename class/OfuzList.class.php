@@ -216,8 +216,11 @@ class OfuzList extends BaseObject {
                 $do_contact = new Contact();
                 $contact_full_name = ' ('.$do_contact->getContactName($this->obj->idcontact).')';
             }
-            $progress_pixels = $this->obj->progress;
+            $progress_pixels = $this->obj->progress;      
+
+           
             
+
             if (!is_numeric($progress_pixels) || $progress_pixels < 0 || $progress_pixels > 100) $progress_pixels = '0';
             if(empty($this->obj->due_date_dateformat) || $this->obj->due_date_dateformat == '' || $this->obj->due_date_dateformat == '0000-00-00'){
                 $bg_color = 'style = "background-color:#ffffff;"';
@@ -235,6 +238,17 @@ class OfuzList extends BaseObject {
                 $color = "#ffe9ce" ;
                 $change_to = "#ffe9ad";
                 $ddtasks = "ddtasks_overdue";
+            }elseif(strtotime($this->obj->due_date_dateformat) == strtotime( '1 day', strtotime (date("Y-m-d")))){
+                $bg_color = 'style = "background-color:#ffffff;"';
+                $color = "#ffffff" ;
+                $change_to = "#ffffdd";
+                $ddtasks = "ddtasks_tomorrow";
+
+            }elseif(strtotime($this->obj->due_date_dateformat) > strtotime( '7 day', strtotime (date("Y-m-d"))) && strtotime($this->obj->due_date_dateformat) < strtotime( '15 day', strtotime (date("Y-m-d")))){
+                $bg_color = 'style = "background-color:#ffffff;"';
+                $color = "#ffffff" ;
+                $change_to = "#ffffdd";
+                $ddtasks = "ddtasks_nextweek";
             }else{
                 $bg_color = 'style = "background-color:#ffffff;"';
                 $color = "#ffffff" ;
@@ -252,7 +266,7 @@ class OfuzList extends BaseObject {
             //$task_class = 'ptask_name';    
             //$ddtask_ul = 'ddtasks';
 
-                 $html .='<ul id="project_tasks">';
+                 $html .='<ul  id="'.$ddtasks.'">';
 
             if($this->obj->access == 'Public'){
                 $html .= '<li id="pt_'.$this->obj->idtask.'" class="ddtasks">'.
