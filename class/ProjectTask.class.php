@@ -127,7 +127,7 @@ class ProjectTask extends Task {
 
     /**
       * Function to get all the Task for the project
-      * @param $idproject -- INTO		
+      * @param $idproject -- INTO  
     */
 
     function getAllProjectTasks($idproject=0) {
@@ -302,11 +302,11 @@ class ProjectTask extends Task {
       * @see ListObject
     */
     function viewProjectTasks($access='Private') {
-	    $this->access = $access;
-	    $OfuzList = new OfuzList($this);
-	    $OfuzList->setMultiSelect(true);
-	    $OfuzList->displayList();
-	
+     $this->access = $access;
+     $OfuzList = new OfuzList($this);
+     $OfuzList->setMultiSelect(true);
+     $OfuzList->displayList();
+ 
     /*$do_contact = new Contact();
             $html = '<ul id="project_tasks">';
             while ($this->next()) {
@@ -342,7 +342,7 @@ class ProjectTask extends Task {
             }
             $html .= '</ul>';
            return $html;*/
-	
+ 
     }
 
     /**
@@ -381,6 +381,7 @@ class ProjectTask extends Task {
    */
 
     function renderChangeTaskOwnerList($idproject=""){
+
       $do_proj = new Project();
       if($idproject == ""){
       $do_proj->idproject = $this->idproject;
@@ -405,7 +406,6 @@ class ProjectTask extends Task {
       }
       return $output;
     }
-
 
 
     /**
@@ -543,6 +543,11 @@ class ProjectTask extends Task {
      */
     function eventAjaxPrioritySort(EventControler $event_controler) {
         $q = new sqlQuery($this->getDbCon());
+          echo "aneesj";
+              echo $event_controler->pt;
+      print_r($event_controler->pt);
+          exit;
+
         foreach ($event_controler->pt as $priority => $idtask) {
             $q->query("UPDATE project_task SET priority = $priority WHERE idtask = $idtask");
         }
@@ -642,8 +647,19 @@ class ProjectTask extends Task {
     /**
       * Event method change multiple Task Owner
     */
-    function eventChangeOwnerMultiple(EventControler $evctl){ 
-      $task_ids = $evctl->ck;
+    function eventChangeOwnerMultiple(EventControler $evctl){
+      $task_ids = $evctl->ck;       
+      if (preg_match("/-/",$task_ids[0])) {
+          $taskid=$evctl->ck;
+          $task_ids= array();
+          foreach($taskid as $ids){      
+            $explode= explode('-',$ids);
+            if(in_array($explode[0],$task_ids)==false){
+                array_push($task_ids,$explode[0]);
+            }
+          }
+      }
+
       if($evctl->fields["co_worker"] != '' && is_array($task_ids) && count($task_ids)>0 ){
           foreach($task_ids as $idtask){
               $this->changeTaskOwner($evctl->fields["co_worker"],$idtask);
@@ -669,8 +685,23 @@ class ProjectTask extends Task {
     */
 
     function eventChangeDueDateMultiple(EventControler $evctl){
+
+
         if( $evctl->fields['due_date_mul'] != '' &&  $evctl->fields['due_date_mul'] != '0000-00-00'){
               $task_ids = $evctl->ck;
+
+             
+
+           if (preg_match("/-/",$task_ids[0])) {
+                $taskid=$evctl->ck;
+                $task_ids= array();
+                foreach($taskid as $ids){      
+                  $explode= explode('-',$ids);
+                    if(in_array($explode[0],$task_ids)==false){
+                      array_push($task_ids,$explode[0]);
+                    }
+                }
+            }
               if(is_array($task_ids) && count($task_ids) > 0 ){
                   $q = new sqlQuery($this->getDbCon());
                   foreach($task_ids as $idtask){
@@ -680,5 +711,68 @@ class ProjectTask extends Task {
         }
         
     }
+
+     function eventRenderChangeTaskOwnerList(EventControler $evtcl){
+      $idproject = $evtcl->idproject;
+
+       if (preg_match("/-/",$idproject)) {          
+              $id_project = $evtcl->idproject;
+
+          $f_explode=explode(',',$id_project);
+          $result= array();
+          foreach($f_explode as $nf_explode){
+            $s_explode= explode('-',$nf_explode);
+              if($s_explode[1]==''){
+                  $s_explode[1]=0;
+                }
+              if(in_array($s_explode[1],$result)==false){
+                 array_push($result,$s_explode[1]);
+              }
+            }
+          $id='';
+              foreach($result as $s_result){
+                    $id.=$s_result.',';
+              }
+
+          $idproject= rtrim($id,',');
+      }
+
+      $do_proj = new Project();
+      if($idproject == ""){
+      $do_proj->idproject = $this->idproject;
+      }else{$do_proj->idproject = $idproject ;}
+      $co_workers = $do_proj->getTaskCoWorkers();
+      $output = '';
+      if(!$co_workers){
+          $output .= '<br />'._('No Co-Worker found for this project').'<br />';
+      }else{  
+          if(is_array($co_workers)){
+              $output .='<select name="fields[co_worker]">';
+              $output .='<option value="">'._('Select One').'</option>';
+              foreach($co_workers as $co_workers){
+                  $selected = '';
+                  $output .= '<option value="'.$co_workers["idcoworker"].'" '.$selected.'>'.$co_workers["firstname"].' '.$co_workers["lastname"].'</option>';
+              }
+              $output .= '</select>';
+              $output .='<input value="'._('Assign Task To').'" type="submit">';
+          }else{
+              $output .= '<br />'._('No Co-Worker found for this project').'<br />';
+          }
+      }
+      echo  $output;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 ?>

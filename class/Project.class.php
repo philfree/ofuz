@@ -828,5 +828,67 @@ class Project extends DataObject {
   }
 
 
+
+
+
+
+
+      function getTaskCoWorkers(){
+        $q = new sqlQuery($this->getDbCon());
+          $passed_value=explode(',',$this->idproject);
+          $array_size=count($passed_value);  
+      
+          $and_query="";
+          if($array_size==1){
+            $and_query.="idproject=".$passed_value[0];
+          }else{
+            foreach($passed_value as $p){
+              $and_query.="( idproject =".$p.") and ";
+            }
+              $and_query= rtrim($and_query,' and ');
+        }
+
+
+    
+
+  //echo "select * from project_sharing where ".$and_query;
+            $q->query("select * from project_sharing where ".$and_query );
+            if($q->getNumRows() > 0 ){
+                  $project_worker_array = array();
+                  while($q->fetch()){
+                          $project_worker_array[] = $q->getData("iduser");
+                          $project_worker_array[] = $q->getData("idcoworker");
+                  }
+                  $project_worker_array = array_unique($project_worker_array);
+                  $array_coworker = array();
+                  $array_data = array();
+                  $do_user_data = new User();
+                  foreach($project_worker_array as $iduser){
+                    $do_user_data->getId($iduser);
+                    $array_coworker["idcoworker"] = $iduser;
+                    $array_coworker["firstname"]= $do_user_data->firstname;
+                    $array_coworker["lastname"]= $do_user_data->lastname;
+                    $array_coworker["email"] = $do_user_data->email;
+                    $array_data[] = $array_coworker;
+                  }
+                  usort($array_data,array($this, "sort_fname"));
+                 
+                  return $array_data;
+            }else{ return false ; }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
 }
 ?>

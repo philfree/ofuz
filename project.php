@@ -1,5 +1,5 @@
 <?php 
-// Copyrights 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
+// Copyrights 2008 - 2011 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
     $pageTitle = 'Ofuz :: Project';
@@ -59,10 +59,14 @@
         $do_project->setBreadcrumb();
     }
 ?>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  
 <script type="text/javascript">
     //<![CDATA[
-	
-	<?php include_once('includes/ofuz_js.inc.php'); ?>
+ 
+ <?php include_once('includes/ofuz_js.inc.php'); ?>
 
     var allowHighlight = true;
     function fnHighlight(area,color,change_to) {
@@ -195,8 +199,8 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
     <?php
           if(!$project_access){
               $msg = new Message(); 
-			  $msg->getMessage("unauthorized project access");
-			  $msg->displayMessage();
+     $msg->getMessage("unauthorized project access");
+     $msg->displayMessage();
               
               exit;
           }
@@ -206,16 +210,16 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
       // If the project is a public project then hide the following
       if($project_operation_access === true){
 
-	// Login the Block Plugins here //
-	include_once('plugin_block.php');
+ // Login the Block Plugins here //
+ include_once('plugin_block.php');
     }// Public project hide part ends here
     ?>
     </td><td class="layout_rcolumn">
-	    <?php
+     <?php
             $msg = new Message(); 
-			if ($msg->getMessageFromContext("project tasks")) {
-				echo $msg->displayMessage();
-			}
+   if ($msg->getMessageFromContext("project tasks")) {
+    echo $msg->displayMessage();
+   }
         ?> 
         <div class="mainheader">
             <div class="project_detail_name">
@@ -323,15 +327,15 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
             <input type="submit" value="<?php echo _('Save');?>" /> &nbsp;or&nbsp; <a href="#" onclick="fnEditProject(); return false;"><?php echo _('cancel');?></a>
             </form>
         </div>
-	    <?php 
-		$do_proj_task_operation = new ProjectTask();
-		$e_set_close = new Event("do_list_project_task->eventChangeOwnerMultiple");
-		$e_set_close->addEventAction("mydb.gotoPage", 304);
-		$e_set_close->addParam("goto", "Project/".$idproject);
-		echo $e_set_close->getFormHeader();
-		echo $e_set_close->getFormEvent();
-	    ?>
-	<div id="contacts_ctlbar" style="display: none;">
+     <?php 
+  $do_proj_task_operation = new ProjectTask();
+  $e_set_close = new Event("do_list_project_task->eventChangeOwnerMultiple");
+  $e_set_close->addEventAction("mydb.gotoPage", 304);
+  $e_set_close->addParam("goto", "Project/".$idproject);
+  echo $e_set_close->getFormHeader();
+  echo $e_set_close->getFormEvent();
+     ?>
+ <div id="contacts_ctlbar" style="display: none;">
     <?php 
         echo '<b>'._('With the selected Task(s) you can:').'</b><br/>';
         echo _('Change the task owner')._(':');
@@ -355,8 +359,8 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
         echo '<br/>',_(' or '),'<span class="redlink"><a href="#" onclick="closeTaskMul();return false;">'._('Close them all').'</a></span>';
     ?>
         <div class="spacerblock_10"></div>
-	    <span class="sasnlinks">( <span class="bluelink"><a href="#" onclick="fnSelAll(); return false;"><?php echo _('select all'); ?></a></span> | <span class="bluelink"><a href="#" onclick="fnSelNone(); return false;"><?php echo _('select none');?></a></span> )</span>
-	</div>
+     <span class="sasnlinks">( <span class="bluelink"><a href="#" onclick="fnSelAll(); return false;"><?php echo _('select all'); ?></a></span> | <span class="bluelink"><a href="#" onclick="fnSelNone(); return false;"><?php echo _('select none');?></a></span> )</span>
+ </div>
 
         <div class="contentfull">
             <div class="ddtasks">

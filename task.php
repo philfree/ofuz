@@ -581,16 +581,16 @@ $(document).ready(function() {
                           echo '<b>'.date('l, F j', strtotime($do_discuss->date_added)).'</b>&nbsp;('._('Added By :').'&nbsp;'.$added_by.')</div>'; 
                         }*/
                         $date_added_note =  OfuzUtilsi18n::formatDateLong($do_discuss->date_added);
-                        echo '<b>'.$date_added_note.'</b>&nbsp;('._('Added By :').'&nbsp;'.$added_by.')</div>'; 
+                        echo '<div id="item_title">'.$date_added_note.'</b>&nbsp;('._('Added By :').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
 
                         if($task_operation_access === true){
                           echo '<div id="trashcan', $item_count++, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_discuss->idproject_discuss.'\','.$do_discuss->idproject_discuss.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_discuss_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div>';
                         }
                         echo '</div>';
                         if ($do_discuss->is_truncated) {
-                            echo '<div id="notepreview',$do_discuss->idproject_discuss,'">',$item_text,'<a href="#" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('more...').'</a><br /></div>';
+                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$item_text,'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
                         } else {
-                            echo $item_text;
+                            echo "<div id='item_text'>".$item_text."</div>";
                         }
                         //echo '<div id="e'.$do_discuss->idproject_discuss.'" style="display: none;" class="note_edit_box"></div>';
                         echo $do_discuss->formatDocumentLink("ProjectTask").'</div>
