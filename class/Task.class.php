@@ -878,6 +878,8 @@ class Task extends DataObject {
   }
 
 
+
+
 /**
    * get Contact tasks which are associated with Project and idcontact [Inactive Users].
    * @return query object

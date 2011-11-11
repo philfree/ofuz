@@ -3172,6 +3172,8 @@ class Invoice extends DataObject {
     $this->query($sql);
   }
 
+
+
 /**
    * This fetches invoice details for a particular Contact for particular User [Inactive Users].
    * @param inteher  $idcontact

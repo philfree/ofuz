@@ -2,10 +2,15 @@
 	
 	/**
 	 * delete inactive users.php
-	 * Get the inactive user take their information backup to an xml file and delete the user data from the database.
-	 * It uses the object: Task
-	 * Copyright 2001 - 2010 All rights reserved SQLFusion LLC, info@sqlfusion.com 
+	 * Inactive user which are not logged in from past 2 to 6 months and user with 10 contact / task / project tasks / invoices.
+	 * Get their information backup to an xml file with all the contacts,task,projects,invoices,reccurant invoices,paymets and tags and delete all the related data for the user from the database.
+	 * @see class/User.class.php
+	 * @see class/ofuzExportXML.class.php
+	 * @see class/Task.class.php
+	 * @see class/ofuzCancelAccount.class.php
+     * 
 	 */
+	
 	
     $pageTitle = 'Ofuz :: Delete Inactive Users';
     $Author = 'SQLFusion LLC';

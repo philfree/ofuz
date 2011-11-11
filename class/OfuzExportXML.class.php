@@ -817,7 +817,7 @@ class OfuzExportXML extends DataObject {
 
 
 /**
-   * Back up Inactive users data and Delete Inactive User's account.
+   * Back up Inactive users data from all the fields and Delete Inactive User's account.
    * @param int : $iduser
    * @return void
    */

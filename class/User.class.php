@@ -2,6 +2,7 @@
 // Copyright 2001 - 2010 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
+
   /**
    * Class User
    * This class manage most of the Action and date relate to users using Ofuz
@@ -1349,8 +1350,11 @@ class User extends RegisteredUser {
 
     }
     
+  
+  
       /**
      * Custom method for inactive user backup delete_inactive_users page.
+     * @delete_inactive_users.php
      * @param object $evtcl
     */
     function eventDeleteInactiveUsers() {
