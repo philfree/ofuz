@@ -285,31 +285,28 @@ class OfuzList extends BaseObject {
                                   <span class="task_category">'.$this->obj->task_category.'</span>&nbsp;
                                   <span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a>'.$contact_full_name.'</span>*/
 
-                                
+                     $img_url = '<img src="/images/discussion.png" width="16" height="16" alt="" />';
 
                      $html .= '<li id="pt_'.$this->obj->idtask.'" class="'.$ddtasks.'" '.$bg_color.'>
                               <div class="ptask_name" onclick="fnHighlight(\''.$this->obj->idtask.'\',\''.$color.'\',\''.$change_to.'\')" id="list'.$this->obj->idtask.'"> 
                                   <span><input type="checkbox" name="ck[]" id="ck'.$this->obj->idtask.'" value="'.$this->obj->idtask.'-'.$this->obj->idproject.'" class="ofuz_list_checkbox" onclick="fnHighlight(\''.$this->obj->idtask.'\',\''.$color.'\',\''.$change_to.'\')" />
                                  </span>
-                                  <span class="task_category">'.$this->obj->task_category.'</span>&nbsp;
-                                  <span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a>'.$contact_full_name.'</span>
+                                  <span class="task_category">'.$this->obj->task_category.'</span>&nbsp';
 
+                     if($this->obj->idproject_task!=''){
+                     $html .=    '<span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a>'.$contact_full_name.'</span>
+                                  &nbsp;&nbsp;<b>
+                                  <a href="/Project/'.$this->obj->idproject.'">'.$this->obj->name.'</b></a>
+                          &nbsp;&nbsp;<a href="/Task/'.$this->obj->idproject_task.'">'.$img_url.'</a>
+                                  </div>
+  
+                              <div class="ptask_progbar1">';
+                   
 
-
-
-                              </div><div class="ptask_progbar1">';
-
-
-                 /*$img_url = '<img src="/images/discussion.png" width="16" height="16" alt="" />';
-               $html .='&nbsp;&nbsp;<b>
-                        <a href="/Task/'.$this->obj->idproject_task.'">'.$do_task_project->name.'</b></a>
-                          &nbsp;&nbsp;<a href="'.$project_task_url.'">'.$img_url.'</a>';*/
-
-
-
-
-
-
+                     }else{
+                     $html .= '<span'.$strike_class.'>'.$this->obj->task_description.$contact_full_name.'</span>
+                                  </div><div class="ptask_progbar1">';
+                    }
 
                 }else{
                     $html .= '<li id="pt_'.$this->obj->idtask.'" class="'.$ddtasks.'">
