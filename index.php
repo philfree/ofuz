@@ -42,6 +42,7 @@
 
 	$_SESSION['do_work_feed']->getWorkfeedCount();
 
+
 ?>
 <script type="text/javascript">
     //<![CDATA[
