@@ -2,6 +2,7 @@
 // Copyright 2001 - 2010 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
+
   /**
    * Class User
    * This class manage most of the Action and date relate to users using Ofuz
@@ -1346,6 +1347,62 @@ class User extends RegisteredUser {
             $evtcl->setDisplayNext($err_disp) ;
 
         }
+
+    }
+    
+  
+  
+      /**
+     * Custom method for inactive user backup delete_inactive_users page.
+     * @delete_inactive_users.php
+     * @param object $evtcl
+    */
+    function eventDeleteInactiveUsers() {
+          
+       $q = new sqlQuery($this->getDbCon()); 
+/*
+ * Test query
+ * $sql = "select u.iduser as iduser 
+				from user u left join login_audit la on u.iduser = la.iduser 
+				left join invoice inv on u.iduser=inv.iduser 
+				left join task t on u.iduser=t.iduser 
+				left join project p on u.iduser=p.iduser 
+				where datediff(curdate(),date(la.last_login)) >= '10' 
+				group by u.iduser 
+				having (count(inv.iduser >= 0) and (count(p.iduser)>=0) and (count(t.iduser)>=0))";	    */
+				    
+		$sql = "select u.iduser as iduser 
+				from user u left join login_audit la on u.iduser = la.iduser 
+				left join invoice inv on u.iduser=inv.iduser 
+				left join task t on u.iduser=t.iduser 
+				left join project p on u.iduser=p.iduser 
+				where datediff(curdate(),date(la.last_login)) >= '60' 
+				group by u.iduser 
+				having (count(inv.iduser >= 10) and (count(p.iduser)>=10) and (count(t.iduser)>=10))";	    
+	 
+        $q->query($sql);		    
+         
+        $nums = $q->getNumRows();
+         
+        if ($nums >= 1) {
+			while($q->fetch()) {
+				$iduser = $q->getData('iduser');
+				
+				if(($iduser == 'NULL')||(empty($iduser)))
+				{
+					$nums = 0;	
+					
+				}
+				else
+				{
+					$expxml = new OfuzExportXML();
+					$expxml->exportUserAccountandDelete($iduser);
+				}
+				
+			}
+		}
+		$msg = "$nums user record has been deleted";
+		return $msg;
 
     }
 
