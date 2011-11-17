@@ -742,6 +742,7 @@ class ProjectTask extends Task {
               $due_date='This Month';
           }elseif($month_difference<0){
               $due_date='Later';
+              $form_date = '0000-00-00';
           }
   
 
@@ -750,7 +751,7 @@ class ProjectTask extends Task {
                   $q = new sqlQuery($this->getDbCon());
                   foreach($task_ids as $idtask){
                     //echo "update task set due_date='$due_date', due_date_dateformat = '".$evctl->fields['due_date_mul']."' where idtask = ".$idtask;exit;
-                    $q->query("update task set due_date='$due_date' , due_date_dateformat = '".$evctl->fields['due_date_mul']."' where idtask = ".$idtask);
+                    $q->query("update task set due_date='$due_date' , due_date_dateformat = '$form_date' where idtask = ".$idtask);
                   }
               }
         }
