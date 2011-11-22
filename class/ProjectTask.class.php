@@ -726,7 +726,6 @@ class ProjectTask extends Task {
           
 
 
-
  
          if($no_of_days<0){
               $due_date='Today';
@@ -736,15 +735,16 @@ class ProjectTask extends Task {
                $due_date='Tomorrow';
           }elseif($no_of_days>=2 && $no_of_days <=5 && $sat_difference>0){
             $due_date='This week';
-          }elseif(($sat_no_of_days==0) || ($sat_no_of_days>=-6)){            
+          }elseif((($sat_no_of_days==0) || ($sat_no_of_days>=-6)) && ($form_date<=$this_month_end_date)){            
             $due_date='Next week';
           }elseif(($month_difference>=0)){
               $due_date='This Month';
-          }elseif($month_difference<0){
+          }elseif($month_difference<0 && $form_date>$this_month_end_date){
               $due_date='Later';
               $form_date = '0000-00-00';
           }
   
+
 
 
               if(is_array($task_ids) && count($task_ids) > 0 ){
