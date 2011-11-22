@@ -451,15 +451,11 @@ class Task extends DataObject {
                      LEFT JOIN project_task pt 
                      INNER JOIN project p ON pt.idproject=p.idproject
                      ON t.idtask=pt.idtask
-                     WHERE DATEDIFF(due_date_dateformat,'".$today."') = 1
-                     AND due_date_dateformat <> '0000-00-00'                     
-                     AND status = 'open'
-                     AND iduser = ".$_SESSION['do_User']->iduser." 
-                     ORDER BY due_date_dateformat");
-
-
-
-
+                     WHERE DATEDIFF(t.due_date_dateformat,'".$today."') = 1
+                     AND t.due_date_dateformat <> '0000-00-00'                     
+                     AND t.status = 'open'
+                     AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     ORDER BY t.due_date_dateformat");
      /* $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,p.idproject,p.idproject_task FROM task t 
                      LEFT JOIN project_task p 
                      ON t.idtask=p.idtask
