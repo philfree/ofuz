@@ -41,6 +41,7 @@
                 <h1><?php echo _('Add a new contact');?></h1>
             </div>
         </div>
+        
         <div class="contentfull">
                         <?php 
                             $ContactEdit  = new Contact($GLOBALS['conx']);

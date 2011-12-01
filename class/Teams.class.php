@@ -104,6 +104,7 @@ class Teams extends DataObject {
 		         ORDER BY team_name";
 		 $this->query($sql);        
 	 }
+
 	 
 	 /*
 	  * gets user's teams which are marked as auto-shared

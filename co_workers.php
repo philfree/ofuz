@@ -37,6 +37,7 @@ function fnHighlightCoworkers(area) {
     }
 }
 
+
 function setContactForCoworker(){
   $("#do_contact_sharing__eventShareContactsMultiple").submit();
 }

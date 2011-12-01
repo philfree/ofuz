@@ -49,7 +49,6 @@
 
   include_once("class/EmailTemplateUser.class.php");
   include_once("class/Ofuz_Emailer.class.php");
-
   include_once("class/Project.class.php");
   include_once("class/ProjectTask.class.php");
   include_once("class/ProjectDiscuss.class.php");

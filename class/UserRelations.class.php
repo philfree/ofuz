@@ -54,8 +54,7 @@ class UserRelations extends DataObject {
         $co_worker_form->execute();
     }
 
-     function eventSetCoWorker(EventControler $evtcl) {
-        
+     function eventSetCoWorker(EventControler $evtcl) {        
         $goto = $evtcl->goto;
 
         if($evtcl->fields['email_address'] != "") {

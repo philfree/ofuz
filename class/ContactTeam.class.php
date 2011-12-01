@@ -53,5 +53,4 @@ class ContactTeam extends DataObject {
 		}
 		$do_teams->free();
 	 } 
-   
 }
