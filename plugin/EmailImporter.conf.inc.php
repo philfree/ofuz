@@ -14,7 +14,7 @@
    */
 
    include_once("plugin/EmailImporter/OfuzEmailImporter.class.php");
-   @require_once("plugin/EmailImporter/openinviter.php");
+   require_once("plugin/EmailImporter/openinviter.php");
 
    // Hook to display the tab Settings.
    $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting("EmailImporter"));
