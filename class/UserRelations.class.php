@@ -217,6 +217,17 @@ class UserRelations extends DataObject {
                         order by user.firstname
                         ");
      }
+     
+     function getAllCoWorkersNotInTeam($str_idco_workers){
+		 if($str_idco_workers) {
+			 $not_in = " AND user_relations.idcoworker not in (".$str_idco_workers.")";
+		 }
+          $this->query("select user_relations.*,user.firstname,user.lastname from user_relations 
+                        inner join user on user.iduser = user_relations.idcoworker
+                        where user_relations.iduser = ".$_SESSION['do_User']->iduser." AND user_relations.accepted = 'Yes' ".$not_in."
+                        order by user.firstname
+                        ");
+     }     
 
      function checkRegURL($enc_email,$id){
         $q = new sqlQuery($this->getDbCon()) ;

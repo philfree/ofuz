@@ -51,6 +51,7 @@
                             $contactAddForm->event->setGotFile(true);
                             //$contactAddForm->setFormEvent("ContactEditSave->eventSetCompany",120);
 							$contactAddForm->addEventAction("ContactEditSave->eventAddWebView", 351);
+							$contactAddForm->addEventAction("ContactTeam->eventAddContactToTeamCW", 380);							
                             $contactAddForm->addEventAction("mydb.gotoPage", 453);
                             $contactAddForm->addParam("goto", $contact_edit_page);
                             $contactAddForm->setRegistry("ofuz_add_contact");
@@ -60,6 +61,7 @@
                             $contactAddForm->setForm();
                             $contactAddForm->execute();
                         ?>
+                        
         </div>
     </td></tr></table>
     <div class="spacerblock_40"></div>

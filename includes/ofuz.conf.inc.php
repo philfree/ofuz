@@ -69,6 +69,8 @@
   include_once("class/OfuzExportXML.class.php");
   include_once("class/UserInternalMarketing.class.php");
   include_once("class/TagInternalMarketing.class.php");
+  include_once("class/Teams.class.php");
+  include_once("class/ContactTeam.class.php");
   
   include_once("class/EventKey.class.php");
 //  include_once("class/Task.class.php");
