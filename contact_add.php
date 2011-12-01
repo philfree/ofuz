@@ -11,6 +11,7 @@
     include_once('config.php');
     include_once('includes/ofuz_check_access.script.inc.php');
     include_once('includes/header.inc.php');
+    
 ?>
 <script type="text/javascript">
     //<![CDATA[
@@ -40,8 +41,7 @@
             <div class="pad20">
                 <h1><?php echo _('Add a new contact');?></h1>
             </div>
-        </div>
-        
+        </div>        
         <div class="contentfull">
                         <?php 
                             $ContactEdit  = new Contact($GLOBALS['conx']);

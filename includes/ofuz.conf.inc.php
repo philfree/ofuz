@@ -46,7 +46,6 @@
   include_once("class/MergeString.class.php");
   include_once("class/Feedback.class.php");
 //  include_once("class/ContactMessage.class.php");
-
   include_once("class/EmailTemplateUser.class.php");
   include_once("class/Ofuz_Emailer.class.php");
   include_once("class/Project.class.php");
