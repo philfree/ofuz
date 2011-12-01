@@ -13,8 +13,7 @@
 
     $do_teams = new Teams();
     $do_teams->getTeams();
-    $teams_count = $do_teams->getNumRows();
-    
+    $teams_count = $do_teams->getNumRows();    
 ?>
 <script type="text/javascript">
 //<![CDATA[

@@ -7,6 +7,7 @@
    * Ofuz Base Configuration file
    */
 
+
   $oz_tp = "ofuz_";
   
   include_once("class/Company.class.php");

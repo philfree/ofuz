@@ -22,6 +22,7 @@ class ContactTeam extends DataObject {
 	  * @param Object : EventControler
 	  *
 	  */
+
 	 function eventAddContactToTeamCW(EventControler $evtcl) {
 		 $do_teams = new Teams();
 		 //gets user's teams which are marked as auto-shared

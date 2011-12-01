@@ -18,6 +18,7 @@
     $do_task_category = new TaskCategory($GLOBALS['conx']);
     $do_contact_task = new Contact();
     $do_project = new Project();
+
 ?>
 <script type="text/javascript">
 //<![CDATA[

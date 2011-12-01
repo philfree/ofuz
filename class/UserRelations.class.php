@@ -28,6 +28,7 @@ class UserRelations extends DataObject {
                     "CoWorkerForm" => "coworker_add_form");
     
     function generateFromAddCoWorker($nextPage,$block=false){
+
         $errPage = $nextPage;
        
         $co_worker_form =  $this->prepareSavedForm($this->savedforms['CoWorkerForm']);	 

@@ -20,6 +20,7 @@ class Teams extends DataObject {
       * @param object $evtcl
       * @return string
     */
+
     function eventAjaxAddTeam(EventControler $evtcl) {
 		$team_name = $evtcl->team_name;
 		$auto_share = $evtcl->auto_share;
