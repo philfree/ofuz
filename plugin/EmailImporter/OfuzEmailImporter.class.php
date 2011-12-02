@@ -48,6 +48,7 @@
 			foreach ($contacts as $email=>$name) {
 				$do_contact = new Contact();
 				$do_contact->firstname = $name;
+				$do_contact->iduser = $_SESSION['do_User']->iduser;
 				$do_contact->add();
 				$lastInsertedContId = $do_contact->getPrimaryKeyValue();
 				$do_contact->addEmail($email,'Home');
