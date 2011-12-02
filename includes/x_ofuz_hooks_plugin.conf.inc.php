@@ -60,6 +60,41 @@
                                     "timesheet"=>
                                        Array("TimesheetBlockCoWorker")
                           ) ;
+
+
+
+        // Core plugin names
+    $GLOBALS['core_plugin_names'] = Array(
+                                          'ContactAddTaskBlock',
+                                          'ContactDetailBlock',
+                                          'ContactInvoiceBlock',
+                                          'ContactShareCoworkerBlock',
+                                          'ContactShareFileNoteBlock',
+                                          'ContactSubTagSearchBlock',
+                                          'ContactTagSearchBlock',
+                                          'ContactTasksBlock',
+                                          'CoworkerListInvitations',
+                                          'CoworkerSearch',
+                                          'CoworkerSendInvitationEmail',
+                                          'DashboardMessageBlock',
+                                          'DashboardTodaysTask',
+                                          'InvoicesMonthlyGraphBlock',
+                                          'InvoicesYTDBlock',
+                                          'NotesAndDiscussionBlock',
+                                          'PaymentLogBlock.class',
+                                          'ProjectAddCoworkerBlock',
+                                          'ProjectAddProjectTaskBlock',    
+                                          'ProjectAddTaskDropboxBlock',
+                                          'ProjectDiscussionEmailAlertBlock',
+                                          'ProjectsAddProjectBlock',
+                                          'RecurrentInvoiceBlock',
+                                          'TaskDropBoxBlock',
+                                          'TaskOwnerBlock',
+                                          'TaskProgressBlock',
+                                          'TasksAddTaskBlock',
+                                          'TimesheetBlockCoWorker'
+                                          
+                          ) ;  
  
    // Core Tabs 
    $GLOBALS['cfg_tab_placement'] = new ArrayIterator();

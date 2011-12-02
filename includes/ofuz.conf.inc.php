@@ -139,7 +139,7 @@
   include_once("class/TabSetting.class.php");
   include_once("class/SubMenu.class.php");
   include_once("class/BaseMessageBlock.class.php");
-  //include_once("class/PluginEnable.class.php");
+  include_once("class/PluginEnable.class.php");
   
 
   // Dynamic Buttons
