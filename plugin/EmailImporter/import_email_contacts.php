@@ -1,5 +1,5 @@
 <?php
-$required_email_provider = array("yahoo", "hotmail", "linkedin");
+$required_email_provider = array("yahoo", "hotmail");
 
 $inviter=new OpenInviter();
 $oi_services=$inviter->getPlugins();
