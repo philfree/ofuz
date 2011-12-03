@@ -149,6 +149,14 @@
 
   
 
+   $GLOBALS['core_tab_name'] = Array(
+                                      'Dashboard',
+                                      'Contacts',
+                                      'Tasks',
+                                      'Projects',
+                                      'Invoices'
+                                    );
+
 
    // Core Settings Tabs 
    $GLOBALS['cfg_setting_tab_placement'] = new ArrayIterator();

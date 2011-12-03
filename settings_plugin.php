@@ -108,10 +108,28 @@
               
 
 
-
+   //$cfg_tab_placement->getTabName();
                    echo "<br>";
+
+
+                    
+
                     
                   echo '<b>'._('Menu Plugins').' :</b><br /><br />';
+
+                  /*foreach($GLOBALS['cfg_tab_placement'] as  $tab_plugin ){  
+        if (is_object($tab_plugin )) {  
+          //if ($tab_plugin->getPlugInName() == $plugin_name) { $plugin = $tab_plugin; continue; }
+            echo $tab_plugin->getPlugInName();
+
+
+        }
+    }*/
+
+
+
+
+
                  /* $do_plugin_enable = new PluginEnable();
                   $do_dynamic_button = new DynamicButton();
                   print_r($cfg_tab_placement);
