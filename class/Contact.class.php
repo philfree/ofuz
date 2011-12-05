@@ -2525,5 +2525,14 @@ class Contact extends DataObject {
         }else{ return false ; }
     }
 
+    /**
+      * Share Contact with Co-Workers of the auto-shared teams
+      * 
+      */
+    function eventAddContactToTeam(EventControler $evtc) {
+        $contact_team = new ContactTeam();
+        $contact_team->eventAddContactToTeamCW($this);	
+    }	
+
 }
 ?>

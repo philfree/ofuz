@@ -7,6 +7,7 @@
    * Ofuz Base Configuration file
    */
 
+
   $oz_tp = "ofuz_";
   
   include_once("class/Company.class.php");
@@ -46,10 +47,8 @@
   include_once("class/MergeString.class.php");
   include_once("class/Feedback.class.php");
 //  include_once("class/ContactMessage.class.php");
-
   include_once("class/EmailTemplateUser.class.php");
   include_once("class/Ofuz_Emailer.class.php");
-
   include_once("class/Project.class.php");
   include_once("class/ProjectTask.class.php");
   include_once("class/ProjectDiscuss.class.php");
@@ -69,6 +68,8 @@
   include_once("class/OfuzExportXML.class.php");
   include_once("class/UserInternalMarketing.class.php");
   include_once("class/TagInternalMarketing.class.php");
+  include_once("class/Teams.class.php");
+  include_once("class/ContactTeam.class.php");
   
   include_once("class/EventKey.class.php");
 //  include_once("class/Task.class.php");

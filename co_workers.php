@@ -18,6 +18,7 @@
     $do_task_category = new TaskCategory($GLOBALS['conx']);
     $do_contact_task = new Contact();
     $do_project = new Project();
+
 ?>
 <script type="text/javascript">
 //<![CDATA[
@@ -119,7 +120,8 @@ function hideSharedDetail(divid){
                                   $do_Contacts->sessionPersistent("do_Contacts", "index.php", 36000);
                               }
                                if(!$set_share){ // If not having POST vales
-                                  echo '<b>'._('Your co-workers :').'</b><br /><br />';
+								  echo '<a href="teams.php">Teams</a>'.' - '.'<a href="co_workers.php">All Co-Workers</a>'.'<br /><br />';
+                                  echo '<b>'._('Your Co-Workers :').'</b><br /><br />';
                                   $user_coworker = new User();
                                   while($_SESSION['do_coworker']->next()){
                                       $user_coworker->getId($_SESSION['do_coworker']->idcoworker);

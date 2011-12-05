@@ -279,13 +279,30 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
     }
 
     $(document).ready(function() {
-        $("div[id^=templt]").hover(function(){$("div[id^=trashcan]",this).show("slow");},function(){$("div[id^=trashcan]",this).hide("slow");});
-        $("#project_tasks").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
+        //$("div[id^=templt]").hover(function(){$("div[id^=trashcan]",this).show("slow");},function(){$("div[id^=trashcan]",this).hide("slow");});
+        /*$("#project_tasks").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
             update:function(){
             var priorities=$("#project_tasks").sortable("serialize");
             $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
+        });*/
+
+        $("#ddtasks_today").sortable();
+
+
+         $("#ddtasks_overdue").sortable();
+  
+        $("#ddtasks_tomorrow").sortable();
+      
+         $("#ddtasks_nextweek").sortable();
+
     });
+
+
+
+
+
+
+
 
      function showAllTasksLater(){
         $.ajax({
@@ -511,11 +528,13 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
                 <div class="headline10">Tomorrow</div>
 					<div class="contentfull">
 						<div class="ddtasks">
+      <div class = "task_tomorrow">
 						<?php            
 							echo $do_task->viewTaskList();
 							}
 						?>
 						<?php //echo $do_task->viewTasks(); ?>
+      </div>
 						</div>
 					</div>
 			</div>

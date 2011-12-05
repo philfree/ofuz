@@ -702,10 +702,56 @@ class ProjectTask extends Task {
                     }
                 }
             }
+
+          $today = date("Y-m-d");//Todays Date
+          $form_date=$evctl->fields['due_date_mul'];//Entered Date
+                      
+          $dateDiff = strtotime($form_date) - strtotime($today);
+          $no_of_days = floor($dateDiff/(60*60*24));//Date Difference
+
+         
+
+          $next_day = strtotime ('+1 day',strtotime ($today));//Add one day to the current date to check wheather next day is saturday
+          $next_day = date ( 'D',$next_date);
+
+          $this_saturdays_date = date("Y-m-d", strtotime('next Saturday'));//get this saturday's date          
+          $sat_difference=strtotime($this_saturdays_date)-strtotime($form_date);
+          $sat_no_of_days=round($sat_difference/(60*60*24));
+
+
+
+          $this_month_end_date=date('Y-m-d',strtotime('-1 second',strtotime('+1 month',strtotime(date('m').'/01/'.date('Y').' 00:00:00'))));//this month calculation
+          $month_difference=strtotime($this_month_end_date)-strtotime($form_date);
+          $month_difference=round($month_difference/(60*60*24));
+          
+
+
+
+ 
+         if($no_of_days<0){
+              $due_date='Today';
+          }elseif($no_of_days==0){
+              $due_date='Today';
+          }elseif($no_of_days==1 && $next_day!='Sat'){
+               $due_date='Tomorrow';
+          }elseif($no_of_days>=2 && $no_of_days <=5 && $sat_difference>0){
+            $due_date='This week';
+          }elseif(($sat_no_of_days==0) || ($sat_no_of_days>=-6)){            
+            $due_date='Next week';
+          }elseif(($month_difference>=0)){
+              $due_date='This Month';
+          }elseif($month_difference<0){
+              $due_date='Later';
+              $form_date = '0000-00-00';
+          }
+  
+
+
               if(is_array($task_ids) && count($task_ids) > 0 ){
                   $q = new sqlQuery($this->getDbCon());
                   foreach($task_ids as $idtask){
-                    $q->query("update task set due_date_dateformat = '".$evctl->fields['due_date_mul']."' where idtask = ".$idtask);
+                    //echo "update task set due_date='$due_date', due_date_dateformat = '".$evctl->fields['due_date_mul']."' where idtask = ".$idtask;exit;
+                    $q->query("update task set due_date='$due_date' , due_date_dateformat = '$form_date' where idtask = ".$idtask);
                   }
               }
         }
