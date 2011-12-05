@@ -463,6 +463,8 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
                          </div>
                           <?php if($num_tasks_overdue > 10) { ?>
                             <div id="tasks_options_overdue"><a href="#" onclick="showAllTasksOverdue(); return false;"><?php echo _('More...');?></a></div>
+                            
+                            
                           <?php } ?>
                       </div>
                       <?php  
@@ -471,6 +473,8 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
                           if ($do_task->getNumRows()) {*/
                       ?>
 					</div>
+					
+					
 			</div>
 
 		<?php

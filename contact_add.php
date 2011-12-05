@@ -24,8 +24,9 @@
     <div class="spacerblock_20"></div>
     <table class="layout_columns"><tr><td class="layout_lcolumn">
         <div class="left_text_links">
-            <div class="headbar"><?php echo _('Other ways to add people'); ?></div>
-            <!--
+            <div style="line-height:24px;">
+			<div class="headbar"><strong><?php echo _('Other ways to add people'); ?></strong></div>
+			 <!--
             <span class="linkbluebg"><a href="#">Import from Basecamp</a></span><br />
             <span class="linkbluebg"><a href="#">Import from Outlook</a></span><br />
             <span class="linkbluebg"><a href="#">Import from ACT!</a></span><br />-->
@@ -34,6 +35,7 @@
             <span class="linkbluebg"><a href="sync.php"><?php echo _('Import from Google'); ?></a></span><br />
             <span class="linkbluebg"><a href="fb_import_friends.php"><?php echo _('Import from Facebook');?></a></span><br />
             <span class="linkbluebg"><a href="contact_web_form.php"><?php echo _('Create a Web Form');?></a></span><br />			
+            </div>
         </div>
     </td><td class="layout_rcolumn">
         <div class="mainheader">
@@ -41,6 +43,7 @@
                 <h1><?php echo _('Add a new contact');?></h1>
             </div>
         </div>
+        <br/>
         <div class="contentfull">
                         <?php 
                             $ContactEdit  = new Contact($GLOBALS['conx']);
@@ -61,6 +64,7 @@
                             $contactAddForm->execute();
                         ?>
         </div>
+        
     </td></tr></table>
     <div class="spacerblock_40"></div>
     <div class="layout_footer"></div>

@@ -190,7 +190,7 @@ h2.headline {   padding: 20px 0; position: relative; padding: 20px 0; font-size:
 .messages_unauthorized { padding: 6px 20px; color: #3f312b; font-size: 11pt; background-color: #ffffcc; border: solid 2px #f6bfbc; }
 
 .solidline { width: 100%; height: 1px; line-height: 1px; font-size: 1px; border-bottom: solid 1px #cfcfcf; }
-.dashedline { width: 100%; height: 1px; line-height: 1px; font-size: 1px; border-bottom: dashed 1px #cfcfcf; }
+.dashedline { width: 100%; height: 1px; line-height: 1px; font-size: 1px; border-bottom: dashed 1px #cfcfcf;margin: 20px 0px 5px; }
 .dottedline { width: 100%; height: 1px; line-height: 1px; font-size: 1px; border-bottom: dotted 1px #cfcfcf; }
 
 .section20 { width: 100%; margin: 20px 0; }
@@ -225,7 +225,7 @@ margin-bottom: 5px;
 .div_right { text-align: right; width: 100%; }
 .pad020 { padding: 0 20px; }
 .pad1020 { padding: 10px 20px; }
-.pad20 { padding: 10px 20px; }
+.pad20 { padding: 10px 10px;text-shadow: 1px 1px white; }
 .vpad20 { padding: 20px 0; }
 .vpad10 { padding: 20px 20px; }
 
@@ -492,3 +492,5 @@ h4 { font-size: 10pt; margin: 0; padding: 0; line-height: 1.2; }
 }
 
 /* Google Federated Login link/icon ends */
+
+.linkbluebg:hover {text-decoration: underline;}
