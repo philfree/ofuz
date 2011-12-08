@@ -20,9 +20,10 @@ class ContactSharing extends DataObject {
     */
     function eventShareContactsMultiple(EventControler $evtcl) {
       $contacts = $evtcl->getParam("idcontacts");
-      $co_workers = $evtcl->getParam("cwid");
+      $co_workers = $evtcl->getParam("cwid");      
       $count = 0;
       $no_coworker = 0;
+
       if (is_array($contacts) && is_array($co_workers)){
           $do_tag = new Tag();
           foreach($co_workers as $co){
@@ -40,6 +41,7 @@ class ContactSharing extends DataObject {
        }else{
           $msg = 'No Data updated,you may be trying to duplicate some contact access';
        }
+
        $goto = $evtcl->goto;
        $dispError = new Display($goto) ;
        $dispError->addParam("message", $msg) ;
