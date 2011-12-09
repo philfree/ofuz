@@ -52,14 +52,14 @@
                           foreach($val as $block_class_name){  
                               $do_blocks = new $block_class_name();
                               echo '<tr height="30px;">';
-                              echo '<td colspan=1>';
+                              echo '<td colspan=1 width="30%">';
                               //echo $block_class_name ;
                               echo $do_blocks->getShortDescription();
                               echo '</td>';
-                              echo '<td colspan=2 valign="left">';
+                              echo '<td colspan=2 valign="left" width="50%">';
                               echo $do_blocks->getLongDescription();
                               echo '</td>';
-                              echo '<td>';
+                               echo '<td width=12%>';
 
 
                         if(in_array($block_class_name,$core_plugin_names )){     
@@ -71,7 +71,7 @@
                               echo '<div class="dashedline"></div>'; 
                               echo '</td>';
                               echo '</tr>';
-                                
+                              echo '<td width=12%>'; 
 
                         }else{
                               // Enable or desable section comes here
@@ -104,52 +104,43 @@
                    }
                   
                   
-                  /** Menu Block Displaying **/
+                  /** Menu Block Displaying **/             
+                   echo "<br>"; 
+                   echo '<b>'._('Menu Plugins').' :</b><br /><br />';
+
+                    /*  foreach($GLOBALS['cfg_tab_placement'] as  $tab_plugin ){  
+                        if (is_object($tab_plugin )) {  
+                          //if ($tab_plugin->getPlugInName() == $plugin_name) { $plugin = $tab_plugin; continue; }
+                            echo $tab_plugin->getPlugInName();
+
+
+                        }
+                    }*/
+                  $do_plugin_enable = new PluginEnable();
+                  $do_dynamic_button = new DynamicButton();  
+
+                  foreach($GLOBALS['cfg_tab_placement'] as  $tab_plugin ){  
+                      if (is_object($tab_plugin )) {  
+                          //if ($tab_plugin->getPlugInName() == $plugin_name) { $plugin = $tab_plugin; continue; }
+                          //echo $tab_plugin->getPlugInName();
+                          // print_r($tab_plugin);
+                          //echo $tab_plugin->tab_name;exit;
+                            $tab_name=$tab_plugin->getTitle();
               
-
-
-   //$cfg_tab_placement->getTabName();
-                   echo "<br>";
-
-
-                    
-
-                    
-                  echo '<b>'._('Menu Plugins').' :</b><br /><br />';
-
-                  /*foreach($GLOBALS['cfg_tab_placement'] as  $tab_plugin ){  
-        if (is_object($tab_plugin )) {  
-          //if ($tab_plugin->getPlugInName() == $plugin_name) { $plugin = $tab_plugin; continue; }
-            echo $tab_plugin->getPlugInName();
-
-
-        }
-    }*/
-
-
-
-
-
-                 /* $do_plugin_enable = new PluginEnable();
-                  $do_dynamic_button = new DynamicButton();
-                  print_r($cfg_tab_placement);
-                  if(is_array($cfg_tab_placement) && count($cfg_tab_placement) > 0 ){
-                      echo '<table width="100%">';
-                      foreach($cfg_tab_placement as $key=> $val ){
-                          foreach($val as $block_class_name){  
-                              $do_blocks = new $block_class_name();
+                          if(in_array($tab_name,$core_tab_name)){
+                              echo '<table width="100%">';                      
                               echo '<tr height="30px;">';
-                              echo '<td colspan=1>';
-                              //echo $block_class_name ;
-                              echo $do_blocks->getShortDescription();
+                            echo '<td colspan=1 width="30%">';
+                             
+                              echo $tab_plugin->getTitle();
                               echo '</td>';
-                              echo '<td colspan=2 valign="left">';
-                              echo $do_blocks->getLongDescription();
+                               echo '<td colspan=2 valign="left" width="50%">';
+                             
                               echo '</td>';
-                              echo '<td>';
+                              echo '<td width=12%>';
+                              //echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 
-
-                        if(in_array($block_class_name,$core_plugin_names )){     
+                  
                               echo "Default plugins";
                               echo '</td>';
                               echo '</tr>';
@@ -158,16 +149,25 @@
                               echo '<div class="dashedline"></div>'; 
                               echo '</td>';
                               echo '</tr>';
-                                
-
-                        }else{
-                              // Enable or desable section comes here
-                              $idplugin_enable = $do_plugin_enable->isEnabled($block_class_name);
+                           }else{
+                              echo '<table width="100%">';                      
+                              echo '<tr height="30px;">';
+                              echo '<td colspan=1>';
+                             
+                              echo $tab_plugin->getTitle();
+                              echo '</td>';
+                              echo '<td colspan=2 valign="left">';
+                             
+                              echo '</td>';
+                              echo '<td width=12%>';
+                                            
+                             // Enable or disable section comes here
+                             $idplugin_enable = $do_plugin_enable->isEnabled($tab_name);
                               if($idplugin_enable === false ){
                                   $button = $do_dynamic_button->CreateButton('',_('Enable'));
                                   $e_enable = new Event('PluginEnable->eventEnablePlugin');
                                   $e_enable->addParam('goto', $_SERVER['PHP_SELF']);
-                                  $e_enable->addParam('plugin', $block_class_name);
+                                  $e_enable->addParam('plugin', $tab_name);
                                   echo $e_enable->getLink(_('Enable'));
                                   //echo $e_enable->getLink($button);
                               }else{
@@ -185,34 +185,33 @@
                               echo '<div class="dashedline"></div>'; 
                               echo '</td>';
                               echo '</tr>';
-                          }
-                      }}
-                      echo '</table>';
-                   }*/
+                    }
+            }
+                
+    }
+            echo '</table>';   
+              
 
                 /** Setting Page Displaying **/
   
                   echo "</br>";
                   echo '<b>'._('Setting Plugins').' :</b><br /><br />';
-                 /* $do_plugin_enable = new PluginEnable();
-                  $do_dynamic_button = new DynamicButton();
-                  if(is_array($cfg_block_placement) && count($cfg_block_placement) > 0 ){
-                      echo '<table width="100%">';
-                      foreach($cfg_block_placement as $key=> $val ){
-                          foreach($val as $block_class_name){  
-                              $do_blocks = new $block_class_name();
+
+                  foreach($GLOBALS['cfg_setting_tab_placement'] as  $setting_tab_plugin ){  
+                      if (is_object($setting_tab_plugin )) {  
+                           
+                            $setting_tab_name=$setting_tab_plugin->getTitle();
+                   if(in_array($setting_tab_name,$core_setting_tab_name)){
+                              echo '<table width="100%">';                      
                               echo '<tr height="30px;">';
-                              echo '<td colspan=1>';
-                              //echo $block_class_name ;
-                              echo $do_blocks->getShortDescription();
+                              echo '<td colspan=1 width="30%">';
+                             
+                              echo $setting_tab_name;
                               echo '</td>';
-                              echo '<td colspan=2 valign="left">';
-                              echo $do_blocks->getLongDescription();
+                              echo '<td colspan=2 valign="left" width="50%">';
+                             
                               echo '</td>';
-                              echo '<td>';
-
-
-                        if(in_array($block_class_name,$core_plugin_names )){     
+                              echo '<td width=12%>';
                               echo "Default plugins";
                               echo '</td>';
                               echo '</tr>';
@@ -221,16 +220,26 @@
                               echo '<div class="dashedline"></div>'; 
                               echo '</td>';
                               echo '</tr>';
-                                
-
-                        }else{
-                              // Enable or desable section comes here
-                              $idplugin_enable = $do_plugin_enable->isEnabled($block_class_name);
+                           }else{
+                              echo '<table width="100%">';                      
+                              echo '<tr height="30px;">';
+                              echo '<td colspan=1>';
+                             
+                              echo $setting_tab_name;
+                              echo '</td>';
+                              echo '<td colspan=2 valign="left">';
+                             
+                              echo '</td>';
+                               echo '<td width=12%>';
+                              
+                  
+                             // Enable or disable section comes here
+                             $idplugin_enable = $do_plugin_enable->isEnabled($setting_tab_name);
                               if($idplugin_enable === false ){
                                   $button = $do_dynamic_button->CreateButton('',_('Enable'));
                                   $e_enable = new Event('PluginEnable->eventEnablePlugin');
                                   $e_enable->addParam('goto', $_SERVER['PHP_SELF']);
-                                  $e_enable->addParam('plugin', $block_class_name);
+                                  $e_enable->addParam('plugin', $setting_tab_name);
                                   echo $e_enable->getLink(_('Enable'));
                                   //echo $e_enable->getLink($button);
                               }else{
@@ -248,10 +257,20 @@
                               echo '<div class="dashedline"></div>'; 
                               echo '</td>';
                               echo '</tr>';
-                          }
-                      }}
-                      echo '</table>';
-                   }*/           
+                    }         echo '</table>';
+
+
+
+
+
+
+
+
+
+                      }
+                    }
+
+                
             
         ?>
         </div>
