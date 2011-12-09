@@ -451,15 +451,11 @@ class Task extends DataObject {
                      LEFT JOIN project_task pt 
                      INNER JOIN project p ON pt.idproject=p.idproject
                      ON t.idtask=pt.idtask
-                     WHERE DATEDIFF(due_date_dateformat,'".$today."') = 1
-                     AND due_date_dateformat <> '0000-00-00'                     
-                     AND status = 'open'
-                     AND iduser = ".$_SESSION['do_User']->iduser." 
-                     ORDER BY due_date_dateformat");
-
-
-
-
+                     WHERE DATEDIFF(t.due_date_dateformat,'".$today."') = 1
+                     AND t.due_date_dateformat <> '0000-00-00'                     
+                     AND t.status = 'open'
+                     AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     ORDER BY t.due_date_dateformat");
      /* $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,p.idproject,p.idproject_task FROM task t 
                      LEFT JOIN project_task p 
                      ON t.idtask=p.idtask
@@ -515,6 +511,7 @@ class Task extends DataObject {
           $this_saturdays_date = date("Y-m-d", strtotime('next Saturday'));//get this saturday's date          
           $sat_difference=strtotime($this_saturdays_date)-strtotime($today);
          
+          $this_month_lastday = date('Y-m-t',strtotime('this month'));
 
 
        $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name
@@ -522,9 +519,11 @@ class Task extends DataObject {
                      LEFT JOIN project_task pt 
                      INNER JOIN project p ON pt.idproject=p.idproject
                      ON t.idtask=pt.idtask                    
-                     WHERE DATEDIFF('$this_saturdays_date',t.due_date_dateformat)=0
-                     OR  DATEDIFF('$this_saturdays_date',t.due_date_dateformat) >=-6
-                     AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open'
+                     WHERE (DATEDIFF('$this_saturdays_date',t.due_date_dateformat)=0
+                     OR  DATEDIFF('$this_saturdays_date',t.due_date_dateformat) >=-6)
+                     AND t.due_date_dateformat <> '0000-00-00' 
+                     AND t.status = 'open'
+                     AND t.due_date_dateformat <='$this_month_lastday'
                      AND t.iduser = ".$_SESSION['do_User']->iduser."    
                      AND t.due_date != 'Today'
                      AND t.due_date != 'Tomorrow'
