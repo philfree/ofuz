@@ -13,6 +13,7 @@
   }  
 }*/
 
+
     $do_plugin_enable = new PluginEnable();
         if($GLOBALS['cfg_setting_tab_placement']->count() > 0 ){
                foreach($GLOBALS['cfg_setting_tab_placement'] as  $tab ){   
