@@ -11,10 +11,26 @@
    */
 
     include_once('config.php');
-
+  
+        
     if(!isset($_GET['plugin']) && !isset($_GET['content'])){
 	echo _('Parameter missing !!!');exit;
     }
+
+
+    $do_plugin_enable = new PluginEnable();
+        if($GLOBALS['cfg_tab_placement']->count() > 0 ){
+               foreach($GLOBALS['cfg_tab_placement'] as  $tab ){   
+                  if (is_object($tab)) {
+                    $idplugin_enabled = $do_plugin_enable->isEnabled($_GET['plugin']);
+                    if($idplugin_enabled==0){
+                      echo _('Plugin Disabled !!!');exit;        
+                    }  
+                  }
+                }
+        }
+
+
     $plugin_name = $_GET['plugin'];
     $plugin_page_name = $_GET['content'];
     if (isset($_GET['item_value'])) { 
