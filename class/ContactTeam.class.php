@@ -23,40 +23,8 @@ class ContactTeam extends DataObject {
 	  *
 	  */
 
-	 /*function eventAddContactToTeamCW(EventControler $evtcl) {
-		 $do_teams = new Teams();
-		 //gets user's teams which are marked as auto-shared
-		 $do_teams->getUserTeamsAutoShared();
-		 
-		 if($do_teams->getNumRows()) {
-			 while($do_teams->next()) {
-				 //gets Co-Workers of the team
-				 $do_teams_cw = new Teams();
-				 $do_teams_cw->getCoWorkersOfTheTeam($do_teams->idteam);
-				 if($do_teams_cw->getNumRows()) {
-					 while($do_teams_cw->next()) {						
-						$this->addNew();
-						$this->idcontact = $_SESSION['ContactEditSave']->idcontact;
-						$this->idteam = $do_teams->idteam;
-						$this->idcoworker = $do_teams_cw->idco_worker;
-						$this->add();
-						$this->free();
-					 }
-				 } else {
-						$this->addNew();
-						$this->idcontact = $_SESSION['ContactEditSave']->idcontact;
-						$this->idteam = $do_teams->idteam;
-						$this->add();
-						$this->free();					 
-				 }
-				 $do_teams_cw->free();				 
-			}
-		}
-		$do_teams->free();
-	 } */
-
 	 function eventAddContactToTeamCW(Contact $contact) {
-//print_r($contact);
+
 		 $do_teams = new Teams();
 		 //gets user's teams which are marked as auto-shared
 		 $do_teams->getUserTeamsAutoShared();
@@ -120,7 +88,42 @@ class ContactTeam extends DataObject {
 			}
 		}
 		$do_teams->free();
-//exit();
+
 	 } 
+
+  /**
+   * Contact is shared with selected Team/s and Co-Worker/s
+   *
+   * @param Object : EventControler
+   * 
+   */
+  function eventShareExistingContactWithTeamCw(EventControler $evtcl) {
+    $idteams = $evtcl->getParam("team");
+    $idcoworkers = $evtcl->getParam("cwid");
+    $contacts = $evtcl->getParam("idcontacts");
+
+    if(is_array($idteams) && is_array($idcoworkers)) {
+      foreach($idteams as $idteam) {
+	foreach($idcoworkers as $idcoworker) {
+	  foreach($contacts as $contact) {
+	    $sql = "SELECT count(*) AS count_team
+		    FROM {$this->table}
+		    WHERE idcontact = {$contact} AND idteam = {$idteam} AND idcoworker = {$idcoworker}
+                   ";
+	    $this->query($sql);
+	    $this->fetch();
+
+	    if(!$this->getData("count_team")) {
+	      $this->addNew();
+	      $this->idcontact = $contact;
+	      $this->idteam = $idteam;
+	      $this->idcoworker = $idcoworker;
+	      $this->add();
+	    }
+	  }
+	}
+      }
+    }
+  }
 	 
 }
