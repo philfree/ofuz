@@ -108,6 +108,7 @@
                                       "daily_notes",
                                       "timesheet"))
                                 ->setDefaultPage("index");
+                                
    //Contact      
    $GLOBALS['cfg_tab_placement']->append(new Tab(""));
    $GLOBALS['cfg_tab_placement']->next();

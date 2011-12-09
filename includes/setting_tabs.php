@@ -26,7 +26,7 @@
                     }
                   }else{
                     //if($tab->isActive() === true ){
-                        $idplugin_enabled = $do_plugin_enable->isEnabled($tab->getTitle());                        
+                        $idplugin_enabled = $do_plugin_enable->isEnabled($tab->getTabName());                        
                         if($tab->isActive() === true && $idplugin_enabled!==false ){
                         $tab->processTab();
                     }

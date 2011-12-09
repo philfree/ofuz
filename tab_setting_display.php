@@ -12,6 +12,8 @@
 	echo _('Parameter missing !!!');exit;
     }
 
+
+
     $plugin_name = $_GET['plugin'];
     $plugin_setting_name = $_GET['setting'];
     if (isset($_GET['item_value'])) { 

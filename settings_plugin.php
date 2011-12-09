@@ -107,32 +107,19 @@
                   /** Menu Block Displaying **/             
                    echo "<br>"; 
                    echo '<b>'._('Menu Plugins').' :</b><br /><br />';
-
-                    /*  foreach($GLOBALS['cfg_tab_placement'] as  $tab_plugin ){  
-                        if (is_object($tab_plugin )) {  
-                          //if ($tab_plugin->getPlugInName() == $plugin_name) { $plugin = $tab_plugin; continue; }
-                            echo $tab_plugin->getPlugInName();
-
-
-                        }
-                    }*/
                   $do_plugin_enable = new PluginEnable();
                   $do_dynamic_button = new DynamicButton();  
 
                   foreach($GLOBALS['cfg_tab_placement'] as  $tab_plugin ){  
                       if (is_object($tab_plugin )) {  
-                          //if ($tab_plugin->getPlugInName() == $plugin_name) { $plugin = $tab_plugin; continue; }
-                          //echo $tab_plugin->getPlugInName();
-                          // print_r($tab_plugin);
-                          //echo $tab_plugin->tab_name;exit;
-                            $tab_name=$tab_plugin->getTitle();
+                          $tab_name=$tab_plugin->getTabName();
               
                           if(in_array($tab_name,$core_tab_name)){
                               echo '<table width="100%">';                      
                               echo '<tr height="30px;">';
-                            echo '<td colspan=1 width="30%">';
+                              echo '<td colspan=1 width="30%">';
                              
-                              echo $tab_plugin->getTitle();
+                              echo $tab_name;
                               echo '</td>';
                                echo '<td colspan=2 valign="left" width="50%">';
                              
@@ -154,7 +141,7 @@
                               echo '<tr height="30px;">';
                               echo '<td colspan=1>';
                              
-                              echo $tab_plugin->getTitle();
+                              echo $tab_name;
                               echo '</td>';
                               echo '<td colspan=2 valign="left">';
                              
@@ -200,7 +187,7 @@
                   foreach($GLOBALS['cfg_setting_tab_placement'] as  $setting_tab_plugin ){  
                       if (is_object($setting_tab_plugin )) {  
                            
-                            $setting_tab_name=$setting_tab_plugin->getTitle();
+                            $setting_tab_name=$setting_tab_plugin->getTabName();
                    if(in_array($setting_tab_name,$core_setting_tab_name)){
                               echo '<table width="100%">';                      
                               echo '<tr height="30px;">';

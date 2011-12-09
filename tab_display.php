@@ -18,21 +18,7 @@
     }
 
 
-    $do_plugin_enable = new PluginEnable();
-        if($GLOBALS['cfg_tab_placement']->count() > 0 ){
-               foreach($GLOBALS['cfg_tab_placement'] as  $tab ){   
-                  if (is_object($tab)) {
-                    $idplugin_enabled = $do_plugin_enable->isEnabled($_GET['plugin']);
-                    if($idplugin_enabled==0){
-                      echo _('Plugin Disabled !!!');exit;        
-                    }  
-                  }
-                }
-        }
-
-
-
-    $plugin_name = $_GET['plugin'];
+   $plugin_name = $_GET['plugin'];
     $plugin_page_name = $_GET['content'];
     if (isset($_GET['item_value'])) { 
        $plugin_item_value = $_GET['item_value'];
@@ -41,14 +27,24 @@
     $GLOBALS['cfg_tab_placement']->rewind();
     foreach($GLOBALS['cfg_tab_placement'] as  $tab_plugin ){  
         if (is_object($tab_plugin )) {  
-          if ($tab_plugin->getPlugInName() == $plugin_name) { $plugin = $tab_plugin; continue; }
+          //echo 'aaa '.$tab_plugin->getTabName().'<br />';
+          if ($tab_plugin->getPlugInName() == $plugin_name) { 
+                  $plugin = $tab_plugin; 
+                  $tab_name = $tab_plugin->getTabName() ;
+                  continue; 
+           }
         }
     }
     if (!is_object($plugin) || !$plugin->setCurrentPage($plugin_page_name)) {
       $GLOBALS['cfg_plugin_page']->rewind();
       foreach($GLOBALS['cfg_plugin_page'] as  $page_plugin ){  
           if (is_object($page_plugin )) {  
-            if ($page_plugin->getPlugInName() == $plugin_name) { $plugin = $page_plugin; continue; }
+            //echo 'bbb '.$tab_plugin->getTabName().'<br />';
+            if ($page_plugin->getPlugInName() == $plugin_name) { 
+                  $plugin = $page_plugin; 
+                  $tab_name = $tab_plugin->getTabName() ;
+                  continue; 
+            }
           }
       }      
     }
@@ -57,6 +53,12 @@
       echo _('-Plug-in curent page not defined, exiting now');
       exit;
     }
+
+    $do_plugin_enable = new PluginEnable();
+    if($do_plugin_enable->isEnabled(trim($tab_name)) === false){
+       echo _('Plugin Disabled !!!');exit;        
+    }
+    
     $pageTitle = $plugin->getPlugInName().' :: Ofuz';
     $Author = 'SQLFusion LLC';
     $Keywords = '';
