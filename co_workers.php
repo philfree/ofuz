@@ -19,6 +19,10 @@
     $do_contact_task = new Contact();
     $do_project = new Project();
 
+    $do_teams = new Teams();
+    $do_teams->getTeams();
+    $teams_count = $do_teams->getNumRows(); 
+
 ?>
 <script type="text/javascript">
 //<![CDATA[
@@ -114,13 +118,26 @@ function hideSharedDetail(divid){
                             $do_contact_sharing->sessionPersistent("do_contact_sharing", "index.php", 36000);
                            }
                            if($_SESSION['do_coworker']->getNumrows()){
+
                               if (!is_object($_SESSION['do_Contacts'])) {
                                   $do_Contacts = new Contact();
                                   $do_Contacts->setRegistry("all_contacts");
                                   $do_Contacts->sessionPersistent("do_Contacts", "index.php", 36000);
                               }
-                               if(!$set_share){ // If not having POST vales
-								  echo '<a href="teams.php">Teams</a>'.' - '.'<a href="co_workers.php">All Co-Workers</a>'.'<br /><br />';
+                               if(!$set_share){ // If not having POST vales	
+
+			      echo '<a href="teams.php">Teams</a>'.' - '.'<a href="co_workers.php">All Co-Workers</a>'.'<br /><br />';
+
+			      if($teams_count) {
+				echo '<b>'._('Your Teams').'</b><br /><br />';
+				while($do_teams->next()) {
+				  echo $do_teams->team_name.'<br />';
+				}
+			      } else {
+				echo '<div><b>You do not have Team to sahre with.</b></div>';
+			      }
+			      echo '<br />';
+			  
                                   echo '<b>'._('Your Co-Workers :').'</b><br /><br />';
                                   $user_coworker = new User();
                                   while($_SESSION['do_coworker']->next()){
@@ -185,12 +202,29 @@ function hideSharedDetail(divid){
                                       
                                   }// class="co_worker_pending"
                               }else{ // Having some POST data from contacts.php 
+
                                    $e_share_cont = new Event("do_contact_sharing->eventShareContactsMultiple");
                                    $e_share_cont->addEventAction("mydb.gotoPage", 304);
+				   $e_share_cont->addEventAction("ContactTeam->eventShareExistingContactWithTeamCw", 200);
+				   $e_share_cont->addEventAction("Teams->eventShareCWsWithTeam", 210);
                                    $e_share_cont->addParam("goto", "co_workers.php");
                                    $e_share_cont->addParam("idcontacts",$contact_ids);
                                    echo $e_share_cont->getFormHeader();
                                    echo $e_share_cont->getFormEvent();
+
+				  echo '<a href="teams.php">Teams</a>'.' - '.'<a href="co_workers.php">All Co-Workers</a>'.'<br /><br />';
+
+				  if($teams_count) {
+				    echo '<b>'._('Your Teams').'</b><br /><br />';
+				    while($do_teams->next()) {
+				  ?>
+				      <input type="checkbox" name="team[]" value="<?php echo $do_teams->idteam;?>" /> <?php echo $do_teams->team_name; ?><br />
+				  <?php
+				    }
+				  } else {
+				    echo '<div><b>You do not have Team to sahre with.</b></div>';
+				  }
+				  echo '<br />';
 
                                    echo '<b>'._('Choose co-workers for sharing the contacts :').'</b><br />';
                                    echo '<div id="coworker_ctlbar" style="display: none;">';

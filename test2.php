@@ -1,13 +1,13 @@
 <?php
 include_once('config.php');
 
-$savefile = "savehere.txt";
+/*$savefile = "savehere.txt";
 
-$sf = fopen($savefile, 'a+') or die("can't open file");
+$sf = fopen($savefile, 'a+') or die("can't open file");*/
 ob_start();
 
 // read from stdin
-$fd = fopen("php://stdin", "r");
+$fd = fopen("files/ofuz_catch.log", "r");
 $email = "";
 while (!feof($fd)) {
 	$email .= fread($fd, 1024);
@@ -57,11 +57,16 @@ for($i=0 ;$i<$len_to_emailarr;$i++){
 }
 
 
+// empty vars
 if($valid){
 //echo $email;die();	
-fwrite($sf,"$message");
+//fwrite($sf,"$message");
 ob_end_clean();
 }
 
-fclose($sf);
+//fclose($sf);
 ?>
+<form method="post" action="ofuz_catch_new.php">
+<textarea name="email" cols="40" rows="20"><?php echo $email;?></textarea>
+<input type="submit" value="submit">
+</form>

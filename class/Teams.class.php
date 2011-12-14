@@ -150,6 +150,37 @@ class Teams extends DataObject {
 		        ";
 		 $this->query($sql);       
 	 }
+
+  /**
+   * Shares Co-Worker/s with Team
+   *
+   * @param Object : EventControler
+   */ 
+  function eventShareCWsWithTeam(EventControler $evtcl) {
+    $idteams = $evtcl->getParam("team");
+    $idcoworkers = $evtcl->getParam("cwid");
+
+    if(is_array($idteams) && is_array($idcoworkers)) {
+      foreach($idteams as $idteam) {
+	foreach($idcoworkers as $idcoworker) {
+	  $sql = "SELECT count(*) count_team
+		  FROM team_users
+		  WHERE idteam = {$idteam} AND idco_worker = {$idcoworker}
+                 ";
+	  $this->query($sql);
+	  $this->fetch();
+	  if(!$this->getData("count_team")) {
+	    $con = new sqlQuery($this->getDbCon());
+	    $sql = "INSERT INTO team_users
+		    VALUES(null,$idteam,$idcoworker)
+                   ";
+	    $con->query($sql);
+	    $con->free();
+	  }
+	}
+      }
+    }
+  }
 	 
    
 }
