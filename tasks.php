@@ -614,6 +614,7 @@ if ($do_task->getNumRows()) {
 <?php } 
 }// Ends the else condition
 ?>
+
             <div class="dottedline"></div>
             <?php $footer_note = 'dropboxtask'; include_once('includes/footer_notes.php'); ?>
         </div>

@@ -533,7 +533,7 @@ class Task extends DataObject {
     */
     function getAllTasksLater(){
       $today = date('Y-m-d'); //cur_year-cur_month
-   $later_date = date('Y-m');
+      $later_date = date('Y-m');
       //$this->query("SELECT * FROM task WHERE (due_date_dateformat = '0000-00-00' OR DATEDIFF(due_date_dateformat,'".$today."') >15 ) AND status = 'open' AND iduser = ".$_SESSION['do_User']->iduser." ORDER BY due_date_dateformat DESC LIMIT 20");
      /* $this->query("SELECT * FROM task WHERE (due_date_dateformat = '0000-00-00' OR DATE_FORMAT( due_date_dateformat, '%Y-%m' ) > '".$later_date."' ) AND status = 'open' AND iduser = ".$_SESSION['do_User']->iduser." 
     AND `due_date` != 'Tomorrow'
