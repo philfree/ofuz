@@ -68,6 +68,7 @@
 	     
 	     //print_r($GLOBALS['cfg_tab_placement']); echo '<br />';
 	     
+        $do_plugin_enable = new PluginEnable();
         if($GLOBALS['cfg_tab_placement']->count() > 0 ){
                foreach($GLOBALS['cfg_tab_placement'] as  $tab ){   
                   if (is_object($tab)) {  
@@ -80,7 +81,9 @@
                         $tab->processTab();
                     }
                   }else{
-                    if($tab->isActive() === true ){
+                    //if($tab->isActive() === true ){
+                        $idplugin_enabled = $do_plugin_enable->isEnabled($tab->getTabName());                        
+                        if($tab->isActive() === true && $idplugin_enabled!==false ){
                         $tab->processTab();
                     }
                  }  

@@ -108,6 +108,7 @@
                                       "daily_notes",
                                       "timesheet"))
                                 ->setDefaultPage("index");
+                                
    //Contact      
    $GLOBALS['cfg_tab_placement']->append(new Tab(""));
    $GLOBALS['cfg_tab_placement']->next();
@@ -155,6 +156,23 @@
                                       'Tasks',
                                       'Projects',
                                       'Invoices'
+                                    );
+
+
+    $GLOBALS['core_setting_tab_name'] = Array(
+                                      'My Information',
+                                      'My Profile',
+                                      'Web Forms',
+                                      'Email Templates',
+                                      'Auto Responder',
+                                      'Sync Contacts',
+                                      'API Key',
+                                      'Email Stream',
+                                      'Discussion Email Alert',
+                                      'Invoice Settings',
+                                      'Cancel Account',
+                                      'Export',
+                                      'My Account Backup'                                     
                                     );
 
 
