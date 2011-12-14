@@ -152,6 +152,9 @@
   include_once("class/MimeMailParserAttachment.class.php");
   include_once("class/MimeMailParser.class.php");
   include_once("class/OfuzEmailFetcher.class.php");
+  
+    include_once("class/UserProfile.class.php");
+
 
   define('RADRIA_LOG_RUN_OFUZ', false);
   define('OFUZ_LOG_RUN_TAG', false);
