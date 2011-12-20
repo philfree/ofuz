@@ -18,12 +18,14 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
     private $idproject_task;
     private $discuss;
     private $iduser; 
-	private $idproject_discuss;
-	private $project_name;
-	private $idproject;
-	private $user_full_name;
-	private $task_description;
-	private $more = false;
+    private $idproject_discuss;
+    private $project_name;
+    private $idproject;
+    private $user_full_name;
+    private $task_description;
+    private $more = false;
+    private $user_picture;
+    private $contact_id;
 	
     function display() {
         $do_proj_task_feed = new ProjectTask();
@@ -32,14 +34,17 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
             //$idproject = $do_proj_task_feed->getProjectForTask($this->idproject_task);
             $do_proj_task_feed->getProjectTaskDetails($this->idproject_task);
             $html .= '<br />';
-            $html .= '<div style="width:25px;float:left;">';
-            $html .= '<img src="/images/discussion.png" width="16" height="16" alt="" />';
-            $html .= '</div>';
+
+            $user_pic="/dbimage/".$this->user_picture;            
+            $html .='<div class="feed_user_pic">';
+            $html .='<a href="/Contact/'.$this->contact_id.'"> <img height="100%" alt="" src='.$user_pic.' > </a>';       
+            $html .='</div>';                 
             $html .= '<div style="text-align:middle;">';
-            $html .= '<b>'.$this->user_full_name.'</b>'.' '.
+            $html .= '<b>'.ucfirst($this->user_full_name).'</b>'.' '.
                       _('has added a note on discussion').' '.'<a href ="/Task/'.$this->idproject_task.'">'
                       .$this->task_description.'</a>';
-            $html .= ' '._('in project ').' '. ' <a href="/Project/'.$this->idproject.'"><i>'.$this->project_name.'</i></a>';
+            $html .= ' '._('in project ').' '. ' <a href="/Project/'.$this->idproject.'"><i>'.$this->project_name.'</i></a>';            
+            $html .= '&nbsp; <img src="/images/discussion.png" width="16" height="16" alt="" />';
             $html .= '<div id="discusspreview'.$this->idproject_discuss.'">';
             $html .= stripslashes($this->discuss);
 			//$html .= htmlentities($this->discuss);
@@ -80,7 +85,22 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
 		$this->project_name = $do_project->getProjectName();
 		$user = new User();
 		$user->getId($this->iduser);
+  
 		$this->user_full_name  = $user->getFullName();
+  $do_contact = new Contact();
+  //$this->user_picture = $do_contact->getPictureName($this->iduser);
+
+
+  $do_contact->getUserContacts($this->iduser);
+   if($do_contact->getNumRows()){
+            while($do_contact->next()){
+              $co_workers[] = $do_->idcoworker;
+              $this->user_picture = $do_contact->picture;
+              $this->contact_id = $do_contact->idcontact;
+            }
+        }
+
+
 		$do_proj_task_feed = new ProjectTask();
 		$do_proj_task_feed->getProjectTaskDetails($this->idproject_task);
 		$this->task_description = $do_proj_task_feed->task_description;
