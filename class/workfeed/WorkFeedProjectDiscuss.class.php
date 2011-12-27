@@ -43,7 +43,7 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
               $html .='<a href="/Contact/'.$this->contact_id.'"> <img width="34" height="34"alt="" src=/images/empty_avatar.gif> </a>';   
             }
             $html .='</div>';                 
-            $html .= '<div style="text-align:middle;">';
+            $html .= '<div style="text-align:middle;"> <table width=95% border=0><tr><td>';
             $html .= '<b>'.ucfirst($this->user_full_name).'</b>'.' '.
                       _('has added a note on discussion').' '.'<a href ="/Task/'.$this->idproject_task.'">'
                       .$this->task_description.'</a>';
@@ -56,7 +56,7 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
 				$html .='<a onclick="showFullProjDiscuss('.$this->idproject_discuss.'); return false;" href="#">'._('more...').'</a>';
 			}
 			$html .='</div>';
-            $html .= '</div>';
+            $html .= '</td></tr></table></div>';
             $html .= '<div style = "color: #666666;font-size: 8pt; margin-left:50px;">';
            // $html .= date('l, F j,  g:i a', $this->date_added);
 	    $html .= OfuzUtilsi18n::formatDateLong(date("Y-m-d H:i:s",$this->date_added),true);
