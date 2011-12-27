@@ -92,11 +92,9 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
 		$user->getId($this->iduser);
   
 		$this->user_full_name  = $user->getFullName();
+ 
   $do_contact = new Contact();
-  //$this->user_picture = $do_contact->getPictureName($this->iduser);
-
-
-  $do_contact->getUserContacts($this->iduser);
+  $do_contact->getContactPictureDetails($this->iduser);
    if($do_contact->getNumRows()){
             while($do_contact->next()){
               $co_workers[] = $do_->idcoworker;
