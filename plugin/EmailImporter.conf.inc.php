@@ -14,7 +14,7 @@
    */
 
    include_once("plugin/EmailImporter/OfuzEmailImporter.class.php");
-   include_once("plugin/EmailImporter/openinviter.php");
+   //require_once("plugin/EmailImporter/openinviter.php"); //uncomment this to work with Email Import
 
    // Hook to display the tab Settings.
    $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting("EmailImporter"));
@@ -24,7 +24,6 @@
                                         ->setTitle("Email Contacts Import")
                                         ->setPages(Array ("import_email_contacts"))
                                         ->setDefaultPage("import_email_contacts");
-                                        
-                                    
 
+                                                                            
 ?>

@@ -1,5 +1,5 @@
 <?php
-$required_email_provider = array("yahoo", "hotmail", "linkedin");
+$required_email_provider = array("yahoo", "hotmail");
 
 $inviter=new OpenInviter();
 $oi_services=$inviter->getPlugins();
@@ -8,6 +8,7 @@ $e_ooi = new Event("OfuzEmailImporter->eventGetContacts");
 $e_ooi->addParam("goto", "Setting/EmailImporter/import_email_contacts");
 echo $e_ooi->getFormHeader();
 echo $e_ooi->getFormEvent();
+
 ?>
 <table align='center' class='thTable' cellspacing='2' cellpadding='0' style='border:none;'>
 		<tr><td colspan="2" align="center">

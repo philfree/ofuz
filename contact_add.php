@@ -10,7 +10,7 @@
     $background_color = 'white';
     include_once('config.php');
     include_once('includes/ofuz_check_access.script.inc.php');
-    include_once('includes/header.inc.php');
+    include_once('includes/header.inc.php');    
 ?>
 <script type="text/javascript">
     //<![CDATA[
@@ -40,7 +40,7 @@
             <div class="pad20">
                 <h1><?php echo _('Add a new contact');?></h1>
             </div>
-        </div>
+        </div>        
         <div class="contentfull">
                         <?php 
                             $ContactEdit  = new Contact($GLOBALS['conx']);
@@ -51,6 +51,7 @@
                             $contactAddForm->event->setGotFile(true);
                             //$contactAddForm->setFormEvent("ContactEditSave->eventSetCompany",120);
 							$contactAddForm->addEventAction("ContactEditSave->eventAddWebView", 351);
+							$contactAddForm->addEventAction("ContactEditSave->eventAddContactToTeam", 380);							
                             $contactAddForm->addEventAction("mydb.gotoPage", 453);
                             $contactAddForm->addParam("goto", $contact_edit_page);
                             $contactAddForm->setRegistry("ofuz_add_contact");
@@ -60,6 +61,7 @@
                             $contactAddForm->setForm();
                             $contactAddForm->execute();
                         ?>
+                        
         </div>
     </td></tr></table>
     <div class="spacerblock_40"></div>

@@ -22,7 +22,11 @@ C: Openinviter installation Guide:
    Once you have downloaded the openinviter package, please follow install.txt to test the system requirements.
    
 D: Move files to EmailImporter plugin
-   Move files/folders from downloaded OpenInviter/   to ofuz/plugin/EmailImporter/
+   Move content(all files & floders) of downloaded OpenInviter folder to ofuz/plugin/EmailImporter/  folder.
+
+E: Uncomment this line require_once("plugin/EmailImporter/openinviter.php");
+   in plugin/EmailImporter.conf.inc.php file
 
 E: goto ofuz settings page, you will get to see 'Email Contacts Import' plugin.
    Start importing.
+   
