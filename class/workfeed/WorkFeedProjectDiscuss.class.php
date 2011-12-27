@@ -105,7 +105,6 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
             }
         }
 
-
 		$do_proj_task_feed = new ProjectTask();
 		$do_proj_task_feed->getProjectTaskDetails($this->idproject_task);
 		$this->task_description = $do_proj_task_feed->task_description;
