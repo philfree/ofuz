@@ -67,11 +67,11 @@ if($application_layer_protocol == "https") {
       <?php
 if($application_layer_protocol == "https") {
 ?>
-		FB.Facebook.init(FACEBOOK_API_KEY, "https://www.ofuz.net/xd_receiver_ssl.htm");
+		FB.Facebook.init("<?php echo FACEBOOK_API_KEY; ?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTPS ; ?>");
 <?php
 } else {
 ?>
-		FB.Facebook.init(FACEBOOK_API_KEY, "http://www.ofuz.net/xd_receiver.htm");
+		FB.Facebook.init("<?php echo FACEBOOK_API_KEY ; ?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTP ;?>");
 <?php
 }
 ?>
@@ -105,6 +105,15 @@ if($application_layer_protocol == "https") {
      if($_SESSION['do_ofuz_fb']->fb_uid){
         $_SESSION['do_ofuz_fb']->connected = true;
         $do_contact = new Contact();
+        
+        // Adding to the JOB QUEUE
+        if($GLOBALS['ENABLE_JOB_QUEUE'] === true){
+            $data_fb = serialize($_SESSION['do_ofuz_fb']);
+            $qry = new sqlQuery($conx);
+            $qry->query("insert into fb_test (data,iduser) values ('".$data_fb."',".$_SESSION['do_User']->iduser.")");
+            echo '<H2>Request has been added in the Job Queue, you can enjoy browsing the other part and Ofuz will do the import for you without having to wait for a long time on this page.</H2>';
+            exit;
+        }
 	try{
 	    @$friends = $_SESSION['do_ofuz_fb']->getFbFriends();// will contain the fbid of friends
 	}catch(Exception $e){
@@ -161,9 +170,9 @@ if($application_layer_protocol == "https") {
            
         }
         //rebuilding the userXX_contact table
-        $contact_view = new ContactView();
+        /*$contact_view = new ContactView();
         $contact_view->setUser($_SESSION['do_User']->iduser);
-        $contact_view->rebuildContactUserTable();
+        $contact_view->rebuildContactUserTable();*/
 
         if($_SESSION["page_from"] == 'reg'){
             $message= 'Facebook contacts have been imported successfully';

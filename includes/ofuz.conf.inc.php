@@ -171,10 +171,13 @@
   //path
   define('XML_EXPORT', 'xml_export/');
 
-  define('FACEBOOK_API_KEY','');
-  define('FACEBOOK_APP_SECRET','');
-  define('FACEBOOK_XD_RECEIVER_HTTP','http://www.ofuz.net/xd_receiver.htm');
+  define('FACEBOOK_API_KEY','23664984441');
+  define('FACEBOOK_APP_SECRET','bafc16e12485d362be753fd19bf114ea');
+  /*define('FACEBOOK_XD_RECEIVER_HTTP','http://www.ofuz.net/xd_receiver.htm');
   define('FACEBOOK_XD_RECEIVER_HTTPS','https://www.ofuz.net/xd_receiver.htm');
+  */
+  define('FACEBOOK_XD_RECEIVER_HTTP','http://dev.ofuz.net/xd_receiver.htm');
+  define('FACEBOOK_XD_RECEIVER_HTTPS','https://dev.ofuz.net/xd_receiver.htm');
 
   define('TWITTER_CONSUMER_KEY','');
   define('TWITTER_CONSUMER_SECRET','');
@@ -190,5 +193,12 @@
   $GLOBALS['cfg_ofuz_site_http_base'] = "http://".str_replace("//", "/", $GLOBALS['cfg_ofuz_site_http_base']);
   $GLOBALS['cfg_ofuz_email_support'] = "support@sqlfusion.com";
   $GLOBALS['email_domain'] = 'ofuz.net';
+
+  // Set it as false if beanstalkd is not setup
+  define('ENABLE_JOB_QUEUE',true);
+  $GLOBALS['ENABLE_JOB_QUEUE'] = true;
+  define('JOB_QUEUE_IP','72.172.84.167');
+  define('JOB_QUEUE_PORT','11300');
+  
 
 ?>
