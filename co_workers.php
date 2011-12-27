@@ -188,23 +188,19 @@ function hideSharedDetail(divid){
             echo '<a href="/profile/'.$user_first_name[0].'"> <img height="100%" alt="" src='.$user_pic.' > </a>';       
             echo '</div>';                 
             
-
-     $do_contact = new Contact();     
-echo $contact_id;
-$do_contact->getId($contact_id); 
-$emails = $do_contact->getChildContactEmail();
-echo "email id".$def_email = $emails->getDefaultEmail();
-            
-  
-
-
-
-
-                                      echo '<div style="width:auto;"><a style="color:#C52EAD;" href="#" onclick = "showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" >'
+            echo '<div style="width:auto;"><a style="color:#C52EAD;" href="#" onclick = "showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" >'
                                               .$user_coworker->getFullName().
                                             '</a></div>
-                                             &nbsp;';                                     
-
+                                             ';                                    
+            $do_contact = new Contact();     
+            $do_contact->getId($contact_id); 
+            $emails = $do_contact->getChildContactEmail();
+            $def_email = $emails->getDefaultEmail();
+            echo '<div style="width:auto;"><a style="color:#C52EAD;" href = "mailto:'.$def_email.'">'
+                                              .$def_email.
+                                            '</a></div>
+                                             &nbsp;';            
+             
 				      $num_project_shared = $do_project->getNumProjectsShared($_SESSION["do_User"]->iduser,$_SESSION['do_coworker']->idcoworker);
 				      $no_proj_shared_by_co_worker = $do_project->getNumProjectsShared($_SESSION['do_coworker']->idcoworker,$_SESSION["do_User"]->iduser);
 				      

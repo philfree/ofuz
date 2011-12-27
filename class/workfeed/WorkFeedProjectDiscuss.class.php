@@ -35,9 +35,13 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
             $do_proj_task_feed->getProjectTaskDetails($this->idproject_task);
             $html .= '<br />';
 
-            $user_pic="/dbimage/".$this->user_picture;            
-            $html .='<div class="feed_user_pic">';
-            $html .='<a href="/Contact/'.$this->contact_id.'"> <img height="100%" alt="" src='.$user_pic.' > </a>';       
+            $user_pic="/dbimage/".$this->user_picture;         
+            $html .='<div style="width:50px;float:left;">';
+            if($user_pic!=''){              
+              $html .='<a href="/Contact/'.$this->contact_id.'"> <img width="34" height="34"alt="" src='.$user_pic.' > </a>';   
+            }else{
+              $html .='<a href="/Contact/'.$this->contact_id.'"> <img width="34" height="34"alt="" src=/images/empty_avatar.gif> </a>';   
+            }
             $html .='</div>';                 
             $html .= '<div style="text-align:middle;">';
             $html .= '<b>'.ucfirst($this->user_full_name).'</b>'.' '.
@@ -53,7 +57,7 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
 			}
 			$html .='</div>';
             $html .= '</div>';
-            $html .= '<div style = "color: #666666;font-size: 8pt; margin-left:25px;">';
+            $html .= '<div style = "color: #666666;font-size: 8pt; margin-left:50px;">';
            // $html .= date('l, F j,  g:i a', $this->date_added);
 	    $html .= OfuzUtilsi18n::formatDateLong(date("Y-m-d H:i:s",$this->date_added),true);
 	    //$html .= '  '.$this->date_added;
