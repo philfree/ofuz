@@ -31,6 +31,7 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
         $do_proj_task_feed = new ProjectTask();
         $do_proj_feed = new Project();
         if($do_proj_task_feed->isProjectTaskReletedToUser($this->idproject_task)){
+
             //$idproject = $do_proj_task_feed->getProjectForTask($this->idproject_task);
             $do_proj_task_feed->getProjectTaskDetails($this->idproject_task);
             $html .= '<br />';
