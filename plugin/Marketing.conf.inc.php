@@ -17,11 +17,11 @@
    // status: devel, alpha, beta, rc, stable
    $plugins_info['Marketing'] = 
                     Array ('name' => 'Marketing Add-On',
-                           'description' => 'This add marketing capabilities with Email sending, web forms and auto-responders',
-                           'version' => 0.0.5,
+                           'description' => 'This add marketing capabilities with Email sending, web forms and auto-responders','version' => '0.0.5',
                            'status' => 'devel',
                            'tabs' => Array ('Marketing'),
-                           'blocks' => Array('BlockMarketing', 'BlockWebFormList', 'BlockEmailTemplateList'));   
+                           'blocks' => Array('BlockMarketing', 'BlockWebFormList', 'BlockEmailTemplateList')
+                           );   
                             
    // Classes
     include_once("plugin/Marketing/AutoResponder.class.php");

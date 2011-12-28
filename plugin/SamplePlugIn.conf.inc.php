@@ -18,12 +18,13 @@
    $plugins_info['SamplePlugin'] = 
                     Array ('name' => 'Sample Plugin',
                            'description' => 'This is a sample description',
-                           'version' => 0.0.1,
+                           'version' => '0.0.1',
                            'status' => 'beta',
                            'tabs' => Array ('SamplePlugin'),
                            'settings' => Array('SamplePlugin'),
                            'plugins' => Array('SamplePlugin'),
-                           'blocks' => Array('BlockSample'));                          
+                           'blocks' => Array('BlockSample')
+                           );                          
 
    // We include here our Block Object
    include_once("plugin/SamplePlugIn/BlockSample.class.php");
