@@ -551,8 +551,18 @@ $(document).ready(function() {
                         //}
                         if($do_discuss->iduser){
                           $added_by = $_SESSION['do_User']->getFullName($do_discuss->iduser);
+                         /* $do_contact = new Contact();
+                                      $do_contact->getUserContacts($do_discuss->iduser);
+                                      if($do_contact->getNumRows()){
+                                        while($do_contact->next()){                                   
+                                         
+                                          $contact_picture="/dbimage/".$do_contact->picture; 
+                                          $contact_id = $do_contact->idcontact;
+                                        }
+                                    }*/
                         }else{
                           $added_by = $do_discuss->drop_box_sender;
+                          //$contact_picture='empty_avatar.gif';
                         }
                         $e_gen_dropboxid = new Event('do_project_task->eventGenerateDropBoxIdTask');
                         $e_PrioritySort = new Event('ProjectDiscuss->eventPrioritySortNotes');
@@ -581,7 +591,10 @@ $(document).ready(function() {
                           echo '<b>'.date('l, F j', strtotime($do_discuss->date_added)).'</b>&nbsp;('._('Added By :').'&nbsp;'.$added_by.')</div>'; 
                         }*/
                         $date_added_note =  OfuzUtilsi18n::formatDateLong($do_discuss->date_added);
-                        echo '<div id="item_title">'.$date_added_note.'</b>&nbsp;('._('Added By :').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
+                        
+                       // echo '<a href="/Contact/'.$contact_id.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a>';   
+            
+                        echo '<div id="item_title"> '.$date_added_note.'</b>&nbsp;('._('Added By :').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
 
                         if($task_operation_access === true){
                           echo '<div id="trashcan', $item_count++, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_discuss->idproject_discuss.'\','.$do_discuss->idproject_discuss.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_discuss_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div>';

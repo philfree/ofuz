@@ -2534,5 +2534,8 @@ class Contact extends DataObject {
         $contact_team->eventAddContactToTeamCW($this);	
     }	
 
+
+  
+
 }
 ?>

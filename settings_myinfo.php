@@ -28,7 +28,8 @@
         <div class="settingsbottom"></div></div>
     </td><td class="layout_rcolumn">
         <div class="banner60 pad020 text32"><?php echo _('Settings'); ?></div>
-        <div class="banner50 pad020 text16 fuscia_text"><?php echo _('My Profile'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/contact_edit.php">edit</a></div>
+        <div class="banner50 pad020 text16 fuscia_text"><?php echo _('My Profile'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/contact_edit.php">Edit Profile</a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="/profile_edit.php">My Job Profile </a></div>
+        
         <div class="contentfull">
 	<div class="messageshadow">
             <div class="messages">

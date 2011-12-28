@@ -158,7 +158,21 @@ if($_SESSION['hcard_idcontact'] != '' ){
 ?>
 <div class="layout_center">
     <div class="layout_top">
+  <?php
+      $id_user=$do_contact->getIdUser($idcontact);      
+      $do_userprofile=new UserProfile();
+      $profile_information=$do_userprofile->getProfileInformation($id_user);
+    
+      if(empty($profile_information)){ ?>
         <a href="http://www.ofuz.com"><img src="/images/ofuz_logo_profile.png" width="157" height="100" alt="" /></a>
+      <?php 
+        }else{
+      ?>
+        <a href="http://www.ofuz.com"><img src="/dbimage/<?php echo $profile_information['logo']; ?>" width="157" height="100" alt="" /></a>
+      
+      <?php
+        }
+      ?>
         <div class="profile_photo">
 <?php if ($_SESSION['do_contact']->picture != '') { ?>
 	<img src="<?php echo $_SESSION['do_contact']->getContactPicture(); ?>" height="100%" alt="" />
