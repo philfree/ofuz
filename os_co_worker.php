@@ -165,8 +165,30 @@ function hideSharedDetail(divid){
                                       $e_shared_contacts_from_coworker_filter->addParam("coworker",$_SESSION['do_coworker']->idcoworker);
                                       $no_cont_shared = $_SESSION['do_contact_sharing']->countSharedContacts($_SESSION['do_coworker']->idcoworker);
                                       $no_cont_shared_by_co_worker =$_SESSION['do_contact_sharing']->countSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
-                                      echo '<div style="width:auto;"><a style="color:#C52EAD;" href="#" onclick = "showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" >'
-                                              .$user_coworker->getFullName().
+					$do_contact = new Contact();
+					$do_contact->getUserContacts($_SESSION['do_coworker']->idcoworker);
+					if($do_contact->getNumRows()){
+					  while($do_contact->next()){
+					    $co_workers[] = $do_->idcoworker;
+					    $user_picture = $do_contact->picture;
+					    $contact_id = $do_contact->idcontact;
+					  }
+					}
+
+
+					if($user_picture ==''){
+					  $user_pic="/images/empty_avatar.gif";
+					}else{
+					  $user_pic="/dbimage/".$user_picture;            
+					}
+
+				      echo '<div class="feed_user_pic" style="overflow:hidden;">';
+				      $user_first_name=$_SESSION['do_coworker']->firstname;
+				      echo '<a href="/profile/'.$user_first_name[0].'"> <img height="100%" alt="" src='.$user_pic.' > </a>';       
+				      echo '</div>'; 
+
+                                      echo '<div style="width:auto;"><a style="color:#C52EAD;" href="#" onclick="showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" >'
+                                              .$_SESSION['do_coworker']->firstname.' '.$_SESSION['do_coworker']->lastname.
                                             '</a></div>
                                              &nbsp;';
 
@@ -243,7 +265,31 @@ function hideSharedDetail(divid){
                                               .$user_coworker->getFullName().
                                             '</div>
                                              &nbsp;';*/
-				      echo $user_coworker->getFullName()."&nbsp;";
+					$do_contact = new Contact();
+					$do_contact->getUserContacts($_SESSION['do_coworker']->idcoworker);
+					if($do_contact->getNumRows()){
+					  while($do_contact->next()){
+					    $co_workers[] = $do_->idcoworker;
+					    $user_picture = $do_contact->picture;
+					    $contact_id = $do_contact->idcontact;
+					  }
+					}
+
+
+					if($user_picture ==''){
+					  $user_pic="/images/empty_avatar.gif";
+					}else{
+					  $user_pic="/dbimage/".$user_picture;            
+					}
+
+				      echo '<div class="feed_user_pic" style="overflow:hidden;">';
+				      $user_first_name=$_SESSION['do_coworker']->firstname;
+				      echo '<a href="/profile/'.$user_first_name[0].'"> <img height="100%" alt="" src='.$user_pic.' > </a>';       
+				      echo '</div>'; 
+                                      echo '<div style="width:auto;"><a style="color:#C52EAD;" href="#" onclick="showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" >'
+                                              .$_SESSION['do_coworker']->firstname.' '.$_SESSION['do_coworker']->lastname.
+                                            '</a></div>
+                                             &nbsp;';
                                     /**  echo   '<span>
                                                '._('You have shared').' '.$no_cont_shared.' '._('contacts').' 
                                             </span>
