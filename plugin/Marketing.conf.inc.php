@@ -12,7 +12,17 @@
    * @version 0.1
    * @date 2010-11-08
    */
-
+   
+   // Plug-in Definition
+   // status: devel, alpha, beta, rc, stable
+   $plugins_info['Marketing'] = 
+                    Array ('name' => 'Marketing Add-On',
+                           'description' => 'This add marketing capabilities with Email sending, web forms and auto-responders',
+                           'version' => 0.0.5,
+                           'status' => 'devel',
+                           'tabs' => Array ('Marketing'),
+                           'blocks' => Array('BlockMarketing', 'BlockWebFormList', 'BlockEmailTemplateList'));   
+                            
    // Classes
     include_once("plugin/Marketing/AutoResponder.class.php");
     include_once("plugin/Marketing/AutoResponderEmail.class.php");

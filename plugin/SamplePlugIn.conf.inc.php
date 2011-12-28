@@ -13,6 +13,18 @@
    * @date 2010-09-04  
    */
 
+// Plug-in Definition
+// status : devel, alpha, beta, rc, stable
+   $plugins_info['SamplePlugin'] = 
+                    Array ('name' => 'Sample Plugin',
+                           'description' => 'This is a sample description',
+                           'version' => 0.0.1,
+                           'status' => 'beta',
+                           'tabs' => Array ('SamplePlugin'),
+                           'settings' => Array('SamplePlugin'),
+                           'plugins' => Array('SamplePlugin'),
+                           'blocks' => Array('BlockSample'));                          
+
    // We include here our Block Object
    include_once("plugin/SamplePlugIn/BlockSample.class.php");
 
