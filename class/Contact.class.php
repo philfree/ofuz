@@ -2535,6 +2535,15 @@ class Contact extends DataObject {
     }	
 
 
+  function getContactPictureDetails($iduser=''){
+    if($iduser!=''){
+    $sql="SELECT contact.idcontact,contact.picture
+          FROM contact
+          INNER JOIN user ON user.idcontact = contact.idcontact
+          WHERE user.iduser =".$iduser;
+    $this->query($sql);
+    }
+  }
   
 
 }
