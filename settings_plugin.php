@@ -11,6 +11,7 @@
     include_once('config.php');
     include_once('includes/ofuz_check_access.script.inc.php');
     include_once('includes/header.inc.php');
+    
 ?>
 <?php $do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
 <table class="layout_columns"><tr><td class="layout_lmargin"></td><td>
@@ -48,17 +49,31 @@
                   if(is_array($cfg_block_placement) && count($cfg_block_placement) > 0 ){
                       echo '<table width="100%">';
                       foreach($cfg_block_placement as $key=> $val ){
-                          foreach($val as $block_class_name){
+                          foreach($val as $block_class_name){  
                               $do_blocks = new $block_class_name();
                               echo '<tr height="30px;">';
-                              echo '<td colspan=1>';
+                              echo '<td colspan=1 width="30%">';
                               //echo $block_class_name ;
                               echo $do_blocks->getShortDescription();
                               echo '</td>';
-                              echo '<td colspan=2 valign="left">';
+                              echo '<td colspan=2 valign="left" width="50%">';
                               echo $do_blocks->getLongDescription();
                               echo '</td>';
-                              echo '<td>';
+                               echo '<td width=12%>';
+
+
+                        if(in_array($block_class_name,$core_plugin_names )){     
+                              echo "Default plugins";
+                              echo '</td>';
+                              echo '</tr>';
+                              echo '<tr>';
+                              echo '<td colspan=4>';
+                              echo '<div class="dashedline"></div>'; 
+                              echo '</td>';
+                              echo '</tr>';
+                              echo '<td width=12%>'; 
+
+                        }else{
                               // Enable or desable section comes here
                               $idplugin_enable = $do_plugin_enable->isEnabled($block_class_name);
                               if($idplugin_enable === false ){
@@ -84,11 +99,165 @@
                               echo '</td>';
                               echo '</tr>';
                           }
-                      }
+                      }}
                       echo '</table>';
                    }
                   
-             
+                  
+                  /** Menu Block Displaying **/             
+                   echo "<br>"; 
+                   echo '<b>'._('Menu Plugins').' :</b><br /><br />';
+                  $do_plugin_enable = new PluginEnable();
+                  $do_dynamic_button = new DynamicButton();  
+
+                  foreach($GLOBALS['cfg_tab_placement'] as  $tab_plugin ){  
+                      if (is_object($tab_plugin )) {  
+                          $tab_name=$tab_plugin->getTabName();
+              
+                          if(in_array($tab_name,$core_tab_name)){
+                              echo '<table width="100%">';                      
+                              echo '<tr height="30px;">';
+                              echo '<td colspan=1 width="30%">';
+                             
+                              echo $tab_name;
+                              echo '</td>';
+                               echo '<td colspan=2 valign="left" width="50%">';
+                             
+                              echo '</td>';
+                              echo '<td width=12%>';
+                              //echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+
+                  
+                              echo "Default plugins";
+                              echo '</td>';
+                              echo '</tr>';
+                              echo '<tr>';
+                              echo '<td colspan=4>';
+                              echo '<div class="dashedline"></div>'; 
+                              echo '</td>';
+                              echo '</tr>';
+                           }else{
+                              echo '<table width="100%">';                      
+                              echo '<tr height="30px;">';
+                              echo '<td colspan=1>';
+                             
+                              echo $tab_name;
+                              echo '</td>';
+                              echo '<td colspan=2 valign="left">';
+                             
+                              echo '</td>';
+                              echo '<td width=12%>';
+                                            
+                             // Enable or disable section comes here
+                             $idplugin_enable = $do_plugin_enable->isEnabled($tab_name);
+                              if($idplugin_enable === false ){
+                                  $button = $do_dynamic_button->CreateButton('',_('Enable'));
+                                  $e_enable = new Event('PluginEnable->eventEnablePlugin');
+                                  $e_enable->addParam('goto', $_SERVER['PHP_SELF']);
+                                  $e_enable->addParam('plugin', $tab_name);
+                                  echo $e_enable->getLink(_('Enable'));
+                                  //echo $e_enable->getLink($button);
+                              }else{
+                                  $button = $do_dynamic_button->CreateButton('',_('Disable'));
+                                  $e_enable = new Event('PluginEnable->eventDisablePlugin');
+                                  $e_enable->addParam('goto', $_SERVER['PHP_SELF']);
+                                  $e_enable->addParam('idplugin_enable', $idplugin_enable);
+                                  echo $e_enable->getLink(_('Disable'));
+                                  //echo $e_enable->getLink($button);
+                              }
+                              echo '</td>';
+                              echo '</tr>';
+                              echo '<tr>';
+                              echo '<td colspan=4>';
+                              echo '<div class="dashedline"></div>'; 
+                              echo '</td>';
+                              echo '</tr>';
+                    }
+            }
+                
+    }
+            echo '</table>';   
+              
+
+                /** Setting Page Displaying **/
+  
+                  echo "</br>";
+                  echo '<b>'._('Setting Plugins').' :</b><br /><br />';
+
+                  foreach($GLOBALS['cfg_setting_tab_placement'] as  $setting_tab_plugin ){  
+                      if (is_object($setting_tab_plugin )) {  
+                           
+                            $setting_tab_name=$setting_tab_plugin->getTabName();
+                   if(in_array($setting_tab_name,$core_setting_tab_name)){
+                              echo '<table width="100%">';                      
+                              echo '<tr height="30px;">';
+                              echo '<td colspan=1 width="30%">';
+                             
+                              echo $setting_tab_name;
+                              echo '</td>';
+                              echo '<td colspan=2 valign="left" width="50%">';
+                             
+                              echo '</td>';
+                              echo '<td width=12%>';
+                              echo "Default plugins";
+                              echo '</td>';
+                              echo '</tr>';
+                              echo '<tr>';
+                              echo '<td colspan=4>';
+                              echo '<div class="dashedline"></div>'; 
+                              echo '</td>';
+                              echo '</tr>';
+                           }else{
+                              echo '<table width="100%">';                      
+                              echo '<tr height="30px;">';
+                              echo '<td colspan=1>';
+                             
+                              echo $setting_tab_name;
+                              echo '</td>';
+                              echo '<td colspan=2 valign="left">';
+                             
+                              echo '</td>';
+                               echo '<td width=12%>';
+                              
+                  
+                             // Enable or disable section comes here
+                             $idplugin_enable = $do_plugin_enable->isEnabled($setting_tab_name);
+                              if($idplugin_enable === false ){
+                                  $button = $do_dynamic_button->CreateButton('',_('Enable'));
+                                  $e_enable = new Event('PluginEnable->eventEnablePlugin');
+                                  $e_enable->addParam('goto', $_SERVER['PHP_SELF']);
+                                  $e_enable->addParam('plugin', $setting_tab_name);
+                                  echo $e_enable->getLink(_('Enable'));
+                                  //echo $e_enable->getLink($button);
+                              }else{
+                                  $button = $do_dynamic_button->CreateButton('',_('Disable'));
+                                  $e_enable = new Event('PluginEnable->eventDisablePlugin');
+                                  $e_enable->addParam('goto', $_SERVER['PHP_SELF']);
+                                  $e_enable->addParam('idplugin_enable', $idplugin_enable);
+                                  echo $e_enable->getLink(_('Disable'));
+                                  //echo $e_enable->getLink($button);
+                              }
+                              echo '</td>';
+                              echo '</tr>';
+                              echo '<tr>';
+                              echo '<td colspan=4>';
+                              echo '<div class="dashedline"></div>'; 
+                              echo '</td>';
+                              echo '</tr>';
+                    }         echo '</table>';
+
+
+
+
+
+
+
+
+
+                      }
+                    }
+
+                
             
         ?>
         </div>

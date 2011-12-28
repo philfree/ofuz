@@ -139,7 +139,7 @@
   include_once("class/TabSetting.class.php");
   include_once("class/SubMenu.class.php");
   include_once("class/BaseMessageBlock.class.php");
-  //include_once("class/PluginEnable.class.php");
+  include_once("class/PluginEnable.class.php");
   
 
   // Dynamic Buttons
@@ -152,6 +152,9 @@
   include_once("class/MimeMailParserAttachment.class.php");
   include_once("class/MimeMailParser.class.php");
   include_once("class/OfuzEmailFetcher.class.php");
+  
+    include_once("class/UserProfile.class.php");
+
 
   define('RADRIA_LOG_RUN_OFUZ', false);
   define('OFUZ_LOG_RUN_TAG', false);

@@ -1,7 +1,6 @@
 <?php 
 // Copyright 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
-
     $Author = 'SQLFusion LLC';
     $Keywords = 'Keywords for search engine';
     $Description = 'Description for search engine';
@@ -12,18 +11,35 @@
 	echo _('Parameter missing !!!');exit;
     }
 
+
+
     $plugin_name = $_GET['plugin'];
     $plugin_setting_name = $_GET['setting'];
     if (isset($_GET['item_value'])) { 
       $plugin_item_value = $_GET['item_value'];
     }
     
-    $GLOBALS['cfg_setting_tab_placement']->rewind();
+  /*  $GLOBALS['cfg_setting_tab_placement']->rewind();
     foreach($GLOBALS['cfg_setting_tab_placement'] as  $tab_plugin ){  
         if (is_object($tab_plugin )) {  
           if ($tab_plugin->getPlugInName() == $plugin_name) { $plugin = $tab_plugin; continue; }
         }
+    }*/
+
+    if (!is_object($plugin) || !$plugin->setCurrentPage($plugin_page_name)) {
+      $GLOBALS['cfg_setting_tab_placement']->rewind();
+      foreach($GLOBALS['cfg_setting_tab_placement'] as  $tab_plugin ){  
+          if (is_object($tab_plugin )) {  
+            //echo 'bbb '.$tab_plugin->getTabName().'<br />';
+            if ($tab_plugin->getPlugInName() == $plugin_name) { 
+                  $plugin = $tab_plugin; 
+                  $tab_name = $tab_plugin->getTabName() ;
+                  continue; 
+            }
+          }
+      }      
     }
+
     if (!is_object($plugin)) { echo _('-Setting Plug-in object not defined, exiting now'); exit; }
     $pageTitle = $plugin->getTabName().' :: Ofuz ';
     include_once('includes/header.inc.php');
@@ -33,6 +49,13 @@
       exit;
     }
     
+    $do_plugin_enable = new PluginEnable();
+    if($do_plugin_enable->isEnabled(trim($tab_name)) === false){
+       echo _('Plugin Disabled !!!');exit;        
+    }
+
+
+
 ?>
 <?php $do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
 <table class="layout_columns"><tr><td class="layout_lmargin"></td><td>

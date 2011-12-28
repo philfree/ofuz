@@ -67,18 +67,29 @@
 	     //$contacts_page = ($setting_gears_arr['setting_value'] == 'Yes') ? 'ggears_contacts' : 'contacts';  
 	     
 	     //print_r($GLOBALS['cfg_tab_placement']); echo '<br />';
-	     if($GLOBALS['cfg_tab_placement']->count() > 0 ){
-              	foreach($GLOBALS['cfg_tab_placement'] as  $tab ){   
+	     
+        $do_plugin_enable = new PluginEnable();
+        if($GLOBALS['cfg_tab_placement']->count() > 0 ){
+               foreach($GLOBALS['cfg_tab_placement'] as  $tab ){   
                   if (is_object($tab)) {  
-          		    if ($tab->getTabName() == _('Dashboard')) { $tab->setDefaultPage($_SESSION['dashboard_link']); }
-	                //if ($tab->getTabName() == _('Contacts')) { $tab->setDefaultPage($contacts_page); }
+                  $tab_name=$tab->getTabName();
+            
+                if(in_array($tab_name,$core_tab_name)){
+                  if ($tab_name == _('Dashboard')) { $tab->setDefaultPage($_SESSION['dashboard_link']); }
+                    //if ($tab->getTabName() == _('Contacts')) { $tab->setDefaultPage($contacts_page); }
                     if($tab->isActive() === true ){
                         $tab->processTab();
                     }
-                  }  
-		        }
-         }
-           
+                  }else{
+                    //if($tab->isActive() === true ){
+                        $idplugin_enabled = $do_plugin_enable->isEnabled($tab->getTabName());                        
+                        if($tab->isActive() === true && $idplugin_enabled!==false ){
+                        $tab->processTab();
+                    }
+                 }  
+              }
+            }
+         }   
         ?>
         </div>
         <!-- <div class="layout_navbar_right">

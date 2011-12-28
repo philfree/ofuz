@@ -547,9 +547,9 @@ class Task extends DataObject {
                      INNER JOIN project p ON pt.idproject=p.idproject
                      ON t.idtask=pt.idtask
                      WHERE (t.due_date_dateformat = '0000-00-00' OR DATE_FORMAT( t.due_date_dateformat, '%Y-%m' ) > '".$later_date."' ) AND t.status = 'open' AND t.iduser = ".$_SESSION['do_User']->iduser." 
-                     AND `due_date` != 'Tomorrow'
-                     AND `due_date` != 'This week'
-                     AND `due_date` != 'Next week'
+                     AND due_date != 'Tomorrow'
+                     AND due_date != 'This week'
+                     AND due_date != 'Next week'
                      ORDER BY t.priority ASC,t.due_date_dateformat DESC LIMIT 20");  
 
   
@@ -582,12 +582,12 @@ class Task extends DataObject {
                      INNER JOIN project p ON pt.idproject=p.idproject
                      ON t.idtask=pt.idtask
                      WHERE (t.due_date_dateformat = '0000-00-00' OR DATEDIFF(t.due_date_dateformat,'".$today."') >15 ) AND t.status = 'open' AND t.iduser = ".$_SESSION['do_User']->iduser." 
-                     AND `t.due_date` != 'Tomorrow'
-                     AND `t.due_date` != 'This week'
-                     AND `t.due_date` != 'Next week'
+                     AND t.due_date != 'Tomorrow'
+                     AND t.due_date != 'This week'
+                     AND t.due_date != 'Next week'
                      ORDER BY t.due_date_dateformat DESC");
 
-      $html = $this->viewTasks();
+      $html = $this->viewTaskList();
       echo $html;
     }
 
@@ -646,26 +646,17 @@ class Task extends DataObject {
                      LEFT JOIN project_task pt 
                      INNER JOIN project p ON pt.idproject=p.idproject
                      ON t.idtask=pt.idtask
-                     WHERE YEAR(`t.due_date_dateformat`) = '{$current_year}'
-                     AND MONTH(`t.due_date_dateformat`) = '{$current_month}'
-                     AND t.due_date_dateformat <> '0000-00-00' AND status = 'open' 
+                     WHERE YEAR(t.due_date_dateformat) = '{$current_year}'
+                     AND MONTH(t.due_date_dateformat) = '{$current_month}'
+                     AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open' 
                      AND t.iduser = ".$_SESSION['do_User']->iduser." 
-                     AND `t.due_date` != 'Today'
-                     AND `t.due_date` != 'Tomorrow'
-                     AND `t.due_date` != 'This week'
-                     AND `t.due_date` != 'Next week'
+                     AND t.due_date != 'Today'
+                     AND t.due_date != 'Tomorrow'
+                     AND t.due_date != 'This week'
+                     AND t.due_date != 'Next week'
                      ORDER BY   t.due_date_dateformat DESC");
 
-
-
-
-
-
-
-
-
-
-   $html = $this->viewTasks();
+   $html = $this->viewTaskList('');
    echo $html;
  }
 

@@ -581,8 +581,8 @@ if ($do_task->getNumRows()) {
 <div class="tasks">
   <div class="headline10"><?php echo _('This Month');?></div>
   <div class="contentfull">
-    <div id="tasks_thismonth">
-      <div class="ddtasks">
+   <div class="ddtasks">
+     <div id="tasks_thismonth">      
       <?php echo $do_task->viewTaskList('thismonth');//echo $do_task->viewTasks(); ?>
       </div>                         
     </div>
