@@ -239,10 +239,11 @@ function hideSharedDetail(divid){
 
                                        $no_cont_shared_by_co_worker =$_SESSION['do_contact_sharing']->countSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
 
-                                      echo '<div style="width:auto;">'
+                                      /*echo '<div style="width:auto;">'
                                               .$user_coworker->getFullName().
                                             '</div>
-                                             &nbsp;';
+                                             &nbsp;';*/
+				      echo $user_coworker->getFullName()."&nbsp;";
                                     /**  echo   '<span>
                                                '._('You have shared').' '.$no_cont_shared.' '._('contacts').' 
                                             </span>

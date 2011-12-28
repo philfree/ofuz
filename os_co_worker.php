@@ -18,6 +18,11 @@
     $do_task_category = new TaskCategory($GLOBALS['conx']);
     $do_contact_task = new Contact();
     $do_project = new Project();
+
+    $do_teams = new Teams();
+    $do_teams->getTeams();
+    $teams_count = $do_teams->getNumRows(); 
+
 ?>
 <script type="text/javascript">
 //<![CDATA[
@@ -45,7 +50,7 @@ $(document).ready(function() {
     });
 
 function showSharedDetail(divid){
-  $("#"+divid).fadeIn("slow");
+  $("#"+divid).slideToggle("slow");
 }
 
 function hideSharedDetail(divid){
@@ -62,6 +67,11 @@ function hideSharedDetail(divid){
     <div class="spacerblock_20"></div>
     <table class="layout_columns"><tr><td class="layout_lcolumn">
 	<?php
+	  if(isset($_GET["message"])){
+	      $message = new Message();
+	      $message->setContent(_(htmlentities($_GET["message"])));
+	      $message->displayMessage();
+	  }
 	  $GLOBALS['page_name'] = 'os_co_worker';
 	  include_once('plugin_block.php');
 	?>
@@ -108,13 +118,27 @@ function hideSharedDetail(divid){
                             $do_contact_sharing->sessionPersistent("do_contact_sharing", "index.php", 36000);
                            }
                            if($_SESSION['do_coworker']->getNumrows()){
+
                               if (!is_object($_SESSION['do_Contacts'])) {
                                   $do_Contacts = new Contact();
                                   $do_Contacts->setRegistry("all_contacts");
                                   $do_Contacts->sessionPersistent("do_Contacts", "index.php", 36000);
                               }
-                               if(!$set_share){ // If not having POST vales
-                                  echo '<b>'._('Your co-workers :').'</b><br /><br />';
+                               if(!$set_share){ // If not having POST vales	
+
+			      echo '<a href="teams.php">Teams</a>'.' - '.'<a href="co_workers.php">All Co-Workers</a>'.'<br /><br />';
+
+			      if($teams_count) {
+				echo '<b>'._('Your Teams').'</b><br /><br />';
+				while($do_teams->next()) {
+				  echo $do_teams->team_name.'<br />';
+				}
+			      } else {
+				echo '<div><b>You do not have Team to sahre with.</b></div>';
+			      }
+			      echo '<br />';
+			  
+                                  echo '<b>'._('Your Co-Workers :').'</b><br /><br />';
                                   $user_coworker = new User();
                                   while($_SESSION['do_coworker']->next()){
                                       $user_coworker->getId($_SESSION['do_coworker']->idcoworker);
@@ -141,7 +165,7 @@ function hideSharedDetail(divid){
                                       $e_shared_contacts_from_coworker_filter->addParam("coworker",$_SESSION['do_coworker']->idcoworker);
                                       $no_cont_shared = $_SESSION['do_contact_sharing']->countSharedContacts($_SESSION['do_coworker']->idcoworker);
                                       $no_cont_shared_by_co_worker =$_SESSION['do_contact_sharing']->countSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
-                                      echo '<div style="width:auto;"><a onmouseover = "showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" onmouseout = "hideSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\')">'
+                                      echo '<div style="width:auto;"><a style="color:#C52EAD;" href="#" onclick = "showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" >'
                                               .$user_coworker->getFullName().
                                             '</a></div>
                                              &nbsp;';
@@ -151,20 +175,20 @@ function hideSharedDetail(divid){
 				      
 				      echo '<div id ="'.$_SESSION['do_coworker']->idcoworker.'" style="display:none;">';
                                       if ($no_cont_shared > 0) {
-					//$e_shared_contacts_filter->getLink( 
-                                        echo  '<span>
+					echo $e_shared_contacts_filter->getLink( 
+                                         '<span>
                                                '.sprintf(_('You shared %d contacts'), $no_cont_shared).' 
                                             </span>
-                                            &nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;';
+                                            &nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;');
                                       }else{
 					  echo '<span>'.sprintf(_('You shared %d contacts'), $no_cont_shared).'</span>&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;';
 				      }
 
                                       if ($no_cont_shared_by_co_worker > 0) {
-				      //$e_shared_contacts_from_coworker_filter->getLink(
-                                      echo    '<span>' 
+				      echo $e_shared_contacts_from_coworker_filter->getLink(
+                                          '<span>' 
                                                .sprintf(_("%s shared %d contacts"), $user_coworker->firstname, $no_cont_shared_by_co_worker)
-                                            .'</span>&nbsp;'.sprintf(_('and %d projects'),$no_proj_shared_by_co_worker);
+                                            .'</span>&nbsp;'.sprintf(_('and %d projects'),$no_proj_shared_by_co_worker));
                                       }else{
 					  echo '<span>' 
                                                .sprintf(_("%s shared %d contacts"), $user_coworker->firstname, $no_cont_shared_by_co_worker)
@@ -178,12 +202,29 @@ function hideSharedDetail(divid){
                                       
                                   }// class="co_worker_pending"
                               }else{ // Having some POST data from contacts.php 
+
                                    $e_share_cont = new Event("do_contact_sharing->eventShareContactsMultiple");
                                    $e_share_cont->addEventAction("mydb.gotoPage", 304);
+				   $e_share_cont->addEventAction("ContactTeam->eventShareExistingContactWithTeamCw", 200);
+				   $e_share_cont->addEventAction("Teams->eventShareCWsWithTeam", 210);
                                    $e_share_cont->addParam("goto", "co_workers.php");
                                    $e_share_cont->addParam("idcontacts",$contact_ids);
                                    echo $e_share_cont->getFormHeader();
                                    echo $e_share_cont->getFormEvent();
+
+				  echo '<a href="teams.php">Teams</a>'.' - '.'<a href="co_workers.php">All Co-Workers</a>'.'<br /><br />';
+
+				  if($teams_count) {
+				    echo '<b>'._('Your Teams').'</b><br /><br />';
+				    while($do_teams->next()) {
+				  ?>
+				      <input type="checkbox" name="team[]" value="<?php echo $do_teams->idteam;?>" /> <?php echo $do_teams->team_name; ?><br />
+				  <?php
+				    }
+				  } else {
+				    echo '<div><b>You do not have Team to sahre with.</b></div>';
+				  }
+				  echo '<br />';
 
                                    echo '<b>'._('Choose co-workers for sharing the contacts :').'</b><br />';
                                    echo '<div id="coworker_ctlbar" style="display: none;">';
@@ -198,10 +239,11 @@ function hideSharedDetail(divid){
 
                                        $no_cont_shared_by_co_worker =$_SESSION['do_contact_sharing']->countSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
 
-                                      echo '<div style="width:auto;">'
+                                      /*echo '<div style="width:auto;">'
                                               .$user_coworker->getFullName().
                                             '</div>
-                                             &nbsp;';
+                                             &nbsp;';*/
+				      echo $user_coworker->getFullName()."&nbsp;";
                                     /**  echo   '<span>
                                                '._('You have shared').' '.$no_cont_shared.' '._('contacts').' 
                                             </span>
