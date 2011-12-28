@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[56]]></idform>
+    <name><![CDATA[ofuz_add_user_profile]]></name>
+    <descr><![CDATA[]]></descr>
+    <idquery><![CDATA[]]></idquery>
+    <header><![CDATA[]]></header>
+    <row><![CDATA[
+                  <table class="tplain">
+                    <tr>
+                      <td>
+                        <div class="in280x20">
+                          <?php echo _('Logo');?><br />
+                          [logo]
+                        </div>
+                      </td>                      
+                    </tr>
+                  </table>
+                 <br />
+                  <div class="in290x18">
+                    <?php echo _('Job Type');?><br />
+                    [job_type]
+                   </div>
+                   
+                   <br />
+                   
+                   <div class="in290x18">
+                    <?php echo _('Job Description');?><br />
+                    [job_description][iduser]
+                   </div>                   
+                   <div class="dashedline"></div>
+                   
+        ]]></row>
+                 <footer><![CDATA[<div class="section20">
+                     <input type="submit" value="<?php echo _('Save');?>" />
+                   </div>]]></footer>
+  </form>
