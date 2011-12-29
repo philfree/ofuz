@@ -63,7 +63,7 @@
   // Database connexions :
 
   $conx = new sqlConnect("ofuzdev", "d3v5") ;
-  $conx->setHostname("72.172.84.163") ;
+  $conx->setHostname("localhost") ;
   $conx->setDatabase("ofuzdev") ;
   // Directory where pas is located
   $conx->setBaseDirectory($cfg_local_pasdir) ;

@@ -153,6 +153,10 @@
   include_once("class/MimeMailParser.class.php");
   include_once("class/OfuzEmailFetcher.class.php");
 
+  //Beanstakd
+  include_once("class/OfuzBeanstalkd.class.php");
+  
+
   define('RADRIA_LOG_RUN_OFUZ', false);
   define('OFUZ_LOG_RUN_TAG', false);
   define('OFUZ_LOG_RUN_CONTACT', false); 

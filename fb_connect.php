@@ -12,6 +12,7 @@
   include_once('includes/ofuz_check_access.script.inc.php');
   include_once('includes/header.inc.php');
   set_time_limit(3600);
+
      if (isset($_GET['ref']) && $_GET['ref'] == 'reg') {
       $ref = $_GET['ref'];
       $_SESSION["page_from"] = $ref;
