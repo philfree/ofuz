@@ -74,3 +74,12 @@ CREATE TABLE `contact_team` (
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+ALTER TABLE task ADD COLUMN priority int NOT NULL;
+
+CREATE TABLE `user_profile`  (iduser_profile INT(10) not null AUTO_INCREMENT, PRIMARY KEY (iduser_profile), INDEX (iduser_profile), UNIQUE (iduser_profile));
+ALTER TABLE `user_profile` ADD `logo` VARCHAR(200) not null;
+ALTER TABLE `user_profile` ADD `job_type` VARCHAR(100) not null;
+ALTER TABLE `user_profile` ADD `job_description` TEXT not null;
+
+

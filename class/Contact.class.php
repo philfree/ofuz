@@ -2557,5 +2557,17 @@ class Contact extends DataObject {
         $contact_team->eventAddContactToTeamCW($this);	
     }	
 
+
+  function getContactPictureDetails($iduser=''){
+    if($iduser!=''){
+    $sql="SELECT contact.idcontact,contact.picture
+          FROM contact
+          INNER JOIN user ON user.idcontact = contact.idcontact
+          WHERE user.iduser =".$iduser;
+    $this->query($sql);
+    }
+  }
+  
+
 }
 ?>

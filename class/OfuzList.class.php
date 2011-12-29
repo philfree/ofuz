@@ -72,13 +72,15 @@ class OfuzList extends BaseObject {
       $class_name = get_class($this->obj);
 
       if ($class_name == 'ProjectTask') {echo '<ul id="project_tasks">',"\n"; }
+      if ($class_name == 'Task') {
+	echo '<ul id="tasks_list_'.$this->obj->tasks_due_on.'">',"\n"; 
+      }
       while($this->obj->next()){
           echo $this->getRowStart(); 
           $this->displayRow($class_name) ;
           echo $this->getRowEnd();
       }
-      if ($class_name == 'ProjectTask' || $class_name='Task') { echo '</ul>',"\n"; }
-  
+      if ($class_name == 'ProjectTask' || $class_name == 'Task') { echo '</ul>',"\n"; }
   }
   
   public function getRowStart() {
@@ -266,8 +268,6 @@ class OfuzList extends BaseObject {
             //$task_class = 'ptask_name';    
             //$ddtask_ul = 'ddtasks';
 
-                 $html .='<ul  id="'.$ddtasks.'">';
-
             if($this->obj->access == 'Public'){
                 $html .= '<li id="pt_'.$this->obj->idtask.'" class="ddtasks">'.
                             '<div class="ptask_name" onclick = "" id="list'.$this->obj->idtask.'" >
@@ -326,6 +326,7 @@ class OfuzList extends BaseObject {
             }
             $html .= '</li>'."\n";
       break;
+
     }
     echo $html;
   }

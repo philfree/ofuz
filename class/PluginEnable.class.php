@@ -101,6 +101,16 @@ class PluginEnable extends DataObject {
     }
 
     
+    public function eventEnableAddOn(EventControler $evctl){
+        $tabs= $evctl->tabs;
+          print_r($tabs);
+        echo "name";
+        exit;
+    }
+    
+
+
+
 }
 
 

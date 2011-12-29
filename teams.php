@@ -118,20 +118,35 @@ function addCoWorkerToTeam(){
 	      $message->setContent(_(htmlentities($_GET["message"])));
 	      $message->displayMessage();
 	  }
-	  $GLOBALS['page_name'] = 'os_co_worker';
+	  $GLOBALS['page_name'] = 'co_workers';
 	  include_once('plugin_block.php');
 	?>
     </td>
     <td class="layout_rcolumn">
-		<div class="contentfull">
-		 <a href="teams.php"><?php echo ('Teams');?></a> - <a href="co_workers.php"><?php echo ('All Co-Workers');?></a><br /><br />
-		 <div><b><?php echo ('Teams');?></b> &nbsp;&nbsp;&nbsp;<a id="AncCreateNewTeam" href="javascript:;"><?php echo ('Create New');?></a></div>
+        <table class="mainheader pad20" width="100%">
+            <tr>
+                <td><span class="headline14">Teams</span>
+                </td>
+                <td align="right">&nbsp;&nbsp;&nbsp;&nbsp;<a href="teams.php"><?php echo _('Teams'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="co_workers.php"><?php echo _('All Co-Workers'); ?></a></td>
+            </tr>
+        </table>
+
+		<div class="contentfull">	
+		  <div class="spacerblock_20"></div>	 
+		 <div><a id="AncCreateNewTeam" href="javascript:;"><?php echo ('Create New');?></a></div>
+		  <div class="spacerblock_20"></div>
 		 <div id="divTeamMsg"></div>
 		 <div id="DivTeamsList" style="display:block;">
 		 <?php
 		 if($teams_count) {
 			while($do_teams->next()) {
-				echo $do_teams->team_name."<br />";
+			  $e_detail = new Event("mydb.gotoPage");
+			  $e_detail->addParam("goto", "team_edit.php");
+			  $e_detail->addParam("idteam", $do_teams->idteam);
+			  $e_detail->addParam("tablename", "team");
+			  $e_detail->requestSave("eDetail_team", $_SERVER["PHP_SELF"]);
+
+			  echo $do_teams->team_name.' <a href="'.$e_detail->getUrl().'" class="linkdetail">edit</a><br />';
 			}
 		 } else {
 			 echo '<p>'.('You have not yet created a team.').'</p>';

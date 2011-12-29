@@ -60,6 +60,50 @@
                                     "timesheet"=>
                                        Array("TimesheetBlockCoWorker")
                           ) ;
+
+
+    // Core Block positioning 
+    $GLOBALS['cfg_plugin_eventmultiple_placement'] = Array(
+                                  'contacts' => 
+                                    Array( 
+                                       Array('name' => 'Merge In One',
+                                             'confirm' => 'Are you sure you want to merge the selected contacts?',
+                                             'event' => '',
+                                             'action' => 'merge_automated.php')
+                                             )
+                                             );
+        // Core plugin names
+    $GLOBALS['core_plugin_names'] = Array(
+                                          'ContactAddTaskBlock',
+                                          'ContactDetailBlock',
+                                          'ContactInvoiceBlock',
+                                          'ContactShareCoworkerBlock',
+                                          'ContactShareFileNoteBlock',
+                                          'ContactSubTagSearchBlock',
+                                          'ContactTagSearchBlock',
+                                          'ContactTasksBlock',
+                                          'CoworkerListInvitations',
+                                          'CoworkerSearch',
+                                          'CoworkerSendInvitationEmail',
+                                          'DashboardMessageBlock',
+                                          'DashboardTodaysTask',
+                                          'InvoicesMonthlyGraphBlock',
+                                          'InvoicesYTDBlock',
+                                          'NotesAndDiscussionBlock',
+                                          'PaymentLogBlock.class',
+                                          'ProjectAddCoworkerBlock',
+                                          'ProjectAddProjectTaskBlock',    
+                                          'ProjectAddTaskDropboxBlock',
+                                          'ProjectDiscussionEmailAlertBlock',
+                                          'ProjectsAddProjectBlock',
+                                          'RecurrentInvoiceBlock',
+                                          'TaskDropBoxBlock',
+                                          'TaskOwnerBlock',
+                                          'TaskProgressBlock',
+                                          'TasksAddTaskBlock',
+                                          'TimesheetBlockCoWorker'
+                                          
+                          ) ;  
  
    // Core Tabs 
    $GLOBALS['cfg_tab_placement'] = new ArrayIterator();
@@ -73,6 +117,7 @@
                                       "daily_notes",
                                       "timesheet"))
                                 ->setDefaultPage("index");
+                                
    //Contact      
    $GLOBALS['cfg_tab_placement']->append(new Tab(""));
    $GLOBALS['cfg_tab_placement']->next();
@@ -113,6 +158,31 @@
                                 ->setDefaultPage("invoices");
 
   
+
+   $GLOBALS['core_tab_name'] = Array(
+                                      'Dashboard',
+                                      'Contacts',
+                                      'Tasks',
+                                      'Projects',
+                                      'Invoices'
+                                    );
+
+
+    $GLOBALS['core_setting_tab_name'] = Array(
+                                      'My Information',
+                                      'My Profile',
+                                      'Web Forms',
+                                      'Email Templates',
+                                      'Auto Responder',
+                                      'Sync Contacts',
+                                      'API Key',
+                                      'Email Stream',
+                                      'Discussion Email Alert',
+                                      'Invoice Settings',
+                                      'Cancel Account',
+                                      'Export',
+                                      'My Account Backup'                                     
+                                    );
 
 
    // Core Settings Tabs 

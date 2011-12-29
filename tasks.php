@@ -251,58 +251,59 @@
     }
       
 
-
 <?php
-$e_PrioritySort = new Event("ProjectTask->eventAjaxPrioritySort");
+$e_PrioritySort = new Event("Task->eventAjaxPrioritySort");
 $e_PrioritySort->setEventControler("ajax_evctl.php");
 $e_PrioritySort->setSecure(false);
 $strPrioritySortURL = $e_PrioritySort->getUrl();
-?>   
-    function moveTasks(TorB) {
-        var priorities="",checked="",unchecked="";
-        var priorities=$("#project_tasks").sortable("toArray");
-        $("input:checkbox").each(function(){
-            if(this.checked){
-                checked+=(checked=="")?"":"&";
-                checked+="pt[]="+$(this).parents("li").attr("id").substr(3);
-            }else{
-                unchecked+=(unchecked=="")?"":"&";
-                unchecked+="pt[]="+$(this).parents("li").attr("id").substr(3);
-            }
-        });
-        if(TorB==1){
-            priorities=unchecked+(unchecked==""?checked:"&"+checked);
-        }else{
-            priorities=checked+(unchecked==""?"":"&"+unchecked);
-        }
-        $.get("<?php echo $strPrioritySortURL; ?>&"+priorities, function(){window.location.reload();});
-    }
+?>
 
     $(document).ready(function() {
         //$("div[id^=templt]").hover(function(){$("div[id^=trashcan]",this).show("slow");},function(){$("div[id^=trashcan]",this).hide("slow");});
-        /*$("#project_tasks").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
+
+        $("#tasks_list_overdue").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
             update:function(){
-            var priorities=$("#project_tasks").sortable("serialize");
+            var priorities=$("#tasks_list_overdue").sortable("serialize");
             $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });*/
+        });
 
-        $("#ddtasks_today").sortable();
+        $("#tasks_list_today").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
+            update:function(){
+            var priorities=$("#tasks_list_today").sortable("serialize");
+            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
+        });
 
+        $("#tasks_list_tomorrow").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
+            update:function(){
+            var priorities=$("#tasks_list_tomorrow").sortable("serialize");
+            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
+        });
 
-         $("#ddtasks_overdue").sortable();
-  
-        $("#ddtasks_tomorrow").sortable();
-      
-         $("#ddtasks_nextweek").sortable();
+        $("#tasks_list_thisweek").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
+            update:function(){
+            var priorities=$("#tasks_list_thisweek").sortable("serialize");
+            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
+        });
+
+        $("#tasks_list_nextweek").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
+            update:function(){
+            var priorities=$("#tasks_list_nextweek").sortable("serialize");
+            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
+        });
+
+        $("#tasks_list_thismonth").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
+            update:function(){
+            var priorities=$("#tasks_list_thismonth").sortable("serialize");
+            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
+        });
+
+        $("#tasks_list_later").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
+            update:function(){
+            var priorities=$("#tasks_list_later").sortable("serialize");
+            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
+        });
 
     });
-
-
-
-
-
-
-
 
      function showAllTasksLater(){
         $.ajax({
@@ -462,7 +463,7 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
             ?>
         </div>
 
-<!--Over Due Tasks---->
+<!--Over Due Tasks-->
 
             <?php
                 $num_tasks_overdue = $do_task->getNumAllTasksOverdue();
@@ -470,159 +471,150 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
                 $num_tasks_overdue_limit = $do_task->getNumRows();
                 if ($do_task->getNumRows()) {
              ?>
-            <div class="tasks">
-                <div class="headline10" style="color: #ff0000;"><?php echo _('Overdue');?></div>
-                  
-                    <div class="contentfull">
-                      <div class="ddtasks">
-                        <div id="tasks_overdue">
-                            <?php  echo $do_task->viewTaskList(); //echo $do_task->viewTasks(); ?>
-                         </div>
-                          <?php if($num_tasks_overdue > 10) { ?>
-                            <div id="tasks_options_overdue"><a href="#" onclick="showAllTasksOverdue(); return false;"><?php echo _('More...');?></a></div>
-                          <?php } ?>
-                      </div>
-                      <?php  
-                          }
-                          /*$do_task->getAllTasksToday();
-                          if ($do_task->getNumRows()) {*/
-                      ?>
-					</div>
-			</div>
+		<div class="tasks">
 
-		<?php
-           $do_task->getAllTasksToday();
-           $do_task->query($do_task->getSqlQuery());
-           if($do_task->getNumRows()){
-			?>
+		  <div class="headline10" style="color: #ff0000;"><?php echo _('Overdue');?></div>
+		  <div class="contentfull">
+
+		    <div class="ddtasks">
+		      <div id="tasks_overdue">
+			<?php  echo $do_task->viewTaskList('overdue'); //echo $do_task->viewTasks(); ?>
+		      </div>
+		      <?php if($num_tasks_overdue > 10) { ?>
+			<div id="tasks_options_overdue"><a href="#" onclick="showAllTasksOverdue(); return false;"><?php echo _('More...');?></a></div>
+		      <?php } ?>
+		    </div>
+		  </div>
+		</div>
+	    <?php  
+	      }
+	      /*$do_task->getAllTasksToday();
+	      if ($do_task->getNumRows()) {*/
+	      ?>
+
+
+
+<?php
+$do_task->getAllTasksToday();
+//$do_task->query($do_task->getSqlQuery());
+if($do_task->getNumRows()){
+?>
 			
-	       <div class="tasks_today"> 
-				<div class="headline10">Today</div>
-					<div class="contentfull">
-						<div class="ddtasks">
-							<?php                 
-								echo $do_task->viewTaskList();
-								}
-							?>
-							<?php //echo $do_task->viewTasks(); ?>
-						</div>
-					</div>
-          </div>
-            <?php 
-                //}
-               /* $do_task->getAllTasksTomorrow();
-                if ($do_task->getNumRows()) {*/
-             ?>
+	      <div class="tasks_today"> 
+		<div class="headline10">Today</div>
+		  <div class="contentfull">
+		    <div class="ddtasks">
+		    <?php //echo $do_task->viewTasks(); ?>
+		    <?php   echo $do_task->viewTaskList('today'); ?>
+		    </div>
+		  </div>
+		</div>
+	      </div>
+<?php                 
+}
+?>
+<?php
+$do_task->getAllTasksTomorrow();
+//$do_task->query($do_task->getSqlQuery());
+if($do_task->getNumRows()){
+?>      
              
-			<?php
-              $do_task->getAllTasksTomorrow();
-              $do_task->query($do_task->getSqlQuery());
-                if($do_task->getNumRows()){
-             ?>      
-             
-            <div class="tasks">                  
-                <div class="headline10">Tomorrow</div>
-					<div class="contentfull">
-						<div class="ddtasks">
-      <div class = "task_tomorrow">
-						<?php            
-							echo $do_task->viewTaskList();
-							}
-						?>
-						<?php //echo $do_task->viewTasks(); ?>
-      </div>
-						</div>
-					</div>
-			</div>
+	    <div class="tasks">                  
+	      <div class="headline10">Tomorrow</div>
+		<div class="contentfull">
+		  <div class="ddtasks">
+		    <div class = "task_tomorrow">
+		    <?php            
+		    echo $do_task->viewTaskList('tomorrow');
+		    ?>
+		    <?php //echo $do_task->viewTasks(); ?>
+		    </div>
+		  </div>
+		</div>
+	      </div>
+	    </div>
 
-            <?php
-               /* }
-                $do_task->getAllTasksThisWeek();
-                if ($do_task->getNumRows()) {*/
-             ?>
-             <?php
-               echo $do_task->getAllTasksThisWeek();
-                $do_task->query($do_task->getSqlQuery());
-				    if($do_task->getNumRows()){
-            ?>
-             
-            <div class="tasks">
-                <div class="headline10">This week</div>
-                  <div class="contentfull">
-					<div class="ddtasks">
-						<?php
-							echo $do_task->viewTaskList();
-							}
-						?>
-						<?php //echo $do_task->viewTasks(); ?>
-					</div>
-				</div>
-          </div>
-            <?php 
-               /* }
-                $do_task->getAllTasksNextWeek();
-                if ($do_task->getNumRows()) {*/
-             ?>
-             
-             
-             <?php 
-                $do_task->getAllTasksNextWeek();
-                $do_task->query($do_task->getSqlQuery());
-                if($do_task->getNumRows()){
-			?>
-            <div class="tasks">
-                <div class="headline10">Next week</div>
-                   <div class="contentfull">
-						<div class="ddtasks">          
-						<?php                
-							echo $do_task->viewTaskList();
-							}
-						?>
-						<?php //echo $do_task->viewTasks(); ?>
-						</div>
-					</div>
-            </div>
-            <?php 
-                $num_tasks_this_month = $do_task->getNumAllTasksThisMonth();
-                $do_task->getAllTasksThisMonth();
-                $do_task->query($do_task->getSqlQuery());
-                $num_tasks_this_month_limit = $do_task->getNumRows();
-                if ($do_task->getNumRows()) {
-			?>
-            <div class="tasks">
-                <div class="headline10"><?php echo _('This Month');?></div>
-                 <div class="contentfull">
-                    <div id="tasks_thismonth">
-                      <div class="ddtasks">
-                        <?php echo $do_task->viewTaskList();//echo $do_task->viewTasks(); ?>
-                      </div>                         
-                   </div>
-                 </div>
-                   <?php if($num_tasks_this_month > 20) { ?>
-                   <div id="tasks_options_this_month"><a href="#" onclick="showAllTasksThisMonth(); return false;"><?php echo _('More...')?></a></div>
-                   <?php } ?>
-                   <?php 
-                    }
+<?php
+}
+/*
+$do_task->getAllTasksThisWeek();
+if ($do_task->getNumRows()) {*/
 
-					$num_tasks_later = $do_task->getNumAllTasksLater();
-					$do_task->getAllTasksLater();
-					$do_task->query($do_task->getSqlQuery());
-					$num_twenty_tasks = $do_task->getNumRows();
-					if ($do_task->getNumRows()) {
-				?>
-            <div class="tasks">
-                <div class="headline10">Later</div>              
-             <div class="contentfull">
-            <div class="ddtasks">
+echo $do_task->getAllTasksThisWeek();
+//$do_task->query($do_task->getSqlQuery());
+if($do_task->getNumRows()){
+?>
+<div class="tasks">
+  <div class="headline10">This week</div>
+  <div class="contentfull">
+    <div class="ddtasks">
+    <?php echo $do_task->viewTaskList('thisweek');?>
+    <?php //echo $do_task->viewTasks(); ?>
+    </div>
+  </div>
+</div>
+<?php 
+}
 
-                <div id="tasks_later"><?php   echo $do_task->viewTaskList(); //echo $do_task->viewTasks(); ?></div>
-            </div>
-				<?php if($num_tasks_later > 20) { ?>
-				<div id="tasks_options"><a href="#" onclick="showAllTasksLater(); return false;"><?php echo _('More...');?></a></div>
-				<?php } ?>
-            <?php } 
-            }// Ends the First If
-          ?>
+$do_task->getAllTasksNextWeek();
+//$do_task->query($do_task->getSqlQuery());
+if($do_task->getNumRows()){
+?>                         
+<div class="tasks">
+  <div class="headline10">Next week</div>
+  <div class="contentfull">
+    <div class="ddtasks">          
+    <?php echo $do_task->viewTaskList('nextweek');
+    ?>
+    <?php //echo $do_task->viewTasks(); ?>
+    </div>
+  </div>
+</div>
+<?php 
+}
+$num_tasks_this_month = $do_task->getNumAllTasksThisMonth();
+$do_task->getAllTasksThisMonth();
+//$do_task->query($do_task->getSqlQuery());
+$num_tasks_this_month_limit = $do_task->getNumRows();
+if ($do_task->getNumRows()) {
+?>
+<div class="tasks">
+  <div class="headline10"><?php echo _('This Month');?></div>
+  <div class="contentfull">
+   <div class="ddtasks">
+     <div id="tasks_thismonth">      
+      <?php echo $do_task->viewTaskList('thismonth');//echo $do_task->viewTasks(); ?>
+      </div>                         
+    </div>
+  </div>
+</div>
+<?php if($num_tasks_this_month > 20) { ?>
+<div id="tasks_options_this_month"><a href="#" onclick="showAllTasksThisMonth(); return false;"><?php echo _('More...')?></a></div>
+<?php } ?>
+<?php 
+}
+
+$num_tasks_later = $do_task->getNumAllTasksLater();
+$do_task->getAllTasksLater();
+//$do_task->query($do_task->getSqlQuery());
+$num_twenty_tasks = $do_task->getNumRows();
+if ($do_task->getNumRows()) {
+?>
+<div class="tasks">
+  <div class="headline10">Later</div>              
+  <div class="contentfull">
+    <div class="ddtasks">
+      <div id="tasks_later"><?php   echo $do_task->viewTaskList('later'); //echo $do_task->viewTasks(); ?></div>
+    </div>
+  </div>
+</div>
+<?php if($num_tasks_later > 20) { ?>
+<div id="tasks_options"><a href="#" onclick="showAllTasksLater(); return false;"><?php echo _('More...');?></a></div>
+<?php } ?>
+<?php } 
+}// Ends the else condition
+?>
+
             <div class="dottedline"></div>
             <?php $footer_note = 'dropboxtask'; include_once('includes/footer_notes.php'); ?>
         </div>

@@ -139,7 +139,7 @@
   include_once("class/TabSetting.class.php");
   include_once("class/SubMenu.class.php");
   include_once("class/BaseMessageBlock.class.php");
-  //include_once("class/PluginEnable.class.php");
+  include_once("class/PluginEnable.class.php");
   
 
   // Dynamic Buttons
@@ -152,6 +152,9 @@
   include_once("class/MimeMailParserAttachment.class.php");
   include_once("class/MimeMailParser.class.php");
   include_once("class/OfuzEmailFetcher.class.php");
+  
+    include_once("class/UserProfile.class.php");
+
 
   //Beanstakd
   include_once("class/OfuzBeanstalkd.class.php");
