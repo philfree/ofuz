@@ -68,37 +68,29 @@
 
 <?php include_once('includes/ofuz_js.inc.php'); ?>
 
-function setDel() {
-    if (confirm("Are you sure you want to delete the selected contacts?")) {
-        $("#do_Contacts__eventAddTagMultiple_mydb_events_100_").attr("value", "do_Contacts->eventDeleteMultiple");
-        $("#do_Contacts__eventAddTagMultiple").submit();
-    }
-}       
-
-function setEMail() {
-    $("#do_Contacts__eventAddTagMultiple_mydb_events_100_").attr("value", "do_Contacts->eventGetForMailMerge");
-    $("#do_Contacts__eventAddTagMultiple").submit();
+function eventActionMultiple(eventaction, confirm_message) {
+		if (confirm_message.length > 2) {
+			if (confirm(confirm_message)) {
+				$("#do_Contacts__eventAddTagMultiple_mydb_events_100_").attr("value", eventaction);
+				$("#do_Contacts__eventAddTagMultiple").submit();	
+		    }
+		 } else {
+			$("#do_Contacts__eventAddTagMultiple_mydb_events_100_").attr("value", eventaction);
+			$("#do_Contacts__eventAddTagMultiple").submit();	
+		}	
+}
+function actionMultiple(actionpage, confirm_message) {
+		if (confirm_message.length > 2) {
+			if (confirm(confirm_message)) {
+				$("#do_Contacts__eventAddTagMultiple").attr("action", actionpage);
+				$("#do_Contacts__eventAddTagMultiple").submit();	
+		    }
+		 } else {
+			$("#do_Contacts__eventAddTagMultiple").attr("action", actionpage);
+			$("#do_Contacts__eventAddTagMultiple").submit();	
+		}	
 }
 
-function setShare(){
-  $("#do_Contacts__eventAddTagMultiple").attr("action","co_workers.php");
-  $("#do_Contacts__eventAddTagMultiple").submit(); 
-
-}
-
-function setMerge(){
-  if (confirm("Are you sure you want to merge the selected contacts?")) {
-      $("#do_Contacts__eventAddTagMultiple").attr("action","merge_automated.php");
-      $("#do_Contacts__eventAddTagMultiple").submit(); 
-  }
-
-}
-function setUnShare() {
-    if (confirm("Are you sure you want to Unshare the selected contacts?")) {
-        $("#do_Contacts__eventAddTagMultiple_mydb_events_100_").attr("value", "do_Contacts->eventUnShareMultiple");
-        $("#do_Contacts__eventAddTagMultiple").submit();
-    }
-}
 
 function deleteTagMul(){
     $("#do_Contacts__eventAddTagMultiple_mydb_events_100_").attr("value", "do_Contacts->eventDeleteMultipleContactsTag");
@@ -332,15 +324,33 @@ if ($do_contact_limit->canUserAddContact()) {
 					<div class="spacerblock_5"></div>
                     <?php echo _('or ');?><?php echo $GLOBALS['do_tag_list']->generateUserTagsDropDown();?>
                     <div class="spacerblock_5"></div>
-                    <?php echo _('or ');?><span class="redlink"><a href="#" onclick="setDel(); return false;"><?php echo _('Delete them');?></a></span>
+                    <?php echo _('or ');?><span class="redlink"><a href="#" onclick="eventActionMultiple('do_Contacts->eventDeleteMultiple','Are you sure you want to delete the selected contacts?'); return false;"><?php echo _('Delete them');?></a></span>
                     <?php if($_SESSION['do_Contacts']->set_unshare){?>
-                    <br /><?php echo _('or ');?><span class="redlink"><a href="#" onclick="setUnShare();return false;"><?php echo _('Un-Share Contact');?></a></span>
+                    <br /><?php echo _('or ');?><span class="redlink"><a href="#" onclick="eventActionMultiple('do_Contacts->eventUnShareMultiple','Are you sure you want to Unshare the selected contacts?');return false;"><?php echo _('Un-Share Contact');?></a></span>
                     <input type ="hidden" name="co_worker_id" value = "<?php echo $_SESSION['do_Contacts']->unshare_co_worker;?>">
                     <?}else{?>
-                    <br /><?php echo _('or ');?><span class="redlink"><a href="#" onclick="setShare();return false;"><?php echo _('Share With Co-Workers');?></a></span>
+                    <br /><?php echo _('or ');?><span class="redlink"><a href="#" onclick="actionMultiple('co_workers.php','');return false;"><?php echo _('Share With Co-Workers');?></a></span>
                     <?php } ?>
-                    <br /><?php echo _('or ');?><span class="redlink"><a href="#" onclick="setMerge();return false;"><?php echo _('Merge in one');?></a></span>
-                    <br /><?php echo _('or ');?><span class="redlink"><a href="#" onclick="setEMail();return false;"><?php echo _('Send a Message');?></a></span>
+
+                    <?php 
+                      foreach ($GLOBALS['cfg_plugin_eventmultiple_placement']['contacts'] as $event_multiple_plugin) {
+						  if (strlen($event_multiple_plugin['event'])>0) {
+						     echo "\n<br>"._('or ').'<span class="redlink"><a href="#" onclick="eventActionMultiple(\''.$event_multiple_plugin['event'].'\',\''._($event_multiple_plugin['confirm']).'\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
+						  } elseif (strlen($event_multiple_plugin['action'])>0) {
+							 echo "\n<br>"._('or ').
+							  '<span class="redlink">
+							    <a href="#" onclick="actionMultiple(\''.
+							      $event_multiple_plugin['action'].
+							      '\',\''.
+							      _($event_multiple_plugin['confirm']).
+							      '\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
+						  }
+						  
+
+					  }
+                    
+                    ?>
+                  
                     <div class="spacerblock_10"></div>
                     <span class="sasnlinks">( <span class="bluelink"><a href="#" onclick="fnSelAll(); return false;"><?php echo _('select all'); ?></a></span> | <span class="bluelink"><a href="#" onclick="fnSelNone(); return false;"><?php echo _('select none');?></a></span> )</span>
                 </div>
@@ -375,12 +385,8 @@ if ($do_contact_limit->canUserAddContact()) {
 </div>
 </td><td class="layout_rmargin"></td></tr></table>
 
-
-
 <?php include_once('includes/ofuz_facebook.php'); ?>
 <?php include_once('includes/ofuz_analytics.inc.php'); ?>
-
-
 
 
 </body>
