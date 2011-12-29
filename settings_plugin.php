@@ -217,7 +217,7 @@
                               echo '<td colspan=2 valign="left">';
                              
                               echo '</td>';
-                               echo '<td width=12%>';
+                              echo '<td width=12%>';
                               
                   
                              // Enable or disable section comes here
