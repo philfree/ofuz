@@ -62,7 +62,16 @@
                           ) ;
 
 
-
+    // Core Block positioning 
+    $GLOBALS['cfg_plugin_eventmultiple_placement'] = Array(
+                                  'contacts' => 
+                                    Array( 
+                                       Array('name' => 'Merge In One',
+                                             'confirm' => 'Are you sure you want to merge the selected contacts?',
+                                             'event' => '',
+                                             'action' => 'merge_automated.php')
+                                             )
+                                             );
         // Core plugin names
     $GLOBALS['core_plugin_names'] = Array(
                                           'ContactAddTaskBlock',
