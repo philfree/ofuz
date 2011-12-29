@@ -85,7 +85,6 @@ function hideSharedDetail(divid){
                 
                }
            ?>
-
         <table class="mainheader pad20" width="100%">
             <tr>
 		<td><span class="headline14">Co-Workers</span>
