@@ -109,8 +109,11 @@ if($application_layer_protocol == "https") {
         // Adding to the JOB QUEUE
         if($GLOBALS['ENABLE_JOB_QUEUE'] === true){
             $data_fb = serialize($_SESSION['do_ofuz_fb']);
-            $qry = new sqlQuery($conx);
+            /*$qry = new sqlQuery($conx);
             $qry->query("insert into fb_test (data,iduser) values ('".$data_fb."',".$_SESSION['do_User']->iduser.")");
+            */
+            $OfuzBeanstalkd = new OfuzBeanstalkd();
+            $OfuzBeanstalkd->addToQueue($data_fb,'jobqueue_fb_friend_import',$_SESSION['do_User']->iduser);  
             echo '<H2>Request has been added in the Job Queue, you can enjoy browsing the other part and Ofuz will do the import for you without having to wait for a long time on this page.</H2>';
             exit;
         }

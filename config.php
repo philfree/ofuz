@@ -11,6 +11,7 @@
    * @version 4.0
    */
 
+
   if (!isset($GLOBALS['cfg_full_path'])) { $GLOBALS['cfg_full_path'] = ''; }
   set_include_path(get_include_path() . PATH_SEPARATOR . $GLOBALS['cfg_full_path']);
   $cfg_project_directory = $GLOBALS['cfg_full_path'];
@@ -62,7 +63,7 @@
   // Database connexions :
 
   $conx = new sqlConnect("ofuzdev", "d3v5") ;
-  $conx->setHostname("localhost") ;
+  $conx->setHostname("72.172.84.163") ;
   $conx->setDatabase("ofuzdev") ;
   // Directory where pas is located
   $conx->setBaseDirectory($cfg_local_pasdir) ;
