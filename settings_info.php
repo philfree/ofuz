@@ -35,7 +35,20 @@
           </div>
         </div>
       </td>
+      
       <td class="layout_rcolumn">
+         <table class="mainheader pad20" width="100%">
+          <tr>
+            <td>
+                <span class="headline14">Plugin Settings</span>
+            </td>
+            <td align="right">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="enable_plugin.php"><?php echo _('Enable Add-On'); ?></a>
+                   &nbsp;&nbsp;&nbsp;&nbsp;<a href="settings_plugin.php"><?php echo _('Detail List'); ?></a>
+                   &nbsp;&nbsp;&nbsp;&nbsp;<a href="download.php"><?php echo _('Downloads'); ?></a>
+            </td>
+           </tr>
+        </table>
         <div class="banner60 pad020 text32"><?php echo _('Settings'); ?></div>
         <div class="banner50 pad020 text16 fuscia_text"><?php echo _('My Information'); ?></div>
         <div class="contentfull">

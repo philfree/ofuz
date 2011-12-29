@@ -40,16 +40,8 @@
             </span>
             <span class="sep1">|</span>
             <a href="/settings_info.php"><?php echo _('Settings'); ?></a>
-            <span class="sep1">|</span> 
-                      
-            <a href="/enable_plugin.php"><?php echo _('Enable Add-On'); ?></a>
-            <span class="sep1">|</span>
-          
-             <a href="/settings_plugin.php"><?php echo _('Details List'); ?></a>
-            <span class="sep1">|</span>
-      
-             <a href="/download.php"><?php echo _('Downloads'); ?></a>
-            <span class="sep1">|</span>
+            <span class="sep1">|</span>                      
+            
 
         <?php 
               if($_SESSION['do_User']->global_fb_connected && $_SESSION['do_User']->fb_user_id){
