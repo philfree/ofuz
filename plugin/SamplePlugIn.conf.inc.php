@@ -13,6 +13,17 @@
    * @date 2010-09-04  
    */
 
+
+
+/**
+   tab enable disable is with setTabName("SamplePlugIn")
+   setting menu is with setTabName("Sample Plugin Setting");
+   block with TabContentSample
+
+**/
+
+
+
 // Plug-in Definition
 // status : devel, alpha, beta, rc, stable
    $plugins_info['SamplePlugin'] = 
