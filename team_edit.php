@@ -114,6 +114,7 @@ echo $e_cw->getFormEvent();
 
 $arr_cw = $do_team->getTeamCoWorkersId($idteam);
 $do_ur = new UserRelations();
+
 $do_ur->getAllCoWorker();
 if($do_ur->getNumRows()) {
   while($do_ur->next()) {
