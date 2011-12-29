@@ -130,6 +130,7 @@ function addCoWorkerToTeam(){
                 <td align="right">&nbsp;&nbsp;&nbsp;&nbsp;<a href="teams.php"><?php echo _('Teams'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="co_workers.php"><?php echo _('All Co-Workers'); ?></a></td>
             </tr>
         </table>
+
 		<div class="contentfull">	
 		  <div class="spacerblock_20"></div>	 
 		 <div><a id="AncCreateNewTeam" href="javascript:;"><?php echo ('Create New');?></a></div>

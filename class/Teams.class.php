@@ -201,7 +201,7 @@ class Teams extends DataObject {
     echo "ok";
   }
 
-  function eventUpdateTeadCWs(EventControler $evtcl) {    
+  function eventUpdateTeamCWs(EventControler $evtcl) {    
     $this->query("DELETE FROM team_users WHERE idteam = {$evtcl->idteam}");
     foreach($evtcl->coworker as $idcoworker) {
       $con = new sqlQuery($this->getDbCon());

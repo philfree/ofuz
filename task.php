@@ -551,19 +551,26 @@ $(document).ready(function() {
                         //}
                         if($do_discuss->iduser){
                           $added_by = $_SESSION['do_User']->getFullName($do_discuss->iduser);
-                         /* $do_contact = new Contact();
-                                      $do_contact->getUserContacts($do_discuss->iduser);
-                                      if($do_contact->getNumRows()){
-                                        while($do_contact->next()){                                   
-                                         
-                                          $contact_picture="/dbimage/".$do_contact->picture; 
-                                          $contact_id = $do_contact->idcontact;
-                                        }
-                                    }*/
+                          $do_contact = new Contact();
+                          $do_contact->getUserContacts($do_discuss->iduser);
+                            if($do_contact->getNumRows()){
+                              while($do_contact->next()){   
+                              if($do_contact->picture!=''){
+                                $contact_picture="/dbimage/".$do_contact->picture; 
+                               }else{
+                                 $contact_picture='/images/empty_avatar.gif';
+                               }  
+                              $contact_id = $do_contact->idcontact;
+                              }
+                          }else{
+                            $contact_picture='/images/empty_avatar.gif';
+                          }
+
                         }else{
                           $added_by = $do_discuss->drop_box_sender;
-                          //$contact_picture='empty_avatar.gif';
+                          $contact_picture='/images/empty_avatar.gif';
                         }
+
                         $e_gen_dropboxid = new Event('do_project_task->eventGenerateDropBoxIdTask');
                         $e_PrioritySort = new Event('ProjectDiscuss->eventPrioritySortNotes');
                         $e_PrioritySort->addParam('goto', 'Task/'.$idproject_task);
@@ -578,6 +585,7 @@ $(document).ready(function() {
                         $e_discuss_del->addParam('context', 'ProjectDiscuss');
                         $del_img_url = 'delete <img src="/images/delete.gif" width="14px" height="14px" alt="" />';
                         echo '<div id="notetext',$do_discuss->idproject_discuss,'" class="vpad10">';
+                        echo '<a href="/Contact/'.$contact_id.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a>';
                         echo '<div style="height:24px;position:relative;"><div class="percent95"><img src="/images/discussion.png" class="note_icon" width="16" height="16" alt='._('Task Discussion').'" />';
                         if($task_operation_access === true){
                           //echo $e_PrioritySort->getLink($star_img_url, ' title="'._('Star this note to move it on top1').'"');
@@ -590,10 +598,7 @@ $(document).ready(function() {
                         } else {
                           echo '<b>'.date('l, F j', strtotime($do_discuss->date_added)).'</b>&nbsp;('._('Added By :').'&nbsp;'.$added_by.')</div>'; 
                         }*/
-                        $date_added_note =  OfuzUtilsi18n::formatDateLong($do_discuss->date_added);
-                        
-                       // echo '<a href="/Contact/'.$contact_id.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a>';   
-            
+                        $date_added_note =  OfuzUtilsi18n::formatDateLong($do_discuss->date_added);   
                         echo '<div id="item_title"> '.$date_added_note.'</b>&nbsp;('._('Added By :').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
 
                         if($task_operation_access === true){
