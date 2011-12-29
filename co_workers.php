@@ -85,10 +85,17 @@ function hideSharedDetail(divid){
                 
                }
            ?>
+        <table class="mainheader pad20" width="100%">
+            <tr>
+		<td><span class="headline14">Co-Workers</span>
+                <td align="right">&nbsp;&nbsp;&nbsp;&nbsp;<a href="teams.php"><?php echo _('Teams'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="co_workers.php"><?php echo _('All Co-Workers'); ?></a></td>
+            </tr>
+        </table>
         <!--<div class="mainheader">
             <div class="pad20">
                 <span class="headline14">Co-Workers</span>-->
               <div class="contentfull">
+		  <div class="spacerblock_20"></div>	
                           <?php
                             $_SESSION['do_coworker']->getAllRequest(); //Get all the requests
                             if($_SESSION['do_coworker']->getNumrows()){
@@ -133,7 +140,6 @@ function hideSharedDetail(divid){
                                   $do_Contacts->sessionPersistent("do_Contacts", "index.php", 36000);
                               }
                                if(!$set_share){ // If not having POST vales
-				echo '<a href="teams.php">Teams</a>'.' - '.'<a href="co_workers.php">All Co-Workers</a>'.'<br /><br />';
 
 				if($teams_count) {
 				  echo '<b>'._('Your Teams').'</b><br /><br />';
@@ -141,10 +147,10 @@ function hideSharedDetail(divid){
 				    echo $do_teams->team_name.'<br />';
 				  }
 				} else {
-				  echo '<div><b>You do not have Team to sahre with.</b></div>';
+				  echo '<div><b>You do not have Team to share with.</b></div>';
 				}
 				echo '<br />';
-                                  echo '<b>'._('Your Co-Workers :').'</b><br /><br />';
+                                  echo '<b>'._('Your Co-Workers').'</b><br /><br />';
                                   //$user_coworker = new User();
                                   while($_SESSION['do_coworker']->next()){
                                       //$user_coworker->getId($_SESSION['do_coworker']->idcoworker);
@@ -237,8 +243,6 @@ function hideSharedDetail(divid){
                                    $e_share_cont->addParam("idcontacts",$contact_ids);
                                    echo $e_share_cont->getFormHeader();
                                    echo $e_share_cont->getFormEvent();
-
-				  echo '<a href="teams.php">Teams</a>'.' - '.'<a href="co_workers.php">All Co-Workers</a>'.'<br /><br />';
 
 				  if($teams_count) {
 				    echo '<b>'._('Your Teams').'</b><br /><br />';

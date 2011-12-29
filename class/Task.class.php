@@ -413,7 +413,7 @@ class Task extends DataObject {
                     WHERE DATEDIFF(t.due_date_dateformat,'".$today."') < 0
                     AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open' 
                     AND t.iduser = ".$_SESSION['do_User']->iduser." 
-                    ORDER BY   t.due_date_dateformat
+                    ORDER BY t.priority ASC,t.due_date_dateformat
                   ");
 
       $html= $this->viewTaskList('overdue');
