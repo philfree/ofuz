@@ -32,10 +32,10 @@
                            'version' => '0.0.1',
                            'status' => 'beta',
                            'tabs' => Array ('SamplePlugin'),
-                           'settings' => Array('SamplePlugin'),
-                           'plugins' => Array('SamplePlugin'),
+                           'settings' => Array('Sample Plugin Setting'),                          
                            'blocks' => Array('BlockSample')
                            );                          
+     //'plugins' => Array('SamplePlugin'),
 
    // We include here our Block Object
    include_once("plugin/SamplePlugIn/BlockSample.class.php");
