@@ -36,13 +36,14 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
             $do_proj_task_feed->getProjectTaskDetails($this->idproject_task);
             $html .= '<br />';
 
-            $user_pic="/dbimage/".$this->user_picture;         
-            $html .='<div style="width:50px;float:left;">';
-            if($user_pic!=''){              
-              $html .='<a href="/Contact/'.$this->contact_id.'"> <img width="34" height="34"alt="" src='.$user_pic.' > </a>';   
+            if($this->user_picture!=''){
+              $user_pic="/dbimage/".$this->user_picture;         
             }else{
-              $html .='<a href="/Contact/'.$this->contact_id.'"> <img width="34" height="34"alt="" src=/images/empty_avatar.gif> </a>';   
+               $user_pic="/images/empty_avatar.gif";         
             }
+
+            $html .='<div style="width:50px;float:left;">';                       
+            $html .='<a href="/Contact/'.$this->contact_id.'"> <img width="34" height="34"alt="" src='.$user_pic.' > </a>';           
             $html .='</div>';                 
             $html .= '<div style="text-align:middle;"> <table width=95% border=0><tr><td>';
             $html .= '<b>'.ucfirst($this->user_full_name).'</b>'.' '.
@@ -92,11 +93,9 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
 		$user->getId($this->iduser);
   
 		$this->user_full_name  = $user->getFullName();
+ 
   $do_contact = new Contact();
-  //$this->user_picture = $do_contact->getPictureName($this->iduser);
-
-
-  $do_contact->getUserContacts($this->iduser);
+  $do_contact->getContactPictureDetails($this->iduser);
    if($do_contact->getNumRows()){
             while($do_contact->next()){
               $co_workers[] = $do_->idcoworker;

@@ -2,6 +2,7 @@
 // Copyright 2008 - 2011 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/ 
 
+
     /**
       * Contact class
       * Using the DataObject
@@ -1773,12 +1774,20 @@ class Contact extends DataObject {
      * Since Facebook does provide limited information on friends so just the basic
      * information will be imported and also keep track of the Facebook user id so that 
      * for the first time it will just add and on next import it will update.
-     * @param $fb_friend_id 
+     * @param array $fb_friend_id 
+     * @param integer $iduser
     */
 
-    function importFacebookFriends($friends_data){
+    function importFacebookFriends($friends_data,$iduser=''){
         $do_tag = new Tag();
         $do_company = new Company();
+        $do_cont_view =  new ContactView();
+        if($iduser == '' ){
+            $iduser = $_SESSION['do_User']->iduser ;
+        }else{
+            $do_cont_view->setUser($iduser);
+        }
+        $tag_list_names = '';
         $frnd_fb_uid = $friends_data["fb_uid"];
         $idcontact = $this->isFbFriendInContact($frnd_fb_uid);
         $fname = $friends_data["name"]["first_name"];
@@ -1797,22 +1806,23 @@ class Contact extends DataObject {
         $this->firstname = $fname;
         $this->lastname = $lname;
         $this->fb_userid = $frnd_fb_uid;
-        $this->iduser = $_SESSION['do_User']->iduser;
+        $this->iduser = $iduser;
         if($idcontact){
           //update the data
            $this->checkFbProfileUrlOnUpdate($idcontact,$profile_url);
            $this->updateFbProfilePic($idcontact,$profile_pic);
-           $do_tag->addTagAssociation($idcontact,"Facebook","contact",$_SESSION['do_User']->iduser);
+           $do_tag->addTagAssociation($idcontact,"Facebook","contact",$iduser);
            if(is_array($list_name) && count($list_name) > 0 ){
+              $tag_list_names = implode(",",$list_name);
               foreach($list_name as $list_name){
-                  $do_tag->addTagAssociation($idcontact,$list_name,"contact",$_SESSION['do_User']->iduser);
+                  $do_tag->addTagAssociation($idcontact,$list_name,"contact",$iduser);
               }
            }
            $this->getId($idcontact);
            if($company != '' && !empty($company)){
               if($position !=''){$this->position =$position; }else{$this->position ='';}
               $q = new sqlQuery($this->getDbCon());
-              $q->query("select idcompany from company where name = '".trim($company)."' AND iduser = ".$_SESSION['do_User']->iduser );
+              $q->query("select idcompany from company where name = '".trim($company)."' AND iduser = ".$iduser );
               if($q->getNumRows()){
                 $q->fetch();
                 $idcompany = $q->getData("idcompany");
@@ -1822,7 +1832,7 @@ class Contact extends DataObject {
                 $idcontact = $this->getPrimaryKeyValue();
               }else{
                 $do_company->name = trim($company);
-                $do_company->iduser = $_SESSION['do_User']->iduser;
+                $do_company->iduser = $iduser;
                 $do_company->add();
                 $idcompany = $do_company->getPrimaryKeyValue();
                 $this->idcompany = $idcompany;
@@ -1830,11 +1840,15 @@ class Contact extends DataObject {
                 $this->update();
               }
            }else{
-                $iduser = $_SESSION['do_User']->iduser;
+                //$iduser = $_SESSION['do_User']->iduser;
                 $q = new sqlQuery($this->getDbCon());
                 $q_upd = "UPDATE contact set firstname = '".$fname."',lastname = '".$lname."',fb_userid = ".$frnd_fb_uid.",position = '".$position."' where idcontact = ".$idcontact;
                 $q->query($q_upd);
            }
+           $this->getId($idcontact);
+           $do_cont_view->updateFromContact($this);// Added the method call updateFromContact() so that the child data is updated 
+           $do_cont_view->addTag('Facebook',$this->idcontact);// Update the contact view for tags.
+           $do_cont_view->addTag($tag_list_names,$this->idcontact);// Update the contact view for tags.
         }else{
            // new entry
            $do_company = new Company();
@@ -1842,7 +1856,7 @@ class Contact extends DataObject {
            if($company != '' && !empty($company)){
               if($position !=''){$this->position =$position; }else{$this->position ='';}
               $q = new sqlQuery($this->getDbCon());
-              $q->query("select idcompany from company where name = '".trim($company)."' AND iduser = ".$_SESSION['do_User']->iduser );
+              $q->query("select idcompany from company where name = '".trim($company)."' AND iduser = ".$iduser );
               if($q->getNumRows()){
                 $q->fetch();
                 $idcompany = $q->getData("idcompany");
@@ -1855,16 +1869,17 @@ class Contact extends DataObject {
                 $do_cont_website->website_type = 'Facebook';
                 $do_cont_website->add();
                 $this->updateFbProfilePic($idcontact,$profile_pic);
-                $do_tag->addTagAssociation($idcontact,"Facebook","contact",$_SESSION['do_User']->iduser);
+                $do_tag->addTagAssociation($idcontact,"Facebook","contact",$iduser);
                 
                 if(is_array($list_name) && count($list_name) > 0 ){
+                  $tag_list_names = implode(",",$list_name);
                   foreach($list_name as $list_name){
-                      $do_tag->addTagAssociation($idcontact,$list_name,"contact",$_SESSION['do_User']->iduser);
+                      $do_tag->addTagAssociation($idcontact,$list_name,"contact",$iduser);
                   }
                 }
               }else{
                 $do_company->name = trim($company);
-                $do_company->iduser = $_SESSION['do_User']->iduser;
+                $do_company->iduser = $iduser;
                 $do_company->add();
                 $idcompany = $do_company->getPrimaryKeyValue();
                 $this->idcompany = $idcompany;
@@ -1876,16 +1891,17 @@ class Contact extends DataObject {
                 $do_cont_website->website_type = 'Facebook';
                 $do_cont_website->add();
                 $this->updateFbProfilePic($idcontact,$profile_pic);
-                $do_tag->addTagAssociation($idcontact,"Facebook","contact",$_SESSION['do_User']->iduser);
+                $do_tag->addTagAssociation($idcontact,"Facebook","contact",$iduser);
                 if(is_array($list_name) && count($list_name) > 0 ){
+                  $tag_list_names = implode(",",$list_name);
                   foreach($list_name as $list_name){
-                      $do_tag->addTagAssociation($idcontact,$list_name,"contact",$_SESSION['do_User']->iduser);
+                      $do_tag->addTagAssociation($idcontact,$list_name,"contact",$iduser);
                   }
                 }
               }
               
            }else{
-                $iduser = $_SESSION['do_User']->iduser;
+                //$iduser = $_SESSION['do_User']->iduser;
                 $q = new sqlQuery($this->getDbCon());
                 $q_ins = "INSERT into contact (firstname,lastname,fb_userid,iduser,position) values(
                           '$fname','$lname',$frnd_fb_uid,$iduser,'$position')";
@@ -1895,13 +1911,20 @@ class Contact extends DataObject {
                 $q_website->query("INSERT into contact_website (idcontact,website,website_type) VALUES
                                    ($idcontact,'$profile_url','Facebook')");
                 $this->updateFbProfilePic($idcontact,$profile_pic);
-                $do_tag->addTagAssociation($idcontact,"Facebook","contact",$_SESSION['do_User']->iduser);
+                $do_tag->addTagAssociation($idcontact,"Facebook","contact",$iduser);
                 if(is_array($list_name) && count($list_name) > 0 ){
+                  $tag_list_names = implode(",",$list_name);
                   foreach($list_name as $list_name){
-                      $do_tag->addTagAssociation($idcontact,$list_name,"contact",$_SESSION['do_User']->iduser);
+                      $do_tag->addTagAssociation($idcontact,$list_name,"contact",$iduser);
                   }
                 }
            }
+           $this->getId($idcontact);
+           $do_cont_view->addFromContact($this);
+           $do_cont_view->updateFromContact($this);// Added the method call updateFromContact() so that the child data is updated just after insert
+           $do_cont_view->addTag('Facebook',$this->idcontact);// Update the contact view for tags.
+           $do_cont_view->addTag($tag_list_names,$this->idcontact);// Update the contact view for tags.
+           
         }
         $do_tag->free();
 
@@ -2535,6 +2558,15 @@ class Contact extends DataObject {
     }	
 
 
+  function getContactPictureDetails($iduser=''){
+    if($iduser!=''){
+    $sql="SELECT contact.idcontact,contact.picture
+          FROM contact
+          INNER JOIN user ON user.idcontact = contact.idcontact
+          WHERE user.iduser =".$iduser;
+    $this->query($sql);
+    }
+  }
   
 
 }

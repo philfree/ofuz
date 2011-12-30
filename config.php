@@ -11,6 +11,7 @@
    * @version 4.0
    */
 
+
   if (!isset($GLOBALS['cfg_full_path'])) { $GLOBALS['cfg_full_path'] = ''; }
   set_include_path(get_include_path() . PATH_SEPARATOR . $GLOBALS['cfg_full_path']);
   $cfg_project_directory = $GLOBALS['cfg_full_path'];

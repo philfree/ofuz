@@ -40,7 +40,9 @@
             </span>
             <span class="sep1">|</span>
             <a href="/settings_info.php"><?php echo _('Settings'); ?></a>
-            <span class="sep1">|</span> 
+            <span class="sep1">|</span>                      
+            
+
         <?php 
               if($_SESSION['do_User']->global_fb_connected && $_SESSION['do_User']->fb_user_id){
                   echo '<a href="#" onclick=\'FB.Connect.logoutAndRedirect("/fb_logout.php")\'>Logout</a>';

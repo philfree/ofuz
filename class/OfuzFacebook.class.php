@@ -95,7 +95,11 @@ class OfuzFacebook extends DataObject {
     }
 
     function setUserNull(){
-	$this->fbobj->api_client->set_user(null, null);
+      $this->fbobj->api_client->set_user(null, null);
+    }
+
+     public function __wakeup() {
+       return true ;
     }
 }
 ?>

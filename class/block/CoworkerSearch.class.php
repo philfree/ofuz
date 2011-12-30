@@ -28,7 +28,7 @@ class CoworkerSearch extends BaseBlock{
 
       function processBlock(){
 
-          $this->setTitle(_('Find Coworkers'));
+          $this->setTitle(_('Find Co-Workers'));
           $this->setContent($this->generateCoworkerSearchForm());
           $this->displayBlock();
 
