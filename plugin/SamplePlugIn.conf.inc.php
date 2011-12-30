@@ -38,7 +38,8 @@
      //'plugins' => Array('SamplePlugin'),
 
    // We include here our Block Object
-   include_once("plugin/SamplePlugIn/BlockSample.class.php");
+   include_once("plugin/SamplePlugIn/class/BlockSample.class.php");
+   include_once("plugin/SamplePlugIn/class/SamplePlugIn.class.php");
 
    $cfg_sample_plugin_path = "/Tab/SamplePlugIn/";
 

@@ -109,24 +109,45 @@ class WebFormUser extends DataObject {
 	 */
 	
 	function eventAddContact(EventControler $event_controler) {
+	
+	
 		//$fields = $_REQUEST['fields']; 
 		$fields = $event_controler->fields;
+		
 		$this->setLog("\n eventAddContact, creating new contact from form, using ".count($fields)." fields. (".date("Y/m/d H:i:s").")");
 		//$dropcode = $_POST['dropcode'];
 		
+		if(isset($this->iduser)){
 		$do_contact = new Contact();
 		$do_contact->iduser = $this->iduser;
 		$do_contact->add();
 		$this->setLog("\n new contact:".$do_contact->idcontact." for user:".$this->iduser);
+		} else {
+		$do_contact = new Contact();
+		$do_contact->addNew();
+		$do_contact->iduser = $event_controler->uid;
+		
+		$do_contact->add();
+		$this->setLog("\n new contact:".$do_contact->idcontact." for user:".$event_controler->uid);	
+		}	
 		
 		foreach ($fields as $field_name => $field_value) {
 			$this->setLog("\n Processing field:".$field_name." with value:".$field_value);
+			if(isset($this->idwebformuser)){
 			$do_webform_fields = new WebFormUserField();
 			$do_webform_fields->query("SELECT wfu.name, wff.class as class_name, wff.variable, wff.variable_type, wfu.required 
 		                                   FROM webformfields as wff, webformuserfield as wfu 
 										   WHERE wff.name=wfu.name
 										     AND wfu.name = '".$field_name."'
 											 AND wfu.idwebformuser= ".$this->idwebformuser);
+		   } else {
+			 $do_webform_fields = new WebFormUserField();
+			$do_webform_fields->query("SELECT wfu.name, wff.class as class_name, wff.variable, wff.variable_type, wfu.required 
+		                                   FROM webformfields as wff, webformuserfield as wfu 
+										   WHERE wff.name=wfu.name
+										     AND wfu.name = '".$field_name."'
+											 AND wfu.idwebformuser= ".$event_controler->fid);
+		   }
 	        $this->setLog("\n Field information class:".$do_webform_fields->class_name." Variable:".$do_webform_fields->variable); 
 			$this->setLog("\n rows:".$do_webform_fields->getNumRows() );      
 		    if ($do_webform_fields->getNumRows() == 1) {
@@ -160,25 +181,63 @@ class WebFormUser extends DataObject {
 				}
 			}	
 		}
+		if(isset($this->iduser)){
 		$contact_view = new ContactView() ;
 		$contact_view->setUser($this->iduser);
 		$contact_view->addFromContact($do_contact);
-		
-		$tags = explode(",", $this->tags);
-		
-		foreach ($tags as $tag) {
-			$tag = trim($tag);
-			$do_tag = new Tag();
-			$do_tag->addNew(); 
-			$do_tag->addTagAssociation($do_contact->getPrimaryKeyValue(), $tag, "contact", $this->iduser);
-			$contact_view->addTag($tag);
-        }
-		if (strlen($this->urlnext) > 0) {
-			$event_controler->setUrlNext($this->urlnext);
 		} else {
-			$event_controler->setUrlNext($GLOBALS['cfg_ofuz_site_http_base'].'web_form_thankyou.php');
+		$contact_view = new ContactView() ;
+		$contact_view->setUser($event_controler->uid);
+		$contact_view->addFromContact($do_contact);
 		}
-		$event_controler->addParam("do_contact", $do_contact);
+		
+		if(isset($this->tags)){
+			$tags = explode(",", $this->tags);
+		
+			foreach ($tags as $tag) {
+				$tag = trim($tag);
+				$do_tag = new Tag();
+				$do_tag->addNew(); 
+				$do_tag->addTagAssociation($do_contact->getPrimaryKeyValue(), $tag, "contact", $this->iduser);
+				$contact_view->addTag($tag);
+			}
+			if (strlen($this->urlnext) > 0) {
+				$event_controler->setUrlNext($this->urlnext);
+			} else {
+				$event_controler->setUrlNext($GLOBALS['cfg_ofuz_site_http_base'].'web_form_thankyou.php');
+			}
+			$event_controler->addParam("do_contact", $do_contact);
+		} else {
+			$sql = "SELECT * FROM {$this->table} WHERE idwebformuser=$event_controler->fid";
+			$this->query($sql);
+			while($this->fetch()){
+			$tags = $this->getData("tags");
+			$urlnext = $this->getData("urlnext");
+			}
+			
+			$tags = explode(",", $tags);
+		
+			foreach ($tags as $tag) {
+				$tag = trim($tag);
+				$do_tag = new Tag();
+				$do_tag->addNew(); 
+				$do_tag->addTagAssociation($do_contact->getPrimaryKeyValue(), $tag, "contact", $this->iduser);
+				$contact_view->addTag($tag);
+			}
+			if (strlen($urlnext) > 0) {
+				$event_controler->setUrlNext($urlnext);
+			} else {
+				
+				
+				$url = $GLOBALS['cfg_ofuz_site_http_base'].'web_form_thankyou.php';
+				//$event_controler->setUrlNext($url);
+				//header("location:$url");
+				$err_disp = new Display($url);
+				$event_controler->setDisplayNext($err_disp);
+				$event_controler->doForward();
+			}
+			//$event_controler->addParam("do_contact", $do_contact);
+		}
 	}
 	
 	function eventSendEmailAlert(EventControler $event_controler) {
@@ -239,5 +298,93 @@ class WebFormUser extends DataObject {
                   $q->query("delete from webformuserfield where idwebformuser = ".$idwebformuser);  
                 }		
 	}
+	
+	
+	
+	/**
+	 * saveWebForm()
+	 * this will check if contact exists with firname, lastname, name and email 
+	 * If exist add to it, if doesn't exists create a new one.
+	 */
+	
+	function posteventAddContact($fid,$fields,$nxturl,$uid,$tags) {
+	//echo 'hh';die();
+	
+		//$fields = $_REQUEST['fields']; 
+		//$fields = $event_controler->fields;
+		
+		$this->setLog("\n eventAddContact, creating new contact from form, using ".count($fields)." fields. (".date("Y/m/d H:i:s").")");
+		//$dropcode = $_POST['dropcode'];
+		
+		$do_contact = new Contact();
+		$do_contact->iduser = $uid;
+		$do_contact->add();
+		$this->setLog("\n new contact:".$do_contact->idcontact." for user:".$uid);
+		
+		foreach ($fields as $field_name => $field_value) {
+			$this->setLog("\n Processing field:".$field_name." with value:".$field_value);
+			$do_webform_fields = new WebFormUserField();
+			$do_webform_fields->query("SELECT wfu.name, wff.class as class_name, wff.variable, wff.variable_type, wfu.required 
+		                                   FROM webformfields as wff, webformuserfield as wfu 
+										   WHERE wff.name=wfu.name
+										     AND wfu.name = '".$field_name."'
+											 AND wfu.idwebformuser= ".$fid);
+	        $this->setLog("\n Field information class:".$do_webform_fields->class_name." Variable:".$do_webform_fields->variable); 
+			$this->setLog("\n rows:".$do_webform_fields->getNumRows() );      
+		    if ($do_webform_fields->getNumRows() == 1) {
+				if ($do_webform_fields->class_name == "Contact") {
+					$this->setLog("\n     Updating contact");
+					$do_contact->{$do_webform_fields->variable} = $field_value;
+                    $do_contact->update();
+				} else {
+					$update = false;
+					if (is_object(${'sub_'.$do_webform_fields->class_name})) {
+						if (${'sub_'.$do_webform_fields->class_name}->getType() == $do_webform_fields->variable_type) {
+							$update = true;
+						}
+					}
+					if ($update) {
+						$this->setLog("\n     Updating class:".$do_webform_fields->class_name);
+						$obj = ${'sub_'.$do_webform_fields->class_name};
+						$obj->{$do_webform_fields->variable} = $field_value;
+						$obj->update();
+					} else {
+						$class_name = $do_webform_fields->class_name;
+						${'sub_'.$class_name} = new $class_name();
+						$obj = ${'sub_'.$class_name};
+						$obj->{$do_webform_fields->variable} = $field_value;
+						if (method_exists($obj, "setType") && strlen($do_webform_fields->variable_type) > 0) {
+							$obj->setType($do_webform_fields->variable_type);
+						}
+						$obj->idcontact = $do_contact->getPrimaryKeyValue();
+						$obj->add();
+					}
+				}
+			}	
+		}
+		$contact_view = new ContactView() ;
+		$contact_view->setUser($uid);
+		$contact_view->addFromContact($do_contact);
+		
+		$tags = explode(",", $tags);
+		
+		foreach ($tags as $tag) {
+			$tag = trim($tag);
+			$do_tag = new Tag();
+			$do_tag->addNew(); 
+			$do_tag->addTagAssociation($do_contact->getPrimaryKeyValue(), $tag, "contact", $fid);
+			$contact_view->addTag($tag);
+        }
+		if (strlen($nexturl) > 0) {
+			//$event_controler->setUrlNext($this->urlnext);
+			header("location:$nxturl");
+		} else {
+			//$event_controler->setUrlNext($GLOBALS['cfg_ofuz_site_http_base'].'web_form_thankyou.php');
+			$url = $GLOBALS['cfg_ofuz_site_http_base'].'web_form_thankyou.php';
+			header("location:$url");
+		}
+		//$event_controler->addParam("do_contact", $do_contact);
+	}
+	
 }	
 ?>
