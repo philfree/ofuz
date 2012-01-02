@@ -56,10 +56,21 @@
         <?php } ?>
         </div>
 
-        <div class="layout_social">
+		<?php if($GLOBALS['thistab'] != 'Help'){?>
+		<div class="layout_navbar_right_help"><a href="/help-support.php">Help</a></div>
+		<?php } else { ?>
+		<div class="layout_navbar_right_help">
+			<div class="layout_navtab_on_l"></div>
+			 <div class="layout_navtab_on_text">
+				<a href="/help-support.php">Help</a>
+			 </div>
+			<div class="layout_navtab_on_r"></div>	
+		</div>
+		<?php } ?>
+<!--        <div class="layout_social">
             <a href="http://www.facebook.com/ofuzfan"><img src="/images/facebook_icon.png" width="38" height="38" alt="" /></a>
             <a href="http://twitter.com/ofuz"><img src="/images/t_logo-a.png" width="36" height="36" alt="" /></a>
-        </div>
+        </div>-->
 
         <div class="layout_navbar_left">
         <?php

@@ -25,6 +25,8 @@ img { border: none; }
 .layout_social img { vertical-align: top; margin-left: 10px; }
 .layout_navbar_left { position: absolute; left: 230px; bottom: 0; height: 36px; line-height: 38px; background-image: url("/images/navbar_bg.jpg"); padding: 0 15px; overflow: hidden; }
 .layout_navbar_right { position: absolute; right: 110px; bottom: 0; height: 36px; line-height: 38px; background-image: url("/images/navbar_bg.jpg"); padding: 0 5px; overflow: hidden; }
+.layout_navbar_right_help { position: absolute; right: 0px; bottom: 0; height: 36px; line-height: 38px; background-image: url("/images/navbar_bg.jpg"); padding: 0 5px; overflow: hidden; }
+.layout_navbar_right_help a, .layout_navbar_right_help a:visited { font-size: 10pt; color: #1f3d40; }
 .layout_navtab { float: left; padding: 0 15px; }
 .layout_navtab a, .layout_navtab a:visited { font-size: 10pt; color: #1f3d40; }
 .layout_navtab_on { float: left; }
