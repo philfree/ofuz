@@ -57,12 +57,12 @@
         </div>
 
 		<?php if($GLOBALS['thistab'] != 'Help'){?>
-		<div class="layout_navbar_right_help"><a href="/help-support.php">Help</a></div>
+		<div class="layout_navbar_right_help"><a href="/help-support.php">Help &amp; support</a></div>
 		<?php } else { ?>
 		<div class="layout_navbar_right_help">
 			<div class="layout_navtab_on_l"></div>
 			 <div class="layout_navtab_on_text">
-				<a href="/help-support.php">Help</a>
+				<a href="/help-support.php">Help &amp; support</a>
 			 </div>
 			<div class="layout_navtab_on_r"></div>	
 		</div>
