@@ -40,7 +40,9 @@
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-  
+<style type="text/css">
+	.ui-effects-transfer { border: 2px groove #B13283; }
+</style>
 
 <script type="text/javascript">
     //<![CDATA[
@@ -259,49 +261,137 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
 ?>
 
     $(document).ready(function() {
-        //$("div[id^=templt]").hover(function(){$("div[id^=trashcan]",this).show("slow");},function(){$("div[id^=trashcan]",this).hide("slow");});
 
-        $("#tasks_list_overdue").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_overdue").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
+	$("#tasks_list_overdue").sortable({
+		connectWith: ['#tasks_list_today', '#tasks_list_tomorrow', '#tasks_list_thisweek', '#tasks_list_nextweek', '#tasks_list_thismonth', '#tasks_list_later'],
+		opacity: 0.4,
+		receive: function(event, ui) {
+			//Run this code whenever an item is dragged and dropped into this list
+			var item= ui.item.attr('id');
+			var selectedEffect = 'transfer';
+			var options = {};
+			if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_overdue", className: 'ui-effects-transfer' }; }
+			$("#"+item).effect(selectedEffect,options,500,callback(item));
+			var position_dropped_element = ui.item.prevAll().length;
+		},
+		update:function(){
+		  var priorities=$("#tasks_list_overdue").sortable("serialize");
+		  $.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=overdue");
+		  //$("#info").load("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=today");
+		}
+	}),
+	$("#tasks_list_today").sortable({
+		connectWith: ['#tasks_list_overdue', '#tasks_list_tomorrow', '#tasks_list_thisweek', '#tasks_list_nextweek', '#tasks_list_thismonth', '#tasks_list_later'],
+		opacity: 0.4,
+		receive: function(event, ui) {
+			//Run this code whenever an item is dragged and dropped into this list
+			var item= ui.item.attr('id');
+			var selectedEffect = 'transfer';
+			var options = {};
+			if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_today", className: 'ui-effects-transfer' }; }
+			$("#"+item).effect(selectedEffect,options,500,callback(item));
+			var position_dropped_element = ui.item.prevAll().length;
+  			//$("#info").load("drag_drop_add_remove_tools.php?item="+item+"&position_dropped_element="+position_dropped_element);
+		},
+		update:function(){
+		  var priorities=$("#tasks_list_today").sortable("serialize");
+		  //alert(priorities);
+		  $.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=today");
+		  //$("#info").load("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=today");
+		}
+	}),
+	$("#tasks_list_tomorrow").sortable({
+		connectWith: ['#tasks_list_overdue', '#tasks_list_today', '#tasks_list_thisweek', '#tasks_list_nextweek', '#tasks_list_thismonth', '#tasks_list_later'],
+		opacity: 0.4,
+		receive: function(event, ui) {
+			//Run this code whenever an item is dragged and dropped into this list
+			var item= ui.item.attr('id');
+			var selectedEffect = 'transfer';
+			var options = {};
+			if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_tomorrow", className: 'ui-effects-transfer' }; }
+			$("#"+item).effect(selectedEffect,options,500,callback(item));
+			var position_dropped_element = ui.item.prevAll().length;
+		},
+		update:function(){
+		  var priorities=$("#tasks_list_tomorrow").sortable("serialize");
+		  $.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=tomorrow");
+		}
+	}),
+	$("#tasks_list_thisweek").sortable({
+		connectWith: ['#tasks_list_overdue', '#tasks_list_today', '#tasks_list_tomorrow', '#tasks_list_nextweek', '#tasks_list_thismonth', '#tasks_list_later'],
+		opacity: 0.4,
+		receive: function(event, ui) {
+			//Run this code whenever an item is dragged and dropped into this list
+			var item= ui.item.attr('id');
+			var selectedEffect = 'transfer';
+			var options = {};
+			if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_thisweek", className: 'ui-effects-transfer' }; }
+			$("#"+item).effect(selectedEffect,options,500,callback(item));
+			var position_dropped_element = ui.item.prevAll().length;
+		},
+		update:function(){
+		  var priorities=$("#tasks_list_thisweek").sortable("serialize");
+		  $.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=thisweek");
+		}
+	}),
+	$("#tasks_list_nextweek").sortable({
+		connectWith: ['#tasks_list_overdue', '#tasks_list_today', '#tasks_list_tomorrow', '#tasks_list_thisweek', '#tasks_list_thismonth', '#tasks_list_later'],
+		opacity: 0.4,
+		receive: function(event, ui) {
+			//Run this code whenever an item is dragged and dropped into this list
+			var item= ui.item.attr('id');
+			var selectedEffect = 'transfer';
+			var options = {};
+			if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_nextweek", className: 'ui-effects-transfer' }; }
+			$("#"+item).effect(selectedEffect,options,500,callback(item));
+			var position_dropped_element = ui.item.prevAll().length;
+		},
+		update:function(){
+		  var priorities=$("#tasks_list_nextweek").sortable("serialize");
+		  $.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=nextweek");
+		}
+	}),
+	$("#tasks_list_thismonth").sortable({
+		connectWith: ['#tasks_list_overdue', '#tasks_list_today', '#tasks_list_tomorrow', '#tasks_list_thisweek', '#tasks_list_nextweek', '#tasks_list_later'],
+		opacity: 0.4,
+		receive: function(event, ui) {
+			//Run this code whenever an item is dragged and dropped into this list
+			var item= ui.item.attr('id');
+			var selectedEffect = 'transfer';
+			var options = {};
+			if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_thismonth", className: 'ui-effects-transfer' }; }
+			$("#"+item).effect(selectedEffect,options,500,callback(item));
+			var position_dropped_element = ui.item.prevAll().length;
+		},
+		update:function(){
+		  var priorities=$("#tasks_list_thismonth").sortable("serialize");
+		  $.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=thismonth");
+		}
+	}),
+	$("#tasks_list_later").sortable({
+		connectWith: ['#tasks_list_overdue', '#tasks_list_today', '#tasks_list_tomorrow', '#tasks_list_thisweek', '#tasks_list_nextweek', '#tasks_list_thismonth'],
+		opacity: 0.4,
+		receive: function(event, ui) {
+			//Run this code whenever an item is dragged and dropped into this list
+			var item= ui.item.attr('id');
+			var selectedEffect = 'transfer';
+			var options = {};
+			if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_later", className: 'ui-effects-transfer' }; }
+			$("#"+item).effect(selectedEffect,options,500,callback(item));
+			var position_dropped_element = ui.item.prevAll().length;
+		},
+		update:function(){
+		  var priorities=$("#tasks_list_later").sortable("serialize");
+		  $.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=later");
+		}
+	}).disableSelection();
 
-        $("#tasks_list_today").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_today").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
-
-        $("#tasks_list_tomorrow").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_tomorrow").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
-
-        $("#tasks_list_thisweek").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_thisweek").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
-
-        $("#tasks_list_nextweek").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_nextweek").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
-
-        $("#tasks_list_thismonth").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_thismonth").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
-
-        $("#tasks_list_later").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_later").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
+	function callback(item){
+			setTimeout(function(){
+				$("#"+item+":hidden").removeAttr('style').hide().fadeIn();
+				
+			}, 1000);
+	};
 
     });
 
@@ -385,7 +475,7 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
                             <!--<div class="tasktop">-->
         
                             <div class="mainheader pad20">
-                                <span class="headline14">Your tasks</span>
+                                <span class="headline14">Your tasks</span><!--<div id="info">testing message place</div>-->
                                 <?php
                                       if($_GET['t'] == 't'){$_SESSION['remember_task_on'] = '';}
                                       if($_GET['t']=='p' || $_SESSION['remember_task_on']== 'Project'){
@@ -509,7 +599,7 @@ if($do_task->getNumRows()){
 		    </div>
 		  </div>
 		</div>
-	      </div>
+	      <!--</div>-->
 <?php                 
 }
 ?>
@@ -532,7 +622,6 @@ if($do_task->getNumRows()){
 		  </div>
 		</div>
 	      </div>
-	    </div>
 
 <?php
 }

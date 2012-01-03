@@ -587,7 +587,7 @@ class Task extends DataObject {
                      AND t.due_date != 'Next week'
                      ORDER BY t.due_date_dateformat DESC");
 
-      $html = $this->viewTaskList();
+      $html = $this->viewTaskList('later');
       echo $html;
     }
 
@@ -656,7 +656,7 @@ class Task extends DataObject {
                      AND t.due_date != 'Next week'
                      ORDER BY   t.due_date_dateformat DESC");
 
-   $html = $this->viewTaskList('');
+   $html = $this->viewTaskList('thismonth');
    echo $html;
  }
 
@@ -1073,13 +1073,42 @@ class Task extends DataObject {
      * Receives new sort order and writes it to the DB task table
      */
     function eventAjaxPrioritySort(EventControler $event_controler) {
+
+	$due_dt = $event_controler->due_date;
+
+	switch($due_dt) {
+	  CASE "overdue" : $due_date = "Overdue";
+			   $due_date_dateformat = date("Y-m-d", strtotime("-1 days"));
+			   break;
+	  CASE "today"   : $due_date = "Today";
+			   $due_date_dateformat = date("Y-m-d");
+			   break;
+	  CASE "tomorrow"   : $due_date = "Tomorrow";
+			   $due_date_dateformat = date("Y-m-d",strtotime("+1 days"));
+			   break;
+	  CASE "thisweek"   : $due_date = "This week";
+			   $due_date_dateformat = date("Y-m-d",strtotime("next Friday"));
+			   break;
+	  CASE "nextweek"   : $due_date = "Next week";
+			   $due_date_dateformat = date("Y-m-d",strtotime("next Friday",strtotime("+1 week")));
+			   break;
+	  CASE "thismonth"   : $due_date = "This month";
+			   $due_date_dateformat = date('Y-m-d',strtotime('-1 second',strtotime('+1 month',strtotime(date('m').'/01/'.date('Y').' 00:00:00'))));
+			   break;
+	  CASE "later"   : $due_date = "Later";
+			   $due_date_dateformat = '0000-00-00';
+			   break;
+	}
+	
         $q = new sqlQuery($this->getDbCon());
-
+	$sql = "";
         foreach ($event_controler->pt as $priority => $idtask) {
-            $q->query("UPDATE {$this->table} SET priority = $priority WHERE idtask = $idtask");
+	    //$sql .= "UPDATE {$this->table} SET priority = $priority, due_date = '$due_date',due_date_dateformat='$due_date_dateformat' WHERE idtask = $idtask"."<br />";
+            $q->query("UPDATE {$this->table} SET priority = $priority, due_date = '$due_date',due_date_dateformat='$due_date_dateformat' WHERE idtask = $idtask");	    
         }
-
+	//echo $sql;
         $event_controler->addOutputValue(true);
+
     }
   
 
