@@ -382,7 +382,7 @@ class Task extends DataObject {
                      LEFT JOIN project_task pt 
                      INNER JOIN project p ON pt.idproject=p.idproject
                      ON t.idtask=pt.idtask
-                     where DATEDIFF(t.due_date_dateformat,'".$today."') < 0
+                     WHERE DATEDIFF(t.due_date_dateformat,'".$today."') < 0
                      AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open' 
                      AND t.iduser = ".$_SESSION['do_User']->iduser." 
                      ORDER BY t.priority ASC,t.due_date_dateformat LIMIT 10");  
@@ -416,8 +416,9 @@ class Task extends DataObject {
                     ORDER BY t.priority ASC,t.due_date_dateformat
                   ");
 
-      $html= $this->viewTaskList('overdue');
 
+      $html= $this->viewTaskList('overdue');
+      
       echo $html;
  }
 
@@ -1075,6 +1076,7 @@ class Task extends DataObject {
     function eventAjaxPrioritySort(EventControler $event_controler) {
 
 	$due_dt = $event_controler->due_date;
+	$dropped_idtask = $event_controler->dropped_idtask;
 
 	switch($due_dt) {
 	  CASE "overdue" : $due_date = "Overdue";
@@ -1101,10 +1103,16 @@ class Task extends DataObject {
 	}
 	
         $q = new sqlQuery($this->getDbCon());
-	$sql = "";
+
         foreach ($event_controler->pt as $priority => $idtask) {
-	    //$sql .= "UPDATE {$this->table} SET priority = $priority, due_date = '$due_date',due_date_dateformat='$due_date_dateformat' WHERE idtask = $idtask"."<br />";
-            $q->query("UPDATE {$this->table} SET priority = $priority, due_date = '$due_date',due_date_dateformat='$due_date_dateformat' WHERE idtask = $idtask");	    
+	    $sql_due_date_dateformat = "";
+	    if($idtask == $dropped_idtask) {
+	      $sql_due_date_dateformat = ",due_date_dateformat='$due_date_dateformat'";	    
+	    }
+
+	    $sql = "UPDATE {$this->table} SET priority = $priority, due_date = '$due_date'".$sql_due_date_dateformat." WHERE idtask = $idtask";
+	    
+	    $q->query($sql);
         }
 	//echo $sql;
         $event_controler->addOutputValue(true);
