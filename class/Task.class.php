@@ -576,6 +576,7 @@ class Task extends DataObject {
      * 
     */
     function eventAjaxGetAllTasksLater(EventControler $evtcl) {
+/*
       $today = date('Y-m-d');
       $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name
                      FROM task t 
@@ -587,6 +588,18 @@ class Task extends DataObject {
                      AND t.due_date != 'This week'
                      AND t.due_date != 'Next week'
                      ORDER BY t.due_date_dateformat DESC");
+*/
+      $later_date = date('Y-m');
+      $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name
+                     FROM task t 
+                     LEFT JOIN project_task pt 
+                     INNER JOIN project p ON pt.idproject=p.idproject
+                     ON t.idtask=pt.idtask
+                     WHERE (t.due_date_dateformat = '0000-00-00' OR DATE_FORMAT( t.due_date_dateformat, '%Y-%m' ) > '".$later_date."' ) AND t.status = 'open' AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     AND due_date != 'Tomorrow'
+                     AND due_date != 'This week'
+                     AND due_date != 'Next week'
+                     ORDER BY t.priority ASC,t.due_date_dateformat DESC LIMIT 20");  
 
       $html = $this->viewTaskList('later');
       echo $html;
@@ -649,7 +662,8 @@ class Task extends DataObject {
                      ON t.idtask=pt.idtask
                      WHERE YEAR(t.due_date_dateformat) = '{$current_year}'
                      AND MONTH(t.due_date_dateformat) = '{$current_month}'
-                     AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open' 
+                     AND t.due_date_dateformat <> '0000-00-00' 
+		     AND t.status = 'open' 
                      AND t.iduser = ".$_SESSION['do_User']->iduser." 
                      AND t.due_date != 'Today'
                      AND t.due_date != 'Tomorrow'
