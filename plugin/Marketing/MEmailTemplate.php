@@ -42,15 +42,10 @@ function fnInsertMergeField(merge){
           }
     ?> 
         <div class="banner50 pad020 text16 fuscia_text"><?php echo _('Email Templates'); ?></div>
-        <div class="contentfull">
-        <div class="messageshadow">
-            <div class="messages">
             <?php
 				$msg = new Message(); 
 				//echo $msg->getMessage('web form creator instruction');
             ?>
-            </div>
-        </div><br />
         <div align="right">
             <form id="select_merge_field">
 		<select name="merge_fields" onchange="fnInsertMergeField(this)">
@@ -88,9 +83,5 @@ function fnInsertMergeField(merge){
                       echo '<div align="right">'.$do_user_email_teml->form->getFormFooter(_('Create')).'</div>';
                   }
 	 ?>
-        </div>
+
         <div class="solidline"></div>
-    </td></tr></table>
-    <div class="spacerblock_40"></div>
-    <div class="layout_footer"></div>
-</div>
