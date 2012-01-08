@@ -41,26 +41,24 @@ include_once('includes/ofuz_navtabs.php'); ?>
 	<td class="layout_lcolumn">
 	  <?php include_once('plugin_block.php'); ?>
 	</td>
-	<td class="layout_rcolumn"><div class="min660">
+	<td class="layout_rcolumn">
+		<div class="min660">
 		  <?php $msg = new Message(); 
 			  $msg->getMessageFromContext("timesheet");
               echo $msg->displayMessage();
 		?>
-	<table class="mainheader pad20" width="100%">
+	        <div class="mainheader">
+            <div class="pad20">
+                <span class="headline14"><?php echo _('Timesheet'); ?></span>
+                <?php
+                if (is_object($GLOBALS['cfg_submenu_placement']['timesheet'] ) ) {
+                	echo  $GLOBALS['cfg_submenu_placement']['timesheet']->getMenu();
+                }
+                ?>
+            </div>
+        </div>		
+	<div class="sub_action_menu">
 
-		<tr> 
-			<td><span class="headline14"><?php echo _('Timesheet'); ?></span></td>
-			<td align="right">&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php"><?php echo _('Work Feed'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="daily_notes.php"><?php echo _('Notes & Discussion'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="timesheet.php"><?php echo _('Timesheet'); ?></a></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-
-			</td>
-		</tr>
-	</table>
-	<div class="dottedline"></div>
-	<div class="section20">
-	
 <?php  
 	          
                 $e_filter = new Event("adm_project_report_discuss->eventSetMonth");
@@ -75,7 +73,9 @@ include_once('includes/ofuz_navtabs.php'); ?>
                 echo '&nbsp;&nbsp;';
                 echo $_SESSION['adm_project_report_discuss']->getWeekDropDowns();  
           ?>
-          </form><br/><div class="dottedline"></div>     
+          </form>
+          </div>
+          <br/><div class="dottedline"></div>     
 		  <div class="headline_fuscia"><?php echo _('Projects'); ?></div>
 		<?php 				
      $do_prj_discuss = new ProjectDiscuss();

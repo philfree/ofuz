@@ -28,9 +28,21 @@
              ?>
         <div class="settingsbottom"></div></div>
     </td><td class="layout_rcolumn">
-        <div class="banner60 pad020 text32"><?php echo _('Settings'); ?></div>
-        <div class="banner50 pad020 text16 fuscia_text"><?php echo _('Plugin Settings'); ?></div>
-        <div class="contentfull">
+		<div class="banner60 pad020 text32"><?php echo _('Add-On'); ?></div>
+
+         <div class="mainheader">
+            <div class="pad20">
+                <span class="headline14"><?php
+                   echo _('Full plugin list'); 
+                ?></span>
+                <?php
+                if (is_object($GLOBALS['cfg_submenu_placement']['settings_plugin'] ) ) {
+                	echo  $GLOBALS['cfg_submenu_placement']['settings_plugin']->getMenu();
+                }
+                ?>
+            </div>
+        </div>       
+        <div class="contentfull">    <div class="spacerblock_20"></div>
         <?php
                 if($_SESSION['in_page_message'] != ''){
                   echo '<div style="margin-left:0px;">';
