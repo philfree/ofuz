@@ -1110,7 +1110,7 @@ class Contact extends DataObject {
 	  *  @todo Problem with the getBodyText(true) it returns some bad encoding and no newline, could also be the problem in the template it self...
       */
 
-     function eventSendMessage(EventControler $event_controler) { 
+     function eventSendMessage(EventControler $event_controler) {      
         $this->setLog("\n eventSendMessage (".date("Y/m/d H:i:s").")");
         if ($event_controler->send == _('Send Mailing')) {
             $email_template = $_SESSION['do_message'];
@@ -1126,7 +1126,7 @@ class Contact extends DataObject {
                     $values_contact = $this->getValues();
                     $tag_values = array("flag"=>"unsubscribe_autoresponder","idtag"=>$event_controler->idtag);
                     $values = array_merge($values_contact,$tag_values);
-                    $message = $this->sendMessage($email_template, $values);
+                    $message = $this->sendMessage($email_template, $values);echo "++++++++++++++++++_";exit;
                 }else{
                     $message = $this->sendMessage($email_template, $this->getValues());
                 }
@@ -1223,15 +1223,25 @@ class Contact extends DataObject {
       *  @param $values an array with values to merge, optional.
       *  
       */
-     function sendMessage($template, $values=Array()) {
+     function sendMessage($template, $values=Array()) {   
         if (!is_object($template)) { return false; }
                 if (empty($values)) { $values = $this->getValues(); }
                 $this->last_message_sent = false;
         $do_contact_email = $this->getChildContactEmail();
         $email_to = $do_contact_email->getDefaultEmail();
         $this->setLog("\n Sending message to:".$email_to);   
-        $contact_link = '<a href="/Contact/'.$this->idcontact.'">'.$this->firstname.' '.$this->lastname.'</a>';     
-        if (strlen($email_to) > 4) { 
+        $contact_link = '<a href="/Contact/'.$this->idcontact.'">'.$this->firstname.' '.$this->lastname.'</a>';   
+
+        $do_ofuzBeanstalkd = new OfuzBeanstalkd();
+        $do_ofuzBeanstalkd ->addToQueue($mail_data,'jobqueue_send_mail',$_SESSION['do_User']->iduser);
+          echo 'Job Queue requested';
+          exit;
+
+       if (strlen($email_to) > 4) { 
+          if($this->email_optout !='y'){
+        
+ /*    
+   if (strlen($email_to) > 4) { 
             if ($this->email_optout != 'y') {
                 $emailer = new Ofuz_Emailer('UTF-8');
                 if (strlen($template->senderemail) == 0) {
@@ -1241,7 +1251,12 @@ class Contact extends DataObject {
                 $emailer->mergeArrayWithFooter($values);
                 $emailer->addTo($email_to);
                 $this->last_message_sent = true;
-                return $emailer->send();
+                echo "<pre>";
+                print_r($emailer);
+                echo "</pre>";
+                exit;
+                return $emailer->send();*/
+
             } else {
                 $_SESSION['in_page_message'] .= _("<br>".$contact_link." has opt-out and will not receive this email");
             }

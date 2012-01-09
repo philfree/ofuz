@@ -44,13 +44,12 @@
    $GLOBALS['cfg_block_placement']['MEmailTemplate'][] = "BlockEmailTemplateList";
    
    $GLOBALS['cfg_plugin_eventmultiple_placement']['contacts'][] = 
-                                        Array('name'=> 'Send a Message ',
-                                             'confirm' => '',
+                                        Array('name'=> 'Send a Message',
+                                             'confirm' => ' ',
                                              'event' => 'do_Contacts->eventGetForMailMerge',
-                                             'action' => '');
+                                             'action' => ' ');
                                              
- 
-   
+  
    $plugin_marketing_menu = new SubMenu();
    $plugin_marketing_menu->addMenuItem("WebForms", "/Tab/Marketing/WebForm")
                          ->addMenuItem("Auto Responders", "/Tab/Marketing/AutoResponder")
