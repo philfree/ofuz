@@ -76,8 +76,7 @@ $("#"+divid).fadeOut("slow");
                   $msg->getMessage($_SESSION['in_page_message']);
                   $msg->displayMessage();
                 }
-                $_SESSION['in_page_message']= '';
-                
+                $_SESSION['in_page_message']= '';                
                }
            ?>
 <table class="mainheader pad20" width="100%">
