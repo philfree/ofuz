@@ -517,17 +517,12 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
                             <!--<div class="tasktop">-->
         
                             <div class="mainheader pad20">
-                                <span class="headline14">Your tasks</span><!--<div id="info">testing message place</div>-->
+                                <span class="headline14">Your tasks</span>
                                 <?php
-                                      if($_GET['t'] == 't'){$_SESSION['remember_task_on'] = '';}
-                                      if($_GET['t']=='p' || $_SESSION['remember_task_on']== 'Project'){
-                                            $link_html = '<a href=/tasks.php?t=t>'._('Tasks By Date').'</a><span class="headerlinksI">|</span>';
-                                      }else{
-                                            $link_html = '<a href=/tasks.php?t=p>'._('Task By Projects').'</a><span class="headerlinksI">|</span>';
-                                      }
-                                ?>
-                                <span class="headerlinks"><?php echo $link_html;?><?php echo _('Upcoming');?><span class="headerlinksI">|</span><a href="tasks_completed.php"><?php echo _('Completed');?></a></span>
-                                <!--<span class="headerlinksI">|</span><a href="ofuz_demo_tasks3.php">Assigned</a></span>//-->
+								if (is_object($GLOBALS['cfg_submenu_placement']['tasks'] ) ) {
+									echo  $GLOBALS['cfg_submenu_placement']['tasks']->getMenu();
+								}
+								?>
                             </div>
 
 
@@ -566,34 +561,6 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
                             </div>
 
 
-
-
-        <div class="contentfull">
-          <?php
-           if($_GET['t']=='p' || $_SESSION['remember_task_on']== 'Project'){  // Starts the first if
-                    $_SESSION['remember_task_on'] = 'Project';
-                    $do_task->getAllTaskProjectRelated();
-                    $last_project = 0;
-                    echo '<div class="tasks">';
-                    while($do_task->next()){
-                          if($last_project != $do_task->idproject ){                              
-                              echo '<div ><br /><b><a href="/Project/'.$do_task->idproject.'">'.$do_task->name.'</a></b></div>';
-                          }
-                          $last_project = $do_task->idproject;
-                          echo '<br /><span class="task_item">&nbsp;&nbsp;';
-                          if ($do_task->task_category != '') { 
-                              echo  '<span class="task_category">'.$do_task->task_category.'</span>&nbsp;'; 
-                          }
-                          echo '<span class="task_desc"><a href="/Task/'.$do_task->idproject_task.'">'.$do_task->task_description.'</a>';
-                          echo '</span></span>';
-                          //echo '<div></div>';
-                          //echo '<span></span>';
-                    }
-                    echo '</div>';
-            }else{
-                  $_SESSION['remember_task_on'] = '';
-            ?>
-        </div>
 
 <!--Over Due Tasks-->
 
@@ -743,7 +710,6 @@ if ($do_task->getNumRows()) {
 <div id="tasks_options"><a href="#" onclick="showAllTasksLater(); return false;"><?php echo _('More...');?></a></div>
 <?php } ?>
 <?php } 
-}// Ends the else condition
 ?>
 
             <div class="dottedline"></div>

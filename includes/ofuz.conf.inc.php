@@ -160,7 +160,7 @@
   include_once("class/OfuzBeanstalkd.class.php");
   
 
-  define('RADRIA_LOG_RUN_OFUZ', false);
+  define('RADRIA_LOG_RUN_OFUZ', true);
   define('OFUZ_LOG_RUN_TAG', false);
   define('OFUZ_LOG_RUN_CONTACT', false); 
   define('OFUZ_LOG_RUN_WEBFORM', false);

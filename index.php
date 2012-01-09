@@ -174,17 +174,21 @@ $e_editForm->setSecure(false);
             }
             ?>
 
-        <table class="mainheader pad20" width="100%">
-            <tr>
-                <td><span class="headline14">
-                <?php
+        <div class="mainheader">
+            <div class="pad20">
+                <span class="headline14"><?php
                     $do_workfeed = new WorkFeed();
                     printf(_("%s 's Work Feed:"),$_SESSION['do_User']->firstname) . "\n";
                 ?></span>
-                </td>
-                <td align="right">&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php"><?php echo _('Work Feed'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="daily_notes.php"><?php echo _('Notes & Discussion'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="timesheet.php"><?php echo _('Timesheet'); ?></a></td>
-            </tr>
-        </table>
+                <?php
+                if (is_object($GLOBALS['cfg_submenu_placement']['index'] ) ) {
+                	echo  $GLOBALS['cfg_submenu_placement']['index']->getMenu();
+                }
+                ?>
+            </div>
+        </div>
+        
+        
         <script type="text/javascript">
         function autoLoadWorkfeed() {
                 $('div#last_feed_loader').html('<img src="/images/loader1.gif">');

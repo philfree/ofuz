@@ -335,14 +335,14 @@ if ($do_contact_limit->canUserAddContact()) {
                     <?php 
                       foreach ($GLOBALS['cfg_plugin_eventmultiple_placement']['contacts'] as $event_multiple_plugin) {
 						  if (strlen($event_multiple_plugin['event'])>0) {
-						     echo "\n<br>"._('or ').'<span class="redlink"><a href="#" onclick="eventActionMultiple(\''.$event_multiple_plugin['event'].'\',\''._($event_multiple_plugin['confirm']).'\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
+						     echo "\n<br>"._('or ').'<span class="redlink"><a href="#" onclick="eventActionMultiple(\''.$event_multiple_plugin['event'].'\',\''.$event_multiple_plugin['confirm'].'\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
 						  } elseif (strlen($event_multiple_plugin['action'])>0) {
 							 echo "\n<br>"._('or ').
 							  '<span class="redlink">
 							    <a href="#" onclick="actionMultiple(\''.
 							      $event_multiple_plugin['action'].
 							      '\',\''.
-							      _($event_multiple_plugin['confirm']).
+							      $event_multiple_plugin['confirm'].
 							      '\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
 						  }
 						  
