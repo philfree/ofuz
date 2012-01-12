@@ -199,8 +199,8 @@ h2.headline {   padding: 20px 0; position: relative; padding: 20px 0; font-size:
 .section10 { width: 100%; margin: 10px 0; }
 
 .headerlinks { position: absolute; right: 30px; top: 16px; color: #000000; }
-.headerlinks a { color: #0000ff; }
-.headerlinks a:visited { color: #0000ff; }
+.headerlinks a { font-weight:bold; font-size:16px; }
+.headerlinks a:visited { font-weight:bold; font-size:16px;}
 .headerlinksI { margin: 0 6px; color: #d7ccdd; }
 .contentfull { margin: 0 20px; text-align: left; min-width: 660px; }
 .min660 { min-width: 660px; }
