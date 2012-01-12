@@ -1,5 +1,5 @@
 <?php 
-// Copyrights 2008 - 2011 all rights reserved, SQLFusion LLC, info@sqlfusion.com
+// Copyrights 2008 - 2012 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
     $pageTitle = 'Ofuz :: Project';
@@ -217,22 +217,18 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
     </td><td class="layout_rcolumn">
      <?php
             $msg = new Message(); 
-   if ($msg->getMessageFromContext("project tasks")) {
-    echo $msg->displayMessage();
-   }
+            if ($msg->getMessageFromContext("project tasks")) {
+               echo $msg->displayMessage();
+            }
         ?> 
-        <div class="mainheader">
-            <div class="project_detail_name">
-                <span class="headline14"><?php echo $project_details['name']; ?></span>
-                <span class="project_edit">
-                  <?php 
-                      if($project_operation_access === true){
-                  ?>
-                    <a href="#" onclick="fnEditProject(); return false;">edit</a>
-                  <?php } ?>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="fnFilterProject(); return false;">filter</a>
-                </span>
-            </div>
+       
+        <div class="mainheader pad20">
+                <span class="page_title"><?php echo $project_details['name']; ?></span>
+                <?php
+                if (is_object($GLOBALS['cfg_submenu_placement']['project'] ) ) {
+                	echo  $GLOBALS['cfg_submenu_placement']['project']->getMenu();
+                }
+                ?>
         </div>
           <?php
               if($_SESSION['do_list_project_task']->project_id_searched != $idproject ){

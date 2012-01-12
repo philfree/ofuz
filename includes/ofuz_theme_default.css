@@ -15,7 +15,7 @@ img { border: none; }
 .layout_columns td { vertical-align: top; font-size: 11pt; padding: 0; }
 .layout_lmargin { width: 100px; background-image: url("/images/lmargin_bg.jpg"); background-repeat: no-repeat; }
 .layout_rmargin { width: 100px; background-image: url("/images/rmargin_bg.jpg"); background-repeat: no-repeat; }
-.layout_lcolumn { width: 300px; min-width: 300px; font-size: 10pt; }
+.layout_lcolumn { width: 300px; min-width: 300px; font-size: 10pt; }  /** not sure we need this one **/
 .layout_rcolumn { font-size: 10pt; padding-top: 10px; }
 .layout_column250 { width: 250px; font-size: 10pt; }
 .layout_content { text-align: left; background-color: #ffffff; }
@@ -75,12 +75,12 @@ img { border: none; }
 .banner50 { height: 50px; font-weight: bold; position: relative; }
 .banner40 { height: 40px; font-weight: bold; position: relative; }
 
-.left_menu { width: 250px; margin-left: 20px; background-color: #f7f7ed; background-image: url("/images/left_menu.gif"); overflow: hidden; }
+.left_menu { width: 250px; margin: 0px 20px; background-color: #f7f7ed; background-image: url("/images/left_menu.gif"); overflow: hidden; }
 .left_menu_content { margin: 10px 15px; font-size: 14px; }
-.left_menu_header { position: relative; width: 250px; height: 40px; margin-left: 20px; background-color: #f7f7ed; background-image: url("/images/left_menu_header.jpg"); }
+.left_menu_header { position: relative; width: 250px; height: 40px; margin:0px 20px; background-color: #f7f7ed; background-image: url("/images/left_menu_header.jpg"); }
 .left_menu_header_content { margin-left: 15px; line-height: 40px; font-size: 16px; font-weight: bold; }
 .left_menu_header_link { position: absolute; right: 12px; top: 0; line-height: 40px; font-size: 16px; }
-.left_menu_footer { width: 250px; height: 20px; margin-left: 20px; background-color: #f7f7ed; background-image: url("/images/left_menu_footer.jpg"); }
+.left_menu_footer { width: 250px; height: 20px; margin: 0px 20px; background-color: #f7f7ed; background-image: url("/images/left_menu_footer.jpg"); }
 
 .left_text_links { width: 250px; margin-left: 25px; }
 .dojo_textarea { width: 100%; }
@@ -198,6 +198,7 @@ h2.headline {   padding: 20px 0; position: relative; padding: 20px 0; font-size:
 .section20 { width: 100%; margin: 20px 0; }
 .section10 { width: 100%; margin: 10px 0; }
 
+.page_title {  font-size: 14pt; font-weight: bold; }
 .headerlinks { position: absolute; right: 30px; top: 16px; color: #000000; }
 .headerlinks a { font-weight:bold; font-size:16px; }
 .headerlinks a:visited { font-weight:bold; font-size:16px;}

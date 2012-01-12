@@ -167,16 +167,15 @@ $e_editForm->setSecure(false);
             $do_contact = $_SESSION['do_User']->getChildContact();
             if ($do_contact->getNumRows() == 0) {
                 $msg->getMessage("welcome");
-                echo '<div class="marginright">',$msg->displayMessage(),'</div>';
+                $msg->displayMessage();
             } else {
                 $msg->getMessageFromContext("dashboard");
-                echo '<div class="marginright">',$msg->displayMessage(),'</div>';
+                $msg->displayMessage();
             }
             ?>
 
-        <div class="mainheader">
-            <div class="pad20">
-                <span class="headline14"><?php
+        <div class="mainheader pad20">
+                <span class="page_title"><?php
                     $do_workfeed = new WorkFeed();
                     printf(_("%s 's Work Feed:"),$_SESSION['do_User']->firstname) . "\n";
                 ?></span>
@@ -185,7 +184,6 @@ $e_editForm->setSecure(false);
                 	echo  $GLOBALS['cfg_submenu_placement']['index']->getMenu();
                 }
                 ?>
-            </div>
         </div>
         
         

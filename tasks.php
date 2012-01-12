@@ -517,7 +517,7 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
                             <!--<div class="tasktop">-->
         
                             <div class="mainheader pad20">
-                                <span class="headline14">Your tasks</span>
+                                <span class="page_title">Your tasks</span>
                                 <?php
 								if (is_object($GLOBALS['cfg_submenu_placement']['tasks'] ) ) {
 									echo  $GLOBALS['cfg_submenu_placement']['tasks']->getMenu();
