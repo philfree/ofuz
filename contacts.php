@@ -204,28 +204,17 @@ function sticky_relocate() {
   else
     $('#contacts_ctlbar').removeClass('stick');
   }
-// If you have jQuery directly, use the following line, instead
+ /*
+  * Sticky Div
+  * On scroll down, the action menu sticks on top
+    On scroll up, it comes back to original position
+    On selecting the last contact, the action menu sticks on top and display.
+  */
  $(function() {
   $(window).scroll(sticky_relocate);
   sticky_relocate();
   });
 
-
-/*
-$(function () { 
-  var div_top = $('#sticky-anchor').offset().top;
-  var $el = $('#contacts_ctlbar'), 
-      originalTop = $el.offset().top;  // store original top position
-
-  $(window).scroll(function(e){ 
-    if ($(this).scrollTop() > div_top ){ 
-      $el.css({'position': 'fixed', 'top': '0px', 'width':'1000px'});
-    } else { 
-      $el.css({'position': 'relative', 'top': originalTop});     
-    } 
-  }); 
-});
-*/
 
 //]]>
 </script>

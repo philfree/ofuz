@@ -187,6 +187,26 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
             $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
         });
     });
+
+function sticky_relocate() {
+  var window_top = $(window).scrollTop();
+  var div_top = $('#sticky-anchor').offset().top;
+  if (window_top > div_top)
+    $('#contacts_ctlbar').addClass('stick')
+  else
+    $('#contacts_ctlbar').removeClass('stick');
+  }
+
+ /*
+  * Sticky Div
+  * On scroll down, the action menu sticks on top
+    On scroll up, it comes back to original position
+    On selecting the last project task, the action menu sticks on top and display.
+  */
+ $(function() {
+  $(window).scroll(sticky_relocate);
+  sticky_relocate();
+  });
     //]]>
 </script>
 <?php $do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
@@ -335,6 +355,7 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
   echo $e_set_close->getFormHeader();
   echo $e_set_close->getFormEvent();
      ?>
+<div id="sticky-anchor"></div>
  <div id="contacts_ctlbar" style="display: none;">
     <?php 
         echo '<b>'._('With the selected Task(s) you can:').'</b><br/>';
