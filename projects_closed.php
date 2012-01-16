@@ -60,14 +60,14 @@
         <div class="mainheader pad20">
                 <span class="page_title"><?php echo _('Projects'); ?></span>
                 <?php
-                   if (is_object($GLOBALS['cfg_submenu_placement']['projects'] ) ) {
-                	  echo  $GLOBALS['cfg_submenu_placement']['projects']->getMenu();
+                   if (is_object($GLOBALS['cfg_submenu_placement']['projects_closed'] ) ) {
+                	  echo  $GLOBALS['cfg_submenu_placement']['projects_closed']->getMenu();
                    }
                 ?>
-        </div>       
+        </div>
         <div class="contentfull">
 	        <?php
-	            $_SESSION['do_project']->getAllProjects('open');
+	            $_SESSION['do_project']->getAllProjects('closed');
 	            if ($_SESSION['do_project']->getNumRows()) {
 	                echo $_SESSION['do_project']->viewProjects();
 	            }

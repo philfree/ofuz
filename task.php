@@ -1,5 +1,5 @@
 <?php
-// Copyrights 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
+// Copyrights 2008 - 2012 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
 
@@ -7,7 +7,7 @@
 	 * task.php
 	 * Display the task discussion of a project 
 	 * It uses the object: Task, Project, ProjectTask, NoteDraft, WorkFeedProjectDiscuss, Message, Feedback, Breadcrumb
-	 * Copyright 2001 - 2010 All rights reserved SQLFusion LLC, info@sqlfusion.com 
+	 * Copyright 2001 - 2012 All rights reserved SQLFusion LLC, info@sqlfusion.com 
 	 */
 	
     //$pageTitle = 'Ofuz :: Project Task';
@@ -351,17 +351,16 @@ $(document).ready(function() {
 			if ($msg->getMessageFromContext("task discussion")) {
 				echo $msg->displayMessage();
 			}
-        ?>
-        <div class="mainheader">
-            <div class="ptask_detail_name">
-                <span class="headline14"><?php echo $_SESSION['do_project_task']->task_category.": ".$_SESSION['do_project_task']->task_description; ?></span>
+        ?> 
+         <div class="mainheader pad20">
+                <span class="page_title"><?php echo $_SESSION['do_project_task']->task_category.": ".$_SESSION['do_project_task']->task_description; ?></span>
                 <?php
-                    if($task_operation_access === true){
+                if (is_object($GLOBALS['cfg_submenu_placement']['task'] ) ) {
+                	echo  $GLOBALS['cfg_submenu_placement']['task']->getMenu();
+                }
                 ?>
-                <span class="ptask_edit"><a href="#" onclick="fnEditTask(); return false;"><?php echo _('edit');?></a></span>
-                <?php } ?>
-            </div>
         </div>
+               
         <div id="ptask_ctlbar" style="display: none;">
             <?php
                 $do_project_list = new Project();

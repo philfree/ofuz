@@ -96,7 +96,7 @@
         
 	<table class="layout_columns">
 	<tr>
-	    <td class="layout_lcolumn">
+	    <td> <!-- class="layout_lcolumn" -->
 	    <?php
 	    // Load the plugin block 
 	    $GLOBALS['page_name'] = $plugin->getCurrentPage();
@@ -120,7 +120,7 @@
         <?php if (strlen($plugin->getTitle()) > 0) { ?>
         <div class="mainheader">
             <div class="pad20">
-                <span class="headline14"><?php echo $plugin->getTitle(); ?></span>
+                <span class="page_title"><?php echo $plugin->getTitle(); ?></span>
                 <?php
                 if (is_object($GLOBALS['cfg_submenu_placement'][$plugin->getCurrentPage()]) ) {
                 	echo  $GLOBALS['cfg_submenu_placement'][$plugin->getCurrentPage()]->getMenu();
