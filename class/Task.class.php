@@ -382,7 +382,7 @@ class Task extends DataObject {
                      LEFT JOIN project_task pt 
                      INNER JOIN project p ON pt.idproject=p.idproject
                      ON t.idtask=pt.idtask
-                     where DATEDIFF(t.due_date_dateformat,'".$today."') < 0
+                     WHERE DATEDIFF(t.due_date_dateformat,'".$today."') < 0
                      AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open' 
                      AND t.iduser = ".$_SESSION['do_User']->iduser." 
                      ORDER BY t.priority ASC,t.due_date_dateformat LIMIT 10");  
@@ -416,8 +416,9 @@ class Task extends DataObject {
                     ORDER BY t.priority ASC,t.due_date_dateformat
                   ");
 
-      $html= $this->viewTaskList('overdue');
 
+      $html= $this->viewTaskList('overdue');
+      
       echo $html;
  }
 
@@ -575,6 +576,7 @@ class Task extends DataObject {
      * 
     */
     function eventAjaxGetAllTasksLater(EventControler $evtcl) {
+/*
       $today = date('Y-m-d');
       $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name
                      FROM task t 
@@ -586,8 +588,20 @@ class Task extends DataObject {
                      AND t.due_date != 'This week'
                      AND t.due_date != 'Next week'
                      ORDER BY t.due_date_dateformat DESC");
+*/
+      $later_date = date('Y-m');
+      $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name
+                     FROM task t 
+                     LEFT JOIN project_task pt 
+                     INNER JOIN project p ON pt.idproject=p.idproject
+                     ON t.idtask=pt.idtask
+                     WHERE (t.due_date_dateformat = '0000-00-00' OR DATE_FORMAT( t.due_date_dateformat, '%Y-%m' ) > '".$later_date."' ) AND t.status = 'open' AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     AND due_date != 'Tomorrow'
+                     AND due_date != 'This week'
+                     AND due_date != 'Next week'
+                     ORDER BY t.priority ASC,t.due_date_dateformat DESC LIMIT 20");  
 
-      $html = $this->viewTaskList();
+      $html = $this->viewTaskList('later');
       echo $html;
     }
 
@@ -648,7 +662,8 @@ class Task extends DataObject {
                      ON t.idtask=pt.idtask
                      WHERE YEAR(t.due_date_dateformat) = '{$current_year}'
                      AND MONTH(t.due_date_dateformat) = '{$current_month}'
-                     AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open' 
+                     AND t.due_date_dateformat <> '0000-00-00' 
+		     AND t.status = 'open' 
                      AND t.iduser = ".$_SESSION['do_User']->iduser." 
                      AND t.due_date != 'Today'
                      AND t.due_date != 'Tomorrow'
@@ -656,7 +671,7 @@ class Task extends DataObject {
                      AND t.due_date != 'Next week'
                      ORDER BY   t.due_date_dateformat DESC");
 
-   $html = $this->viewTaskList('');
+   $html = $this->viewTaskList('thismonth');
    echo $html;
  }
 
@@ -1073,13 +1088,49 @@ class Task extends DataObject {
      * Receives new sort order and writes it to the DB task table
      */
     function eventAjaxPrioritySort(EventControler $event_controler) {
+
+	$due_dt = $event_controler->due_date;
+	$dropped_idtask = $event_controler->dropped_idtask;
+
+	switch($due_dt) {
+	  CASE "overdue" : $due_date = "Overdue";
+			   $due_date_dateformat = date("Y-m-d", strtotime("-1 days"));
+			   break;
+	  CASE "today"   : $due_date = "Today";
+			   $due_date_dateformat = date("Y-m-d");
+			   break;
+	  CASE "tomorrow"   : $due_date = "Tomorrow";
+			   $due_date_dateformat = date("Y-m-d",strtotime("+1 days"));
+			   break;
+	  CASE "thisweek"   : $due_date = "This week";
+			   $due_date_dateformat = date("Y-m-d",strtotime("next Friday"));
+			   break;
+	  CASE "nextweek"   : $due_date = "Next week";
+			   $due_date_dateformat = date("Y-m-d",strtotime("next Friday",strtotime("+1 week")));
+			   break;
+	  CASE "thismonth"   : $due_date = "This month";
+			   $due_date_dateformat = date('Y-m-d',strtotime('-1 second',strtotime('+1 month',strtotime(date('m').'/01/'.date('Y').' 00:00:00'))));
+			   break;
+	  CASE "later"   : $due_date = "Later";
+			   $due_date_dateformat = '0000-00-00';
+			   break;
+	}
+	
         $q = new sqlQuery($this->getDbCon());
 
         foreach ($event_controler->pt as $priority => $idtask) {
-            $q->query("UPDATE {$this->table} SET priority = $priority WHERE idtask = $idtask");
-        }
+	    $sql_due_date_dateformat = "";
+	    if($idtask == $dropped_idtask) {
+	      $sql_due_date_dateformat = ",due_date_dateformat='$due_date_dateformat'";	    
+	    }
 
+	    $sql = "UPDATE {$this->table} SET priority = $priority, due_date = '$due_date'".$sql_due_date_dateformat." WHERE idtask = $idtask";
+	    
+	    $q->query($sql);
+        }
+	//echo $sql;
         $event_controler->addOutputValue(true);
+
     }
   
 

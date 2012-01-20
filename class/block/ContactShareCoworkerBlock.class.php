@@ -15,8 +15,8 @@
 
 class ContactShareCoworkerBlock extends BaseBlock{
 
-      public $short_description = 'Share contact with co-worker';
-      public $long_description = 'Share the contact with one or more co-workers from the contact detail page';
+      public $short_description = 'Share contact with Co-Worker';
+      public $long_description = 'Share the contact with one or more Co-Workers from the contact detail page';
     
       /**
 	    * processBlock() , This method must be added  
@@ -34,7 +34,7 @@ class ContactShareCoworkerBlock extends BaseBlock{
           function shareWithCoworker()
           {
                
-                    $(\"#ContactEditSave__shareContact\").attr(\"action\",\"/co_workers.php\");
+                    $(\"#ContactEditSave__shareContact\").attr(\"action\",\"/share_co_workers.php\");
                     $(\"#ContactEditSave__shareContact\").submit(); 
                 
           }

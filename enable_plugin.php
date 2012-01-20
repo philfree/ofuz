@@ -29,8 +29,21 @@
         <div class="settingsbottom"></div></div>
     </td><td class="layout_rcolumn">
         <div class="banner60 pad020 text32"><?php echo _('Add-On'); ?></div>
-        <div class="banner50 pad020 text16 fuscia_text"><?php echo _('Add-On Settings'); ?></div>
+        <div class="mainheader">
+            <div class="pad20">
+                <span class="headline14"><?php
+                   echo _('Enable Add-On');
+                ?></span>
+                <?php
+                if (is_object($GLOBALS['cfg_submenu_placement']['settings_plugin'] ) ) {
+                	echo  $GLOBALS['cfg_submenu_placement']['settings_plugin']->getMenu();
+                }
+                ?>
+            </div>
+        </div> 
+    
         <div class="contentfull">
+			    <div class="spacerblock_20"></div>    
         <?php
                 if($_SESSION['in_page_message'] != ''){
                   echo '<div style="margin-left:0px;">';
@@ -54,7 +67,7 @@
              
         }*/
         
-          echo '<b>'._('Add-On').':</b><br/><br/>';
+         // echo '<b>'._('Add-On').':</b><br/><br/>';
           $do_plugin_enable = new PluginEnable();
           $do_dynamic_button = new DynamicButton();
 

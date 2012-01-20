@@ -19,21 +19,30 @@
     $do_contact_task = new Contact();
     $do_project = new Project();
 
+    $do_teams = new Teams();
+    $do_teams->getTeams();
+    $teams_count = $do_teams->getNumRows();
+
 ?>
 <script type="text/javascript">
 //<![CDATA[
 function fnHighlightCoworkers(area) {
-var cwid=$("#cwid"+area);
-var div=$("#cw"+area);
-var ctlbar=$("#coworker_ctlbar");
-cwid.attr("checked",(cwid.is(":checked")?"":"checked"));
-if (cwid.is(":checked")) {
-div.css("background-color", "#ffffdd");
-if(ctlbar.is(":hidden"))ctlbar.slideDown("fast");
-} else {
-div.css("background-color", "#ffffff");
-if($("input:checked").length==0)ctlbar.slideUp("fast");
-}
+  var cwid=$("#cwid"+area);
+  var div=$("#cw"+area);
+  var ctlbar_top=$("#coworker_ctlbar_top");
+  var ctlbar_bottom=$("#coworker_ctlbar_bottom");
+  cwid.attr("checked",(cwid.is(":checked")?"":"checked"));
+  if (cwid.is(":checked")) {
+    div.css("background-color", "#ffffdd");
+    if(ctlbar_top.is(":hidden"))ctlbar_top.slideDown("fast");
+    if(ctlbar_bottom.is(":hidden"))ctlbar_bottom.slideDown("fast");
+  } else {
+    div.css("background-color", "#ffffff");
+    if($("input:checked").length==0) {
+      ctlbar_top.slideUp("fast");
+      ctlbar_bottom.slideUp("fast");
+    }
+  }
 }
 
 function setContactForCoworker(){
@@ -59,12 +68,10 @@ $("#"+divid).fadeOut("slow");
 <?php $do_breadcrumb = new Breadcrumb(); $do_breadcrumb->getBreadcrumbs(); ?>
 <div class="grayline1"></div>
 <div class="spacerblock_20"></div>
-<table class="layout_columns"><tr><td class="layout_lcolumn">
-<?php
-          include_once('plugin_block.php');
-        ?>
-
-</td><td class="layout_rcolumn">
+<table class="layout_columns">
+  <tr>
+    <td class="layout_lcolumn">&nbsp;</td>
+    <td class="layout_rcolumn">
 <?php
                if($_SESSION['in_page_message'] != ''){
                 $msg = new Message();
@@ -76,13 +83,14 @@ $("#"+divid).fadeOut("slow");
                   $msg->getMessage($_SESSION['in_page_message']);
                   $msg->displayMessage();
                 }
-                $_SESSION['in_page_message']= '';                
+                $_SESSION['in_page_message']= '';
+                
                }
            ?>
 <table class="mainheader pad20" width="100%">
 <tr>
 <td><span class="headline14">Co-Workers</span>
-<td align="right">&nbsp;&nbsp;&nbsp;&nbsp;<a href="teams.php"><?php echo _('Teams'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="co_workers.php"><?php echo _('All Co-Workers'); ?></a></td>
+<td align="right">&nbsp;</td>
 </tr>
 </table>
 <!--<div class="mainheader">
@@ -90,6 +98,12 @@ $("#"+divid).fadeOut("slow");
 <span class="headline14">Co-Workers</span>-->
 <div class="contentfull">
 <div class="spacerblock_20"></div>
+<div id="coworker_ctlbar_top" style="display: none;">
+<span class="redlink">
+<!-- <a href="#" onclick="setContactForCoworker(); return false;" style="font-size:20px;"><?php echo _('Share'); ?></a> -->
+<input type="button" name="btnShare" id="btnShare" onclick="setContactForCoworker(); return false;" value="<?php echo _('Share'); ?>" />
+</span>
+</div>
 <?php
                             $_SESSION['do_coworker']->getAllRequest(); //Get all the requests
                             if($_SESSION['do_coworker']->getNumrows()){
@@ -135,6 +149,36 @@ $("#"+divid).fadeOut("slow");
                               }
                                if(!$set_share){ // If not having POST vales
 
+if($teams_count) {
+echo '<b>'._('Your Teams').'</b>';
+echo '<div class="spacerblock_10"></div>';
+  while($do_teams->next()) {
+  //echo $do_teams->team_name.'<br />';
+    $arr_data = array();
+    $arr_data["idteam"] = $do_teams->idteam;
+    $arr_data["team_name"] = $do_teams->team_name;
+
+    $arr_team[] = $arr_data;
+  }
+  
+  echo '<table width="100%">';
+  foreach (array_chunk($arr_team, 3) as $row) { 
+    echo '<tr>';
+    foreach($row as $team) {
+      echo '<td width="33%">'.$team["team_name"].'</td>';
+    }
+    echo '</tr>';
+
+  }
+    echo '</table>';
+} else {
+echo '<div><b>'._('You do not have Team to share with.').'</b></div>';
+}
+echo '<div class="spacerblock_10"></div>';
+echo '<div class="solidline"></div>';
+echo '<div class="spacerblock_10"></div>';
+                                  echo '<b>'._('Your Co-Workers').'</b>';
+				  echo '<div class="spacerblock_10"></div>';
                                   //$user_coworker = new User();
                                   while($_SESSION['do_coworker']->next()){
                                       //$user_coworker->getId($_SESSION['do_coworker']->idcoworker);
@@ -223,15 +267,47 @@ echo '</div>';
                               }else{ // Having some POST data from contacts.php
                                    $e_share_cont = new Event("do_contact_sharing->eventShareContactsMultiple");
                                    $e_share_cont->addEventAction("mydb.gotoPage", 304);
+				   $e_share_cont->addEventAction("ContactTeam->eventShareExistingContactWithTeamCw", 200);
+				   $e_share_cont->addEventAction("Teams->eventShareCWsWithTeam", 210);
                                    $e_share_cont->addParam("goto", "co_workers.php");
                                    $e_share_cont->addParam("idcontacts",$contact_ids);
                                    echo $e_share_cont->getFormHeader();
                                    echo $e_share_cont->getFormEvent();
 
-                                   echo '<b>'._('Select Co-Worker you want to give access to the contact(s) and click Share to save :').'</b><br />';
-                                   echo '<div id="coworker_ctlbar" style="display: none;">';
-                                   echo '<span class="redlink"><a href="#" onclick="setContactForCoworker(); return false;" style="font-size:20px;">'._('Share').'</a></span>';
-                                   echo '</div>';
+if($teams_count) {
+  echo '<b>'._('Your Teams').'</b>';
+echo '<div class="spacerblock_10"></div>';
+  while($do_teams->next()) {
+    $arr_team = array();
+    $arr_team["idteam"] = $do_teams->idteam;
+    $arr_team["team_name"] = $do_teams->team_name;
+    $arr_teams[] = $arr_team;
+  }
+
+  echo '<table width="100%">';
+  foreach (array_chunk($arr_teams, 3) as $row) { 
+    echo '<tr>';
+    foreach($row as $team) {
+?>
+    <td width="33%">
+      <input type="checkbox" name="team[]" value="<?php echo $team["idteam"];?>" /> <?php echo $team["team_name"]; ?>
+    </td>
+<?php
+    }
+    echo '</tr>';
+
+  }
+    echo '</table>';
+
+} else {
+echo '<div><b>You do not have Team to sahre with.</b></div>';
+}
+echo '<div class="spacerblock_10"></div>';
+echo '<div class="solidline"></div>';
+echo '<div class="spacerblock_10"></div>';
+
+                                   echo '<b>'._('Select Co-Worker you want to give access to the contact(s) and click Share to save :').'</b>';
+				    echo '<div class="spacerblock_10"></div>';
                                    //$user_coworker = new User();
                                    while($_SESSION['do_coworker']->next()){
                                       //$user_coworker->getId($_SESSION['do_coworker']->idcoworker);
@@ -282,6 +358,11 @@ echo '<span>'
                                echo '<b>'. _('You have no Co-Workers').'</b>';
                            }
                      ?>
+<div id="coworker_ctlbar_bottom" style="display: none;">
+<span class="redlink">
+<input type="button" name="btnShare" id="btnShare" onclick="setContactForCoworker(); return false;" value="<?php echo _('Save'); ?>" />
+</span>
+</div>
 </div>
 </td></tr></table>
 <div class="spacerblock_40"></div>

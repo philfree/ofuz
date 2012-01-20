@@ -21,7 +21,8 @@ $(document).ready(function(){
 	
 	//'Create New' link clicked
     $('#AncCreateNewTeam').click(function() {
-		$("#divTeamMsg")[0].innerHTML = "";
+		$("#OfuzSuccessMessage").hide('slow');
+		$("#OfuzSuccessMessage")[0].innerHTML = "";
 		$('#DivTeamsList').hide('slow');
 		$('#DivCreateNewTeam').show('slow');
     });
@@ -51,15 +52,18 @@ $(document).ready(function(){
 				data: "team_name="+team_name+"&auto_share="+auto_share,
 				success: function(response){
 					if(response == 'exists') {
-						$("#divTeamMsg")[0].innerHTML = "The team "+team_name+" already exists.";
+						$("#OfuzSuccessMessage").show('slow');
+						$("#OfuzSuccessMessage")[0].innerHTML = "The team "+team_name+" already exists.";
 					} else if(response != '') {
-						$("#divTeamMsg")[0].innerHTML = "The Team "+team_name+" is added";
+						$("#OfuzSuccessMessage").show('slow');
+						$("#OfuzSuccessMessage")[0].innerHTML = "The Team "+team_name+" is added";
 						$("#DivCreateNewTeam")[0].innerHTML = response;
 					}										
 				}
 			});			
 		} else {
-			$('#divTeamMsg')[0].innerHTML = 'Team Name can not be empty.';
+			$("#OfuzSuccessMessage").show('slow');
+			$('#OfuzSuccessMessage')[0].innerHTML = 'Team Name can not be empty.';
 		}					
 	});
 	
@@ -93,18 +97,21 @@ function addCoWorkerToTeam(){
 			data: "idcoworker="+values+"&idteam_users="+idteam_users,
 			success: function(response){
 				if(response != "") {
-					$('#divTeamMsg')[0].innerHTML = "The CoWorker/s added to the Team.";
+					$("#OfuzSuccessMessage").show('slow');
+					$('#OfuzSuccessMessage')[0].innerHTML = "The CoWorker/s added to the Team.";
 					$("#DivCreateNewTeam")[0].innerHTML = response;
 				}
 			}
 		});	
 	} else {
-		$('#divTeamMsg')[0].innerHTML = 'Co-Worker is not selected.';
+		$("#OfuzSuccessMessage").show('slow');
+		$('#OfuzSuccessMessage')[0].innerHTML = 'Co-Worker is not selected.';
 	}		
 }
 	
 //]]>
 </script>
+<div id="OfuzSuccessMessage" style="display:none;"></div>
 <table class="layout_columns"><tr><td class="layout_lmargin"></td><td>
 <div class="layout_content">
 <?php $thistab = ''; include_once('includes/ofuz_navtabs.php'); ?>
@@ -134,8 +141,7 @@ function addCoWorkerToTeam(){
 		<div class="contentfull">	
 		  <div class="spacerblock_20"></div>	 
 		 <div><a id="AncCreateNewTeam" href="javascript:;"><?php echo ('Create New');?></a></div>
-		  <div class="spacerblock_20"></div>
-		 <div id="divTeamMsg"></div>
+		  <div class="spacerblock_20"></div>		 
 		 <div id="DivTeamsList" style="display:block;">
 		 <?php
 		 if($teams_count) {
