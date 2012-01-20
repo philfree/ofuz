@@ -3192,7 +3192,7 @@ class Invoice extends DataObject {
   
   
 /**
-  * This fetches invoice details for a particular Contact for particular User [Inactive Users] with status as invoice generated for Plan upragde
+  * This fetches invoice details for a particular Contact for particular User [Inactive Users] with status as invoice generated for Plan upragde 21-01-2012
   * @param inteher  $idcontact
   * @return query object
   */

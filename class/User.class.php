@@ -437,7 +437,7 @@ class User extends RegisteredUser {
 				
 				if($this->idcontact == 0){
 					$this->addUserAsContact($this->firstname,$this->lastname,$this->company,$this->email,$this->iduser);
-				}*/			
+				}*/			//210112
 				if($this->plan == "trail"){
 					$date1 = strtotime($this->regdate);
 					$date2 = strtotime(date("Y-m-d"));

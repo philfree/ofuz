@@ -696,7 +696,7 @@ class OfuzApiMethods extends OfuzApiBase {
 		}
 	}
 	
-	/*method add invoice for upgrade */
+	/*method add invoice for upgrade 21-01-2012*/
 	
 	function upgrade_plan_add_invoice(){
         $add_call_back_url = false ; 

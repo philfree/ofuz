@@ -7,6 +7,8 @@ include_once("class/OfuzApiClient.class.php");
 $api_key = '23ac6be1febf5975f712ed144006f5a2';// replace this with your API key
 
 
+
+
 $user = new User();
 $iduser=$user->validateAPIKey($api_key);
 $idcontact=$_SESSION['do_User']->idcontact;
