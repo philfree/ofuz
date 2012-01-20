@@ -543,7 +543,7 @@ class Invoice extends DataObject {
         $add_invoice = false;
         $do_contact = new Contact();
         $concat_name_in_address = '';
-        if($evtcl->fields["due_date"] == ''){
+        if($evtcl->fields["due_date"] == ''){	
               $this->due_date = date('Y-m-d');
         }else{ $this->due_date = $evtcl->fields["due_date"];  }
         
@@ -873,7 +873,6 @@ class Invoice extends DataObject {
         if($iduser == ""){$iduser = $_SESSION['do_User']->iduser;}
         $q = new sqlQuery($this->getDbCon());
         $q->query("select max(num) as num from ".$this->table." where iduser = ".$iduser." AND status <> 'Quote'");
-        //echo "select max(num) from ".$this->table." where iduser = ".$iduser." AND status <> 'Quote'";exit;
         if($q->getNumRows()){
           $q->fetch();
           $num = $q->getData("num");
@@ -3189,5 +3188,27 @@ class Invoice extends DataObject {
            ";
     $this->query($sql);
   }
+  
+  
+  
+/**
+  * This fetches invoice details for a particular Contact for particular User [Inactive Users] with status as invoice generated for Plan upragde
+  * @param inteher  $idcontact
+  * @return query object
+  */
+ function getContactInvoiceDetailsForPlanUpgrade($idcontact,$iduser) {
+   $sql = "SELECT *
+           FROM {$this->table}
+           WHERE iduser = {$iduser} AND idcontact = {$idcontact} AND status = 'Invoice' AND description = 'Invoice for plan upgrade'
+          ";
+   $this->query($sql);
+   
+   if($this->getNumRows()){
+	   while($this->fetch()){
+		   $idinvoice = $this->getData("idinvoice");
+		}
+	 }
+     return $idinvoice;
+ }
 }
 ?>
