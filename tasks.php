@@ -40,7 +40,9 @@
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-  
+<style type="text/css">
+	.ui-effects-transfer { border: 2px groove #B13283; }
+</style>
 
 <script type="text/javascript">
     //<![CDATA[
@@ -257,107 +259,237 @@ $e_PrioritySort->setEventControler("ajax_evctl.php");
 $e_PrioritySort->setSecure(false);
 $strPrioritySortURL = $e_PrioritySort->getUrl();
 ?>
+    
+  var dropped_idtask; //global var
 
-    $(document).ready(function() {
-        //$("div[id^=templt]").hover(function(){$("div[id^=trashcan]",this).show("slow");},function(){$("div[id^=trashcan]",this).hide("slow");});
+  $(document).ready(function() {
+      bindSorting();	
+  });
 
-        $("#tasks_list_overdue").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_overdue").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
+  function bindSorting() {
+    $("#tasks_list_overdue").sortable({
+      connectWith: ['#tasks_list_today', '#tasks_list_tomorrow', '#tasks_list_thisweek', '#tasks_list_nextweek', '#tasks_list_thismonth', '#tasks_list_later'],
+      opacity: 0.4,
+      receive: function(event, ui) {
+	      //Run this code whenever an item is dragged and dropped into this list
+	      var item= ui.item.attr('id');
+	      var arr_dropped_idtask = item.split('_');	
+	      dropped_idtask = arr_dropped_idtask[1];
+	      var selectedEffect = 'transfer';
+	      var options = {};
+	      if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_overdue", className: 'ui-effects-transfer' }; }
+	      $("#"+item).effect(selectedEffect,options,500,callback(item));
+	      var position_dropped_element = ui.item.prevAll().length;
+      },
+      update:function(){
+	var priorities=$("#tasks_list_overdue").sortable("serialize");
+	$.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=overdue&dropped_idtask="+dropped_idtask);
+      }
+    }),
+    $("#tasks_list_today").sortable({
+      connectWith: ['#tasks_list_overdue', '#tasks_list_tomorrow', '#tasks_list_thisweek', '#tasks_list_nextweek', '#tasks_list_thismonth', '#tasks_list_later'],
+      opacity: 0.4,
+      receive: function(event, ui) {
+	      //Run this code whenever an item is dragged and dropped into this list
+	      var item= ui.item.attr('id');
+	      var arr_dropped_idtask = item.split('_');	
+	      dropped_idtask = arr_dropped_idtask[1];
+	      var selectedEffect = 'transfer';
+	      var options = {};
+	      if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_today", className: 'ui-effects-transfer' }; }
+	      $("#"+item).effect(selectedEffect,options,500,callback(item));
+	      var position_dropped_element = ui.item.prevAll().length;
+      },
+      update:function(){
+	var priorities=$("#tasks_list_today").sortable("serialize");
+	$.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=today&dropped_idtask="+dropped_idtask);
+      }
+    }),
+    $("#tasks_list_tomorrow").sortable({
+      connectWith: ['#tasks_list_overdue', '#tasks_list_today', '#tasks_list_thisweek', '#tasks_list_nextweek', '#tasks_list_thismonth', '#tasks_list_later'],
+      opacity: 0.4,
+      receive: function(event, ui) {
+	      //Run this code whenever an item is dragged and dropped into this list
+	      var item= ui.item.attr('id');
+	      var arr_dropped_idtask = item.split('_');	
+	      dropped_idtask = arr_dropped_idtask[1];
+	      var selectedEffect = 'transfer';
+	      var options = {};
+	      if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_tomorrow", className: 'ui-effects-transfer' }; }
+	      $("#"+item).effect(selectedEffect,options,500,callback(item));
+	      var position_dropped_element = ui.item.prevAll().length;
+      },
+      update:function(){
+	var priorities=$("#tasks_list_tomorrow").sortable("serialize");
+	$.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=tomorrow&dropped_idtask="+dropped_idtask);
+      }
+    }),
+    $("#tasks_list_thisweek").sortable({
+      connectWith: ['#tasks_list_overdue', '#tasks_list_today', '#tasks_list_tomorrow', '#tasks_list_nextweek', '#tasks_list_thismonth', '#tasks_list_later'],
+      opacity: 0.4,
+      receive: function(event, ui) {
+	      //Run this code whenever an item is dragged and dropped into this list
+	      var item= ui.item.attr('id');
+	      var arr_dropped_idtask = item.split('_');	
+	      dropped_idtask = arr_dropped_idtask[1];
+	      var selectedEffect = 'transfer';
+	      var options = {};
+	      if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_thisweek", className: 'ui-effects-transfer' }; }
+	      $("#"+item).effect(selectedEffect,options,500,callback(item));
+	      var position_dropped_element = ui.item.prevAll().length;
+      },
+      update:function(){
+	var priorities=$("#tasks_list_thisweek").sortable("serialize");
+	$.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=thisweek&dropped_idtask="+dropped_idtask);
+      }
+    }),
+    $("#tasks_list_nextweek").sortable({
+      connectWith: ['#tasks_list_overdue', '#tasks_list_today', '#tasks_list_tomorrow', '#tasks_list_thisweek', '#tasks_list_thismonth', '#tasks_list_later'],
+      opacity: 0.4,
+      receive: function(event, ui) {
+	      //Run this code whenever an item is dragged and dropped into this list
+	      var item= ui.item.attr('id');
+	      var arr_dropped_idtask = item.split('_');	
+	      dropped_idtask = arr_dropped_idtask[1];
+	      var selectedEffect = 'transfer';
+	      var options = {};
+	      if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_nextweek", className: 'ui-effects-transfer' }; }
+	      $("#"+item).effect(selectedEffect,options,500,callback(item));
+	      var position_dropped_element = ui.item.prevAll().length;
+      },
+      update:function(){
+	var priorities=$("#tasks_list_nextweek").sortable("serialize");
+	$.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=nextweek&dropped_idtask="+dropped_idtask);
+      }
+    }),
+    $("#tasks_list_thismonth").sortable({
+      connectWith: ['#tasks_list_overdue', '#tasks_list_today', '#tasks_list_tomorrow', '#tasks_list_thisweek', '#tasks_list_nextweek', '#tasks_list_later'],
+      opacity: 0.4,
+      receive: function(event, ui) {
+	      //Run this code whenever an item is dragged and dropped into this list
+	      var item= ui.item.attr('id');
+	      var arr_dropped_idtask = item.split('_');	
+	      dropped_idtask = arr_dropped_idtask[1];
+	      var selectedEffect = 'transfer';
+	      var options = {};
+	      if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_thismonth", className: 'ui-effects-transfer' }; }
+	      $("#"+item).effect(selectedEffect,options,500,callback(item));
+	      var position_dropped_element = ui.item.prevAll().length;
+      },
+      update:function(){
+	var priorities=$("#tasks_list_thismonth").sortable("serialize");
+	$.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=thismonth&dropped_idtask="+dropped_idtask);
+      }
+    }),
+    $("#tasks_list_later").sortable({
+      connectWith: ['#tasks_list_overdue', '#tasks_list_today', '#tasks_list_tomorrow', '#tasks_list_thisweek', '#tasks_list_nextweek', '#tasks_list_thismonth'],
+      opacity: 0.4,
+      receive: function(event, ui) {
+	      //Run this code whenever an item is dragged and dropped into this list
+	      var item= ui.item.attr('id');
+	      var arr_dropped_idtask = item.split('_');	
+	      dropped_idtask = arr_dropped_idtask[1];
+	      var selectedEffect = 'transfer';
+	      var options = {};
+	      if(selectedEffect == 'transfer'){ options = { to: "#tasks_list_later", className: 'ui-effects-transfer' }; }
+	      $("#"+item).effect(selectedEffect,options,500,callback(item));
+	      var position_dropped_element = ui.item.prevAll().length;
+      },
+      update:function(){
+	var priorities=$("#tasks_list_later").sortable("serialize");
+	$.get("<?php echo $strPrioritySortURL; ?>&"+priorities+"&due_date=later&dropped_idtask="+dropped_idtask);
+      }
+    }).disableSelection();
+  }
 
-        $("#tasks_list_today").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_today").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
+  function callback(item){
+    setTimeout(function(){
+    $("#"+item+":hidden").removeAttr('style').hide().fadeIn();
+    }, 1000);
+  };
+  //$("#pt_13").live("click", function (event) {alert('RAVI');});
 
-        $("#tasks_list_tomorrow").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_tomorrow").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
-
-        $("#tasks_list_thisweek").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_thisweek").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
-
-        $("#tasks_list_nextweek").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_nextweek").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
-
-        $("#tasks_list_thismonth").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_thismonth").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
-
-        $("#tasks_list_later").sortable({axis:"y",handle:".ptask_handle",helper:"clone",
-            update:function(){
-            var priorities=$("#tasks_list_later").sortable("serialize");
-            $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
-        });
-
+  function showAllTasksLater(){
+    $.ajax({
+	type: "GET",
+	<?php
+	$e_task_later = new Event("Task->eventAjaxGetAllTasksLater");
+	$e_task_later->setEventControler("ajax_evctl.php");
+	$e_task_later->setSecure(false);
+	?>
+	url: "<?php echo $e_task_later->getUrl(); ?>",
+	data: "",
+	success: function(tasks_later){
+	    $("#tasks_later")[0].innerHTML = tasks_later;
+	      /* 
+	       * After ajax call, jquery's $(document).ready or events no longer work after you've loaded new 
+                 content into a page using an AJAX request.
+                 There are different ways of handling this like : event delegation and event rebinding.
+                 bindSorting() is kind of rebinding.
+               * @see  http://docs.jquery.com/Frequently_Asked_Questions#Why_do_my_events_stop_working_after_an_AJAX_request.3F
+               *
+               */ 
+	      bindSorting();
+	    $("#tasks_options").hide();
+	}
     });
 
-     function showAllTasksLater(){
-        $.ajax({
-            type: "GET",
-            <?php
-            $e_task_later = new Event("Task->eventAjaxGetAllTasksLater");
-            $e_task_later->setEventControler("ajax_evctl.php");
-            $e_task_later->setSecure(false);
-            ?>
-            url: "<?php echo $e_task_later->getUrl(); ?>",
-            data: "",
-            success: function(tasks_later){
-                $("#tasks_later")[0].innerHTML = tasks_later;
-                $("#tasks_options").hide();
-            }
-        });
+  }
 
-    }
+  function showAllTasksThisMonth(){
+      $.ajax({
+	  type: "GET",
+	  <?php
+	  $e_task_thismonth = new Event("Task->eventAjaxGetAllTasksThisMonth");
+	  $e_task_thismonth->setEventControler("ajax_evctl.php");
+	  $e_task_thismonth->setSecure(false);
+	  ?>
+	  url: "<?php echo $e_task_thismonth->getUrl(); ?>",
+	  data: "",
+	  success: function(tasks_this_month){
+	      $("#tasks_thismonth")[0].innerHTML = tasks_this_month;
+	      /* 
+	       * After ajax call, jquery's $(document).ready or events no longer work after you've loaded new 
+                 content into a page using an AJAX request.
+                 There are different ways of handling this like : event delegation and event rebinding.
+                 bindSorting() is kind of rebinding.
+               * @see  http://docs.jquery.com/Frequently_Asked_Questions#Why_do_my_events_stop_working_after_an_AJAX_request.3F
+               *
+               */ 
+	      bindSorting();
+	      $("#tasks_options_this_month").hide();
+	  }
+      });
 
-   function showAllTasksThisMonth(){
-        $.ajax({
-            type: "GET",
-            <?php
-            $e_task_thismonth = new Event("Task->eventAjaxGetAllTasksThisMonth");
-            $e_task_thismonth->setEventControler("ajax_evctl.php");
-            $e_task_thismonth->setSecure(false);
-            ?>
-            url: "<?php echo $e_task_thismonth->getUrl(); ?>",
-            data: "",
-            success: function(tasks_this_month){
-                $("#tasks_thismonth")[0].innerHTML = tasks_this_month;
-                $("#tasks_options_this_month").hide();
-            }
-        });
+  }
 
-    }
+  function showAllTasksOverdue(){
+      $.ajax({
+	  type: "GET",
+	  <?php
+	  $e_task_overdue = new Event("Task->eventAjaxGetAllTasksOverdue");
+	  $e_task_overdue->setEventControler("ajax_evctl.php");
+	  $e_task_overdue->setSecure(false);
+	  ?>
+	  url: "<?php echo $e_task_overdue->getUrl(); ?>",
+	  data: "",
+	  success: function(tasks_overdue){		 
+	      $("#tasks_overdue")[0].innerHTML = tasks_overdue;
 
-    function showAllTasksOverdue(){
-        $.ajax({
-            type: "GET",
-            <?php
-            $e_task_overdue = new Event("Task->eventAjaxGetAllTasksOverdue");
-            $e_task_overdue->setEventControler("ajax_evctl.php");
-            $e_task_overdue->setSecure(false);
-            ?>
-            url: "<?php echo $e_task_overdue->getUrl(); ?>",
-            data: "",
-            success: function(tasks_overdue){
-                $("#tasks_overdue")[0].innerHTML = tasks_overdue;
-                $("#tasks_options_overdue").hide();
-            }
-        });
+	      /* 
+	       * After ajax call, jquery's $(document).ready or events no longer work after you've loaded new 
+                 content into a page using an AJAX request.
+                 There are different ways of handling this like : event delegation and event rebinding.
+                 bindSorting() is kind of rebinding.
+               * @see  http://docs.jquery.com/Frequently_Asked_Questions#Why_do_my_events_stop_working_after_an_AJAX_request.3F
+               *
+               */ 
+	      bindSorting();
+	      $("#tasks_options_overdue").hide();
+	  }
+      });
+  }
 
-    }
     //]]>
 </script>
 
@@ -387,15 +519,10 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
                             <div class="mainheader pad20">
                                 <span class="headline14">Your tasks</span>
                                 <?php
-                                      if($_GET['t'] == 't'){$_SESSION['remember_task_on'] = '';}
-                                      if($_GET['t']=='p' || $_SESSION['remember_task_on']== 'Project'){
-                                            $link_html = '<a href=/tasks.php?t=t>'._('Tasks By Date').'</a><span class="headerlinksI">|</span>';
-                                      }else{
-                                            $link_html = '<a href=/tasks.php?t=p>'._('Task By Projects').'</a><span class="headerlinksI">|</span>';
-                                      }
-                                ?>
-                                <span class="headerlinks"><?php echo $link_html;?><?php echo _('Upcoming');?><span class="headerlinksI">|</span><a href="tasks_completed.php"><?php echo _('Completed');?></a></span>
-                                <!--<span class="headerlinksI">|</span><a href="ofuz_demo_tasks3.php">Assigned</a></span>//-->
+								if (is_object($GLOBALS['cfg_submenu_placement']['tasks'] ) ) {
+									echo  $GLOBALS['cfg_submenu_placement']['tasks']->getMenu();
+								}
+								?>
                             </div>
 
 
@@ -434,34 +561,6 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
                             </div>
 
 
-
-
-        <div class="contentfull">
-          <?php
-           if($_GET['t']=='p' || $_SESSION['remember_task_on']== 'Project'){  // Starts the first if
-                    $_SESSION['remember_task_on'] = 'Project';
-                    $do_task->getAllTaskProjectRelated();
-                    $last_project = 0;
-                    echo '<div class="tasks">';
-                    while($do_task->next()){
-                          if($last_project != $do_task->idproject ){                              
-                              echo '<div ><br /><b><a href="/Project/'.$do_task->idproject.'">'.$do_task->name.'</a></b></div>';
-                          }
-                          $last_project = $do_task->idproject;
-                          echo '<br /><span class="task_item">&nbsp;&nbsp;';
-                          if ($do_task->task_category != '') { 
-                              echo  '<span class="task_category">'.$do_task->task_category.'</span>&nbsp;'; 
-                          }
-                          echo '<span class="task_desc"><a href="/Task/'.$do_task->idproject_task.'">'.$do_task->task_description.'</a>';
-                          echo '</span></span>';
-                          //echo '<div></div>';
-                          //echo '<span></span>';
-                    }
-                    echo '</div>';
-            }else{
-                  $_SESSION['remember_task_on'] = '';
-            ?>
-        </div>
 
 <!--Over Due Tasks-->
 
@@ -509,7 +608,7 @@ if($do_task->getNumRows()){
 		    </div>
 		  </div>
 		</div>
-	      </div>
+	      <!--</div>-->
 <?php                 
 }
 ?>
@@ -532,7 +631,6 @@ if($do_task->getNumRows()){
 		  </div>
 		</div>
 	      </div>
-	    </div>
 
 <?php
 }
@@ -612,7 +710,6 @@ if ($do_task->getNumRows()) {
 <div id="tasks_options"><a href="#" onclick="showAllTasksLater(); return false;"><?php echo _('More...');?></a></div>
 <?php } ?>
 <?php } 
-}// Ends the else condition
 ?>
 
             <div class="dottedline"></div>

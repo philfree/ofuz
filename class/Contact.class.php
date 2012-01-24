@@ -1077,6 +1077,7 @@ class Contact extends DataObject {
         $_SESSION['tag_refresh_now'] = true;
     }
 
+
     /**
      * eventGetForMailMerge
      * Get the list of contact for mailmerge
@@ -1312,6 +1313,7 @@ class Contact extends DataObject {
             return false; 
         }		 
     }
+
   
     function eventdelContactTagById(EventControler $event_controler){
       $do_tag =new Tag();

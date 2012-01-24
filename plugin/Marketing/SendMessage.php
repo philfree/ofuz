@@ -1,16 +1,6 @@
 <?php 
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/ 
-// Copyright 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
-/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
-
-    $pageTitle = 'Ofuz :: Contacts Send Email';
-    $Author = 'SQLFusion LLC';
-    $Keywords = 'Keywords for search engine';
-    $Description = 'Description for search engine';
-    $background_color = 'white';
-    include_once('config.php');
-    include_once('includes/ofuz_check_access.script.inc.php');
-    include_once('includes/header.inc.php');
+// Copyright 2008 - 2012 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 
     $do_message = new EmailTemplateUser("blank");
     $do_message->sessionPersistent("do_message", "contacts.php", OFUZ_TTL);
@@ -20,6 +10,7 @@
         $do_note_draft->sessionPersistent("do_message_draft","index.php",OFUZ_TTL);
     }
 ?>
+
 <script type="text/javascript">
 //<![CDATA[
 function fnInsertMergeField(merge){
@@ -108,23 +99,7 @@ $(document).ready(function() {;
 });
 //]]>
 </script>
-<table class="layout_columns"><tr><td class="layout_lmargin"></td><td>
-<div class="layout_content">
-
-
-<?php $thistab = 'Contacts'; include_once('includes/ofuz_navtabs.php'); 
-
- $do_breadcrumb = new Breadcrumb(); $do_breadcrumb->getBreadcrumbs(); ?>
-    <div class="grayline1"></div>
-    <div class="spacerblock_20"></div>
-    <div class="mainheader">
-        <div class="pad20">
-            <span class="headline11"><?php echo _('Send Message'); ?></span>
-        </div>
-    </div>
-    <div class="contentfull"> 
-	<div align="right">
-	<?php echo _('Select an email template'); 
+<?php echo _('Select an email template'); 
         echo '<form id="select_email_template"><select name="idtemplate" onchange=\'$("#select_email_template").submit();\'><option value="0"></option><option value="0">'._('New Template').'</option>';
 	    $template_list = new EmailTemplateUser();
 		$template_list->query('SELECT * FROM '.$template_list->getTable().' WHERE iduser='.$_SESSION['do_User']->iduser.' AND name <> \'\'');
@@ -190,9 +165,9 @@ $(document).ready(function() {;
     $do_message->form->setLevel(920);
     $do_message->form->addEventAction('do_message_draft->eventDeleteSavedDraft', 900);//added to delete the draft
     //$do_message->form->addEventAction('do_message->eventPrepareSaving', 920);
-    $do_message->form->addEventAction('do_Contacts->eventSendMessage', 2340);
+    $do_message->form->addEventAction('do_ContactMailing->eventSendMessage', 2340);
     $do_message->form->addEventAction('mydb.gotoPage', 2430);
-    $do_message->form->goto = 'contact_sendemail_save_template.php';
+    $do_message->form->goto = $GLOBALS['cfg_plugin_mkt_path'].'SaveTemplate';
     $do_message->form->type = 'contact_email';//Message Draft Type
     $do_message->iduser = $_SESSION['do_User']->iduser;
     $do_message->setFields("emailtemplate_user");
@@ -234,12 +209,3 @@ $(document).ready(function() {;
 //		echo '<br/><div align="right">'._('Or').' '.$do_message->name.' '.$do_message->form->getFormFooter(_('Save as template')).'</div>';
 //	}
 ?> 
-    </div>
-    <div class="spacerblock_40"></div>
-    <div class="layout_footer"></div>
-</div>
-</td><td class="layout_rmargin"></td></tr></table>
-
-</body>
-</html>
-

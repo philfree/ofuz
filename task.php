@@ -110,6 +110,19 @@ function showOpt(){
     $("#more_options").hide(0);
     $("#discuss_options").show("fast");
 }
+
+$(document).ready(function(){
+  $("#discuss").click(function(){
+    $("#more_options").hide(0);
+    $("#discuss_options").show("fast");
+  });
+
+});
+
+
+
+
+
 function showFullNote(idproject_discuss){
     $.ajax({
         type: "GET",
@@ -492,7 +505,8 @@ $(document).ready(function() {
                 }
                 ?>
                 
-                <span id="more_options"><a href="#" onclick="showOpt(); return false;"><?php echo _('More Options'); ?></a></span>
+                
+                <!--<span id="more_options"><a href="#"><?php echo _('More Options'); ?></a><!--<a href="#" onclick="showOpt(); return false;"><?php echo _('More Options'); ?></a>--><!--</span>-->
                 <div class="div_right">
                     <div id="discuss_options" style="display:none;">
                         <?php echo _('Hours Worked').': '.$discussFields->hours_work; ?>  

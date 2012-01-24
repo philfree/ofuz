@@ -182,7 +182,7 @@ h2.headline {   padding: 20px 0; position: relative; padding: 20px 0; font-size:
 .left_text { text-align: left; }
 .right_text { text-align: right; }
 
-.message { position: relative; margin: 2px 5px 5px 0; padding: 20px 20px 12px 20px; background-color: #fff6c1; background-image: url("/images/welcomebannerbg.png"); background-repeat: repeat-x; border-top: solid 1px #ededed; border-bottom: solid 2px #ededed; }
+.message { position: relative; margin: 2px 20px 5px 0; padding: 20px 20px 12px 20px; background-color: #fff6c1; background-image: url("/images/welcomebannerbg.png"); background-repeat: repeat-x; border-top: solid 1px #ededed; border-bottom: solid 2px #ededed; }
 
 .messageshadow { margin: 2px 0; background-color: #ffffcc; border-right: solid 2px #b28c6e; border-bottom: solid 2px #b28c6e; margin-right: 20px; }
 .messageshadow_95 { width: 95%; margin: 2px 0; background-color: #ffffcc; border-right: solid 2px #b28c6e; border-bottom: solid 2px #b28c6e; }
@@ -251,6 +251,13 @@ background-color: #135e91;
 
 #item_title{
 font-size: 12px;
+}
+
+.sub_action_menu { 
+	padding: 6px 20px; 
+	margin: 0px 20px 0px 0px; 
+	background-color: #ffffcc; 
+	border-top: solid 1px #ffa500; 
 }
 
 .text_black { color: #000000; }
