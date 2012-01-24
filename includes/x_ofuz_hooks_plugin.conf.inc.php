@@ -16,11 +16,12 @@
   
     
     // Core Block positioning 
+    // The index of the array is the page script name (without .php) or plugin name. The in an array add all the block class names to display in that page.
     $GLOBALS['cfg_block_placement'] = Array(
                                   "invoice" => 
                                     Array("PaymentLogBlock",
                                           "RecurrentInvoiceBlock"),
-                                          "invoices" =>
+                                   "invoices" =>
                                     Array("InvoicesMonthlyGraphBlock",
                                           "InvoicesYTDBlock"),
                                  "contact" => 
@@ -63,6 +64,7 @@
 
 
     // Core Block positioning 
+    // The key is the page script name without .php or the plugIn name
     $GLOBALS['cfg_plugin_eventmultiple_placement'] = Array(
                                   'contacts' => 
                                     Array( 
@@ -72,7 +74,7 @@
                                              'action' => 'merge_automated.php')
                                              )
                                              );
-                                             
+    // The key is the page script name without .php or the plugIn name                                         
     $GLOBALS['cfg_submenu_placement']['index'] = new SubMenu();
     $GLOBALS['cfg_submenu_placement']['index']->addMenuItem(_('Work Feed'), "index.php")
 										      ->addMenuItem(_('Notes & Discussion'), "daily_notes.php")
@@ -91,7 +93,21 @@
                                               ->addMenuItem(_('Completed'), "tasks_completed.php") ;
     $GLOBALS['cfg_submenu_placement']['settings_plugin'] = new SubMenu();
     $GLOBALS['cfg_submenu_placement']['settings_plugin']->addMenuItem(_('Add-On'), "enable_plugin.php")
-											  ->addMenuItem(_('Detail List'), "settings_plugin.php");                                            
+											  ->addMenuItem(_('Detail List'), "settings_plugin.php"); 
+
+	$GLOBALS['cfg_submenu_placement']['projects_closed'] = new SubMenu();										  
+    $GLOBALS['cfg_submenu_placement']['projects_closed']->addMenuItem(_('Open Projects'), "projects.php");
+    $GLOBALS['cfg_submenu_placement']['projects'] = new SubMenu();	
+    $GLOBALS['cfg_submenu_placement']['projects']->addMenuItem(_('Closed Projects'), "projects_closed.php");
+ 									
+ 	$GLOBALS['cfg_submenu_placement']['project'] = new SubMenu();		
+ 	$GLOBALS['cfg_submenu_placement']['project']->addMenuItemJSCallback(_('Edit'), "fnEditProject()")
+												->addMenuItemJSCallback(_('Filter'), "fnFilterProject()");
+ 	// Project tasks:
+  	$GLOBALS['cfg_submenu_placement']['task'] = new SubMenu();		
+ 	$GLOBALS['cfg_submenu_placement']['task']->addMenuItemJSCallback(_('Edit'), "fnEditTask()");												  
+											     
+	$GLOBALS['cfg_submenu_placement']['help'] = ''; // No sub menu for now. 										                                          
         // Core plugin names
     $GLOBALS['core_plugin_names'] = Array(
                                           'ContactAddTaskBlock',

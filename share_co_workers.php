@@ -150,15 +150,35 @@ $("#"+divid).fadeOut("slow");
                                if(!$set_share){ // If not having POST vales
 
 if($teams_count) {
-echo '<b>'._('Your Teams').'</b><br /><br />';
-while($do_teams->next()) {
-echo $do_teams->team_name.'<br />';
-}
+echo '<b>'._('Your Teams').'</b>';
+echo '<div class="spacerblock_10"></div>';
+  while($do_teams->next()) {
+  //echo $do_teams->team_name.'<br />';
+    $arr_data = array();
+    $arr_data["idteam"] = $do_teams->idteam;
+    $arr_data["team_name"] = $do_teams->team_name;
+
+    $arr_team[] = $arr_data;
+  }
+  
+  echo '<table width="100%">';
+  foreach (array_chunk($arr_team, 3) as $row) { 
+    echo '<tr>';
+    foreach($row as $team) {
+      echo '<td width="33%">'.$team["team_name"].'</td>';
+    }
+    echo '</tr>';
+
+  }
+    echo '</table>';
 } else {
-echo '<div><b>You do not have Team to share with.</b></div>';
+echo '<div><b>'._('You do not have Team to share with.').'</b></div>';
 }
-echo '<br />';
-                                  echo '<b>'._('Your Co-Workers').'</b><br /><br />';
+echo '<div class="spacerblock_10"></div>';
+echo '<div class="solidline"></div>';
+echo '<div class="spacerblock_10"></div>';
+                                  echo '<b>'._('Your Co-Workers').'</b>';
+				  echo '<div class="spacerblock_10"></div>';
                                   //$user_coworker = new User();
                                   while($_SESSION['do_coworker']->next()){
                                       //$user_coworker->getId($_SESSION['do_coworker']->idcoworker);
@@ -255,18 +275,39 @@ echo '</div>';
                                    echo $e_share_cont->getFormEvent();
 
 if($teams_count) {
-echo '<b>'._('Your Teams').'</b><br /><br />';
-while($do_teams->next()) {
+  echo '<b>'._('Your Teams').'</b>';
+echo '<div class="spacerblock_10"></div>';
+  while($do_teams->next()) {
+    $arr_team = array();
+    $arr_team["idteam"] = $do_teams->idteam;
+    $arr_team["team_name"] = $do_teams->team_name;
+    $arr_teams[] = $arr_team;
+  }
+
+  echo '<table width="100%">';
+  foreach (array_chunk($arr_teams, 3) as $row) { 
+    echo '<tr>';
+    foreach($row as $team) {
 ?>
-<input type="checkbox" name="team[]" value="<?php echo $do_teams->idteam;?>" /> <?php echo $do_teams->team_name; ?><br />
+    <td width="33%">
+      <input type="checkbox" name="team[]" value="<?php echo $team["idteam"];?>" /> <?php echo $team["team_name"]; ?>
+    </td>
 <?php
-}
+    }
+    echo '</tr>';
+
+  }
+    echo '</table>';
+
 } else {
 echo '<div><b>You do not have Team to sahre with.</b></div>';
 }
-echo '<br />';
+echo '<div class="spacerblock_10"></div>';
+echo '<div class="solidline"></div>';
+echo '<div class="spacerblock_10"></div>';
 
-                                   echo '<b>'._('Select Co-Worker you want to give access to the contact(s) and click Share to save :').'</b><br />';
+                                   echo '<b>'._('Select Co-Worker you want to give access to the contact(s) and click Share to save :').'</b>';
+				    echo '<div class="spacerblock_10"></div>';
                                    //$user_coworker = new User();
                                    while($_SESSION['do_coworker']->next()){
                                       //$user_coworker->getId($_SESSION['do_coworker']->idcoworker);

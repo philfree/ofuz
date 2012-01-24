@@ -23,37 +23,33 @@
     <table class="layout_columns">
      <tr>
       <td>
-       <!-- <div class="layout_lcolumn settingsbg">
-          <div class="settingsbar">
-       	 		<div class="spacerblock_16"></div>
-            	<?php
-                	$GLOBALS['thistabsetting'] = 'My Information';
-                	include_once('includes/setting_tabs.php');
-                	//$do_ofuz_ui = new OfuzUserInterface();
-                	//$do_ofuz_ui->generateLeftMenuSettings('My Information');
-             	?>
-        	<div class="settingsbottom"></div>
-          </div>
-        </div>-->
+        <?php    include_once('plugin_block.php'); ?>
       </td>
       
       <td class="layout_rcolumn">
-         <table class="mainheader pad20" width="100%">
-          <tr>
-            <td>
-                <span class="headline14">Help Support</span>
-            </td>
-            <td align="right">
-            <!--        &nbsp;&nbsp;&nbsp;&nbsp;<a href="enable_plugin.php"><?php echo _('Enable Add-On'); ?></a>
-                   &nbsp;&nbsp;&nbsp;&nbsp;<a href="settings_plugin.php"><?php echo _('Detail List'); ?></a>
-                   &nbsp;&nbsp;&nbsp;&nbsp;<a href="download.php"><?php echo _('Downloads'); ?></a>-->
-            </td>
-           </tr>
-        </table>
-        <div class="banner60 pad020 text32"><?php echo _('Help'); ?></div>
-        <!--<div class="banner50 pad020 text16 fuscia_text"><?php echo _('My Information'); ?></div>--->
+         <div class="mainheader">
+            <div class="pad20">
+                <span class="page_title"><?php echo _('Help &amp; Support'); ?></span>
+                <?php
+                // Menues are defined in includes/x_ofuz_hooks_plugin.conf.inc.php
+                if (is_object($GLOBALS['cfg_submenu_placement']['help']) ) {
+                	echo  $GLOBALS['cfg_submenu_placement']['help']->getMenu();
+                }
+                ?>
+            </div>
+        </div>
+        <div class="solidline"></div>
+        <div class="spacerblock_40"></div>
+        
         <div class="contentfull">
-        Contents
+        
+        Video tutorials <br>
+        
+        Usefull blog posts <br>
+        
+        Forum (mainly for developers).
+       
+       
         </div>
         <div class="solidline"></div>
     </td></tr></table>

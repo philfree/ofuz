@@ -195,6 +195,27 @@ $(document).ready(function() {
         }
     });
 });
+
+function sticky_relocate() {
+  var window_top = $(window).scrollTop();
+  var div_top = $('#sticky-anchor').offset().top;
+  if (window_top > div_top)
+    $('#contacts_ctlbar').addClass('stick')
+  else
+    $('#contacts_ctlbar').removeClass('stick');
+  }
+ /*
+  * Sticky Div
+  * On scroll down, the action menu sticks on top
+    On scroll up, it comes back to original position
+    On selecting the last contact, the action menu sticks on top and display.
+  */
+ $(function() {
+  $(window).scroll(sticky_relocate);
+  sticky_relocate();
+  });
+
+
 //]]>
 </script>
 <?php $do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
@@ -311,6 +332,7 @@ if ($do_contact_limit->canUserAddContact()) {
                   echo $e_del_or_tag->getFormEvent();
 		  
                 ?>
+		<div id="sticky-anchor"></div>
                 <div id="contacts_ctlbar" style="display: none;">
                     <b><?php echo _('With the selected contacts you can:');?></b><br />
                     <?php echo _('Add tags')._(':'); ?>
