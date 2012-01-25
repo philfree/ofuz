@@ -547,6 +547,8 @@ class Project extends DataObject {
       if($idcoworker != ''){
           if(!$this->isProjectSharedToCoworker($idcoworker,$idproject)){
               $this->addProjectCoWorker($idcoworker,$idproject);
+              $do_workfeedprojectassign= new WorkFeedProjectAssignCoworker();
+              $do_workfeedprojectassign->eventAddFeed($idcoworker,$idproject);
               $message = _("Co-Worker is assigned successfuly for the project");
           }else{
               $message = _("Co-Worker is already assigned this project");

@@ -106,6 +106,10 @@
   include_once("class/workfeed/WorkFeedContactNotePortal.class.php");
   include_once("class/workfeed/WorkFeedContactUnsubscibeEmails.class.php");
   include_once("class/workfeed/WorkFeedTwitterImport.class.php");
+  include_once("class/workfeed/WorkFeedProjectAssignCoworker.class.php");
+
+
+
   // Ofuz API classes
   include_once("class/OfuzApiBase.class.php");
   include_once("class/OfuzApiMethods.class.php");
