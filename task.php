@@ -505,7 +505,7 @@ $(document).ready(function() {
                 ?>
                 
                 
-                <!--<span id="more_options"><a href="#"><?php echo _('More Options'); ?></a><!--<a href="#" onclick="showOpt(); return false;"><?php echo _('More Options'); ?></a>--><!--</span>-->
+                <!--<span id="more_options"><a href="#"><?php //echo _('More Options'); ?></a><!--<a href="#" onclick="showOpt(); return false;"><?php //echo _('More Options'); ?></a>--><!--</span>-->
                 <div class="div_right">
                     <div id="discuss_options" style="display:none;">
                         <?php echo _('Hours Worked').': '.$discussFields->hours_work; ?>  
@@ -519,7 +519,7 @@ $(document).ready(function() {
                         <br /><a href="#" onclick="fnSaveDraftOnClick();return false;"><?php echo _('Save As Draft')?></a><br />
                     </div>
                 </div>
-                <div class="div_right"><input type="submit" name="submitaction" value="<?php echo _('Add this item');?>" />
+                <div class="div_right"><input type="submit" name="submitaction" value="<?php echo _('Add this notes');?>" />
                 
                 </div>
                 </form>
@@ -598,8 +598,7 @@ $(document).ready(function() {
                         $e_discuss_del->addParam('context', 'ProjectDiscuss');
                         $del_img_url = 'delete <img src="/images/delete.gif" width="14px" height="14px" alt="" />';
                         echo '<div id="notetext',$do_discuss->idproject_discuss,'" class="vpad10">';
-                        echo '<a href="/Contact/'.$contact_id.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a>';
-                        echo '<div style="height:24px;position:relative;"><div class="percent95"><img src="/images/discussion.png" class="note_icon" width="16" height="16" alt='._('Task Discussion').'" />';
+                        echo '<div style="height:24px;position:relative;"><div class="percent95"><img src="/images/discussion.png" class="note_icon" width="16" height="16" alt='._('Task Discussion').'" />';                        
                         if($task_operation_access === true){
                           //echo $e_PrioritySort->getLink($star_img_url, ' title="'._('Star this note to move it on top1').'"');
                           echo $e_PrioritySort->getLink($star_img_url, ' title="'._($star_title).'"');
@@ -612,8 +611,10 @@ $(document).ready(function() {
                           echo '<b>'.date('l, F j', strtotime($do_discuss->date_added)).'</b>&nbsp;('._('Added By :').'&nbsp;'.$added_by.')</div>'; 
                         }*/
                         $date_added_note =  OfuzUtilsi18n::formatDateLong($do_discuss->date_added);   
+                        
                         echo '<div id="item_title"> '.$date_added_note.'</b>&nbsp;('._('Added By :').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
-
+                        echo "<br>";
+                        echo '<a href="/Contact/'.$contact_id.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a>';
                         if($task_operation_access === true){
                           echo '<div id="trashcan', $item_count++, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_discuss->idproject_discuss.'\','.$do_discuss->idproject_discuss.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_discuss_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div>';
                         }
