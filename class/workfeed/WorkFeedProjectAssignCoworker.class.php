@@ -29,7 +29,10 @@ class WorkFeedProjectAssignCoworker extends WorkFeedItem{
       $html .= '<img src="/images/note_icon.gif" width="34" height="34" alt="" />';
       $html .= '</div>';
       $html .= '<div style="text-align:middle;">';
-      $html .= '<a href ="/Contact/'.$this->idcontact.'">'.$this->user_full_name.'</a>';      
+      //$html .= '<a href ="/Contact/'.$this->idcontact.'">'.$this->user_full_name.'</a>';
+      $username=$this->user_full_name;
+      $user_name = explode(' ',$username);
+      $html .='<a href="/profile/'.$user_name[0].'">'.$this->user_full_name.'  </a>';    
       $html .= ' '._('added you to the project: ').' '. ' <a href="/Project/'.$this->idproject.'"><i>'.$this->project_name.'</i></a>';
       $html .= '</div>';
       $html .= '<div style = "color: #666666;font-size: 8pt; margin-left:50px;">';      
@@ -44,7 +47,7 @@ class WorkFeedProjectAssignCoworker extends WorkFeedItem{
 
 
 
-   function eventAddFeed($coworkerid,$projectid){
+   function eventAddFeed($coworkerid,$projectid){             
         $do_project = new Project();
         $do_project->getId($projectid);
         $this->project_name = $do_project->getProjectName();
