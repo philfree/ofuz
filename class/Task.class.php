@@ -1007,7 +1007,21 @@ class Task extends DataObject {
     ";
     $this->query($sql);
   }
+  
+  /**
+   * get tasks which are neither associated with Project nor contact.
+   * @return query object
+   */
 
+  function getTasksWithProject() {
+    $sql = "SELECT t.*
+    FROM `{$this->table}` AS t
+    LEFT JOIN `project_task` AS pt ON t.idtask = pt.idtask
+    WHERE t.idcontact = 0
+    AND t.iduser = {$_SESSION['do_User']->iduser}
+    ";
+    $this->query($sql);
+  }
   /**
    * get tasks which are associated with Project but not with contact.
    * @return query object
