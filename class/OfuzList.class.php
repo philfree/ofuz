@@ -302,7 +302,7 @@ class OfuzList extends BaseObject {
                                   </div>  
                               <div class="ptask_progbar1">';*/
 
-                      $html .=    '<span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a>'.$contact_full_name.'</span>
+                      $html .=    '<span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a> <a href="/Contact/'.$this->obj->idcontact.'" onclick="allowHighlight=false;" >'.$contact_full_name.'</a></span>
                                   &nbsp;&nbsp;<b>
                                   <a href="/Project/'.$this->obj->idproject.'">'.$this->obj->name.'</b></a>
                                   &nbsp;&nbsp;<a href="/Task/'.$this->obj->idproject_task.'"></a>
