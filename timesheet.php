@@ -30,8 +30,8 @@
 <?php $do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
 <table class="layout_columns"><tr><td class="layout_lmargin"></td><td>
 <div class="layout_content">
-<?php $thistab = _('Dashboard'); 
- $_SESSION['dashboard_link'] = "timesheet";
+<?php $thistab = _('Projects'); 
+// $_SESSION['dashboard_link'] = "timesheet";
 include_once('includes/ofuz_navtabs.php'); ?>
 <?php $do_breadcrumb = new Breadcrumb(); $do_breadcrumb->getBreadcrumbs(); ?>
     <div class="grayline1"></div>

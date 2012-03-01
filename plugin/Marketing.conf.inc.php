@@ -52,10 +52,10 @@
                                              'event' => 'do_Contacts->eventGetForMailMerge',
                                              'action' => ' ');
 
-                                        Array('name'=> 'Send a Message ',
-                                             'confirm' => '',
-                                             'event' => 'ContactMailing->eventGetForMailMerge',
-                                             'action' => '');
+                                    //    Array('name'=> 'Send a Message ',
+                                   //          'confirm' => '',
+                                    //         'event' => 'ContactMailing->eventGetForMailMerge',
+                                    //         'action' => '');
                    
   
    $plugin_marketing_menu = new SubMenu();

@@ -266,6 +266,7 @@ font-size: 12px;
 .text_gray { color: #666666; }
 .text_darkgray { color: #333333; }
 .text_lightblue { color: #1d8cd2; }
+.text_blue { color: #1e8cd3; }
 .text_bold { font-weight: bold; }
 .text34 { font-size: 34px; }
 .text32 { font-size: 32px; }
@@ -277,10 +278,11 @@ font-size: 12px;
 /* px above, pt below */
 .text8 { font-size: 8pt; }
 
-h1 { font-size: 18pt; font-weight: bold; color: #000000; margin: 0; padding: 20px 30px; }
-h2 { font-size: 11pt; color: #000000; margin: 0; padding: 15px 20px; }
+h1 { font-size: 18pt; font-weight: bold; margin: 0; padding: 20px 30px; }
+h2 { font-size: 11pt;  margin: 0; padding: 15px 20px; }
 h3 { font-size: 11pt; margin: 0; padding: 8px 0; }
 h4 { font-size: 10pt; margin: 0; padding: 0; line-height: 1.2; }
+
 
 .topblue { height: 100px; background-color: #003366; }
 .itopblue { height: 29px; background-color: #003366; }
@@ -530,3 +532,6 @@ h4 { font-size: 10pt; margin: 0; padding: 0; line-height: 1.2; }
   background-color: #fff6c1; 
   border: solid 2px #f6bfbc;
 }
+
+
+

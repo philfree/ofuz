@@ -1,6 +1,6 @@
 <?php 
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/ 
-// Copyright 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
+// Copyright 2008 - 2012 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
     $pageTitle = 'Ofuz :: Account Backup';
@@ -40,7 +40,7 @@
          ?>
 		<div>
 			<?php
-			$e_export_contacts =  new Event("OfuzExportXML->eventExportUserContacts");
+			$e_export_contacts =  new Event("OfuzExportAccount->eventExportUserContacts");
 			$e_export_contacts->addParam("goto",$_SERVER['PHP_SELF']);
 			echo $e_export_contacts->getLink(_('Export My Contacts'));
 
