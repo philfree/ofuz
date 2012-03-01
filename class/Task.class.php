@@ -377,15 +377,19 @@ class Task extends DataObject {
        AND iduser = ".$_SESSION['do_User']->iduser." 
        ORDER BY   due_date_dateformat LIMIT 10");*/
 
-       $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name
+       $sql="SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name
                      FROM task t 
                      LEFT JOIN project_task pt 
                      INNER JOIN project p ON pt.idproject=p.idproject
                      ON t.idtask=pt.idtask
                      WHERE DATEDIFF(t.due_date_dateformat,'".$today."') < 0
-                     AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open' 
+                     AND t.due_date_dateformat <> '0000-00-00' 
+                     AND t.due_date_dateformat < '$today'
+                     AND t.status = 'open' 
                      AND t.iduser = ".$_SESSION['do_User']->iduser." 
-                     ORDER BY t.priority ASC,t.due_date_dateformat LIMIT 10");  
+                     ORDER BY t.priority ASC,t.due_date_dateformat LIMIT 10";
+       
+       $this->query($sql);  
 
 
      /* $this->query("SELECT * FROM task t 
@@ -507,9 +511,8 @@ class Task extends DataObject {
           $sat_difference=strtotime($this_saturdays_date)-strtotime($today);
          
           $this_month_lastday = date('Y-m-t',strtotime('this month'));
-
-
-       $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name
+    
+       $sql="SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name
                      FROM task t 
                      LEFT JOIN project_task pt 
                      INNER JOIN project p ON pt.idproject=p.idproject
@@ -517,6 +520,7 @@ class Task extends DataObject {
                      WHERE (DATEDIFF('$this_saturdays_date',t.due_date_dateformat)=0
                      OR  DATEDIFF('$this_saturdays_date',t.due_date_dateformat) >=-6)
                      AND t.due_date_dateformat <> '0000-00-00' 
+                     AND t.due_date_dateformat > '$today'
                      AND t.status = 'open'
                      AND t.due_date_dateformat <='$this_month_lastday'
                      AND t.iduser = ".$_SESSION['do_User']->iduser."    
@@ -525,7 +529,9 @@ class Task extends DataObject {
                      AND t.due_date != 'This week'
                      AND t.due_date != 'Later'
                      AND t.due_date != 'This Month'
-                     ORDER BY t.priority ASC,t.due_date_dateformat"); 
+                     ORDER BY t.priority ASC,t.due_date_dateformat";
+      
+       $this->query($sql); 
     }
 
     /**
