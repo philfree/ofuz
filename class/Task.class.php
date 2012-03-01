@@ -552,12 +552,6 @@ class Task extends DataObject {
                      AND due_date != 'This week'
                      AND due_date != 'Next week'
                      ORDER BY t.priority ASC,t.due_date_dateformat DESC LIMIT 20");  
-
-  
-     
-
-
-
     }
 
     function getNumAllTasksLater(){
@@ -590,7 +584,7 @@ class Task extends DataObject {
                      ORDER BY t.due_date_dateformat DESC");
 */
       $later_date = date('Y-m');
-      $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name
+      $sql="SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name
                      FROM task t 
                      LEFT JOIN project_task pt 
                      INNER JOIN project p ON pt.idproject=p.idproject
@@ -599,7 +593,8 @@ class Task extends DataObject {
                      AND due_date != 'Tomorrow'
                      AND due_date != 'This week'
                      AND due_date != 'Next week'
-                     ORDER BY t.priority ASC,t.due_date_dateformat DESC LIMIT 20");  
+                     ORDER BY t.priority ASC,t.due_date_dateformat DESC";
+      $this->query($sql);  
 
       $html = $this->viewTaskList('later');
       echo $html;

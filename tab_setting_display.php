@@ -87,7 +87,7 @@
 // 		}else{
 // 		    echo _('Plugin Not Found !!');
 // 		}
-		if(file_exists($plugin->getCurrentPageFilePath())){ 
+		if(file_exists($plugin->getCurrentPageFilePath())){             
             include_once($plugin->getCurrentPageFilePath());
         }else{
             echo _('Plugin Setting Content Not Found !!');

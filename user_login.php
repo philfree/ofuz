@@ -118,20 +118,24 @@ window.location.href = "<?php echo $evctl->getUrl();?>";
             <?php echo _('If you forgot your password, you can retrieve it ');?><a href="user_lost_password.php"><?php echo ' '._('here');?></a>
             <br />
             <p>
+            <?php if(FACEBOOK_API_KEY !=''){?>
+
+
                 <?php echo _('Login With Facebook:') ; ?><br />
 <?php if($application_layer_protocol == "https") { ?>
                 <a href="#" onclick="FB.Connect.requireSession(); return false;" > <img id="fb_login_image" src="https://s-static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif" alt="Connect"/> </a>
 <?php } else { ?>
                 <a href="#" onclick="FB.Connect.requireSession(); return false;" > <img id="fb_login_image" src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif" alt="Connect"/> </a>
-<?php } ?>
+<?php } }?>
             </p>
             <p>
+              <?php if(FACEBOOK_API_KEY !=''){?>
                 <?php echo _('Login With Twitter:') ; ?><br />
                 <a href="/tw_login.php"><img src="/images/sign-in-with-twitter-d.png" alt="" /></a>
             </p>
             <p>
                 <!--<a href="google_federated_login.php">Login with your Google Account</a>-->
-              <?php echo _('Sign in with Google:'); ?><br />
+              <?php }echo _('Sign in with Google:'); ?><br />
               <a href="google_federated_login.php" id="LoginWithGoogleLink">
                 <img style="margin-right: 3px;" src="images/gfavicon.gif" height="16" width="16" align="absmiddle" border="0">
                   <span class="google"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span> Account</span>
