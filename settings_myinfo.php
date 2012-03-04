@@ -52,25 +52,25 @@
 	 ?>
 	</div>
         <?php 
-	   $do_contact = new Contact();
-           if(!empty($_SESSION['do_User']->idcontact) && $_SESSION['do_User']->idcontact != 0){
-		$do_contact->getId($_SESSION['do_User']->idcontact);
+		    $do_contact = new Contact();
+            if(!empty($_SESSION['do_User']->idcontact) && $_SESSION['do_User']->idcontact != 0){
+		    $do_contact->getId($_SESSION['do_User']->idcontact);
 	   }else{
-		// Add a new contact and update the idcontact to the user table for the user
-		$do_contact->addNew();
-		$do_contact->firstname = $_SESSION['do_User']->firstname ;
-		$do_contact->lastname = $_SESSION['do_User']->lastname ;
-		$do_contact->iduser = $_SESSION['do_User']->iduser ;
-		$do_contact->add();
-		$idcontact_inserted = $do_contact->getPrimaryKeyValue();
-		$do_contact_view = new ContactView();
-		$do_contact_view->setUser($_SESSION['do_User']->iduser);
-		$do_contact_view->addFromContact($do_contact);
-		$_SESSION['do_User']->idcontact = $idcontact_inserted;
-		$_SESSION['do_User']->updateUserContact($idcontact_inserted);
-		$do_contact->getId($idcontact_inserted);
+			// Add a new contact and update the idcontact to the user table for the user
+			$do_contact->addNew();
+			$do_contact->firstname = $_SESSION['do_User']->firstname ;
+			$do_contact->lastname = $_SESSION['do_User']->lastname ;
+			$do_contact->iduser = $_SESSION['do_User']->iduser ;
+			$do_contact->add();
+			$idcontact_inserted = $do_contact->getPrimaryKeyValue();
+			$do_contact_view = new ContactView();
+			$do_contact_view->setUser($_SESSION['do_User']->iduser);
+			$do_contact_view->addFromContact($do_contact);
+			$_SESSION['do_User']->idcontact = $idcontact_inserted;
+			$_SESSION['do_User']->updateUserContact($idcontact_inserted);
+			$do_contact->getId($idcontact_inserted);
 	   }
-	   $_SESSION['from_page'] = 'settings_myinfo.php';
+	   $_SESSION['edit_from_page'] = 'settings_myinfo.php';
 	   $do_contact->sessionPersistent("ContactEditSave", "contact.php", OFUZ_TTL);
 	    
          ?>
