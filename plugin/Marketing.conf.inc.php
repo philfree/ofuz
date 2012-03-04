@@ -51,7 +51,8 @@
                                         Array('name'=> 'Send a Message',
                                              'confirm' => ' ',
                                              'event' => 'ContactMailing->eventGetForMailMerge',
-                                             'action' => ' ');
+                                             'action' => ' ',
+                                             'plugin' => 'Marketing');
 
                                     //    Array('name'=> 'Send a Message ',
                                    //          'confirm' => '',

@@ -65,15 +65,18 @@
 
     // Core Block positioning 
     // The key is the page script name without .php or the plugIn name
-    $GLOBALS['cfg_plugin_eventmultiple_placement'] = Array(
+    $GLOBALS['cfg_plugin_eventmultiple_placement'] = 
+                              Array(
                                   'contacts' => 
                                     Array( 
                                        Array('name' => 'Merge In One',
                                              'confirm' => 'Are you sure you want to merge the selected contacts?',
                                              'event' => '',
-                                             'action' => 'merge_automated.php')
+                                             'action' => 'merge_automated.php',
+                                             'plugin' => 'Core'
                                              )
-                                             );
+                                          )
+                                    );
     // The key is the page script name without .php or the plugIn name                                         
     $GLOBALS['cfg_submenu_placement']['index'] = new SubMenu();
     $GLOBALS['cfg_submenu_placement']['index']->addMenuItem(_('Work Feed'), "index.php")
