@@ -1,6 +1,7 @@
 <?php
-// Copyright 2008-2010 SQLFusion LLC           info@sqlfusion.com
-/**COPYRIGHTS**/
+// Copyright 2008-2012 SQLFusion LLC           info@sqlfusion.com
+/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html 
+ **/
   /*
    * Marketing configuration
    * This is a configuration file for the Marketing plugin.
@@ -49,8 +50,9 @@
 
                                         Array('name'=> 'Send a Message',
                                              'confirm' => ' ',
-                                             'event' => 'do_Contacts->eventGetForMailMerge',
-                                             'action' => ' ');
+                                             'event' => 'ContactMailing->eventGetForMailMerge',
+                                             'action' => ' ',
+                                             'plugin' => 'Marketing');
 
                                     //    Array('name'=> 'Send a Message ',
                                    //          'confirm' => '',

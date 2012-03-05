@@ -81,5 +81,6 @@ CREATE TABLE `user_profile`  (iduser_profile INT(10) not null AUTO_INCREMENT, PR
 ALTER TABLE `user_profile` ADD `logo` VARCHAR(200) not null;
 ALTER TABLE `user_profile` ADD `job_type` VARCHAR(100) not null;
 ALTER TABLE `user_profile` ADD `job_description` TEXT not null;
+alter table `user_profile` add `iduser` int(10) NOT NULL;
 
 

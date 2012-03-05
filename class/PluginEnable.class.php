@@ -74,7 +74,7 @@ class PluginEnable extends DataObject {
     public function isPluginAddedBefore($plugin,$iduser=""){
         if($iduser == "") $iduser = $_SESSION['do_User']->iduser ;
         $q = new sqlQuery($this->getDbCon());
-        $q->query("select * from ".$this->table. " where plugin = '".$plugin."' AND iduser = ".$iduser);
+        $q->query("select * from {$this->table} where plugin = '{$plugin}' AND iduser = {$iduser}");
         if($q->getNumRows() > 0 ){
             $q->fetch();
             return $q ;

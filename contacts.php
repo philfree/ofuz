@@ -354,22 +354,22 @@ if ($do_contact_limit->canUserAddContact()) {
     <br /><?php echo _('or ');?><span class="redlink"><a href="#" onclick="actionMultiple('co_workers.php','');return false;"><?php echo _('Share With Co-Workers');?></a></span>
     <?php } ?>
    <?php 
-
-     foreach ($cfg_plugin_eventmultiple_placement['contacts'] as $event_multiple_plugin) {
-						  if (strlen($event_multiple_plugin['event'])>0) {
-
-						     echo "\n<br>"._('or ').'<span class="redlink"><a href="#" onclick="eventActionMultiple(\''.$event_multiple_plugin['event'].'\',\''.$event_multiple_plugin['confirm'].'\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
-						  } elseif (strlen($event_multiple_plugin['action'])>0) {
-							 echo "\n<br>"._('or ').
-							  '<span class="redlink">
-							    <a href="#" onclick="actionMultiple(\''.
-							      $event_multiple_plugin['action'].
-							      '\',\''.
-							      $event_multiple_plugin['confirm'].
-
-							      '\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
-						  }
-					  }                    
+    $plugin_enable = new PluginEnable();
+    foreach ($cfg_plugin_eventmultiple_placement['contacts'] as $event_multiple_plugin) {
+		 if ($plugin_enable->isEnabled($event_multiple_plugin['plugin']) || $event_multiple_plugin['plugin'] == "Core") {
+			  if (strlen($event_multiple_plugin['event'])>0) {
+				 echo "\n<br>"._('or ').'<span class="redlink"><a href="#" onclick="eventActionMultiple(\''.$event_multiple_plugin['event'].'\',\''.$event_multiple_plugin['confirm'].'\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
+			  } elseif (strlen($event_multiple_plugin['action'])>0) {
+				 echo "\n<br>"._('or ').
+				  '<span class="redlink">
+					<a href="#" onclick="actionMultiple(\''.
+					  $event_multiple_plugin['action'].
+					  '\',\''.
+					  $event_multiple_plugin['confirm'].
+					  '\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
+			  }
+		}
+	}                    
                     ?>
                   
                     <div class="spacerblock_10"></div>
