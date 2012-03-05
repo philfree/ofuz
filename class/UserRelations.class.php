@@ -310,7 +310,7 @@ class UserRelations extends DataObject {
        $evtcl->setDisplayNext(new Display($evtcl->goto)); 
     }
 
-    function encrypt($sData){
+    function encrypt($sData){   
       $sKey = $this->secretkey;
       $sResult = '';
       for($i = 0; $i < strlen($sData); $i ++){

@@ -446,6 +446,7 @@ $(document).ready(function() {
         <div class="contentfull">
         <?php
           if($do_project_task->status=='open'){
+            if($_SESSION["do_project"]->status != 'closed'){
         ?>
             <div class="headline_fuscia"><?php echo _('Get into the discussion:');?></div>
             <?php
@@ -463,6 +464,7 @@ $(document).ready(function() {
                    <input type="hidden" id="draft_hidden" name="draft_hidden" value="<?php echo $text; ?>">
                  <?php   echo '</div></div></div>';
                   }
+                }
             ?>
               <div id="draft_saved" style="display:none">
                   <div class="messageshadow">
@@ -474,7 +476,9 @@ $(document).ready(function() {
                   </div>
               </div>  
             <div class="percent95">
-            <?php
+            <?php              
+            if($_SESSION["do_project"]->status != 'closed'){
+      
                 /**
                      Discussion Add form starts here 
                 */
@@ -505,7 +509,9 @@ $(document).ready(function() {
                 ?>
                 
                 
-                <!--<span id="more_options"><a href="#"><?php //echo _('More Options'); ?></a><!--<a href="#" onclick="showOpt(); return false;"><?php //echo _('More Options'); ?></a>--><!--</span>-->
+                <!--<span id="more_options"><a href="#"><?php //echo _('More Options'); ?></a>-->
+                  <!--<a href="#" onclick="showOpt(); return false;"><?php //echo _('More Options'); ?></a>-->
+                <!--</span>-->
                 <div class="div_right">
                     <div id="discuss_options" style="display:none;">
                         <?php echo _('Hours Worked').': '.$discussFields->hours_work; ?>  
@@ -527,6 +533,17 @@ $(document).ready(function() {
              
              <?php
               }
+          }else {              
+              if($do_project_task->status =='closed'){
+              ?>
+                <div class="headline_fuscia"><?php echo _('This project is closed'); ?></div>
+              <?php
+              }else{
+          ?>                
+              <div class="headline_fuscia"><?php echo _('This project is closed'); ?></div>
+          <?php
+              }
+          }
               /** Discussion Adding Section ends */
 
             // Deleted Note section
@@ -535,9 +552,16 @@ $(document).ready(function() {
                 echo $_SESSION['ProjectDiscussEditSave']->viewDeletedNote($deleted_note,"ProjectDiscuss"); 
             } // Ends here
         ?>
-            <?php } else{ ?>
+            <?php } else{                  
+                  if($_SESSION["do_project"]->status == 'closed'){                    
+                  ?>
+                     <div class="headline_fuscia"><?php echo _('The Project and task is closed'); ?></div>
+                  <?php
+                  }else{
+                  ?>
                 <div class="headline_fuscia"><?php echo _('This task is closed'); ?></div>
             <?php }
+                 }
                 $do_discuss->sessionPersistent('ProjectDiscussEditSave', "project.php", OFUZ_TTL);
                 if ($do_discuss->getNumRows()) {
                     echo '<div class="spacerblock_24"></div>', "\n";

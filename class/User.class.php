@@ -425,7 +425,9 @@ class User extends RegisteredUser {
             $this->setLog("\n(User) database: ".$conx->db.", table:".$this->getTable());
             $this->query("select * from `".$this->getTable()."` 
                           where `".$this->getUsernameField()."`='".$this->quote($auth_username)."' 
-                          and `".$this->getPasswordField()."`='".$this->quote($auth_password)."'") ;
+                          and `".$this->getPasswordField()."`='".$this->quote($auth_password)."'") ;  
+       
+
             $this->setLog("\n(User) Query executed for sign on:".$this->sql_query);
             
             if ($this->getNumrows() == 1) {
