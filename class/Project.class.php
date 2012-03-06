@@ -885,10 +885,38 @@ class Project extends DataObject {
 
 }
 
+  /**
+  * An Event Method
+  * This method adds a new Project associated with it a new Task.
+  * This method is basically used when we have only Project Name and Task Name available.
+  *
+  * @Param object : Event
+  */
 
+  function eventAddProjectAndTask(EventControler $evtcl) {
 
+    //Adding a Project
+    $this->iduser = $_SESSION['do_User']->iduser;
+    $this->name = $evtcl->project;
+    $this->add();  
+    $idproject = $this->getPrimaryKeyValue();
 
+  /*
+    * Adding Task and Project Task
+    * ProjectTask add() mentod is overritten where it first adds a Task then Project Task
+    * @see ProjectTask->add();
+    */
+  
+    $do_pt = new ProjectTask();
+    $do_pt->task_description = $evtcl->task;
+    $do_pt->due_date = "Today";
+    $do_pt->task_category = "";
+    $do_pt->idproject = $idproject;
+    $do_pt->add();
 
+     $evtcl->setDisplayNext(new Display($evtcl->goto));
+    
+  }
 
 }
 ?>

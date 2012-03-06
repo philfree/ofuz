@@ -47,6 +47,7 @@ class ContactPhone extends MultiRecord {
       $mfields = $evctl->mfields;
       $this->setLog("\n ".$this->getPrefix().": Saving multiple phones");
       $this->idcontact = $_SESSION['ContactEditSave']->idcontact;
+
       if (is_array($mfields['contact_phone'])) { 
 	      foreach($mfields['contact_phone'] as $primary_key_value=>$fields) {
 	        $this->getId($primary_key_value);
