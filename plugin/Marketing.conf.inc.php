@@ -1,6 +1,7 @@
 <?php
-// Copyright 2008-2010 SQLFusion LLC           info@sqlfusion.com
-/**COPYRIGHTS**/
+// Copyright 2008-2012 SQLFusion LLC           info@sqlfusion.com
+/** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html 
+ **/
   /*
    * Marketing configuration
    * This is a configuration file for the Marketing plugin.
@@ -46,13 +47,19 @@
    $GLOBALS['cfg_block_placement']['MEmailTemplate'][] = "BlockEmailTemplateList";
    
    $GLOBALS['cfg_plugin_eventmultiple_placement']['contacts'][] = 
-                                        Array('name'=> 'Send a Message ',
-                                             'confirm' => '',
+
+                                        Array('name'=> 'Send a Message',
+                                             'confirm' => ' ',
                                              'event' => 'ContactMailing->eventGetForMailMerge',
-                                             'action' => '');
-                                             
- 
-   
+                                             'action' => ' ',
+                                             'plugin' => 'Marketing');
+
+                                    //    Array('name'=> 'Send a Message ',
+                                   //          'confirm' => '',
+                                    //         'event' => 'ContactMailing->eventGetForMailMerge',
+                                    //         'action' => '');
+                   
+  
    $plugin_marketing_menu = new SubMenu();
    $plugin_marketing_menu->addMenuItem("WebForms", "/Tab/Marketing/WebForm")
                          ->addMenuItem("Auto Responders", "/Tab/Marketing/AutoResponder")

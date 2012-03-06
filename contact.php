@@ -119,6 +119,17 @@ if(!is_object($_SESSION['do_note_draft'])) {
         $("#more_options").hide(0);
         $("#notes_options").show("fast");
     }
+
+
+
+    $(document).ready(function(){
+      $("#note").click(function(){
+        $("#more_options").hide(0);
+        $("#notes_options").show("fast");
+      });
+    });
+
+  
     function showDateOpt(){
         $("#due_sp_date").show(0);
         $("#when_due").hide(0);

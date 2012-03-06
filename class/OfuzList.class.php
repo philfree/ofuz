@@ -294,17 +294,25 @@ class OfuzList extends BaseObject {
                                   <span class="task_category">'.$this->obj->task_category.'</span>&nbsp';
 
                      if($this->obj->idproject_task!=''){
-                     $html .=    '<span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a>'.$contact_full_name.'</span>
+                     /*
+                      $html .=    '<span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a>'.$contact_full_name.'</span>
                                   &nbsp;&nbsp;<b>
                                   <a href="/Project/'.$this->obj->idproject.'">'.$this->obj->name.'</b></a>
                           &nbsp;&nbsp;<a href="/Task/'.$this->obj->idproject_task.'">'.$img_url.'</a>
-                                  </div>
-  
-                              <div class="ptask_progbar1">';
+                                  </div>  
+                              <div class="ptask_progbar1">';*/
+
+                      $html .=    '<span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a> <a href="/Contact/'.$this->obj->idcontact.'" onclick="allowHighlight=false;" >'.$contact_full_name.'</a></span>
+                                  &nbsp;&nbsp;<b>
+                                  <a href="/Project/'.$this->obj->idproject.'">'.$this->obj->name.'</b></a>
+                                  &nbsp;&nbsp;<a href="/Task/'.$this->obj->idproject_task.'"></a>
+                                  </div>  
+                                  <div class="ptask_progbar1">';
+                   
                    
 
                      }else{
-                     $html .= '<span'.$strike_class.'>'.$this->obj->task_description.$contact_full_name.'</span>
+                        $html .= '<span'.$strike_class.'>'.$this->obj->task_description.'<a href="/Contact/'.$this->obj->idcontact.'" onclick="allowHighlight=false;" >'.$contact_full_name.'</a></span>
                                   </div><div class="ptask_progbar1">';
                     }
 

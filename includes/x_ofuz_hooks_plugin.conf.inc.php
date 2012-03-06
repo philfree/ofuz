@@ -65,28 +65,37 @@
 
     // Core Block positioning 
     // The key is the page script name without .php or the plugIn name
-    $GLOBALS['cfg_plugin_eventmultiple_placement'] = Array(
+    $GLOBALS['cfg_plugin_eventmultiple_placement'] = 
+                              Array(
                                   'contacts' => 
                                     Array( 
                                        Array('name' => 'Merge In One',
                                              'confirm' => 'Are you sure you want to merge the selected contacts?',
                                              'event' => '',
-                                             'action' => 'merge_automated.php')
+                                             'action' => 'merge_automated.php',
+                                             'plugin' => 'Core'
                                              )
-                                             );
+                                          )
+                                    );
     // The key is the page script name without .php or the plugIn name                                         
     $GLOBALS['cfg_submenu_placement']['index'] = new SubMenu();
     $GLOBALS['cfg_submenu_placement']['index']->addMenuItem(_('Work Feed'), "index.php")
-										      ->addMenuItem(_('Notes & Discussion'), "daily_notes.php")
-											  ->addMenuItem(_('Timesheet'), "timesheet.php");   
+										      ->addMenuItem(_('Notes & Discussion'), "daily_notes.php");
+	//										  ->addMenuItem(_('Timesheet'), "timesheet.php");   
     $GLOBALS['cfg_submenu_placement']['daily_notes'] = new SubMenu();
     $GLOBALS['cfg_submenu_placement']['daily_notes']->addMenuItem(_('Work Feed'), "index.php")
-										      ->addMenuItem(_('Notes & Discussion'), "daily_notes.php")
-											  ->addMenuItem(_('Timesheet'), "timesheet.php");   
+										      ->addMenuItem(_('Notes & Discussion'), "daily_notes.php");
+	//										  ->addMenuItem(_('Timesheet'), "timesheet.php");   
+	/**										  
 	$GLOBALS['cfg_submenu_placement']['timesheet'] = new SubMenu();
     $GLOBALS['cfg_submenu_placement']['timesheet']->addMenuItem(_('Work Feed'), "index.php")
 										      ->addMenuItem(_('Notes & Discussion'), "daily_notes.php")
-											  ->addMenuItem(_('Timesheet'), "timesheet.php");  											                                     
+											  ->addMenuItem(_('Timesheet'), "timesheet.php");  	
+	*/	
+	$GLOBALS['cfg_submenu_placement']['timesheet'] = new SubMenu();
+	$GLOBALS['cfg_submenu_placement']['timesheet']->addMenuItem(_('Open Projects'), "projects.php")
+	                                              ->addMenuItem(_('Closed Projects'), "projects_closed.php")
+												  ->addMenuItem(_('Timesheet'), "timesheet.php");                           
     $GLOBALS['cfg_submenu_placement']['tasks'] = new SubMenu();
     $GLOBALS['cfg_submenu_placement']['tasks']->addMenuItem(_('Task By Projects'), "tasks_by_project.php")
 											  ->addMenuItem(_('Task By Date'), "tasks.php")
@@ -98,7 +107,8 @@
 	$GLOBALS['cfg_submenu_placement']['projects_closed'] = new SubMenu();										  
     $GLOBALS['cfg_submenu_placement']['projects_closed']->addMenuItem(_('Open Projects'), "projects.php");
     $GLOBALS['cfg_submenu_placement']['projects'] = new SubMenu();	
-    $GLOBALS['cfg_submenu_placement']['projects']->addMenuItem(_('Closed Projects'), "projects_closed.php");
+    $GLOBALS['cfg_submenu_placement']['projects']->addMenuItem(_('Closed Projects'), "projects_closed.php")
+												->addMenuItem(_('Timesheet'), "timesheet.php");   
  									
  	$GLOBALS['cfg_submenu_placement']['project'] = new SubMenu();		
  	$GLOBALS['cfg_submenu_placement']['project']->addMenuItemJSCallback(_('Edit'), "fnEditProject()")

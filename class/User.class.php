@@ -425,15 +425,35 @@ class User extends RegisteredUser {
             $this->setLog("\n(User) database: ".$conx->db.", table:".$this->getTable());
             $this->query("select * from `".$this->getTable()."` 
                           where `".$this->getUsernameField()."`='".$this->quote($auth_username)."' 
-                          and `".$this->getPasswordField()."`='".$this->quote($auth_password)."'") ;
+                          and `".$this->getPasswordField()."`='".$this->quote($auth_password)."'") ;  
+       
+
             $this->setLog("\n(User) Query executed for sign on:".$this->sql_query);
             
             if ($this->getNumrows() == 1) {
                 if(isset($_SESSION["google"]["openid_identity"])) {
                   $this->setGoogleOpenIdIdentity($this->iduser);
                 }
+				
+				/*$this->getId($this->iduser);
+				
+				if($this->idcontact == 0){
+					$this->addUserAsContact($this->firstname,$this->lastname,$this->company,$this->email,$this->iduser);
+				}*/			//210112
+				if($this->plan == "trail"){
+					$date1 = strtotime($this->regdate);
+					$date2 = strtotime(date("Y-m-d"));
 
-                if ($this->status == 'active') {				
+					$diff = ($date2-$date1)/(60*60*24);
+					if($diff >= '30'){
+						$_SESSION["upgrade"] = true;
+						$err_disp = new Display("api_upgrade_invoice.php");
+						$eventControler->setDisplayNext($err_disp);
+						$eventControler->doForward();
+					}
+				}
+					
+                if ($this->status == 'active') {			
                         $do_login_audit = new LoginAudit();
                         if($this->fb_user_id){// IS a FB connected User
                           if($this->email == ''){ // Oups!!!! no email id then you must login with facebook
@@ -1008,8 +1028,9 @@ class User extends RegisteredUser {
       * adding user as a contact
       * @param $evtcl -- Object
     */
-    function eventAddUserAsContact(EventControler $evtcl){
+    function eventAddUserAsContact(EventControler $evtcl){echo 'gg';die();
 	    if($evtcl->validation_fail != 'Yes'){ // Variable set in the method 
+	    echo 'hh';die();
 		if($_SESSION["do_User"]->iduser) {
 			$idcompany = "";
 			if($evtcl->fields["company"]) {
@@ -1063,13 +1084,17 @@ class User extends RegisteredUser {
 	  $do_contact->addEmail($email,'Home');
 
 	  $lastInsertedContId = $do_contact->getPrimaryKeyValue();
-
+	  //$this->setRegistry(false);
 	  $this->getId($iduser);
 	  $this->idcontact = $lastInsertedContId;
 	  $this->update();
+	  
 	  $contact_view = new ContactView();
 	  $contact_view->setUser($iduser);
+	  //$this->setRegistry(false);
 	  $contact_view->rebuildContactUserTable(); 
+	  
+	  
     }
 
     /**

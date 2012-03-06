@@ -3,7 +3,6 @@
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html 
  **/ 
 
-
     /**
       * ContactMailing class
       * Using the Contact and DataObject
@@ -36,10 +35,13 @@ class ContactMailing extends Contact {
      * Get the list of contact for mailmerge
      * load in the current contact object the list of
      * selected contacts from the contacts.php
-     * Then redirect to the contact_sendemail.php.
+     * Then redirect to the SendMessage page.
+     * 
+     * In here we are doing something not very elegant but to grab the proper
+     * information from the Contacts object we linked it with this new Object.
+     * @Note this assignment may need to be revisited in the future.
      */
     function eventGetForMailMerge(EventControler $event_controler) {
-
         $idcontacts = $event_controler->getParam("ck");
         $sql_in = "(";
         foreach($idcontacts as $idcontact) {
@@ -47,11 +49,10 @@ class ContactMailing extends Contact {
         }
         $sql_in = substr($sql_in, 0, -1);
         $sql_in .= ")";
-        $tag_search = $this->getSearchTags();
+        $tag_search = $_SESSION['do_Contacts']->getSearchTags();
         if(is_array($tag_search) && count($tag_search > 0)){
               $_SESSION['searched_tags'] = $tag_search ;
         }
-
         $this->clearSearch();
         $this->setSqlQuery("SELECT * FROM contact WHERE idcontact in ".$sql_in);
         $this->sessionPersistent("do_ContactMailing", "contacts.php", 36000);

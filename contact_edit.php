@@ -62,18 +62,15 @@
   //$e_fullContact->addEventAction("ContactRssFeed->eventSaveRssFeed", 2006);
   $e_fullContact->addEventAction("ContactEditSave->eventUpdateWebView", 2030);
   $e_fullContact->addEventAction("mydb.gotoPage", 2333);
-  //if ($_SESSION['ContactEditSave']->idcontact == $_SESSION['portal_idcontact']) {
-  //  $e_fullContact->addParam("goto", "contact_portal.php");
-  //} else {
 
-    /*if(isset($_SESSION['from_page']) && $_SESSION['from_page'] != '' ){
-	$e_fullContact->addParam("goto", $_SESSION['from_page'] );
-	$_SESSION['from_page'] = '';
-    }else{
-	$e_fullContact->addParam("goto", "contact.php");
-    }*/
-  //}
-  $e_fullContact->addParam("goto", "contact.php");
+  if(isset($_SESSION['edit_from_page'])) {
+		$e_fullContact->addParam("goto", $_SESSION['edit_from_page'] );
+		unset($_SESSION['edit_from_page']);
+
+  }else{
+		$e_fullContact->addParam("goto", "contact.php");
+  }
+
   echo $e_fullContact->getFormHeader();
   echo $e_fullContact->getFormEvent();
   

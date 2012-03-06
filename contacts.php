@@ -344,33 +344,32 @@ if ($do_contact_limit->canUserAddContact()) {
 					?>
 					<input type="button" name="btnsuggesttag" value="add tags" onclick="addTags();" />
 					<div class="spacerblock_5"></div>
-                    <?php echo _('or ');?><?php echo $GLOBALS['do_tag_list']->generateUserTagsDropDown();?>
-                    <div class="spacerblock_5"></div>
-                    <?php echo _('or ');?><span class="redlink"><a href="#" onclick="eventActionMultiple('do_Contacts->eventDeleteMultiple','Are you sure you want to delete the selected contacts?'); return false;"><?php echo _('Delete them');?></a></span>
-                    <?php if($_SESSION['do_Contacts']->set_unshare){?>
-                    <br /><?php echo _('or ');?><span class="redlink"><a href="#" onclick="eventActionMultiple('do_Contacts->eventUnShareMultiple','Are you sure you want to Unshare the selected contacts?');return false;"><?php echo _('Un-Share Contact');?></a></span>
-                    <input type ="hidden" name="co_worker_id" value = "<?php echo $_SESSION['do_Contacts']->unshare_co_worker;?>">
-                    <?}else{?>
-                    <br /><?php echo _('or ');?><span class="redlink"><a href="#" onclick="actionMultiple('co_workers.php','');return false;"><?php echo _('Share With Co-Workers');?></a></span>
-                    <?php } ?>
-
-                    <?php 
-                      foreach ($GLOBALS['cfg_plugin_eventmultiple_placement']['contacts'] as $event_multiple_plugin) {
-						  if (strlen($event_multiple_plugin['event'])>0) {
-						     echo "\n<br>"._('or ').'<span class="redlink"><a href="#" onclick="eventActionMultiple(\''.$event_multiple_plugin['event'].'\',\''.$event_multiple_plugin['confirm'].'\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
-						  } elseif (strlen($event_multiple_plugin['action'])>0) {
-							 echo "\n<br>"._('or ').
-							  '<span class="redlink">
-							    <a href="#" onclick="actionMultiple(\''.
-							      $event_multiple_plugin['action'].
-							      '\',\''.
-							      $event_multiple_plugin['confirm'].
-							      '\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
-						  }
-						  
-
-					  }
-                    
+    <?php echo _('or ');?><?php echo $GLOBALS['do_tag_list']->generateUserTagsDropDown();?>
+    <div class="spacerblock_5"></div>
+    <?php echo _('or ');?><span class="redlink"><a href="#" onclick="eventActionMultiple('do_Contacts->eventDeleteMultiple','Are you sure you want to delete the selected contacts?'); return false;"><?php echo _('Delete them');?></a></span>
+    <?php if($_SESSION['do_Contacts']->set_unshare){?>
+    <br /><?php echo _('or ');?><span class="redlink"><a href="#" onclick="eventActionMultiple('do_Contacts->eventUnShareMultiple','Are you sure you want to Unshare the selected contacts?');return false;"><?php echo _('Un-Share Contact');?></a></span>
+    <input type ="hidden" name="co_worker_id" value = "<?php echo $_SESSION['do_Contacts']->unshare_co_worker;?>">
+    <?}else{?>
+    <br /><?php echo _('or ');?><span class="redlink"><a href="#" onclick="actionMultiple('co_workers.php','');return false;"><?php echo _('Share With Co-Workers');?></a></span>
+    <?php } ?>
+   <?php 
+    $plugin_enable = new PluginEnable();
+    foreach ($cfg_plugin_eventmultiple_placement['contacts'] as $event_multiple_plugin) {
+		 if ($plugin_enable->isEnabled($event_multiple_plugin['plugin']) || $event_multiple_plugin['plugin'] == "Core") {
+			  if (strlen($event_multiple_plugin['event'])>0) {
+				 echo "\n<br>"._('or ').'<span class="redlink"><a href="#" onclick="eventActionMultiple(\''.$event_multiple_plugin['event'].'\',\''.$event_multiple_plugin['confirm'].'\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
+			  } elseif (strlen($event_multiple_plugin['action'])>0) {
+				 echo "\n<br>"._('or ').
+				  '<span class="redlink">
+					<a href="#" onclick="actionMultiple(\''.
+					  $event_multiple_plugin['action'].
+					  '\',\''.
+					  $event_multiple_plugin['confirm'].
+					  '\');return false;">'._($event_multiple_plugin['name']).'</a></span> ';
+			  }
+		}
+	}                    
                     ?>
                   
                     <div class="spacerblock_10"></div>

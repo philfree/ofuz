@@ -30,7 +30,7 @@ class OfuzBeanstalkd extends DataObject{
     public function addToQueue($obj,$method,$iduser){
         include_once("pheanstalk/pheanstalk_init.php");
         $pheanstalk = new Pheanstalk(JOB_QUEUE_IP.':'.JOB_QUEUE_PORT);
-        //print_r($pheanstalk);exit;
+        print_r($pheanstalk);exit;
         $job = new stdClass();
         $job->obj_data = $obj;
         $job->iduser = $iduser;

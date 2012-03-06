@@ -229,10 +229,13 @@ function sticky_relocate() {
      <?php
       // If the project is a public project then hide the following
       if($project_operation_access === true){
+          if($project_details['status'] != 'closed'){
+            // Login the Block Plugins here //
+            include_once('plugin_block.php');
+          }
+    }
 
- // Login the Block Plugins here //
- include_once('plugin_block.php');
-    }// Public project hide part ends here
+      // Public project hide part ends here
     ?>
     </td><td class="layout_rcolumn">
      <?php

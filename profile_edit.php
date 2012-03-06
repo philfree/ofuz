@@ -54,44 +54,32 @@
   
   if(empty($profile_information)){
       $profileAdd  = new UserProfile($GLOBALS['conx']);
-      $profileAdd->sessionPersistent("ProfileSave", "index.php", 3600);
-      $profile_edit_page =  "profile_edit.php";
-      $profileAddForm = $_SESSION['ProfileSave']->prepareSavedForm("ofuz_add_user_profile");
-      $profileAddForm->setFormEvent("ProfileSave->eventAdd", 300);
-      $profileAddForm->event->setGotFile(true);      
-      $profileAddForm->addEventAction("mydb.gotoPage", 453);
-      $profileAddForm->addParam("goto", $profile_edit_page);
-      $profileAddForm->setRegistry("user_profile");
-      $profileAddForm->setTable("user_profile");
-      $profileAddForm->setAddRecord();
-      $profileAddForm->setUrlNext($profile_edit_page);
-      $profileAddForm->setForm();
-      $profileAddForm->execute();
+      $profileAdd->sessionPersistent("ProfileEditSave", "index.php", 3600);
+      $profileAdd->newAddForm("ProfileEditSave");
+      $profileAdd->form->addParam("goto", "settings_myinfo.php");
+      $profileAdd->form->setGotFile(true);
+      echo $profileAdd->form->getFormHeader();
+      echo $profileAdd->form->getFormEvent();
+      
   }else{   
-      if (!is_object($_SESSION['ProfileEditSave'])) {
+      if (is_object($_SESSION['ProfileEditSave'])) {
+		$ProfileEdit = $_SESSION['ProfileEditSave'];  
+		$ProfileEdit->getProfileInformation((int)$_SESSION['do_User']->iduser);	
+      } else {
         $ProfileEdit  = new UserProfile($GLOBALS['conx']);
         $ProfileEdit->sessionPersistent("ProfileEditSave", "index.php", 120);
-      }
-        
-      if($_SESSION['do_User']->iduser!=''){
-        $_SESSION['ProfileEditSave']->getId((int)$_SESSION['do_User']->iduser);
-      }
+        $ProfileEdit->getProfileInformation((int)$_SESSION['do_User']->iduser);		
+	  }
+       
+      $ProfileEdit->newUpdateForm('ProfileEditSave');      
+	  $ProfileEdit->form->addParam("goto", "settings_myinfo.php");
+	  $ProfileEdit->form->setGotFile(true);
+      echo $ProfileEdit->form->getFormHeader();
+      echo $ProfileEdit->form->getFormEvent();
 
-      $e_Profile = new Event("ProfileEditSave->eventValuesFromForm");
-      $e_Profile->setLevel(1999);
-      $e_Profile->setGotFile(true);
-      $e_Profile->addEventAction("ProfileEditSave->update", 2000);       
-      $e_Profile->addEventAction("mydb.gotoPage", 2333);
- 
-      $e_Profile->addParam("goto", "profile_edit.php");
-      echo $e_Profile->getFormHeader();
-      echo $e_Profile->getFormEvent();
-  
-      $_SESSION['ProfileEditSave']->setFields("user_profile"); 
-      $_SESSION['ProfileEditSave']->setApplyRegistry(true, "Form");   
-
+  }
 ?>
-              
+    <?php echo $_SESSION['ProfileEditSave']->iduser  ; ?>          
   <table class="tplain">
       <tr>
         <td>
@@ -123,9 +111,9 @@
    <div class="dashedline"></div>
 <?php
   echo "<br><br>";
-  echo $e_Profile->getFormFooter("Save");
+  echo $_SESSION['ProfileEditSave']->form->getFormFooter("Save");
   $_SESSION['ProfileEditSave']->setApplyRegistry(false);
-  }
+
 ?>
 
         </div>

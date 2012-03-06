@@ -33,9 +33,9 @@
         $next_page = $from;
     }
     if (isset($_SESSION['entry']))  { 
-		$next_page = $_SESSION['entry'];
-		unset($_SESSION['entry']);
-	}
+  $next_page = $_SESSION['entry'];
+  unset($_SESSION['entry']);
+ }
  
 ?>
 <script type="text/javascript">
@@ -61,26 +61,26 @@ if($application_layer_protocol == "https") {
 <script type="text/javascript">
     FB_RequireFeatures(["XFBML"], function()
     {
-	   // xd_receiver to pull from a secure location
+    // xd_receiver to pull from a secure location
 <?php
 if($application_layer_protocol == "https") {
 ?>
-		FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTPS ;?>");
+  FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTPS ;?>");
 <?php
 } else {
 ?>
-		FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTP ;?>");
+  FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTP ;?>");
 <?php
 }
 ?>
       FB.Facebook.get_sessionState().waitUntilReady(function(session) {
         var is_loggedin = session ? true : false;
- 	var fbu = FB.Facebook.apiClient.get_session() ?
+  var fbu = FB.Facebook.apiClient.get_session() ?
              FB.Facebook.apiClient.get_session().uid :
              0;
             if (is_loggedin && !counter) {
                window.location.reload();
- 	    }
+      }
      }); 
     });
   </script>

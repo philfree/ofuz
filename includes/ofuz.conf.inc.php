@@ -65,7 +65,8 @@
   include_once("class/RegistrationInvoiceLog.class.php");
   include_once("class/DeletePaymentLog.class.php");
   include_once("class/OfuzCancelAccount.class.php");
-  include_once("class/OfuzExportXML.class.php");
+  //include_once("class/OfuzExportXML.class.php");
+  include_once("class/OfuzExportAccount.class.php");
   include_once("class/UserInternalMarketing.class.php");
   include_once("class/TagInternalMarketing.class.php");
   include_once("class/Teams.class.php");
@@ -106,6 +107,10 @@
   include_once("class/workfeed/WorkFeedContactNotePortal.class.php");
   include_once("class/workfeed/WorkFeedContactUnsubscibeEmails.class.php");
   include_once("class/workfeed/WorkFeedTwitterImport.class.php");
+  include_once("class/workfeed/WorkFeedProjectAssignCoworker.class.php");
+
+
+
   // Ofuz API classes
   include_once("class/OfuzApiBase.class.php");
   include_once("class/OfuzApiMethods.class.php");
