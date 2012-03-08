@@ -37,16 +37,18 @@
       <p>Select the service where you have most of your working contacts</p>
 
 	<div id="import_address_book">
-	  <div class="spacerblock_20"></div>
-	  <div><a id="g_import" href="ww_s1_gsync.php"><img src="/images/Google_Logo.gif" alt="" /></a></div>
-	  <div class="spacerblock_20"></div>
-	  <div><a id="fb_import" href="ww_s1_fbconnect.php"><img src="/images/Facebook_Logo.jpg" alt="" /></a></div>
-	  <div class="spacerblock_20"></div>
-	  <div><a id="tw_import" href="ww_s1_tw_import_friends.php"><img src="/images/twitter_small.png" alt="" /></a></div>
-	  <div class="spacerblock_20"></div>
-	  <div><a id="yahoo_import" href="ww_s1_yahoo.php"><img src="/images/yahoo.gif" alt="Import Contacts from Yahoo!" /></a></div>
-	  <div class="spacerblock_20"></div>
-	  <div><a id="hotmail_import" href="ww_s1_hotmail.php"><img src="/images/hotmail.jpeg" alt="Import Contacts from Yahoo!" /></a></div>
+	  <table width="60%">
+	    <tr>
+	      <td width="20%" height="100px" style="vertical-align: middle;"><a id="g_import" href="ww_s1_gsync.php"><img src="/images/Google_Logo.gif" alt="" /></a></td>
+	      <td width="20%" height="100px" style="vertical-align: middle;"><a id="fb_import" href="ww_s1_fbconnect.php"><img src="/images/Facebook_Logo.jpg" alt="" /></a></td>
+	      <td width="20%" height="100px" style="vertical-align: middle;"><a id="tw_import" href="ww_s1_tw.php"><img src="/images/twitter_small.png" alt="" /></a></td>
+	    </tr>
+	    <tr>
+	      <td width="20%" style="vertical-align: middle;"><a id="yahoo_import" href="ww_s1_yahoo.php"><img src="/images/yahoo.gif" alt="Import Contacts from Yahoo!" /></a></td>
+	      <td width="20%" style="vertical-align: middle;"><a id="hotmail_import" href="ww_s1_hotmail.php"><img src="/images/hotmail.jpeg" alt="Import Contacts from Yahoo!" /></a></td>
+	      <td width="20%" style="vertical-align: middle;">&nbsp;</td>
+	    </tr>
+	  </table>
 	</div>
 
 <div>
