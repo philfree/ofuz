@@ -4,7 +4,7 @@ include_once("config.php");
 include_once("class/OfuzApiMethods.class.php");
 include_once("class/OfuzApiClient.class.php");
 
-$api_key = '23ac6be1febf5975f712ed144006f5a2';// replace this with your API key
+$api_key = '40c302e8bea31234cd22925857a15e5c';// replace this with your API key
 
 
 
@@ -18,6 +18,7 @@ $idcontact=$_SESSION['do_User']->idcontact;
 if(!empty($idcontact)){
 $invoice = new Invoice();
 $idinvoice = $invoice->getContactInvoiceDetailsForPlanUpgrade($idcontact,$iduser);
+//echo "idinvoice: ".$idinvoice;exit();
 if($idinvoice != '0'){
 	$do_api_user_rel = new UserRelations();
     //$pay_url =  'http://ofuz.localhost/pay/'.$do_api_user_rel->encrypt($idinvoice).'/'.$do_api_user_rel->encrypt($idcontact);
@@ -38,8 +39,8 @@ $do_ofuz->lastname = $_SESSION['do_User']->lastname;
 $response = $do_ofuz->search_contact();
 
 $response = unserialize($response);
-//echo'<pre>';print_r($response);echo'</pre>';
-//die();
+echo'<pre>';print_r($response);echo'</pre>';
+
 
 
 
