@@ -130,7 +130,6 @@ if($do_ur->getNumRows()) {
 <input type="button" name="btnSkipCW" id="btnSkipCW" value="Skip" />
 </form>
 		 </div>
-
     </td>
     </tr>
     </table>
