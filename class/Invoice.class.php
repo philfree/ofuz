@@ -3197,10 +3197,12 @@ class Invoice extends DataObject {
   * @return query object
   */
  function getContactInvoiceDetailsForPlanUpgrade($idcontact,$iduser) {
+   $idinvoice = 0;
    $sql = "SELECT *
            FROM {$this->table}
            WHERE iduser = {$iduser} AND idcontact = {$idcontact} AND status = 'Invoice' AND description = 'Invoice for plan upgrade'
           ";
+
    $this->query($sql);
    
    if($this->getNumRows()){

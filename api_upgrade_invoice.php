@@ -18,11 +18,12 @@ $idcontact=$_SESSION['do_User']->idcontact;
 if(!empty($idcontact)){
 $invoice = new Invoice();
 $idinvoice = $invoice->getContactInvoiceDetailsForPlanUpgrade($idcontact,$iduser);
+//echo "idinvoice: ".$idinvoice;exit();
 if($idinvoice != '0'){
 	$do_api_user_rel = new UserRelations();
     //$pay_url =  'http://ofuz.localhost/pay/'.$do_api_user_rel->encrypt($idinvoice).'/'.$do_api_user_rel->encrypt($idcontact);
     $pay_url =  $GLOBALS['cfg_ofuz_site_https_base'].'pay/'.$do_api_user_rel->encrypt($idinvoice).'/'.$do_api_user_rel->encrypt($idcontact);
-	@header("location:$pay_url");
+    @header("location:$pay_url");
 	exit();
 }
 
@@ -39,7 +40,7 @@ $response = $do_ofuz->search_contact();
 
 $response = unserialize($response);
 //echo'<pre>';print_r($response);echo'</pre>';
-//die();
+
 
 
 

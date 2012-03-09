@@ -435,15 +435,11 @@ class User extends RegisteredUser {
                   $this->setGoogleOpenIdIdentity($this->iduser);
                 }
 				
-				/*$this->getId($this->iduser);
-				
-				if($this->idcontact == 0){
-					$this->addUserAsContact($this->firstname,$this->lastname,$this->company,$this->email,$this->iduser);
-				}*/			//210112
-				if($this->plan == "trail"){
+				unset($_SESSION['upgrade']);
+				if($this->plan == "trial"){
 					$date1 = strtotime($this->regdate);
 					$date2 = strtotime(date("Y-m-d"));
-
+					
 					$diff = ($date2-$date1)/(60*60*24);
 					if($diff >= '30'){
 						$_SESSION["upgrade"] = true;

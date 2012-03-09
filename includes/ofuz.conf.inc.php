@@ -165,7 +165,11 @@
   include_once("class/OfuzBeanstalkd.class.php");
 
   //Email Contact Import
+<<<<<<< HEAD
   include_once("plugin/EmailImporter/OpenInviter/openinviter.php");
+=======
+  include_once("plugin/EmailImporter/openinviter.php");
+>>>>>>> origin/master
   include_once("plugin/EmailImporter/OfuzEmailImporter.class.php");
   
 

@@ -25,6 +25,7 @@
      * Get a valid Access Token
 	 */
     $token = $consumer->getRequestToken();
+
     $_SESSION['TWITTER_REQUEST_TOKEN'] = serialize($token);
     $_SESSION['TWITTER_ENTRY'] = 'settings_twitter.php';
 
