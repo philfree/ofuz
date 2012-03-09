@@ -101,7 +101,7 @@ $("#"+divid).fadeOut("slow");
 <div id="coworker_ctlbar_top" style="display: none;">
 <span class="redlink">
 <!-- <a href="#" onclick="setContactForCoworker(); return false;" style="font-size:20px;"><?php echo _('Share'); ?></a> -->
-<input type="button" name="btnShare" id="btnShare" onclick="setContactForCoworker(); return false;" value="<?php echo _('Share'); ?>" />
+<input type="button" name="btnShare" id="btnShare" onclick="setContactForCoworker(); return false;" value="<?php echo _('Save'); ?>" />
 </span>
 </div>
 <?php
@@ -300,13 +300,13 @@ echo '<div class="spacerblock_10"></div>';
     echo '</table>';
 
 } else {
-echo '<div><b>You do not have Team to sahre with.</b></div>';
+echo '<div><b>You do not have Team to share with.</b></div>';
 }
 echo '<div class="spacerblock_10"></div>';
 echo '<div class="solidline"></div>';
 echo '<div class="spacerblock_10"></div>';
 
-                                   echo '<b>'._('Select Co-Worker you want to give access to the contact(s) and click Share to save :').'</b>';
+                                   echo '<b>'._('Select Co-Worker you want to give access to the contact(s) and click save :').'</b>';
 				    echo '<div class="spacerblock_10"></div>';
                                    //$user_coworker = new User();
                                    while($_SESSION['do_coworker']->next()){
