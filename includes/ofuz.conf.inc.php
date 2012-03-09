@@ -164,14 +164,10 @@
   //Beanstakd
   include_once("class/OfuzBeanstalkd.class.php");
 
-  //Email Contact Import
-<<<<<<< HEAD
-  include_once("plugin/EmailImporter/OpenInviter/openinviter.php");
-=======
+  //Email Contact Import 
   include_once("plugin/EmailImporter/openinviter.php");
->>>>>>> origin/master
   include_once("plugin/EmailImporter/OfuzEmailImporter.class.php");
-  
+
 
   define('RADRIA_LOG_RUN_OFUZ', true);
   define('OFUZ_LOG_RUN_TAG', false);
