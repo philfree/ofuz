@@ -535,3 +535,93 @@ h4 { font-size: 10pt; margin: 0; padding: 0; line-height: 1.2; }
 
 
 
+
+.grayline2 { margin: 0 2px; height: 4px; line-height: 1px; font-size: 1px; background-color: #ededed; overflow: hidden; }
+
+.profile_line { float:none; width: 90%; height: 2px; line-height: 2px; font-size: 1px; border-bottom: solid 2px #cfcfcf;}
+.profile_text_content { font-size: 36; width: 90%; text-align: left; margin-left: 4px; }
+.profile_text_bold { color: black; font-weight: bold; }
+/**the design by Mike Kai had an underline that appeared thinner and lighter in color than the standard underline**/
+.profile_text_link { float:right; text-align: right; margin-right: 11%; color: #1d8cd2; border-bottom: 1px dotted ; font-size:14px; font-weight:bold;}
+
+
+
+/** Profile Header **/
+
+.my_profile_class {
+ width: 90%;
+ height: 180px;
+    border: 3px solid #e0e0e0; 
+    background:#efefef; 
+    font-size: 18px
+    color: #666666;
+    margin-top:20px;
+}
+
+.profile_subject_line { width: 90%; }
+.my_profile { font-size: 32px; font-weight: bold; color: #black; text-align: left; padding:2px;}
+.edit_profile { font-size: 14px; font-weight: bold; color: #1d8cd2;border-bottom: 1px dotted;
+
+ }
+.  { font-size: 24; float:right; margin-right: 12%; text-align: right; margin-right: 2px; color: #1d8cd2; text-decoration: underline; }
+
+/** Profile Display Box **/
+.left_profile_box { float:left; overflow: hidden;}
+.right_profile_box {  float: left; 
+      font-size: 18px;   
+      color: #666666; 
+      overflow: auto; 
+      /*outline: blue 1px solid;*/
+      margin-top:36px;
+      
+      }
+      
+
+.profile_text_content { font-size: width: 90%; 16px; color: #636363; text-align: left; margin-left: 2px; }
+.profile_text_subjectline { margin-left: 2px; font-weight: bold; color:#898989;font-size:16px;}
+
+/**needs box-shadow; as shown in picture**/
+.profile_photo { width: 120px; height: 120px; background-color: black; margin:18px 18px; border: 2px solid white;  }
+/**needs to be centered underneeath the photo. Juan added the margin to compensate for the image at 120px plus 2px border**/
+.profile_edit_photo { font-size: 14px; font-weight: bold; color: #1d8cd2; text-align: center; border-bottom: 1px dotted ;
+/*outline: red 1px solid;*/
+width: 72px;
+margin:-6px 0px 0px 46px;
+}
+
+.profile_name { font-size: 32px; font-weight: bold; color: black; margin: 40px 0px 0px 12px; text-align: left;
+padding-top: 66px;
+/*outline: red 1px solid;*/
+ }
+.profile_title {  color: #666666; text-align: left; margin:0px 0px 0px 12px; font-size:15px; }
+.profile_company { color: #1d8cd2; text-align: left; font-size:15px;}
+
+
+/** Bio **/
+/**.profile_edit_bio { float:right; margin-right: 12%; width:50%; text-align: right; color: #1d8cd2; text-decoration: underline; }**/
+
+
+/** Contact Information. text has not been turning gray **/
+.profile_ci_text { font-size: 16px; color: black; text-align: left; margin: 0px 0px 0px 12px; }
+.profile_add_text { font-size: 16px; color: black; text-align: left; margin: 0px 0px 0px 36px; }
+/**sct = State city text**/
+.profile_sct { font-size: 16px; color: black; text-align: left; margin: 0px 0px 0px 6px; }
+
+
+/** Quick Links **/
+.public_profile_url { color: black; font-weight: bold; }
+.profile_quicklink_userprofile a{ color: #1d8cd2; font-weight: bold; border-bottom: 1px dotted; }
+
+.qr_info { position:left; }
+.qr_image { float:left; text-align: left;  margin:0px 0px 0px -8px;}
+/**temporarily adding outline: 1px solid red to the QR download just so i have a visual reference #1d8cd2;**/
+.qr_download {  width: 11%; 
+    font-weight: bold; 
+    text-align: left; 
+    padding-top: 66px;
+    padding-left: -2px;
+    margin:0px 0px 0px 90px;  
+    color: #1d8cd2;
+    border-bottom: 1px dotted;} 
+    
+.qr_use { clear: both; width: 90%; margin-left: 2px; color: #666666; }
