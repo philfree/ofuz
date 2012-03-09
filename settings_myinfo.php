@@ -139,10 +139,11 @@
                       while($ContactEmail->next()){
                           echo "</br>";
                           echo "<img class=profile_icon src=/images/profile_icon_email.png alt=  height=11 width=16>";
-                             echo '<a class=profile_ci_text  href="mailto:'.$ContactEmail->email_address.'" title="'.$ContactEmail->email_type.'">'.$ContactEmail->email_address.'</a>';
-                          
+                             echo '<a class=profile_ci_text  href="mailto:'.$ContactEmail->email_address.'" title="'.$ContactEmail->email_type.'">'.$ContactEmail->email_address.'</a>';                          
                         }
-                    } ?>
+                    }else{
+                    echo "<img class=profile_icon src=/images/profile_icon_email.png alt=  height=11 width=16>";
+                      } ?>
            
    </div>
 
@@ -195,6 +196,8 @@
             }
 
         }
+    }else{
+      echo '<img class="profile_icon" src="/images/profile_icon_skype.png" width="16" height="16" alt="" />';
     }
   ?>           
 </div>
@@ -216,6 +219,9 @@
             echo '<a class="profile_ci_text" href="tel:'.$ContactPhone->phone_number.'">'.$ContactPhone->phone_number.'</a>';
             echo '</div>',"\n";
         }
+    }else{
+      echo '<img class="profile_icon" src="/images/profile_icon_phonew.png" width="16" height="15" alt="" />';
+
     }
 ?>
      

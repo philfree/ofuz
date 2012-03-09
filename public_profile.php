@@ -198,7 +198,9 @@ if($_SESSION['hcard_idcontact'] != '' ){
             echo '</div>',"\n";
         }
     }else{
+        echo '<div class="layout_lineitem">';
         echo '<img class="profile_icon" src="/images/profile_icon_email.png" width="16" height="11" alt="" />';
+        echo '</div>',"\n";
     }
 
     $ContactWebsite = $_SESSION['do_contact']->getChildContactWebsite();
@@ -209,7 +211,9 @@ if($_SESSION['hcard_idcontact'] != '' ){
             echo '</div>',"\n";
         }
     }else{
+      echo '<div class="layout_lineitem">';
       echo '<img src="/images/profile_icon_website.png " alt=" " height="21" width="16">';
+      echo '</div>',"\n";
     }
 
     $ContactInstantMessage = $_SESSION['do_contact']->getChildContactInstantMessage();
@@ -233,7 +237,9 @@ if($_SESSION['hcard_idcontact'] != '' ){
             echo '</div>',"\n";
         }
     }else{
+         echo '<div class="layout_lineitem">';
          echo '<img class="profile_icon" src="/images/profile_icon_skype.png" width="16" height="16" alt="" />';
+        echo '</div>',"\n";
     }
 
     $ContactPhone = $_SESSION['do_contact']->getChildContactPhone();
@@ -250,7 +256,9 @@ if($_SESSION['hcard_idcontact'] != '' ){
             $contact_no=$ContactPhone->phone_number;
         }
     }else{
+      echo '<div class="layout_lineitem">';
       echo '<img class="profile_icon" src="/images/profile_icon_phonew.png" width="16" height="15" alt="" />';
+      echo '</div>',"\n";
     }
 ?>
         </div>
