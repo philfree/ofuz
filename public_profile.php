@@ -173,16 +173,18 @@ if($_SESSION['hcard_idcontact'] != '' ){
       <?php
         }
       ?>
-        <div class="profile_photo">
-<?php if ($_SESSION['do_contact']->picture != '') { ?>
-	<img src="<?php echo $_SESSION['do_contact']->getContactPicture(); ?>" height="100%" alt="" />
-<?php } ?>
-        </div>
+        
     </div>
 </div>
 <div class="layout_full"><div class="layout_center">
     <div class="layout_main">
+        <div style="float:left;height: 120px;margin: 18px;width: 120px;">
+            <?php if ($_SESSION['do_contact']->picture != '') { ?>
+                 <img src="<?php echo $_SESSION['do_contact']->getContactPicture(); ?>" height="80%" alt="" />
+            <?php } ?>
+          </div>
         <div class="layout_headline">
+            <br/>
             <b><?php echo $_SESSION['do_contact']->firstname, ' ', $_SESSION['do_contact']->lastname; ?></b><br />
             <i><?php echo $_SESSION['do_contact']->position,' at ',$_SESSION['do_contact']->company; ?></i>
         </div>
