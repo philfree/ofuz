@@ -136,7 +136,7 @@
                                           'InvoicesMonthlyGraphBlock',
                                           'InvoicesYTDBlock',
                                           'NotesAndDiscussionBlock',
-                                          'PaymentLogBlock.class',
+                                          'PaymentLogBlock',
                                           'ProjectAddCoworkerBlock',
                                           'ProjectAddProjectTaskBlock',    
                                           'ProjectAddTaskDropboxBlock',
