@@ -21,6 +21,17 @@
     } elseif(is_object($_SESSION['ContactEditSave'])) {
         $idcontact = $_SESSION['ContactEditSave']->idcontact;
     }
+    
+  $do_user = new User();
+  $current_idcontact = $do_user->getContactId($_SESSION["do_User"]->iduser);
+
+  if($current_idcontact != $idcontact){
+    if(isset($_SESSION['edit_from_page'])) {
+        unset($_SESSION['edit_from_page']);
+    }
+  }else{
+    $_SESSION['edit_from_page'] = 'contact.php';
+  }
 
     /* Contacts Note sharing Object 
     */

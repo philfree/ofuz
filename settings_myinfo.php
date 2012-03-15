@@ -84,9 +84,12 @@
    $_SESSION['do_User']->idcontact = $idcontact_inserted;
     $do_contact->getId($idcontact_inserted);
     }
-  $do_contact->sessionPersistent("ContactEditSave", "index.php", 120);
-  
-  $do_np_contact->sessionPersistent("ContactPictureSave", "index.php", 120);
+    $_SESSION['edit_from_page'] = 'settings_myinfo.php';
+    $do_contact->sessionPersistent("ContactEditSave", "contact.php", OFUZ_TTL);
+
+  //$do_contact->sessionPersistent("ContactEditSave", "index.php", 120);
+  //$do_np_contact->sessionPersistent("ContactPictureSave", "index.php", 120);
+  $do_np_contact->sessionPersistent("ContactPictureSave", "index.php", OFUZ_TTL);
   $_SESSION['ContactPictureSave']->getId($idcontact);
   
   $e_fullContact = new Event("ContactPictureSave->eventValuesFromForm");
