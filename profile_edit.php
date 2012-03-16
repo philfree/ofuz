@@ -71,7 +71,8 @@
         $ProfileEdit->getProfileInformation((int)$_SESSION['do_User']->iduser);		
 	  }
        
-      $ProfileEdit->newUpdateForm('ProfileEditSave');      
+      $ProfileEdit->newUpdateForm('ProfileEditSave');   
+      $ProfileEdit->setRegistry("user_profile");  
 	  $ProfileEdit->form->addParam("goto", "settings_myinfo.php");
 	  $ProfileEdit->form->setGotFile(true);
       echo $ProfileEdit->form->getFormHeader();

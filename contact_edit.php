@@ -48,8 +48,14 @@
     $ContactEdit->sessionPersistent("ContactEditSave", "index.php", 120);
   }
   if (isset($_GET['id'])) {
-     $_SESSION['ContactEditSave']->getId((int)$_GET['id']);
+    $_SESSION['ContactEditSave']->getId((int)$_GET['id']);exit;
   }
+
+
+
+  $do_user = new User();
+  $idcontact = $do_user->getContactId($_SESSION["do_User"]->iduser);
+
   $e_fullContact = new Event("ContactEditSave->eventValuesFromForm");
   $e_fullContact->setLevel(1999);
   $e_fullContact->setGotFile(true);
@@ -63,12 +69,14 @@
   $e_fullContact->addEventAction("ContactEditSave->eventUpdateWebView", 2030);
   $e_fullContact->addEventAction("mydb.gotoPage", 2333);
 
+  print_r($_SESSION['edit_from_page']);
   if(isset($_SESSION['edit_from_page'])) {
-		$e_fullContact->addParam("goto", $_SESSION['edit_from_page'] );
-		unset($_SESSION['edit_from_page']);
-
+    $e_fullContact->addParam("goto", $_SESSION['edit_from_page'] );
+    unset($_SESSION['edit_from_page']);
+  }elseif($idcontact != ($_SESSION['ContactEditSave']->idcontact)){
+    $e_fullContact->addParam("goto", "index.php");    
   }else{
-		$e_fullContact->addParam("goto", "contact.php");
+    $e_fullContact->addParam("goto", "contact.php");
   }
 
   echo $e_fullContact->getFormHeader();

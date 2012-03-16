@@ -37,7 +37,7 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
             $html .= '<br />';
 
             if($this->user_picture!=''){
-              $user_pic="/dbimage/".$this->user_picture;         
+              $user_pic="/dbimage/thumbnail/".$this->user_picture;         
             }else{
                $user_pic="/images/empty_avatar.gif";         
             }

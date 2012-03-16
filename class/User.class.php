@@ -1427,6 +1427,20 @@ class User extends RegisteredUser {
 
     }
 
+  function getContactId($iduser){
+    $sql = "SELECT idcontact
+            FROM {$this->table}
+            WHERE iduser = {$iduser}
+   ";
+     $this->query($sql);
+     if($this->getNumRows()){
+        $this->fetch();
+        return $idcontact = $this->getData('idcontact');
+
+    }
+  }
+
+
 }
 
 ?>
