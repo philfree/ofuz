@@ -723,6 +723,13 @@ class OfuzApiMethods extends OfuzApiBase {
 		$do_api_invoice->discount = $this->discount;
 		$do_api_invoice->add();
 		$idinvoice = $do_api_invoice->getPrimaryKeyValue();
+		
+		//add to table invoice call back for trail users
+		$url = $this->url;$next_url=$this->next_url;
+		
+		$invoice_call_back = new InvoiceCallback();
+		$invoice_call_back->addCallBackUrl($idinvoice,$url,$next_url);
+		
             /*if($add_call_back_url){
                 $do_api_inv_call_back = new InvoiceCallback();
                 $callback = $do_api_inv_call_back->addCallBackUrl($idinvoice,$this->callback_url,$this->next_url);

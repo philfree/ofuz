@@ -27,7 +27,7 @@ $cc = $OfuzEmailFetcher->getCCEmail();
 
 //$email_marged_array = array_merge($to,$bcc);
 $all_emails_merged = array_merge($to,$cc);
-//print_r($all_emails_merged);
+//print_r($all_emails_merged);die();
 
 if(is_array($all_emails_merged)){
   foreach($all_emails_merged as $email_add){

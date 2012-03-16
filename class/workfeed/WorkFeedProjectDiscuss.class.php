@@ -124,4 +124,58 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
 		}
         $this->addFeed($users);
     }
+    
+    
+     /**
+	 *  Add the note to the workfeed from drop box email 
+	 *  Select all other Co-Worker on the project and push the note to them.
+	 *  Every Co-Worker in the project get the feed except the one posting the note.
+	 *  @param EventControler object
+	 */
+    function AddProjectDiscussFeedFromDropBox($idproject_task,$discuss,$iduser,$idproject_discuss,$idproject) {
+		
+        $this->idproject_task = $idproject_task;
+        $this->discuss = $discuss;
+        $this->iduser = $iduser;		
+		$this->idproject_discuss = $idproject_discuss;
+		$this->idproject = $idproject;
+		$do_project = new Project();
+		$do_project->getId($this->idproject);
+		$this->project_name = $do_project->getProjectName();
+		$user = new User();
+		$user->getId($this->iduser);
+		$this->user_full_name  = $user->getFullName();
+ 
+		$do_contact = new Contact();
+		$do_contact->getContactPictureDetails($this->iduser);
+		if($do_contact->getNumRows()){
+				while($do_contact->next()){
+				$co_workers[] = $do_->idcoworker;
+				$this->user_picture = $do_contact->picture;
+				$this->contact_id = $do_contact->idcontact;
+			}
+        }
+
+		$do_proj_task_feed = new ProjectTask();
+		$do_proj_task_feed->getProjectTaskDetails($this->idproject_task);
+		$this->task_description = $do_proj_task_feed->task_description;
+		
+		if(strlen($this->discuss) > 200 ){ 
+			 $this->discuss = substr($this->discuss, 0, 200);
+			 $this->more = True;
+		} else { $this->more = False; }
+		
+		$do_project_sharing = new ProjectSharing();
+		$project_users = $do_project_sharing->getCoWorkersAsArray($do_project);		
+		$project_users[] = $do_project->getProjectOwner();
+		$users = Array();
+		foreach ($project_users as $project_user) {
+			if ($iduser != $project_user) {
+				$users[] = $project_user;
+			}
+		}
+        $this->addFeed($users);
+    }
+    
+    
 }
