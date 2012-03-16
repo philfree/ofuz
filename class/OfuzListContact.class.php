@@ -20,8 +20,17 @@ class OfuzListContact extends OfuzList {
   public function displayRow($void=null){
   	$html = '';
        // $html .= '<div class="ofuz_list_contact" id="cid'.$this->data->idcontact.'" onclick="fnHighlight(\''.$this->data->idcontact.'\')"><table><tr><td><input type="checkbox" name="ck[]" id="ck'.$this->data->idcontact.'" value="'.$this->data->idcontact.'" class="ofuz_list_checkbox" onclick="fnHighlight(\''.$this->data->idcontact.'\')" /></td>';
+        $image_name=$this->data->getContactPicture($this->data->idcontact);
+       
+        $exp=explode('/',$image_name);
+        if(in_array('dbimage',$exp)){
+          $image_name = '/'.$exp[1].'/thumbnail/'.$exp[2];          
+        }
+            
+
         $html .= '<td class="ofuz_list_contact_col1">
-                          <img src="'.$this->data->getContactPicture($this->data->idcontact).'" width="34" alt="" />
+                  
+                          <img src="'.$image_name.'" width="34" alt="" />
                       </td>';
         $html .= '<td class="ofuz_list_contact_col2">
                           <span class="contact_name"><a href="/Contact/'.$this->data->idcontact.'" onclick="allowHighlight=false;">'.$this->data->firstname.'&nbsp;'.$this->data->lastname.'</a></span>';

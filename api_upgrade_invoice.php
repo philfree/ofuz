@@ -96,6 +96,8 @@ $do_ofuz->amt_due = '24.00';
 $do_ofuz->sub_total='24.00';
 $do_ofuz->net_total='24.00';
 //$do_ofuz->callback_url = 'api_upgrade_invoice.php';
+$do_ofuz->url = 'http://ofuz.localhost.com/plan_upgrade.php';
+$do_ofuz->next_url = 'http://ofuz.localhost.com/index.php';
 $response = $do_ofuz->upgrade_plan_add_invoice();
 
 @header("location:$response");
