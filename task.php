@@ -593,7 +593,7 @@ $(document).ready(function() {
                             if($do_contact->getNumRows()){
                               //while($do_contact->next()){   
                               if($do_contact->picture!=''){
-                                 $contact_picture="/dbimage/".$do_contact->picture; 
+                                 $contact_picture="/dbimage/thumbnail/".$do_contact->picture; 
                                }else{
                                  $contact_picture='/images/empty_avatar.gif';
                                }  

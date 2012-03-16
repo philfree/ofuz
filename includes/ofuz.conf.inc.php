@@ -91,7 +91,7 @@
 //  include_once("class/AutoResponder.class.php");
 //  include_once("class/AutoResponderEmail.class.php");
 
-
+  include_once("class/FieldTypeImageThumb.class.php");
   include_once("class/OfuzUserInterface.class.php");
 
   include_once("class/OfuzList.class.php");
