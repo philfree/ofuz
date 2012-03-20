@@ -813,20 +813,19 @@ include_once('plugin_block.php');
       $do_contact = new Contact();
        $do_contact->getUserContacts($do_notes->iduser);
         if($do_contact->getNumRows()){
-          while($do_contact->next()){   
+          //while($do_contact->next()){   
             if($do_contact->picture!=''){
-              $contact_picture="/dbimage/".$do_contact->picture;   
+              $contact_picture="/dbimage/thumbnail/".$do_contact->picture;   
             }else{
               $contact_picture="/images/empty_avatar.gif";         
             }            
             $contact_id = $do_contact->idcontact;
-          }
+          //}
         }
     
-					// Start displaying the note
-					echo '<div id="notetext', $do_notes->idcontact_note, '" class="vpad10">';
-     echo '<a href="/Contact/'.$contact_id.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a>';
-					echo '<div style="height:24px;position:relative;"><div class="percent95"><img src="/images/note_icon.gif" class="note_icon" width="16" height="16" alt="" />',$e_PrioritySort->getLink($star_img_url, ' title="'._($star_title).'"');
+      // Start displaying the note
+      echo '<div id="notetext', $do_notes->idcontact_note, '" class="vpad10">';      
+      echo '<div style="height:24px;position:relative;"><div class="percent95"><img src="/images/note_icon.gif" class="note_icon" width="16" height="16" alt="" />',$e_PrioritySort->getLink($star_img_url, ' title="'._($star_title).'"');
 					/*list($yyyy,$mm,$dd) = split("-",$do_notes->date_added);
 					if($yyyy < date('Y')) {
 					  $added_by = date('l, F j Y', strtotime($do_notes->date_added));
@@ -838,10 +837,15 @@ include_once('plugin_block.php');
 
 					echo '<b>'.$added_by.'</b>&nbsp;('._('Added By :').'&nbsp;'.$do_notes->getNoteOwnerFullName().')</div>
 					<div id="trashcan', $note_count, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_notes->idcontact_note.'\','.$do_notes->idcontact_note.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_note_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div></div>';
+     echo "<br>";
+      echo '<a href="/Contact/'.$contact_id.'"> <img width="34" height="34"alt="" src='.$contact_picture.' class="note_icon"> </a>';
+   
 					if ($do_notes->is_truncated) {
 						echo '<div id="notepreview',$do_notes->idcontact_note,'">',$note_text,'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
 					} else {
-						echo $note_text;
+      //echo "<div style='padding:0px 0px 0px 0px;'>";
+          echo "&nbsp;&nbsp;&nbsp;&nbsp;".$note_text;
+      //echo "</div>";
 					}
 					$note_count++;
 					
@@ -855,6 +859,7 @@ include_once('plugin_block.php');
 		$_SESSION['ContactNotes']->getContactNotesCount($idcontact);
         }
         ?>
+    
         </div>
         <div id="last_note_loader"></div>
         <div class="spacerblock_20"></div>
