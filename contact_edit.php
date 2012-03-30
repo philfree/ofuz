@@ -69,13 +69,13 @@
   $e_fullContact->addEventAction("ContactEditSave->eventUpdateWebView", 2030);
   $e_fullContact->addEventAction("mydb.gotoPage", 2333);
 
-  print_r($_SESSION['edit_from_page']);
+  
   if(isset($_SESSION['edit_from_page'])) {
     $e_fullContact->addParam("goto", $_SESSION['edit_from_page'] );
     unset($_SESSION['edit_from_page']);
-  }elseif($idcontact != ($_SESSION['ContactEditSave']->idcontact)){
+  }/*elseif($idcontact != ($_SESSION['ContactEditSave']->idcontact)){
     $e_fullContact->addParam("goto", "index.php");    
-  }else{
+  }*/else{
     $e_fullContact->addParam("goto", "contact.php");
   }
 

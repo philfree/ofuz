@@ -25,13 +25,13 @@
   $do_user = new User();
   $current_idcontact = $do_user->getContactId($_SESSION["do_User"]->iduser);
 
-  if($current_idcontact != $idcontact){
+  /*if($current_idcontact != $idcontact){
     if(isset($_SESSION['edit_from_page'])) {
         unset($_SESSION['edit_from_page']);
     }
-  }else{
-    $_SESSION['edit_from_page'] = 'contact.php';
-  }
+  }else{*/
+    $_SESSION['edit_from_page'] = 'Contact/'.$idcontact;
+  //}
 
     /* Contacts Note sharing Object 
     */
