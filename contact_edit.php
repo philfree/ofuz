@@ -66,7 +66,8 @@
   if(isset($_SESSION['edit_from_page'])) {
 		$e_fullContact->addParam("goto", $_SESSION['edit_from_page'] );
 		unset($_SESSION['edit_from_page']);
-
+  }elseif($_GET["r"] == "bio"){
+    $e_fullContact->addParam("goto", "settings_myinfo.php"); 
   }else{
 		$e_fullContact->addParam("goto", "contact.php");
   }
