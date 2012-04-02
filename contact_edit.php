@@ -22,6 +22,7 @@
     //   include_once('includes/header.inc.php');
     //   include_once('includes/ofuz_portal_header.inc.php');
     //}
+
 ?>
 <script type="text/javascript">
     //<![CDATA[
@@ -48,8 +49,14 @@
     $ContactEdit->sessionPersistent("ContactEditSave", "index.php", 120);
   }
   if (isset($_GET['id'])) {
-     $_SESSION['ContactEditSave']->getId((int)$_GET['id']);
+    $_SESSION['ContactEditSave']->getId((int)$_GET['id']);exit;
   }
+
+
+
+  $do_user = new User();
+  $idcontact = $do_user->getContactId($_SESSION["do_User"]->iduser);
+
   $e_fullContact = new Event("ContactEditSave->eventValuesFromForm");
   $e_fullContact->setLevel(1999);
   $e_fullContact->setGotFile(true);
@@ -63,13 +70,23 @@
   $e_fullContact->addEventAction("ContactEditSave->eventUpdateWebView", 2030);
   $e_fullContact->addEventAction("mydb.gotoPage", 2333);
 
+  
   if(isset($_SESSION['edit_from_page'])) {
+<<<<<<< HEAD
 		$e_fullContact->addParam("goto", $_SESSION['edit_from_page'] );
 		unset($_SESSION['edit_from_page']);
   }elseif($_GET["r"] == "bio"){
     $e_fullContact->addParam("goto", "settings_myinfo.php"); 
   }else{
 		$e_fullContact->addParam("goto", "contact.php");
+=======
+    $e_fullContact->addParam("goto", $_SESSION['edit_from_page'] );
+    unset($_SESSION['edit_from_page']);
+  }/*elseif($idcontact != ($_SESSION['ContactEditSave']->idcontact)){
+    $e_fullContact->addParam("goto", "index.php");    
+  }*/else{
+    $e_fullContact->addParam("goto", "contact.php");
+>>>>>>> origin/master
   }
 
   echo $e_fullContact->getFormHeader();

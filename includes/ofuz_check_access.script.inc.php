@@ -36,7 +36,7 @@
     }
     
     /* This is for api_upgrade_invoice.php */
-     if ($_SESSION['upgrade'] == true) {
+     if ($_SESSION['upgrade'] === true) {
 		$tt = "api_upgrade_invoice.php";
 		echo "<script language=\"javascript\">
         window.location.href='$tt';

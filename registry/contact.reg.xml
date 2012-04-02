@@ -72,6 +72,9 @@
     <rdata type="id"></rdata>
     <rdata type="fieldtype">strFBFieldTypeInt</rdata>
   </rfield>
+  
+  
+<!--  
   <rfield name="picture">
     <rdata type="label">User Picture</rdata>
     <rdata type="max_width">200</rdata>
@@ -80,7 +83,23 @@
     <rdata type="picture">dbimage/</rdata>
     <rdata type="overwrite">no</rdata>
     <rdata type="fieldtype">PageBuilderFieldImage</rdata>
+  </rfield>-->
+
+  <rfield name="picture">
+    <rdata type="label">User Picture</rdata>
+    <rdata type="max_width">200</rdata>
+    <rdata type="max_height">200</rdata>
+    <rdata type="thumb_max_width">48</rdata>
+    <rdata type="thumb_max_height">48</rdata>
+    <rdata type="showpicture">1</rdata>
+    <rdata type="picture">dbimage/</rdata>
+    <rdata type="overwrite">no</rdata>
+    <rdata type="thumb_folder">dbimage/thumbnail/</rdata>
+    <rdata type="fieldtype">FieldTypeImageThumb</rdata>
   </rfield>
+
+  
+  
   <rfield name="summary">
     <rdata type="databasetype"></rdata>
     <rdata type="label">Summary information</rdata>

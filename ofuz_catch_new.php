@@ -361,31 +361,46 @@ if($addprojectnote === true){
    $parse_content = ereg_replace("^\>", "", $final_message_content);
    $do_project_task = new ProjectTask();
    $do_project_task->getTaskDetailByDropBoxCode($drop_box_code_proj_task);
-   //echo $do_project_task->idproject_task; echo $do_project_task->idproject;
-   if($do_project_task->getNumRows() > 0 ){
+   //echo $do_project_task->idproject_task; echo $do_project_task->idproject;die();
+   
+    //$do_task = new Task();
+	//$do_task->getId($drop_box_code_proj_task);
+	//echo $do_task->status;die();
+	//if($do_task->status != 'closed'){
+   
+   if($do_project_task->getNumRows() > 0 ){ 
         if($attachments_extracted === false){
-            $attachment = $OfuzEmailFetcher->saveAttachments('/var/www/dev.ofuz.net/files/');// Change this file path to your file saving path for Contact Notes and Project discussion
+            $attachment = $OfuzEmailFetcher->saveAttachments('/var/www/ofuz/files/');// Change this file path to your file saving path for Contact Notes and Project discussion
             $attachments_extracted = true ;
         }
+        
+        //$do_task =  new Task();
+        //$do_task->getId($drop_box_code_proj_task);
+        //echo $do_task->status;die();
+        
         $do_project->getId($do_project_task->idproject);
         $do_user->getUserDataByEmail($from_address);
         if($do_user->getNumRows() > 0 ){ 
-            if(is_array($attachment) && count($attachment)> 0){
+            if((is_array($attachment)) && (count($attachment)>0)){
                 $attachment_count = 0;
                 foreach($attachment as $attachment){
                     $attachment_count++;
                     $do_project_discuss->addNew();
                     $do_project_discuss->idproject_task = $do_project_task->idproject_task;
                     $do_project_discuss->iduser = $do_user->iduser;
-                    if($attachment_count == 1)
+                    //if($attachment_count == 1)
                         $do_project_discuss->discuss = $parse_content;
-                    else
-                        $do_project_discuss->discuss = 'Attachment';
+                    //else
+                      //  $do_project_discuss->discuss = 'Attachment';
 
                     $do_project_discuss->document = $attachment['filename'] ;
                     $do_project_discuss->date_added = date("Y-m-d");
                     $do_project_discuss->hours_work = 0.00;
                     $do_project_discuss->add();
+                    $idproject_discuss = $do_project_discuss->getPrimaryKeyValue();
+                    $do_workfeed = new WorkFeedProjectDiscuss();
+					$do_workfeed->AddProjectDiscussFeedFromDropBox($do_project_task->idproject_task,$parse_content,$do_user->iduser,$idproject_discuss,$do_project_task->idproject);
+                    
                 }
             }else{ 
                 $do_project_discuss->addNew();
@@ -395,11 +410,15 @@ if($addprojectnote === true){
                 $do_project_discuss->hours_work = 0.00;
                 $do_project_discuss->date_added = date("Y-m-d");
                 $do_project_discuss->add();
+                $idproject_discuss = $do_project_discuss->getPrimaryKeyValue();
+                $do_workfeed = new WorkFeedProjectDiscuss();
+                $do_workfeed->AddProjectDiscussFeedFromDropBox($do_project_task->idproject_task,$parse_content,$do_user->iduser,$idproject_discuss,$do_project_task->idproject);
+                //$do_workfeed->free();
             }
         }else{
             if($do_project->is_public == 1){
                 if($from_name == ''){$from_name = $from_address;}
-                if(is_array($attachment) && count($attachment)> 0){
+                if(is_array($attachment) && count($attachment)> 0){ 
                     $attachment_count = 0;
                     foreach($attachment as $attachment){
                         $attachment_count++;
@@ -415,6 +434,9 @@ if($addprojectnote === true){
                         $do_project_discuss->hours_work = 0.00;
                         $do_project_discuss->document = $attachment['filename'] ;
                         $do_project_discuss->add();
+                        $idproject_discuss = $do_project_discuss->getPrimaryKeyValue();
+						$do_workfeed = new WorkFeedProjectDiscuss();
+						$do_workfeed->AddProjectDiscussFeedFromDropBox($do_project_task->idproject_task,$parse_content,$do_user->iduser,$idproject_discuss,$do_project_task->idproject);
                     }
                 }else{
                     $do_project_discuss->addNew();
@@ -424,11 +446,16 @@ if($addprojectnote === true){
                     $do_project_discuss->date_added = date("Y-m-d");
                     $do_project_discuss->hours_work = 0.00;
                     $do_project_discuss->add();
+                    $idproject_discuss = $do_project_discuss->getPrimaryKeyValue();
+                    $do_workfeed = new WorkFeedProjectDiscuss();
+					$do_workfeed->AddProjectDiscussFeedFromDropBox($do_project_task->idproject_task,$parse_content,$do_user->iduser,$idproject_discuss,$do_project_task->idproject);
                 }
             }
         }
     } 
 	$do_project_task->free();
+  //} //closed
+  
 }
 
 
@@ -439,7 +466,9 @@ if($add_project_task === true){
       $do_user->getUserDataByEmail($from_address);
       $do_project->getId($drop_box_code_proj);
       $project_owner = $do_project->iduser;
-
+	
+	  	if($do_project->status !='closed'){
+	
       if($do_user->getNumRows() > 0 ){
           $user_array = $do_project->getAllUserFromProjectRel($drop_box_code_proj) ; 
           if( $user_array === false ){
@@ -482,18 +511,7 @@ if($add_project_task === true){
             $due_date = 'Today';
             $task_category = 'Email';
             $due_date_dateformat = date('Y-m-d');
-            /*$do_task = new Task();
-            //$do_task->addNew();
-            $do_task->task_description = $task_description;
-            $do_task->due_date = $due_date;
-            $do_task->task_category = $task_category;
-            $do_task->iduser = $iduser;
-            $do_task->due_date_dateformat = $due_date_dateformat;
-            $do_task->add();
-            //print_r($do_task->getValues());
-            $idtask = $do_task->getPrimaryKeyValue();
-            echo "idtask: ".$idtask;	
-			*/
+            
 			
 			$do_proj_task = new ProjectTask();
 			$do_proj_task->task_description = $task_description;
@@ -501,20 +519,27 @@ if($add_project_task === true){
             $do_proj_task->task_category = $task_category;
             $do_proj_task->iduser = $iduser;
             $do_proj_task->due_date_dateformat = $due_date_dateformat;             
-            //$do_proj_task->idtask = $idtask;
-            $do_proj_task->idproject = $drop_box_code_proj;
-            //$do_proj_task->drop_box_code = $idtask;
-            $do_proj_task->add();
             
-            //print_r($do_proj_task->getValues());
+            $do_proj_task->idproject = $drop_box_code_proj;
+            
+            $do_proj_task->add();
             
             $idproject_task = $do_proj_task->getPrimaryKeyValue();
             
             $do_proj_task->getId($idproject_task);
-            //print_r($do_proj_task->getValues());
+            
             $idtask=$do_proj_task->idtask;
             $do_proj_task->drop_box_code = $idtask;
             $do_proj_task->update();
+            
+            
+            //workfeed 
+            
+            $do_workfeed = new WorkFeedProjectTask();
+            $do_workfeed->eventaddFeedFromDropbox($iduser,$idproject_task,$drop_box_code_proj,$idtask,$task_description);
+            //$do_workfeed->free();
+            
+            //workfeed end
             
             //echo $idproject_task;
             $do_proj_task->free();
@@ -547,6 +572,7 @@ if($add_project_task === true){
             }
           
        }
+   } //closed
 }
 
 
