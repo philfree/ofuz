@@ -49,7 +49,7 @@ $(document).ready(function () {
     </div>
     <div class="contentfull">        
       <div class="messageshadow">
-	<div class="messages">Ofuz Getting started wizard</div>
+	<div class="messages" style="font-size:1.8em;">Ofuz Getting started wizard</div>
       </div>
 <?php
 $e_project = new Event("Project->eventAddProjectAndTask");
@@ -57,17 +57,18 @@ $e_project->addParam("goto", "ww_s3.php");
 echo $e_project->getFormHeader();
 echo $e_project->getFormEvent();
 ?>
-      <div align="center" style="font-size:1.8em;">
+      <div align="center" style="font-size:1.4em;">
       <p id="pYourFirstProject">Your first project</p>
 
 	<div id="your_first_project">
 	  <div class="spacerblock_20"></div>
 	  <div>Project Name</div>
-	  <div><input type="text" id="project" name="project" value="" /></div>
+	  <div><input class="txtboxStyle1" type="text" id="project" name="project" value="" /></div>
+	  <div class="spacerblock_10"></div>
 	  <div>Task Name</div>
-	  <div><input type="text" id="task" name="task" value="" /></div>
+	  <div><input class="txtboxStyle1" type="text" id="task" name="task" value="" /></div>
 	</div>
-      <div class="spacerblock_20"></div>
+      <div class="spacerblock_40"></div>
       <div>
 	<a id="create" href="javascript:;"><img src="/images/create.jpg" border="0" /></a> <br />
 	<a href="index.php" title="">Skip >></a>

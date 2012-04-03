@@ -35,11 +35,11 @@
     </div>
     <div class="contentfull">        
       <div class="messageshadow">
-	<div class="messages">Ofuz Getting started wizard</div>
+	<div class="messages" style="font-size:1.8em;">Ofuz Getting started wizard</div>
       </div>
 
       <div align="center">
-      <p id="pYourFirstProject" style="font-size:1.8em;">Setup Public Profile</p>
+      <p id="pYourFirstProject" style="font-size:1.4em;">Setup Public Profile</p>
 
 	<div id="setup_public_profile">
 	  <div class="spacerblock_20"></div>
@@ -136,7 +136,7 @@ $_SESSION['ContactEditSave']->setApplyRegistry(false);
 </table>
 
 	</div>
-      <div class="spacerblock_20"></div>
+      <div class="spacerblock_40"></div>
       <div>
 	<a id="next" href="javascript:;"><input type="image" src="/images/next.jpg" border="0" /></a> <br />
 	<a href="index.php" title="">Skip >></a>
