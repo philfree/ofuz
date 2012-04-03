@@ -73,11 +73,20 @@
   if(isset($_SESSION['edit_from_page'])) {
     $e_fullContact->addParam("goto", $_SESSION['edit_from_page'] );
     unset($_SESSION['edit_from_page']);
-  }/*elseif($idcontact != ($_SESSION['ContactEditSave']->idcontact)){
-    $e_fullContact->addParam("goto", "index.php");    
-  }*/else{
+  }elseif($_GET["r"] == "bio"){
+    $e_fullContact->addParam("goto", "settings_myinfo.php"); 
+  }else{
     $e_fullContact->addParam("goto", "contact.php");
+
+    $e_fullContact->addParam("goto", $_SESSION['edit_from_page'] );
+    unset($_SESSION['edit_from_page']);
   }
+ /* }elseif($idcontact != ($_SESSION['ContactEditSave']->idcontact)){
+    $e_fullContact->addParam("goto", "index.php");   
+  }else{
+    $e_fullContact->addParam("goto", "contact.php");
+
+  } */
 
   echo $e_fullContact->getFormHeader();
   echo $e_fullContact->getFormEvent();

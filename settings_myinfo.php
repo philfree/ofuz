@@ -58,6 +58,8 @@
  <!--   <div class="messageshadow">
             <div class="messages">
             <?php
+  
+    
     $msg = new Message(); 
     echo $msg->getMessage('my profile instruction');
     //echo '<br /><br />';
@@ -106,7 +108,7 @@
         <div class="profile_subject_line">
         <div class="my_profile">My Profile&nbsp;
         <span class="edit_profile">
-          <a href="/contact_edit.php">Edit Profile</a>
+          <a href="/contact_edit.php?r=bio">Edit Profile</a>
           </b> 
           </span> 
         </div>
@@ -185,7 +187,7 @@
 <div id="profile_subject_line">       
 <span class="profile_text_subjectline">Contact Information</span>  
 <!--Needs a link to Edit Bio--->
-<span class="profile_text_link"><a href="/contact_edit.php">Edit Contact Info</a></span>
+<span class="profile_text_link"><a href="/contact_edit.php?r=bio">Edit Contact Info</a></span>
 
 </div>
 
@@ -215,7 +217,6 @@
                   if($ContactWebsite->getNumRows()){                        
                       while($ContactWebsite->next()){
                           echo $ContactWebsite->getDisplayLink();
-                          
                       }
                   }
               ?>
