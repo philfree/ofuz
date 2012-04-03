@@ -14,7 +14,7 @@
     <rdata type="errormessage">Enter the First Name</rdata>
     <rdata type="fieldtype">DijitTextBox</rdata>
   </rfield>
-  <rfield name="lastname">
+  <!--<rfield name="lastname">
     <rdata type="databasetype">varchar</rdata>
     <rdata type="label">Last Name</rdata>
     <rdata type="hidden"></rdata>
@@ -57,7 +57,7 @@
     <rdata type="css_form_class"></rdata>
     <rdata type="addevent">ContactEditSave->eventSetCompany:99</rdata>
     <rdata type="fieldtype">DijitComboBox</rdata>
-  </rfield>
+  </rfield>-->
   <rfield name="iduser">
     <rdata type="default">[do_User->iduser]</rdata>
     <rdata type="hidden">1</rdata>
@@ -72,35 +72,33 @@
     <rdata type="id"></rdata>
     <rdata type="fieldtype">strFBFieldTypeInt</rdata>
   </rfield>
-  
-  
-<!--  
-  <rfield name="picture">
+  <!--<rfield name="picture">
     <rdata type="label">User Picture</rdata>
     <rdata type="max_width">200</rdata>
     <rdata type="max_height">200</rdata>
-    <rdata type="showpicture">1</rdata>
+    <rdata type="showpicture">0</rdata>
     <rdata type="picture">dbimage/</rdata>
     <rdata type="overwrite">no</rdata>
     <rdata type="fieldtype">PageBuilderFieldImage</rdata>
   </rfield>-->
-
+  
+  
+  
   <rfield name="picture">
     <rdata type="label">User Picture</rdata>
     <rdata type="max_width">200</rdata>
     <rdata type="max_height">200</rdata>
     <rdata type="thumb_max_width">48</rdata>
     <rdata type="thumb_max_height">48</rdata>
-    <rdata type="showpicture">1</rdata>
+    <rdata type="showpicture">0</rdata>
     <rdata type="picture">dbimage/</rdata>
     <rdata type="overwrite">no</rdata>
     <rdata type="thumb_folder">dbimage/thumbnail/</rdata>
     <rdata type="fieldtype">FieldTypeImageThumb</rdata>
   </rfield>
-
   
   
-  <rfield name="summary">
+  <!--<rfield name="summary">
     <rdata type="databasetype"></rdata>
     <rdata type="label">Summary information</rdata>
     <rdata type="undo"></rdata>
@@ -201,5 +199,5 @@
     <rdata type="css_disp_style"></rdata>
     <rdata type="id"></rdata>
     <rdata type="fieldtype">strFBFieldTypeChar</rdata>
-  </rfield>
+  </rfield>-->
 </registry>

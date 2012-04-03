@@ -435,15 +435,11 @@ class User extends RegisteredUser {
                   $this->setGoogleOpenIdIdentity($this->iduser);
                 }
 				
-				/*$this->getId($this->iduser);
-				
-				if($this->idcontact == 0){
-					$this->addUserAsContact($this->firstname,$this->lastname,$this->company,$this->email,$this->iduser);
-				}*/			//210112
+				unset($_SESSION['upgrade']);
 				if($this->plan == "trial"){
 					$date1 = strtotime($this->regdate);
 					$date2 = strtotime(date("Y-m-d"));
-
+					
 					$diff = ($date2-$date1)/(60*60*24);
 					if($diff >= '30'){
 						$_SESSION["upgrade"] = true;
@@ -1430,6 +1426,20 @@ class User extends RegisteredUser {
 		return $msg;
 
     }
+
+  function getContactId($iduser){
+    $sql = "SELECT idcontact
+            FROM {$this->table}
+            WHERE iduser = {$iduser}
+   ";
+     $this->query($sql);
+     if($this->getNumRows()){
+        $this->fetch();
+        return $idcontact = $this->getData('idcontact');
+
+    }
+  }
+
 
 }
 

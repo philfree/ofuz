@@ -181,4 +181,37 @@ class WorkFeedProjectTask extends WorkFeedItem {
                   break;
         }     
     }
+    
+     /**
+	 *  Add the Project note to the wrokfeed from the drop box mail. 
+	 *  Will do the similar steps as it does for adding new project note 
+	 *  @param User id, Projecttask id, Project id, task id, task descrpition
+	 */
+    function eventaddFeedFromDropbox($iduser,$idproject_task,$idproject,$idtask,$task_description){
+		
+		$do_project = new Project();
+		$do_project->getId($idproject);
+		$this->project_name = $do_project->getProjectName($idproject);
+		$do_project_sharing = new ProjectSharing();
+		$project_users = $do_project_sharing->getCoWorkersAsArray($do_project);		
+		$project_users[] = $do_project->getProjectOwner();
+		$users = Array();
+		foreach ($project_users as $project_user) {
+			if ($iduser != $project_user) {
+				$users[] = $project_user;
+			}
+		}
+		$do_user = new User();
+		$this->user_full_name = $do_user->getFullName($iduser);
+		
+    	$this->iduser = $iduser;
+	    $this->idproject_task = $idproject_task;
+	    $this->idtask = $idtask;
+	    $this->idproject = $idproject;
+	    $this->task_description = $task_description;
+	    $this->task_event_type = 'new_task_add';
+	    $this->addFeed($users);
+		
+	}
+    
 }

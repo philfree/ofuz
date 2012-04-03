@@ -542,12 +542,7 @@ class ProjectTask extends Task {
      * Receives new sort order and writes it to the DB
      */
     function eventAjaxPrioritySort(EventControler $event_controler) {
-        $q = new sqlQuery($this->getDbCon());
-          echo "aneesj";
-              echo $event_controler->pt;
-      print_r($event_controler->pt);
-          exit;
-
+        $q = new sqlQuery($this->getDbCon());        
         foreach ($event_controler->pt as $priority => $idtask) {
             $q->query("UPDATE project_task SET priority = $priority WHERE idtask = $idtask");
         }

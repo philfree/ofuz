@@ -26,6 +26,7 @@
         header("Location: /".$disp->getUrl());
         
        }
+       
      } catch (Exception $e) { 
         $disp = new Display("user_login.php");
         $disp->addParam("message", "Error with your user record, please sign-in again");
@@ -33,6 +34,15 @@
 		$_SESSION['entry'] = $_SERVER['REQUEST_URI'];
         header("Location: /".$disp->getUrl());
     }
+    
+    /* This is for api_upgrade_invoice.php */
+     if ($_SESSION['upgrade'] === true) {
+		$tt = "api_upgrade_invoice.php";
+		echo "<script language=\"javascript\">
+        window.location.href='$tt';
+		</script>";
+	 }
+    
   }
     
 ?>

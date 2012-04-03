@@ -173,16 +173,18 @@ if($_SESSION['hcard_idcontact'] != '' ){
       <?php
         }
       ?>
-        <div class="profile_photo">
-<?php if ($_SESSION['do_contact']->picture != '') { ?>
-	<img src="<?php echo $_SESSION['do_contact']->getContactPicture(); ?>" height="100%" alt="" />
-<?php } ?>
-        </div>
+        
     </div>
 </div>
 <div class="layout_full"><div class="layout_center">
     <div class="layout_main">
+        <div style="float:left;height: 120px;margin: 18px;width: 120px;">
+            <?php if ($_SESSION['do_contact']->picture != '') { ?>
+                 <img src="<?php echo $_SESSION['do_contact']->getContactPicture(); ?>" height="80%" alt="" />
+            <?php } ?>
+          </div>
         <div class="layout_headline">
+            <br/>
             <b><?php echo $_SESSION['do_contact']->firstname, ' ', $_SESSION['do_contact']->lastname; ?></b><br />
             <i><?php echo $_SESSION['do_contact']->position,' at ',$_SESSION['do_contact']->company; ?></i>
         </div>
@@ -197,6 +199,10 @@ if($_SESSION['hcard_idcontact'] != '' ){
             //echo $_SESSION['ContactEditSave']->formatTextDisplay($ContactEmail->email_address);
             echo '</div>',"\n";
         }
+    }else{
+        echo '<div class="layout_lineitem">';
+        echo '<img class="profile_icon" src="/images/profile_icon_email.png" width="16" height="11" alt="" />';
+        echo '</div>',"\n";
     }
 
     $ContactWebsite = $_SESSION['do_contact']->getChildContactWebsite();
@@ -206,6 +212,10 @@ if($_SESSION['hcard_idcontact'] != '' ){
             echo $ContactWebsite->getProfileLink();
             echo '</div>',"\n";
         }
+    }else{
+      echo '<div class="layout_lineitem">';
+      echo '<img src="/images/profile_icon_website.png " alt=" " height="21" width="16">';
+      echo '</div>',"\n";
     }
 
     $ContactInstantMessage = $_SESSION['do_contact']->getChildContactInstantMessage();
@@ -228,6 +238,10 @@ if($_SESSION['hcard_idcontact'] != '' ){
             echo $ContactInstantMessage->im_username;
             echo '</div>',"\n";
         }
+    }else{
+         echo '<div class="layout_lineitem">';
+         echo '<img class="profile_icon" src="/images/profile_icon_skype.png" width="16" height="16" alt="" />';
+        echo '</div>',"\n";
     }
 
     $ContactPhone = $_SESSION['do_contact']->getChildContactPhone();
@@ -241,10 +255,16 @@ if($_SESSION['hcard_idcontact'] != '' ){
             }
             echo '<a href="tel:'.$ContactPhone->phone_number.'">'.$ContactPhone->phone_number.'</a>';
             echo '</div>',"\n";
+            $contact_no=$ContactPhone->phone_number;
         }
+    }else{
+      echo '<div class="layout_lineitem">';
+      echo '<img class="profile_icon" src="/images/profile_icon_phonew.png" width="16" height="15" alt="" />';
+      echo '</div>',"\n";
     }
 ?>
         </div>
+        <?php if(!empty($contact_no)) {?>
         <div class="layout_add">
             <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <input class="profile_button" type="image" src="/images/profile_add_to_ofuz.png" alt="Add the contact to Ofuz" name="add_cont" />
@@ -252,6 +272,7 @@ if($_SESSION['hcard_idcontact'] != '' ){
                 <input type="hidden" name="hd_add_cont" value="1" />
             </form>
         </div>
+        <?php }?>
         <div class="layout_clear"></div>
     </div>
 <?php
