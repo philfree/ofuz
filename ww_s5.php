@@ -74,7 +74,6 @@
   $_SESSION['ContactEditSave']->setFields("contact");
 
   $_SESSION['ContactEditSave']->setApplyRegistry(true, "Form");
-
 ?>
 
 <div class="in280x20">

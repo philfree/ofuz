@@ -132,6 +132,7 @@
 	      echo $e_inv_currency->getFormFooter(_('Save'));
 	      echo '</td></tr></table>';
              }
+
 ?>
 	  </div>
 

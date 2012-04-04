@@ -32,7 +32,6 @@ $(document).ready(function () {
     }
   });
 });
-
 </script>
 
 <?php $do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
