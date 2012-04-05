@@ -215,7 +215,7 @@ $e_editForm->setSecure(false);
 	    var scrollTop = $(window).scrollTop();
             var docHeight = $(document).height();
             var winHeight = $(window).height();
-	    alert(scrollTop+' : '+docHeight+' : '+winHeight);
+	    //alert(scrollTop+' : '+docHeight+' : '+winHeight);
 	    if ($(window).scrollTop() == ($(document).height() - $(window).height() - 1)){
 	      autoLoadWorkfeed();
 	    }
