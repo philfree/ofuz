@@ -15,7 +15,7 @@ class WorkFeed extends DataObject {
     
     public $table = "workfeed";
     protected $primary_key = "idworkfeed";
-    public $sql_view_limit = 20;
+    public $sql_view_limit = 50;
     public $sql_qry_start = 0;
     public $sql_qry_end = 50;
     public $feed_count = 0;
