@@ -40,7 +40,9 @@
 		$do_work_feed->sessionPersistent("do_work_feed", "contacts.php", OFUZ_TTL);
 	}
 
+	$_SESSION['do_work_feed']->sql_qry_start = 0;
 	$_SESSION['do_work_feed']->getWorkfeedCount();
+	
 
 
 ?>
@@ -209,11 +211,15 @@ $e_editForm->setSecure(false);
         
         $(document).ready(function()
         {
-        $(window).scroll(function(){
-        if ($(window).scrollTop() == $(document).height() - $(window).height()){
-        autoLoadWorkfeed();
-        }
-        });
+	  $(window).scroll(function(){
+	    var scrollTop = $(window).scrollTop();
+            var docHeight = $(document).height();
+            var winHeight = $(window).height();
+	    //alert(scrollTop+' : '+docHeight+' : '+winHeight);
+	    if ($(window).scrollTop() == ($(document).height() - $(window).height() - 1)){
+	      autoLoadWorkfeed();
+	    }
+	  });
         });
         </script>
         <?php
@@ -227,12 +233,12 @@ $e_editForm->setSecure(false);
 
         <!-- Add ofuz to Browser Search option begins -->
         
-        <script src="/browser_search/browser_detect.js" type="text/javascript"></script>
+        <!--<script src="/browser_search/browser_detect.js" type="text/javascript"></script>
 
         
         <div style="text-align:center;cursor:pointer">
             <script src="/browser_search/browser_functions.js" type="text/javascript"></script>
-        </div>
+        </div>-->
 
 
         <!-- Add ofuz to Browser Search option ends -->

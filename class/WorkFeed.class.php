@@ -15,7 +15,7 @@ class WorkFeed extends DataObject {
     
     public $table = "workfeed";
     protected $primary_key = "idworkfeed";
-    public $sql_view_limit = 50;
+    public $sql_view_limit = 20;
     public $sql_qry_start = 0;
     public $sql_qry_end = 50;
     public $feed_count = 0;
@@ -101,6 +101,7 @@ class WorkFeed extends DataObject {
                       ");
         }else{ return false; }
 		**/
+
 		$this->query("select * from ".$this->table." 
                         where iduser = ".$_SESSION['do_User']->iduser." 
                         order by date_added desc limit {$this->sql_qry_start},{$this->sql_view_limit}");
@@ -132,6 +133,7 @@ class WorkFeed extends DataObject {
       * Autoload method to get the workfeed from the last one.
     */
     function autoLoadWorkfeedOnScrollDown() {
+	    
 	    if($_SESSION['do_work_feed']->feed_count >= $_SESSION['do_work_feed']->sql_qry_start) {
 		    $_SESSION['do_work_feed']->sql_qry_start = $_SESSION['do_work_feed']->sql_qry_start + $_SESSION['do_work_feed']->sql_view_limit;
 		    $_SESSION['do_work_feed']->sql_qry_end = $_SESSION['do_work_feed']->sql_qry_end + $_SESSION['do_work_feed']->sql_view_limit;
