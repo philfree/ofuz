@@ -192,34 +192,36 @@
 </div>
 
 <div class="profile_line"></div>
-
+<div class="spacerblock_20"></div>
 <div class="profile_ci_text">
   <div>
         <?php
             $ContactEmail = $_SESSION['ContactEditSave']->getChildContactEmail();
               if($ContactEmail->getNumRows()){                       
                 while($ContactEmail->next()){
-                    echo "</br>";
+                    echo '<div class="layout_lineitem">';
                     echo "<img class=profile_icon src=/images/profile_icon_email.png alt=  height=11 width=16>";
-                        echo '<a class=profile_ci_text  href="mailto:'.$ContactEmail->email_address.'" title="'.$ContactEmail->email_type.'">'.$ContactEmail->email_address.'</a>';                          
+                    echo '<a class=profile_ci_text  href="mailto:'.$ContactEmail->email_address.'" title="'.$ContactEmail->email_type.'">'.$ContactEmail->email_address.'</a>';                          
+		    echo '</div>';
                   }
               }else{
                 //echo "<img class=profile_icon src=/images/profile_icon_email.png alt=  height=11 width=16>";
               } ?>      
    </div>
     <div>
-          <a class="profile_ci_text">
+          <!--<a class="profile_ci_text">-->
             <?php
               $ContactWebsite = $_SESSION['ContactEditSave']->getChildContactWebsite();
                   if($ContactWebsite->getNumRows()){                        
                       while($ContactWebsite->next()){
-			echo "<br />";
-			echo '<img src="/images/profile_icon_website.png " alt=" " height="21" width="16">';
-                        echo $ContactWebsite->getDisplayLink();
+ 			echo '<div class="layout_lineitem">';
+ 			echo '<img src="/images/profile_icon_website.png " alt=" " height="21" width="16">';
+                        echo '<span class=profile_ci_text>'.$ContactWebsite->getDisplayLink().'</span>';
+ 			echo '</div>';
                       }
                   }
               ?>
-        </a>
+       <!-- </a>-->
    </div>
    <div>
          <?php
