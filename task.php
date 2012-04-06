@@ -589,7 +589,9 @@ $(document).ready(function() {
                         if($do_discuss->iduser){
                           $added_by = $_SESSION['do_User']->getFullName($do_discuss->iduser);
                           $do_contact = new Contact();
-                          $do_contact->getUserContacts($do_discuss->iduser);                          
+                         // $do_contact->getUserContacts($do_discuss->iduser);                          
+                          $do_contact -> getContactPictureDetails($do_discuss->iduser);
+  
                             if($do_contact->getNumRows()){
                               //while($do_contact->next()){   
                               if($do_contact->picture!=''){
@@ -604,7 +606,7 @@ $(document).ready(function() {
                           }
 
                         }else{
-                          $added_by = $do_discuss->drop_box_sender;
+                           echo "Anees".$added_by = $do_discuss->drop_box_sender;
                           $contact_picture='/images/empty_avatar.gif';
                         }
 
@@ -636,7 +638,7 @@ $(document).ready(function() {
                         }*/
                         $date_added_note =  OfuzUtilsi18n::formatDateLong($do_discuss->date_added);   
                         
-                        echo '<div id="item_title"> '.$date_added_note.'</b>&nbsp;('._('Added By :').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
+                        echo '<div id="item_title"> '.$date_added_note.'</b>&nbsp;('._('Added By ff:').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
                         echo "<br>";
                         echo '<a href="/Contact/'.$contact_id.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a>';
                         if($task_operation_access === true){

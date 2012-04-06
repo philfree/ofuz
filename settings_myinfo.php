@@ -68,11 +68,11 @@
             </div>-->
         </div><br />
 
-        <?php 
-      $do_contact = new Contact();
-      $do_np_contact = new Contact();
-            if(!empty($_SESSION['do_User']->idcontact) && $_SESSION['do_User']->idcontact != 0){
-               $idcontact=$_SESSION['do_User']->idcontact;
+<?php 
+    $do_contact = new Contact();
+    $do_np_contact = new Contact();
+    if(!empty($_SESSION['do_User']->idcontact) && $_SESSION['do_User']->idcontact != 0){
+      $idcontact=$_SESSION['do_User']->idcontact;
       $do_contact->getId($_SESSION['do_User']->idcontact);
     }else{
    // Add a new contact and update the idcontact to the user table for the user
