@@ -811,7 +811,8 @@ include_once('plugin_block.php');
 					//delete event ends here
   
       $do_contact = new Contact();
-       $do_contact->getUserContacts($do_notes->iduser);
+       //$do_contact->getUserContacts($do_notes->iduser);
+       $do_contact -> getContactPictureDetails($do_notes->iduser);
         if($do_contact->getNumRows()){
           //while($do_contact->next()){   
             if($do_contact->picture!=''){
