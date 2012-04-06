@@ -210,13 +210,15 @@
    </div>
     <div>
        <br>
-        <img src="/images/profile_icon_website.png " alt=" " height="21" width="16">
+
           <a class="profile_ci_text">
             <?php
               $ContactWebsite = $_SESSION['ContactEditSave']->getChildContactWebsite();
                   if($ContactWebsite->getNumRows()){                        
                       while($ContactWebsite->next()){
-                          echo $ContactWebsite->getDisplayLink();
+			echo "<br />";
+			echo '<img src="/images/profile_icon_website.png " alt=" " height="21" width="16">';
+                        echo $ContactWebsite->getDisplayLink();
                       }
                   }
               ?>
