@@ -195,7 +195,6 @@
 
 <div class="profile_ci_text">
   <div>
-      <br>
         <?php
             $ContactEmail = $_SESSION['ContactEditSave']->getChildContactEmail();
               if($ContactEmail->getNumRows()){                       
@@ -205,12 +204,10 @@
                         echo '<a class=profile_ci_text  href="mailto:'.$ContactEmail->email_address.'" title="'.$ContactEmail->email_type.'">'.$ContactEmail->email_address.'</a>';                          
                   }
               }else{
-                echo "<img class=profile_icon src=/images/profile_icon_email.png alt=  height=11 width=16>";
+                //echo "<img class=profile_icon src=/images/profile_icon_email.png alt=  height=11 width=16>";
               } ?>      
    </div>
     <div>
-       <br>
-
           <a class="profile_ci_text">
             <?php
               $ContactWebsite = $_SESSION['ContactEditSave']->getChildContactWebsite();
@@ -225,7 +222,6 @@
         </a>
    </div>
    <div>
-       <br>
          <?php
              $ContactInstantMessage = $_SESSION['ContactEditSave']->getChildContactInstantMessage();
               if ( $ContactInstantMessage->getNumRows()) {
@@ -252,12 +248,11 @@
                     }
                 }
             }else{
-              echo '<img class="profile_icon" src="/images/profile_icon_skype.png" width="16" height="16" alt="" />';
+              //echo '<img class="profile_icon" src="/images/profile_icon_skype.png" width="16" height="16" alt="" />';
             }
           ?>           
     </div>
     <div>
-      <br>
         <?php               
         $ContactPhone = $_SESSION['ContactEditSave']->getChildContactPhone();
           if ($ContactPhone->getNumRows()) {
@@ -272,7 +267,7 @@
                 echo '</div>',"\n";
             }
         }else{
-          echo '<img class="profile_icon" src="/images/profile_icon_phonew.png" width="16" height="15" alt="" />';
+          //echo '<img class="profile_icon" src="/images/profile_icon_phonew.png" width="16" height="15" alt="" />';
         }
       ?>
      
