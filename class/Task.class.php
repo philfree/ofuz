@@ -497,6 +497,7 @@ class Task extends DataObject {
                      ORDER BY t.priority ASC,t.due_date_dateformat");       
     }
 
+
     /**
      * Method to get the task for next week
      * 

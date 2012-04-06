@@ -192,38 +192,38 @@
 </div>
 
 <div class="profile_line"></div>
-
+<div class="spacerblock_20"></div>
 <div class="profile_ci_text">
   <div>
-      <br>
         <?php
             $ContactEmail = $_SESSION['ContactEditSave']->getChildContactEmail();
               if($ContactEmail->getNumRows()){                       
                 while($ContactEmail->next()){
-                    echo "</br>";
+                    echo '<div class="layout_lineitem">';
                     echo "<img class=profile_icon src=/images/profile_icon_email.png alt=  height=11 width=16>";
-                        echo '<a class=profile_ci_text  href="mailto:'.$ContactEmail->email_address.'" title="'.$ContactEmail->email_type.'">'.$ContactEmail->email_address.'</a>';                          
+                    echo '<a class=profile_ci_text  href="mailto:'.$ContactEmail->email_address.'" title="'.$ContactEmail->email_type.'">'.$ContactEmail->email_address.'</a>';                          
+		    echo '</div>';
                   }
               }else{
-                echo "<img class=profile_icon src=/images/profile_icon_email.png alt=  height=11 width=16>";
+                //echo "<img class=profile_icon src=/images/profile_icon_email.png alt=  height=11 width=16>";
               } ?>      
    </div>
     <div>
-       <br>
-        <img src="/images/profile_icon_website.png " alt=" " height="21" width="16">
-          <a class="profile_ci_text">
+          <!--<a class="profile_ci_text">-->
             <?php
               $ContactWebsite = $_SESSION['ContactEditSave']->getChildContactWebsite();
                   if($ContactWebsite->getNumRows()){                        
                       while($ContactWebsite->next()){
-                          echo $ContactWebsite->getDisplayLink();
+ 			echo '<div class="layout_lineitem">';
+ 			echo '<img src="/images/profile_icon_website.png " alt=" " height="21" width="16">';
+                        echo '<span class=profile_ci_text>'.$ContactWebsite->getDisplayLink().'</span>';
+ 			echo '</div>';
                       }
                   }
               ?>
-        </a>
+       <!-- </a>-->
    </div>
    <div>
-       <br>
          <?php
              $ContactInstantMessage = $_SESSION['ContactEditSave']->getChildContactInstantMessage();
               if ( $ContactInstantMessage->getNumRows()) {
@@ -250,12 +250,11 @@
                     }
                 }
             }else{
-              echo '<img class="profile_icon" src="/images/profile_icon_skype.png" width="16" height="16" alt="" />';
+              //echo '<img class="profile_icon" src="/images/profile_icon_skype.png" width="16" height="16" alt="" />';
             }
           ?>           
     </div>
     <div>
-      <br>
         <?php               
         $ContactPhone = $_SESSION['ContactEditSave']->getChildContactPhone();
           if ($ContactPhone->getNumRows()) {
@@ -270,7 +269,7 @@
                 echo '</div>',"\n";
             }
         }else{
-          echo '<img class="profile_icon" src="/images/profile_icon_phonew.png" width="16" height="15" alt="" />';
+          //echo '<img class="profile_icon" src="/images/profile_icon_phonew.png" width="16" height="15" alt="" />';
         }
       ?>
      
