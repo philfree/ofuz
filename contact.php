@@ -1,6 +1,5 @@
 <?php 
- error_reporting(E_ALL);
- ini_set("display_errors", 1); 
+
 // Copyrights 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
@@ -814,16 +813,16 @@ include_once('plugin_block.php');
       $do_contact = new Contact();
        $do_contact->getContactPictureDetails($do_notes->iduser);
         if($do_contact->getNumRows()){
-            if($do_contact->picture!=''){
-	      $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
-	      if(file_exists($thumb_name)) {
-		$contact_picture="/dbimage/thumbnail/".$do_contact->picture;
-	      } else {
-		$contact_picture="/images/empty_avatar.gif";
-	      }
-            }else{
-              $contact_picture="/images/empty_avatar.gif";         
-            }            
+	  if($do_contact->picture!=''){
+	    $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
+	    if(file_exists($thumb_name)) {
+	      $contact_picture="/dbimage/thumbnail/".$do_contact->picture;
+	    } else {
+	      $contact_picture="/images/empty_avatar.gif";
+	    }
+	    }else{
+	      $contact_picture='/images/empty_avatar.gif';
+	    }           
             $contact_id = $do_contact->idcontact;
         }
     
