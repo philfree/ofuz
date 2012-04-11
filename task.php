@@ -588,19 +588,21 @@ $(document).ready(function() {
                         //}
                         if($do_discuss->iduser){
                           $added_by = $_SESSION['do_User']->getFullName($do_discuss->iduser);
-                          $do_contact = new Contact();
-                         // $do_contact->getUserContacts($do_discuss->iduser);                          
+                          $do_contact = new Contact();                         
                           $do_contact -> getContactPictureDetails($do_discuss->iduser);
   
                             if($do_contact->getNumRows()){
-                              //while($do_contact->next()){   
                               if($do_contact->picture!=''){
-                                 $contact_picture="/dbimage/thumbnail/".$do_contact->picture; 
+				$thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
+				if(file_exists($thumb_name)) {
+				  $contact_picture="/dbimage/thumbnail/".$do_contact->picture;
+				} else {
+				  $contact_picture="/images/empty_avatar.gif";
+				}
                                }else{
                                  $contact_picture='/images/empty_avatar.gif';
                                }  
                               $contact_id = $do_contact->idcontact;
-                              //}
                           }else{
                             $contact_picture='/images/empty_avatar.gif';
                           }
