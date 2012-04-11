@@ -736,15 +736,22 @@ include_once('plugin_block.php');
 						$del_img_url = 'delete <img src="/images/delete.gif" width="14px" height="14px" alt="" />';
 						//delete event ends here
 		
-/*
-       $do_contact = new Contact();
-       $do_contact->getUserContacts($do_notes->iduser);
+      $do_contact = new Contact();
+       $do_contact->getContactPictureDetails($do_notes->iduser);
+
         if($do_contact->getNumRows()){
-          while($do_contact->next()){   
-            $contact_picture="/dbimage/".$do_contact->picture; 
+	  if($do_contact->picture!=''){
+	    $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
+	    if(file_exists($thumb_name)) {
+	      $contact_picture="/dbimage/thumbnail/".$do_contact->picture;
+	    } else {
+	      $contact_picture="/images/empty_avatar.gif";
+	    }
+	    }else{
+	      $contact_picture='/images/empty_avatar.gif';
+	    }           
             $contact_id = $do_contact->idcontact;
-          }
-        }*/
+        }
   
 
 
@@ -760,6 +767,8 @@ include_once('plugin_block.php');
                         $added_by = OfuzUtilsi18n::formatDateLong($do_notes->date_added);
 						echo '<b>'.$added_by.'</b>&nbsp;(Added By :&nbsp;'.$do_notes->getNoteOwnerFullName().')</div>
 						<div id="trashcan', $note_count, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_notes->idcontact_note.'\','.$do_notes->idcontact_note.');return false;">edit</a>&nbsp;|&nbsp;'.$e_note_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div></div>';
+     echo "<br>";
+      echo '<a href="/Contact/'.$contact_id.'"> <img width="34" height="34"alt="" src='.$contact_picture.' class="note_icon"> </a>';
 						if ($do_notes->is_truncated) {
 							echo '<div id="notepreview',$do_notes->idcontact_note,'">',$note_text,'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
 						} else {
@@ -812,6 +821,7 @@ include_once('plugin_block.php');
   
       $do_contact = new Contact();
        $do_contact->getContactPictureDetails($do_notes->iduser);
+
         if($do_contact->getNumRows()){
 	  if($do_contact->picture!=''){
 	    $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
