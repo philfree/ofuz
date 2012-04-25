@@ -252,7 +252,7 @@ class Contact extends DataObject {
                 $image_url = "/dbimage/".$picture;
             }
         }
-        
+
         return $image_url;
     }
 

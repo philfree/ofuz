@@ -113,7 +113,6 @@
           </span> 
         </div>
         </div>
-
  <div class="my_profile_class">
 
             <div class="left_profile_box">          
@@ -144,19 +143,18 @@
 
 
             <div class="right_profile_box">
-            <div><a class="profile_name"><?php echo $_SESSION['ContactEditSave']->firstname.' '.$_SESSION['ContactEditSave']->lastname;?></a>          
-            <br/><a class="profile_title"><?php echo $_SESSION['ContactEditSave']->position;?> at </a> <a href="<?php echo $companyURL; ?>" class="profile_company"><?php echo $_SESSION['ContactEditSave']->company;?></a>
-            </div>
+	      <div><a class="profile_name"><?php echo $_SESSION['ContactEditSave']->firstname.' '.$_SESSION['ContactEditSave']->lastname;?></a>          
+	      <br/><a class="profile_title"><?php echo $_SESSION['ContactEditSave']->position;?> at </a> <a href="<?php echo $companyURL; ?>" class="profile_company"><?php echo $_SESSION['ContactEditSave']->company;?></a>
+	      </div>
 
-            <div id="profile_edit_photo_save" style="display:none;">
-                <?php  echo $_SESSION['ContactPictureSave']->picture; ?>
-                <?php echo $e_fullContact->getFormFooter("Update");?>
-            </div>
-            <?php $_SESSION['ContactPictureSave']->setApplyRegistry(false);?>
-
-    </div>
+	      <div id="profile_edit_photo_save" style="display:none;">
+		  <?php  echo $_SESSION['ContactPictureSave']->picture; ?>
+		  <?php echo $e_fullContact->getFormFooter("Update");?>
+	      </div>
+	      <?php $_SESSION['ContactPictureSave']->setApplyRegistry(false);?>
+	    </div>
          
-    </div>
+ </div>
     
       
 <br>    

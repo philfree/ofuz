@@ -156,6 +156,26 @@ if($_SESSION['hcard_idcontact'] != '' ){
     $background_color = 'white';
     include_once('includes/header_profile.inc.php');
 ?>
+<script type="text/javascript" src="/jquery/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+   // if screen width < 900 then Mobile/Tablet version else Web version
+    smallScreen = (screen.width < 900) ? true : false;
+
+    $.ajax({
+      type: "POST",
+      url: "/ajx_public_profile_loader.php",
+      data: {smallscreen:smallScreen},
+      dataType: "html",
+      success: function(data) {   
+	$('#publicProfile').html(data);
+      }
+    });
+
+  });
+
+</script>
+
 <div class="layout_center">
     <div class="layout_top">
   <?php
@@ -176,116 +196,9 @@ if($_SESSION['hcard_idcontact'] != '' ){
         
     </div>
 </div>
-<div class="layout_full"><div class="layout_center">
-    <div class="layout_main">
-        <div style="float:left;height: 120px;margin: 18px;width: 120px;">
-            <?php if ($_SESSION['do_contact']->picture != '') { ?>
-                 <img src="<?php echo $_SESSION['do_contact']->getContactPicture(); ?>" height="80%" alt="" />
-            <?php } ?>
-          </div>
-        <div class="layout_headline">
-            <br/>
-            <b><?php echo $_SESSION['do_contact']->firstname, ' ', $_SESSION['do_contact']->lastname; ?></b><br />
-            <i><?php echo $_SESSION['do_contact']->position,' at ',$_SESSION['do_contact']->company; ?></i>
-        </div>
-        <div class="layout_lineitems">
-<?php
-    $ContactEmail = $_SESSION['do_contact']->getChildContactEmail();
-    if ($ContactEmail->getNumRows()) {
-        while ($ContactEmail->next()) {
-            echo '<div class="layout_lineitem">';
-            echo '<img class="profile_icon" src="/images/profile_icon_email.png" width="16" height="11" alt="" />';
-            echo '<a href="mailto:'.$ContactEmail->email_address.'" title="'.$ContactEmail->email_type.'">'.$ContactEmail->email_address.'</a>';
-            //echo $_SESSION['ContactEditSave']->formatTextDisplay($ContactEmail->email_address);
-            echo '</div>',"\n";
-        }
-    }else{
-        echo '<div class="layout_lineitem">';
-        echo '<img class="profile_icon" src="/images/profile_icon_email.png" width="16" height="11" alt="" />';
-        echo '</div>',"\n";
-    }
 
-    $ContactWebsite = $_SESSION['do_contact']->getChildContactWebsite();
-    if ($ContactWebsite->getNumRows()) {
-        while ($ContactWebsite->next()) {
-            echo '<div class="layout_lineitem">';
-            echo $ContactWebsite->getProfileLink();
-            echo '</div>',"\n";
-        }
-    }else{
-      echo '<div class="layout_lineitem">';
-      echo '<img src="/images/profile_icon_website.png " alt=" " height="21" width="16">';
-      echo '</div>',"\n";
-    }
+<div id="publicProfile"></div>
 
-    $ContactInstantMessage = $_SESSION['do_contact']->getChildContactInstantMessage();
-    if ($ContactInstantMessage->getNumRows()) {
-        while($ContactInstantMessage->next()){
-            echo '<div class="layout_lineitem">';
-            if ($ContactInstantMessage->im_type == 'AIM') {
-                echo '<img class="profile_icon" src="/images/profile_icon_aim.png" width="16" height="16" alt="" />';
-            } else if ($ContactInstantMessage->im_type == 'Google Talk') {
-                echo '<img class="profile_icon" src="/images/profile_icon_gtalk.png" width="16" height="16" alt="" />';
-            } else if ($ContactInstantMessage->im_type == 'Jabber') {
-                echo '<img class="profile_icon" src="/images/profile_icon_jabber.png" width="16" height="16" alt="" />';
-            } else if ($ContactInstantMessage->im_type == 'MSN') {
-                echo '<img class="profile_icon" src="/images/profile_icon_msn.png" width="16" height="16" alt="" />';
-            } else if ($ContactInstantMessage->im_type == 'Skype') {
-                echo '<img class="profile_icon" src="/images/profile_icon_skype.png" width="16" height="16" alt="" />';
-            } else if ($ContactInstantMessage->im_type == 'Yahoo') {
-                echo '<img class="profile_icon" src="/images/profile_icon_yahoo.png" width="16" height="16" alt="" />';
-            }
-            echo $ContactInstantMessage->im_username;
-            echo '</div>',"\n";
-        }
-    }else{
-         echo '<div class="layout_lineitem">';
-         echo '<img class="profile_icon" src="/images/profile_icon_skype.png" width="16" height="16" alt="" />';
-        echo '</div>',"\n";
-    }
-
-    $ContactPhone = $_SESSION['do_contact']->getChildContactPhone();
-    if ($ContactPhone->getNumRows()) {
-        while($ContactPhone->next()){
-            echo '<div class="layout_lineitem">';
-            if ($ContactPhone->phone_type == 'Work') {
-                echo '<img class="profile_icon" src="/images/profile_icon_phonew.png" width="16" height="15" alt="" />';
-            } else {
-                echo '<img class="profile_icon" src="/images/profile_icon_phonem.png" width="16" height="18" alt="" />';
-            }
-            echo '<a href="tel:'.$ContactPhone->phone_number.'">'.$ContactPhone->phone_number.'</a>';
-            echo '</div>',"\n";
-            $contact_no=$ContactPhone->phone_number;
-        }
-    }else{
-      echo '<div class="layout_lineitem">';
-      echo '<img class="profile_icon" src="/images/profile_icon_phonew.png" width="16" height="15" alt="" />';
-      echo '</div>',"\n";
-    }
-?>
-        </div>
-        <?php if(!empty($contact_no)) {?>
-        <div class="layout_add">
-            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                <input class="profile_button" type="image" src="/images/profile_add_to_ofuz.png" alt="Add the contact to Ofuz" name="add_cont" />
-                <a href="/public_profile_vcard.php"><img src="/images/profile_add_to_phone.png" width="91" height="26" alt="" /></a>
-                <input type="hidden" name="hd_add_cont" value="1" />
-            </form>
-        </div>
-        <?php }?>
-        <div class="layout_clear"></div>
-    </div>
-<?php
-    $ContactAddress = $_SESSION['do_contact']->getChildContactAddress();
-    if ($ContactAddress->getNumRows()) {
-    	echo '<div class="layout_address">';
-	    while($ContactAddress->next()) {
-            echo nl2br($ContactAddress->address) . '<br />';
-	    }
-	    echo '</div>',"\n";
-    }
-?>
-</div></div>
 <div class="layout_center">
     <div class="layout_bottom"></div>
 </div>
