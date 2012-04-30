@@ -1440,6 +1440,22 @@ class User extends RegisteredUser {
     }
   }
 
+    /**
+      * Get the username (login id)
+      * @param  int : iduser
+      * @return string : username
+    */
+    function getUserLoginId($iduser){
+	$username = "";
+        $q = new sqlQuery($this->getDbCon());
+        $q->query("select username from user where iduser = ".$iduser);
+        if($q->getNumRows()){
+	    $q->fetch();
+            $username = $q->getData("username");
+        }
+	return $username;
+    }
+
 
 }
 
