@@ -30,6 +30,7 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
     function display() {
         $do_proj_task_feed = new ProjectTask();
         $do_proj_feed = new Project();
+        $do_user = new User();
         if($do_proj_task_feed->isProjectTaskReletedToUser($this->idproject_task)){
 
             //$idproject = $do_proj_task_feed->getProjectForTask($this->idproject_task);
@@ -37,18 +38,18 @@ class WorkFeedProjectDiscuss extends WorkFeedItem {
             $html .= '<br />';
 
             if($this->user_picture!=''){
-	      $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$this->user_picture;
-	      if(file_exists($thumb_name)) {
-		$user_pic="/dbimage/thumbnail/".$this->user_picture;
-	      } else {
-		$user_pic="/images/empty_avatar.gif";
-	      }              
+                $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$this->user_picture;
+                if(file_exists($thumb_name)) {
+            $user_pic="/dbimage/thumbnail/".$this->user_picture;
+                } else {
+            $user_pic="/images/empty_avatar.gif";
+                }              
             }else{
                $user_pic="/images/empty_avatar.gif";         
             }
-
+            $user_name = $do_user->getUserNameByIdUser($this->iduser);                
             $html .='<div style="width:50px;float:left;">';                       
-            $html .='<a href="/Contact/'.$this->contact_id.'"> <img width="34" height="34"alt="" src='.$user_pic.' > </a>';           
+            $html .='<a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$user_pic.' > </a>';           
             $html .='</div>';                 
             $html .= '<div style="text-align:middle;"> <table width=95% border=0><tr><td>';
             $html .= '<b>'.ucfirst($this->user_full_name).'</b>'.' '.

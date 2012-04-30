@@ -162,32 +162,38 @@ $("#"+divid).fadeOut("slow");
                                       $no_cont_shared = $_SESSION['do_contact_sharing']->countSharedContacts($_SESSION['do_coworker']->idcoworker);
                                       $no_cont_shared_by_co_worker =$_SESSION['do_contact_sharing']->countSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
 
-$do_contact = new Contact();
-$do_contact->getUserContacts($_SESSION['do_coworker']->idcoworker);
-if($do_contact->getNumRows()){
-while($do_contact->next()){
-$co_workers[] = $do_->idcoworker;
-$user_picture = $do_contact->picture;
-$contact_id = $do_contact->idcontact;
-}
-}
+                                      $do_user = new User();                                      
+                                      $do_contact = new Contact();
+                                      $do_contact->getUserContacts($_SESSION['do_coworker']->idcoworker);
+                                      if($do_contact->getNumRows()){
+                                          //while($do_contact->next()){
+                                            $co_workers[] = $do_->idcoworker;
+                                            $user_picture = $do_contact->picture;
+                                            $contact_id = $do_contact->idcontact;
+                                         // }
+                                       }
+                                       $user_name = $do_user->getUserNameByIdUser($_SESSION['do_coworker']->idcoworker);
+                                     
 
+                                      if($do_contact->picture!=''){
+                                          $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
+                                          if(file_exists($thumb_name)) {
+                                              $user_pic="/dbimage/thumbnail/".$do_contact->picture;
+                                          } else {
+                                              $user_pic="/images/empty_avatar.gif";
+                                          }
+                                      }else{
+                                              $user_pic='/images/empty_avatar.gif';
+                                      }                                  
 
-if($user_picture ==''){
-$user_pic="/images/empty_avatar.gif";
-}else{
-$user_pic="/dbimage/".$user_picture;
-}
-
-echo '<div class="feed_user_pic" style="overflow:hidden;">';
-$user_first_name=$_SESSION['do_coworker']->firstname;
-echo '<a href="/profile/'.$user_first_name[0].'"> <img height="100%" alt="" src='.$user_pic.' > </a>';
-echo '</div>';
+                                      echo '<div class="feed_user_pic" style="overflow:hidden;">';
+                                      
+                                      echo '<a href="/profile/'.$user_name.'"> <img height="100%" alt="" src='.$user_pic.' > </a>';
+                                      echo '</div>';
 
                                       echo '<div style="width:auto;"><a style="color:#C52EAD;" href="#" onclick="showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" >'
-                                              .$_SESSION['do_coworker']->firstname.' '.$_SESSION['do_coworker']->lastname.
-                                            '</a></div>
-&nbsp;';
+                                                            .$_SESSION['do_coworker']->firstname.' '.$_SESSION['do_coworker']->lastname.
+                                            '</a></div>&nbsp;';
 
                                         $num_project_shared = $do_project->getNumProjectsShared($_SESSION["do_User"]->iduser,$_SESSION['do_coworker']->idcoworker);
                                         $no_proj_shared_by_co_worker = $do_project->getNumProjectsShared($_SESSION['do_coworker']->idcoworker,$_SESSION["do_User"]->iduser);
