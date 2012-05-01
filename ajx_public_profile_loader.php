@@ -10,7 +10,6 @@ $profile_html = "";
 
 // Mobile/Tablet version
 if($small_screen == 'true') {
-
 $profile_html .= '<div class="layout_full"><div class="layout_center">';
 $profile_html .= '<div class="layout_main">';
 $profile_html .= '<div style="float:left;height: 120px;margin: 18px;width: 120px;">';
@@ -128,16 +127,16 @@ $profile_html .= '<div class="profile_web_layout_main">';
 $profile_html .= '<div class="profile_web_layout_inner">';
 $profile_html .= '<div class="profile_web_layout_photo_block">';
 $profile_html .= '<div class="profile_web_layout_photo_left">';
-if ($_SESSION['ContactEditSave']->picture != '') {
-$profile_html .= '<img src="'.$_SESSION['ContactEditSave']->getContactPicture().'" height="100%"  width = 100% alt="" />';
+if ($_SESSION['do_contact']->picture != '') {
+$profile_html .= '<img src="'.$_SESSION['do_contact']->getContactPicture().'" height="100%"  width = 100% alt="" />';
 } else {
 $profile_html .= '<img src="/images/empty_avatar.gif" height="100%"  width = 100% alt="" />';
 }
 $profile_html .= '</div>';
 
 $profile_html .= '<div class="profile_web_layout_photo_right">';
-$profile_html .= '<div class="profile_name">'.$_SESSION['ContactEditSave']->firstname.' '.$_SESSION['ContactEditSave']->lastname.'</div>';
-$profile_html .= '<div class="profile_title">'.$_SESSION['ContactEditSave']->position.' at <span class="profile_company">'.$_SESSION['ContactEditSave']->company.'</span></div>';
+$profile_html .= '<div class="profile_name">'.$_SESSION['do_contact']->firstname.' '.$_SESSION['do_contact']->lastname.'</div>';
+$profile_html .= '<div class="profile_title">'.$_SESSION['do_contact']->position.' at <span class="profile_company">'.$_SESSION['do_contact']->company.'</span></div>';
 $profile_html .= '</div>';
 $profile_html .= '</div>';
 $profile_html .= '<div class="spacerblock_40"></div>';
@@ -155,7 +154,7 @@ $profile_html .= '<div class="spacerblock_20"></div>';
 $profile_html .= '<div class="profile_ci_text">';
 $profile_html .= '<div>';
 
-$ContactEmail = $_SESSION['ContactEditSave']->getChildContactEmail();
+$ContactEmail = $_SESSION['do_contact']->getChildContactEmail();
 if($ContactEmail->getNumRows()){                       
   while($ContactEmail->next()){
       $profile_html .= '<div class="layout_lineitem">';
@@ -168,7 +167,7 @@ if($ContactEmail->getNumRows()){
 $profile_html .= '</div>';
 $profile_html .= '<div>';
 
-$ContactWebsite = $_SESSION['ContactEditSave']->getChildContactWebsite();
+$ContactWebsite = $_SESSION['do_contact']->getChildContactWebsite();
     if($ContactWebsite->getNumRows()){                        
 	while($ContactWebsite->next()){
 	  $profile_html .= '<div class="layout_lineitem">';
@@ -181,7 +180,7 @@ $ContactWebsite = $_SESSION['ContactEditSave']->getChildContactWebsite();
 $profile_html .= '</div>';
 $profile_html .= '<div>';
 
-$ContactInstantMessage = $_SESSION['ContactEditSave']->getChildContactInstantMessage();
+$ContactInstantMessage = $_SESSION['do_contact']->getChildContactInstantMessage();
 if ( $ContactInstantMessage->getNumRows()) {
     while($ContactInstantMessage->next()){
       $profile_html .= '<div class="layout_lineitem">';
@@ -210,7 +209,7 @@ if ( $ContactInstantMessage->getNumRows()) {
 $profile_html .= '</div>';
 $profile_html .= '<div>';
 
-$ContactPhone = $_SESSION['ContactEditSave']->getChildContactPhone();
+$ContactPhone = $_SESSION['do_contact']->getChildContactPhone();
   if ($ContactPhone->getNumRows()) {
     while($ContactPhone->next()){
 	$profile_html .= '<div class="layout_lineitem">';
@@ -227,7 +226,7 @@ $ContactPhone = $_SESSION['ContactEditSave']->getChildContactPhone();
 $profile_html .= '</div>';
 $profile_html .= '<div style="margin-left:36px;">';
 
-$ContactAddress = $_SESSION['ContactEditSave']->getChildContactAddress();
+$ContactAddress = $_SESSION['do_contact']->getChildContactAddress();
 if ($ContactAddress->getNumRows()) {   
   while($ContactAddress->next()) {
     $profile_html .= nl2br($ContactAddress->address) . '<br>';

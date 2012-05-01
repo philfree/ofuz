@@ -82,7 +82,9 @@ $("#"+divid).fadeOut("slow");
 <table class="mainheader pad20" width="100%">
 <tr>
 <td><span class="headline14">Co-Workers</span>
-<td align="right">&nbsp;&nbsp;&nbsp;&nbsp;<a href="teams.php"><?php echo _('Teams'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="co_workers.php"><?php echo _('All Co-Workers'); ?></a></td>
+<td align="right">&nbsp;&nbsp;&nbsp;&nbsp;
+<!--<a href="teams.php"><?php echo _('Teams'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;-->
+<a href="co_workers.php"><?php echo _('All Co-Workers'); ?></a></td>
 </tr>
 </table>
 <!--<div class="mainheader">
@@ -162,6 +164,7 @@ $("#"+divid).fadeOut("slow");
                                       $no_cont_shared = $_SESSION['do_contact_sharing']->countSharedContacts($_SESSION['do_coworker']->idcoworker);
                                       $no_cont_shared_by_co_worker =$_SESSION['do_contact_sharing']->countSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
 
+
                                       $do_user = new User();                                      
                                       $do_contact = new Contact();
                                       $do_contact->getUserContacts($_SESSION['do_coworker']->idcoworker);
@@ -209,6 +212,77 @@ $("#"+divid).fadeOut("slow");
                                                                       echo '<span>'.sprintf(_('You shared %d contacts'), $no_cont_shared).'</span>&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;';
                                         }
 
+/*
+$do_contact = new Contact();
+$do_contact->getUserContacts($_SESSION['do_coworker']->idcoworker);
+if($do_contact->getNumRows()){
+  while($do_contact->next()){
+  $co_workers[] = $do_->idcoworker;
+  $user_picture = $do_contact->picture;
+  $contact_id = $do_contact->idcontact;
+  }
+}
+
+if($user_picture ==''){
+$user_pic="/images/empty_avatar.gif";
+}else{
+$user_pic="/dbimage/".$user_picture;
+}
+
+
+*/
+
+$do_contact = new Contact();
+$do_contact->getContactPictureDetails($_SESSION['do_coworker']->idcoworker);
+
+  if($do_contact->getNumRows()){
+    if($do_contact->picture!=''){
+      $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
+      if(file_exists($thumb_name)) {
+	$contact_picture="/dbimage/thumbnail/".$do_contact->picture;
+      } else {
+	$contact_picture="/images/empty_avatar.gif";
+      }
+      }else{
+	$contact_picture='/images/empty_avatar.gif';
+      }           
+      $contact_id = $do_contact->idcontact;
+  }
+
+$do_user = new User();
+$username = $do_user->getUserLoginId($_SESSION['do_coworker']->idcoworker);
+$do_user->free();
+
+echo '<div style="position:relative;width:100%;">';
+echo '<div class="feed_user_pic">';
+$user_first_name=$_SESSION['do_coworker']->firstname;
+//echo '<a href="/profile/'.$user_first_name[0].'"> <img height="100%" alt="" src='.$contact_picture.' > </a>';
+echo '<a href="'.$GLOBALS['cfg_ofuz_site_http_base'].'profile/'.$username.'" target="_blank"><img height="50px" alt="" src='.$contact_picture.' ></a>';
+echo '</div>';
+
+//Get Bio Information
+$do_userprofile = new UserProfile();
+$profile_information = $do_userprofile->getProfileInformation($_SESSION['do_coworker']->idcoworker);    
+$job_description = $profile_information['job_description'];
+$do_userprofile->free();
+
+echo '<div style="positon:relative;float:left;width:80%;margin:0px;"><a style="color:#C52EAD;" href="#" onclick="showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" >'
+.$_SESSION['do_coworker']->firstname.' '.$_SESSION['do_coworker']->lastname.
+'</a> <br />'.$job_description.'</div>&nbsp;';
+
+$num_project_shared = $do_project->getNumProjectsShared($_SESSION["do_User"]->iduser,$_SESSION['do_coworker']->idcoworker);
+$no_proj_shared_by_co_worker = $do_project->getNumProjectsShared($_SESSION['do_coworker']->idcoworker,$_SESSION["do_User"]->iduser);
+
+echo '<div style="clear:both;padding:10px;"></div>';
+
+echo '<div id="'.$_SESSION['do_coworker']->idcoworker.'" style="display:none;">';
+if ($no_cont_shared > 0) {
+  echo $e_shared_contacts_filter->getLink('<span>'.sprintf(_('You shared %d contacts'), $no_cont_shared).'</span>&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;');
+}else{
+ echo '<span>'.sprintf(_('You shared %d contacts'), $no_cont_shared).'</span>&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;';
+}
+
+
                                                                     if ($no_cont_shared_by_co_worker > 0) {
                                                                         echo $e_shared_contacts_from_coworker_filter->getLink(
                                                                         '<span>'
@@ -223,6 +297,8 @@ $("#"+divid).fadeOut("slow");
                                                                       //echo '<br />';
                                                                     //}
                                         echo '</div>';
+echo '</div>';
+echo '<div style="clear:both;padding:10px;"></div>';
                                         echo '<br />';
                                       
                                   }// class="co_worker_pending"
@@ -246,7 +322,7 @@ $("#"+divid).fadeOut("slow");
                                       $no_cont_shared = $_SESSION['do_contact_sharing']->countSharedContacts($_SESSION['do_coworker']->idcoworker);
 
                                        $no_cont_shared_by_co_worker =$_SESSION['do_contact_sharing']->countSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
-
+/*
 $do_contact = new Contact();
 $do_contact->getUserContacts($_SESSION['do_coworker']->idcoworker);
 if($do_contact->getNumRows()){
@@ -263,10 +339,33 @@ $user_pic="/images/empty_avatar.gif";
 }else{
 $user_pic="/dbimage/".$user_picture;
 }
+*/
+
+$do_contact = new Contact();
+$do_contact->getContactPictureDetails($_SESSION['do_coworker']->idcoworker);
+
+  if($do_contact->getNumRows()){
+    if($do_contact->picture!=''){
+      $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
+      if(file_exists($thumb_name)) {
+	$contact_picture="/dbimage/thumbnail/".$do_contact->picture;
+      } else {
+	$contact_picture="/images/empty_avatar.gif";
+      }
+      }else{
+	$contact_picture='/images/empty_avatar.gif';
+      }           
+      $contact_id = $do_contact->idcontact;
+  }
+
+$do_user = new User();
+$username = $do_user->getUserLoginId($_SESSION['do_coworker']->idcoworker);
+$do_user->free();
 
 echo '<div class="feed_user_pic" style="overflow:hidden;">';
 $user_first_name=$_SESSION['do_coworker']->firstname;
-echo '<a href="/profile/'.$user_first_name[0].'"> <img height="100%" alt="" src='.$user_pic.' > </a>';
+//echo '<a href="/profile/'.$user_first_name[0].'"> <img height="100%" alt="" src='.$contact_picture.' > </a>';
+echo '<a href="'.$GLOBALS['cfg_ofuz_site_http_base'].'profile/'.$username.'" target="_blank"><img height="100%" alt="" src='.$contact_picture.'</a>';
 echo '</div>';
 
                                       echo $_SESSION['do_coworker']->firstname,' ',$_SESSION['do_coworker']->lastname,'&nbsp;';

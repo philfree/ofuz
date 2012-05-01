@@ -519,7 +519,7 @@ h4 { font-size: 10pt; margin: 0; padding: 0; line-height: 1.2; }
 /* Google Federated Login link/icon ends */
 
 
-.feed_user_pic { width: 50px; height: 50px; }
+.feed_user_pic { position:relative;float:left;width:100px;}
 
 #OfuzSuccessMessage {
   top: 0;

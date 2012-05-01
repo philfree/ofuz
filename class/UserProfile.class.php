@@ -47,8 +47,12 @@ class UserProfile extends DataObject {
     if($iduser!=''){
       $this->query("SELECT * 
                   FROM {$this->table}
-                  WHERE iduser ='{$iduser}'");       
-      $profile_information = $this->getValues();
+                  WHERE iduser ='{$iduser}'");   
+      if($this->getNumRows()) {
+	$profile_information = $this->getValues();
+      } else {
+	$profile_information = "";
+      }
       return $profile_information;
     }
 
