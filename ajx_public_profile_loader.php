@@ -135,8 +135,20 @@ $profile_html .= '<img src="/images/empty_avatar.gif" height="100%"  width = 100
 $profile_html .= '</div>';
 
 $profile_html .= '<div class="profile_web_layout_photo_right">';
-$profile_html .= '<div class="profile_name">'.$_SESSION['do_contact']->firstname.' '.$_SESSION['do_contact']->lastname.'</div>';
+$profile_html .= '<div class="profile_name">';
+$profile_html .= '<div style="position:relative;float:left;width:70%;">'.$_SESSION['do_contact']->firstname.' '.$_SESSION['do_contact']->lastname.'</div>';
+$profile_html .= '<div style="position:relative;float:right;width:15%;"><a href="/public_profile_vcard.php"><img class="profile_button" src="/images/profile_add_to_phone.png" width="91" height="26" alt="" /></div>';
+$profile_html .= '<div style="position:relative;float:right;width:15%;">';
+$profile_html .= '<form method="post" action="/public_profile.php">';
+$profile_html .= '<input class="profile_button" type="image" src="/images/profile_add_to_ofuz.png" alt="Add the contact to Ofuz" name="add_cont" />';
+$profile_html .= '<input type="hidden" name="hd_add_cont" value="1" />';
+$profile_html .= '</form>';
+$profile_html .= '</div>';
+$profile_html .= '</div>';
+
+$profile_html .= '<div style="clear:both;"></div>';
 $profile_html .= '<div class="profile_title">'.$_SESSION['do_contact']->position.' at <span class="profile_company">'.$_SESSION['do_contact']->company.'</span></div>';
+//$profile_html .= '<div style="vertical-align:right;"><input class="profile_button" type="image" src="/images/profile_add_to_ofuz.png" alt="Add the contact to Ofuz" name="add_cont" /></div>';
 $profile_html .= '</div>';
 $profile_html .= '</div>';
 $profile_html .= '<div class="spacerblock_40"></div>';
