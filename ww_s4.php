@@ -32,14 +32,13 @@
     </div>
     <div class="contentfull">        
       <div class="messageshadow">
-	<div class="messages">Ofuz Getting started wizard</div>
+	<div class="messages" style="font-size:1.8em;">Ofuz Getting started wizard</div>
       </div>
 
       <div align="center">
-      <p id="pYourFirstProject" style="font-size:1.8em;">Setup your Invoices</p>
-
-	<div id="setup_invoices">
+      <p id="pYourFirstProject" style="font-size:1.4em;">Setup your Invoices</p>
 	  <div class="spacerblock_20"></div>
+	<div id="setup_invoices">
 	  <div>
 <?php
             $UserSettings = new UserSettings();
@@ -133,6 +132,7 @@
 	      echo $e_inv_currency->getFormFooter(_('Save'));
 	      echo '</td></tr></table>';
              }
+
 ?>
 	  </div>
 
@@ -215,7 +215,7 @@
 ?>
 	  </div>
 	</div>
-      <div class="spacerblock_20"></div>
+      <div class="spacerblock_40"></div>
       <div>
 	<a id="next" href="ww_s5.php"><img src="/images/next.jpg" border="0" /></a> <br />
 	<a href="index.php" title="">Skip >></a>

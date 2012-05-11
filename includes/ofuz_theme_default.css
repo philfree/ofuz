@@ -519,7 +519,7 @@ h4 { font-size: 10pt; margin: 0; padding: 0; line-height: 1.2; }
 /* Google Federated Login link/icon ends */
 
 
-.feed_user_pic { width: 50px; height: 50px; }
+.feed_user_pic { position:relative;float:left;width:100px;}
 
 #OfuzSuccessMessage {
   top: 0;
@@ -533,7 +533,16 @@ h4 { font-size: 10pt; margin: 0; padding: 0; line-height: 1.2; }
   border: solid 2px #f6bfbc;
 }
 
+.modal-close {
+  color: #D50A0A;
+}
 
+.txtboxStyle1 {
+  padding:4px 4px 4px 4px;
+  border:1px solid #CCCCCC;
+  width:230px;
+  height:18px;
+}
 
 
 .grayline2 { margin: 0 2px; height: 4px; line-height: 1px; font-size: 1px; background-color: #ededed; overflow: hidden; }
@@ -553,7 +562,7 @@ h4 { font-size: 10pt; margin: 0; padding: 0; line-height: 1.2; }
  height: 180px;
     border: 3px solid #e0e0e0; 
     background:#efefef; 
-    font-size: 18px
+    font-size: 18px;
     color: #666666;
     margin-top:20px;
 }

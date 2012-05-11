@@ -31,10 +31,11 @@
     </div>
     <div class="contentfull">        
       <div class="messageshadow">
-	<div class="messages">Ofuz Getting started wizard</div>
+	<div class="messages" style="font-size:1.8em;">Ofuz Getting started wizard</div>
       </div>
-      <div align="center" style="font-size:1.8em;">
+      <div align="center" style="font-size:1.4em;">
       <p>Select the service where you have most of your working contacts</p>
+
 
 	<div id="import_address_book">
 	  <div style="vertical-align:middle;"><a id="fb_import" href="ww_s1_fbconnect.php"><img src="/images/Facebook_Logo.jpg" alt="" /></a></div>
@@ -54,12 +55,13 @@
 
 	  </table>
 -->
-	</div>
 
-<div>
-  <a href="ww_s2.php"><input type="image" src="/images/next.jpg" border="0" /></a> <br />
-  <a href="index.php" title="">Skip >></a>
-</div>
+	</div>
+      <div class="spacerblock_40"></div>
+      <div>
+	<a href="ww_s2.php"><input type="image" src="/images/next.jpg" border="0" /></a> <br />
+	<a href="index.php" title="">Skip >></a>
+      </div>
       <div class="spacerblock_80"></div>
 
       <div class="layout_footer"></div>
@@ -79,8 +81,8 @@
 				var src = $(this).attr("href");
 
 				// create a modal dialog with the iframe
-				$.modal('<iframe src="' + src + '" height="450" width="100%" style="border:0">', {
-					closeHTML: "<a href='#' title='Close' class='modal-close'>x</a>",
+				$.modal('<iframe src="' + src + '" height="400" width="800" style="border:0">', {
+					closeHTML: "<div style='text-align:right;'><a href='#' title='Close' class='modal-close'>X</a></div>",
 					containerCss:{
 						backgroundColor:"#fff",
 						borderColor:"#fff",

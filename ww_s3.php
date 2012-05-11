@@ -35,7 +35,6 @@ $(document).ready(function () {
     }
   });
 });
-
 </script>
 
 <?php $do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
@@ -52,7 +51,7 @@ $(document).ready(function () {
     </div>
     <div class="contentfull">        
       <div class="messageshadow">
-	<div class="messages">Ofuz Getting started wizard</div>
+	<div class="messages" style="font-size:1.8em;">Ofuz Getting started wizard</div>
       </div>
 <?php
 $e_cw_invite = new Event("UserRelations->eventInviteMultipleCWs");
@@ -60,18 +59,21 @@ $e_cw_invite->addParam("goto", "ww_s4.php");
 echo $e_cw_invite->getFormHeader();
 echo $e_cw_invite->getFormEvent();
 ?>
-      <div align="center" style="font-size:1.8em;">
+      <div align="center" style="font-size:1.4em;">
       <p id="pYourFirstProject">Enter the email address of the co-workers you want to work with.</p>
       <p id="msg"></p>
 	<div id="invite_cw">
 	  <div class="spacerblock_20"></div>
 	  <div>Email addresses:</div>
-	  <div><input type="text" id="email1" name="email[]" value="" /></div>
-	  <div><input type="text" id="email2" name="email[]" value="" /></div>
-	  <div><input type="text" id="email3" name="email[]" value="" /></div>
-	  <div><input type="text" id="email4" name="email[]" value="" /></div>
+	  <div><input class="txtboxStyle1" type="text" id="email1" name="email[]" value="" /></div>
+	  <div class="spacerblock_10"></div>
+	  <div><input class="txtboxStyle1" type="text" id="email2" name="email[]" value="" /></div>
+	  <div class="spacerblock_10"></div>
+	  <div><input class="txtboxStyle1" type="text" id="email3" name="email[]" value="" /></div>
+	  <div class="spacerblock_10"></div>
+	  <div><input class="txtboxStyle1" type="text" id="email4" name="email[]" value="" /></div>
 	</div>
-      <div class="spacerblock_20"></div>
+      <div class="spacerblock_40"></div>
       <div>
 	<a id="invite" href="javascript:;"><img src="/images/invite.jpg" border="0" /></a> <br />
 	<a href="index.php" title="">Skip >></a>

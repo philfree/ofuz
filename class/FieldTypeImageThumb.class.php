@@ -22,8 +22,8 @@ Class FieldTypeImageThumb extends RegistryFieldBase {
         if ($this->getRData('showpicture')=="1" && !empty($field_value)) {
             $fval="<img border=\"0\" src=\"".$file_path.$field_value."\">";
          } else {
-            $fval = $file_path.$field_value;
-            $fval = "<a href=\"".$fval."\">".$fval."</a>" ;
+            //$fval = $file_path.$field_value;
+            //$fval = "<a href=\"".$fval."\">".$fval."</a>" ;
          }
          $this->processed .= $fval;
     }

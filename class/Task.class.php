@@ -497,6 +497,7 @@ class Task extends DataObject {
                      ORDER BY t.priority ASC,t.due_date_dateformat");       
     }
 
+
     /**
      * Method to get the task for next week
      * 
@@ -618,6 +619,7 @@ class Task extends DataObject {
     */ 
 
   function getAllTasksThisMonth(){
+    $today = date('Y-m-d'); //cur_year-cur_month
     $current_month = date('m');
     $current_year = date('Y');
    /*$this->query("select * from task where YEAR(`due_date_dateformat`) = '{$current_year}'
@@ -629,15 +631,14 @@ class Task extends DataObject {
     AND `due_date` != 'This week'
     AND `due_date` != 'Next week'
        ORDER BY   due_date_dateformat DESC LIMIT 20");*/
-
-
-    $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name,p.status
+    $this->query("SELECT t.idtask,t.task_description,t.due_date,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name,p.status
                      FROM task t 
                      LEFT JOIN project_task pt 
                      INNER JOIN project p ON pt.idproject=p.idproject
                      ON t.idtask=pt.idtask
                      WHERE YEAR(t.due_date_dateformat) = '{$current_year}'
                      AND MONTH(t.due_date_dateformat) = '{$current_month}'
+                     AND DATEDIFF(t.due_date_dateformat,'".$today."') > 3
                      AND t.due_date_dateformat <> '0000-00-00' 
                      AND t.status = 'open' 
                      AND t.iduser = ".$_SESSION['do_User']->iduser." 
@@ -647,6 +648,7 @@ class Task extends DataObject {
                      AND t.due_date != 'Next week'
                      AND (p.status = 'open' OR p.status IS NULL)
                      ORDER BY t.priority ASC,t.due_date_dateformat DESC LIMIT 20");  
+
                     
     }
 
@@ -663,7 +665,7 @@ class Task extends DataObject {
     AND `due_date` != 'Next week'
        ORDER BY   due_date_dateformat DESC");*/
 
-    $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name,p.status
+    $this->query("SELECT t.idtask,t.task_description,t.due_date,t.due_date_dateformat,t.task_category,t.idcontact,pt.idproject,pt.idproject_task,pt.progress,p.name,p.status
                      FROM task t 
                      LEFT JOIN project_task pt 
                      INNER JOIN project p ON pt.idproject=p.idproject

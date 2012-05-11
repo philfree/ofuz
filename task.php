@@ -586,25 +586,34 @@ $(document).ready(function() {
                         //} else if (strlen($item_text) > 500) {
                         //    $preview_item = substr($item_text, 0, 500);
                         //}
+
+// profile
+
+                        $do_user = new User();
                         if($do_discuss->iduser){
-                          $added_by = $_SESSION['do_User']->getFullName($do_discuss->iduser);
-                          $do_contact = new Contact();
-                          $do_contact->getUserContacts($do_discuss->iduser);                          
+                          $added_by = $_SESSION['do_User']->getFullName($do_discuss->iduser);                            
+                          $user_name = $do_user->getUserNameByIdUser($do_discuss->iduser);
+                          $do_contact = new Contact();                         
+                          $do_contact -> getContactPictureDetails($do_discuss->iduser);
+  
                             if($do_contact->getNumRows()){
-                              //while($do_contact->next()){   
                               if($do_contact->picture!=''){
-                                 $contact_picture="/dbimage/thumbnail/".$do_contact->picture; 
+                                  $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
+                                  if(file_exists($thumb_name)) {
+                                    $contact_picture="/dbimage/thumbnail/".$do_contact->picture;
+                                  } else {
+                                    $contact_picture="/images/empty_avatar.gif";
+                                  }
                                }else{
                                  $contact_picture='/images/empty_avatar.gif';
                                }  
                               $contact_id = $do_contact->idcontact;
-                              //}
                           }else{
                             $contact_picture='/images/empty_avatar.gif';
                           }
 
                         }else{
-                          $added_by = $do_discuss->drop_box_sender;
+                           $added_by = $do_discuss->drop_box_sender;
                           $contact_picture='/images/empty_avatar.gif';
                         }
 
@@ -636,9 +645,10 @@ $(document).ready(function() {
                         }*/
                         $date_added_note =  OfuzUtilsi18n::formatDateLong($do_discuss->date_added);   
                         
-                        echo '<div id="item_title"> '.$date_added_note.'</b>&nbsp;('._('Added By :').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
+                        echo '<div id="item_title"> '.$date_added_note.'</b>&nbsp;('._('Added By:').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
                         echo "<br>";
-                        echo '<a href="/Contact/'.$contact_id.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a>';
+                        echo '<a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a>';
+                        
                         if($task_operation_access === true){
                           echo '<div id="trashcan', $item_count++, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_discuss->idproject_discuss.'\','.$do_discuss->idproject_discuss.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_discuss_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div>';
                         }

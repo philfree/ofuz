@@ -58,6 +58,8 @@
  <!--   <div class="messageshadow">
             <div class="messages">
             <?php
+  
+    
     $msg = new Message(); 
     echo $msg->getMessage('my profile instruction');
     //echo '<br /><br />';
@@ -66,11 +68,11 @@
             </div>-->
         </div><br />
 
-        <?php 
-      $do_contact = new Contact();
-      $do_np_contact = new Contact();
-            if(!empty($_SESSION['do_User']->idcontact) && $_SESSION['do_User']->idcontact != 0){
-               $idcontact=$_SESSION['do_User']->idcontact;
+<?php 
+    $do_contact = new Contact();
+    $do_np_contact = new Contact();
+    if(!empty($_SESSION['do_User']->idcontact) && $_SESSION['do_User']->idcontact != 0){
+      $idcontact=$_SESSION['do_User']->idcontact;
       $do_contact->getId($_SESSION['do_User']->idcontact);
     }else{
    // Add a new contact and update the idcontact to the user table for the user
@@ -106,12 +108,11 @@
         <div class="profile_subject_line">
         <div class="my_profile">My Profile&nbsp;
         <span class="edit_profile">
-          <a href="/contact_edit.php">Edit Profile</a>
+          <a href="/contact_edit.php?r=bio">Edit Profile</a>
           </b> 
           </span> 
         </div>
         </div>
-
  <div class="my_profile_class">
 
             <div class="left_profile_box">          
@@ -142,19 +143,18 @@
 
 
             <div class="right_profile_box">
-            <div><a class="profile_name"><?php echo $_SESSION['ContactEditSave']->firstname.' '.$_SESSION['ContactEditSave']->lastname;?></a>          
-            <br/><a class="profile_title"><?php echo $_SESSION['ContactEditSave']->position;?> at </a> <a href="<?php echo $companyURL; ?>" class="profile_company"><?php echo $_SESSION['ContactEditSave']->company;?></a>
-            </div>
+	      <div><a class="profile_name"><?php echo $_SESSION['ContactEditSave']->firstname.' '.$_SESSION['ContactEditSave']->lastname;?></a>          
+	      <br/><a class="profile_title"><?php echo $_SESSION['ContactEditSave']->position;?> at </a> <a href="<?php echo $companyURL; ?>" class="profile_company"><?php echo $_SESSION['ContactEditSave']->company;?></a>
+	      </div>
 
-            <div id="profile_edit_photo_save" style="display:none;">
-                <?php  echo $_SESSION['ContactPictureSave']->picture; ?>
-                <?php echo $e_fullContact->getFormFooter("Update");?>
-            </div>
-            <?php $_SESSION['ContactPictureSave']->setApplyRegistry(false);?>
-
-    </div>
+	      <div id="profile_edit_photo_save" style="display:none;">
+		  <?php  echo $_SESSION['ContactPictureSave']->picture; ?>
+		  <?php echo $e_fullContact->getFormFooter("Update");?>
+	      </div>
+	      <?php $_SESSION['ContactPictureSave']->setApplyRegistry(false);?>
+	    </div>
          
-    </div>
+ </div>
     
       
 <br>    
@@ -185,44 +185,43 @@
 <div id="profile_subject_line">       
 <span class="profile_text_subjectline">Contact Information</span>  
 <!--Needs a link to Edit Bio--->
-<span class="profile_text_link"><a href="/contact_edit.php">Edit Contact Info</a></span>
+<span class="profile_text_link"><a href="/contact_edit.php?r=bio">Edit Contact Info</a></span>
 
 </div>
 
 <div class="profile_line"></div>
-
+<div class="spacerblock_20"></div>
 <div class="profile_ci_text">
   <div>
-      <br>
         <?php
             $ContactEmail = $_SESSION['ContactEditSave']->getChildContactEmail();
               if($ContactEmail->getNumRows()){                       
                 while($ContactEmail->next()){
-                    echo "</br>";
+                    echo '<div class="layout_lineitem">';
                     echo "<img class=profile_icon src=/images/profile_icon_email.png alt=  height=11 width=16>";
-                        echo '<a class=profile_ci_text  href="mailto:'.$ContactEmail->email_address.'" title="'.$ContactEmail->email_type.'">'.$ContactEmail->email_address.'</a>';                          
+                    echo '<a class=profile_ci_text  href="mailto:'.$ContactEmail->email_address.'" title="'.$ContactEmail->email_type.'">'.$ContactEmail->email_address.'</a>';                          
+		    echo '</div>';
                   }
               }else{
-                echo "<img class=profile_icon src=/images/profile_icon_email.png alt=  height=11 width=16>";
+                //echo "<img class=profile_icon src=/images/profile_icon_email.png alt=  height=11 width=16>";
               } ?>      
    </div>
     <div>
-       <br>
-        <img src="/images/profile_icon_website.png " alt=" " height="21" width="16">
-          <a class="profile_ci_text">
+          <!--<a class="profile_ci_text">-->
             <?php
               $ContactWebsite = $_SESSION['ContactEditSave']->getChildContactWebsite();
                   if($ContactWebsite->getNumRows()){                        
                       while($ContactWebsite->next()){
-                          echo $ContactWebsite->getDisplayLink();
-                          
+ 			echo '<div class="layout_lineitem">';
+ 			echo '<img src="/images/profile_icon_website.png " alt=" " height="21" width="16">';
+                        echo '<span class=profile_ci_text>'.$ContactWebsite->getDisplayLink().'</span>';
+ 			echo '</div>';
                       }
                   }
               ?>
-        </a>
+       <!-- </a>-->
    </div>
    <div>
-       <br>
          <?php
              $ContactInstantMessage = $_SESSION['ContactEditSave']->getChildContactInstantMessage();
               if ( $ContactInstantMessage->getNumRows()) {
@@ -249,12 +248,11 @@
                     }
                 }
             }else{
-              echo '<img class="profile_icon" src="/images/profile_icon_skype.png" width="16" height="16" alt="" />';
+              //echo '<img class="profile_icon" src="/images/profile_icon_skype.png" width="16" height="16" alt="" />';
             }
           ?>           
     </div>
     <div>
-      <br>
         <?php               
         $ContactPhone = $_SESSION['ContactEditSave']->getChildContactPhone();
           if ($ContactPhone->getNumRows()) {
@@ -269,7 +267,7 @@
                 echo '</div>',"\n";
             }
         }else{
-          echo '<img class="profile_icon" src="/images/profile_icon_phonew.png" width="16" height="15" alt="" />';
+          //echo '<img class="profile_icon" src="/images/profile_icon_phonew.png" width="16" height="15" alt="" />';
         }
       ?>
      
