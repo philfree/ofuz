@@ -140,7 +140,7 @@ $profile_html .= '</div>';
 $profile_html .= '<div class="profile_web_layout_photo_right">';
 $profile_html .= '<div class="profile_name">';
 $profile_html .= '<div style="position:relative;float:left;width:70%;">'.$_SESSION['do_contact']->firstname.' '.$_SESSION['do_contact']->lastname.'</div>';
-$profile_html .= '<div style="position:relative;float:right;width:15%;font-size:12px;"><a href="/public_profile_vcard.php">download VCard</div>';
+$profile_html .= '<div style="position:relative;float:right;width:15%;font-size:12px;"><a href="/public_profile_vcard.php"><img src="/images/get_vcard.png" width="91" height="26" alt="" /></a></div>';
 $profile_html .= '<div style="position:relative;float:right;width:15%;">';
 $profile_html .= '<form method="post" action="/public_profile.php">';
 $profile_html .= '<input class="profile_button" type="image" src="/images/profile_add_to_ofuz.png" alt="Add the contact to Ofuz" name="add_cont" />';
