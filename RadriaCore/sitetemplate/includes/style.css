@@ -1,0 +1,162 @@
+
+.Heading1 {
+   font-size: 20px;
+   font-weight: bold;
+}
+.Heading2 {
+   font-size: 18px;
+   font-weight: bold;
+}
+.Heading3 {
+   font-size: 16px;
+   font-weight: bold;
+}
+.Heading4 {
+   font-size: 14px;
+}
+
+.Arial {
+ font-family: arial,helvetica,sans-serif;
+}
+.Times_new_roman {
+ font-family: times new roman,times,serif;
+}
+.Verdana {
+font-family: verdana,arial,helvetica,sans-serif;
+}
+.Courier_New {
+ font-family: courier new,courier,monospace;
+}
+
+.text {
+    color: #333333;
+    font-style: normal;
+    font-size: 12px;
+    font-family: Verdana, Arial, Helvetica;
+    letter-spacing: normal;
+}
+.linkon {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #666666;
+}
+.linkover {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #FF3333;
+}
+.text2 {
+    font-family: sans-serif;
+    font-size: 5mm;
+}
+.Title {
+    font-family: sans-serif;
+    font-size: 12mm;
+    color: #006666;
+}
+.link {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #333366;
+}
+.boxTitle {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #999999;
+    background-color: #3333CC;
+    border-style: solid;
+    border-width: thin;
+    padding: 2px;
+}
+.boxContent {
+    font-family: sans-serif;
+    font-size: 10px;
+    color: #999999;
+    background-color: #FFFFFF;
+    padding: 2px;
+    border-style: solid;
+    border-width: thin;
+}
+
+.tabletdformfield {
+ font-family: Arial, Helvetica;
+}
+
+.tabletdheader {
+ font-family: Verdana, Arial, Helvetica;
+ font-weight: bold;
+ background-color:lightblue;
+ color:black;
+}
+
+.tabletrheader {
+ font-family: Verdana, Arial, Helvetica;
+ font-weight: bold;
+ background-color: #c4c5a8;
+}
+
+.tableform {
+	padding: 0px;
+	margin: 2px;
+	border-style: solid;
+	border-width: thin;
+	border-color: darkblue;
+}
+
+.tabletrfooter {
+	font-family: sans-serif;
+	background-color: darkblue;
+	color: white;
+	padding: 2px;
+}
+.reportfooter {
+	font-family: sans-serif;
+	background-color: darkblue;
+	color: white;
+	padding: 2px;
+}
+
+.tabletdformfield {
+	font-family: verdana,arial,helvetica,sans-serif;
+	color: black;
+	padding: 2px;
+}
+
+.tdformlabel {
+	font-family: verdana,arial,helvetica,sans-serif;
+	color: black;
+	padding: 2px;
+	text-align: right;
+}
+
+.tabletdsidelink {
+	color: white;
+}
+
+.linkheader {
+	color: white;
+}
+
+.linkupdate {
+	color: blue;
+}
+
+.linkdelete {
+	color: blue;
+}
+
+.linkadd {
+	color: blue;
+}
+
+.reportnavlink {
+	color: white;
+}
+
+.tabletr1 {
+	background-color:#C7F5E7;
+}
+
+.tabletr2 {
+	background-color:#D0F5C5;
+}

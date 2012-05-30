@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/radria/!svn/ver/72/RadriaCore/events
+END
+mydb.addRecord.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.addRecord.inc.php
+END
+mydb.manageRecord.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.manageRecord.inc.php
+END
+mydb.synchronise.db.Structure.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.synchronise.db.Structure.inc.php
+END
+mydb.formatPictureField.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.formatPictureField.inc.php
+END
+mydb.addVariablesToSession.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.addVariablesToSession.inc.php
+END
+mydb.stripslashes.Fields.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.stripslashes.Fields.inc.php
+END
+mydb.formatDateField.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.formatDateField.inc.php
+END
+mydb.checkUsernamePassword.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.checkUsernamePassword.inc.php
+END
+mydb.synchronise.db.Data.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.synchronise.db.Data.inc.php
+END
+mydb.callDisplay.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.callDisplay.inc.php
+END
+mydb.addParamToDisplayNext.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/radria/!svn/ver/49/RadriaCore/events/mydb.addParamToDisplayNext.inc.php
+END
+mydb.gotoPage.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.gotoPage.inc.php
+END
+mydb.formatMultiSelectField.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.formatMultiSelectField.inc.php
+END
+mydb.registerGlobalEvent.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.registerGlobalEvent.inc.php
+END
+mydb.fieldsToArray.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.fieldsToArray.inc.php
+END
+mydb.formatDateSQLField.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.formatDateSQLField.inc.php
+END
+mydb.loadParamsFromSession.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/radria/!svn/ver/72/RadriaCore/events/mydb.loadParamsFromSession.inc.php
+END
+mydb.formatTimeField.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.formatTimeField.inc.php
+END
+mydb.checkRequired.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.checkRequired.inc.php
+END
+mydb.updateRecord.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.updateRecord.inc.php
+END
+mydb.tableorder.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.tableorder.inc.php
+END
+mydb.delVariablesFromSession.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.delVariablesFromSession.inc.php
+END
+mydb.checkEmail.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/radria/!svn/ver/1/RadriaCore/events/mydb.checkEmail.inc.php
+END

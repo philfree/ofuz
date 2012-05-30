@@ -1,0 +1,33 @@
+This is a generique installation instruction file.
+
+This will describe how to install a package for the PAS (MyDB Application Server).
+You can find additional information and support on the PAS Exchange web site :
+http://pasexchange.com/
+
+Installation using the MyDB WebSite Manager :
+- Login into your MyDB WebSite Manager
+- Click on the Package Icon
+- Use the browse button to select the package on your hardrive
+- Click on the Install button
+
+Installation using the MyDB WebIDE :
+- Login into your MyDB WebIDE 
+- Click on the Package Tab
+- Use the browse button to select the package on your hardrive
+- Click on the Install button
+
+Manaual Installtion of a Package :
+- Unzip the package file using unzip (http://www.info-zip.org/pub/infozip/UnZip.html)
+or anything else.
+- Copy all the files into your project directory
+- move the package file description (packagename.pkg.xml) file into your 
+package directory
+- dump into your database the database file associate with your database.
+database file have the following naming standard : databasetype_db_install.sql
+and databasetype_db_remove.sql.
+For exemple for MySQL database you will have the following file :
+mysql_db_install.sql : use to install the package
+mysql_db_remove.sql : use to remove the package
+To load the file you can use :
+> mysql -p youdatabasename < mysql_db_install.sql
+

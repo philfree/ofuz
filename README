@@ -1,0 +1,24 @@
+Radria was originally a complex framework with a lot of tools to generate code and web applications.
+http://radria.sqlfusion.com/
+
+It was hosted on Sourceforge until they changed my password and never let me recover it.
+
+This new version on github will only be the RadriaCore and a much more simplified version.
+
+Its yet an other PHP framework with less than all the other framework.
+Its Model Controler, not view because we use standard PHP for the view.
+
+We may add back some of the tools like the SiteManager or WebIde but for the next couple of month it will only be RadriaCore.
+
+This version of RadriaCore is much more lean and simple as we have removed the XML templates and auto generated views and forms.
+
+I don't have much documentation but created a sample application so you can get a feel of it and get started.
+
+Everything is released under the LGPL
+
+Have fun,
+
+feel free to contact me at: philippe@ofuz.org
+
+Philippe
+Core developer

@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idregistrytemplate">
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="onlineoftext">
+    <rdata type="required">1</rdata>
+    <rdata type="default">DefaultValue</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="label">This is the label of the field</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="html">1</rdata>
+    <rdata type="disabled">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+  </rfield>
+  <rfield name="checkbox">
+    <!-- prior pas 4.0 use: <rdata type="default">Yes</rdata> instead of checked_value rdata -->
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">this is the label of hidden check box</rdata>
+    <rdata type="fieldtype">strFBFieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+  </rfield>
+  <rfield name="emailfield">
+    <rdata type="required">1</rdata>
+    <rdata type="default">default email value or template</rdata>
+    <rdata type="email">1</rdata>
+    <rdata type="label">label of the email field</rdata>
+    <rdata type="textline">20:40</rdata>
+    <rdata type="fieldtype">strFBFieldTypeEmail</rdata>
+  </rfield>
+  <rfield name="filefield">
+    <rdata type="label">Label of the file field with a picture</rdata>
+    <rdata type="picture">dbimage</rdata>
+    <rdata type="showpicture">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFile</rdata>
+  </rfield>
+  <rfield name="floadfield">
+    <rdata type="required">1</rdata>
+    <rdata type="default">54.34</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="numberformat">$:2:,:.:%</rdata>
+    <rdata type="label">Label of the float field</rdata>
+    <rdata type="textline">5:20</rdata>
+    <rdata type="dispalign">right</rdata>
+    <rdata type="disabled">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+  <rfield name="integerfield">
+    <rdata type="required">1</rdata>
+    <rdata type="default">55</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="numberformat">$:2:,:.:%</rdata>
+    <rdata type="label">Label of the integer field</rdata>
+    <rdata type="textline">5:10</rdata>
+    <rdata type="disabled">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="listboxfield">
+    <rdata type="dispalign">left</rdata>
+    <rdata type="list">name of the table from where to fetch the data:name of the field with values to insert :name of the field with value to display in dropdown:0:name of the sqlsavedquery (optional)</rdata>
+    <rdata type="label">Label of the list box field</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBox</rdata>
+  </rfield>
+   <rfield name="listboxfieldsmall">
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+    <rdata type="listvalues">Values that will be sent by the form example: USD:CAD:EUR:GBP:JPY</rdata>
+    <rdata type="listlabels">Labels that will be display in the drop down (optional), the order need to match the values. exemple: U.S Dollars:Canadian Dollars:Euros:Pounds Sterling:Yen</rdata>
+    <rdata type="emptydefault">no</rdata>
+  </rfield>  
+  <rfield name="listoffilefield">
+    <rdata type="listfile">/dirpath/:extention filter for exemple : .php:default value</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxFile</rdata>
+  </rfield>
+  <rfield name="loginfield">
+    <rdata type="label">label of login field</rdata>
+    <rdata type="access">login</rdata>
+    <rdata type="textline">20:40</rdata>
+    <rdata type="fieldtype">strFBFieldTypeLogin</rdata>
+  </rfield>
+  <rfield name="passwordfield">
+    <rdata type="label">label of the password field</rdata>
+    <rdata type="access">password</rdata>
+    <rdata type="fieldtype">strFBFieldTypePassword</rdata>
+  </rfield>
+  <rfield name="radiobuttonfield">
+    <rdata type="label">label of the radio button field</rdata>
+    <rdata type="fieldtype">strFBFieldTypeRadioButton</rdata>
+    <rdata type="radiobutton">name of the table that will populate the radios:name of the field which value will be inserted:name of the field which value will be displayed:default</rdata>
+  </rfield>
+  <rfield name="radiobuttonfieldsmall">
+    <rdata type="fieldtype">strFBFieldTypeRadioButtonSmall</rdata>
+    <rdata type="default">1</rdata>
+    <rdata type="radiovalues">Values that will be sent by the form example: 1:0</rdata>
+    <rdata type="radiolabels">Labels that will be display (optional), the order need to match the values. Yes:No</rdata>
+    <rdata type="vertical">Display the button vertical values: yes or no, if no they will be displayed horizontal</rdata>
+  </rfield>
+  <rfield name="multilineText">
+    <rdata type="required">1</rdata>
+    <rdata type="default">default value of multiline</rdata>
+    <rdata type="label">label of the multiline text field</rdata>
+    <rdata type="textarea">50:10:soft</rdata>
+    <rdata type="html">1</rdata>
+    <rdata type="disabled">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeText</rdata>
+    <rdata type="htmleditor">link to htmleditor, requires htmleditor package</rdata>
+  </rfield>
+  <rfield name="timefield">
+    <rdata type="default">default time value</rdata>
+    <rdata type="label">label for time field</rdata>
+    <rdata type="timef">now:1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeTimeSQL</rdata>
+  </rfield>
+  <rfield name="datetimestampfield">
+    <rdata type="label">label of time stamp date field</rdata>
+    <rdata type="datef">m/d/Y:today:1</rdata>
+    <rdata type="fieldtype">strfFBFieldTypeDate</rdata>
+  </rfield>
+  <rfield name="datesqlfield">
+    <rdata type="label">label of an SQL date field</rdata>
+    <rdata type="datesql">m/d/Y:today:1:1</rdata>
+    <rdata type="fieldtype">strfFBFieldTypeDateSQL</rdata>
+  </rfield>
+</registry>

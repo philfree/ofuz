@@ -1,0 +1,2394 @@
+
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ DataObject __call for method:setFieldsFormating
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ DataObject __call for method:setApplyFieldFormating
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 1  
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ DataObject __call for method:setApplyFieldFormating
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ values from form:
+ firstname = philippe
+ lastname = lewicki
+ password = test
+ in User (DataObject)::Add()
+ Running query:
+INSERT INTO `user` () VALUES ()INSERT INTO `user` () VALUES ()
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:User) Session Persistent object do_user Set for destruction
+(BaseObject:>User) Session Persistent object do_user Destroyed
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ values from form:
+ firstname = Philippe
+ lastname = Lewicki
+ password = phil
+ in do_user (DataObject)::Add()
+ iduser=;
+ firstname=Philippe;
+ lastname=Lewicki;
+ email=;
+ username=;
+ password=phil;
+ regdate=;
+ status=;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `password`) VALUES ('Philippe', 'Lewicki', 'phil')INSERT INTO `user` (`firstname`, `lastname`, `password`) VALUES ('Philippe', 'Lewicki', 'phil')
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ values from form:
+ firstname = Philtest
+ lastname = testing2
+ email = philippe@ofuz.org
+ password = phil
+ status = Suspended
+ in User (DataObject)::Add()
+ (BaseObject:>User) Session object:do_user is a live
+ values from form:
+ firstname = Philtest
+ lastname = testing2
+ email = philippe@ofuz.org
+ password = phil
+ status = Suspended
+ in User (DataObject)::Add()
+ iduser=;
+ firstname=Philtest;
+ lastname=testing2;
+ email=philippe@ofuz.org;
+ username=;
+ password=phil;
+ regdate=;
+ status=Suspended;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philtest', 'testing2', 'philippe@ofuz.org', 'phil', 'Suspended')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philtest', 'testing2', 'philippe@ofuz.org', 'phil', 'Suspended')
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object: do_user keep a live expired, should die now
+(BaseObject:>User) Session Persistent object do_user Destroyed
+ values from form:
+ firstname = Philippe
+ lastname = test 3
+ email = philippe@ofuz.org
+ password = phil
+ status = Active
+ in User (DataObject)::Add()
+ iduser=;
+ firstname=Philippe;
+ lastname=test 3;
+ email=philippe@ofuz.org;
+ username=;
+ password=phil;
+ regdate=;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philippe', 'test 3', 'philippe@ofuz.org', 'phil', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philippe', 'test 3', 'philippe@ofuz.org', 'phil', 'Active')
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today
+ values from form:
+ firstname = Philippe
+ lastname = test 4
+ email = pub@sqlfusion.com
+ password = phil
+ status = Paid
+ in User (DataObject)::Add()
+ iduser=;
+ firstname=Philippe;
+ lastname=test 4;
+ email=pub@sqlfusion.com;
+ username=;
+ password=phil;
+ regdate=;
+ status=Paid;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philippe', 'test 4', 'pub@sqlfusion.com', 'phil', 'Paid')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philippe', 'test 4', 'pub@sqlfusion.com', 'phil', 'Paid')
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today:2012-05-29
+ Where is the goto param: 
+ values from form:
+ firstname = philippe
+ lastname = test5
+ email = philippe@ofuz.org
+ password = phil
+ status = Paid
+ in User (DataObject)::Add()
+ iduser=;
+ firstname=philippe;
+ lastname=test5;
+ email=philippe@ofuz.org;
+ username=;
+ password=phil;
+ regdate=;
+ status=Paid;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('philippe', 'test5', 'philippe@ofuz.org', 'phil', 'Paid')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('philippe', 'test5', 'philippe@ofuz.org', 'phil', 'Paid')
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ values from form:
+ firstname = philippe
+ lastname = test 6
+ email = philtest2@sqlfusion.com
+ password = phil
+ status = Active
+ in User (DataObject)::Add()
+ iduser=;
+ firstname=philippe;
+ lastname=test 6;
+ email=philtest2@sqlfusion.com;
+ username=;
+ password=phil;
+ regdate=;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('philippe', 'test 6', 'philtest2@sqlfusion.com', 'phil', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('philippe', 'test 6', 'philtest2@sqlfusion.com', 'phil', 'Active')
+ Setting the date to today and updating the record with:2012-05-29
+ Where is the goto param: 
+ DataObject, (user) update()
+ primary key:iduser Value:
+ call on update with empty primary key value
+ For firstname /   add:`firstname` = '', 
+ For lastname /   add:`lastname` = '', 
+ For email /   add:`email` = '', 
+ For username /  
+ For password /   add:`password` = '', 
+ For regdate / 2012-05-29 
+ Message:
+ Running query:
+UPDATE `user` SET `firstname` = '', `lastname` = '', `email` = '', `password` = '' WHERE iduser = '0'
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ values from form:
+ firstname = Philipptes
+ lastname = test 7
+ email = phil@sqlfusion.com
+ password = ph
+ status = Inactive
+ in User (DataObject)::Add()
+ iduser=;
+ firstname=Philipptes;
+ lastname=test 7;
+ email=phil@sqlfusion.com;
+ username=;
+ password=ph;
+ regdate=;
+ status=Inactive;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philipptes', 'test 7', 'phil@sqlfusion.com', 'ph', 'Inactive')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philipptes', 'test 7', 'phil@sqlfusion.com', 'ph', 'Inactive')
+ Setting the date to today and updating the record with:2012-05-29
+ Where is the goto param: 
+ DataObject, (user) update()
+ primary key:iduser Value:
+ call on update with empty primary key value
+ For firstname /   add:`firstname` = '', 
+ For lastname /   add:`lastname` = '', 
+ For email /   add:`email` = '', 
+ For username /  
+ For password /   add:`password` = '', 
+ For regdate / 2012-05-29 
+ Message:
+ Running query:
+UPDATE `user` SET `firstname` = '', `lastname` = '', `email` = '', `password` = '' WHERE iduser = '0'
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today and updating the record with:2012-05-29
+ Where is the goto param: 
+ values from form:
+ firstname = philippe
+ lastname = test 8
+ email = php@php.net
+ password = phil
+ status = Active
+ in User (DataObject)::Add()
+ iduser=;
+ firstname=philippe;
+ lastname=test 8;
+ email=php@php.net;
+ username=;
+ password=phil;
+ regdate=;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('philippe', 'test 8', 'php@php.net', 'phil', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('philippe', 'test 8', 'php@php.net', 'phil', 'Active')
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object: do_user keep a live expired, should die now
+(BaseObject:>User) Session Persistent object do_user Destroyed
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today and updating the record with:2012-05-29
+ Where is the goto param: index.php
+ values from form:
+ firstname = Philippe
+ lastname = test 10
+ email = philippe@ofuz.org
+ password = jjj
+ status = Active
+ in User (DataObject)::Add()
+ iduser=;
+ firstname=Philippe;
+ lastname=test 10;
+ email=philippe@ofuz.org;
+ username=;
+ password=jjj;
+ regdate=;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philippe', 'test 10', 'philippe@ofuz.org', 'jjj', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philippe', 'test 10', 'philippe@ofuz.org', 'jjj', 'Active')
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today and updating the record with:2012-05-29
+ Where is the goto param: index.php
+ values from form:
+ firstname = philippe
+ lastname = test 11
+ email = philtest58@sqlfusion.com
+ password = jj
+ status = Active
+ in User (DataObject)::Add()
+ iduser=;
+ firstname=philippe;
+ lastname=test 11;
+ email=philtest58@sqlfusion.com;
+ username=;
+ password=jj;
+ regdate=;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('philippe', 'test 11', 'philtest58@sqlfusion.com', 'jj', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('philippe', 'test 11', 'philtest58@sqlfusion.com', 'jj', 'Active')
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+ values from form:
+ firstname = philippe
+ lastname = test 12
+ email = philippe@ofuz.org
+ password = ph
+ status = Active
+ in User (DataObject)::Add()
+ iduser=;
+ firstname=philippe;
+ lastname=test 12;
+ email=philippe@ofuz.org;
+ username=;
+ password=ph;
+ regdate=;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('philippe', 'test 12', 'philippe@ofuz.org', 'ph', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('philippe', 'test 12', 'philippe@ofuz.org', 'ph', 'Active')
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+ values from form:
+ firstname = Philippe
+ lastname = test 13
+ email = philtest4@sqlfusion.com
+ password = phil
+ status = Active
+ in User (DataObject)::Add()
+ firstname = Philippe
+ lastname = test 13
+ email = philtest4@sqlfusion.com
+ password = phil
+ status = Active
+ iduser=;
+ firstname=Philippe;
+ lastname=test 13;
+ email=philtest4@sqlfusion.com;
+ username=;
+ password=phil;
+ regdate=;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philippe', 'test 13', 'philtest4@sqlfusion.com', 'phil', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philippe', 'test 13', 'philtest4@sqlfusion.com', 'phil', 'Active')
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+ values from form:
+ firstname = philipep
+ lastname = test 14
+ email = philtest3@sqlfusion.com
+ password = h
+ status = Active
+ in do_user (DataObject)::Add()
+ regdate = 2012-03-01
+ firstname = philipep
+ lastname = test 14
+ email = philtest3@sqlfusion.com
+ password = h
+ status = Active
+ iduser=;
+ firstname=philipep;
+ lastname=test 14;
+ email=philtest3@sqlfusion.com;
+ username=;
+ password=h;
+ regdate=2012-03-01;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('philipep', 'test 14', 'philtest3@sqlfusion.com', 'h', '2012-03-01', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('philipep', 'test 14', 'philtest3@sqlfusion.com', 'h', '2012-03-01', 'Active')
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+(BaseObject:User) Session Persistent object do_user Set for destruction
+(BaseObject:>User) Session Persistent object do_user Destroyed
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+(BaseObject:User) Session Persistent object do_user Set for destruction
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+(BaseObject:User) Session Persistent object do_user Set for destruction
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+ values from form:
+ firstname = Philippe
+ lastname = test 15
+ email = phil@sqlfusion.com
+ password = p
+ status = Active
+ in User (DataObject)::Add()
+ firstname = Philippe
+ lastname = test 15
+ email = phil@sqlfusion.com
+ password = p
+ status = Active
+ iduser=;
+ firstname=Philippe;
+ lastname=test 15;
+ email=phil@sqlfusion.com;
+ username=;
+ password=p;
+ regdate=;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philippe', 'test 15', 'phil@sqlfusion.com', 'p', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('Philippe', 'test 15', 'phil@sqlfusion.com', 'p', 'Active')
+(BaseObject:User) Session Persistent object do_user Set for destruction
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+ values from form:
+ firstname = Philippe
+ lastname = test 16
+ email = philippe@ofuz.org
+ password = p
+ status = Active
+ in do_user (DataObject)::Add()
+ regdate = 2012-03-01
+ firstname = Philippe
+ lastname = test 16
+ email = philippe@ofuz.org
+ password = p
+ status = Active
+ iduser=;
+ firstname=Philippe;
+ lastname=test 16;
+ email=philippe@ofuz.org;
+ username=;
+ password=p;
+ regdate=2012-03-01;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('Philippe', 'test 16', 'philippe@ofuz.org', 'p', '2012-03-01', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('Philippe', 'test 16', 'philippe@ofuz.org', 'p', '2012-03-01', 'Active')
+(BaseObject:User) Session Persistent object do_user Set for destruction
+(BaseObject:>User) Session Persistent object do_user Destroyed
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 18:29:48
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+
+ Executing Event : do_user->eventAdd
+ looking for Event:do_user->eventAdd
+ found object method: do_user -> eventAdd
+Object is in the session
+ values from form:
+ firstname = philippe
+ lastname = test 16
+ email = philippe@ofuz.org
+ password = p
+ status = Active
+ in do_user (DataObject)::Add()
+ regdate = 2012-03-01
+ firstname = philippe
+ lastname = test 16
+ email = philippe@ofuz.org
+ password = p
+ status = Active
+ iduser=;
+ firstname=philippe;
+ lastname=test 16;
+ email=philippe@ofuz.org;
+ username=;
+ password=p;
+ regdate=2012-03-01;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('philippe', 'test 16', 'philippe@ofuz.org', 'p', '2012-03-01', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('philippe', 'test 16', 'philippe@ofuz.org', 'p', '2012-03-01', 'Active')
+ Forward to URL:index.php
+(BaseObject:User) Session Persistent object do_user Set for destruction
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 18:33:29
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+
+ Executing Event : do_user->eventAdd
+ looking for Event:do_user->eventAdd
+ found object method: do_user -> eventAdd
+Object is in the session
+ values from form:
+ firstname = Philippe
+ lastname = Lewicki
+ email = philippe@ofuz.org
+ password = p
+ status = Active
+ in do_user (DataObject)::Add()
+ regdate = 2012-03-01
+ firstname = Philippe
+ lastname = Lewicki
+ email = philippe@ofuz.org
+ password = p
+ status = Active
+ iduser=;
+ firstname=Philippe;
+ lastname=Lewicki;
+ email=philippe@ofuz.org;
+ username=;
+ password=p;
+ regdate=2012-03-01;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('Philippe', 'Lewicki', 'philippe@ofuz.org', 'p', '2012-03-01', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('Philippe', 'Lewicki', 'philippe@ofuz.org', 'p', '2012-03-01', 'Active')
+ Forward to URL:index.php
+(BaseObject:User) Session Persistent object do_user Set for destruction
+(BaseObject:>User) Session Persistent object do_user Destroyed
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 18:34:31
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php - 
+ firstname = Philippe
+ lastname = test 20
+ email = test20@bloa.com
+ password = p
+ status = Active
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+
+ Executing Event : do_user->eventAdd
+ looking for Event:do_user->eventAdd
+ found object method: do_user -> eventAdd
+Object is in the session
+ values from form:
+ firstname = Philippe
+ lastname = test 20
+ email = test20@bloa.com
+ password = p
+ status = Active
+ in do_user (DataObject)::Add()
+ regdate = 2012-03-01
+ firstname = Philippe
+ lastname = test 20
+ email = test20@bloa.com
+ password = p
+ status = Active
+ iduser=;
+ firstname=Philippe;
+ lastname=test 20;
+ email=test20@bloa.com;
+ username=;
+ password=p;
+ regdate=2012-03-01;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('Philippe', 'test 20', 'test20@bloa.com', 'p', '2012-03-01', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('Philippe', 'test 20', 'test20@bloa.com', 'p', '2012-03-01', 'Active')
+ Forward to URL:index.php
+(BaseObject:User) Session Persistent object do_user Set for destruction
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 18:37:06
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php - 
+ firstname = philippe
+ lastname = test 21
+ email = philippe@ofuz.org
+ password = p
+ status = Active
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+
+ Executing Event : do_user->eventAdd
+ looking for Event:do_user->eventAdd
+ found object method: do_user -> eventAdd
+Object is in the session
+ values from form:
+ firstname = philippe
+ lastname = test 21
+ email = philippe@ofuz.org
+ password = p
+ status = Active
+ in do_user (DataObject)::Add()
+ regdate = 2012-03-01
+ firstname = philippe
+ lastname = test 21
+ email = philippe@ofuz.org
+ password = p
+ status = Active
+ iduser=;
+ firstname=philippe;
+ lastname=test 21;
+ email=philippe@ofuz.org;
+ username=;
+ password=p;
+ regdate=2012-03-01;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('philippe', 'test 21', 'philippe@ofuz.org', 'p', '2012-03-01', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('philippe', 'test 21', 'philippe@ofuz.org', 'p', '2012-03-01', 'Active')
+ Forward to URL:index.php
+(BaseObject:User) Session Persistent object do_user Set for destruction
+(BaseObject:>User) Session Persistent object do_user Destroyed
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 18:39:25
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = Philippe
+ lastname = ph234
+ email = philih@lkhj.org
+ password = p
+ status = Active
+ Verify pass:
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+
+ Executing Event : do_user->eventAdd
+ looking for Event:do_user->eventAdd
+ found object method: do_user -> eventAdd
+Object is in the session
+ values from form:
+ firstname = Philippe
+ lastname = ph234
+ email = philih@lkhj.org
+ password = p
+ status = Active
+ in do_user (DataObject)::Add()
+ regdate = 2012-03-01
+ firstname = Philippe
+ lastname = ph234
+ email = philih@lkhj.org
+ password = p
+ status = Active
+ iduser=;
+ firstname=Philippe;
+ lastname=ph234;
+ email=philih@lkhj.org;
+ username=;
+ password=p;
+ regdate=2012-03-01;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('Philippe', 'ph234', 'philih@lkhj.org', 'p', '2012-03-01', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('Philippe', 'ph234', 'philih@lkhj.org', 'p', '2012-03-01', 'Active')
+ Forward to URL:index.php
+(BaseObject:User) Session Persistent object do_user Set for destruction
+(BaseObject:>User) Session Persistent object do_user Destroyed
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 18:41:03
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = phiohjph
+ lastname = opihkih
+ email = oihkoih
+ password = p
+ status = Active
+ password = ppp
+ Verify pass:
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+
+ Executing Event : do_user->eventAdd
+ looking for Event:do_user->eventAdd
+ found object method: do_user -> eventAdd
+Object is in the session
+ values from form:
+ firstname = phiohjph
+ lastname = opihkih
+ email = oihkoih
+ password = p
+ status = Active
+ in do_user (DataObject)::Add()
+ regdate = 2012-03-01
+ firstname = phiohjph
+ lastname = opihkih
+ email = oihkoih
+ password = p
+ status = Active
+ iduser=;
+ firstname=phiohjph;
+ lastname=opihkih;
+ email=oihkoih;
+ username=;
+ password=p;
+ regdate=2012-03-01;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('phiohjph', 'opihkih', 'oihkoih', 'p', '2012-03-01', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `regdate`, `status`) VALUES ('phiohjph', 'opihkih', 'oihkoih', 'p', '2012-03-01', 'Active')
+ Forward to URL:index.php
+(BaseObject:User) Session Persistent object do_user Set for destruction
+(BaseObject:>User) Session Persistent object do_user Destroyed
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 18:43:59
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = piohpihoih
+ lastname = oihoihoih
+ email = p
+ password = p
+ status = Active
+ Repeat pass:
+ password = pp
+ Verify pass:
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+
+ Executing Event : User->eventAdd
+ looking for Event:User->eventAdd
+ found object method: User -> eventAdd
+ Object class exists User
+ values from form:
+ firstname = piohpihoih
+ lastname = oihoihoih
+ email = p
+ password = p
+ status = Active
+ in User (DataObject)::Add()
+ firstname = piohpihoih
+ lastname = oihoihoih
+ email = p
+ password = p
+ status = Active
+ iduser=;
+ firstname=piohpihoih;
+ lastname=oihoihoih;
+ email=p;
+ username=;
+ password=p;
+ regdate=;
+ status=Active;
+ Running query:
+INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('piohpihoih', 'oihoihoih', 'p', 'p', 'Active')INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `status`) VALUES ('piohpihoih', 'oihoihoih', 'p', 'p', 'Active')
+ Forward to URL:index.php
+(BaseObject:User) Session Persistent object do_user Set for destruction
+(BaseObject:>User) Session Persistent object do_user Destroyed
+ (BaseObject:>User) saved object do_user in the session
+(BaseObject:User) Session Persistent object do_user Set for destruction
+(BaseObject:>User) Session Persistent object do_user Destroyed
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 18:59:17
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = philippe
+ lastname = phphp
+ email = php@php.net
+ password = ppp
+ status = Active
+ Repeat pass:
+ password = ppppp
+ Verify pass:ppppp
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+
+ Executing Event : User->eventAdd
+ looking for Event:User->eventAdd
+ found object method: User -> eventAdd
+ Object class exists User
+ Forward to URL:index.php?x=1&message=The+password+entries+do+not+match
+(BaseObject:User) Session Persistent object do_user Set for destruction
+(BaseObject:>User) Session Persistent object do_user Destroyed
+ (BaseObject:>User) saved object do_user in the session
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 19:08:40
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = philippe
+ lastname = test25
+ email = this is test 20
+ password = phil
+ status = Active
+ Repeat pass:
+ password = phhhhphp
+ Verify pass:phhhhphp
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+
+ Executing Event : User->eventAdd
+ looking for Event:User->eventAdd
+ found object method: User -> eventAdd
+ Object class exists User
+ Forward to URL:message.php?x=1&message=The+password+entries+do+not+match
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 8  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 19:16:48
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = philippe
+ lastname = test 8
+ email = php@php.net
+ password = phil
+ status = Active
+ Repeat pass:
+ password = phil
+ Verify pass:phil
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+
+ Executing Event : User->eventUpdate
+ looking for Event:User->eventUpdate
+ found object method: User -> eventUpdate
+ Object class exists User
+ values from form:
+ firstname = philippe
+ lastname = test 8
+ email = php@php.net
+ password = phil
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:
+ call on update with empty primary key value
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 8  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 8  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 19:17:33
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = philippe
+ lastname = test 8 99
+ email = php@php.net
+ password = phil
+ status = Active
+ Repeat pass:
+ password = phil
+ Verify pass:phil
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: index.php
+
+ Executing Event : User->eventUpdate
+ looking for Event:User->eventUpdate
+ found object method: User -> eventUpdate
+ Object class exists User
+ values from form:
+ firstname = philippe
+ lastname = test 8 99
+ email = php@php.net
+ password = phil
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:
+ call on update with empty primary key value
+ For firstname / philippe  type:varchar add:`firstname` = 'philippe', 
+ For lastname / test 8 99  type:varchar add:`lastname` = 'test 8 99', 
+ For email / php@php.net  type:varchar add:`email` = 'php@php.net', 
+ For password / phil  type:varchar add:`password` = 'phil', 
+ For status / Active  type:varchar add:`status` = 'Active', 
+ Message:
+ Running query:
+UPDATE `user` SET `firstname` = 'philippe', `lastname` = 'test 8 99', `email` = 'php@php.net', `password` = 'phil', `status` = 'Active' WHERE iduser = 0
+ Forward to URL:index.php
+(BaseObject:User) Session Persistent object do_user Set for destruction
+(BaseObject:>User) Session Persistent object do_user DestroyedSELECT * FROM user  
+ (BaseObject:>User) saved object do_user in the sessionselect * from `user` where `iduser` = 12  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 19:18:22
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = Philippe
+ lastname = test 13
+ email = philtest4@sqlfusion.com
+ password = phil
+ status = Active
+ Repeat pass:
+ password = phil
+ Verify pass:phil
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: users.php
+
+ Executing Event : do_user->eventUpdate
+ looking for Event:do_user->eventUpdate
+ found object method: do_user -> eventUpdate
+Object is in the session
+ values from form:
+ firstname = Philippe
+ lastname = test 13
+ email = philtest4@sqlfusion.com
+ password = phil
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:12
+ For 0 / 12 
+ For iduser / 12  add:`iduser` = '12', 
+ For 1 / Philippe 
+ For firstname / Philippe  add:`firstname` = 'Philippe', 
+ For 2 / test 13 
+ For lastname / test 13  add:`lastname` = 'test 13', 
+ For 3 / philtest4@sqlfusion.com 
+ For email / philtest4@sqlfusion.com  add:`email` = 'philtest4@sqlfusion.com', 
+ For 4 /  
+ For username /  
+ For 5 / phil 
+ For password / phil  add:`password` = 'phil', 
+ For 6 /  
+ For regdate / 2012-03-01  add:`regdate` = '2012-03-01', 
+ For 7 / Active 
+ For status / Active  add:`status` = 'Active', 
+ Message:
+ Running query:
+UPDATE `user` SET `iduser` = '12', `firstname` = 'Philippe', `lastname` = 'test 13', `email` = 'philtest4@sqlfusion.com', `password` = 'phil', `regdate` = '2012-03-01', `status` = 'Active' WHERE iduser = '12'
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 14  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 19:18:29
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = Philippe
+ lastname = test 15 ooo
+ email = phil@sqlfusion.com
+ password = p
+ status = Active
+ Repeat pass:
+ password = p
+ Verify pass:p
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: users.php
+
+ Executing Event : User->eventUpdate
+ looking for Event:User->eventUpdate
+ found object method: User -> eventUpdate
+ Object class exists User
+ values from form:
+ firstname = Philippe
+ lastname = test 15 ooo
+ email = phil@sqlfusion.com
+ password = p
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:
+ call on update with empty primary key value
+ For firstname / Philippe  type:varchar add:`firstname` = 'Philippe', 
+ For lastname / test 15 ooo  type:varchar add:`lastname` = 'test 15 ooo', 
+ For email / phil@sqlfusion.com  type:varchar add:`email` = 'phil@sqlfusion.com', 
+ For password / p  type:varchar add:`password` = 'p', 
+ For status / Active  type:varchar add:`status` = 'Active', 
+ Message:
+ Running query:
+UPDATE `user` SET `firstname` = 'Philippe', `lastname` = 'test 15 ooo', `email` = 'phil@sqlfusion.com', `password` = 'p', `status` = 'Active' WHERE iduser = 0
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 5  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/29 19:18:37
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = philippe
+ lastname = test5oooo
+ email = philippe@ofuz.org
+ password = phil
+ status = Paid
+ Repeat pass:
+ password = phil
+ Verify pass:phil
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: users.php
+
+ Executing Event : User->eventUpdate
+ looking for Event:User->eventUpdate
+ found object method: User -> eventUpdate
+ Object class exists User
+ values from form:
+ firstname = philippe
+ lastname = test5oooo
+ email = philippe@ofuz.org
+ password = phil
+ status = Paid
+ DataObject, (user) update()
+ primary key:iduser Value:
+ call on update with empty primary key value
+ For firstname / philippe  type:varchar add:`firstname` = 'philippe', 
+ For lastname / test5oooo  type:varchar add:`lastname` = 'test5oooo', 
+ For email / philippe@ofuz.org  type:varchar add:`email` = 'philippe@ofuz.org', 
+ For password / phil  type:varchar add:`password` = 'phil', 
+ For status / Paid  type:varchar add:`status` = 'Paid', 
+ Message:
+ Running query:
+UPDATE `user` SET `firstname` = 'philippe', `lastname` = 'test5oooo', `email` = 'philippe@ofuz.org', `password` = 'phil', `status` = 'Paid' WHERE iduser = 0
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  SELECT * FROM user  SELECT * FROM user  SELECT * FROM user  
+ (BaseObject:>User) saved object do_user in the sessionselect * from `user` where `iduser` = 10  
+ (BaseObject:>User) Session object: do_user keep a live expired, should die now
+(BaseObject:>User) Session Persistent object do_user Destroyed
+
+ Instanciate Event Controler Object 2012/05/30 09:57:30
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = philippe
+ lastname = test 1177
+ email = philtest58@sqlfusion.com
+ password = jj
+ status = Active
+ Repeat pass:
+ password = jj
+ Verify pass:jj
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+
+ Executing Event : do_user->eventUpdate
+ looking for Event:do_user->eventUpdate
+ found object method: do_user -> eventUpdate
+ Forward to URL:users.phpSELECT * FROM user  
+ (BaseObject:>User) saved object do_user in the sessionselect * from `user` where `iduser` = 9  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/30 09:59:52
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = Philippe
+ lastname = test 10
+ email = philippe@ofuz.org
+ password = jjj
+ status = Active
+ Repeat pass:
+ password = jjj
+ Verify pass:jjj
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: users.php
+
+ Executing Event : do_user->eventUpdate
+ looking for Event:do_user->eventUpdate
+ found object method: do_user -> eventUpdate
+Object is in the session
+ doSave:yes
+ values from form:
+ firstname = Philippe
+ lastname = test 10
+ email = philippe@ofuz.org
+ password = jjj
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:9
+ For 0 / 9 
+ For iduser / 9  add:`iduser` = '9', 
+ For 1 / Philippe 
+ For firstname / Philippe  add:`firstname` = 'Philippe', 
+ For 2 / test 10 
+ For lastname / test 10  add:`lastname` = 'test 10', 
+ For 3 / philippe@ofuz.org 
+ For email / philippe@ofuz.org  add:`email` = 'philippe@ofuz.org', 
+ For 4 /  
+ For username /  
+ For 5 / jjj 
+ For password / jjj  add:`password` = 'jjj', 
+ For 6 /  
+ For regdate / 2012-03-01  add:`regdate` = '2012-03-01', 
+ For 7 / Active 
+ For status / Active  add:`status` = 'Active', 
+ Message:
+ Running query:
+UPDATE `user` SET `iduser` = '9', `firstname` = 'Philippe', `lastname` = 'test 10', `email` = 'philippe@ofuz.org', `password` = 'jjj', `regdate` = '2012-03-01', `status` = 'Active' WHERE iduser = '9'
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 12  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/30 10:00:18
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = Philippe
+ lastname = test 13
+ email = philtest4@sqlfusion.com
+ password = phil
+ status = Active
+ Repeat pass:
+ password = phil
+ Verify pass:phil
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: users.php
+
+ Executing Event : User->eventUpdate
+ looking for Event:User->eventUpdate
+ found object method: User -> eventUpdate
+ Object class exists User
+ doSave:yes
+ values from form:
+ firstname = Philippe
+ lastname = test 13
+ email = philtest4@sqlfusion.com
+ password = phil
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:
+ call on update with empty primary key value
+ For firstname / Philippe  type:varchar add:`firstname` = 'Philippe', 
+ For lastname / test 13  type:varchar add:`lastname` = 'test 13', 
+ For email / philtest4@sqlfusion.com  type:varchar add:`email` = 'philtest4@sqlfusion.com', 
+ For password / phil  type:varchar add:`password` = 'phil', 
+ For status / Active  type:varchar add:`status` = 'Active', 
+ Message:
+ Running query:
+UPDATE `user` SET `firstname` = 'Philippe', `lastname` = 'test 13', `email` = 'philtest4@sqlfusion.com', `password` = 'phil', `status` = 'Active' WHERE iduser = 0
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 9  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/30 10:00:23
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = Philippe
+ lastname = test 10 999
+ email = philippe@ofuz.org
+ password = jjj
+ status = Active
+ Repeat pass:
+ password = jjj
+ Verify pass:jjj
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: users.php
+
+ Executing Event : User->eventUpdate
+ looking for Event:User->eventUpdate
+ found object method: User -> eventUpdate
+ Object class exists User
+ doSave:yes
+ values from form:
+ firstname = Philippe
+ lastname = test 10 999
+ email = philippe@ofuz.org
+ password = jjj
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:
+ call on update with empty primary key value
+ For firstname / Philippe  type:varchar add:`firstname` = 'Philippe', 
+ For lastname / test 10 999  type:varchar add:`lastname` = 'test 10 999', 
+ For email / philippe@ofuz.org  type:varchar add:`email` = 'philippe@ofuz.org', 
+ For password / jjj  type:varchar add:`password` = 'jjj', 
+ For status / Active  type:varchar add:`status` = 'Active', 
+ Message:
+ Running query:
+UPDATE `user` SET `firstname` = 'Philippe', `lastname` = 'test 10 999', `email` = 'philippe@ofuz.org', `password` = 'jjj', `status` = 'Active' WHERE iduser = 0
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 8  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/30 10:02:08
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = philippe
+ lastname = test 8 777
+ email = php@php.net
+ password = phil
+ status = Active
+ Repeat pass:
+ password = phil
+ Verify pass:phil
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: users.php
+
+ Executing Event : User->eventUpdate
+ looking for Event:User->eventUpdate
+ found object method: User -> eventUpdate
+ Object class exists User
+ doSave:yes
+ values from form:
+ firstname = philippe
+ lastname = test 8 777
+ email = php@php.net
+ password = phil
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:
+ call on update with empty primary key value
+ For firstname / philippe  type:varchar add:`firstname` = 'philippe', 
+ For lastname / test 8 777  type:varchar add:`lastname` = 'test 8 777', 
+ For email / php@php.net  type:varchar add:`email` = 'php@php.net', 
+ For password / phil  type:varchar add:`password` = 'phil', 
+ For status / Active  type:varchar add:`status` = 'Active', 
+ Message:
+ Running query:
+UPDATE `user` SET `firstname` = 'philippe', `lastname` = 'test 8 777', `email` = 'php@php.net', `password` = 'phil', `status` = 'Active' WHERE iduser = 0
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 10  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/30 10:08:39
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = philippe
+ lastname = test 11 00
+ email = philtest58@sqlfusion.com
+ password = jj
+ status = Active
+ Repeat pass:
+ password = jj
+ Verify pass:jj
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: users.php
+
+ Executing Event : User->eventUpdate
+ looking for Event:User->eventUpdate
+ found object method: User -> eventUpdate
+ Object class exists User
+ doSave:yes
+ values from form:
+ firstname = philippe
+ lastname = test 11 00
+ email = philtest58@sqlfusion.com
+ password = jj
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:
+ call on update with empty primary key value
+ For firstname / philippe  type:varchar add:`firstname` = 'philippe', 
+ For lastname / test 11 00  type:varchar add:`lastname` = 'test 11 00', 
+ For email / philtest58@sqlfusion.com  type:varchar add:`email` = 'philtest58@sqlfusion.com', 
+ For password / jj  type:varchar add:`password` = 'jj', 
+ For status / Active  type:varchar add:`status` = 'Active', 
+ Message:
+ Running query:
+UPDATE `user` SET `firstname` = 'philippe', `lastname` = 'test 11 00', `email` = 'philtest58@sqlfusion.com', `password` = 'jj', `status` = 'Active' WHERE iduser = 0
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 10  
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 10  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/30 10:12:48
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = philippe
+ lastname = test 11 88
+ email = philtest58@sqlfusion.com
+ password = jj
+ status = Active
+ Repeat pass:
+ password = jj
+ Verify pass:jj
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: users.php
+
+ Executing Event : do_user->eventUpdate
+ looking for Event:do_user->eventUpdate
+ found object method: do_user -> eventUpdate
+Object is in the session
+ doSave:yes
+ values from form:
+ firstname = philippe
+ lastname = test 11 88
+ email = philtest58@sqlfusion.com
+ password = jj
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:10
+ For 0 / 10 
+ For iduser / 10  add:`iduser` = '10', 
+ For 1 / philippe 
+ For firstname / philippe  add:`firstname` = 'philippe', 
+ For 2 / test 11 
+ For lastname / test 11 88  add:`lastname` = 'test 11 88', 
+ For 3 / philtest58@sqlfusion.com 
+ For email / philtest58@sqlfusion.com  add:`email` = 'philtest58@sqlfusion.com', 
+ For 4 /  
+ For username /  
+ For 5 / jj 
+ For password / jj  add:`password` = 'jj', 
+ For 6 / 0000-00-00 
+ For regdate / 2012-03-01  add:`regdate` = '2012-03-01', 
+ For 7 / Active 
+ For status / Active  add:`status` = 'Active', 
+ Message:
+ Running query:
+UPDATE `user` SET `iduser` = '10', `firstname` = 'philippe', `lastname` = 'test 11 88', `email` = 'philtest58@sqlfusion.com', `password` = 'jj', `regdate` = '2012-03-01', `status` = 'Active' WHERE iduser = '10'
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 17  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/30 10:13:06
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = Jean
+ lastname = Lewicki
+ email = philippe@ofuz.org
+ password = p
+ status = Active
+ Repeat pass:
+ password = p
+ Verify pass:p
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: users.php
+
+ Executing Event : do_user->eventUpdate
+ looking for Event:do_user->eventUpdate
+ found object method: do_user -> eventUpdate
+Object is in the session
+ doSave:yes
+ values from form:
+ firstname = Jean
+ lastname = Lewicki
+ email = philippe@ofuz.org
+ password = p
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:17
+ For 0 / 17 
+ For iduser / 17  add:`iduser` = '17', 
+ For 1 / Philippe 
+ For firstname / Jean  add:`firstname` = 'Jean', 
+ For 2 / Lewicki 
+ For lastname / Lewicki  add:`lastname` = 'Lewicki', 
+ For 3 / philippe@ofuz.org 
+ For email / philippe@ofuz.org  add:`email` = 'philippe@ofuz.org', 
+ For 4 /  
+ For username /  
+ For 5 / p 
+ For password / p  add:`password` = 'p', 
+ For 6 / 2012-03-01 
+ For regdate / 2012-03-01  add:`regdate` = '2012-03-01', 
+ For 7 / Active 
+ For status / Active  add:`status` = 'Active', 
+ Message:
+ Running query:
+UPDATE `user` SET `iduser` = '17', `firstname` = 'Jean', `lastname` = 'Lewicki', `email` = 'philippe@ofuz.org', `password` = 'p', `regdate` = '2012-03-01', `status` = 'Active' WHERE iduser = '17'
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 13  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/30 10:13:11
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = philipep
+ lastname = test 14
+ email = philtest3@sqlfusion.com
+ password = h
+ status = Active
+ Repeat pass:
+ password = oo
+ Verify pass:oo
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: users.php
+
+ Executing Event : do_user->eventUpdate
+ looking for Event:do_user->eventUpdate
+ found object method: do_user -> eventUpdate
+Object is in the session
+ doSave:no
+ Forward to URL:message.php?x=1&message=The+password+entries+do+not+match
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 13  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/30 10:13:16
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = philipepoo
+ lastname = test 14
+ email = philtest3@sqlfusion.com
+ password = h
+ status = Active
+ Repeat pass:
+ password = h
+ Verify pass:h
+
+ Executing Event : do_user->eventSetRegistrationDate
+ looking for Event:do_user->eventSetRegistrationDate
+ found object method: do_user -> eventSetRegistrationDate
+Object is in the session
+ Setting the date to today and updating the record with:2012-03-01
+ Where is the goto param: users.php
+
+ Executing Event : do_user->eventUpdate
+ looking for Event:do_user->eventUpdate
+ found object method: do_user -> eventUpdate
+Object is in the session
+ doSave:yes
+ values from form:
+ firstname = philipepoo
+ lastname = test 14
+ email = philtest3@sqlfusion.com
+ password = h
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:13
+ For 0 / 13 
+ For iduser / 13  add:`iduser` = '13', 
+ For 1 / philipep 
+ For firstname / philipepoo  add:`firstname` = 'philipepoo', 
+ For 2 / test 14 
+ For lastname / test 14  add:`lastname` = 'test 14', 
+ For 3 / philtest3@sqlfusion.com 
+ For email / philtest3@sqlfusion.com  add:`email` = 'philtest3@sqlfusion.com', 
+ For 4 /  
+ For username /  
+ For 5 / h 
+ For password / h  add:`password` = 'h', 
+ For 6 / 2012-03-01 
+ For regdate / 2012-03-01  add:`regdate` = '2012-03-01', 
+ For 7 / Active 
+ For status / Active  add:`status` = 'Active', 
+ Message:
+ Running query:
+UPDATE `user` SET `iduser` = '13', `firstname` = 'philipepoo', `lastname` = 'test 14', `email` = 'philtest3@sqlfusion.com', `password` = 'h', `regdate` = '2012-03-01', `status` = 'Active' WHERE iduser = '13'
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 4  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/30 10:15:00
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = Philippe
+ lastname = test 4 uu
+ email = pub@sqlfusion.com
+ password = phil
+ status = Paid
+ Repeat pass:
+ password = phil
+ Verify pass:phil
+
+ Executing Event : do_user->eventUpdate
+ looking for Event:do_user->eventUpdate
+ found object method: do_user -> eventUpdate
+Object is in the session
+ doSave:yes
+ values from form:
+ firstname = Philippe
+ lastname = test 4 uu
+ email = pub@sqlfusion.com
+ password = phil
+ status = Paid
+ DataObject, (user) update()
+ primary key:iduser Value:4
+ For 0 / 4 
+ For iduser / 4  add:`iduser` = '4', 
+ For 1 / Philippe 
+ For firstname / Philippe  add:`firstname` = 'Philippe', 
+ For 2 / test 4 
+ For lastname / test 4 uu  add:`lastname` = 'test 4 uu', 
+ For 3 / pub@sqlfusion.com 
+ For email / pub@sqlfusion.com  add:`email` = 'pub@sqlfusion.com', 
+ For 4 /  
+ For username /  
+ For 5 / phil 
+ For password / phil  add:`password` = 'phil', 
+ For 6 /  
+ For regdate /   add:`regdate` = '', 
+ For 7 / Paid 
+ For status / Paid  add:`status` = 'Paid', 
+ Message:
+ Running query:
+UPDATE `user` SET `iduser` = '4', `firstname` = 'Philippe', `lastname` = 'test 4 uu', `email` = 'pub@sqlfusion.com', `password` = 'phil', `regdate` = '', `status` = 'Paid' WHERE iduser = '4'
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  SELECT * FROM user  
+ (BaseObject:>User) saved object do_user in the sessionselect * from `user` where `iduser` = 6  
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 5  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=5  
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) saved object do_invoice in the session
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) Session object:do_invoice is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) Session object:do_invoice is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) Session object:do_invoice is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) Session object:do_invoice is a live
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) Session object:do_invoice is a live
+
+ Instanciate Event Controler Object 2012/05/30 10:50:21
+
+ Executing Event : mydb.fieldsToArray
+ looking for Event:mydb.fieldsToArray
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : mydb.formatDateSQLField
+ looking for Event:mydb.formatDateSQLField
+
+ Executing Event : do_invoice->eventSetInvoiceNumber
+ looking for Event:do_invoice->eventSetInvoiceNumber
+ found object method: do_invoice -> eventSetInvoiceNumber
+Object is in the session
+
+ Executing Event : Invoice->eventAdd
+ looking for Event:Invoice->eventAdd
+ found object method: Invoice -> eventAdd
+ Object class exists Invoice
+ values from form:
+ num = 5
+ description = this is a test
+ amount = 5.34
+ datecreated = 
+ status = Sent
+ in Invoice (DataObject)::Add()
+ num = 5
+ description = this is a test
+ amount = 5.34
+ datecreated = 
+ status = Sent
+ idinvoice=;
+ num=5;
+ iduser=;
+ description=this is a test;
+ amount=5.34;
+ datepaid=;
+ datecreated=;
+ status=Sent;
+ Running query:
+INSERT INTO `invoice` (`num`, `description`, `amount`, `status`) VALUES ('5', 'this is a test', '5.34', 'Sent')INSERT INTO `invoice` (`num`, `description`, `amount`, `status`) VALUES ('5', 'this is a test', '5.34', 'Sent')
+ Forward to URL:user_detail.php
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=5  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:>Invoice) Session Persistent object do_invoice Destroyed
+ (BaseObject:>Invoice) saved object do_invoice in the session
+Registry: default (iduser:do_user->iduser) varname:  value:do_user->iduser
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) Session object:do_invoice is a live
+
+ Instanciate Event Controler Object 2012/05/30 10:52:44
+
+ Executing Event : mydb.fieldsToArray
+ looking for Event:mydb.fieldsToArray
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : mydb.formatDateSQLField
+ looking for Event:mydb.formatDateSQLField
+
+ Executing Event : do_invoice->eventSetInvoiceNumber
+ looking for Event:do_invoice->eventSetInvoiceNumber
+ found object method: do_invoice -> eventSetInvoiceNumber
+Object is in the session
+
+ Executing Event : do_invoice->eventAdd
+ looking for Event:do_invoice->eventAdd
+ found object method: do_invoice -> eventAdd
+Object is in the session
+ values from form:
+ iduser = 
+ num = 6
+ description = test
+ amount = 6.9
+ datecreated = 
+ status = New
+ in do_invoice (DataObject)::Add()
+ iduser = 
+ num = 6
+ description = test
+ amount = 6.9
+ datecreated = 
+ status = New
+ idinvoice=;
+ num=6;
+ iduser=;
+ description=test;
+ amount=6.9;
+ datepaid=;
+ datecreated=;
+ status=New;
+ Running query:
+INSERT INTO `invoice` (`num`, `description`, `amount`, `status`) VALUES ('6', 'test', '6.9', 'New')INSERT INTO `invoice` (`num`, `description`, `amount`, `status`) VALUES ('6', 'test', '6.9', 'New')
+ Forward to URL:user_detail.php
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=5  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:>Invoice) Session Persistent object do_invoice Destroyed
+ (BaseObject:>Invoice) saved object do_invoice in the session
+Registry: default (iduser:do_user->iduser) varname:  value:do_user->iduser
+ (BaseObject:>User) Session object: do_user keep a live expired, should die now
+(BaseObject:>User) Session Persistent object do_user Destroyed
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ (BaseObject:>User) saved object do_user in the session
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:>Invoice) Session Persistent object do_invoice Destroyed
+ (BaseObject:>Invoice) saved object do_invoice in the session
+Registry: default (iduser:do_user->iduser) varname:  value:do_user->iduser
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:>Invoice) Session Persistent object do_invoice Destroyed
+ (BaseObject:>Invoice) saved object do_invoice in the session
+Registry: default (iduser:do_user->iduser) varname:  value:do_user->iduser
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destructionselect * from `user` where `iduser` = 5  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=5  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:>Invoice) Session Persistent object do_invoice DestroyedSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 5  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=5  
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 9  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=9  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 9  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=9  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 9  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=9  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 9  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=9  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 9  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=9  
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 8  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=8  
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) saved object do_invoice in the session
+Registry: default (iduser:do_user->iduser) varname:  value:do_user->iduser
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) Session object:do_invoice is a live
+Registry: default (iduser:getParam:do_user->iduser) varname:  value:getParam:do_user->iduser
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) Session object:do_invoice is a live
+Registry: default (iduser:getParam:do_user->iduser) varname:  value:getParam:do_user->iduser
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) Session object:do_invoice is a live
+
+ Instanciate Event Controler Object 2012/05/30 11:38:05
+
+ Executing Event : mydb.fieldsToArray
+ looking for Event:mydb.fieldsToArray
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : mydb.formatDateSQLField
+ looking for Event:mydb.formatDateSQLField
+
+ Executing Event : do_invoice->eventSetInvoiceNumber
+ looking for Event:do_invoice->eventSetInvoiceNumber
+ found object method: do_invoice -> eventSetInvoiceNumber
+Object is in the session
+
+ Executing Event : Invoice->eventAdd
+ looking for Event:Invoice->eventAdd
+ found object method: Invoice -> eventAdd
+ Object class exists Invoice
+ values from form:
+ iduser = 8
+ num = 6
+ description = teststest
+ amount = 45.87
+ datecreated = 
+ status = Sent
+ in Invoice (DataObject)::Add()
+ iduser = 8
+ num = 6
+ description = teststest
+ amount = 45.87
+ datecreated = 
+ status = Sent
+ idinvoice=;
+ num=6;
+ iduser=8;
+ description=teststest;
+ amount=45.87;
+ datepaid=;
+ datecreated=;
+ status=Sent;
+ Running query:
+INSERT INTO `invoice` (`num`, `iduser`, `description`, `amount`, `status`) VALUES ('6', '8', 'teststest', '45.87', 'Sent')INSERT INTO `invoice` (`num`, `iduser`, `description`, `amount`, `status`) VALUES ('6', '8', 'teststest', '45.87', 'Sent')
+ Forward to URL:user_detail.php
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=8  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destructionselect * from `user` where `iduser` = 8  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=8  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destructionselect * from `user` where `iduser` = 8  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=8  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destructionselect * from `user` where `iduser` = 8  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=8  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destructionselect * from `user` where `iduser` = 8  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=8  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:>Invoice) Session Persistent object do_invoice Destroyed
+ (BaseObject:>Invoice) saved object do_invoice in the session
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) Session object:do_invoice is a live
+
+ Instanciate Event Controler Object 2012/05/30 11:40:18
+
+ Executing Event : mydb.fieldsToArray
+ looking for Event:mydb.fieldsToArray
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : mydb.formatDateSQLField
+ looking for Event:mydb.formatDateSQLField
+
+ Executing Event : do_invoice->eventSetInvoiceNumber
+ looking for Event:do_invoice->eventSetInvoiceNumber
+ found object method: do_invoice -> eventSetInvoiceNumber
+Object is in the session
+
+ Executing Event : do_invoice->eventAdd
+ looking for Event:do_invoice->eventAdd
+ found object method: do_invoice -> eventAdd
+Object is in the session
+ values from form:
+ iduser = 8
+ num = 45
+ description = testing a bit more entries
+ amount = 400.34
+ datecreated = 
+ status = New
+ in do_invoice (DataObject)::Add()
+ iduser = 8
+ num = 45
+ description = testing a bit more entries
+ amount = 400.34
+ datecreated = 
+ status = New
+ idinvoice=;
+ num=45;
+ iduser=8;
+ description=testing a bit more entries;
+ amount=400.34;
+ datepaid=;
+ datecreated=;
+ status=New;
+ Running query:
+INSERT INTO `invoice` (`num`, `iduser`, `description`, `amount`, `status`) VALUES ('45', '8', 'testing a bit more entries', '400.34', 'New')INSERT INTO `invoice` (`num`, `iduser`, `description`, `amount`, `status`) VALUES ('45', '8', 'testing a bit more entries', '400.34', 'New')
+ Forward to URL:user_detail.php
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=8  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=8  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=8  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=8  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:>Invoice) Session Persistent object do_invoice DestroyedSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 13  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=13  
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) saved object do_invoice in the session
+ (BaseObject:>User) Session object:do_user is a live
+ (BaseObject:>Invoice) Session object:do_invoice is a live
+
+ Instanciate Event Controler Object 2012/05/30 11:41:35
+
+ Executing Event : mydb.fieldsToArray
+ looking for Event:mydb.fieldsToArray
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : mydb.formatDateSQLField
+ looking for Event:mydb.formatDateSQLField
+
+ Executing Event : do_invoice->eventSetInvoiceNumber
+ looking for Event:do_invoice->eventSetInvoiceNumber
+ found object method: do_invoice -> eventSetInvoiceNumber
+Object is in the session
+
+ Executing Event : do_invoice->eventAdd
+ looking for Event:do_invoice->eventAdd
+ found object method: do_invoice -> eventAdd
+Object is in the session
+ values from form:
+ iduser = 13
+ num = 4
+ description = testing on a different user
+ amount = 09.00
+ datecreated = 
+ status = New
+ in do_invoice (DataObject)::Add()
+ iduser = 13
+ num = 4
+ description = testing on a different user
+ amount = 09.00
+ datecreated = 
+ status = New
+ idinvoice=;
+ num=4;
+ iduser=13;
+ description=testing on a different user;
+ amount=09.00;
+ datepaid=;
+ datecreated=;
+ status=New;
+ Running query:
+INSERT INTO `invoice` (`num`, `iduser`, `description`, `amount`, `status`) VALUES ('4', '13', 'testing on a different user', '09.00', 'New')INSERT INTO `invoice` (`num`, `iduser`, `description`, `amount`, `status`) VALUES ('4', '13', 'testing on a different user', '09.00', 'New')
+ Forward to URL:user_detail.php
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=13  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=13  
+ DataObject __call for method:applyFieldFormat
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=13  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:Invoice) Session Persistent object do_invoice Set for destruction
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=13  
+ (BaseObject:>User) Session object:do_user is a live
+(BaseObject:>Invoice) Session Persistent object do_invoice DestroyedSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 13  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=13  
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 8  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=8  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 8  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=8  
+ (BaseObject:>User) Session object: do_user keep a live expired, should die now
+(BaseObject:>User) Session Persistent object do_user DestroyedSELECT * FROM user  SELECT * FROM user  
+ (BaseObject:>User) saved object do_user in the sessionselect * from `user` where `iduser` = 3  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=3  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 3  
+ (BaseObject:>User) Session object:do_user is a live
+
+ Instanciate Event Controler Object 2012/05/30 12:05:13
+
+ Executing Event : mydb.checkRequired
+ looking for Event:mydb.checkRequired
+
+ Executing Event : mydb.gotoPage
+ looking for Event:mydb.gotoPage
+
+ Executing Event : FieldTypePassword::eventCheckUsernamePassword
+ looking for Event:FieldTypePassword::eventCheckUsernamePassword
+ Object class exists FieldTypePassword
+ With Static method eventCheckUsernamePassword
+ Check login & password:message.php
+ firstname = Philippe
+ lastname = test 3
+ email = philippe@ofuz.org
+ password = phil
+ status = Active
+ Repeat pass:
+ password = phil
+ Verify pass:phil
+
+ Executing Event : do_user->eventUpdate
+ looking for Event:do_user->eventUpdate
+ found object method: do_user -> eventUpdate
+Object is in the session
+ doSave:yes
+ values from form:
+ firstname = Philippe
+ lastname = test 3
+ email = philippe@ofuz.org
+ password = phil
+ status = Active
+ DataObject, (user) update()
+ primary key:iduser Value:3
+ For 0 / 3 
+ For iduser / 3  add:`iduser` = '3', 
+ For 1 / Philippe 
+ For firstname / Philippe  add:`firstname` = 'Philippe', 
+ For 2 / test 3 
+ For lastname / test 3  add:`lastname` = 'test 3', 
+ For 3 / philippe@ofuz.org 
+ For email / philippe@ofuz.org  add:`email` = 'philippe@ofuz.org', 
+ For 4 /  
+ For username /  
+ For 5 / phil 
+ For password / phil  add:`password` = 'phil', 
+ For 6 /  
+ For regdate /   add:`regdate` = '', 
+ For 7 / Active 
+ For status / Active  add:`status` = 'Active', 
+ Message:
+ Running query:
+UPDATE `user` SET `iduser` = '3', `firstname` = 'Philippe', `lastname` = 'test 3', `email` = 'philippe@ofuz.org', `password` = 'phil', `regdate` = '', `status` = 'Active' WHERE iduser = '3'
+ Forward to URL:users.php
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 17  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=17  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 17  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=17  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 17  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=17  SELECT * FROM user  
+ (BaseObject:>User) saved object do_user in the sessionselect * from `user` where `iduser` = 4  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=4  
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  
+ (BaseObject:>User) Session object:do_user is a liveselect * from `user` where `iduser` = 13  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=13  
+ (BaseObject:>User) saved object do_user in the sessionselect * from `user` where `iduser` = 13  
+ DataObject __call for method:getChildInvoice
+ DataObject __call for child:Invoice
+ DataObject:invoice Doesn exist checking if the table exists
+ DataObject:Invoice exist instanciating it with child valuesselect * from invoice where iduser=13  
+ (BaseObject:>User) Session object:do_user is a liveSELECT * FROM user  

@@ -1,0 +1,244 @@
+
+2012/05/28 - 17:05:48 - (Registry) -  Registry From Table: no field founds for this table: user uri : /RadriaSample/user_add.php referrer : 
+
+2012/05/28 - 17:05:48 - (User) - 
+ DataObject Exception: Method:setFieldsFormating Not Found uri : /RadriaSample/user_add.php referrer : 
+
+2012/05/28 - 17:05:51 - (Registry) -  Registry From Table: no field founds for this table: user uri : /RadriaSample/user_add.php referrer : 
+
+2012/05/28 - 17:05:56 - (Registry) -  Registry From Table: no field founds for this table: user uri : /RadriaSample/user_add.php referrer : 
+
+2012/05/28 - 17:05:56 - (Registry) -  Registry From Table: no field founds for this table: user uri : /RadriaSample/user_add.php referrer : 
+
+2012/05/28 - 17:05:57 - (Registry) -  Registry From Table: no field founds for this table: user uri : /RadriaSample/user_add.php referrer : 
+
+2012/05/28 - 17:05:57 - (EventControler) - Event mydb.loadParamsFromSession not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 17:05:57 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 17:05:57 - (EventControler) - Event mydb.checkEmail not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 17:05:57 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 17:05:57 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 17:05:57 - (User) - 
+ DataObject Exception: Method:setApplyFieldFormating Not Found uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 17:05:58 - (Registry) -  Registry From Table: no field founds for this table: user uri : /RadriaSample/user_add.php referrer : 
+
+2012/05/28 - 17:05:59 - (User) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.user' doesn't exist (select * from `user` where `iduser` = 1) uri : /RadriaSample/user_add.php?id=1 referrer : 
+
+2012/05/28 - 17:05:59 - (Registry) -  Registry From Table: no field founds for this table: user uri : /RadriaSample/user_add.php referrer : 
+
+2012/05/28 - 17:05:59 - (EventControler) - Event mydb.loadParamsFromSession not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 17:05:59 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 17:05:59 - (EventControler) - Event mydb.checkEmail not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 17:05:59 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 17:05:59 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 17:05:59 - (User) - 
+ DataObject Exception: Method:setApplyFieldFormating Not Found uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 18:05:00 - (Registry) -  Registry From Table: no field founds for this table: user uri : /RadriaSample/user_add.php referrer : 
+
+2012/05/28 - 18:05:00 - (Registry) -  Registry From Table: no field founds for this table: user uri : /RadriaSample/user_add.php referrer : 
+
+2012/05/28 - 18:05:00 - (EventControler) - Event mydb.loadParamsFromSession not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 18:05:00 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 18:05:00 - (EventControler) - Event mydb.checkEmail not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 18:05:00 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 18:05:00 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 18:05:00 - (Registry) -  Registry From Table: no field founds for this table: user uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 18:05:00 - (User) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.user' doesn't exist (INSERT INTO `user` () VALUES ()) uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 18:05:00 - (Registry) -  Registry From Table: no field founds for this table: user uri : /RadriaSample/user_add.php referrer : 
+
+2012/05/28 - 18:05:01 - (EventControler) - Event mydb.loadParamsFromSession not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 18:05:01 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 18:05:01 - (EventControler) - Event mydb.checkEmail not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 18:05:01 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/28 - 18:05:01 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:35 - (EventControler) - Event mydb.loadParamsFromSession not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:35 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:35 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:35 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:38 - (EventControler) - Event mydb.loadParamsFromSession not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:38 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:38 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:38 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:53 - (EventControler) - Event mydb.loadParamsFromSession not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:53 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:53 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:53 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:53 - (EventControler) - Event do_user->eventSetRegistrationDate not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:57 - (EventControler) - Event mydb.loadParamsFromSession not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:57 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:57 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 16:05:57 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:02 - (EventControler) - Event mydb.loadParamsFromSession not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:02 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:02 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:02 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:04 - (EventControler) - Event mydb.loadParamsFromSession not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:04 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:04 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:04 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:06 - (EventControler) - Event mydb.loadParamsFromSession not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:06 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:06 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:06 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:14 - (EventControler) - Event mydb.loadParamsFromSession not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:14 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:14 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:14 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:23 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:23 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:23 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:29 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:29 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:29 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:31 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:31 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:31 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:36 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:36 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:36 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:38 - (EventControler) - Event mydb.checkRequired not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:38 - (EventControler) - Event mydb.checkUsernamePassword not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:38 - (EventControler) - Event mydb.gotoPage not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 17:05:40 - (sqlQuery) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=''' at line 1 (select * from user where ='') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 18:05:07 - (sqlQuery) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=''' at line 1 (select * from users where ='') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 18:05:09 - (sqlQuery) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=''' at line 1 (select * from users where ='') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 18:05:19 - (sqlQuery) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=''' at line 1 (select * from users where ='') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 18:05:23 - (sqlQuery) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=''' at line 1 (select * from users where ='') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 18:05:29 - (sqlQuery) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=''' at line 1 (select * from users where ='') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 18:05:33 - (sqlQuery) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=''' at line 1 (select * from users where ='') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 18:05:34 - (sqlQuery) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=''' at line 1 (select * from users where ='') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 18:05:37 - (sqlQuery) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=''' at line 1 (select * from users where ='') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 18:05:39 - (sqlQuery) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=''' at line 1 (select * from users where ='') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 18:05:41 - (sqlQuery) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=''' at line 1 (select * from users where ='') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 18:05:43 - (sqlQuery) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=''' at line 1 (select * from users where ='') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 18:05:59 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='php@php.net') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 19:05:08 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='this is test 20') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 19:05:16 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='php@php.net') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 19:05:17 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='php@php.net') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 19:05:18 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='philtest4@sqlfusion.com') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 19:05:18 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='phil@sqlfusion.com') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/29 - 19:05:18 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='philippe@ofuz.org') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 09:05:57 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='philtest58@sqlfusion.com') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 09:05:57 - (EventControler) - Event do_user->eventSetRegistrationDate not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 09:05:57 - (EventControler) - Event do_user->eventUpdate not found in :../RadriaCore2/events/, , ./events/ uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 09:05:59 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='philippe@ofuz.org') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 10:05:00 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='philtest4@sqlfusion.com') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 10:05:00 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='philippe@ofuz.org') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 10:05:02 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='php@php.net') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 10:05:08 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='philtest58@sqlfusion.com') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 10:05:12 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='philtest58@sqlfusion.com') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 10:05:13 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='philippe@ofuz.org') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 10:05:13 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='philtest3@sqlfusion.com') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 10:05:13 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='philtest3@sqlfusion.com') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 10:05:15 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='pub@sqlfusion.com') uri : /RadriaSample/eventcontroler.php referrer : 
+
+2012/05/30 - 11:05:28 - (Invoice) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (select * from invoice where iduser=) uri : /RadriaSample/user_detail.php referrer : 
+
+2012/05/30 - 11:05:28 - (Invoice) - <b>SQL Query Error :</b>1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (select * from invoice where iduser=) uri : /RadriaSample/user_detail.php referrer : 
+
+2012/05/30 - 11:05:42 - (Invoice) - 
+ DataObject Exception: Method:applyFieldFormat Not Found uri : /RadriaSample/user_detail.php referrer : 
+
+2012/05/30 - 12:05:05 - (sqlQuery) - <b>SQL Query Error :</b>1146 - Table 'RadriaSample.users' doesn't exist (select * from users where email='philippe@ofuz.org') uri : /RadriaSample/eventcontroler.php referrer : 
