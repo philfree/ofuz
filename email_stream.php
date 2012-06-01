@@ -112,6 +112,7 @@ $e_editForm->setSecure(false);
          </div>
         </div>
         <div class="solidline"></div>
+        <?php $footer_note = 'dropboxtask'; include_once('includes/footer_notes.php'); ?>
     </td></tr></table>
     <div class="spacerblock_40"></div>
     <div class="layout_footer"></div>
