@@ -360,6 +360,7 @@ class Task extends DataObject {
                      WHERE DATEDIFF(t.due_date_dateformat,'".$today."') = 0  
                      AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open' 
                      AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     AND t.due_date = 'Today'
                      AND (p.status = 'open' OR p.status IS NULL)
                      ORDER BY t.priority ASC,t.due_date_dateformat"); 
     }
@@ -385,12 +386,11 @@ class Task extends DataObject {
                      WHERE DATEDIFF(t.due_date_dateformat,'".$today."') < 0
                      AND t.due_date_dateformat <> '0000-00-00' 
                      AND t.due_date_dateformat < '$today'
-                     AND t.status = 'open' 
+                     AND t.status = 'open'                      
                      AND t.iduser = ".$_SESSION['do_User']->iduser." 
                      AND (p.status = 'open' OR p.status IS NULL)
                      ORDER BY t.priority ASC,t.due_date_dateformat LIMIT 10";       
        $this->query($sql);  
-
 
      /* $this->query("SELECT * FROM task t 
                      LEFT JOIN project_task p 
@@ -455,6 +455,7 @@ class Task extends DataObject {
                      AND t.due_date_dateformat <> '0000-00-00'                     
                      AND t.status = 'open'
                      AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     AND t.due_date = 'Tomorrow'
                      AND (p.status = 'open' OR p.status IS NULL)
                      ORDER BY t.priority ASC,t.due_date_dateformat");
      /* $this->query("SELECT t.idtask,t.task_description,t.due_date_dateformat,t.task_category,p.idproject,p.idproject_task FROM task t 
@@ -492,7 +493,8 @@ class Task extends DataObject {
                      AND DATEDIFF(t.due_date_dateformat,'".$today."') <=5
                      AND DATEDIFF('$this_saturdays_date',t.due_date_dateformat) >0
                      AND t.due_date_dateformat <> '0000-00-00' AND t.status = 'open'
-                     AND t.iduser = ".$_SESSION['do_User']->iduser." 
+                     AND t.iduser = ".$_SESSION['do_User']->iduser."
+                     AND  t.due_date = 'This week'
                      AND (p.status = 'open' OR p.status IS NULL)
                      ORDER BY t.priority ASC,t.due_date_dateformat");       
     }
@@ -558,10 +560,10 @@ class Task extends DataObject {
                      LEFT JOIN project_task pt 
                      INNER JOIN project p ON pt.idproject=p.idproject
                      ON t.idtask=pt.idtask
-                     WHERE (t.due_date_dateformat = '0000-00-00' OR DATE_FORMAT( t.due_date_dateformat, '%Y-%m' ) > '".$later_date."' ) AND t.status = 'open' AND t.iduser = ".$_SESSION['do_User']->iduser." 
-                     AND due_date != 'Tomorrow'
-                     AND due_date != 'This week'
-                     AND due_date != 'Next week'
+                     WHERE (t.due_date_dateformat = '0000-00-00' OR DATE_FORMAT( t.due_date_dateformat, '%Y-%m' ) > '".$later_date."' ) AND t.status = 'open' AND t.iduser = ".$_SESSION['do_User']->iduser."       
+                     AND `due_date` != 'Tomorrow'
+                     AND `due_date` != 'This week'
+                     AND `due_date` != 'Next week'
                      AND (p.status = 'open' OR p.status IS NULL)
                      ORDER BY t.priority ASC,t.due_date_dateformat DESC LIMIT 20");  
     }
@@ -569,9 +571,9 @@ class Task extends DataObject {
     function getNumAllTasksLater(){
       $today = date('Y-m-d');
       $this->query("SELECT * FROM task WHERE (due_date_dateformat = '0000-00-00' OR DATEDIFF(due_date_dateformat,'".$today."') >15 ) AND status = 'open' AND iduser = ".$_SESSION['do_User']->iduser." 
-    AND `due_date` != 'Tomorrow'
-    AND `due_date` != 'This week'
-    AND `due_date` != 'Next week'
+      AND `due_date` != 'Tomorrow'
+      AND `due_date` != 'This week'
+      AND `due_date` != 'Next week'
       ORDER BY due_date_dateformat DESC");
 
    return $this->getNumRows();
@@ -602,9 +604,9 @@ class Task extends DataObject {
                      INNER JOIN project p ON pt.idproject=p.idproject
                      ON t.idtask=pt.idtask
                      WHERE (t.due_date_dateformat = '0000-00-00' OR DATE_FORMAT( t.due_date_dateformat, '%Y-%m' ) > '".$later_date."' ) AND t.status = 'open' AND t.iduser = ".$_SESSION['do_User']->iduser." 
-                     AND due_date != 'Tomorrow'
-                     AND due_date != 'This week'
-                     AND due_date != 'Next week'
+                     AND t.due_date != 'Tomorrow'
+                     AND t.due_date != 'This week'
+                     AND t.due_date != 'Next week'
                      AND (p.status = 'open' OR p.status IS NULL)
                      ORDER BY t.priority ASC,t.due_date_dateformat DESC";
       $this->query($sql);  
@@ -646,6 +648,7 @@ class Task extends DataObject {
                      AND t.due_date != 'Tomorrow'
                      AND t.due_date != 'This week'
                      AND t.due_date != 'Next week'
+                     AND t.due_date != 'Later'
                      AND (p.status = 'open' OR p.status IS NULL)
                      ORDER BY t.priority ASC,t.due_date_dateformat DESC LIMIT 20");  
 
@@ -679,6 +682,7 @@ class Task extends DataObject {
                      AND t.due_date != 'Tomorrow'
                      AND t.due_date != 'This week'
                      AND t.due_date != 'Next week'
+                     AND t.due_date != 'Later'
                      AND (p.status = 'open' OR p.status IS NULL)
                      ORDER BY   t.due_date_dateformat DESC");
 
@@ -697,6 +701,7 @@ class Task extends DataObject {
     AND `due_date` != 'Tomorrow'
     AND `due_date` != 'This week'
     AND `due_date` != 'Next week'
+    AND due_date != 'Later'
        ORDER BY   due_date_dateformat DESC");
    return $this->getNumRows();
     }
