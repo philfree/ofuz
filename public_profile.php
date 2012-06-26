@@ -160,7 +160,7 @@ if($_SESSION['hcard_idcontact'] != '' ){
 <script type="text/javascript">
   $(document).ready(function() {
    // if screen width < 600 then Mobile/Tablet version else Web version
-    smallScreen = (screen.width < 600) ? true : false;
+    smallScreen = (screen.width < 900) ? true : false;
 
     $.ajax({
       type: "POST",
