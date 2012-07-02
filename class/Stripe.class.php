@@ -80,14 +80,12 @@ class StripeGateWay extends BaseObject
 		$this->setAPIKey();
 		$cu = Stripe_Customer::retrieve($customerId);
 		if(!empty($description)){
-		$cu->description = $description;}
+		$cu->description = $description;
+		}
 		$cu->card = $token; // obtained with Stripe.js
 		$cu->save();
-		
-		$result = ChargeExsistingCustomer($customerId,$amount)
-		
+		$result = ChargeExsistingCustomer($customerId,$amount);
 		return $result;
-		
 	}
 }
 ?>
