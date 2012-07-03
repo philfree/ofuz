@@ -2009,6 +2009,8 @@ class Invoice extends DataObject {
       $idinvoice = $_SESSION['do_invoice']->idinvoice;
       $idcontact = $_SESSION['do_invoice']->idcontact;
       $goto = $evtcl->goto;
+      $error_page = $evtcl->error_page;
+      $updateStripecustomer = $evtcl->updateStripecustomer;
       $do_contact = new Contact();
       $arr_user_info = $do_contact->getContactInfo_For_Invoice($idcontact);
       
@@ -2019,10 +2021,15 @@ class Invoice extends DataObject {
       
       
       $payment = new StripeGateWay(false, $stripe_api_key);
+      
       if(empty($srtipecustomer_id)){
 		$result = $payment->CreateCustomer($token,$name,$total,$email,$description);
 	  } else {
-		$result = $payment->ChargeExsistingCustomer($srtipecustomer_id,$total);
+		  if($updateStripecustomer === 'Yes'){
+			 $result = $payment->UpdateExistingCustomer($srtipecustomer_id,$token,$name,$total,$email="",$description=""); 
+		  }else{
+			$result = $payment->ChargeExsistingCustomer($srtipecustomer_id,$total);
+		  }
 	  }
 
 	  if($result['success'] == '1'){
@@ -2071,8 +2078,12 @@ class Invoice extends DataObject {
         }
         
       }else{
-		  $rr = json_decode($result,true);
+		  $rr = json_decode($result,true);//echo'<pre>';print_r($rr);echo'</pre>';die();
 		  $r = $rr['error']['message']; 
+		  $error_code = $rr['error']['code'];
+		  if(($error_code == 'invalid_expiry_month') || ($error_code == 'invalid_expiry_year') || ($error_code == 'expired_card') || ($error_code == 'missing')){
+			  $goto = $error_page;
+		  }
 		  $_SESSION['in_page_message'] = $r;
 	  }
     }

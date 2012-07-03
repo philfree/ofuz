@@ -82,11 +82,11 @@
                 $_SESSION['do_invoice']->stripe_publish_key =  $user_settings->setting_value ;
             }
             //if both Authnet and Stipre is there in the settings then looking in to the payment option.             
-            if((isset($_SESSION['do_invoice']->authnet_merchant_id))&&(isset($_SESSION['do_invoice']->stripe_api_key))){
-				if($user_settings->setting_name == 'payment_selection' &&  $user_settings->setting_value != ''){
-					$_SESSION['do_invoice']->payment_selection =  $user_settings->setting_value ;
+            //if((isset($_SESSION['do_invoice']->authnet_merchant_id))&&(isset($_SESSION['do_invoice']->stripe_api_key))){ echo 'hh'.$user_settings->setting_name.' <br />';
+				if(($user_settings->setting_name == 'payment_selection') &&  ($user_settings->setting_value != '')){ 
+					$_SESSION['do_invoice']->payment_selection =  $user_settings->setting_value ;//echo $_SESSION['do_invoice']->payment_selection.'<br />';
 				}
-			}
+			//}
             
             
             if($user_settings->setting_name == 'currency' &&  $user_settings->setting_value != ''){
@@ -252,8 +252,7 @@ if($do_other_due_inv->getNumRows()) {
 						<?php } else { ?>
 								<?php if($_SESSION['do_invoice']->authnet_login != '' && $_SESSION['do_invoice']->authnet_merchant_id != ''){?>
 									<a href="/invoice_pay_auth.php"><?php echo _('Pay with Credit card'); ?></a>&nbsp;<span class="sep3">|</span>&nbsp;
-								<?php } ?>
-								 <?php if($_SESSION['do_invoice']->stripe_api_key != '' && $_SESSION['do_invoice']->stripe_publish_key != ''){?>
+								<?php } elseif($_SESSION['do_invoice']->stripe_api_key != '' && $_SESSION['do_invoice']->stripe_publish_key != ''){?>
 									<a href="/invoice_pay_stripe.php"><?php echo _('Pay with Credit card'); ?></a>&nbsp;<span class="sep3">|</span>&nbsp;
 								<?php } ?>
                         <?php } ?>

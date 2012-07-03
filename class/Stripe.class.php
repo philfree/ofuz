@@ -82,10 +82,15 @@ class StripeGateWay extends BaseObject
 		if(!empty($description)){
 		$cu->description = $description;
 		}
-		$cu->card = $token; // obtained with Stripe.js
+		$cu->card = $token; 
 		$cu->save();
-		$result = ChargeExsistingCustomer($customerId,$amount);
-		return $result;
+		$result = Stripe_Charge::create(array("amount" => "$amount","currency" => "usd","customer" => "$customerId"));
+		if($result['paid'] === true){
+			$result_array = array("success"=>"1");
+			return $result_array;
+		} else {
+			return $result;
+		}
 	}
 }
 ?>
