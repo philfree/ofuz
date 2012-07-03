@@ -123,11 +123,11 @@ class OfuzLeanKitKanban extends DataObject {
 	    "IsBlocked" => false,
 	    "BlockReason" => "",
 	    "DueDate" => $today,
-	    "ExternalSystemName" => "http://www.ofuz.net/Task/".$evtcl->ofuz_task_id,
-	    "ExternalSystemUrl" => "http://www.ofuz.net/Task/".$evtcl->ofuz_task_id,
+	    "ExternalSystemName" => "http://www.ofuz.net/Task/".$evtcl->ofuz_idprojecttask,
+	    "ExternalSystemUrl" => "http://www.ofuz.net/Task/".$evtcl->ofuz_idprojecttask,
 	    "Tags" => "",
 	    "ClassOfServiceId" => "",
-	    "ExternalCardID" => $evtcl->ofuz_task_id,
+	    "ExternalCardID" => $evtcl->ofuz_idprojecttask,
 	    "AssignedUserIds" => array($assigned_user_id)
 	);
 
