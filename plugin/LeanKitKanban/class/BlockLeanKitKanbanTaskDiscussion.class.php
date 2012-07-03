@@ -35,6 +35,8 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 
   function getBlockConent() {
     $content = "";    
+    $do_pt = new ProjectTask();
+    $idtask = $do_pt->getTaskId($_GET['idprojecttask']);
 
     $do_olk = new OfuzLeanKitKanban();
     $do_olk->getUserLoginCredentials();
@@ -58,7 +60,7 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 	      $data["board_title"] = $obj_board->Title;
 	      $arr_boards[] = $data;
 
-	      $card = $leankitkanban->getCardByExternalId($obj_board->Id, $_GET['idprojecttask']);
+	      $card = $leankitkanban->getCardByExternalId($obj_board->Id, $idtask);
 	      //Card found in the Board
 	      if($card->ReplyCode == '200') {
 		$card_presents = true;
@@ -81,7 +83,7 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 	      //Card does not present in a Board
 	      if(count($arr_boards)) {
 		$e_board = new Event("OfuzLeanKitKanban->eventAddTaskToBoard");
-		$e_board->addParam("ofuz_task_id", $_GET['idprojecttask']);
+		$e_board->addParam("ofuz_task_id", $idtask);
 		$content .= $e_board->getFormHeader();
 		$content .= $e_board->getFormEvent();
 		$content .= "<div>This Task is not added to Kanban Board.</div>";
