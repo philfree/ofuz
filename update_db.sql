@@ -83,6 +83,16 @@ ALTER TABLE `user_profile` ADD `job_type` VARCHAR(100) not null;
 ALTER TABLE `user_profile` ADD `job_description` TEXT not null;
 alter table `user_profile` add `iduser` int(10) NOT NULL;
 
+
+CREATE TABLE leankit_credentials (
+idleankit_credentials INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+iduser INT NOT NULL,
+username VARCHAR(100),
+password VARCHAR(20),
+created_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
 CREATE TABLE `stripe_details` (
 `idstripe_details` INT( 100 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `iduser` INT( 50 ) NOT NULL ,
@@ -90,3 +100,4 @@ CREATE TABLE `stripe_details` (
 `stripe_token` VARCHAR( 200 ) NOT NULL ,
 `createdate` TIMESTAMP NOT NULL
 ) ENGINE = MYISAM ;
+

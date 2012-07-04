@@ -1024,9 +1024,9 @@ class User extends RegisteredUser {
       * adding user as a contact
       * @param $evtcl -- Object
     */
-    function eventAddUserAsContact(EventControler $evtcl){echo 'gg';die();
+    function eventAddUserAsContact(EventControler $evtcl){
 	    if($evtcl->validation_fail != 'Yes'){ // Variable set in the method 
-	    echo 'hh';die();
+	    
 		if($_SESSION["do_User"]->iduser) {
 			$idcompany = "";
 			if($evtcl->fields["company"]) {
@@ -1440,6 +1440,38 @@ class User extends RegisteredUser {
     }
   }
 
+  /**Function to get the username by idusers 
+    *@param int $iduser
+    *@return char username;
+  **/
+  function getUserNameByIdUser($iduser){
+    $sql = "SELECT username 
+            FROM {$this->table}
+            where iduser = {$iduser}
+          ";
+    $this->query($sql);
+     if($this->getNumRows()){
+        $this->fetch();
+        return $idcontact = $this->getData('username');
+
+    }
+  }
+
+    /**
+      * Get the username (login id)
+      * @param  int : iduser
+      * @return string : username
+    */
+    function getUserLoginId($iduser){
+	$username = "";
+        $q = new sqlQuery($this->getDbCon());
+        $q->query("select username from user where iduser = ".$iduser);
+        if($q->getNumRows()){
+	    $q->fetch();
+            $username = $q->getData("username");
+        }
+	return $username;
+    }
 
 }
 

@@ -860,15 +860,22 @@ class ProjectTask extends Task {
   }
 
 
-
-
-
-
-
-
-
-
-
+  /**
+   * Gets the idtask
+   * @param int
+   * @return int
+   */
+  function getTaskId($idproject_task) {
+    $sql = "SELECT idtask
+            FROM ".$this->table."
+	    WHERE ".$this->primary_key." = ".$idproject_task
+           ;
+    $this->query($sql);
+    if($this->getNumRows()) {
+      $this->fetch();
+      return $this->getData("idtask");
+    }
+  }
 
 
 }

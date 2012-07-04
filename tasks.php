@@ -538,10 +538,10 @@ function sticky_relocate() {
                             <div class="mainheader pad20">
                                 <span class="page_title">Your tasks</span>
                                 <?php
-								if (is_object($GLOBALS['cfg_submenu_placement']['tasks'] ) ) {
-									echo  $GLOBALS['cfg_submenu_placement']['tasks']->getMenu();
-								}
-								?>
+                                if (is_object($GLOBALS['cfg_submenu_placement']['tasks'] ) ) {
+                                echo  $GLOBALS['cfg_submenu_placement']['tasks']->getMenu();
+                                }
+                                ?>
                             </div>
 
 
@@ -555,7 +555,7 @@ function sticky_relocate() {
                               ?>
 
 
-			    <div id="sticky-anchor"></div>
+        <div id="sticky-anchor"></div>
                             <div id="contacts_ctlbar" style="display: none;">
                               <div id ="co_workers"></div>
                                 <?php 

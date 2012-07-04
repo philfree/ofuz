@@ -252,7 +252,7 @@ class Contact extends DataObject {
                 $image_url = "/dbimage/".$picture;
             }
         }
-        
+
         return $image_url;
     }
 
@@ -986,15 +986,22 @@ class Contact extends DataObject {
             $this->setLog("\n Not tags deleting contacts");
             $contacts = $event_controler->getParam("ck");
             if (is_array($contacts)) {
-                $error_delete = false;
-                $error_message = "The following Contacts can not be deleted as these are shared by some of your Co-Workers.<br />";
+                $error_delete = false;                
                 $do_deleting_contact = new Contact();
+                $logged_in_useridcontact = $_SESSION['do_User']->idcontact;
                 foreach ($contacts as $idcontact) {
-                    $this->setLog("\n deleting contact:".$idcontact);
+                    $this->setLog("\n deleting contact:".$idcontact);                        
                     $do_deleting_contact->getId($idcontact);
                     if($this->isContactOwner($idcontact)){ // if owner then only delete
-                      $do_deleting_contact->delete();
+                      if($idcontact != $logged_in_useridcontact){
+                        $do_deleting_contact->delete();
+                      }else{
+                        $error_message .='';
+                        $error_message .= 'You cannot delete your own contact.<br />';
+                        $error_delete = true;
+                      }
                     }else{
+                      $error_message = "The following Contacts can not be deleted as these are shared by some of your Co-Workers.<br />";
                       $error_message .= '<b><i>'.$this->getContactFullName($idcontact).'</i></b><br />';
                       $error_delete = true;
                     }
