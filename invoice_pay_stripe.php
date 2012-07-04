@@ -161,12 +161,11 @@ if(empty($stripe_customer_id)){
 			<div style="margin-left:0px;display:none;" id="msg_unauth"></div>
 			<?php
 			
-				 echo nl2br($_SESSION['do_invoice']->invoice_address);
+				 if(empty($stripe_customer_id)){	
+				echo nl2br($_SESSION['do_invoice']->invoice_address);
 				 //echo '<br />'. _('Total due :').'<b>$'. number_format($invoice_cal_data["total_due_amt"],2, '.', ',' ).'</b>';
 				 echo '<br />'. _('Total due :').'<b>'. $_SESSION['do_invoice']->viewAmount($_SESSION['do_invoice']->amt_due).'</b>';
 				 echo '<br /><br />';
-				 
-				 if(empty($stripe_customer_id)){	
 				 $do_user_rel = new UserRelations();
 				 $invoice_url = $GLOBALS['cfg_ofuz_site_http_base'].'inv/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idinvoice).'/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idcontact);
 				 $do_payment = new Event("do_invoice->eventProcessStripePayment");
@@ -187,7 +186,14 @@ if(empty($stripe_customer_id)){
              <script>if (window.Stripe) $("#do_invoice__eventProcessStripePayment").show()</script>
         <noscript><p>JavaScript is required for the registration form.</p></noscript>
        <?php } else { 
-		   
+				echo '<div style="margin-left:0px;">';
+                echo '<div class="messages_unauthorized">';
+				echo 'Clicking Below the Submit charge your credit card with the Total due Amount '.$_SESSION['do_invoice']->amt_due.'</div></div>';
+				
+				echo nl2br($_SESSION['do_invoice']->invoice_address);
+				 //echo '<br />'. _('Total due :').'<b>$'. number_format($invoice_cal_data["total_due_amt"],2, '.', ',' ).'</b>';
+				 echo '<br />'. _('Total due :').'<b>'. $_SESSION['do_invoice']->viewAmount($_SESSION['do_invoice']->amt_due).'</b>';
+				 echo '<br /><br />';
 				 $do_user_rel = new UserRelations();
 				 $invoice_url = $GLOBALS['cfg_ofuz_site_http_base'].'inv/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idinvoice).'/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idcontact);
 				 $do_payment = new Event("do_invoice->eventProcessStripePayment");
