@@ -83,13 +83,14 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 	      //Card does not present in a Board
 	      if(count($arr_boards)) {
 		$content .= '<script type="text/javascript">';
-                $content .= '$(document).ready(function() {$("#OfuzLeanKitKanban__eventAddTaskToBoard").submit(function(e){if ($("#board").val() == "") {alert("Please select the Board.");e.preventDefault();return false;}});});';
+                $content .= '$(document).ready(function() {$("#OfuzLeanKitKanban__eventAddTaskToBoard").submit(function(e){if ($("#board").val() == "") {$("#msg").html("Please select the Board.");$("#msg").slideDown("slow");e.preventDefault();return false;}});});';
 		$content .= '</script>';
 		$e_board = new Event("OfuzLeanKitKanban->eventAddTaskToBoard");
 		$e_board->addParam("ofuz_task_id", $idtask);
 		$e_board->addParam("ofuz_idprojecttask", $_GET['idprojecttask']);
 		$content .= $e_board->getFormHeader();
 		$content .= $e_board->getFormEvent();
+		$content .= "<div id='msg' style='color:#E81313;display:none;'></div>";
 		$content .= "<div>This Task is not added to Kanban Board.</div>";
 		$content .= "<div class='spacerblock_5'></div>";
 		$content .= "<div><select name='board' id='board'>";
