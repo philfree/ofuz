@@ -102,6 +102,7 @@
           $inv_authnet_login = $UserSettings->getSettingValue("authnet_login");
           $inv_authnet_marchent_id = $UserSettings->getSettingValue("authnet_merchant_id");
           if($inv_authnet_login && $inv_authnet_marchent_id && is_array($inv_authnet_login) && is_array($inv_authnet_marchent_id)){
+			  $authnet_details = 'yes';
               $e_inv_authnet = new Event("UserSettings->eventUpdateAuthNetDetail");
               $e_inv_authnet->setLevel(10);
               $e_inv_authnet->addParam("id_authlogin",$inv_authnet_login["iduser_settings"]);
@@ -147,7 +148,122 @@
           
           // Authnet Setting ends here
           echo '<br /><br />';
-          // Paypal details starts here
+				
+		  	 // Stripe details starts here
+          $inv_stripe_api = $UserSettings->getSettingValue("stripe_api_key");
+          $inv_stripe_publish = $UserSettings->getSettingValue("stripe_publish_key");
+          if($inv_stripe_api && $inv_stripe_publish && is_array($inv_stripe_api) && is_array($inv_stripe_publish)){
+			  $stripe_details = 'yes';
+              $u_stripe = new Event("UserSettings->eventUpdateStripeDetails");
+              $u_stripe->setLevel(20);
+              $u_stripe->addParam("id_stripe_api_key",$inv_stripe_api["iduser_settings"]);
+              $u_stripe->addParam("id_stripe_publish_key",$inv_stripe_publish["iduser_settings"]);
+              $u_stripe->addParam("goto", $_SERVER['PHP_SELF']);
+              echo $u_stripe->getFormHeader();
+              echo $u_stripe->getFormEvent();
+
+              $d_stripe = new Event("UserSettings->eventDelStripeDetail");
+              $d_stripe->setLevel(25);
+              $d_stripe->addParam("id_stripe_api_key",$inv_stripe_api["iduser_settings"]);
+              $d_stripe->addParam("id_stripe_publish_key",$inv_stripe_publish["iduser_settings"]);
+              $d_stripe->addParam("goto", $_SERVER['PHP_SELF']);
+
+              echo '<div class="in290x18">';
+              echo '<b>'._('Stripe.com Details').'</b>&nbsp;&nbsp;'.$d_stripe->getLink(_('delete')).'<br />';
+              echo _('Stripe API Key :').'<br />
+              <input type = "text" name = "stripe_api_key" id="id_stripe_api_key" value ="'.$inv_stripe_api["setting_value"].'" size="40"><br />';
+              echo _('Stripe Publish Key :').'<br />
+              <input type = "text" name = "stripe_publish_key" id="id_stripe_publish_key" value ="'.$inv_stripe_publish["setting_value"].'" size="40"><br />';
+              echo "<br>";
+              echo $u_stripe->getFormFooter(_('Save'));
+              echo '</div>
+                  <div class="dashedline"></div>';
+              
+          }else{
+              $stripe_api = new Event("UserSettings->eventAddStripeDetail");
+              $stripe_api->setLevel(20);
+              $stripe_api->addParam("goto", $_SERVER['PHP_SELF']);
+              echo $stripe_api->getFormHeader();
+              echo $stripe_api->getFormEvent();
+              
+              echo '<div class="in290x18">';
+              echo '<b>'._('Stripe Details').'</b><br />';
+              echo _('Stripe Api Key :').'<br />
+              <input type = "text" name = "stripe_api_key" id="stripe_api_key" value ="" size="40"><br />';
+              echo _('Stripe Publish Key :').'<br />
+              <input type = "text" name = "stripe_publish_key" id="stripe_publish_key" value ="" size="40"><br />';
+              echo "<br>";
+              echo $stripe_api->getFormFooter(_('Save'));
+              echo '</div>
+                  <div class="dashedline"></div>';
+          } 		
+		// Stripe details Ends Here here		
+		
+		if(($authnet_details === 'yes')&&($stripe_details === 'yes')){
+		  echo '<br /><br />';
+		  //Select the payment gatway to be used for payment
+		  
+		  $inv_payment_selection = $UserSettings->getSettingValue("payment_selection");
+          if($inv_payment_selection && is_array($inv_payment_selection)){
+              $e_inv_paymentsele = new Event("UserSettings->eventUpdatePaymentSelection");
+              $e_inv_paymentsele->setLevel(20);
+              $e_inv_paymentsele->addParam("id_payment_selection",$inv_payment_selection["iduser_settings"]);
+              $e_inv_paymentsele->addParam("goto", $_SERVER['PHP_SELF']);
+              echo $e_inv_paymentsele->getFormHeader();
+              echo $e_inv_paymentsele->getFormEvent();
+
+              $e_del_paymentselction = new Event("UserSettings->eventDelPaymentSelection");
+              $e_del_paymentselction->setLevel(25);
+              $e_del_paymentselction->addParam("id_payment_selection",$inv_payment_selection["iduser_settings"]);
+              $e_del_paymentselction->addParam("goto", $_SERVER['PHP_SELF']);
+
+              echo '<div class="in290x18">';
+              echo '<b>'._('Payment Gateway Selection').'</b>&nbsp;&nbsp;'.$e_del_paymentselction->getLink(_('delete')).'<br />';
+                  if($inv_payment_selection["setting_value"] == 'authorized.net'){
+					echo '<table width=10%"><tr><td>'._('Authorized.net :').'</td><td>
+					<input type = "radio" name = "payment_selection" id="payment_selection" value ="authorized.net" checked></td></tr>';
+					echo '<tr><td>'._('Stripe.com :').'</td><td>
+					<input type = "radio" name = "payment_selection" id="payment_selection" value ="stripe.com"></td></tr></table>';
+				} elseif($inv_payment_selection["setting_value"] == 'stripe.com') {
+					echo '<table width=10%"><tr><td>'._('Authorized.net :').'</td><td>
+					<input type = "radio" name = "payment_selection" id="payment_selection" value ="authorized.net"></td></tr>';
+					echo '<tr><td>'._('Stripe.com :').'</td><td>
+					<input type = "radio" name = "payment_selection" id="payment_selection" value ="stripe.com" checked></td></tr></table>';
+				}
+              echo "<br>";
+              echo $e_inv_paymentsele->getFormFooter(_('Save'));
+              echo '</div>
+                  <div class="dashedline"></div>';
+              
+          }else{
+              $e_inv_paymentsele = new Event("UserSettings->eventAddPaymentSelection");
+              $e_inv_paymentsele->setLevel(20);
+              $e_inv_paymentsele->addParam("goto", $_SERVER['PHP_SELF']);
+              echo $e_inv_paymentsele->getFormHeader();
+              echo $e_inv_paymentsele->getFormEvent();
+              
+              echo '<div class="in290x18">';
+              echo '<b>'._('Payment Gateway Selection').'</b><br />';
+			  echo '<table width=10%"><tr><td>'._('Authorized.net :').'</td><td>
+              <input type = "radio" name = "payment_selection" id="payment_selection" value ="authorized.net"></td></tr>';
+              echo '<tr><td>'._('Stripe.com :').'</td><td>
+              <input type = "radio" name = "payment_selection" id="payment_selection" value ="stripe.com"></td></tr></table>';
+              echo "<br>";
+              echo $e_inv_paymentsele->getFormFooter(_('Save'));
+              echo '</div>
+                  <div class="dashedline"></div>';
+          }
+		  
+		  
+		  //Payment gateway selection ends here
+		 // echo '<br /><br />';
+		}
+		
+		
+		
+          echo '<br /><br />';
+			
+		 // Paypal details starts here
           $inv_paypal_email = $UserSettings->getSettingValue("paypal_business_email");
           if($inv_paypal_email && is_array($inv_paypal_email)){
               $e_inv_paypal = new Event("UserSettings->eventUpdatePaypalDetail");
@@ -190,7 +306,8 @@
           }  
           
            // Paypal details Ends Here here
-
+          
+           
              echo '<br /><br />';
           // Currency details starts here 
              $inv_currency = $UserSettings->getSettingValue("currency");

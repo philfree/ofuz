@@ -75,6 +75,20 @@
             if($user_settings->setting_name == 'paypal_business_email' &&  $user_settings->setting_value != ''){
                 $_SESSION['do_invoice']->paypal_business_email =  $user_settings->setting_value ;
             }
+            if($user_settings->setting_name == 'stripe_api_key' &&  $user_settings->setting_value != ''){
+                $_SESSION['do_invoice']->stripe_api_key =  $user_settings->setting_value ;
+            }
+            if($user_settings->setting_name == 'stripe_publish_key' &&  $user_settings->setting_value != ''){
+                $_SESSION['do_invoice']->stripe_publish_key =  $user_settings->setting_value ;
+            }
+            //if both Authnet and Stipre is there in the settings then looking in to the payment option.             
+            //if((isset($_SESSION['do_invoice']->authnet_merchant_id))&&(isset($_SESSION['do_invoice']->stripe_api_key))){ echo 'hh'.$user_settings->setting_name.' <br />';
+				if(($user_settings->setting_name == 'payment_selection') &&  ($user_settings->setting_value != '')){ 
+					$_SESSION['do_invoice']->payment_selection =  $user_settings->setting_value ;//echo $_SESSION['do_invoice']->payment_selection.'<br />';
+				}
+			//}
+            
+            
             if($user_settings->setting_name == 'currency' &&  $user_settings->setting_value != ''){
                 $currency =  explode("-",$user_settings->setting_value) ;
                 $_SESSION['do_invoice']->currency_iso_code = $currency[0];
@@ -167,7 +181,7 @@ if($do_other_due_inv->getNumRows()) {
 
     </td><td class="layout_rcolumn">
         <div class="contentfull">
-            <?php
+            <?php 
                 if($_SESSION['in_page_message'] != ''){
                     echo '<div style="margin-left:0px;">';
                     echo '<div class="messages_unauthorized">';
@@ -175,6 +189,12 @@ if($do_other_due_inv->getNumRows()) {
                     $_SESSION['in_page_message'] = '';
                     echo '</div></div><br /><br />';
                 }
+                
+/*
+                if(isset($_SESSION['in_page_stripe_message'])){
+					echo $_SESSION['in_page_stripe_message'];	
+				}
+*/
              ?>
             <table class="layout_columns"><tr>
                 <td>
@@ -201,9 +221,42 @@ if($do_other_due_inv->getNumRows()) {
                         <?php if($_SESSION['do_invoice']->paypal_business_email != '' ){ ?>
                             <a href="/invoice_pay_paypal.php"><?php echo _('Pay With Paypal');?></a>&nbsp;<span class="sep3">|</span>&nbsp;
                         <?php } ?>
-                        <?php if($_SESSION['do_invoice']->authnet_login != '' && $_SESSION['do_invoice']->authnet_merchant_id != ''){?>
-                            <a href="/invoice_pay_auth.php"><?php echo _('Pay with Credit card'); ?></a>&nbsp;<span class="sep3">|</span>&nbsp;
+                        
+                        <?php if($_SESSION['do_invoice']->payment_selection != ''){ 
+							
+								if($_SESSION['do_invoice']->payment_selection == 'authorized.net') {
+										 if($_SESSION['do_invoice']->authnet_login != '' && $_SESSION['do_invoice']->authnet_merchant_id != ''){?>
+										<a href="/invoice_pay_auth.php"><?php echo _('Pay with Credit card'); ?></a>&nbsp;<span class="sep3">|</span>&nbsp;
+										<?php } 
+								} elseif($_SESSION['do_invoice']->payment_selection == 'stripe.com') {
+										if($_SESSION['do_invoice']->stripe_api_key != '' && $_SESSION['do_invoice']->stripe_publish_key != ''){
+												$idcontact = $_SESSION['do_invoice']->idcontact;
+												$stripe_customer_id = $_SESSION['do_invoice']->getStripeCustomerId($_SESSION['do_invoice']->iduser,$idcontact);
+												if(!empty($stripe_customer_id)){	
+													 $do_user_rel = new UserRelations();
+													 $invoice_url = $GLOBALS['cfg_ofuz_site_http_base'].'inv/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idinvoice).'/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idcontact);
+													 $do_payment = new Event("do_invoice->eventProcessStripePayment");
+													 $do_payment->addParam("stripecustomer_id",$stripe_customer_id);
+													 $do_payment->addParam("goto", $invoice_url); // send 0 if no CC else send 1
+													 $do_payment->addParam("amt", $_SESSION['do_invoice']->amt_due); 
+													 $do_payment->addParam("error_page", "invoice_pay_stripe.php");
+													 $link = $do_payment->getLink('Pay with Credit card'); 
+													 ?>
+													 <?php echo $link; ?></a>&nbsp;<span class="sep3">|</span>&nbsp;
+													 <?php 
+												} else {
+										?>
+										<a href="/invoice_pay_stripe.php"><?php echo _('Pay with Credit card'); ?></a>&nbsp;<span class="sep3">|</span>&nbsp;
+										<?php } ?>
+								<?php } }?>										
+						<?php } else { ?>
+								<?php if($_SESSION['do_invoice']->authnet_login != '' && $_SESSION['do_invoice']->authnet_merchant_id != ''){?>
+									<a href="/invoice_pay_auth.php"><?php echo _('Pay with Credit card'); ?></a>&nbsp;<span class="sep3">|</span>&nbsp;
+								<?php } elseif($_SESSION['do_invoice']->stripe_api_key != '' && $_SESSION['do_invoice']->stripe_publish_key != ''){?>
+									<a href="/invoice_pay_stripe.php"><?php echo _('Pay with Credit card'); ?></a>&nbsp;<span class="sep3">|</span>&nbsp;
+								<?php } ?>
                         <?php } ?>
+                        
                     <?php }else{
                         $e_approve_quote = new Event("do_invoice->eventChangeQuoteToInvoice") ;
                         $e_approve_quote->addParam('id',$_SESSION['do_invoice']->idinvoice);

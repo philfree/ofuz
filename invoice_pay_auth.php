@@ -98,7 +98,7 @@
 			 $do_payment->addParam("error_page", "invoice_pay_auth.php");
              echo $do_payment->getFormHeader();
              echo $do_payment->getFormEvent();
-             echo $_SESSION['do_invoice']->prepareAuthnetForm($_SESSION['do_invoice']->amt_due);//sending the amout
+             echo $_SESSION['do_invoice']->prepareAuthnetForm("Authnet",$_SESSION['do_invoice']->amt_due);//sending the amout
          ?>
         </div>
     </td></tr></table>
