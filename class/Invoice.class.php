@@ -2083,6 +2083,7 @@ class Invoice extends DataObject {
 		  $error_code = $rr['error']['code'];
 		  if(($error_code == 'invalid_expiry_month') || ($error_code == 'invalid_expiry_year') || ($error_code == 'expired_card') || ($error_code == 'missing')){
 			  $goto = $error_page;
+			  $_SESSION['updatecustomer'] = 'Yes';		
 		  }
 		  $_SESSION['in_page_message'] = $r;
 	  }

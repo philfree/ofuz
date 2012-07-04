@@ -36,10 +36,9 @@ class StripeGateWay extends BaseObject
     */
     public function CreateCustomer($token,$name,$amount,$email="",$description=""){
 		$this->setAPIKey();	
-		
 		$customer = Stripe_Customer::create(array("card" => $token,"description" => $email));
         $input = array("amount"=>$amount,"customer"=>$customer->id,"currency"=>"USD","description"=>$description);
-		$result = Stripe_Charge::create($input);
+        $result = Stripe_Charge::create($input);
         
 		if($result['paid'] === true){
 			$result_array = array("success"=>"1","customer_id"=>$customer->id);	

@@ -230,10 +230,10 @@ if($do_other_due_inv->getNumRows()) {
 										<?php } 
 								} elseif($_SESSION['do_invoice']->payment_selection == 'stripe.com') {
 										if($_SESSION['do_invoice']->stripe_api_key != '' && $_SESSION['do_invoice']->stripe_publish_key != ''){
-												$idcontact = $_SESSION['do_invoice']->idcontact;
-												$stripe_customer_id = $_SESSION['do_invoice']->getStripeCustomerId($_SESSION['do_invoice']->iduser,$idcontact);
-												if(!empty($stripe_customer_id)){	
-													 $do_user_rel = new UserRelations();
+												//$idcontact = $_SESSION['do_invoice']->idcontact;
+												//$stripe_customer_id = $_SESSION['do_invoice']->getStripeCustomerId($_SESSION['do_invoice']->iduser,$idcontact);
+												//if(!empty($stripe_customer_id)){	
+													/* $do_user_rel = new UserRelations();
 													 $invoice_url = $GLOBALS['cfg_ofuz_site_http_base'].'inv/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idinvoice).'/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idcontact);
 													 $do_payment = new Event("do_invoice->eventProcessStripePayment");
 													 $do_payment->addParam("stripecustomer_id",$stripe_customer_id);
@@ -244,10 +244,10 @@ if($do_other_due_inv->getNumRows()) {
 													 ?>
 													 <?php echo $link; ?></a>&nbsp;<span class="sep3">|</span>&nbsp;
 													 <?php 
-												} else {
+												} else { */
 										?>
 										<a href="/invoice_pay_stripe.php"><?php echo _('Pay with Credit card'); ?></a>&nbsp;<span class="sep3">|</span>&nbsp;
-										<?php } ?>
+										<?php //} ?>
 								<?php } }?>										
 						<?php } else { ?>
 								<?php if($_SESSION['do_invoice']->authnet_login != '' && $_SESSION['do_invoice']->authnet_merchant_id != ''){?>

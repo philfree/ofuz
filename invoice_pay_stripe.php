@@ -31,13 +31,15 @@
         }else{$dis = "";}
     }
 
-
-/*	$idcontact = $_SESSION['do_invoice']->idcontact;
+	if($_SESSION['updatecustomer'] <> 'Yes'){
+	$idcontact = $_SESSION['do_invoice']->idcontact;
 	$stripe_customer_id = $_SESSION['do_invoice']->getStripeCustomerId($_SESSION['do_invoice']->iduser,$idcontact);
-	echo $stripe_customer_id;die();
+	}
+	$_SESSION['updatecustomer'] = '';
+	//echo $stripe_customer_id;die();
 	
-	if(empty($stripe_customer_id)){	*/
-
+	
+if(empty($stripe_customer_id)){
 ?>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
         <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.min.js"></script>
@@ -127,7 +129,7 @@
                 // adding the input field names is the last step, in case an earlier step errors                
                 addInputNames();
             });
-        </script><?php //$do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
+        </script><?php } //$do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
 <table class="layout_columns"><tr><td class="layout_lmargin"></td><td>
 <div class="layout_content">
 <?php include_once('includes/ofuz_navtabs_invoice.php'); ?>
@@ -158,10 +160,13 @@
              ?>
 			<div style="margin-left:0px;display:none;" id="msg_unauth"></div>
 			<?php
+			
 				 echo nl2br($_SESSION['do_invoice']->invoice_address);
 				 //echo '<br />'. _('Total due :').'<b>$'. number_format($invoice_cal_data["total_due_amt"],2, '.', ',' ).'</b>';
 				 echo '<br />'. _('Total due :').'<b>'. $_SESSION['do_invoice']->viewAmount($_SESSION['do_invoice']->amt_due).'</b>';
 				 echo '<br /><br />';
+				 
+				 if(empty($stripe_customer_id)){	
 				 $do_user_rel = new UserRelations();
 				 $invoice_url = $GLOBALS['cfg_ofuz_site_http_base'].'inv/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idinvoice).'/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idcontact);
 				 $do_payment = new Event("do_invoice->eventProcessStripePayment");
@@ -181,6 +186,25 @@
              <span class="payment-errors"></span>
              <script>if (window.Stripe) $("#do_invoice__eventProcessStripePayment").show()</script>
         <noscript><p>JavaScript is required for the registration form.</p></noscript>
+       <?php } else { 
+		   
+				 $do_user_rel = new UserRelations();
+				 $invoice_url = $GLOBALS['cfg_ofuz_site_http_base'].'inv/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idinvoice).'/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idcontact);
+				 $do_payment = new Event("do_invoice->eventProcessStripePayment");
+				 $do_payment->addParam("stripecustomer_id",$stripe_customer_id);
+				 $do_payment->addParam("goto", $invoice_url); // send 0 if no CC else send 1
+				 $do_payment->addParam("amt", $_SESSION['do_invoice']->amt_due); 
+				 $do_payment->addParam("error_page", "invoice_pay_stripe.php");
+				 echo $do_payment->getFormHeader();
+				 echo $do_payment->getFormEvent();
+			?> <table>
+				<tr>
+					<td><B><?php  echo _('Total Amount') ?> : </B></td>
+					<td><input type="text" name="tot_amt" MAXLENGTH=16 value = "<?php echo $_SESSION['do_invoice']->amt_due; ?>"></td>
+					<td></td>
+				</tr>	
+				</table>
+       <?php echo $do_payment->getFormFooter('Submit'); } ?>
     </td></tr></table>
     <div class="spacerblock_40"></div>
     <div class="layout_footer"></div>
