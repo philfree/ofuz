@@ -82,6 +82,9 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 	    } else {
 	      //Card does not present in a Board
 	      if(count($arr_boards)) {
+		$content .= '<script type="text/javascript">';
+                $content .= '$(document).ready(function() {$("#OfuzLeanKitKanban__eventAddTaskToBoard").submit(function(e){if ($("#board").val() == "") {alert("Please select the Board.");e.preventDefault();return false;}});});';
+		$content .= '</script>';
 		$e_board = new Event("OfuzLeanKitKanban->eventAddTaskToBoard");
 		$e_board->addParam("ofuz_task_id", $idtask);
 		$e_board->addParam("ofuz_idprojecttask", $_GET['idprojecttask']);

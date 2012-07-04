@@ -111,9 +111,16 @@ class OfuzLeanKitKanban extends DataObject {
 	$assigned_user_id = $this->getBoardUserId($evtcl->board, $username);
 	//This is the default Lane used for adding a Card.
 	$lane_id = $this->getCardLaneId($evtcl->board, "Backlog");
-	$today = date("d/m/Y");
+	
 	$task = new Task();
 	$task->getId($evtcl->ofuz_task_id);
+
+	if($task->due_date_dateformat == "" || $task->due_date_dateformat == "0000-00-00") {
+	  $due_date = "";
+	} else {
+	  $due_date = $this->convertMysqlDateToDDMMYYY($task->due_date_dateformat, "/");
+	}
+
 	$array_card = array(
 	    "Title" => $task->task_description,
 	    "Description" => $task->task_description,
@@ -122,7 +129,7 @@ class OfuzLeanKitKanban extends DataObject {
 	    "Size" => "",
 	    "IsBlocked" => false,
 	    "BlockReason" => "",
-	    "DueDate" => $today,
+	    "DueDate" => $due_date,
 	    "ExternalSystemName" => "http://www.ofuz.net/Task/".$evtcl->ofuz_idprojecttask,
 	    "ExternalSystemUrl" => "http://www.ofuz.net/Task/".$evtcl->ofuz_idprojecttask,
 	    "Tags" => "",
@@ -286,6 +293,17 @@ class OfuzLeanKitKanban extends DataObject {
     }
 
     return $msg;
+  }
+
+  /**
+   * Formats MySql date to DDMMYYYY
+   * @param string, string
+   * @return string
+   */
+  public function convertMysqlDateToDDMMYYY($mysql_date, $separator) {
+    $date = explode("-", $mysql_date);
+    $date = $date[2].$separator.$date[1].$separator.$date[0];
+    return $date;
   }
 
 }
