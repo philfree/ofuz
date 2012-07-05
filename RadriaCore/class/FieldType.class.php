@@ -169,16 +169,16 @@ Class FieldType extends BaseObject {
             if (substr($rdata, 0, 1) == "[" && substr($rdata, strlen($rdata) -1, 1) == "]") {
                 $defaultvar = substr($rdata, 1, strlen($rdata) -2 ) ;
                 if (preg_match("/\;/", $defaultvar)) {
-                    $a_paramdefaultvar = explode(";", $defaultvar);
+                    $a_paramdefaultvar = explode(';', $defaultvar);
                     $defaultvalue = $a_paramdefaultvar[0]($a_paramdefaultvar);
                 } elseif(preg_match("/\:/", $defaultvar)) {
-                    $a_paramdefaultvar = explode(":", $defaultvar);
+                    $a_paramdefaultvar = explode(':', $defaultvar);
                     $defaultvalue = $a_paramdefaultvar[0]($a_paramdefaultvar);
-                } elseif(strrchr($defaultvar, ".") !== false) {
+                } elseif(strrchr($defaultvar, '.') !== false) {
                     list ($table_name, $field_name) = explode(".", $defaultvar);
                     $a_paramdefaultvar = Array( "getparam", "eDetail_".$table_name, $field_name); 
                     $defaultvalue = getsavedparam($a_paramdefaultvar);
-                } elseif(strpos($defaultvar, "->") > 0) {
+                } elseif(strpos($defaultvar, '->') > 0) {
                     $this->setLog("\n Registry: found default value in object");
                     list ($object_name, $variable_name) = explode("->", $defaultvar);
                     if (is_object($_SESSION[$object_name])) {
@@ -207,11 +207,47 @@ Class FieldType extends BaseObject {
      */
     function rdataForm_required($field_value="") {
         if ($this->getRData('required')) {
-            $fval = "<input type=\"hidden\" name=\"mydb_events[6]\" value=\"mydb.checkRequired\"/>" ;
+            $fval = "<input type=\"hidden\" name=\"mydb_events[6]\" value=\"".$this->getObjectName()."::eventCheckRequired\"/>" ;
             $fval .= "<input type=\"hidden\" name=\"required[".$this->getFieldName()."]\" value=\"yes\"/>" ;
             $this->addProcessed($fval);
         }
     }
+  /**   Event Mydb.checkRequired
+  *
+  * Check that all the field set as required are field in.
+  * If not it sets the doSave param at "no" to block the save and
+  * call the message page.
+  * <br>- param array fields that contains the content of the fields to check
+  * <br>- param array required indexed on fields name and contains value "yes"
+  * <br>Option:
+  * <br>- param string errorpage page to display the error message
+  */   
+    function eventCheckRequired(EventControler $evctl) {
+  /**
+  $strRequiredField = "Vous devez remplire to les champs obligatoire" ;
+   */
+		global $strRequiredField;
+		if (!isset($strRequiredField)) {
+			$strRequiredField = "You must fill in all the fields that are required." ;
+		}
+		 if ($evctl->submitbutton != _("Cancel")) {
+				if (is_array($evctl->fields)) {
+				  while (list($key, $val) = each($evctl->fields)) {
+					if (($evctl->required[$key]=="yes") && $val == "") {
+						if (strlen($evctl->errorpage)>0) {
+							$urlerror = $evctl->errorpage;
+						} else {
+							$urlerror = $this->getMessagePage() ;
+						}
+						$disp = new Display($urlerror);
+						$disp->addParam("message", $strRequiredField) ;
+						$evctl->setDisplayNext($disp) ;
+						$evctl->updateParam("doSave", "no") ;
+					}
+				  }
+				}
+		 }
+	}
 
     /**
      * rdataForm_hidden rdata method hidden for form context
@@ -223,7 +259,7 @@ Class FieldType extends BaseObject {
      */
     function rdataForm_hidden($field_value="") {
         if ($this->getRData('hidden')) {
-            $this->addProcessed("<input type=\"hidden\" name=\"fields[$this->field_name]\" value=\"".htmlentities($this->getFieldValue())."\"/>")  ;
+            $this->addProcessed("<input type=\"hidden\" name=\"fields[".$this->field_name."]\" value=\"".htmlentities($this->getFieldValue())."\"/>")  ;
         }
     }
 
@@ -237,7 +273,7 @@ Class FieldType extends BaseObject {
      */
     function rdataForm_readonly($field_value="") {
         if ($this->getRData('readonly')) {
-            $this->addProcessed("<input type=\"hidden\" name=\"fields[$this->field_name]\" value=\"".htmlentities($this->getFieldValue())."\"/>")  ;
+            $this->addProcessed("<input type=\"hidden\" name=\"fields[{$this->field_name}]\" value=\"".htmlentities($this->getFieldValue())."\"/>")  ;
         }
     }
 
@@ -336,7 +372,7 @@ Class FieldType extends BaseObject {
      * @param string $data_value
      */
     function __set($type, $value) {
-        $this->setRdata($type, $value);
+         $this->setRdata($type, $value);
     }
 
     /** 
@@ -1147,6 +1183,7 @@ Class FieldTypeDate extends FieldType {
  */
 Class FieldTypeLogin extends FieldTypeChar {
     function default_Form($field_value="") {
+		parent::default_Form($field_value="");
         $this->processed .= "<input name=\"accessfield[login]\" type=\"hidden\" value=\"".$this->getFieldName()."\"/>";
     }
 }
@@ -1160,7 +1197,7 @@ Class strFBFieldTypeLogin extends FieldTypeLogin { }
  * @package PASClass
  */
  
-Class FieldTypePassword  extends FieldType {
+Class FieldTypePassword  extends RegistryFieldStyle {
     function default_Form($field_value="") {
         if (!$this->getRData('hidden') && !$this->getRData('readonly')) {
             if (!$this->getRdata('execute')) {
@@ -1171,8 +1208,8 @@ Class FieldTypePassword  extends FieldType {
             } else {
 	            $fval = "<input name=\"accessfield[password]\" type=\"hidden\" value=\"".$this->getFieldName()."\"/>";
     	        $fval .= "<input type=\"hidden\" name=\"mydb_events[20]\" value=\"FieldTypePassword::eventCheckUsernamePassword\">" ;
-        	    $fval .= "<input type=\"password\" name=\"fields[".$this->getFieldName()."]\" value=\"".$field_value."\"/>" ;
-            	$fval .=  "\n<br/><input type=\"password\" name=\"fieldrepeatpass[".$this->getFieldName()."]\" value=\"".$field_value."\"/>"  ;
+        	    $fval .= "<input ".$this->getStyleParam()." type=\"password\" name=\"fields[".$this->getFieldName()."]\" value=\"".$field_value."\"/>" ;
+            	$fval .=  "\n<br/><input id=\"confirm_password\" type=\"password\" name=\"fieldrepeatpass[".$this->getFieldName()."]\" value=\"".$field_value."\"/>"  ;
             }
             $this->processed .= $fval;
         }

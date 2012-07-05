@@ -53,6 +53,7 @@ class User extends DataObject {
         $user_fields->lastname->size = 20;
 		$user_fields->addField(new FieldTypeLogin('email'));
 		$user_fields->email->textline = '20:30';
+		$user_fields->email->required = 1;
 		$user_fields->addField(new FieldTypePassword('password'));
         $user_fields->password->size = 10;
         $user_fields->addField(new FieldTypeListBoxSmall('status'));
