@@ -108,8 +108,8 @@ Class Fields  extends BaseObject {
       if (!empty($GLOBALS['cfg_local_pasdir'])) {
           $this->radria_core_path = $GLOBALS['cfg_local_pasdir'];
       }
-      if (defined("RADRIA_LOG_RUN_REGISTRY")) {
-            $this->setLogRun(RADRIA_LOG_RUN_REGISTRY);
+      if (defined("RADRIA_LOG_RUN_FIELDS")) {
+            $this->setLogRun(RADRIA_LOG_RUN_FIELDS);
       }
       $this->setLog("\n \n Fields object constructor: ".$table);
             

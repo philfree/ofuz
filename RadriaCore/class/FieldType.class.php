@@ -69,8 +69,8 @@ Class FieldType extends BaseObject {
         $this->exec_order['textline'] = 500;
         $this->exec_order['nothing'] = 50000;
       **/
-      if (defined("RADRIA_LOG_RUN_REGISTRYFIELD")) {
-            $this->setLogRun(RADRIA_LOG_RUN_REGISTRYFIELD);
+      if (defined("RADRIA_LOG_RUN_FIELDTYPE")) {
+            $this->setLogRun(RADRIA_LOG_RUN_FIELDTYPE);
       }
     }
 
@@ -211,8 +211,6 @@ Class FieldType extends BaseObject {
 			$e_require = new Event($this->getEventActionName("eventCheckRequired"));
 			$e_require->setLevel($this->getEventLevel())
 			          ->addParam("required[".$this->getFieldName()."]", "yes");			          
-            //$fval = "<input type=\"hidden\" name=\"mydb_events[6]\" value=\"".$this->getObjectName().":".$this->getFieldName()."->eventCheckRequired\"/>" ;
-            //fval .= "<input type=\"hidden\" name=\"required[".$this->getFieldName()."]\" value=\"yes\"/>" ;
             $this->addProcessed($e_require->getEvent());
         }
     }
@@ -227,17 +225,17 @@ Class FieldType extends BaseObject {
   * <br>- param string errorpage page to display the error message
   */   
     function eventCheckRequired(EventControler $evctl) {
-  /**
-  $strRequiredField = "Vous devez remplire to les champs obligatoire" ;
-   */
+		$this->setLog("\n eventCheckRequired:".$this->id);
 		global $strRequiredField;
 		if (!isset($strRequiredField)) {
 			$strRequiredField = "You must fill in all the fields that are required." ;
 		}
 		 if ($evctl->submitbutton != _("Cancel")) {
-				if (is_array($evctl->fields)) {
-				  while (list($key, $val) = each($evctl->fields)) {
-					if (($evctl->required[$key]=="yes") && $val == "") {
+				//if (is_array($evctl->fields)) {
+					$this->setLogArray($evctl->fields);			
+					$this->setLog("\n $key -> $val");
+					
+					if (($evctl->required[$this->getFieldName()]=="yes") && $evctl->fields[$this->getFieldName()] == "") {
 						if (strlen($evctl->errorpage)>0) {
 							$urlerror = $evctl->errorpage;
 						} else {
@@ -248,8 +246,8 @@ Class FieldType extends BaseObject {
 						$evctl->setDisplayNext($disp) ;
 						$evctl->updateParam("doSave", "no") ;
 					}
-				  }
-				}
+				  
+				//}
 		 }
 	}
     /**
@@ -280,34 +278,31 @@ Class FieldType extends BaseObject {
   * <br>- param string errorpage page to display the error message
   */   
     function eventCheckUnique(EventControler $evctl) {
-  /**
-  $strRequiredField = "Vous devez remplire to les champs obligatoire" ;
-   */
+		$this->setLog("\n Check Unique , table:".$this->unique_table_name." message:".$this->unique_message);
 		if (strlen($this->unique_message) > 0) {
 			$validate_message = $this->unique_message ;
 		} elseif (strlen($this->label)>0) {
 			$validate_message = $this->label._(" must be unique");
 		}
 		 if ($evctl->submitbutton != _("Cancel") && strlen($this->unique_table_name) > 0) {
-				if (is_array($evctl->fields)) {
-					$field_name = $this->getFieldName();
-					if ($evctl->unique[$field_name]=="yes") {
-						$q_check = new sqlQuery($this->getDbCon());
-						$q_check->query("select {$field_name} from ".$this->unique_table_name." where {$field_name} = '".$this->quote($evctl->fields[$field_name])."'");					
-						if ($q_check->getNumRows() == 0) {
-							if (strlen($evctl->errorpage)>0) {
-								$urlerror = $evctl->errorpage;
-							} else {
-								$urlerror = $this->getMessagePage() ;
-							}
-							$disp = new Display($urlerror);
-							$disp->addParam("message", $validate_message) ;
-							$_SESSION["in_page_message"] = $validate_message;
-							$evctl->setDisplayNext($disp) ;
-							$evctl->updateParam("doSave", "no") ;
+				$field_name = $this->getFieldName();
+				if ($evctl->unique[$field_name]=="yes") {
+					$q_check = new sqlQuery($this->getDbCon());
+					$q_check->query("select {$field_name} from ".$this->unique_table_name." where {$field_name} = '".$q_check->quote($evctl->fields[$field_name])."'");					
+					if ($q_check->getNumRows() > 0 ) {
+						if (strlen($evctl->errorpage)>0) {
+							$urlerror = $evctl->errorpage;
+						} else {
+							$urlerror = $this->getMessagePage() ;
 						}
-					}				  
-				}
+						$disp = new Display($urlerror);
+						$disp->addParam("message", $validate_message) ;
+						$_SESSION['in_page_message'] = $validate_message;
+						$this->setLog("\n Validate message:".$_SESSION['in_page_message']);
+						$evctl->setDisplayNext($disp) ;
+						$evctl->updateParam("doSave", "no") ;
+					}
+				}				  
 		 }
 	}
     
@@ -891,8 +886,6 @@ Class FieldTypeListBoxSmall extends FieldType {
         }
     }
 }
- Class strFBFieldTypeListBoxSmall extends FieldTypeListBoxSmall {}
-
 
 /**
  * Class strFBFieldTypeFloat
@@ -979,8 +972,6 @@ Class FieldTypeCheckBox extends FieldType {
           $event_controler->fields = $fields;
     }
 }
-Class strFBFieldTypeCheckBox extends FieldTypeCheckBox {}
-
 /**
  * Class strFBFieldTypeRadioButton RegistryField class
  *
@@ -1166,7 +1157,6 @@ Class FieldTypeFile extends FieldType {
         }
     }
 }
-Class strFBFieldTypeFile extends FieldTypeFile {}
 
 /**
  * Class strFBFieldTypeDate RegistryField class
@@ -1269,7 +1259,6 @@ Class FieldTypeLogin extends FieldTypeChar {
         $this->processed .= "<input name=\"accessfield[login]\" type=\"hidden\" value=\"".$this->getFieldName()."\"/>";
     }
 }
-Class strFBFieldTypeLogin extends FieldTypeLogin { }
 
 /**
  * Class strFBFieldType RegistryField class
@@ -1329,7 +1318,7 @@ Class FieldTypePassword  extends RegistryFieldStyle {
 	  */
 	  global $strMissingField, $strErrorPasswordNotMatch, $strErrorLoginAlreadyUsed;
 	  if (!isset($strMissingField)) {
-		$strMissingField = "You need a login and password in the form Phil" ;
+		$strMissingField = "You need a login and password in the form" ;
 	  }
 	  if (!isset($strErrorPasswordNotMatch)) {
 		$strErrorPasswordNotMatch = "The password entries do not match" ;
@@ -1380,8 +1369,8 @@ Class FieldTypePassword  extends RegistryFieldStyle {
 					}
 			}
 			$error  = $dispError->getParam("message") ;
-			$_SESSION["in_page_message"] = $error;
 			if (strlen($error) > 0) {
+					$_SESSION["in_page_message"] = $error;
 					$evctl->setDisplayNext($dispError) ;
 					$evctl->updateParam("doSave", "no") ;
 			// echo "supposed to be no from here " ;

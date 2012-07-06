@@ -264,46 +264,7 @@ Class DataObject extends sqlQuery {
             $this->setLog("\n DataObject __call for method:".$method);
             if (method_exists($this,$method)) { return; }
             $method_found = false;
-            //trigger_error("Cannot divide by zero", E_USER_ERROR);
-            if (ereg("^view_(.*)$", $method, $match) && !eregi("ToString$", $method)) {
-                $this->setLog("\n DataObject __call for view/report:".$match[1]); 
-                $reportname = $match[1];
-                if (file_exists("report/".$reportname.".report.xml")){
-                    $this->prepareSavedView($reportname, $params[0]);
-                    if ($this->view->squery->getNumRows() > 0) {
-                        return $this->view->execute();
-                    }
-                    $method_found = true;
-                } else {
-                     throw new RadriaException("Report:".$reportname." Not Found");
-                }
-            } 
-            if (ereg("^form_(.*)$", $method, $match) && !eregi("ToString$", $method)) {
-                $this->setLog("\n DataObject __call for form/report:".$match[1]); 
-                $formreportname = $match[1];
-                if (file_exists("form/".$formreportname.".form.xml")){
-                    $this->prepareSavedForm($formreportname, $params[0]);
-                    //if ($this->form->squery->getNumRows() > 0) {
-                        return $this->form();
-                    //}
-                    $method_found = true;
-                } else {
-                     throw new RadriaException("Form:".$reportname." Not Found");
-                }
-            }
-            if (ereg("^view_(.*)ToString$", $method, $match)) {
-                $this->setLog("\n DataObject __call for view/report to string:".$match[1]); 
-                $reportname = strtolower($match[1]);
-                if (file_exists("report/".$reportname.".report.xml")){
-                    $this->prepareSavedView($reportname, $params[0]);
-                    if ($this->view->squery->getNumRows() > 0) {
-                        return $this->view->executeToString();
-                    }
-                    $method_found = true;
-                } else {
-                     throw new RadriaException("Report:".$reportname." Not Found");
-                }
-            }            
+            
             // lets use the method as an ordering.
             if (ereg("^getChild(.*)$", $method, $match)) {
                 $this->setLog("\n DataObject __call for child:".$match[1]); 
@@ -384,43 +345,7 @@ Class DataObject extends sqlQuery {
                     
                 }
             }
-            // This one should not be used as it doesn't make sens.
-            // the method getAll is a replacement as data from other should not be inserted in an object
-            // attached to a different table.            
-            if (ereg("^get".ucfirst($this->getTable()),  $method, $match)) {
-                $this->setLog("\n DataObject __call for get".ucfirst($this->getTable()).":".$match[1]);
-                if (isset($params[0])) {
-                    $this->getId($params[0]);
-                } else {
-                    $this->query("select * from ".$this->getTable());
-                }
-                $method_found = true;
-            }
 
-            if (ereg("^get_(.*)$", $method, $match)) {
-                $this->setLog("\n DataObject __call for savedQuery:".$match[1]); 
-                $savedquery = $match[1];
-                if (file_exists("savedquery/".$savedquery.".sq.xml")) {
-                    if (isset($params[0])) {
-                        $query_param = array_merge($this->values, $params[0]);
-                    } else {
-                        $query_param = $this->values;
-                    }
-                    $sq = new sqlSavedQuery($this->getDbCon(), $savedquery);
-                    $sq->prepareQuery($query_param);
-                    if ($sq->getQueryReady()) {
-                        $sq->query();
-                        $this->setSqlQuery($sq->getSqlQuery());
-                        $this->setResultSet($sq->getResultSet());
-                    } else {
-                        throw new RadriaException("Missing variable (".$query_param[0].") to run saved query:".$sq->qname."");
-                    }
-                    $method_found = true;
-                } else {
-                    throw new RadriaException("Saved Query:".$savedquery." Not Found");
-                }
-                
-            }
             if (!$method_found) {
                 //
                 throw new RadriaException("Method:".$method." Not Found");
@@ -506,140 +431,6 @@ Class DataObject extends sqlQuery {
     }
 
 
- //   function newView() {
- //       $this->view = new ReportTable($this->getDbCon());
- //       $this->view->setTable($this->getTable());
- //       return $this->view;
- //   }
- 
-   /**
-    *  prepare Report View 
-    *  Prepare a view from a report xml file.
-    *  The variables parameter is used to transfer variables to the saved query 
-    *  and the saved view. The variables is an Array like $variables['varname'] = $varvalue;
-    *  In the saved query and saved view the var value will be replaced each time a [varname] is found.
-    *
-    *  @param string name of the view in the /report/ folder
-    *  @param array variable to pass to the saved query and saved view.
-    */
-/**
-    function prepareSavedView($reportname, $variables=Array()) {
-        if (!empty($variables)) {
-            $variables = array_merge($this->values, $variables);
-        }
-        $this->view = new ReportTable($this->getDbCon(), $reportname);
-        $this->view->setTable($this->getTable());
-        if (is_object($this->getRegistry())) {
-            $this->view->setRegistry($this->getRegistry());
-        }
-        if (is_object($this->getSavedQuery())) {
-            $this->view->setSavedQuery($this->getSavedQuery()) ;
-        } 
-        if (!empty($variables)) {
-            $this->view->squery->prepareQuery($variables);
-            $this->view->addValues($variables);
-        }
-        if (is_resource($this->getResultSet())) {
-            $q = new sqlQuery($this->getDbCon());
-            $q->setResultSet($this->getResultSet());
-            $this->view->setSavedQuery($q);
-        }
-
-        $this->view->setQuery();
-        $this->view_ready = true;
-    }
-**/
-
-    /**
-     * prepareView
-     * Create an instance of the ReportTable object using a ViewTemplate
-     * To use a saved view see prepareSavedview().
-     * This will check if a registry, savedquery, result set, viewtemplate are set
-     * and if yes pass them to the view object.
-     *
-     * this method does the following taks in order.
-     *  - Create view instance (using the ReportTable class)
-     *  - Set the table, 
-     *  - set a registry, 
-     *  - set a saved query or result set
-     *  - set a view template.
-     *  - process the view template, for each fields of the registry 
-     *    or table generate the HTML/JS/PHP template.
-     *
-     *  At this point the view can be saved (view->serializeToXML(..)) or executed.
-     * 
-     * @param array param to be passed to the ViewTemplate.
-     * @see prepareSavedView()
-     */
- /**
-    function prepareView($view_param = Array()) {
-        $this->view = new ReportTable($this->getDbCon());
-        $this->view->setTable($this->getTable());
-        if (is_object($this->getRegistry())) {
-            $this->view->setRegistry($this->getRegistry());
-        }
-        if (is_object($this->getSavedQuery())) {
-            $this->view->setSavedQuery($this->getSavedQuery()) ;
-            if (!$this->view->getNoData()) { $this->view->setNoData(false); } 
-            $this->view->setQuery();
-        } elseif(is_resource($this->getResultSet())) {
-            $q = new sqlQuery($this->getDbCon());
-            $q->setTable($this->getTable());
-            $q->setResultSet($this->getResultSet());
-            $this->view->setSavedQuery($q);
-        } else {
-            $this->view->setQuery($this->getTable());
-        } 
-        if (count($view_param) > 0) { $this->view->addValues($view_param); }
-
-        if (empty($this->report_template)) {
-            $this->view->setDefault();
-        } else {
-            $this->view->setDefaultTemplate($this->getViewTemplate());
-        }
-        $this->view_ready = true;
-    }
-**/
-    /**
-     * View()
-     * Display a view.
-     * A few is a database result set merge with HTML and PHP code.
-     * In addition a Registry is apply to each field entry.
-     * A view is composed of 3 set of HTML/PHP code
-     *  -  header display once
-     *  -  row display/merge for each record of the result set.
-     *  -  footer display once.
-     *
-     * The view metod execute the PHP code in the saved view or the view template.
-     *
-     * It execute an instance of a ReportTable object.
-     */
-/**
-    function view() {
-        if (!$this->view_ready) {
-            $this->prepareView();
-        }
-        if ($this->view->squery->getNumRows() > 0) {
-            return $this->view->execute();
-        }
-    }
-   **/ 
-    /**
-     *  viewToString
-     *  Work like the view() method but do not display the result
-     *  instead return a string with the HTML do be display.
-     *  @return string with the HTML result of the executed view.
-     */
-/**
-    public function viewToString() {
-        if (!$this->view_ready) {
-            $this->prepareView();
-        }
-        if ($this->view->squery->getNumRows() > 0) {
-           return $this->view->executeToString();
-        }
-    }
-**/
    /**
     * newForm create a generic form
     * for ->form to be use as an Event object
@@ -651,6 +442,7 @@ Class DataObject extends sqlQuery {
     public function newForm($eventAction) {
       $this->form = new Event($eventAction);
 	  //$this->setApplyFieldFormating(true, "Form");
+	  $this->form->addParam("event_action_object", $this->getObjectName());
       return $this->form;
     }
 
@@ -732,154 +524,7 @@ Class DataObject extends sqlQuery {
 		$this->setFieldsFormating(false);
 		return $html_out ;
 	}
- 
-   /**
-    * prepareSavetoForm will load a form from the form/ folder.
-    * This method is used internaly to prepare a ReportForm object
-    * It check if a result set exist to enable update or add Event.
-    * SavedForm are saved(serialized) and customized version of executed FormTemplates
-    *
-    * The optional variable set in the second parameter are variable in the format: $variable[varname] = $varvalue;
-    * They will merge with the SavedForm if a [varname] is found.
-    *  
-    * If form_url_next_page is set in the variables array it will set the next to display after
-    * processing the form. 
-    * 
-    * This can be used as a factory to create a form object based on a data object.
-    * 
-    * @param string form name, that need to exist in the /form folder.
-    * @param Array variables that will be passed to the saved query and to the saved form
-    */
-/**
-    function prepareSavedForm($reportname, $variables=Array()) {
-        if (!empty($variables)) {
-            $variables = array_merge($this->values, $variables);
-        }
-        $this->form = new ReportForm($this->getDbCon(), $reportname);
-        $this->form->setTable($this->getTable());
-        if (count($this->values) > 1) {
-            $this->form->setValues($this->values);
-        }
-        if ($this->getPrimaryKeyValue() !== false) {
-            $this->getId($this->getPrimaryKeyValue());
-        }        
-        if (is_resource($this->getResultSet())) {
-           $this->form->squery = new sqlQuery($this->getDbCon());
-           $this->form->squery->setResultSet($this->getResultSet());
-           $this->form->squery->setSqlQuery($this->getSqlQuery());
-        } elseif (is_object($this->squery)) {
-            if (is_resource($this->squery->getResultSet())) {
-                if ($this->squery->getNumRows() == 1) {
-                    $this->form->squery = $this->squery; 
-                } else {
-                    $this->form->setAddRecord();
-                }
-            } else {  
-                $this->form->squery = $this->squery; 
-                $this->form->squery->query();
-                $this->setLog("\n (dataobject) runing sql query:".$this->form->squery->query());
-            }
-        } elseif (is_object($this->form->squery)) {
-             if (!is_resource($this->form->squery->getResultSet()) && !empty($variables)) {
-                $this->form->squery->prepareQuery($variables);
-                if ($this->form->squery->getQueryReady()) {
-                    $this->form->squery->query();
-                    $this->setLog("\n (dataobject) runing form sql query:".$this->form->squery->getSqlQuery());
-                } else {
-                    $this->form->setAddRecord();
-                }
-            }       
 
-        } else {   
-           $this->form->setAddRecord();
-        }
-        if (is_object($this->getRegistry())) {
-            $this->form->setRegistry($this->getRegistry());
-        }
-        if (!empty($variables)) {
-            $this->form->addValues($variables);
-        }
-        $this->form->addEventAction("mydb.addParamToDisplayNext",500);
-        $this->form->addParam("errorpage", $_SERVER['PHP_SELF']);
-        $this->form->addParam("use_session", "yes");
-        //$this->form->setDefault($this->getTable(),$this->getFormTemplate());
-        if ($variables['form_url_next_page'] != "") {
-            $this->form->setUrlNext($variables['form_url_next_page']);
-        }
-
-        if (strlen($this->form->getUrlNext()) == 0) {
-            $this->form->setUrlNext($_SERVER['PHP_SELF']);
-        }
-
-        //$this->form->setForm();
-        $this->form_ready = true;
-        return $this->form;
-    }  
-**/
-    /**
-     * prepareForm prepare a form using a form template.
-     * this works like the prepareView() method. 
-     * If no results set or saved query are set it will
-     * set the form to add a new record.
-     * @param string url_next to where to redirect the form after submit & processing.
-     */
- /**
-    function prepareForm($url_next="") {
-        $this->form = new ReportForm($this->getDbCon());
-        $this->form->setTable($this->getTable());
-        if (count($this->values) > 1) {
-            $this->form->setValues($this->values);
-        }
-        if ($this->getPrimaryKeyValue() !== false) {
-            $this->getId($this->getPrimaryKeyValue());
-        }
-        if (is_object($this->squery)) {
-            if ($this->squery->getNumRows() == 1) {
-                $this->form->squery = $this->squery; 
-            } elseif ($this->squery->getQueryReady()) {
-                $this->form->squery = $this->squery;
-                $this->form->squery->query();
-            } else {
-                $this->form->setAddRecord();
-            }
-        } elseif (is_resource($this->getResultSet())) {
-           $this->form->squery = new sqlQuery($this->getDbCon());
-           $this->form->squery->setResultSet($this->getResultSet());
-           $this->form->squery->setSqlQuery($this->getSqlQuery());
-        } else {   
-           $this->form->setAddRecord();
-        }
-        if (is_object($this->getFields())) {
-            $this->form->setFields($this->getFields());
-        }
-
-        $this->form->addEventAction("mydb.addParamToDisplayNext",500);
-        $this->form->addParam("errorpage", $_SERVER['PHP_SELF']);
-        $this->form->addParam("use_session", "yes");
-        $this->form->setDefault($this->getTable(), $this->getFormTemplate());
-        if ($url_next != "") {
-            $this->form->setUrlNext($url_next);
-        }
-        if (strlen($this->form->getUrlNext()) == 0) {
-            $this->form->setUrlNext($_SERVER['PHP_SELF']);
-        }
-        $this->form_ready = true;
-        return $this->form;
-    }
-**/
-    /** 
-     * form() Display a form using a Form template or a saved form.
-     */
-/**
-    function form() {
-        if (!$this->form_ready) { 
-            $this->prepareForm();
-        }
-        $this->form->setForm();
-        $this->form->execute();
-    }
-
-**/
     /**
      * Not sure those 2 functions are needed
      * They are needed if the dataobject class in not abstract.
@@ -972,62 +617,7 @@ Class DataObject extends sqlQuery {
         } else { return false; }
     }
 
-    /**
-     * Set the View Template 
-     * A view template is a set of xml files in the /report/ folder that enable 
-     * a merge between a database result set and HTML templates.
-     * Its dynamic in the sens that it adapted with the variable and fields
-     * in the current database table associated with to dataobject.
-     * Do not confuse with Saved view that are also stored in the report/. 
-     * report templates are composed of 3 files and in general ends with a .tpl.report.xml
-     *
-     * @param string name of the report template.
-     * @see prepareView()
-     */
-/**
-    function setViewTemplate($reportTemplate) {
-        $this->report_template = $reportTemplate;
-    }
-    function getViewTemplate() {
-        return $this->report_template;
-    }
     
-    function setFormTemplate($reportTemplate) {
-        $this->reportform_template = $reportTemplate;
-    }
-    function getFormTemplate() {
-        if (empty($this->reportform_template)) {
-            return RADRIA_DEFAULT_FORM_TEMPLATE;
-        } else  {
-            return $this->reportform_template;
-        }
-    }
-**/
-    /** 
-     * set a saved query to the dataobject.
-     * Will overwrite the default saved query if one is set.
-     * 
-     * @param mixte string sqlSavedquery $squeryname name of the sqlSavedQuery or an sqlSavedQuery object
-     * @param sqlConnect connexion object to use to load that query.
-     */
-/**
-    function setSavedQuery($squeryname, $extracon=0) {
-      if (is_object($squeryname)) {
-          $this->squery = $squeryname;
-      } else {
-          if (is_resource($extracon)) {
-              $this->squery = new sqlSavedQuery($extracon, $squeryname);
-          } else {
-              $this->squery = new sqlSavedQuery($this->getDbCon(), $squeryname);
-          }
-                  
-      }
-    }
-    
-    function getSavedQuery() {
-        return $this->squery;
-    }
-**/    
     /** 
      * Set Fields for this object
      * Will instantiate a new Registry object
@@ -1048,37 +638,23 @@ Class DataObject extends sqlQuery {
     }
 
     /**
-     * Set fields description for view and forms
-     * This is just an alias to setRegistry but testing new
-     * nomenclature.
-     * @see setRegistry()
+     * Get fields 
+     * Return an array of FieldType objects
+     * 
+     * @see setFields()
      */
-     /**
-    function setFields($regname="", $extrcon=0) {
-         $this->setRegistry($regname, $extrcon);
-        // $this->fields = $this->getRegistry(); 
-    }
 
-    function getRegistry() {
-        return $this->fields;
-    }
-    **/
     function getFields() {
         return $this->fields;
     }
     /**
-     * Set to apply Fields formating
-     * if set to false the report will not apply the fieldtype and just display the
-     * plain content of the database.
+     * Set Fields formating
+     * This enable disable the FieldType context generation of HTML arround the data fields.
+     * 
      * @param boolean $bool true or false
      * @param string $context Disp or Form
-	 * @see setApplyFieldFormating()
+	 * @see getFieldFormating()
      */
-     /**
-    function setApplyRegistry($bool, $context="Disp") {
-        $this->applyreg = $bool ;
-        $this->reg_context = $context;
-    } **/   
     
     function setFieldsFormating($bool, $context='Disp') {
 		$this->applyreg = $bool ;
@@ -1086,17 +662,14 @@ Class DataObject extends sqlQuery {
 	}
 
     /**
-     * getApplyFieldsFormating()
+     * getFieldsFormating()
      * return a boolean that tel if the object is currenlty
-     * applying the Registry to the fields values in the
-     * __get magic methods.
+     * applying the FieldType HTML generation to the fields values 
+     * 
      * @return boolean 
-     * @see setApplyRegistry(), getApplyRegistryContext(), setApplyFieldFormating()
+     * @see setFieldFormating()
      */
-     /**
-    function getApplyRegistry() {
-        return $this->applyreg ;
-    }**/
+    
 	function getFieldsFormating() {
 		return $this->applyreg ;	
 	}
@@ -1180,8 +753,8 @@ Class DataObject extends sqlQuery {
 
     function eventAdd(EventControler $event_controler) {
 		$this->setFieldsFormating(false);
-        if ($event_controler->doSave == "yes") {
-            $this->eventValuesFromForm($event_controler);
+		$this->eventValuesFromForm($event_controler);
+        if ($event_controler->doSave == "yes") {           
             $this->add();
             $event_controler->insertid = $this->getInsertId($this->getTable(), $this->getPrimaryKey());
         }

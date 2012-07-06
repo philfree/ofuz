@@ -23,6 +23,8 @@
   $do_invoice = new Invoice();
   if (!isset($_SESSION['do_invoice'])) {
 	  $do_invoice->sessionPersistent('do_invoice', 'user_detail.php');
+  } else {
+	  $do_invoice = $_SESSION['do_invoice'];
   }
   $do_invoice->iduser = $_SESSION['do_user']->iduser;
   // after newaddForm() all call to: do_invoice->variable will output HTML form.
@@ -33,7 +35,7 @@
   $do_invoice->form->addParam('errorpage', 'message.php');
   
   echo $do_invoice->displayFormHeader();
-  echo $do_invoice->iduser;
+  echo $do_invoice->iduser;  // this will link the new invoice to the user
 ?>
 
 Number: <?php echo $do_invoice->num; ?><br>

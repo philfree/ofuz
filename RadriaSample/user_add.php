@@ -21,10 +21,15 @@
   include("includes/header.inc.php") ;
 
   $do_user = new User();
+  
   if (!isset($_SESSION['do_user'])) {
 	  $do_user->sessionPersistent('do_user', 'index.php');
+  } else {
+	  $do_user = $_SESSION['do_user'];
   }
-  
+  if ($_SERVER["QUERY_STRING"] == 'clear') {
+	  $do_user->addNew();
+  }
   $do_user->newaddForm();
   $do_user->initFields();
   $do_user->form->addEventAction('do_user->eventSetRegistrationDate', 771);

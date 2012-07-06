@@ -26,6 +26,8 @@
   $do_user = new User();
   $do_user->getAll();
 ?>
+<a href="user_add.php?clear">Add a new User</a><br>
+
 List of users:<br>
 <?php
   while($do_user->next()) {

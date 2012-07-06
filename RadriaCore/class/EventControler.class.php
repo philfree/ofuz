@@ -170,14 +170,22 @@ class EventControler extends BaseObject {
 					}
 				} else {
 					    list($object_name, $instance_param) = split(":", $object_name);
-					    if (get_parent_class($object_name) == "FieldType") {
+					    $this->setLog("\n Object with instantiation param: $object_name ($instance_param) ");
+					    if (isset($event_action_object) && is_object($_SESSION[$event_action_object]->fields->{$instance_param})) {
+							$this->setLog("\n $event_action_object Databoject with FieldType:".$object_name. "field ".$instance_param." event:".$method);
+							if(method_exists($_SESSION[$event_action_object]->fields->{$instance_param}, $method)) {
+								$this->setLog("Found!!");
+								$_SESSION[$event_action_object]->fields->{$instance_param}->{$method}($this);
+								$event_found = true;
+							}
+						}elseif (get_parent_class($object_name) == "FieldType") {
 							$this->setLog("\n FieldType Object class ".$object_name);
 							$event_object = new $object_name($instance_param);
 							if (method_exists($event_object, $method)) {
 								$event_object->{$method}($this);
 								$event_found = true;
 							}						
-					}
+						}
 					
 				}
             }
@@ -203,6 +211,7 @@ class EventControler extends BaseObject {
       $event_errormessage = "An event must be specified" ;
     }
     if (!empty($event_errormessage)) {
+	  $this->setLog("\n".$event_errormessage);
       $this->setError($event_errormessage);
       //$this->setUrlNext($this->getMessagePage()."?message=".urlencode($event_errormessage)) ;
     }

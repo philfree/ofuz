@@ -11,14 +11,9 @@
     include_once($cfg_local_pasdir."class/".$cfg_local_db."/sqlQuery.class.php") ;
     include_once($cfg_local_pasdir."class/Fields.class.php") ;
     include_once($cfg_local_pasdir."class/FieldType.class.php") ;    
-    include_once($cfg_local_pasdir."class/sqlSavedQuery.class.php") ;
-    include_once($cfg_local_pasdir."class/Report.class.php") ;
-    include_once($cfg_local_pasdir."class/libReport.php") ;
     include_once($cfg_local_pasdir."class/EventControler.class.php") ;
     include_once($cfg_local_pasdir."class/Display.class.php") ;
     include_once($cfg_local_pasdir."class/Event.class.php") ;
-    include_once($cfg_local_pasdir."class/ReportForm.class.php") ;
-    include_once($cfg_local_pasdir."class/ReportTable.class.php") ;
 
     if (substr(phpversion(),0,1) > 4) {
         include_once($cfg_local_pasdir."class/RadriaException.class.php") ;
@@ -58,15 +53,10 @@
     
 //  To log only specific classes set the value to true
   define("RADRIA_LOG_RUN_DISPLAY", false);
-  define("RADRIA_LOG_RUN_RECORDEVENT", false);
   define("RADRIA_LOG_RUN_EVENT", false);
   define("RADRIA_LOG_RUN_EVENTCONTROLER", false);
-  define("RADRIA_LOG_RUN_REGISTRY", false);
-  define("RADRIA_LOG_RUN_REGISTRYFIELD", false);
-  define("RADRIA_LOG_RUN_REPORT", false);
-  define("RADRIA_LOG_RUN_REPORTFORM", false);
-  define("RADRIA_LOG_RUN_REPORTTABLE", false);
-  define("RADRIA_LOG_RUN_SQLSAVEDQUERY", false);
+  define("RADRIA_LOG_RUN_FIELDS", false);
+  define("RADRIA_LOG_RUN_FIELDTYPE", false);
   define("RADRIA_LOG_RUN_SQLQUERY", false);
   define("RADRIA_LOG_RUN_DATAOBJECT", false);
   define("RADRIA_LOG_RUN_MYDB_EVENTS", false);
