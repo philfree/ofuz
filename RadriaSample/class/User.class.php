@@ -68,7 +68,8 @@ class User extends DataObject {
 	}
 	
 	function eventSetRegistrationDate(EventControler $evctl) {
-		$this->values['regdate'] = date('Y-m-d');
+		$this->regdate = date('Y-m-d');
+		$evctl->fields['regdate'] = $this->regdate;
 		$this->setLog("\n Setting the date to today and updating the record with:".$this->regdate);
 	}
 
