@@ -23,6 +23,8 @@
     * @access public
     */
 
+#namespace radriacore;
+
 Class sqlConnect extends BaseObject {
 
   /**  Hostname where the read database is hosted

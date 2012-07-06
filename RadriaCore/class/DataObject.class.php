@@ -28,6 +28,8 @@
     * @access abstract
     */
 
+#namespace radriacore;
+
 Class DataObject extends sqlQuery {
     
     public $dbCon;
@@ -467,7 +469,7 @@ Class DataObject extends sqlQuery {
 	  $this->setFields($this->getTable());
       $this->form->setLevel(1004);
       //$this->form->addEventAction($session_object_name.'->eventFieldFormatingOff', 92);
-	  $this->form->addEventAction('mydb.gotoPage', 9);
+	  $this->form->addEventAction('Display::eventGotoPage', 9);
       $this->form->table = $this->getTable();
 	  $this->setFieldsFormating(true, 'Form');
     }

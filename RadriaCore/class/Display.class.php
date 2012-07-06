@@ -19,6 +19,8 @@
    * @access public
    */
 
+#namespace radriacore;
+
 class Display extends BaseObject {
     
   /**  Array that stores all the parameters, the index is the parameter name and
@@ -185,7 +187,39 @@ class Display extends BaseObject {
   function editParam($varname, $varvalue) {
     $this->params[$varname] = $varvalue ;
   }
-
+  
+   /**
+     * This event set the next display to be the page set in 
+     * the goto parameter.
+     *
+     * @package RadriaEvents
+     * @author Philippe Lewicki  <phil@sqlfusion.com>
+     * @copyright  SQLFusion LLC 2001-2004
+     * @version 3.0
+     */
+  function eventGotoPage(EventControler $evctl) {
+		$goto = $evctl->getParam("goto");
+		$curdisp = $evctl->getDisplayNext();
+		if (is_object($curdisp)) {
+		$curdisp->setPage($goto);
+		$evctl->setDisplayNext($curdisp);
+		} elseif (strlen($goto) > 0) {
+		$nextpage = new Display($goto);
+		$evctl->setDisplayNext($nextpage);
+		}
+	}
+  /**
+   * message simply display the message
+   * from in page message in the session
+   */
+  function message() {
+	  $message = '';
+	  if(isset($_SESSION["in_page_message"]) && $_SESSION["in_page_message"] !=''){
+		$message = $_SESSION["in_page_message"];
+		$_SESSION["in_page_message"] = '';
+	  }
+	  return $message;
+  }
 }
 
 ?>

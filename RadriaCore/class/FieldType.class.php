@@ -20,6 +20,9 @@
   * @version 4.0.0
   * @access public
   */
+  
+#namespace radriacore;
+  
 Class FieldType extends BaseObject {
 
     var $processed = "";

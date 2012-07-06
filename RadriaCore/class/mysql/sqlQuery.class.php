@@ -20,6 +20,8 @@
     * @access public
     */
 
+#namespace radriacore;
+
 Class sqlQuery extends BaseObject {
   /**  Name of the table used in the query, it can be an array for multiple tables.
    * @var mixte $table in generale a string with a table name, but can be an array.

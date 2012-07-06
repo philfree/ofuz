@@ -22,8 +22,9 @@
    * @access public
    *
    */
+#namespace radriacore;
 
-    class BaseObject {
+class BaseObject {
         var $objErrorId = 0;
         var $objErrorDesc  = "";
         var $objErrorFile = "radria_errors.log" ;

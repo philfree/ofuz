@@ -34,7 +34,7 @@
   * @access public
   */
 
-
+#namespace radriacore;
 
 Class Fields  extends BaseObject {
     /**  Name of the folder where serialized fields are.

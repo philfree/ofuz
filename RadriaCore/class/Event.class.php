@@ -22,6 +22,9 @@
    * @version 5.0.0
    * @access public
    */
+
+#namespace radriacore;   
+   
 class Event extends Display {
 
   /**  name of the event

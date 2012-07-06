@@ -20,6 +20,9 @@
   * @version 4.0.0
   * @access public
   */
+  
+#namespace radriacore;  
+  
 class EventControler extends BaseObject {
 
   /**  Name of the table to store the events
@@ -195,10 +198,10 @@ class EventControler extends BaseObject {
                 if (class_exists($object_name)) {
                     $this->setLog("\n Object class exists ".$object_name);
                     //Until static reference are possible (PHP 5.3)
-                    $event_object = new $object_name();
-                    if (method_exists($event_object, $method)) {
+                    //$event_object = new $object_name();
+                    if (method_exists($object_name, $method)) {
                         $this->setLog("\n With Static method ".$method);
-                        $event_object->{$method}($this);
+                        $object_name::$method($this);
                         $event_found = true;
                     }
                 }
