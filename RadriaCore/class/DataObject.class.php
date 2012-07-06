@@ -1199,7 +1199,7 @@ Class DataObject extends sqlQuery {
         $qGetFields->setTable($this->getTable()) ;
         $tableFields = $qGetFields->getTableField() ;
         $this->setLog("\n in ".$this->getObjectName()." (DataObject)::Add()");
-        $reg = new Fields($this->getDbCon());
+        $reg = new Fields();
         $reg->registryFromTable($this->getTable());
 
         $fields = $this->getValues();

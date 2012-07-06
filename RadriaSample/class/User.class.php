@@ -73,7 +73,4 @@ class User extends DataObject {
 	}
 
 
-
-
-
 }

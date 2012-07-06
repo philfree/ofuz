@@ -37,29 +37,21 @@
 
 
 Class Fields  extends BaseObject {
-    /**  Name of the table to store the registry
+    /**  Name of the folder where serialized fields are.
      * @var String $tbl_registry
      */
     var $tbl_registry = "registry" ;
+    
     /**  Name of the table on which the registry need to be apply
      * @var String $table
      */
     var $table ;
 
-    /** fields array containing all the fields objects from the
-     *  registry
+    /** fields array containing all the fields objects
      * @var Array $fields contains fields object
      */
     var $fields = Array() ;
 
-    /**  unused for now next version
-     * @var String $caracteristic
-     */
-    var $caracteristic;
-    /**  unused in version 2 will be deleted
-     * @var String $caracteristic
-     * @deprecated compatibility wiht pre MyDB1
-     */
     var $field ;
     /**  Reg Info for Options type, typicaly list box, list or choices.
      * @var Array $optiontype index on field of the table
@@ -85,6 +77,7 @@ Class Fields  extends BaseObject {
     var $project_path = ".";
 
     /** Radria base path
+     * This should not be used at all
      */
     var $radria_core_path = "../RadriaCore/";
     
@@ -107,55 +100,23 @@ Class Fields  extends BaseObject {
       
       if (is_resource($table)) { $dbc = $table; $table = '';} // temporary hack for backward compatibility. (th4bc)
 	  if ($dbc=='') { $dbc = $GLOBALS['conx']; }
-	  $table = trim($table);
-      $this->table = $table ;
       if ($dbc != "") {
         $this->dbc = $dbc ;
         $this->project_path = $this->dbc->getProjectDirectory();
       } 
+ 
       if (!empty($GLOBALS['cfg_local_pasdir'])) {
           $this->radria_core_path = $GLOBALS['cfg_local_pasdir'];
       }
       if (defined("RADRIA_LOG_RUN_REGISTRY")) {
             $this->setLogRun(RADRIA_LOG_RUN_REGISTRY);
       }
-      $this->setLog("\n \n Registry object constructor");
-      if (is_object($this->dbc) && $this->dbc->getUseDatabase()) {
-        if (strlen($table)>0) {
-          if (is_array($table)) {
-            $numtables = count($table) ;
-            for ($i=0; $i<$numtables; $i++) {
-              $qregistry = new sqlQuery($dbc) ;
-              $rregistry = $qregistry->query("select rfield, rdata, rtype from $this->tbl_registry where rtable='$this->table[$i]' ") ;
-              if ($rregistry >0) {
-                while (list($rfield, $rdata, $rtype) = $qregistry->fetchArray()) {
-                  $this->totalnumfields++ ;
-                  $a_rtype = Array();
-                  $fieldname = $this->table[$i].$rfield ;
-                  if ($this->{$rtype}[$fieldname] == "") {
-                    $this->{$rtype}[$fieldname]=$rdata ;
-                    $a_rtype[$fieldname]=$rdata ;
-                  }
-
-                }
-              }
-              $qregistry->free() ;
-            }
-          } else {
-            $qregistry = new sqlQuery($dbc) ;
-            $rregistry = $qregistry->query("select rfield, rdata, rtype from $this->tbl_registry where rtable='$this->table' ") ;
-            if ($rregistry >0) {
-              while (list($rfield, $rdata, $rtype) = $qregistry->fetchArray()) {
-                $this->totalnumfields++ ;
-                if ($this->{$rtype}[$rfield] == "") {
-                  $this->{$rtype}[$rfield]=$rdata ;
-                }
-              }
-            }
-            $qregistry->free() ;
-          }
-        }
-      } elseif(strlen($table) > 0) {
+      $this->setLog("\n \n Fields object constructor: ".$table);
+            
+      
+      if(strlen(trim($table)) > 0) {
+		  	$table = trim($table);
+            $this->table = $table ;
             $this->setLog("\n loading from registry: ".$table);
             if (strpos($table, ",") === false) {
                 if (file_exists($this->project_path."/".$this->tbl_registry."/".$this->table.".reg.xml")) {

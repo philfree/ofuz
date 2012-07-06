@@ -152,21 +152,34 @@ class EventControler extends BaseObject {
             }
             if (strpos($eventname, "->")>0) {
                 list ($object_name, $method) = explode("->", $eventname);
-                $this->setLog("\n found object method: ".$object_name." -> ".$method);
-                if (is_object($_SESSION[$object_name])) {
-                    $this->setLog("\nObject is in the session");
-                    if (method_exists($_SESSION[$object_name], $method)) {
-                        $event_found = true;
-                        $_SESSION[$object_name]->{$method}($this);
-                    }
-                } elseif (class_exists($object_name)) {
-                    $this->setLog("\n Object class exists ".$object_name);
-                    $event_object = new $object_name($this->getDbCon());
-                    if (method_exists($event_object, $method)) {
-                        $event_object->{$method}($this);
-                        $event_found = true;
-                    }
-                }
+                if (strpos($object_name, ":") === false) {
+					$this->setLog("\n found object method: ".$object_name." -> ".$method);
+					if (is_object($_SESSION[$object_name])) {
+						$this->setLog("\nObject is in the session");
+						if (method_exists($_SESSION[$object_name], $method)) {
+							$event_found = true;
+							$_SESSION[$object_name]->{$method}($this);
+						}
+					} elseif (class_exists($object_name)) {
+						$this->setLog("\n Object class exists ".$object_name);
+						$event_object = new $object_name($this->getDbCon());
+						if (method_exists($event_object, $method)) {
+							$event_object->{$method}($this);
+							$event_found = true;
+						}
+					}
+				} else {
+					    list($object_name, $instance_param) = split(":", $object_name);
+					    if (get_parent_class($object_name) == "FieldType") {
+							$this->setLog("\n FieldType Object class ".$object_name);
+							$event_object = new $object_name($instance_param);
+							if (method_exists($event_object, $method)) {
+								$event_object->{$method}($this);
+								$event_found = true;
+							}						
+					}
+					
+				}
             }
             if (strpos($eventname, "::")>0) {
                 list ($object_name, $method) = explode("::", $eventname);

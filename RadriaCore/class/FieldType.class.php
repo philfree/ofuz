@@ -33,6 +33,7 @@ Class FieldType extends BaseObject {
     var $originalval ;
     var $field_value;
     var $registry_name;
+    static $event_level = 10;
 
     /**
      * RegistryFieldBase constructor
@@ -207,9 +208,12 @@ Class FieldType extends BaseObject {
      */
     function rdataForm_required($field_value="") {
         if ($this->getRData('required')) {
-            $fval = "<input type=\"hidden\" name=\"mydb_events[6]\" value=\"".$this->getObjectName()."::eventCheckRequired\"/>" ;
-            $fval .= "<input type=\"hidden\" name=\"required[".$this->getFieldName()."]\" value=\"yes\"/>" ;
-            $this->addProcessed($fval);
+			$e_require = new Event($this->getEventActionName("eventCheckRequired"));
+			$e_require->setLevel($this->getEventLevel())
+			          ->addParam("required[".$this->getFieldName()."]", "yes");			          
+            //$fval = "<input type=\"hidden\" name=\"mydb_events[6]\" value=\"".$this->getObjectName().":".$this->getFieldName()."->eventCheckRequired\"/>" ;
+            //fval .= "<input type=\"hidden\" name=\"required[".$this->getFieldName()."]\" value=\"yes\"/>" ;
+            $this->addProcessed($e_require->getEvent());
         }
     }
   /**   Event Mydb.checkRequired
@@ -248,7 +252,65 @@ Class FieldType extends BaseObject {
 				}
 		 }
 	}
+    /**
+     * rdataForm_unique rdata method check in the field content is unique in the db.
+     *
+     * This rdata will trigger the mydb.checkRequired event to check if the field contains a value.
+     * @param string $field_value value of the field
+     */
+    function rdataForm_unique($field_value="") {
+		$this->setLog("\n calling method: rdataForm_unique");
+        if ($this->getRData('unique') && $this->getRData('unique_table_name')) {
+			$this->setLog("\n Generating eventAction for unique");
+			$e_unique = new Event($this->getEventActionName("eventCheckUnique"));
+			$e_unique->addParam("unique[".$this->getFieldName()."]", "yes")   
+			         ->setLevel($this->getEventLevel());
+            $this->addProcessed($e_unique->getEvent());
+        }
+    }
 
+  /**   Event FieldType::eventCheckUnique
+  *
+  * Check that all the field set as required are field in.
+  * If not it sets the doSave param at "no" to block the save and
+  * call the message page.
+  * <br>- param array fields that contains the content of the fields to check
+  * <br>- param array required indexed on fields name and contains value "yes"
+  * <br>Option:
+  * <br>- param string errorpage page to display the error message
+  */   
+    function eventCheckUnique(EventControler $evctl) {
+  /**
+  $strRequiredField = "Vous devez remplire to les champs obligatoire" ;
+   */
+		if (strlen($this->unique_message) > 0) {
+			$validate_message = $this->unique_message ;
+		} elseif (strlen($this->label)>0) {
+			$validate_message = $this->label._(" must be unique");
+		}
+		 if ($evctl->submitbutton != _("Cancel") && strlen($this->unique_table_name) > 0) {
+				if (is_array($evctl->fields)) {
+					$field_name = $this->getFieldName();
+					if ($evctl->unique[$field_name]=="yes") {
+						$q_check = new sqlQuery($this->getDbCon());
+						$q_check->query("select {$field_name} from ".$this->unique_table_name." where {$field_name} = '".$this->quote($evctl->fields[$field_name])."'");					
+						if ($q_check->getNumRows() == 0) {
+							if (strlen($evctl->errorpage)>0) {
+								$urlerror = $evctl->errorpage;
+							} else {
+								$urlerror = $this->getMessagePage() ;
+							}
+							$disp = new Display($urlerror);
+							$disp->addParam("message", $validate_message) ;
+							$_SESSION["in_page_message"] = $validate_message;
+							$evctl->setDisplayNext($disp) ;
+							$evctl->updateParam("doSave", "no") ;
+						}
+					}				  
+				}
+		 }
+	}
+    
     /**
      * rdataForm_hidden rdata method hidden for form context
      *
@@ -303,6 +365,26 @@ Class FieldType extends BaseObject {
              $this->processed .= "<input class=\"adformfield\" type=\"text\" name=\"fields[".$this->field_name."]\" value=\"".$this->getFieldValue()."\"/>";
     }
 
+   /**
+    * getEventLevel
+    * Return the next level for an eventaction
+    */
+    function getEventLevel() {
+		$classname = 'FieldType';
+		return $classname::$event_level++;
+	}
+
+	/**
+	 * getEventActionName
+	 * will generate the eventaction object to call for FieldType classes
+	 * @param String method_name name of the event method
+	 * @return String with eventaction object call
+	 */
+    function getEventActionName($method_name) {
+		if (method_exists($this, $method_name)) {
+			return $this->getObjectName().":".$this->getFieldName()."->".$method_name;
+		} else { return "";}
+	}
 
    /**
     * setRDatas
@@ -1206,8 +1288,9 @@ Class FieldTypePassword  extends RegistryFieldStyle {
             if ($this->getRdata("loginform")) {
             	$fval .= "<input type=\"password\" name=\"fields[".$this->getFieldName()."]\" value=\"".$field_value."\"/>" ;
             } else {
-	            $fval = "<input name=\"accessfield[password]\" type=\"hidden\" value=\"".$this->getFieldName()."\"/>";
-    	        $fval .= "<input type=\"hidden\" name=\"mydb_events[20]\" value=\"FieldTypePassword::eventCheckUsernamePassword\">" ;
+				$e_password = new Event($this->getEventActionName("eventCheckUsernamePassword"));
+				$e_password->addParam("accessfield[password]", $this->getFieldName())->setLevel($this->getEventLevel());				
+	            $fval = $e_password->getEvent();
         	    $fval .= "<input ".$this->getStyleParam()." type=\"password\" name=\"fields[".$this->getFieldName()."]\" value=\"".$field_value."\"/>" ;
             	$fval .=  "\n<br/><input id=\"confirm_password\" type=\"password\" name=\"fieldrepeatpass[".$this->getFieldName()."]\" value=\"".$field_value."\"/>"  ;
             }
@@ -1297,6 +1380,7 @@ Class FieldTypePassword  extends RegistryFieldStyle {
 					}
 			}
 			$error  = $dispError->getParam("message") ;
+			$_SESSION["in_page_message"] = $error;
 			if (strlen($error) > 0) {
 					$evctl->setDisplayNext($dispError) ;
 					$evctl->updateParam("doSave", "no") ;

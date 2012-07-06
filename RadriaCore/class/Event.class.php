@@ -334,6 +334,22 @@ class Event extends Display {
     }
     return $out ;
   }
+  
+  /** 
+   *   getEvent
+   * Simplified version of the getEventForm()
+   * but this one only adds one event and its param. Its adding eventActions with its param to an existing form.
+   */
+    
+  function getEvent() {
+	$this->delParam("event_referer"); // removing it because its added in this class constructor.
+	
+	$out = "\n  <input id=\"".$this->getDomId()."_mydb_events_".$this->level."_\" type=\"hidden\" name=\"mydb_events[".$this->level."]\" value=\"".$this->name."\"/>" ;
+	while(list($varname, $varvalue) = each($this->params)) {
+		$out .="\n  <input id=\"".$this->getDomId()."_".$this->getJavascriptSafeName($varname)."\" type=\"hidden\" name=\"".$varname."\" value=\"".$varvalue."\"/>" ;		   
+	}	
+	return $out;  
+  }
 
   /**
    * getFormFooter return a string with the footer of the form for that event.
@@ -558,8 +574,17 @@ class Event extends Display {
     if ($option=="no_secure_hidden") {
         $this->do_not_hide[$varname] = 1;
     }
+    return $this;
   }
   
+  /**
+   * delParam remove a parameters
+   * 
+   * @param String $varname name of the param to remove
+   */
+  function delParam($varname) {
+	 unset($this->params[$varname]); 
+  }
   
   /**
    * add a param to be saved.
@@ -583,6 +608,7 @@ class Event extends Display {
    */
   function setLevel($level=10) {
     $this->level = $level ;
+    return $this;
   }
   
   function getLevel() {
@@ -625,6 +651,7 @@ class Event extends Display {
    */
   function setSecure($bool) {
     $this->secure = $bool ;
+    return $this;
   }
   
   /**
@@ -645,6 +672,7 @@ class Event extends Display {
    */
   function setHideKey($bool) {
     $this->hide_key = $bool;
+    return $this;
   }
   
   /** 
