@@ -77,7 +77,7 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 	      //Card presents in a Board
 	      $content .= "The Task presents in: <br /> <b>Board</b>: ".$board_title."<br /><b>Lane</b>: ".$lane_name."<br />";
 	      if($card_exists->IsBlocked) {
-		$content .= "Blocked: Yes";
+		$content .= "<b>Blocked</b>: Yes";
 	      }
 	    } else {
 	      //Card does not present in a Board
