@@ -71,14 +71,53 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 	    }
 	    //If card presents in a Board
 	    if($card_presents) {
+
 	      $do_olk = new OfuzLeanKitKanban();
 	      $lane_name = $do_olk->getCardLaneName($board_id, $card_exists->LaneId);
 
 	      //Card presents in a Board
+		$content .= '<script type="text/javascript">';
+                $content .= '$(document).ready(function() { $("#btnBlockSave").click(function() {var form = $(this).parents("form:first"); if ($("#block_unblock_reason").val() == "") {$("#msg").html("Please enter the reason.");$("#msg").slideDown("slow");e.preventDefault();return false;} else { form.submit(); } }); $("#block_it").click(function() {$("#block_unblock_reason").text("Why is the card blocked?"); $("#block_reason").slideDown("slow");}); $("#unblock_it").click(function() {$("#block_unblock_reason").text("Why is the card unblocked?"); $("#block_reason").slideDown("slow");});});';
+		$content .= '</script>';
+
+	      if($_SESSION["ofuz_kanban_message"] != "") {
+		$content .= "<div style='color:#E81313;'>".$_SESSION["ofuz_kanban_message"]."</div>";
+	      }
+	      $content .= "<div id='msg' style='color:#E81313;display:none;'></div>";
 	      $content .= "The Task presents in: <br /> <b>Board</b>: ".$board_title."<br /><b>Lane</b>: ".$lane_name."<br />";
 	      if($card_exists->IsBlocked) {
-		$content .= "<b>Blocked</b>: Yes";
+		$e_block = new Event("OfuzLeanKitKanban->eventUnblockTheCard");
+		$content .= "<b>Blocked</b>: Yes <a id='unblock_it' href='javascript:void(0);'>Unblock it</a>";
+	      } else {
+		$e_block = new Event("OfuzLeanKitKanban->eventBlockTheCard");
+		$content .= "<b>Blocked</b>: No <a id='block_it' href='javascript:void(0);'>Block it</a>";
 	      }
+
+	      $e_block->addParam("ofuz_task_id", $idtask);
+	      $e_block->addParam("ofuz_idprojecttask", $_GET['idprojecttask']);
+	      $e_block->addParam("card_id", $card_exists->Id);
+	      $e_block->addParam("lane_id", $card_exists->LaneId);
+	      $e_block->addParam("title", $card_exists->Title);
+	      $e_block->addParam("description", $card_exists->Description);
+	      $e_block->addParam("type_id", $card_exists->TypeId);
+	      $e_block->addParam("priority", $card_exists->Priority);
+	      $e_block->addParam("size", $card_exists->Size);
+	      $e_block->addParam("assigned_user_id",$card_exists->AssignedUserId);
+	      $e_block->addParam("index",$card_exists->Index);
+	      $e_block->addParam("due_date", $card_exists->DueDate);
+	      $e_block->addParam("user_wip_override_comment", $card_exists->UserWipOverrideComment);
+	      $e_block->addParam("tags", $card_exists->Tags);
+	      $e_block->addParam("class_of_service_id", $card_exists->ClassOfServiceId);
+	      $e_block->addParam("assigned_user_ids", $card_exists->AssignedUserIds);
+	      $e_block->addParam("board_id", $board_id);
+
+	      $content .= $e_block->getFormHeader();
+	      $content .= $e_block->getFormEvent();
+
+	      $content .= "<div id='block_reason' style='display:none;'><textarea name='block_unblock_reason' id='block_unblock_reason' rows='2' cols='28'></textarea> <br />";
+	      $content .= "<input type='button' name='btnBlockSave' id='btnBlockSave' value='Save' /> </form>"; //$e_block->getFormFooter("Save");
+	      $content .= "</div>";
+
 	    } else {
 	      //Card does not present in a Board
 	      if(count($arr_boards)) {
@@ -119,7 +158,7 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
     } else {
       $content .= "You have not set up your LeanKit Kanban Login Credentials.<br />Please <a href='/Setting/LeanKitKanban/leankit_kanban_authentication'>click here</a> to set up your Kanban Credentials.";
     }
-
+    unset($_SESSION["ofuz_kanban_message"]);
     return $content;
   }
 }

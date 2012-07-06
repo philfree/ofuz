@@ -296,6 +296,122 @@ class OfuzLeanKitKanban extends DataObject {
   }
 
   /**
+   * Makes the Card "Blocked". (In other words, this method blocks the card)
+   * This method takes the card JSON in the request body and updates the card (using the cardId in the card JSON) with 
+     the provided values. The cardId is not added to the url...just in the card JSON in the body.
+   * @param Object : EventControler
+   * @see LeanKitKanban->updateCard
+   */
+  public function eventBlockTheCard(EventControler $evtcl) {
+
+    $msg = "";
+
+    $this->getUserLoginCredentials();
+
+    if($this->getNumRows()) {
+      $username = $this->username;
+      $password = $this->password;
+
+      if(trim($evtcl->block_unblock_reason)) {     
+	$assigned_user_id = $this->getBoardUserId($evtcl->board_id, $username);
+	$array_card = array(
+	    "Id" => $evtcl->card_id,
+	    "LaneId" => $evtcl->lane_id,
+	    "Title" => $evtcl->title,
+	    "Description" => $evtcl->description,
+	    "TypeId" => $evtcl->type_id,
+	    "Priority" => $evtcl->priority,
+	    "Size" => $evtcl->size,
+	    "AssignedUserId" => $evtcl->assigned_user_id,
+	    "IsBlocked" => true,
+	    "BlockReason" => $evtcl->block_unblock_reason,
+	    "Index" => $evtcl->index,
+	    "DueDate" => $evtcl->due_date,
+	    "UserWipOverrideComment" => $evtcl->user_wip_override_comment,
+	    "ExternalSystemName" => "http://www.ofuz.net/Task/".$evtcl->ofuz_idprojecttask,
+	    "ExternalSystemUrl" => "http://www.ofuz.net/Task/".$evtcl->ofuz_idprojecttask,
+	    "Tags" => $evtcl->tags,
+	    "ClassOfServiceId" => $evtcl->class_of_service_id,
+	    "ExternalCardID" => $evtcl->ofuz_idprojecttask,
+	    "AssignedUserIds" => array($assigned_user_id)
+	);
+
+	$leankitkanban = new LeanKitKanban($username,$password);
+	$response = $leankitkanban->updateCard($array_card, $evtcl->board_id);
+	if($response->ReplyCode == '202') {
+	  $msg .= "The Card is successfully blocked.";
+	} else {
+	  $msg .= $response->ReplyText;
+	}
+      } else {
+	$msg .= "You must enter the reason to block the card.";
+      }
+    } else {
+      $msg .= "You have not set up your LeanKit Kanban Login Credentials.";
+    }
+
+    $_SESSION["ofuz_kanban_message"] = $msg;
+  }
+
+  /**
+   * Makes the Card "Unblocked". (In other words, this method unblocks the card)
+   * This method takes the card JSON in the request body and updates the card (using the cardId in the card JSON) with 
+     the provided values. The cardId is not added to the url...just in the card JSON in the body.
+   * @param Object : EventControler
+   * @see LeanKitKanban->updateCard
+   */
+  public function eventUnblockTheCard(EventControler $evtcl) {
+
+    $msg = "";
+
+    $this->getUserLoginCredentials();
+
+    if($this->getNumRows()) {
+      $username = $this->username;
+      $password = $this->password;
+
+      if(trim($evtcl->block_unblock_reason)) {     
+	$assigned_user_id = $this->getBoardUserId($evtcl->board_id, $username);
+	$array_card = array(
+	    "Id" => $evtcl->card_id,
+	    "LaneId" => $evtcl->lane_id,
+	    "Title" => $evtcl->title,
+	    "Description" => $evtcl->description,
+	    "TypeId" => $evtcl->type_id,
+	    "Priority" => $evtcl->priority,
+	    "Size" => $evtcl->size,
+	    "AssignedUserId" => $evtcl->assigned_user_id,
+	    "IsBlocked" => false,
+	    "BlockReason" => $evtcl->block_unblock_reason,
+	    "Index" => $evtcl->index,
+	    "DueDate" => $evtcl->due_date,
+	    "UserWipOverrideComment" => $evtcl->user_wip_override_comment,
+	    "ExternalSystemName" => "http://www.ofuz.net/Task/".$evtcl->ofuz_idprojecttask,
+	    "ExternalSystemUrl" => "http://www.ofuz.net/Task/".$evtcl->ofuz_idprojecttask,
+	    "Tags" => $evtcl->tags,
+	    "ClassOfServiceId" => $evtcl->class_of_service_id,
+	    "ExternalCardID" => $evtcl->ofuz_idprojecttask,
+	    "AssignedUserIds" => array($assigned_user_id)
+	);
+
+	$leankitkanban = new LeanKitKanban($username,$password);
+	$response = $leankitkanban->updateCard($array_card, $evtcl->board_id); 
+	if($response->ReplyCode == '202') {
+	  $msg .= "The Card is successfully unblocked.";
+	} else {
+	  $msg .= $response->ReplyText;
+	}
+      } else {
+	$msg .= "You must enter the reason to unblock the card.";
+      }
+    } else {
+      $msg .= "You have not set up your LeanKit Kanban Login Credentials.";
+    }
+
+    $_SESSION["ofuz_kanban_message"] = $msg;
+  }
+
+  /**
    * Formats MySql date to DDMMYYYY
    * @param string, string
    * @return string
