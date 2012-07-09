@@ -103,6 +103,9 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 	      if($card_exists->IsBlocked) {
 		$e_block = new Event("OfuzLeanKitKanban->eventUnblockTheCard");
 		$content .= "<b>Blocked</b>: Yes <a id='unblock_it' href='javascript:void(0);'>Unblock it</a>";
+		if($card_exists->BlockReason) {
+		  $content .= " &nbsp;&nbsp;<img src='/images/blocked.jpeg' width='16' title='Reason: ".$card_exists->BlockReason."' />";
+		}
 	      } else {
 		$e_block = new Event("OfuzLeanKitKanban->eventBlockTheCard");
 		$content .= "<b>Blocked</b>: No <a id='block_it' href='javascript:void(0);'>Block it</a>";
