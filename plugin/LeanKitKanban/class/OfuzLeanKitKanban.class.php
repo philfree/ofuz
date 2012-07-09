@@ -139,7 +139,12 @@ class OfuzLeanKitKanban extends DataObject {
 	);
 
 	$leankitkanban = new LeanKitKanban($username,$password);
-	$response = $leankitkanban->addCard($array_card, $evtcl->board, $lane_id, 1);      
+	$response = $leankitkanban->addCard($array_card, $evtcl->board, $lane_id, 1);
+	if($response->ReplyCode == '201') {
+	  $msg .= "The Card is added.";
+	} else {
+	  $msg .= $response->ReplyText;
+	}     
       } else {
 	$msg .= "You must select a Kanban Board to add this Task.";
       }
@@ -339,7 +344,7 @@ class OfuzLeanKitKanban extends DataObject {
 	$leankitkanban = new LeanKitKanban($username,$password);
 	$response = $leankitkanban->updateCard($array_card, $evtcl->board_id);
 	if($response->ReplyCode == '202') {
-	  $msg .= "The Card is successfully blocked.";
+	  $msg .= "The Card is blocked.";
 	} else {
 	  $msg .= $response->ReplyText;
 	}
@@ -397,7 +402,7 @@ class OfuzLeanKitKanban extends DataObject {
 	$leankitkanban = new LeanKitKanban($username,$password);
 	$response = $leankitkanban->updateCard($array_card, $evtcl->board_id); 
 	if($response->ReplyCode == '202') {
-	  $msg .= "The Card is successfully unblocked.";
+	  $msg .= "The Card is unblocked.";
 	} else {
 	  $msg .= $response->ReplyText;
 	}
