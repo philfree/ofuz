@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Copyright 2008 - 2011 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/ 
 
@@ -118,7 +118,7 @@ class OfuzLeanKitKanban extends DataObject {
 	if($task->due_date_dateformat == "" || $task->due_date_dateformat == "0000-00-00") {
 	  $due_date = "";
 	} else {
-	  $due_date = $this->convertMysqlDateToDDMMYYY($task->due_date_dateformat, "/");
+	  $due_date = $this->convertMysqlDateToMMDDYYY($task->due_date_dateformat, "/");
 	}
 
 	$array_card = array(
@@ -421,9 +421,9 @@ class OfuzLeanKitKanban extends DataObject {
    * @param string, string
    * @return string
    */
-  public function convertMysqlDateToDDMMYYY($mysql_date, $separator) {
+  public function convertMysqlDateToMMDDYYY($mysql_date, $separator) {
     $date = explode("-", $mysql_date);
-    $date = $date[2].$separator.$date[1].$separator.$date[0];
+    $date = $date[1].$separator.$date[2].$separator.$date[0];
     return $date;
   }
 
