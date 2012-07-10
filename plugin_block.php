@@ -16,17 +16,27 @@
       list($page_name, $file_extention) = explode('.',$page_name);
     }
     // Disable for 0.6.2 will be released on 0.6.3
-    //$do_plugin_enable = new PluginEnable();
+    $do_plugin_enable = new PluginEnable();
     if(is_array($cfg_block_placement) && count($cfg_block_placement) > 0 ){
         foreach($cfg_block_placement as $key=> $val ){
             if(strtolower($key) == strtolower($page_name)){
-                foreach($val as $block_class_name){
-                    $do_blocks = new $block_class_name();
-                    //$idplugin_enable = $do_plugin_enable->isEnabled($block_class_name);
-                    $idplugin_enable = true;
+                foreach($val as $block_class_name){  
+                    $do_blocks = new $block_class_name();                      
+                   if(in_array($block_class_name,$core_plugin_names)){                        
+                        $idplugin_enable = true;
                         if($do_blocks->isActive() === true && $idplugin_enable !== false ){
-                            $do_blocks->processBlock();
+                            $do_blocks->processBlock();                  
                         }
+
+                     }else{
+                        $idplugin_enabled = $do_plugin_enable->isEnabled($block_class_name);
+                        $idplugin_enable = true;
+                        if($do_blocks->isActive() === true && $idplugin_enable !== false && $idplugin_enabled!==false ){
+                            $do_blocks->processBlock();                  
+                        }
+                      
+                   }
+                  
                 }
             }
         }

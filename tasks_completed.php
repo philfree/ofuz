@@ -97,11 +97,14 @@ $e_editForm->setSecure(false);
         </div>
         <div class="left_menu_footer"></div>
     </td><td class="layout_rcolumn">
-        <div class="tasktop">
-            <span class="headline11"><?php echo _('Your completed tasks');?></span>
-            <span class="headerlinks"><a href="tasks.php"><?php echo _('Upcoming');?></a><span class="headerlinksI">|</span><?php echo _('Completed');?></span>
-            <!--<span class="headerlinksI">|</span><a href="ofuz_demo_tasks3.php">Assigned</a></span>//-->
-        </div>
+        <div class="mainheader pad20">
+                                <span class="headline14"><?php echo _('Your completed tasks');?></span>
+                                <?php
+								if (is_object($GLOBALS['cfg_submenu_placement']['tasks'] ) ) {
+									echo  $GLOBALS['cfg_submenu_placement']['tasks']->getMenu();
+								}
+								?>
+         </div>
         <div class="contentfull">
             <?php
                 $do_task->getDistinctCompletedTaskDates();

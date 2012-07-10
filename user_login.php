@@ -33,9 +33,9 @@
         $next_page = $from;
     }
     if (isset($_SESSION['entry']))  { 
-		$next_page = $_SESSION['entry'];
-		unset($_SESSION['entry']);
-	}
+  $next_page = $_SESSION['entry'];
+  unset($_SESSION['entry']);
+ }
  
 ?>
 <script type="text/javascript">
@@ -61,26 +61,26 @@ if($application_layer_protocol == "https") {
 <script type="text/javascript">
     FB_RequireFeatures(["XFBML"], function()
     {
-	   // xd_receiver to pull from a secure location
+    // xd_receiver to pull from a secure location
 <?php
 if($application_layer_protocol == "https") {
 ?>
-		FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTPS ;?>");
+  FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTPS ;?>");
 <?php
 } else {
 ?>
-		FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTP ;?>");
+  FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTP ;?>");
 <?php
 }
 ?>
       FB.Facebook.get_sessionState().waitUntilReady(function(session) {
         var is_loggedin = session ? true : false;
- 	var fbu = FB.Facebook.apiClient.get_session() ?
+  var fbu = FB.Facebook.apiClient.get_session() ?
              FB.Facebook.apiClient.get_session().uid :
              0;
             if (is_loggedin && !counter) {
                window.location.reload();
- 	    }
+      }
      }); 
     });
   </script>
@@ -118,6 +118,8 @@ window.location.href = "<?php echo $evctl->getUrl();?>";
             <?php echo _('If you forgot your password, you can retrieve it ');?><a href="user_lost_password.php"><?php echo ' '._('here');?></a>
             <br />
             <p>
+            <?php if(FACEBOOK_API_KEY != ''){ ?>
+
                 <?php echo _('Login With Facebook:') ; ?><br />
 <?php if($application_layer_protocol == "https") { ?>
                 <a href="#" onclick="FB.Connect.requireSession(); return false;" > <img id="fb_login_image" src="https://s-static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif" alt="Connect"/> </a>
@@ -125,6 +127,7 @@ window.location.href = "<?php echo $evctl->getUrl();?>";
                 <a href="#" onclick="FB.Connect.requireSession(); return false;" > <img id="fb_login_image" src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif" alt="Connect"/> </a>
 <?php } ?>
             </p>
+      <?php } ?>
             <p>
                 <?php echo _('Login With Twitter:') ; ?><br />
                 <a href="/tw_login.php"><img src="/images/sign-in-with-twitter-d.png" alt="" /></a>

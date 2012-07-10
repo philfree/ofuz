@@ -542,12 +542,7 @@ class ProjectTask extends Task {
      * Receives new sort order and writes it to the DB
      */
     function eventAjaxPrioritySort(EventControler $event_controler) {
-        $q = new sqlQuery($this->getDbCon());
-          echo "aneesj";
-              echo $event_controler->pt;
-      print_r($event_controler->pt);
-          exit;
-
+        $q = new sqlQuery($this->getDbCon());        
         foreach ($event_controler->pt as $priority => $idtask) {
             $q->query("UPDATE project_task SET priority = $priority WHERE idtask = $idtask");
         }
@@ -576,7 +571,50 @@ class ProjectTask extends Task {
     function eventUpdateProjectTask(EventControler $event_controler) {
         $do_task = new Task();
         $q = new sqlQuery($this->getDbCon());
-        $q->query("UPDATE task SET task_description = '{$event_controler->task_description}',
+
+          $today = date("Y-m-d");//Todays Date
+          $form_date=$event_controler->due_date;;//Entered Date
+                      
+          $dateDiff = strtotime($form_date) - strtotime($today);
+          $no_of_days = floor($dateDiff/(60*60*24));//Date Difference
+
+         
+
+          $next_day = strtotime ('+1 day',strtotime ($today));//Add one day to the current date to check wheather next day is saturday
+          $next_day = date ( 'D',$next_date);
+
+          $this_saturdays_date = date("Y-m-d", strtotime('next Saturday'));//get this saturday's date          
+          $sat_difference=strtotime($this_saturdays_date)-strtotime($form_date);
+          $sat_no_of_days=round($sat_difference/(60*60*24));
+
+
+
+          $this_month_end_date=date('Y-m-d',strtotime('-1 second',strtotime('+1 month',strtotime(date('m').'/01/'.date('Y').' 00:00:00'))));//this month calculation
+          $month_difference=strtotime($this_month_end_date)-strtotime($form_date);
+          $month_difference=round($month_difference/(60*60*24));
+          
+
+
+ 
+         if($no_of_days<0){
+              $due_date='Today';
+          }elseif($no_of_days==0){
+              $due_date='Today';
+          }elseif($no_of_days==1 && $next_day!='Sat'){
+               $due_date='Tomorrow';
+          }elseif($no_of_days>=2 && $no_of_days <=5 && $sat_difference>0){
+            $due_date='This week';
+          }elseif((($sat_no_of_days==0) || ($sat_no_of_days>=-6)) && ($form_date<=$this_month_end_date)){            
+            $due_date='Next week';
+          }elseif(($month_difference>=0)){
+              $due_date='This Month';
+          }elseif($month_difference<0 && $form_date>$this_month_end_date){
+              $due_date='Later';
+              $form_date = '0000-00-00';
+          }  
+
+
+        /*$q->query("UPDATE task SET task_description = '{$event_controler->task_description}',
                   task_category = '{$event_controler->task_category}',
                   due_date_dateformat = '{$event_controler->due_date}',
                   status = '{$event_controler->status}'
@@ -584,7 +622,20 @@ class ProjectTask extends Task {
         $q->query("UPDATE project_task SET 
                   idproject = {$event_controler->idproject} ,
                   hrs_work_expected = '{$event_controler->hrs_work_expected}'
+                  WHERE idproject_task = {$event_controler->idproject_task}");*/
+       $q->query("UPDATE task SET task_description = '{$event_controler->task_description}',
+                  task_category = '{$event_controler->task_category}',
+                  due_date='$due_date' , 
+                  due_date_dateformat = '$form_date',                  
+                  status = '{$event_controler->status}'
+                  WHERE idtask = {$event_controler->idtask}");
+        $q->query("UPDATE project_task SET 
+                  idproject = {$event_controler->idproject} ,
+                  hrs_work_expected = '{$event_controler->hrs_work_expected}'
                   WHERE idproject_task = {$event_controler->idproject_task}");
+
+
+
     }
 
 
@@ -726,7 +777,6 @@ class ProjectTask extends Task {
           
 
 
-
  
          if($no_of_days<0){
               $due_date='Today';
@@ -736,15 +786,16 @@ class ProjectTask extends Task {
                $due_date='Tomorrow';
           }elseif($no_of_days>=2 && $no_of_days <=5 && $sat_difference>0){
             $due_date='This week';
-          }elseif(($sat_no_of_days==0) || ($sat_no_of_days>=-6)){            
+          }elseif((($sat_no_of_days==0) || ($sat_no_of_days>=-6)) && ($form_date<=$this_month_end_date)){            
             $due_date='Next week';
           }elseif(($month_difference>=0)){
               $due_date='This Month';
-          }elseif($month_difference<0){
+          }elseif($month_difference<0 && $form_date>$this_month_end_date){
               $due_date='Later';
               $form_date = '0000-00-00';
           }
   
+
 
 
               if(is_array($task_ids) && count($task_ids) > 0 ){
@@ -809,15 +860,22 @@ class ProjectTask extends Task {
   }
 
 
-
-
-
-
-
-
-
-
-
+  /**
+   * Gets the idtask
+   * @param int
+   * @return int
+   */
+  function getTaskId($idproject_task) {
+    $sql = "SELECT idtask
+            FROM ".$this->table."
+	    WHERE ".$this->primary_key." = ".$idproject_task
+           ;
+    $this->query($sql);
+    if($this->getNumRows()) {
+      $this->fetch();
+      return $this->getData("idtask");
+    }
+  }
 
 
 }

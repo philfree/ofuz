@@ -40,7 +40,9 @@
 		$do_work_feed->sessionPersistent("do_work_feed", "contacts.php", OFUZ_TTL);
 	}
 
+	$_SESSION['do_work_feed']->sql_qry_start = 0;
 	$_SESSION['do_work_feed']->getWorkfeedCount();
+	
 
 
 ?>
@@ -167,24 +169,26 @@ $e_editForm->setSecure(false);
             $do_contact = $_SESSION['do_User']->getChildContact();
             if ($do_contact->getNumRows() == 0) {
                 $msg->getMessage("welcome");
-                echo '<div class="marginright">',$msg->displayMessage(),'</div>';
+                $msg->displayMessage();
             } else {
                 $msg->getMessageFromContext("dashboard");
-                echo '<div class="marginright">',$msg->displayMessage(),'</div>';
+                $msg->displayMessage();
             }
             ?>
 
-        <table class="mainheader pad20" width="100%">
-            <tr>
-                <td><span class="headline14">
-                <?php
+        <div class="mainheader pad20">
+                <span class="page_title"><?php
                     $do_workfeed = new WorkFeed();
                     printf(_("%s 's Work Feed:"),$_SESSION['do_User']->firstname) . "\n";
                 ?></span>
-                </td>
-                <td align="right">&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php"><?php echo _('Work Feed'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="daily_notes.php"><?php echo _('Notes & Discussion'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="timesheet.php"><?php echo _('Timesheet'); ?></a></td>
-            </tr>
-        </table>
+                <?php
+                if (is_object($GLOBALS['cfg_submenu_placement']['index'] ) ) {
+                	echo  $GLOBALS['cfg_submenu_placement']['index']->getMenu();
+                }
+                ?>
+        </div>
+        
+        
         <script type="text/javascript">
         function autoLoadWorkfeed() {
                 $('div#last_feed_loader').html('<img src="/images/loader1.gif">');
@@ -207,11 +211,15 @@ $e_editForm->setSecure(false);
         
         $(document).ready(function()
         {
-        $(window).scroll(function(){
-        if ($(window).scrollTop() == $(document).height() - $(window).height()){
-        autoLoadWorkfeed();
-        }
-        });
+	  $(window).scroll(function(){
+	    var scrollTop = $(window).scrollTop();
+            var docHeight = $(document).height();
+            var winHeight = $(window).height();
+	    //alert(scrollTop+' : '+docHeight+' : '+winHeight);
+	    if ($(window).scrollTop() == ($(document).height() - $(window).height() - 1)){
+	      autoLoadWorkfeed();
+	    }
+	  });
         });
         </script>
         <?php
@@ -225,12 +233,12 @@ $e_editForm->setSecure(false);
 
         <!-- Add ofuz to Browser Search option begins -->
         
-        <script src="/browser_search/browser_detect.js" type="text/javascript"></script>
+        <!--<script src="/browser_search/browser_detect.js" type="text/javascript"></script>
 
         
         <div style="text-align:center;cursor:pointer">
             <script src="/browser_search/browser_functions.js" type="text/javascript"></script>
-        </div>
+        </div>-->
 
 
         <!-- Add ofuz to Browser Search option ends -->

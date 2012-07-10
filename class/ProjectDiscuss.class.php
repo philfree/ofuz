@@ -72,7 +72,8 @@ class ProjectDiscuss extends Note {
 
         $this->query("INSERT INTO project_discuss (idproject_task,discuss,date_added,document,hours_work,iduser,discuss_edit_access,type)
                       VALUES 
-                      (".$this->idproject_task.",'".$project_discuss."','".$this->date_added."','".$this->document."',".$this->hours_work.",".$this->iduser.",'".$this->discuss_edit_access."','Note')");
+                      (".$this->idproject_task.",'".$project_discuss."','".$this->date_added."','".$this->document."','".$this->hours_work."','".$this->iduser."','".$this->discuss_edit_access."','Note')");
+                      
         $this->setPrimaryKeyValue($this->getInsertId($this->getTable(), $this->getPrimaryKey()));
     }
 

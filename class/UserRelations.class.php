@@ -55,6 +55,90 @@ class UserRelations extends DataObject {
         $co_worker_form->execute();
     }
 
+  /**
+   * The Event Method
+   * This method invites more than one Co-Worker at a time.
+   * @param object : EventControler
+   * @see  Welcome Wizard Step 3 for example.    
+   */
+
+  function eventInviteMultipleCWs(EventControler $evtcl) {
+    $goto = $evtcl->goto;
+    $flag = false;
+    foreach($evtcl->email as $email) {
+      if($email) {
+        $flag = true;
+	$email_user = $email;
+	$iduser = $this->isUserExists($email_user);
+	// user already in the db so just add 
+	if($iduser){ 
+	  $q = new sqlQuery($this->getDbCon()) ;
+	  $q->query("select * from ".$this->table." where iduser = ".$_SESSION['do_User']->iduser." AND idcoworker= ".$iduser);
+	  
+	  if($q->getNumRows() > 0 ){
+	    while($q->fetch()){
+	      $accepted = $q->getData("accepted");
+	    }
+	    if($accepted == 'Yes'){
+		$_SESSION['in_page_message'] = "cw_user-is-already-cw";
+	    }elseif($accepted == 'No'){
+		$_SESSION['in_page_message'] = "cw_already-have-pending-invitation";
+	    }
+	  }else{
+	    $this->addNew();
+	    $this->iduser = $_SESSION['do_User']->iduser;
+	    $this->idcoworker = $iduser;
+	    $this->accepted = 'No';
+	    $this->add();
+	    $_SESSION['in_page_message'] = "cw_user-is-already-in-db-notification-sent";
+	  }
+	}else{ // Not found send the email.
+	      $enc_email =  $this->encrypt($email_user);
+	      $q = new sqlQuery($this->getDbCon()) ;
+	      $q->query("select * from ".$this->table." where iduser = ".$_SESSION['do_User']->iduser." AND enc_email = '".$enc_email."' AND accepted ='No'");
+	      if($q->getNumRows() > 0 ){ // If the invitation is still pending
+		$_SESSION['in_page_message'] = "cw_already-have-pending-invitation-to";
+		$_SESSION['in_page_message_data']['enc_email'] = $this->decrypt($enc_email);
+	      }else{
+		  $this->addNew();
+		  $this->iduser = $_SESSION['do_User']->iduser;
+		  $this->idcoworker = 0;
+		  $this->accepted = 'No';
+		  $this->enc_email = $enc_email;
+		  $this->add();
+		  $last_id = $this->getInsertId($this->table, $this->primary_key);
+		  include_once("class/Emailer.class.php");
+		  $q = new sqlQuery($this->getDbCon());
+		  $q->query("select * from ".$this->table." where ".$this->primary_key." = ".$last_id);
+		  if ($q->getNumRows() > 0) {
+		    while($dData = $q->fetchArray()) {
+			$dData["firstname"] = $_SESSION['do_User']->firstname;
+			$dData["referer"] = $this->encrypt($last_id);
+			$full_name = $_SESSION['do_User']->firstname." ".$_SESSION['do_User']->lastname;
+
+
+			$email = new Emailer() ;
+			$email->loadEmailer($this->getDbCon(), "invitation") ;
+			$email->setSender($full_name, $_SESSION['do_User']->email);
+			$email->mergeArray($dData) ;
+			if ($email->hasHtml()) {
+			    $email->sendMailHtml($email_user);
+			} else {
+			    $email->sendMailStandard($email_user);
+			}
+			$_SESSION['in_page_message'] =  "cw_user-not-in-db-register";
+
+		    }
+		  }
+		}
+	 }
+      }
+    }
+    if($flag) {
+      $evtcl->setDisplayNext(new Display($evtcl->goto));
+    }
+
+  }
      function eventSetCoWorker(EventControler $evtcl) {
 		         
         $goto = $evtcl->goto;
@@ -310,7 +394,7 @@ class UserRelations extends DataObject {
        $evtcl->setDisplayNext(new Display($evtcl->goto)); 
     }
 
-    function encrypt($sData){
+    function encrypt($sData){   
       $sKey = $this->secretkey;
       $sResult = '';
       for($i = 0; $i < strlen($sData); $i ++){

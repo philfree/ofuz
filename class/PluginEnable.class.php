@@ -74,7 +74,7 @@ class PluginEnable extends DataObject {
     public function isPluginAddedBefore($plugin,$iduser=""){
         if($iduser == "") $iduser = $_SESSION['do_User']->iduser ;
         $q = new sqlQuery($this->getDbCon());
-        $q->query("select * from ".$this->table. " where plugin = '".$plugin."' AND iduser = ".$iduser);
+        $q->query("select * from {$this->table} where plugin = '{$plugin}' AND iduser = {$iduser}");
         if($q->getNumRows() > 0 ){
             $q->fetch();
             return $q ;
@@ -101,6 +101,89 @@ class PluginEnable extends DataObject {
     }
 
     
+
+    /** Event funtion to enable the AddOn
+      *@param Object $evctl
+    **/
+    
+    public function eventEnableAddOn(EventControler $evctl){
+        $tabs= $evctl->tabs;
+        $settings = $evctl->settings;        
+        $blocks = $evctl ->blocks;
+               
+        if(!empty($tabs)){
+          foreach($tabs as $tabname){
+             $this->enablePlugin($tabname);
+          }
+        }
+  
+        if(!empty($settings)){
+          foreach($settings as $setting_name){
+            $this->enablePlugin($setting_name);
+          }
+        }
+       
+        if(!empty($blocks)){
+          foreach($blocks as $block_name){
+            $this->enablePlugin($block_name);
+          }
+        }
+    }
+
+    /** Event funtion to Disable the AddOn
+      *@param Object $evctl
+    **/
+    public function eventDisableAddOn(EventControler $evctl){
+        
+        $idplugin=$evctl->idplugin_enable;
+        
+        foreach($idplugin as $ids){
+          $this->disablePlugin($ids);
+        }
+    }
+
+    /** funtion to check wheather all components of a plugin is enabled or not .Return false if any of the component is not enabled 
+      * otherwise it  returns pluginid values.
+      *@param Array $plugins
+    **/
+    public function isAddOnEnabled($plugins){
+      
+      $plugin_id_values=array();
+
+      if(!empty($plugins['tabs'])){
+          foreach($plugins['tabs'] as $plugin_tab_name){                
+            if(($this->isEnabled($plugin_tab_name))==false){
+                return false;
+            }else{
+              array_push($plugin_id_values, $this->isEnabled($plugin_tab_name));
+            }
+          }
+      }
+
+      if(!empty($plugins['settings'])){
+          foreach($plugins['settings'] as $plugin_settings_name){           
+            if(($this->isEnabled($plugin_settings_name))==false){
+                  return false;
+            }else{
+              array_push($plugin_id_values, $this->isEnabled($plugin_settings_name));
+            }
+          }
+      }
+
+      if(!empty($plugins['blocks'])){
+          foreach($plugins['blocks'] as $plugin_blocks_name){            
+            if(($this->isEnabled($plugin_blocks_name))==false){
+                return  false;
+            }else{
+              array_push($plugin_id_values,$this->isEnabled($plugin_blocks_name));
+            }
+          }
+
+          
+          return $plugin_id_values;
+      }
+    }
+
 }
 
 

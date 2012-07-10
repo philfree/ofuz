@@ -523,7 +523,7 @@ class Tag extends DataObject {
                                         ");
        $html = '';
        if($q->getNumRows()){
-          $html .='<select name = "delTagMul" id="delTagMul" onChange="deleteTagMul(); return false;" >';
+          $html .='<select name = "delTagMul" id="delTagMul" onChange="eventActionMultiple(\'do_Contacts->eventDeleteMultipleContactsTag\', \'\'); return false;" >';
           $html .= '<option value = "">'._('Select Tag to remove').'</option>';
           while($q->fetch()){
               $html .= '<option value = "'.$q->getData("tag_name").'">'.$q->getData("tag_name").'</option>'; 

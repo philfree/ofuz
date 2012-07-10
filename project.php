@@ -1,5 +1,5 @@
 <?php 
-// Copyrights 2008 - 2011 all rights reserved, SQLFusion LLC, info@sqlfusion.com
+// Copyrights 2008 - 2012 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
     $pageTitle = 'Ofuz :: Project';
@@ -187,6 +187,26 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
             $.get("<?php echo $strPrioritySortURL; ?>&"+priorities);}
         });
     });
+
+function sticky_relocate() {
+  var window_top = $(window).scrollTop();
+  var div_top = $('#sticky-anchor').offset().top;
+  if (window_top > div_top)
+    $('#contacts_ctlbar').addClass('stick')
+  else
+    $('#contacts_ctlbar').removeClass('stick');
+  }
+
+ /*
+  * Sticky Div
+  * On scroll down, the action menu sticks on top
+    On scroll up, it comes back to original position
+    On selecting the last project task, the action menu sticks on top and display.
+  */
+ $(function() {
+  $(window).scroll(sticky_relocate);
+  sticky_relocate();
+  });
     //]]>
 </script>
 <?php $do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
@@ -209,30 +229,29 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
      <?php
       // If the project is a public project then hide the following
       if($project_operation_access === true){
+          if($project_details['status'] != 'closed'){
+            // Login the Block Plugins here //
+            include_once('plugin_block.php');
+          }
+    }
 
- // Login the Block Plugins here //
- include_once('plugin_block.php');
-    }// Public project hide part ends here
+      // Public project hide part ends here
     ?>
     </td><td class="layout_rcolumn">
      <?php
             $msg = new Message(); 
-   if ($msg->getMessageFromContext("project tasks")) {
-    echo $msg->displayMessage();
-   }
+            if ($msg->getMessageFromContext("project tasks")) {
+               echo $msg->displayMessage();
+            }
         ?> 
-        <div class="mainheader">
-            <div class="project_detail_name">
-                <span class="headline14"><?php echo $project_details['name']; ?></span>
-                <span class="project_edit">
-                  <?php 
-                      if($project_operation_access === true){
-                  ?>
-                    <a href="#" onclick="fnEditProject(); return false;">edit</a>
-                  <?php } ?>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="fnFilterProject(); return false;">filter</a>
-                </span>
-            </div>
+       
+        <div class="mainheader pad20">
+                <span class="page_title"><?php echo $project_details['name']; ?></span>
+                <?php
+                if (is_object($GLOBALS['cfg_submenu_placement']['project'] ) ) {
+                	echo  $GLOBALS['cfg_submenu_placement']['project']->getMenu();
+                }
+                ?>
         </div>
           <?php
               if($_SESSION['do_list_project_task']->project_id_searched != $idproject ){
@@ -335,6 +354,7 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
   echo $e_set_close->getFormHeader();
   echo $e_set_close->getFormEvent();
      ?>
+<div id="sticky-anchor"></div>
  <div id="contacts_ctlbar" style="display: none;">
     <?php 
         echo '<b>'._('With the selected Task(s) you can:').'</b><br/>';

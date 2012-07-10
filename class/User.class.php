@@ -425,15 +425,31 @@ class User extends RegisteredUser {
             $this->setLog("\n(User) database: ".$conx->db.", table:".$this->getTable());
             $this->query("select * from `".$this->getTable()."` 
                           where `".$this->getUsernameField()."`='".$this->quote($auth_username)."' 
-                          and `".$this->getPasswordField()."`='".$this->quote($auth_password)."'") ;
+                          and `".$this->getPasswordField()."`='".$this->quote($auth_password)."'") ;  
+       
+
             $this->setLog("\n(User) Query executed for sign on:".$this->sql_query);
             
             if ($this->getNumrows() == 1) {
                 if(isset($_SESSION["google"]["openid_identity"])) {
                   $this->setGoogleOpenIdIdentity($this->iduser);
                 }
-
-                if ($this->status == 'active') {				
+				
+				unset($_SESSION['upgrade']);
+				if($this->plan == "trial"){
+					$date1 = strtotime($this->regdate);
+					$date2 = strtotime(date("Y-m-d"));
+					
+					$diff = ($date2-$date1)/(60*60*24);
+					if($diff >= '30'){
+						$_SESSION["upgrade"] = true;
+						$err_disp = new Display("api_upgrade_invoice.php");
+						$eventControler->setDisplayNext($err_disp);
+						$eventControler->doForward();
+					}
+				}
+					
+                if ($this->status == 'active') {			
                         $do_login_audit = new LoginAudit();
                         if($this->fb_user_id){// IS a FB connected User
                           if($this->email == ''){ // Oups!!!! no email id then you must login with facebook
@@ -1010,6 +1026,7 @@ class User extends RegisteredUser {
     */
     function eventAddUserAsContact(EventControler $evtcl){
 	    if($evtcl->validation_fail != 'Yes'){ // Variable set in the method 
+	    
 		if($_SESSION["do_User"]->iduser) {
 			$idcompany = "";
 			if($evtcl->fields["company"]) {
@@ -1063,13 +1080,17 @@ class User extends RegisteredUser {
 	  $do_contact->addEmail($email,'Home');
 
 	  $lastInsertedContId = $do_contact->getPrimaryKeyValue();
-
+	  //$this->setRegistry(false);
 	  $this->getId($iduser);
 	  $this->idcontact = $lastInsertedContId;
 	  $this->update();
+	  
 	  $contact_view = new ContactView();
 	  $contact_view->setUser($iduser);
+	  //$this->setRegistry(false);
 	  $contact_view->rebuildContactUserTable(); 
+	  
+	  
     }
 
     /**
@@ -1404,6 +1425,52 @@ class User extends RegisteredUser {
 		$msg = "$nums user record has been deleted";
 		return $msg;
 
+    }
+
+  function getContactId($iduser){
+    $sql = "SELECT idcontact
+            FROM {$this->table}
+            WHERE iduser = {$iduser}
+   ";
+     $this->query($sql);
+     if($this->getNumRows()){
+        $this->fetch();
+        return $idcontact = $this->getData('idcontact');
+
+    }
+  }
+
+  /**Function to get the username by idusers 
+    *@param int $iduser
+    *@return char username;
+  **/
+  function getUserNameByIdUser($iduser){
+    $sql = "SELECT username 
+            FROM {$this->table}
+            where iduser = {$iduser}
+          ";
+    $this->query($sql);
+     if($this->getNumRows()){
+        $this->fetch();
+        return $idcontact = $this->getData('username');
+
+    }
+  }
+
+    /**
+      * Get the username (login id)
+      * @param  int : iduser
+      * @return string : username
+    */
+    function getUserLoginId($iduser){
+	$username = "";
+        $q = new sqlQuery($this->getDbCon());
+        $q->query("select username from user where iduser = ".$iduser);
+        if($q->getNumRows()){
+	    $q->fetch();
+            $username = $q->getData("username");
+        }
+	return $username;
     }
 
 }

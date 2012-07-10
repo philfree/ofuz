@@ -33,14 +33,17 @@ include_once('includes/ofuz_navtabs.php'); ?>
 			  $msg->getMessageFromContext("daily notes");
               echo $msg->displayMessage();
 		?>
-	<table class="mainheader pad20" width="100%">
-		<tr>
-			<td><span class="headline14"><?php echo _('Daily Notes & Discussion');?></span></td>
-			<td align="right">&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php"><?php echo _('Work Feed'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="daily_notes.php"><?php echo _('Notes & Discussion'); ?></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="timesheet.php"><?php echo _('Timesheet'); ?></a></td>
-		</tr>
-	</table>
-
-
+        <div class="mainheader">
+            <div class="pad20">
+                <span class="headline14"><?php echo _('Daily Notes & Discussion');?></span>
+                <?php
+                if (is_object($GLOBALS['cfg_submenu_placement']['daily_notes'] ) ) {
+                	echo  $GLOBALS['cfg_submenu_placement']['daily_notes']->getMenu();
+                }
+                ?>
+            </div>
+        </div>
+     <div class="sub_action_menu">
 <?php  
 
      if(!is_object($_SESSION['adm_project'])){
@@ -93,7 +96,7 @@ include_once('includes/ofuz_navtabs.php'); ?>
         $e_user_search_false->addParam('goto',$_SERVER['PHP_SELF']); 
         echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$e_user_search_false->getLink(_("All Users"));
      }
-     echo '<div class="dottedline"></div>                 
+     echo '</div><div class="dottedline"></div>                 
             <div class="headline_fuscia">'._('Projects').'</div>
 			';
      while($_SESSION['adm_project']->next()){
@@ -139,7 +142,7 @@ include_once('includes/ofuz_navtabs.php'); ?>
             }
         }
      }
-
+/** lets hide this for now we will move it to its own page.
 	 $do_adm_contacts = new ContactNotes();
 	 $do_adm_contact_notes = new ContactNotes();
 	 $do_contact = new Contact();
@@ -164,7 +167,7 @@ include_once('includes/ofuz_navtabs.php'); ?>
 			}
 		}
 	 }
-    
+ **/   
      
 ?>
     <div class="dottedline"></div>

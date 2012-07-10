@@ -2,6 +2,7 @@
 // Copyright 2008 - 2011 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/ 
 
+
     /**
       * Contact class
       * Using the DataObject
@@ -251,7 +252,7 @@ class Contact extends DataObject {
                 $image_url = "/dbimage/".$picture;
             }
         }
-        
+
         return $image_url;
     }
 
@@ -985,15 +986,22 @@ class Contact extends DataObject {
             $this->setLog("\n Not tags deleting contacts");
             $contacts = $event_controler->getParam("ck");
             if (is_array($contacts)) {
-                $error_delete = false;
-                $error_message = "The following Contacts can not be deleted as these are shared by some of your Co-Workers.<br />";
+                $error_delete = false;                
                 $do_deleting_contact = new Contact();
+                $logged_in_useridcontact = $_SESSION['do_User']->idcontact;
                 foreach ($contacts as $idcontact) {
-                    $this->setLog("\n deleting contact:".$idcontact);
+                    $this->setLog("\n deleting contact:".$idcontact);                        
                     $do_deleting_contact->getId($idcontact);
                     if($this->isContactOwner($idcontact)){ // if owner then only delete
-                      $do_deleting_contact->delete();
+                      if($idcontact != $logged_in_useridcontact){
+                        $do_deleting_contact->delete();
+                      }else{
+                        $error_message .='';
+                        $error_message .= 'You cannot delete your own contact.<br />';
+                        $error_delete = true;
+                      }
                     }else{
+                      $error_message = "The following Contacts can not be deleted as these are shared by some of your Co-Workers.<br />";
                       $error_message .= '<b><i>'.$this->getContactFullName($idcontact).'</i></b><br />';
                       $error_delete = true;
                     }
@@ -1076,6 +1084,7 @@ class Contact extends DataObject {
         $_SESSION['tag_refresh_now'] = true;
     }
 
+
     /**
      * eventGetForMailMerge
      * Get the list of contact for mailmerge
@@ -1109,7 +1118,7 @@ class Contact extends DataObject {
 	  *  @todo Problem with the getBodyText(true) it returns some bad encoding and no newline, could also be the problem in the template it self...
       */
 
-     function eventSendMessage(EventControler $event_controler) { 
+     function eventSendMessage(EventControler $event_controler) {      
         $this->setLog("\n eventSendMessage (".date("Y/m/d H:i:s").")");
         if ($event_controler->send == _('Send Mailing')) {
             $email_template = $_SESSION['do_message'];
@@ -1125,7 +1134,7 @@ class Contact extends DataObject {
                     $values_contact = $this->getValues();
                     $tag_values = array("flag"=>"unsubscribe_autoresponder","idtag"=>$event_controler->idtag);
                     $values = array_merge($values_contact,$tag_values);
-                    $message = $this->sendMessage($email_template, $values);
+                    $message = $this->sendMessage($email_template, $values);echo "++++++++++++++++++_";exit;
                 }else{
                     $message = $this->sendMessage($email_template, $this->getValues());
                 }
@@ -1222,15 +1231,25 @@ class Contact extends DataObject {
       *  @param $values an array with values to merge, optional.
       *  
       */
-     function sendMessage($template, $values=Array()) {
+     function sendMessage($template, $values=Array()) {   
         if (!is_object($template)) { return false; }
                 if (empty($values)) { $values = $this->getValues(); }
                 $this->last_message_sent = false;
         $do_contact_email = $this->getChildContactEmail();
         $email_to = $do_contact_email->getDefaultEmail();
         $this->setLog("\n Sending message to:".$email_to);   
-        $contact_link = '<a href="/Contact/'.$this->idcontact.'">'.$this->firstname.' '.$this->lastname.'</a>';     
-        if (strlen($email_to) > 4) { 
+        $contact_link = '<a href="/Contact/'.$this->idcontact.'">'.$this->firstname.' '.$this->lastname.'</a>';   
+
+        $do_ofuzBeanstalkd = new OfuzBeanstalkd();
+        $do_ofuzBeanstalkd ->addToQueue($mail_data,'jobqueue_send_mail',$_SESSION['do_User']->iduser);
+          echo 'Job Queue requested';
+          exit;
+
+       if (strlen($email_to) > 4) { 
+          if($this->email_optout !='y'){
+        
+ /*    
+   if (strlen($email_to) > 4) { 
             if ($this->email_optout != 'y') {
                 $emailer = new Ofuz_Emailer('UTF-8');
                 if (strlen($template->senderemail) == 0) {
@@ -1240,7 +1259,12 @@ class Contact extends DataObject {
                 $emailer->mergeArrayWithFooter($values);
                 $emailer->addTo($email_to);
                 $this->last_message_sent = true;
-                return $emailer->send();
+                echo "<pre>";
+                print_r($emailer);
+                echo "</pre>";
+                exit;
+                return $emailer->send();*/
+
             } else {
                 $_SESSION['in_page_message'] .= _("<br>".$contact_link." has opt-out and will not receive this email");
             }
@@ -1296,6 +1320,7 @@ class Contact extends DataObject {
             return false; 
         }		 
     }
+
   
     function eventdelContactTagById(EventControler $event_controler){
       $do_tag =new Tag();
@@ -1773,12 +1798,20 @@ class Contact extends DataObject {
      * Since Facebook does provide limited information on friends so just the basic
      * information will be imported and also keep track of the Facebook user id so that 
      * for the first time it will just add and on next import it will update.
-     * @param $fb_friend_id 
+     * @param array $fb_friend_id 
+     * @param integer $iduser
     */
 
-    function importFacebookFriends($friends_data){
+    function importFacebookFriends($friends_data,$iduser=''){
         $do_tag = new Tag();
         $do_company = new Company();
+        $do_cont_view =  new ContactView();
+        if($iduser == '' ){
+            $iduser = $_SESSION['do_User']->iduser ;
+        }else{
+            $do_cont_view->setUser($iduser);
+        }
+        $tag_list_names = '';
         $frnd_fb_uid = $friends_data["fb_uid"];
         $idcontact = $this->isFbFriendInContact($frnd_fb_uid);
         $fname = $friends_data["name"]["first_name"];
@@ -1797,22 +1830,23 @@ class Contact extends DataObject {
         $this->firstname = $fname;
         $this->lastname = $lname;
         $this->fb_userid = $frnd_fb_uid;
-        $this->iduser = $_SESSION['do_User']->iduser;
+        $this->iduser = $iduser;
         if($idcontact){
           //update the data
            $this->checkFbProfileUrlOnUpdate($idcontact,$profile_url);
            $this->updateFbProfilePic($idcontact,$profile_pic);
-           $do_tag->addTagAssociation($idcontact,"Facebook","contact",$_SESSION['do_User']->iduser);
+           $do_tag->addTagAssociation($idcontact,"Facebook","contact",$iduser);
            if(is_array($list_name) && count($list_name) > 0 ){
+              $tag_list_names = implode(",",$list_name);
               foreach($list_name as $list_name){
-                  $do_tag->addTagAssociation($idcontact,$list_name,"contact",$_SESSION['do_User']->iduser);
+                  $do_tag->addTagAssociation($idcontact,$list_name,"contact",$iduser);
               }
            }
            $this->getId($idcontact);
            if($company != '' && !empty($company)){
               if($position !=''){$this->position =$position; }else{$this->position ='';}
               $q = new sqlQuery($this->getDbCon());
-              $q->query("select idcompany from company where name = '".trim($company)."' AND iduser = ".$_SESSION['do_User']->iduser );
+              $q->query("select idcompany from company where name = '".trim($company)."' AND iduser = ".$iduser );
               if($q->getNumRows()){
                 $q->fetch();
                 $idcompany = $q->getData("idcompany");
@@ -1822,7 +1856,7 @@ class Contact extends DataObject {
                 $idcontact = $this->getPrimaryKeyValue();
               }else{
                 $do_company->name = trim($company);
-                $do_company->iduser = $_SESSION['do_User']->iduser;
+                $do_company->iduser = $iduser;
                 $do_company->add();
                 $idcompany = $do_company->getPrimaryKeyValue();
                 $this->idcompany = $idcompany;
@@ -1830,11 +1864,15 @@ class Contact extends DataObject {
                 $this->update();
               }
            }else{
-                $iduser = $_SESSION['do_User']->iduser;
+                //$iduser = $_SESSION['do_User']->iduser;
                 $q = new sqlQuery($this->getDbCon());
                 $q_upd = "UPDATE contact set firstname = '".$fname."',lastname = '".$lname."',fb_userid = ".$frnd_fb_uid.",position = '".$position."' where idcontact = ".$idcontact;
                 $q->query($q_upd);
            }
+           $this->getId($idcontact);
+           $do_cont_view->updateFromContact($this);// Added the method call updateFromContact() so that the child data is updated 
+           $do_cont_view->addTag('Facebook',$this->idcontact);// Update the contact view for tags.
+           $do_cont_view->addTag($tag_list_names,$this->idcontact);// Update the contact view for tags.
         }else{
            // new entry
            $do_company = new Company();
@@ -1842,7 +1880,7 @@ class Contact extends DataObject {
            if($company != '' && !empty($company)){
               if($position !=''){$this->position =$position; }else{$this->position ='';}
               $q = new sqlQuery($this->getDbCon());
-              $q->query("select idcompany from company where name = '".trim($company)."' AND iduser = ".$_SESSION['do_User']->iduser );
+              $q->query("select idcompany from company where name = '".trim($company)."' AND iduser = ".$iduser );
               if($q->getNumRows()){
                 $q->fetch();
                 $idcompany = $q->getData("idcompany");
@@ -1855,16 +1893,17 @@ class Contact extends DataObject {
                 $do_cont_website->website_type = 'Facebook';
                 $do_cont_website->add();
                 $this->updateFbProfilePic($idcontact,$profile_pic);
-                $do_tag->addTagAssociation($idcontact,"Facebook","contact",$_SESSION['do_User']->iduser);
+                $do_tag->addTagAssociation($idcontact,"Facebook","contact",$iduser);
                 
                 if(is_array($list_name) && count($list_name) > 0 ){
+                  $tag_list_names = implode(",",$list_name);
                   foreach($list_name as $list_name){
-                      $do_tag->addTagAssociation($idcontact,$list_name,"contact",$_SESSION['do_User']->iduser);
+                      $do_tag->addTagAssociation($idcontact,$list_name,"contact",$iduser);
                   }
                 }
               }else{
                 $do_company->name = trim($company);
-                $do_company->iduser = $_SESSION['do_User']->iduser;
+                $do_company->iduser = $iduser;
                 $do_company->add();
                 $idcompany = $do_company->getPrimaryKeyValue();
                 $this->idcompany = $idcompany;
@@ -1876,16 +1915,17 @@ class Contact extends DataObject {
                 $do_cont_website->website_type = 'Facebook';
                 $do_cont_website->add();
                 $this->updateFbProfilePic($idcontact,$profile_pic);
-                $do_tag->addTagAssociation($idcontact,"Facebook","contact",$_SESSION['do_User']->iduser);
+                $do_tag->addTagAssociation($idcontact,"Facebook","contact",$iduser);
                 if(is_array($list_name) && count($list_name) > 0 ){
+                  $tag_list_names = implode(",",$list_name);
                   foreach($list_name as $list_name){
-                      $do_tag->addTagAssociation($idcontact,$list_name,"contact",$_SESSION['do_User']->iduser);
+                      $do_tag->addTagAssociation($idcontact,$list_name,"contact",$iduser);
                   }
                 }
               }
               
            }else{
-                $iduser = $_SESSION['do_User']->iduser;
+                //$iduser = $_SESSION['do_User']->iduser;
                 $q = new sqlQuery($this->getDbCon());
                 $q_ins = "INSERT into contact (firstname,lastname,fb_userid,iduser,position) values(
                           '$fname','$lname',$frnd_fb_uid,$iduser,'$position')";
@@ -1895,13 +1935,20 @@ class Contact extends DataObject {
                 $q_website->query("INSERT into contact_website (idcontact,website,website_type) VALUES
                                    ($idcontact,'$profile_url','Facebook')");
                 $this->updateFbProfilePic($idcontact,$profile_pic);
-                $do_tag->addTagAssociation($idcontact,"Facebook","contact",$_SESSION['do_User']->iduser);
+                $do_tag->addTagAssociation($idcontact,"Facebook","contact",$iduser);
                 if(is_array($list_name) && count($list_name) > 0 ){
+                  $tag_list_names = implode(",",$list_name);
                   foreach($list_name as $list_name){
-                      $do_tag->addTagAssociation($idcontact,$list_name,"contact",$_SESSION['do_User']->iduser);
+                      $do_tag->addTagAssociation($idcontact,$list_name,"contact",$iduser);
                   }
                 }
            }
+           $this->getId($idcontact);
+           $do_cont_view->addFromContact($this);
+           $do_cont_view->updateFromContact($this);// Added the method call updateFromContact() so that the child data is updated just after insert
+           $do_cont_view->addTag('Facebook',$this->idcontact);// Update the contact view for tags.
+           $do_cont_view->addTag($tag_list_names,$this->idcontact);// Update the contact view for tags.
+           
         }
         $do_tag->free();
 
@@ -2533,6 +2580,18 @@ class Contact extends DataObject {
         $contact_team = new ContactTeam();
         $contact_team->eventAddContactToTeamCW($this);	
     }	
+
+
+  function getContactPictureDetails($iduser=''){
+    if($iduser!=''){
+    $sql="SELECT contact.idcontact,contact.picture
+          FROM contact
+          INNER JOIN user ON user.idcontact = contact.idcontact
+          WHERE user.iduser =".$iduser;
+    $this->query($sql);
+    }
+  }
+  
 
 }
 ?>

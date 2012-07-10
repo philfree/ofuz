@@ -1,5 +1,5 @@
 <?php
-// Copyrights 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
+// Copyrights 2008 - 2012 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
 
@@ -7,7 +7,7 @@
 	 * task.php
 	 * Display the task discussion of a project 
 	 * It uses the object: Task, Project, ProjectTask, NoteDraft, WorkFeedProjectDiscuss, Message, Feedback, Breadcrumb
-	 * Copyright 2001 - 2010 All rights reserved SQLFusion LLC, info@sqlfusion.com 
+	 * Copyright 2001 - 2012 All rights reserved SQLFusion LLC, info@sqlfusion.com 
 	 */
 	
     //$pageTitle = 'Ofuz :: Project Task';
@@ -110,6 +110,19 @@ function showOpt(){
     $("#more_options").hide(0);
     $("#discuss_options").show("fast");
 }
+
+$(document).ready(function(){
+  $("#discuss").click(function(){
+    $("#more_options").hide(0);
+    $("#discuss_options").show("fast");
+  });
+
+});
+
+
+
+
+
 function showFullNote(idproject_discuss){
     $.ajax({
         type: "GET",
@@ -351,17 +364,16 @@ $(document).ready(function() {
 			if ($msg->getMessageFromContext("task discussion")) {
 				echo $msg->displayMessage();
 			}
-        ?>
-        <div class="mainheader">
-            <div class="ptask_detail_name">
-                <span class="headline14"><?php echo $_SESSION['do_project_task']->task_category.": ".$_SESSION['do_project_task']->task_description; ?></span>
+        ?> 
+         <div class="mainheader pad20">
+                <span class="page_title"><?php echo $_SESSION['do_project_task']->task_category.": ".$_SESSION['do_project_task']->task_description; ?></span>
                 <?php
-                    if($task_operation_access === true){
+                if (is_object($GLOBALS['cfg_submenu_placement']['task'] ) ) {
+                	echo  $GLOBALS['cfg_submenu_placement']['task']->getMenu();
+                }
                 ?>
-                <span class="ptask_edit"><a href="#" onclick="fnEditTask(); return false;"><?php echo _('edit');?></a></span>
-                <?php } ?>
-            </div>
         </div>
+               
         <div id="ptask_ctlbar" style="display: none;">
             <?php
                 $do_project_list = new Project();
@@ -434,6 +446,7 @@ $(document).ready(function() {
         <div class="contentfull">
         <?php
           if($do_project_task->status=='open'){
+            if($_SESSION["do_project"]->status != 'closed'){
         ?>
             <div class="headline_fuscia"><?php echo _('Get into the discussion:');?></div>
             <?php
@@ -451,6 +464,7 @@ $(document).ready(function() {
                    <input type="hidden" id="draft_hidden" name="draft_hidden" value="<?php echo $text; ?>">
                  <?php   echo '</div></div></div>';
                   }
+                }
             ?>
               <div id="draft_saved" style="display:none">
                   <div class="messageshadow">
@@ -462,7 +476,9 @@ $(document).ready(function() {
                   </div>
               </div>  
             <div class="percent95">
-            <?php
+            <?php              
+            if($_SESSION["do_project"]->status != 'closed'){
+      
                 /**
                      Discussion Add form starts here 
                 */
@@ -492,7 +508,10 @@ $(document).ready(function() {
                 }
                 ?>
                 
-                <span id="more_options"><a href="#" onclick="showOpt(); return false;"><?php echo _('More Options'); ?></a></span>
+                
+                <!--<span id="more_options"><a href="#"><?php //echo _('More Options'); ?></a>-->
+                  <!--<a href="#" onclick="showOpt(); return false;"><?php //echo _('More Options'); ?></a>-->
+                <!--</span>-->
                 <div class="div_right">
                     <div id="discuss_options" style="display:none;">
                         <?php echo _('Hours Worked').': '.$discussFields->hours_work; ?>  
@@ -506,7 +525,7 @@ $(document).ready(function() {
                         <br /><a href="#" onclick="fnSaveDraftOnClick();return false;"><?php echo _('Save As Draft')?></a><br />
                     </div>
                 </div>
-                <div class="div_right"><input type="submit" name="submitaction" value="<?php echo _('Add this item');?>" />
+                <div class="div_right"><input type="submit" name="submitaction" value="<?php echo _('Add this notes');?>" />
                 
                 </div>
                 </form>
@@ -514,6 +533,17 @@ $(document).ready(function() {
              
              <?php
               }
+          }else {              
+              if($do_project_task->status =='closed'){
+              ?>
+                <div class="headline_fuscia"><?php echo _('This project is closed'); ?></div>
+              <?php
+              }else{
+          ?>                
+              <div class="headline_fuscia"><?php echo _('This project is closed'); ?></div>
+          <?php
+              }
+          }
               /** Discussion Adding Section ends */
 
             // Deleted Note section
@@ -522,9 +552,16 @@ $(document).ready(function() {
                 echo $_SESSION['ProjectDiscussEditSave']->viewDeletedNote($deleted_note,"ProjectDiscuss"); 
             } // Ends here
         ?>
-            <?php } else{ ?>
+            <?php } else{                  
+                  if($_SESSION["do_project"]->status == 'closed'){                    
+                  ?>
+                     <div class="headline_fuscia"><?php echo _('The Project and task is closed'); ?></div>
+                  <?php
+                  }else{
+                  ?>
                 <div class="headline_fuscia"><?php echo _('This task is closed'); ?></div>
             <?php }
+                 }
                 $do_discuss->sessionPersistent('ProjectDiscussEditSave', "project.php", OFUZ_TTL);
                 if ($do_discuss->getNumRows()) {
                     echo '<div class="spacerblock_24"></div>', "\n";
@@ -549,11 +586,37 @@ $(document).ready(function() {
                         //} else if (strlen($item_text) > 500) {
                         //    $preview_item = substr($item_text, 0, 500);
                         //}
+
+// profile
+
+                        $do_user = new User();
                         if($do_discuss->iduser){
-                          $added_by = $_SESSION['do_User']->getFullName($do_discuss->iduser);
+                          $added_by = $_SESSION['do_User']->getFullName($do_discuss->iduser);                            
+                          $user_name = $do_user->getUserNameByIdUser($do_discuss->iduser);
+                          $do_contact = new Contact();                         
+                          $do_contact -> getContactPictureDetails($do_discuss->iduser);
+  
+                            if($do_contact->getNumRows()){
+                              if($do_contact->picture!=''){
+                                  $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
+                                  if(file_exists($thumb_name)) {
+                                    $contact_picture="/dbimage/thumbnail/".$do_contact->picture;
+                                  } else {
+                                    $contact_picture="/images/empty_avatar.gif";
+                                  }
+                               }else{
+                                 $contact_picture='/images/empty_avatar.gif';
+                               }  
+                              $contact_id = $do_contact->idcontact;
+                          }else{
+                            $contact_picture='/images/empty_avatar.gif';
+                          }
+
                         }else{
-                          $added_by = $do_discuss->drop_box_sender;
+                           $added_by = $do_discuss->drop_box_sender;
+                          $contact_picture='/images/empty_avatar.gif';
                         }
+
                         $e_gen_dropboxid = new Event('do_project_task->eventGenerateDropBoxIdTask');
                         $e_PrioritySort = new Event('ProjectDiscuss->eventPrioritySortNotes');
                         $e_PrioritySort->addParam('goto', 'Task/'.$idproject_task);
@@ -568,7 +631,7 @@ $(document).ready(function() {
                         $e_discuss_del->addParam('context', 'ProjectDiscuss');
                         $del_img_url = 'delete <img src="/images/delete.gif" width="14px" height="14px" alt="" />';
                         echo '<div id="notetext',$do_discuss->idproject_discuss,'" class="vpad10">';
-                        echo '<div style="height:24px;position:relative;"><div class="percent95"><img src="/images/discussion.png" class="note_icon" width="16" height="16" alt='._('Task Discussion').'" />';
+                        echo '<div style="height:24px;position:relative;"><div class="percent95"><img src="/images/discussion.png" class="note_icon" width="16" height="16" alt='._('Task Discussion').'" />';                        
                         if($task_operation_access === true){
                           //echo $e_PrioritySort->getLink($star_img_url, ' title="'._('Star this note to move it on top1').'"');
                           echo $e_PrioritySort->getLink($star_img_url, ' title="'._($star_title).'"');
@@ -580,9 +643,12 @@ $(document).ready(function() {
                         } else {
                           echo '<b>'.date('l, F j', strtotime($do_discuss->date_added)).'</b>&nbsp;('._('Added By :').'&nbsp;'.$added_by.')</div>'; 
                         }*/
-                        $date_added_note =  OfuzUtilsi18n::formatDateLong($do_discuss->date_added);
-                        echo '<div id="item_title">'.$date_added_note.'</b>&nbsp;('._('Added By :').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
-
+                        $date_added_note =  OfuzUtilsi18n::formatDateLong($do_discuss->date_added);   
+                        
+                        echo '<div id="item_title"> '.$date_added_note.'</b>&nbsp;('._('Added By:').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
+                        echo "<br>";
+                        echo '<a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a>';
+                        
                         if($task_operation_access === true){
                           echo '<div id="trashcan', $item_count++, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_discuss->idproject_discuss.'\','.$do_discuss->idproject_discuss.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_discuss_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div>';
                         }

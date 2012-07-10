@@ -21,6 +21,17 @@
     } elseif(is_object($_SESSION['ContactEditSave'])) {
         $idcontact = $_SESSION['ContactEditSave']->idcontact;
     }
+    
+  $do_user = new User();
+  $current_idcontact = $do_user->getContactId($_SESSION["do_User"]->iduser);
+
+  /*if($current_idcontact != $idcontact){
+    if(isset($_SESSION['edit_from_page'])) {
+        unset($_SESSION['edit_from_page']);
+    }
+  }else{*/
+    $_SESSION['edit_from_page'] = 'Contact/'.$idcontact;
+  //}
 
     /* Contacts Note sharing Object 
     */
@@ -119,6 +130,17 @@ if(!is_object($_SESSION['do_note_draft'])) {
         $("#more_options").hide(0);
         $("#notes_options").show("fast");
     }
+
+
+
+    $(document).ready(function(){
+      $("#note").click(function(){
+        $("#more_options").hide(0);
+        $("#notes_options").show("fast");
+      });
+    });
+
+  
     function showDateOpt(){
         $("#due_sp_date").show(0);
         $("#when_due").hide(0);
@@ -695,7 +717,7 @@ include_once('plugin_block.php');
 						//}
 						// Formating note ends here
 		
-						$added_by = $_SESSION['do_User']->getFullName($do_notes->iduser);
+						$added_by = $_SESSION['do_User']->getFullName($do_notes->iduser); 
 						// Priority sort
 						$e_PrioritySort = new Event('ContactNotes->eventPrioritySortNotes');
 						$e_PrioritySort->addParam('goto', 'contact.php');
@@ -713,7 +735,27 @@ include_once('plugin_block.php');
 						$e_note_del->addParam("context", "ContactNote");
 						$del_img_url = 'delete <img src="/images/delete.gif" width="14px" height="14px" alt="" />';
 						//delete event ends here
-		
+
+      $user_name = $do_user->getUserNameByIdUser($do_notes->iduser);
+      $do_contact = new Contact();
+      $do_contact->getContactPictureDetails($do_notes->iduser);
+
+        if($do_contact->getNumRows()){
+          if($do_contact->picture!=''){
+            $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
+            if(file_exists($thumb_name)) {
+              $contact_picture="/dbimage/thumbnail/".$do_contact->picture;
+            } else {
+              $contact_picture="/images/empty_avatar.gif";
+            }
+            }else{
+              $contact_picture='/images/empty_avatar.gif';
+            }           
+                    $contact_id = $do_contact->idcontact;
+                }
+  
+
+
 						// Start displaying the note
 						echo '<div id="notetext', $do_notes->idcontact_note, '" class="vpad10">';
 						echo '<div style="height:24px;position:relative;"><div class="percent95"><img src="/images/note_icon.gif" class="note_icon" width="16" height="16" alt="" />',$e_PrioritySort->getLink($star_img_url, ' title="'._($star_title).'"');
@@ -723,9 +765,11 @@ include_once('plugin_block.php');
 						} else {
 						  $added_by = date('l, F j', strtotime($do_notes->date_added)); 
 						}*/
-                        $added_by = OfuzUtilsi18n::formatDateLong($do_notes->date_added);
+      $added_by = OfuzUtilsi18n::formatDateLong($do_notes->date_added);
 						echo '<b>'.$added_by.'</b>&nbsp;(Added By :&nbsp;'.$do_notes->getNoteOwnerFullName().')</div>
 						<div id="trashcan', $note_count, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_notes->idcontact_note.'\','.$do_notes->idcontact_note.');return false;">edit</a>&nbsp;|&nbsp;'.$e_note_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div></div>';
+      echo "<br>";
+      echo '<a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' class="note_icon"> </a>';
 						if ($do_notes->is_truncated) {
 							echo '<div id="notepreview',$do_notes->idcontact_note,'">',$note_text,'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
 						} else {
@@ -757,7 +801,7 @@ include_once('plugin_block.php');
 					//}
 					// Formating note ends here
 	
-					$added_by = $_SESSION['do_User']->getFullName($do_notes->iduser);
+     $added_by = $_SESSION['do_User']->getFullName($do_notes->iduser);
 					// Priority sort
 					$e_PrioritySort = new Event('ContactNotes->eventPrioritySortNotes');
 					$e_PrioritySort->addParam('goto', 'contact.php');
@@ -775,25 +819,49 @@ include_once('plugin_block.php');
 					$e_note_del->addParam("context", "ContactNote");
 					$del_img_url = _('delete ').'<img src="/images/delete.gif" width="14px" height="14px" alt="" />';
 					//delete event ends here
-	
-					// Start displaying the note
-					echo '<div id="notetext', $do_notes->idcontact_note, '" class="vpad10">';
-					echo '<div style="height:24px;position:relative;"><div class="percent95"><img src="/images/note_icon.gif" class="note_icon" width="16" height="16" alt="" />',$e_PrioritySort->getLink($star_img_url, ' title="'._($star_title).'"');
-					/*list($yyyy,$mm,$dd) = split("-",$do_notes->date_added);
-					if($yyyy < date('Y')) {
-					  $added_by = date('l, F j Y', strtotime($do_notes->date_added));
-					} else {
-					  $added_by = date('l, F j', strtotime($do_notes->date_added)); 
+  
+      $do_contact = new Contact();
+       $do_contact->getContactPictureDetails($do_notes->iduser);
 
-					}*/
-                    $added_by = OfuzUtilsi18n::formatDateLong($do_notes->date_added);
+        if($do_contact->getNumRows()){
+	  if($do_contact->picture!=''){
+	    $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
+	    if(file_exists($thumb_name)) {
+	      $contact_picture="/dbimage/thumbnail/".$do_contact->picture;
+	    } else {
+	      $contact_picture="/images/empty_avatar.gif";
+	    }
+	    }else{
+	      $contact_picture='/images/empty_avatar.gif';
+	    }           
+            $contact_id = $do_contact->idcontact;
+        }
+    
 
-					echo '<b>'.$added_by.'</b>&nbsp;('._('Added By :').'&nbsp;'.$do_notes->getNoteOwnerFullName().')</div>
-					<div id="trashcan', $note_count, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_notes->idcontact_note.'\','.$do_notes->idcontact_note.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_note_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div></div>';
+      $user_name = $do_user->getUserNameByIdUser($do_notes->iduser);
+
+      // Start displaying the note
+      echo '<div id="notetext', $do_notes->idcontact_note, '" class="vpad10">';      
+      echo '<div style="height:24px;position:relative;"><div class="percent95"><img src="/images/note_icon.gif" class="note_icon" width="16" height="16" alt="" />',$e_PrioritySort->getLink($star_img_url, ' title="'._($star_title).'"');
+      /*list($yyyy,$mm,$dd) = split("-",$do_notes->date_added);
+      if($yyyy < date('Y')) {
+        $added_by = date('l, F j Y', strtotime($do_notes->date_added));
+      } else {
+        $added_by = date('l, F j', strtotime($do_notes->date_added)); 
+
+      }*/
+     $added_by = OfuzUtilsi18n::formatDateLong($do_notes->date_added);
+     echo '<b>'.$added_by.'</b>&nbsp;('._('Added By :').'&nbsp;'.$do_notes->getNoteOwnerFullName().')</div>
+     <div id="trashcan', $note_count, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_notes->idcontact_note.'\','.$do_notes->idcontact_note.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_note_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div></div>';
+     echo "<br>";      
+     echo '<a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' class="note_icon"> </a>';
+   
 					if ($do_notes->is_truncated) {
 						echo '<div id="notepreview',$do_notes->idcontact_note,'">',$note_text,'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
 					} else {
-						echo $note_text;
+      //echo "<div style='padding:0px 0px 0px 0px;'>";
+          echo "&nbsp;&nbsp;&nbsp;&nbsp;".$note_text;
+      //echo "</div>";
 					}
 					$note_count++;
 					
@@ -807,6 +875,7 @@ include_once('plugin_block.php');
 		$_SESSION['ContactNotes']->getContactNotesCount($idcontact);
         }
         ?>
+    
         </div>
         <div id="last_note_loader"></div>
         <div class="spacerblock_20"></div>

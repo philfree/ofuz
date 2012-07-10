@@ -16,6 +16,7 @@
      */
  
 
+
 class CoworkerSearch extends BaseBlock{
       public $short_description = 'Co-Workers search block';
       public $long_description = 'Search co-workers by first name or last name and add them as co-worker';
@@ -28,7 +29,7 @@ class CoworkerSearch extends BaseBlock{
 
       function processBlock(){
 
-          $this->setTitle(_('Find Coworkers'));
+          $this->setTitle(_('Find Co-Workers'));
           $this->setContent($this->generateCoworkerSearchForm());
           $this->displayBlock();
 

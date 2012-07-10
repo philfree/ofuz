@@ -40,7 +40,9 @@
             </span>
             <span class="sep1">|</span>
             <a href="/settings_info.php"><?php echo _('Settings'); ?></a>
-            <span class="sep1">|</span> 
+            <span class="sep1">|</span>                      
+            
+
         <?php 
               if($_SESSION['do_User']->global_fb_connected && $_SESSION['do_User']->fb_user_id){
                   echo '<a href="#" onclick=\'FB.Connect.logoutAndRedirect("/fb_logout.php")\'>Logout</a>';
@@ -53,11 +55,23 @@
             <a href="<?php echo $e_logout->getUrl(); ?>"><?php echo _('Logout'); ?></a>
         <?php } ?>
         </div>
-
-        <!--  <div class="layout_social">
+		<!-- help tab start-->
+		<?php if($GLOBALS['thistab'] != 'Help'){?>
+		<div class="layout_navbar_right_help"><a href="/help-support.php">Help &amp; support</a></div>
+		<?php } else { ?>
+		<div class="layout_navbar_right_help">
+			<div class="layout_navtab_on_l"></div>
+			 <div class="layout_navtab_on_text">
+				<a href="/help-support.php">Help &amp; support</a>
+			 </div>
+			<div class="layout_navtab_on_r"></div>	
+		</div>
+		<?php } ?>
+		<!-- help tab ends-->
+<!--        <div class="layout_social">
             <a href="http://www.facebook.com/ofuzfan"><img src="/images/facebook_icon.png" width="38" height="38" alt="" /></a>
             <a href="http://twitter.com/ofuz"><img src="/images/t_logo-a.png" width="36" height="36" alt="" /></a>
-        </div> -->
+        </div>-->
 
         <div class="layout_navbar_left">
         <?php
@@ -67,18 +81,29 @@
 	     //$contacts_page = ($setting_gears_arr['setting_value'] == 'Yes') ? 'ggears_contacts' : 'contacts';  
 	     
 	     //print_r($GLOBALS['cfg_tab_placement']); echo '<br />';
-	     if($GLOBALS['cfg_tab_placement']->count() > 0 ){
-              	foreach($GLOBALS['cfg_tab_placement'] as  $tab ){   
+	     
+        $do_plugin_enable = new PluginEnable();
+        if($GLOBALS['cfg_tab_placement']->count() > 0 ){
+               foreach($GLOBALS['cfg_tab_placement'] as  $tab ){   
                   if (is_object($tab)) {  
-          		    if ($tab->getTabName() == _('Dashboard')) { $tab->setDefaultPage($_SESSION['dashboard_link']); }
-	                //if ($tab->getTabName() == _('Contacts')) { $tab->setDefaultPage($contacts_page); }
+                  $tab_name=$tab->getTabName();
+            
+                if(in_array($tab_name,$core_tab_name)){
+                  if ($tab_name == _('Dashboard')) { $tab->setDefaultPage($_SESSION['dashboard_link']); }
+                    //if ($tab->getTabName() == _('Contacts')) { $tab->setDefaultPage($contacts_page); }
                     if($tab->isActive() === true ){
                         $tab->processTab();
                     }
-                  }  
-		        }
-         }
-           
+                  }else{
+                    //if($tab->isActive() === true ){
+                        $idplugin_enabled = $do_plugin_enable->isEnabled($tab->getTabName());                        
+                        if($tab->isActive() === true && $idplugin_enabled!==false ){
+                        $tab->processTab();
+                    }
+                 }  
+              }
+            }
+         }   
         ?>
         </div>
         <!-- <div class="layout_navbar_right">

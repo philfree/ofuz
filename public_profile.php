@@ -156,101 +156,49 @@ if($_SESSION['hcard_idcontact'] != '' ){
     $background_color = 'white';
     include_once('includes/header_profile.inc.php');
 ?>
+<script type="text/javascript" src="/jquery/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+   // if screen width < 600 then Mobile/Tablet version else Web version
+    smallScreen = (screen.width < 900) ? true : false;
+
+    $.ajax({
+      type: "POST",
+      url: "/ajx_public_profile_loader.php",
+      data: {smallscreen:smallScreen},
+      dataType: "html",
+      success: function(data) {   
+	$('#publicProfile').html(data);
+      }
+    });
+
+  });
+
+</script>
+
 <div class="layout_center">
     <div class="layout_top">
+  <?php
+      $id_user=$do_contact->getIdUser($idcontact);      
+      $do_userprofile=new UserProfile();
+      $profile_information=$do_userprofile->getProfileInformation($id_user);
+    
+      if(empty($profile_information)){ ?>
         <a href="http://www.ofuz.com"><img src="/images/ofuz_logo_profile.png" width="157" height="100" alt="" /></a>
-        <div class="profile_photo">
-<?php if ($_SESSION['do_contact']->picture != '') { ?>
-	<img src="<?php echo $_SESSION['do_contact']->getContactPicture(); ?>" height="100%" alt="" />
-<?php } ?>
-        </div>
+      <?php 
+        }else{
+      ?>
+        <a href="http://www.ofuz.com"><img src="/dbimage/<?php echo $profile_information['logo']; ?>" width="157" height="100" alt="" /></a>
+      
+      <?php
+        }
+      ?>
+        
     </div>
 </div>
-<div class="layout_full"><div class="layout_center">
-    <div class="layout_main">
-        <div class="layout_headline">
-            <b><?php echo $_SESSION['do_contact']->firstname, ' ', $_SESSION['do_contact']->lastname; ?></b><br />
-            <i><?php echo $_SESSION['do_contact']->position,' at ',$_SESSION['do_contact']->company; ?></i>
-        </div>
-        <div class="layout_lineitems">
-<?php
-    $ContactEmail = $_SESSION['do_contact']->getChildContactEmail();
-    if ($ContactEmail->getNumRows()) {
-        while ($ContactEmail->next()) {
-            echo '<div class="layout_lineitem">';
-            echo '<img class="profile_icon" src="/images/profile_icon_email.png" width="16" height="11" alt="" />';
-            echo '<a href="mailto:'.$ContactEmail->email_address.'" title="'.$ContactEmail->email_type.'">'.$ContactEmail->email_address.'</a>';
-            //echo $_SESSION['ContactEditSave']->formatTextDisplay($ContactEmail->email_address);
-            echo '</div>',"\n";
-        }
-    }
 
-    $ContactWebsite = $_SESSION['do_contact']->getChildContactWebsite();
-    if ($ContactWebsite->getNumRows()) {
-        while ($ContactWebsite->next()) {
-            echo '<div class="layout_lineitem">';
-            echo $ContactWebsite->getProfileLink();
-            echo '</div>',"\n";
-        }
-    }
+<div id="publicProfile"></div>
 
-    $ContactInstantMessage = $_SESSION['do_contact']->getChildContactInstantMessage();
-    if ($ContactInstantMessage->getNumRows()) {
-        while($ContactInstantMessage->next()){
-            echo '<div class="layout_lineitem">';
-            if ($ContactInstantMessage->im_type == 'AIM') {
-                echo '<img class="profile_icon" src="/images/profile_icon_aim.png" width="16" height="16" alt="" />';
-            } else if ($ContactInstantMessage->im_type == 'Google Talk') {
-                echo '<img class="profile_icon" src="/images/profile_icon_gtalk.png" width="16" height="16" alt="" />';
-            } else if ($ContactInstantMessage->im_type == 'Jabber') {
-                echo '<img class="profile_icon" src="/images/profile_icon_jabber.png" width="16" height="16" alt="" />';
-            } else if ($ContactInstantMessage->im_type == 'MSN') {
-                echo '<img class="profile_icon" src="/images/profile_icon_msn.png" width="16" height="16" alt="" />';
-            } else if ($ContactInstantMessage->im_type == 'Skype') {
-                echo '<img class="profile_icon" src="/images/profile_icon_skype.png" width="16" height="16" alt="" />';
-            } else if ($ContactInstantMessage->im_type == 'Yahoo') {
-                echo '<img class="profile_icon" src="/images/profile_icon_yahoo.png" width="16" height="16" alt="" />';
-            }
-            echo $ContactInstantMessage->im_username;
-            echo '</div>',"\n";
-        }
-    }
-
-    $ContactPhone = $_SESSION['do_contact']->getChildContactPhone();
-    if ($ContactPhone->getNumRows()) {
-        while($ContactPhone->next()){
-            echo '<div class="layout_lineitem">';
-            if ($ContactPhone->phone_type == 'Work') {
-                echo '<img class="profile_icon" src="/images/profile_icon_phonew.png" width="16" height="15" alt="" />';
-            } else {
-                echo '<img class="profile_icon" src="/images/profile_icon_phonem.png" width="16" height="18" alt="" />';
-            }
-            echo '<a href="tel:'.$ContactPhone->phone_number.'">'.$ContactPhone->phone_number.'</a>';
-            echo '</div>',"\n";
-        }
-    }
-?>
-        </div>
-        <div class="layout_add">
-            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                <input class="profile_button" type="image" src="/images/profile_add_to_ofuz.png" alt="Add the contact to Ofuz" name="add_cont" />
-                <a href="/public_profile_vcard.php"><img src="/images/profile_add_to_phone.png" width="91" height="26" alt="" /></a>
-                <input type="hidden" name="hd_add_cont" value="1" />
-            </form>
-        </div>
-        <div class="layout_clear"></div>
-    </div>
-<?php
-    $ContactAddress = $_SESSION['do_contact']->getChildContactAddress();
-    if ($ContactAddress->getNumRows()) {
-    	echo '<div class="layout_address">';
-	    while($ContactAddress->next()) {
-            echo nl2br($ContactAddress->address) . '<br />';
-	    }
-	    echo '</div>',"\n";
-    }
-?>
-</div></div>
 <div class="layout_center">
     <div class="layout_bottom"></div>
 </div>

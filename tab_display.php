@@ -11,11 +11,14 @@
    */
 
     include_once('config.php');
-
+  
+        
     if(!isset($_GET['plugin']) && !isset($_GET['content'])){
 	echo _('Parameter missing !!!');exit;
     }
-    $plugin_name = $_GET['plugin'];
+
+
+   $plugin_name = $_GET['plugin'];
     $plugin_page_name = $_GET['content'];
     if (isset($_GET['item_value'])) { 
        $plugin_item_value = $_GET['item_value'];
@@ -24,14 +27,24 @@
     $GLOBALS['cfg_tab_placement']->rewind();
     foreach($GLOBALS['cfg_tab_placement'] as  $tab_plugin ){  
         if (is_object($tab_plugin )) {  
-          if ($tab_plugin->getPlugInName() == $plugin_name) { $plugin = $tab_plugin; continue; }
+          //echo 'aaa '.$tab_plugin->getTabName().'<br />';
+          if ($tab_plugin->getPlugInName() == $plugin_name) { 
+                  $plugin = $tab_plugin; 
+                  $tab_name = $tab_plugin->getTabName() ;
+                  continue; 
+           }
         }
     }
     if (!is_object($plugin) || !$plugin->setCurrentPage($plugin_page_name)) {
       $GLOBALS['cfg_plugin_page']->rewind();
       foreach($GLOBALS['cfg_plugin_page'] as  $page_plugin ){  
           if (is_object($page_plugin )) {  
-            if ($page_plugin->getPlugInName() == $plugin_name) { $plugin = $page_plugin; continue; }
+            //echo 'bbb '.$tab_plugin->getTabName().'<br />';
+            if ($page_plugin->getPlugInName() == $plugin_name) { 
+                  $plugin = $page_plugin; 
+                  $tab_name = $tab_plugin->getTabName() ;
+                  continue; 
+            }
           }
       }      
     }
@@ -40,6 +53,12 @@
       echo _('-Plug-in curent page not defined, exiting now');
       exit;
     }
+
+    $do_plugin_enable = new PluginEnable();
+    if($do_plugin_enable->isEnabled(trim($tab_name)) === false){
+       echo _('Plugin Disabled !!!');exit;        
+    }
+    
     $pageTitle = $plugin->getPlugInName().' :: Ofuz';
     $Author = 'SQLFusion LLC';
     $Keywords = '';
@@ -77,7 +96,7 @@
         
 	<table class="layout_columns">
 	<tr>
-	    <td class="layout_lcolumn">
+	    <td> <!-- class="layout_lcolumn" -->
 	    <?php
 	    // Load the plugin block 
 	    $GLOBALS['page_name'] = $plugin->getCurrentPage();
@@ -101,7 +120,7 @@
         <?php if (strlen($plugin->getTitle()) > 0) { ?>
         <div class="mainheader">
             <div class="pad20">
-                <span class="headline14"><?php echo $plugin->getTitle(); ?></span>
+                <span class="page_title"><?php echo $plugin->getTitle(); ?></span>
                 <?php
                 if (is_object($GLOBALS['cfg_submenu_placement'][$plugin->getCurrentPage()]) ) {
                 	echo  $GLOBALS['cfg_submenu_placement'][$plugin->getCurrentPage()]->getMenu();

@@ -33,7 +33,7 @@ class WorkFeedProjectTask extends WorkFeedItem {
        // if($do_proj_task_feed->isProjectTaskReletedToUser($this->idproject_task)){
             $type = $this->task_event_type ;
             $html = '<br />';
-            $html .= '<div style="width:25px;float:left;">';
+            $html .= '<div style="width:50px;float:left;">';
             $html .= '<img src="/images/note_icon.gif" width="16" height="16" alt="" />';
             $html .= '</div>';
             $html .= '<div style="text-align:middle;">';
@@ -86,7 +86,7 @@ class WorkFeedProjectTask extends WorkFeedItem {
                     break;
              }
             $html .= '</div>';
-            $html .= '<div style = "color: #666666;font-size: 8pt; margin-left:25px;">';
+            $html .= '<div style = "color: #666666;font-size: 8pt; margin-left:50px;">';
             //$html .= date('l, F j,  g:i a', $this->date_added);
             $html .= OfuzUtilsi18n::formatDateLong(date("Y-m-d H:i:s",$this->date_added),true);
             $html .= '</div>';
@@ -181,4 +181,37 @@ class WorkFeedProjectTask extends WorkFeedItem {
                   break;
         }     
     }
+    
+     /**
+	 *  Add the Project note to the wrokfeed from the drop box mail. 
+	 *  Will do the similar steps as it does for adding new project note 
+	 *  @param User id, Projecttask id, Project id, task id, task descrpition
+	 */
+    function eventaddFeedFromDropbox($iduser,$idproject_task,$idproject,$idtask,$task_description){
+		
+		$do_project = new Project();
+		$do_project->getId($idproject);
+		$this->project_name = $do_project->getProjectName($idproject);
+		$do_project_sharing = new ProjectSharing();
+		$project_users = $do_project_sharing->getCoWorkersAsArray($do_project);		
+		$project_users[] = $do_project->getProjectOwner();
+		$users = Array();
+		foreach ($project_users as $project_user) {
+			if ($iduser != $project_user) {
+				$users[] = $project_user;
+			}
+		}
+		$do_user = new User();
+		$this->user_full_name = $do_user->getFullName($iduser);
+		
+    	$this->iduser = $iduser;
+	    $this->idproject_task = $idproject_task;
+	    $this->idtask = $idtask;
+	    $this->idproject = $idproject;
+	    $this->task_description = $task_description;
+	    $this->task_event_type = 'new_task_add';
+	    $this->addFeed($users);
+		
+	}
+    
 }

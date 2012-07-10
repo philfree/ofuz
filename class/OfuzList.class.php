@@ -72,13 +72,15 @@ class OfuzList extends BaseObject {
       $class_name = get_class($this->obj);
 
       if ($class_name == 'ProjectTask') {echo '<ul id="project_tasks">',"\n"; }
+      if ($class_name == 'Task') {
+	echo '<ul id="tasks_list_'.$this->obj->tasks_due_on.'">',"\n"; 
+      }
       while($this->obj->next()){
           echo $this->getRowStart(); 
           $this->displayRow($class_name) ;
           echo $this->getRowEnd();
       }
-      if ($class_name == 'ProjectTask' || $class_name='Task') { echo '</ul>',"\n"; }
-  
+      if ($class_name == 'ProjectTask' || $class_name == 'Task') { echo '</ul>',"\n"; }
   }
   
   public function getRowStart() {
@@ -266,8 +268,6 @@ class OfuzList extends BaseObject {
             //$task_class = 'ptask_name';    
             //$ddtask_ul = 'ddtasks';
 
-                 $html .='<ul  id="'.$ddtasks.'">';
-
             if($this->obj->access == 'Public'){
                 $html .= '<li id="pt_'.$this->obj->idtask.'" class="ddtasks">'.
                             '<div class="ptask_name" onclick = "" id="list'.$this->obj->idtask.'" >
@@ -294,17 +294,25 @@ class OfuzList extends BaseObject {
                                   <span class="task_category">'.$this->obj->task_category.'</span>&nbsp';
 
                      if($this->obj->idproject_task!=''){
-                     $html .=    '<span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a>'.$contact_full_name.'</span>
+                     /*
+                      $html .=    '<span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a>'.$contact_full_name.'</span>
                                   &nbsp;&nbsp;<b>
                                   <a href="/Project/'.$this->obj->idproject.'">'.$this->obj->name.'</b></a>
                           &nbsp;&nbsp;<a href="/Task/'.$this->obj->idproject_task.'">'.$img_url.'</a>
-                                  </div>
-  
-                              <div class="ptask_progbar1">';
+                                  </div>  
+                              <div class="ptask_progbar1">';*/
+
+                      $html .=    '<span'.$strike_class.'><a href="/Task/'.$this->obj->idproject_task.'" onclick="allowHighlight=false;" >'.$this->obj->task_description.'</a> <a href="/Contact/'.$this->obj->idcontact.'" onclick="allowHighlight=false;" >'.$contact_full_name.'</a></span>
+                                  &nbsp;&nbsp;<b>
+                                  <a href="/Project/'.$this->obj->idproject.'">'.$this->obj->name.'</b></a>
+                                  &nbsp;&nbsp;<a href="/Task/'.$this->obj->idproject_task.'"></a>
+                                  </div>  
+                                  <div class="ptask_progbar1">';
+                   
                    
 
                      }else{
-                     $html .= '<span'.$strike_class.'>'.$this->obj->task_description.$contact_full_name.'</span>
+                        $html .= '<span'.$strike_class.'>'.$this->obj->task_description.'<a href="/Contact/'.$this->obj->idcontact.'" onclick="allowHighlight=false;" >'.$contact_full_name.'</a></span>
                                   </div><div class="ptask_progbar1">';
                     }
 
@@ -326,6 +334,7 @@ class OfuzList extends BaseObject {
             }
             $html .= '</li>'."\n";
       break;
+
     }
     echo $html;
   }

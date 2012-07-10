@@ -65,7 +65,8 @@
   include_once("class/RegistrationInvoiceLog.class.php");
   include_once("class/DeletePaymentLog.class.php");
   include_once("class/OfuzCancelAccount.class.php");
-  include_once("class/OfuzExportXML.class.php");
+  //include_once("class/OfuzExportXML.class.php");
+  include_once("class/OfuzExportAccount.class.php");
   include_once("class/UserInternalMarketing.class.php");
   include_once("class/TagInternalMarketing.class.php");
   include_once("class/Teams.class.php");
@@ -90,7 +91,7 @@
 //  include_once("class/AutoResponder.class.php");
 //  include_once("class/AutoResponderEmail.class.php");
 
-
+  include_once("class/FieldTypeImageThumb.class.php");
   include_once("class/OfuzUserInterface.class.php");
 
   include_once("class/OfuzList.class.php");
@@ -106,6 +107,10 @@
   include_once("class/workfeed/WorkFeedContactNotePortal.class.php");
   include_once("class/workfeed/WorkFeedContactUnsubscibeEmails.class.php");
   include_once("class/workfeed/WorkFeedTwitterImport.class.php");
+  include_once("class/workfeed/WorkFeedProjectAssignCoworker.class.php");
+
+
+
   // Ofuz API classes
   include_once("class/OfuzApiBase.class.php");
   include_once("class/OfuzApiMethods.class.php");
@@ -139,7 +144,7 @@
   include_once("class/TabSetting.class.php");
   include_once("class/SubMenu.class.php");
   include_once("class/BaseMessageBlock.class.php");
-  //include_once("class/PluginEnable.class.php");
+  include_once("class/PluginEnable.class.php");
   
 
   // Dynamic Buttons
@@ -152,8 +157,19 @@
   include_once("class/MimeMailParserAttachment.class.php");
   include_once("class/MimeMailParser.class.php");
   include_once("class/OfuzEmailFetcher.class.php");
+  
+    include_once("class/UserProfile.class.php");
 
-  define('RADRIA_LOG_RUN_OFUZ', false);
+
+  //Beanstakd
+  include_once("class/OfuzBeanstalkd.class.php");
+
+  //Email Contact Import @note this should be in plug-in only.
+  //include_once("plugin/EmailImporter/openinviter.php");
+  //include_once("plugin/EmailImporter/OfuzEmailImporter.class.php");
+
+
+  define('RADRIA_LOG_RUN_OFUZ', true);
   define('OFUZ_LOG_RUN_TAG', false);
   define('OFUZ_LOG_RUN_CONTACT', false); 
   define('OFUZ_LOG_RUN_WEBFORM', false);
@@ -171,10 +187,13 @@
   //path
   define('XML_EXPORT', 'xml_export/');
 
-  define('FACEBOOK_API_KEY','');
-  define('FACEBOOK_APP_SECRET','');
-  define('FACEBOOK_XD_RECEIVER_HTTP','http://www.ofuz.net/xd_receiver.htm');
+  define('FACEBOOK_API_KEY','23664984441');
+  define('FACEBOOK_APP_SECRET','bafc16e12485d362be753fd19bf114ea');
+  /*define('FACEBOOK_XD_RECEIVER_HTTP','http://www.ofuz.net/xd_receiver.htm');
   define('FACEBOOK_XD_RECEIVER_HTTPS','https://www.ofuz.net/xd_receiver.htm');
+  */
+  define('FACEBOOK_XD_RECEIVER_HTTP','http://dev.ofuz.net/xd_receiver.htm');
+  define('FACEBOOK_XD_RECEIVER_HTTPS','https://dev.ofuz.net/xd_receiver.htm');
 
   define('TWITTER_CONSUMER_KEY','');
   define('TWITTER_CONSUMER_SECRET','');
@@ -190,5 +209,12 @@
   $GLOBALS['cfg_ofuz_site_http_base'] = "http://".str_replace("//", "/", $GLOBALS['cfg_ofuz_site_http_base']);
   $GLOBALS['cfg_ofuz_email_support'] = "support@sqlfusion.com";
   $GLOBALS['email_domain'] = 'ofuz.net';
+
+  // Set it as false if beanstalkd is not setup
+  define('ENABLE_JOB_QUEUE',true);
+  $GLOBALS['ENABLE_JOB_QUEUE'] = true;
+  define('JOB_QUEUE_IP','72.172.84.167');
+  define('JOB_QUEUE_PORT','11300');
+  
 
 ?>

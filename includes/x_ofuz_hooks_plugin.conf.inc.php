@@ -9,18 +9,19 @@
     * @author SQLFusion's Dream Team <info@sqlfusion.com>
     * @package OfuzCore
     * @license GNU Affero General Public License
-    * @version 0.6
-    * @date 2010-09-03
+    * @version 1.0
+    * @date 2012-01-07
     * @since 0.6
     */
   
     
     // Core Block positioning 
+    // The index of the array is the page script name (without .php) or plugin name. The in an array add all the block class names to display in that page.
     $GLOBALS['cfg_block_placement'] = Array(
                                   "invoice" => 
                                     Array("PaymentLogBlock",
                                           "RecurrentInvoiceBlock"),
-                                          "invoices" =>
+                                   "invoices" =>
                                     Array("InvoicesMonthlyGraphBlock",
                                           "InvoicesYTDBlock"),
                                  "contact" => 
@@ -60,6 +61,95 @@
                                     "timesheet"=>
                                        Array("TimesheetBlockCoWorker")
                           ) ;
+
+
+    // Core Block positioning 
+    // The key is the page script name without .php or the plugIn name
+    $GLOBALS['cfg_plugin_eventmultiple_placement'] = 
+                              Array(
+                                  'contacts' => 
+                                    Array( 
+                                       Array('name' => 'Merge In One',
+                                             'confirm' => 'Are you sure you want to merge the selected contacts?',
+                                             'event' => '',
+                                             'action' => 'merge_automated.php',
+                                             'plugin' => 'Core'
+                                             )
+                                          )
+                                    );
+    // The key is the page script name without .php or the plugIn name                                         
+    $GLOBALS['cfg_submenu_placement']['index'] = new SubMenu();
+    $GLOBALS['cfg_submenu_placement']['index']->addMenuItem(_('Work Feed'), "index.php")
+										      ->addMenuItem(_('Notes & Discussion'), "daily_notes.php");
+	//										  ->addMenuItem(_('Timesheet'), "timesheet.php");   
+    $GLOBALS['cfg_submenu_placement']['daily_notes'] = new SubMenu();
+    $GLOBALS['cfg_submenu_placement']['daily_notes']->addMenuItem(_('Work Feed'), "index.php")
+										      ->addMenuItem(_('Notes & Discussion'), "daily_notes.php");
+	//										  ->addMenuItem(_('Timesheet'), "timesheet.php");   
+	/**										  
+	$GLOBALS['cfg_submenu_placement']['timesheet'] = new SubMenu();
+    $GLOBALS['cfg_submenu_placement']['timesheet']->addMenuItem(_('Work Feed'), "index.php")
+										      ->addMenuItem(_('Notes & Discussion'), "daily_notes.php")
+											  ->addMenuItem(_('Timesheet'), "timesheet.php");  	
+	*/	
+	$GLOBALS['cfg_submenu_placement']['timesheet'] = new SubMenu();
+	$GLOBALS['cfg_submenu_placement']['timesheet']->addMenuItem(_('Open Projects'), "projects.php")
+	                                              ->addMenuItem(_('Closed Projects'), "projects_closed.php")
+												  ->addMenuItem(_('Timesheet'), "timesheet.php");                           
+    $GLOBALS['cfg_submenu_placement']['tasks'] = new SubMenu();
+    $GLOBALS['cfg_submenu_placement']['tasks']->addMenuItem(_('Task By Projects'), "tasks_by_project.php")
+											  ->addMenuItem(_('Task By Date'), "tasks.php")
+                                              ->addMenuItem(_('Completed'), "tasks_completed.php") ;
+    $GLOBALS['cfg_submenu_placement']['settings_plugin'] = new SubMenu();
+    $GLOBALS['cfg_submenu_placement']['settings_plugin']->addMenuItem(_('Add-On'), "enable_plugin.php")
+											  ->addMenuItem(_('Detail List'), "settings_plugin.php"); 
+
+	$GLOBALS['cfg_submenu_placement']['projects_closed'] = new SubMenu();										  
+    $GLOBALS['cfg_submenu_placement']['projects_closed']->addMenuItem(_('Open Projects'), "projects.php");
+    $GLOBALS['cfg_submenu_placement']['projects'] = new SubMenu();	
+    $GLOBALS['cfg_submenu_placement']['projects']->addMenuItem(_('Closed Projects'), "projects_closed.php")
+												->addMenuItem(_('Timesheet'), "timesheet.php");   
+ 									
+ 	$GLOBALS['cfg_submenu_placement']['project'] = new SubMenu();		
+ 	$GLOBALS['cfg_submenu_placement']['project']->addMenuItemJSCallback(_('Edit'), "fnEditProject()")
+												->addMenuItemJSCallback(_('Filter'), "fnFilterProject()");
+ 	// Project tasks:
+  	$GLOBALS['cfg_submenu_placement']['task'] = new SubMenu();		
+ 	$GLOBALS['cfg_submenu_placement']['task']->addMenuItemJSCallback(_('Edit'), "fnEditTask()");												  
+											     
+	$GLOBALS['cfg_submenu_placement']['help'] = ''; // No sub menu for now. 										                                          
+        // Core plugin names
+    $GLOBALS['core_plugin_names'] = Array(
+                                          'ContactAddTaskBlock',
+                                          'ContactDetailBlock',
+                                          'ContactInvoiceBlock',
+                                          'ContactShareCoworkerBlock',
+                                          'ContactShareFileNoteBlock',
+                                          'ContactSubTagSearchBlock',
+                                          'ContactTagSearchBlock',
+                                          'ContactTasksBlock',
+                                          'CoworkerListInvitations',
+                                          'CoworkerSearch',
+                                          'CoworkerSendInvitationEmail',
+                                          'DashboardMessageBlock',
+                                          'DashboardTodaysTask',
+                                          'InvoicesMonthlyGraphBlock',
+                                          'InvoicesYTDBlock',
+                                          'NotesAndDiscussionBlock',
+                                          'PaymentLogBlock',
+                                          'ProjectAddCoworkerBlock',
+                                          'ProjectAddProjectTaskBlock',    
+                                          'ProjectAddTaskDropboxBlock',
+                                          'ProjectDiscussionEmailAlertBlock',
+                                          'ProjectsAddProjectBlock',
+                                          'RecurrentInvoiceBlock',
+                                          'TaskDropBoxBlock',
+                                          'TaskOwnerBlock',
+                                          'TaskProgressBlock',
+                                          'TasksAddTaskBlock',
+                                          'TimesheetBlockCoWorker'
+                                          
+                          ) ;  
  
    // Core Tabs 
    $GLOBALS['cfg_tab_placement'] = new ArrayIterator();
@@ -73,6 +163,7 @@
                                       "daily_notes",
                                       "timesheet"))
                                 ->setDefaultPage("index");
+                                
    //Contact      
    $GLOBALS['cfg_tab_placement']->append(new Tab(""));
    $GLOBALS['cfg_tab_placement']->next();
@@ -114,6 +205,28 @@
 
   
 
+   $GLOBALS['core_tab_name'] = Array(
+                                      'Dashboard',
+                                      'Contacts',
+                                      'Tasks',
+                                      'Projects',
+                                      'Invoices'
+                                    );
+
+     // Is this still in use ?
+    $GLOBALS['core_setting_tab_name'] = Array(
+                                      'My Information',
+                                      'My Profile',
+                                      'Sync Contacts',
+                                      'API Key',
+                                      'Email Stream',                                    
+                                      'Invoice Settings',
+                                      'Add On',
+                                      'Cancel Account',
+                                      'Export',
+                                      'My Account Backup'                                     
+                                    );
+
 
    // Core Settings Tabs 
    $GLOBALS['cfg_setting_tab_placement'] = new ArrayIterator();
@@ -131,7 +244,7 @@
                                         ->setTabName(_("My Profile"))
                                         ->setPages(Array ("settings_myinfo"))
                                         ->setDefaultPage("settings_myinfo");
-
+  /** moving those to the marketing plugin
    //Web Forms
    $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting(""));
    $GLOBALS['cfg_setting_tab_placement']->next();
@@ -155,7 +268,7 @@
                                         ->setTabName(_("Auto Responder"))
                                         ->setPages(Array ("settings_auto_responder"))
                                         ->setDefaultPage("settings_auto_responder");
-
+**/
    //Sync
    $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting(""));
    $GLOBALS['cfg_setting_tab_placement']->next();
@@ -173,13 +286,6 @@
                                         ->setPages(Array ("settings_twitter"))
                                         ->setDefaultPage("settings_twitter");
    **/
-   //API Key
-   $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting(""));
-   $GLOBALS['cfg_setting_tab_placement']->next();
-   $GLOBALS['cfg_setting_tab_placement']->current()
-                                        ->setTabName(_("API Key"))
-                                        ->setPages(Array ("api_key"))
-                                        ->setDefaultPage("api_key");
 
    //Email Stream
    $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting(""));
@@ -189,6 +295,8 @@
                                         ->setPages(Array ("email_stream"))
                                         ->setDefaultPage("email_stream");
 
+   /** temporary suspending this one as its a confusing setting
+    *  This only releate to project so should be better integrated within projects.
    //Task Discussion Email Alert
    $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting(""));
    $GLOBALS['cfg_setting_tab_placement']->next();
@@ -196,7 +304,7 @@
                                         ->setTabName(_("Discussion Email Alert"))
                                         ->setPages(Array ("settings_discussion_alert"))
                                         ->setDefaultPage("settings_discussion_alert");
-
+    */
    //Google Gears
    /** Started to move this into a plug-in
    $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting(""));
@@ -214,7 +322,24 @@
                                         ->setTabName(_("Invoice Settings"))
                                         ->setPages(Array ("settings_invoice"))
                                         ->setDefaultPage("settings_invoice");
-
+                                        
+ 
+   //Enable Add-on
+   $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting(""));
+   $GLOBALS['cfg_setting_tab_placement']->next();
+   $GLOBALS['cfg_setting_tab_placement']->current()
+                                        ->setTabName(_("Add On"))
+                                        ->setPages(Array ("enable_plugin", "settings_plugin"))
+                                        ->setDefaultPage("enable_plugin");
+                                                                               
+                                        
+   //API Key
+   $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting(""));
+   $GLOBALS['cfg_setting_tab_placement']->next();
+   $GLOBALS['cfg_setting_tab_placement']->current()
+                                        ->setTabName(_("API Key"))
+                                        ->setPages(Array ("api_key"))
+                                        ->setDefaultPage("api_key");
    //Cancel Account
    $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting(""));
    $GLOBALS['cfg_setting_tab_placement']->next();
@@ -268,6 +393,7 @@
         }  
     }
 
+   // Include plug-in Configuration files
     $d3 = dir($cfg_project_directory."plugin/");
     while($entry = $d3->read()) {
         if (preg_match("/\.conf\.inc\.php$/i", $entry) && !preg_match("/^\./", $entry)) {

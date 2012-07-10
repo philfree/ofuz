@@ -150,6 +150,66 @@ class Teams extends DataObject {
 		        ";
 		 $this->query($sql);       
 	 }
-	 
+
+  /**
+   * Shares Co-Worker/s with Team
+   *
+   * @param Object : EventControler
+   */ 
+  function eventShareCWsWithTeam(EventControler $evtcl) {
+    $idteams = $evtcl->getParam("team");
+    $idcoworkers = $evtcl->getParam("cwid");
+
+    if(is_array($idteams) && is_array($idcoworkers)) {
+      foreach($idteams as $idteam) {
+	foreach($idcoworkers as $idcoworker) {
+	  $sql = "SELECT count(*) count_team
+		  FROM team_users
+		  WHERE idteam = {$idteam} AND idco_worker = {$idcoworker}
+                 ";
+	  $this->query($sql);
+	  $this->fetch();
+	  if(!$this->getData("count_team")) {
+	    $con = new sqlQuery($this->getDbCon());
+	    $sql = "INSERT INTO team_users
+		    VALUES(null,$idteam,$idcoworker)
+                   ";
+	    $con->query($sql);
+	    $con->free();
+	  }
+	}
+      }
+    }
+  }
+
+
+  /**
+    * Ajax Event Method
+    * Edits a Team
+    * @param object $evtcl
+    * @return string
+  */
+
+  function eventAjaxEditTeam(EventControler $evtcl) {
+    $idteam = $evtcl->idteam;
+    $team_name = $evtcl->team_name;
+    $auto_share = $evtcl->auto_share;
+
+    $this->getId($idteam);
+    $this->team_name = $team_name;
+    $this->auto_share = $auto_share;
+    $this->update();
+    echo "ok";
+  }
+
+  function eventUpdateTeamCWs(EventControler $evtcl) {    
+    $this->query("DELETE FROM team_users WHERE idteam = {$evtcl->idteam}");
+    foreach($evtcl->coworker as $idcoworker) {
+      $con = new sqlQuery($this->getDbCon());
+      echo $sql = "INSERT INTO team_users VALUES(null,{$evtcl->idteam}, $idcoworker)";
+      $con->query($sql);
+    }
+    $evtcl->setDisplayNext(new Display($evtcl->goto));
+  }
    
 }

@@ -36,8 +36,9 @@ class DashboardTodaysTask extends BaseBlock{
 	    $output .= '<div class="task_today">';
 	    while ($do_task->next()) {
 	      $output .= "\n".'<div id="t'.$do_task->idtask.'" class="task_item">';
-	      $output .= '<input type="checkbox" name="c'.$do_task->idtask.'" class="task_checkbox" onclick="fnTaskComplete(\''.$do_task->idtask.'\')" />';
-	      $output .= '<span class="task_desc">'.$do_task->task_category.' '.$do_task->task_description.'.</span></div>';
+       $output .="<table><tr><td>";
+	      $output .= '<input type="checkbox" name="c'.$do_task->idtask.'" class="task_checkbox" onclick="fnTaskComplete(\''.$do_task->idtask.'\')" /></td>';
+	      $output .= '<td><span class="task_desc">'.$do_task->task_category.' '.$do_task->task_description.'.</span></td></tr></table></div>';
 	    }
 	    $output .= '</div>';
 	    return $output;

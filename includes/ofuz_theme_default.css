@@ -15,7 +15,7 @@ img { border: none; }
 .layout_columns td { vertical-align: top; font-size: 11pt; padding: 0; }
 .layout_lmargin { width: 100px; background-image: url("/images/lmargin_bg.jpg"); background-repeat: no-repeat; }
 .layout_rmargin { width: 100px; background-image: url("/images/rmargin_bg.jpg"); background-repeat: no-repeat; }
-.layout_lcolumn { width: 300px; min-width: 300px; font-size: 10pt; }
+.layout_lcolumn { width: 300px; min-width: 300px; font-size: 10pt; }  /** not sure we need this one **/
 .layout_rcolumn { font-size: 10pt; padding-top: 10px; }
 .layout_column250 { width: 250px; font-size: 10pt; }
 .layout_content { text-align: left; background-color: #ffffff; }
@@ -25,6 +25,8 @@ img { border: none; }
 .layout_social img { vertical-align: top; margin-left: 10px; }
 .layout_navbar_left { position: absolute; left: 230px; bottom: 0; height: 36px; line-height: 38px; background-image: url("/images/navbar_bg.jpg"); padding: 0 15px; overflow: hidden; }
 .layout_navbar_right { position: absolute; right: 110px; bottom: 0; height: 36px; line-height: 38px; background-image: url("/images/navbar_bg.jpg"); padding: 0 5px; overflow: hidden; }
+.layout_navbar_right_help { position: absolute; right: 0px; bottom: 0; height: 36px; line-height: 38px; background-image: url("/images/navbar_bg.jpg"); padding: 0 5px; overflow: hidden; }
+.layout_navbar_right_help a, .layout_navbar_right_help a:visited { font-size: 10pt; color: #1f3d40; }
 .layout_navtab { float: left; padding: 0 15px; }
 .layout_navtab a, .layout_navtab a:visited { font-size: 10pt; color: #1f3d40; }
 .layout_navtab_on { float: left; }
@@ -73,12 +75,12 @@ img { border: none; }
 .banner50 { height: 50px; font-weight: bold; position: relative; }
 .banner40 { height: 40px; font-weight: bold; position: relative; }
 
-.left_menu { width: 250px; margin-left: 20px; background-color: #f7f7ed; background-image: url("/images/left_menu.gif"); overflow: hidden; }
+.left_menu { width: 250px; margin: 0px 20px; background-color: #f7f7ed; background-image: url("/images/left_menu.gif"); overflow: hidden; }
 .left_menu_content { margin: 10px 15px; font-size: 14px; }
-.left_menu_header { position: relative; width: 250px; height: 40px; margin-left: 20px; background-color: #f7f7ed; background-image: url("/images/left_menu_header.jpg"); }
+.left_menu_header { position: relative; width: 250px; height: 40px; margin:0px 20px; background-color: #f7f7ed; background-image: url("/images/left_menu_header.jpg"); }
 .left_menu_header_content { margin-left: 15px; line-height: 40px; font-size: 16px; font-weight: bold; }
 .left_menu_header_link { position: absolute; right: 12px; top: 0; line-height: 40px; font-size: 16px; }
-.left_menu_footer { width: 250px; height: 20px; margin-left: 20px; background-color: #f7f7ed; background-image: url("/images/left_menu_footer.jpg"); }
+.left_menu_footer { width: 250px; height: 20px; margin: 0px 20px; background-color: #f7f7ed; background-image: url("/images/left_menu_footer.jpg"); }
 
 .left_text_links { width: 250px; margin-left: 25px; }
 .dojo_textarea { width: 100%; }
@@ -180,7 +182,7 @@ h2.headline {   padding: 20px 0; position: relative; padding: 20px 0; font-size:
 .left_text { text-align: left; }
 .right_text { text-align: right; }
 
-.message { position: relative; margin: 2px 5px 5px 0; padding: 20px 20px 12px 20px; background-color: #fff6c1; background-image: url("/images/welcomebannerbg.png"); background-repeat: repeat-x; border-top: solid 1px #ededed; border-bottom: solid 2px #ededed; }
+.message { position: relative; margin: 2px 20px 5px 0; padding: 20px 20px 12px 20px; background-color: #fff6c1; background-image: url("/images/welcomebannerbg.png"); background-repeat: repeat-x; border-top: solid 1px #ededed; border-bottom: solid 2px #ededed; }
 
 .messageshadow { margin: 2px 0; background-color: #ffffcc; border-right: solid 2px #b28c6e; border-bottom: solid 2px #b28c6e; margin-right: 20px; }
 .messageshadow_95 { width: 95%; margin: 2px 0; background-color: #ffffcc; border-right: solid 2px #b28c6e; border-bottom: solid 2px #b28c6e; }
@@ -190,15 +192,16 @@ h2.headline {   padding: 20px 0; position: relative; padding: 20px 0; font-size:
 .messages_unauthorized { padding: 6px 20px; color: #3f312b; font-size: 11pt; background-color: #ffffcc; border: solid 2px #f6bfbc; }
 
 .solidline { width: 100%; height: 1px; line-height: 1px; font-size: 1px; border-bottom: solid 1px #cfcfcf; }
-.dashedline { width: 100%; height: 1px; line-height: 1px; font-size: 1px; border-bottom: dashed 1px #cfcfcf;margin: 20px 0px 5px; }
+.dashedline { width: 100%; height: 1px; line-height: 1px; font-size: 1px; border-bottom: dashed 1px #cfcfcf; }
 .dottedline { width: 100%; height: 1px; line-height: 1px; font-size: 1px; border-bottom: dotted 1px #cfcfcf; }
 
 .section20 { width: 100%; margin: 20px 0; }
 .section10 { width: 100%; margin: 10px 0; }
 
+.page_title {  font-size: 14pt; font-weight: bold; }
 .headerlinks { position: absolute; right: 30px; top: 16px; color: #000000; }
-.headerlinks a { color: #0000ff; }
-.headerlinks a:visited { color: #0000ff; }
+.headerlinks a { font-weight:bold; font-size:16px; }
+.headerlinks a:visited { font-weight:bold; font-size:16px;}
 .headerlinksI { margin: 0 6px; color: #d7ccdd; }
 .contentfull { margin: 0 20px; text-align: left; min-width: 660px; }
 .min660 { min-width: 660px; }
@@ -225,7 +228,7 @@ margin-bottom: 5px;
 .div_right { text-align: right; width: 100%; }
 .pad020 { padding: 0 20px; }
 .pad1020 { padding: 10px 20px; }
-.pad20 { padding: 10px 10px;text-shadow: 1px 1px white; }
+.pad20 { padding: 10px 20px; }
 .vpad20 { padding: 20px 0; }
 .vpad10 { padding: 20px 20px; }
 
@@ -251,11 +254,19 @@ background-color: #135e91;
 font-size: 12px;
 }
 
+.sub_action_menu { 
+	padding: 6px 20px; 
+	margin: 0px 20px 0px 0px; 
+	background-color: #ffffcc; 
+	border-top: solid 1px #ffa500; 
+}
+
 .text_black { color: #000000; }
 .text_fuscia { color: #c52687; }
 .text_gray { color: #666666; }
 .text_darkgray { color: #333333; }
 .text_lightblue { color: #1d8cd2; }
+.text_blue { color: #1e8cd3; }
 .text_bold { font-weight: bold; }
 .text34 { font-size: 34px; }
 .text32 { font-size: 32px; }
@@ -267,10 +278,11 @@ font-size: 12px;
 /* px above, pt below */
 .text8 { font-size: 8pt; }
 
-h1 { font-size: 18pt; font-weight: bold; color: #000000; margin: 0; padding: 20px 30px; }
-h2 { font-size: 11pt; color: #000000; margin: 0; padding: 15px 20px; }
+h1 { font-size: 18pt; font-weight: bold; margin: 0; padding: 20px 30px; }
+h2 { font-size: 11pt;  margin: 0; padding: 15px 20px; }
 h3 { font-size: 11pt; margin: 0; padding: 8px 0; }
 h4 { font-size: 10pt; margin: 0; padding: 0; line-height: 1.2; }
+
 
 .topblue { height: 100px; background-color: #003366; }
 .itopblue { height: 29px; background-color: #003366; }
@@ -307,6 +319,19 @@ h4 { font-size: 10pt; margin: 0; padding: 0; line-height: 1.2; }
 .ofuz_list_checkbox { margin: 0 2px 0 5px; padding: 2px; vertical-align: -4px; width: 20px; height: 20px; -moz-transform: scale(1.3); -webkit-transform: scale(1.3); -o-transform: scale(1.3); }
 
 #contacts_ctlbar { position: relative; padding: 6px 20px; margin: 2px 0; background-color: #ffffcc; border-top: solid 1px #ffa500; }
+#contacts_ctlbar.stick {
+  -moz-border-radius: 0 0 0 0;
+  -webkit-border-radius: 0 0 0 0;
+  border-radius: 0 0 0 0;
+  position: fixed;
+  top: 0;
+  width:100%;
+  padding: 6px 20px;
+  margin: 2px 0; background-color: #ffffcc; border-top: solid 1px #ffa500;
+  z-index: 10000;
+  }
+  
+  
 .contacts_top { background-color: #eff3ff; padding: 15px 30px; position: relative; }
 .contact_name { font-size: 14px; }
 .contact_name a, .contact_name a:visited { color: #1d8cd2; }
@@ -493,4 +518,119 @@ h4 { font-size: 10pt; margin: 0; padding: 0; line-height: 1.2; }
 
 /* Google Federated Login link/icon ends */
 
-.linkbluebg:hover {text-decoration: underline;}
+
+.feed_user_pic { position:relative;float:left;width:100px;}
+
+#OfuzSuccessMessage {
+  top: 0;
+  left: 50%;
+  z-index:1000;
+  position: fixed;
+  display: inline-block;   
+  color: #3f312b; 
+  font-size: 14px; 
+  background-color: #fff6c1; 
+  border: solid 2px #f6bfbc;
+}
+
+.modal-close {
+  color: #D50A0A;
+}
+
+.txtboxStyle1 {
+  padding:4px 4px 4px 4px;
+  border:1px solid #CCCCCC;
+  width:230px;
+  height:18px;
+}
+
+
+.grayline2 { margin: 0 2px; height: 4px; line-height: 1px; font-size: 1px; background-color: #ededed; overflow: hidden; }
+
+.profile_line { float:none; width: 90%; height: 2px; line-height: 2px; font-size: 1px; border-bottom: solid 2px #cfcfcf;}
+.profile_text_content { font-size: 36; width: 90%; text-align: left; margin-left: 4px; }
+.profile_text_bold { color: black; font-weight: bold; }
+/**the design by Mike Kai had an underline that appeared thinner and lighter in color than the standard underline**/
+.profile_text_link { float:right; text-align: right; margin-right: 11%; color: #1d8cd2; border-bottom: 1px dotted ; font-size:14px; font-weight:bold;}
+
+
+
+/** Profile Header **/
+
+.my_profile_class {
+ width: 90%;
+ height: 180px;
+    border: 3px solid #e0e0e0; 
+    background:#efefef; 
+    font-size: 18px;
+    color: #666666;
+    margin-top:20px;
+}
+
+.profile_subject_line { width: 90%; }
+.my_profile { font-size: 32px; font-weight: bold; color: #black; text-align: left; padding:2px;}
+.edit_profile { font-size: 14px; font-weight: bold; color: #1d8cd2;border-bottom: 1px dotted;
+
+ }
+.  { font-size: 24; float:right; margin-right: 12%; text-align: right; margin-right: 2px; color: #1d8cd2; text-decoration: underline; }
+
+/** Profile Display Box **/
+.left_profile_box { float:left; overflow: hidden;}
+.right_profile_box {  float: left; 
+      font-size: 18px;   
+      color: #666666; 
+      overflow: hidden; 
+      /*outline: blue 1px solid;*/
+      margin-top:36px;
+      
+      }
+      
+
+.profile_text_content { font-size: width: 90%; 16px; color: #636363; text-align: left; margin-left: 2px; }
+.profile_text_subjectline { margin-left: 2px; font-weight: bold; color:#898989;font-size:16px;}
+
+/**needs box-shadow; as shown in picture**/
+.profile_photo { width: 120px; height: 120px; background-color: black; margin:18px 18px; border: 2px solid white;  }
+/**needs to be centered underneeath the photo. Juan added the margin to compensate for the image at 120px plus 2px border**/
+.profile_edit_photo { font-size: 14px; font-weight: bold; color: #1d8cd2; text-align: center; border-bottom: 1px dotted ;
+/*outline: red 1px solid;*/
+width: 72px;
+margin:-6px 0px 0px 46px;
+}
+
+.profile_name { font-size: 32px; font-weight: bold; color: black; margin: 40px 0px 0px 12px; text-align: left;
+padding-top: 66px;
+/*outline: red 1px solid;*/
+ }
+.profile_title {  color: #666666; text-align: left; margin:0px 0px 0px 12px; font-size:15px; }
+.profile_company { color: #1d8cd2; text-align: left; font-size:15px;}
+
+
+/** Bio **/
+/**.profile_edit_bio { float:right; margin-right: 12%; width:50%; text-align: right; color: #1d8cd2; text-decoration: underline; }**/
+
+
+/** Contact Information. text has not been turning gray **/
+.profile_ci_text { font-size: 16px; color: black; text-align: left; margin: 0px 0px 0px 12px; }
+.profile_add_text { font-size: 16px; color: black; text-align: left; margin: 0px 0px 0px 36px; }
+/**sct = State city text**/
+.profile_sct { font-size: 16px; color: black; text-align: left; margin: 0px 0px 0px 6px; }
+
+
+/** Quick Links **/
+.public_profile_url { color: black; font-weight: bold; }
+.profile_quicklink_userprofile a{ color: #1d8cd2; font-weight: bold; border-bottom: 1px dotted; }
+
+.qr_info { position:left; }
+.qr_image { float:left; text-align: left;  margin:0px 0px 0px -8px;}
+/**temporarily adding outline: 1px solid red to the QR download just so i have a visual reference #1d8cd2;**/
+.qr_download {  width: 11%; 
+    font-weight: bold; 
+    text-align: left; 
+    padding-top: 66px;
+    padding-left: -2px;
+    margin:0px 0px 0px 90px;  
+    color: #1d8cd2;
+    border-bottom: 1px dotted;} 
+    
+.qr_use { clear: both; width: 90%; margin-left: 2px; color: #666666; }

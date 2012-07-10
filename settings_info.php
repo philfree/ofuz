@@ -35,8 +35,10 @@
           </div>
         </div>
       </td>
+      
       <td class="layout_rcolumn">
-        <div class="banner60 pad020 text32"><?php echo _('Settings'); ?></div>
+		  
+		<div class="banner60 pad020 text32"><?php echo _('Settings'); ?></div>
         <div class="banner50 pad020 text16 fuscia_text"><?php echo _('My Information'); ?></div>
         <div class="contentfull">
         

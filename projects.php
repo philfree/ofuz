@@ -56,28 +56,18 @@
 				echo $msg->displayMessage();
 			}
        ?>
-        <div class="mainheader">
-            <div class="pad20">
-                <span class="headline14"><?php echo _('Projects'); ?></span>
+       
+        <div class="mainheader pad20">
+                <span class="page_title"><?php echo _('Projects'); ?></span>
                 <?php
-                    if($_SESSION['do_project']->getProjectStatus() == 'closed'){
-                        $link = _('Open Projects');
-                        $status = 'closed';
-                        $set_status = 'open';
-                    }else{ 
-                        $status = 'open'; 
-                        $set_status = 'closed';
-                        $link = _('Closed Projects');
-                    }
-                    $e_filter_project = new Event("do_project->eventSetProjectStatus");
-                    $e_filter_project->addParam("status",$set_status);
+                   if (is_object($GLOBALS['cfg_submenu_placement']['projects'] ) ) {
+                	  echo  $GLOBALS['cfg_submenu_placement']['projects']->getMenu();
+                   }
                 ?>
-                <span class="ptask_edit"><?php echo $e_filter_project->getLink($link);?></span>
-            </div>
-        </div>
+        </div>       
         <div class="contentfull">
 	        <?php
-	            $_SESSION['do_project']->getAllProjects($status);
+	            $_SESSION['do_project']->getAllProjects('open');
 	            if ($_SESSION['do_project']->getNumRows()) {
 	                echo $_SESSION['do_project']->viewProjects();
 	            }
