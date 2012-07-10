@@ -25,7 +25,7 @@ class WorkFeedProjectAssignCoworker extends WorkFeedItem{
 
     function display(){
       $do_user = new User();
-      $user_name = $do_user->getUserNameByIdUser($this->iduser);
+      $user_name = $do_user->getUserNameByIdUser($_SESSION["do_User"]->iduser);
       $html .= '<div style="width:50px;float:left;">';
       $html .= '<img src="/images/note_icon.gif" width="34" height="34" alt="" />';
       $html .= '</div>';
