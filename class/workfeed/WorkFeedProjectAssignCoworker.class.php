@@ -51,12 +51,15 @@ class WorkFeedProjectAssignCoworker extends WorkFeedItem{
         $do_project = new Project();
         $do_project->getId($projectid);
         $this->project_name = $do_project->getProjectName();
+
+	$user = array($coworkerid);
+
         $do_user = new User();
-        $do_user->getId($coworkerid);
+        $do_user->getId($_SESSION["do_User"]->iduser);
         $this->user_full_name = $do_user->getFullName();
         $this->idcontact = $coworkerid;
         $this->idproject = $projectid;
-        $this->addFeed();     
+        $this->addFeed($user);     
 
     }
 
