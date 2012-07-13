@@ -446,7 +446,8 @@ class OfuzLeanKitKanban extends DataObject {
     $do_pd->add();
 
     $evtcl->idproject_discuss = $do_pd->getPrimaryKeyValue();
-
+    $evtcl->fields['document'] = "";
+    $evtcl->fields['discuss'] = $prefix_note.$evtcl->block_unblock_reason;
   }
 
 }
