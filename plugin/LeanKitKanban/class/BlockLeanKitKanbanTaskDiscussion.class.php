@@ -115,7 +115,7 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 
                //$e_block->setLevel(120);
 	       $e_block->addEventAction('OfuzLeanKitKanban->eventAddReasonAsTaskNote', 130);
-               $e_block->addEventAction('ProjectDiscuss->eventSendDiscussMessageByEmail', 140);
+               //$e_block->addEventAction('ProjectDiscuss->eventSendDiscussMessageByEmail', 140);
                $e_block->addEventAction('WorkFeedKanbanBlockReasonProjectDiscuss->eventAddFeed', 150);
 
 	      $e_block->addParam("block_unblock_flag",$block_unblock_flag);
