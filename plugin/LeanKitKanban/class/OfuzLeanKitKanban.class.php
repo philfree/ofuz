@@ -447,10 +447,11 @@ class OfuzLeanKitKanban extends DataObject {
 
     $evtcl->idproject_discuss = $do_pd->getPrimaryKeyValue();
     
+    // Generating fields array for EventControler because the existing method ProjectDiscuss->eventSendDiscussMessageByEmail
+    // uses it.
     $fields = array();
     $fields['document'] = "";
     $fields['discuss'] = $prefix_note.$evtcl->block_unblock_reason;
-
     $evtcl->fields = $fields;
 
   }
