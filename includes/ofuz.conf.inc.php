@@ -108,6 +108,7 @@
   include_once("class/workfeed/WorkFeedContactUnsubscibeEmails.class.php");
   include_once("class/workfeed/WorkFeedTwitterImport.class.php");
   include_once("class/workfeed/WorkFeedProjectAssignCoworker.class.php");
+  include_once("class/workfeed/WorkFeedKanbanBlockReasonProjectDiscuss.class.php");
 
 
 

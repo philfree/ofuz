@@ -94,7 +94,7 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 
 	    //If card presents in a Board
 	    if($card_presents) {
-
+	      $block_unblock_flag = "";
 	      $do_olk = new OfuzLeanKitKanban();
 	      $lane_name = $do_olk->getCardLaneName($board_id, $card_exists->LaneId);
 
@@ -103,14 +103,22 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 	      if($card_exists->IsBlocked) {
 		$e_block = new Event("OfuzLeanKitKanban->eventUnblockTheCard");
 		$content .= "<b>Blocked</b>: Yes <a id='unblock_it' href='javascript:void(0);'>Unblock it</a>";
+		$block_unblock_flag = "Unblock";
 		if($card_exists->BlockReason) {
 		  $content .= " &nbsp;&nbsp;<img src='/images/blocked.jpeg' width='16' title='Reason: ".$card_exists->BlockReason."' />";
 		}
 	      } else {
 		$e_block = new Event("OfuzLeanKitKanban->eventBlockTheCard");
 		$content .= "<b>Blocked</b>: No <a id='block_it' href='javascript:void(0);'>Block it</a>";
+		$block_unblock_flag = "Block";
 	      }
 
+               //$e_block->setLevel(120);
+	       $e_block->addEventAction('OfuzLeanKitKanban->eventAddReasonAsTaskNote', 130);
+               $e_block->addEventAction('ProjectDiscuss->eventSendDiscussMessageByEmail', 140);
+               $e_block->addEventAction('WorkFeedKanbanBlockReasonProjectDiscuss->eventAddFeed', 150);
+
+	      $e_block->addParam("block_unblock_flag",$block_unblock_flag);
 	      $e_block->addParam("ofuz_task_id", $idtask);
 	      $e_block->addParam("ofuz_idprojecttask", $_GET['idprojecttask']);
 	      $e_block->addParam("card_id", $card_exists->Id);

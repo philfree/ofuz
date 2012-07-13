@@ -403,6 +403,7 @@ class OfuzLeanKitKanban extends DataObject {
 	$response = $leankitkanban->updateCard($array_card, $evtcl->board_id); 
 	if($response->ReplyCode == '202') {
 	  $msg .= "The Card is unblocked.";
+	  //$evtcl->fields['discuss'] = $evtcl->block_unblock_reason;
 	} else {
 	  $msg .= $response->ReplyText;
 	}
@@ -425,6 +426,27 @@ class OfuzLeanKitKanban extends DataObject {
     $date = explode("-", $mysql_date);
     $date = $date[1].$separator.$date[2].$separator.$date[0];
     return $date;
+  }
+
+  /**
+   * This method adds the Block/Unblock Reason (from Kanban Plugin) as Task Discussion note.
+   * @param object : EventControler
+   */
+  public function eventAddReasonAsTaskNote(EventControler $evtcl) {
+    $prefix_note = ($evtcl->block_unblock_flag == "Block") ? "<b>Task Block </b>" : "<b>Task Unblock </b>" ;
+    $do_pd = new ProjectDiscuss();
+    $do_pd->idproject_task = $evtcl->ofuz_idprojecttask;
+    $do_pd->discuss = $prefix_note.$evtcl->block_unblock_reason;
+    $do_pd->date_added = date("Y-m-d");
+    $do_pd->document = "";
+    $do_pd->hours_work = "0.00";
+    $do_pd->iduser = $_SESSION['do_User']->iduser;
+    $do_pd->discuss_edit_access = 'user';
+    $do_pd->type = 'Note';
+    $do_pd->add();
+
+    $evtcl->idproject_discuss = $do_pd->getPrimaryKeyValue();
+
   }
 
 }
