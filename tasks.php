@@ -493,8 +493,9 @@ $strPrioritySortURL = $e_PrioritySort->getUrl();
 function sticky_relocate() {
   var window_top = $(window).scrollTop();
   var div_top = $('#sticky-anchor').offset().top;
+
   if (window_top > div_top)
-    $('#contacts_ctlbar').addClass('stick')
+    $('#contacts_ctlbar').addClass('stick');
   else
     $('#contacts_ctlbar').removeClass('stick');
   }

@@ -328,7 +328,7 @@ h4 { font-size: 10pt; margin: 0; padding: 0; line-height: 1.2; }
   width:100%;
   padding: 6px 20px;
   margin: 2px 0; background-color: #ffffcc; border-top: solid 1px #ffa500;
-  z-index: 10000;
+  z-index: 100;
   }
   
   
