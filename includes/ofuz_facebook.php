@@ -13,37 +13,21 @@ $currentFile = $_SERVER["PHP_SELF"];
 
 ?>
 
-<!--<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>-->
-<?php
-if($application_layer_protocol == "https") {
-?>
-<script type="text/javascript" src="https://ssl.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>
+<div id="fb-root"></div>
+
 <script type="text/javascript">
 //<![CDATA[
-FB_RequireFeatures(["XFBML"], function() {
-	// xd_receiver to pull from a secure location
-	FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTPS ;?>");
-	FB.Facebook.get_sessionState().waitUntilReady(function(session) {
-	var is_loggedin = session ? true : false;
-  }); 
-});
+  window.fbAsyncInit = function() {
+    FB.init({appId: '<?php echo FACEBOOK_APP_ID ; ?>', status: true, cookie: true,
+             xfbml: true});
+  };
+  (function() {
+    var e = document.createElement('script'); e.async = true;
+    e.src = document.location.protocol +
+      '//connect.facebook.net/en_US/all.js';
+    document.getElementById('fb-root').appendChild(e);
+  }());
 //]]>
 </script>
-<?php
-} else {
-?>
-<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" ></script>
-<script type="text/javascript">
-//<![CDATA[
-FB_RequireFeatures(["XFBML"], function() {
-	// xd_receiver to pull from a secure location
-	FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTP ;?>");
-	FB.Facebook.get_sessionState().waitUntilReady(function(session) {
-	var is_loggedin = session ? true : false;
-  }); 
-});
-//]]>
-</script>
-<?php } ?>
 
 <?php } }?>
