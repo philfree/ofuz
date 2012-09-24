@@ -168,18 +168,7 @@ Class sqlQuery extends BaseObject {
       $this->setError("Query Error: No open or valid connexion has been provide to execute the query: ".$this->sql_query) ;
       return false;
     }
-//    if ($this->sql_query == "") {
-//      if (is_array($this->table)) {
-//        reset($this->table) ;
-//        $this->sql_query = "select * from " ;
-//        while (list($key, $table) = each($this->table)) {
-//          $this->sql_query .= $table."," ;
-//        }
-//        $this->sql_query = ereg_replace(",$", "", $this->sql_query) ;
-//      } else {
-//        $this->sql_query= "select * from $this->table" ;
-//      }
-//    }
+
     if (empty($this->sql_query)) {
     //    $this->setError("No query to execute.:".var_export(get_object_vars($this), true));
          $this->setLog(" query(): No query to execute.");

@@ -1,6 +1,7 @@
 <?php
-// Copyright 2001 - 2008 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
-// For licensing, reuse, modification and distribution see license.txt
+// Copyright 2001 - 2012 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
+// Licensed under the LGPL 2.0 
+// For licensing details, reuse, modification and distribution see license.txt
   /**
    * Base Object 
    * @see BaseObject
@@ -161,9 +162,16 @@ class BaseObject {
         * setLogArray(Array $log_array)
         */
         function setLogArray(Array $log_array) {
+			$this->setLog(print_r($log_array, true));
+			/**
             foreach ($log_array as $key => $value) { 
-                $this->setLog("\n ".$key." = ".$value) ; 
-            }
+				if (is_array($value)) { 
+					$this->setLogArray($value); 
+				} else {
+					$this->setLog("\n ".$key." = ".$value) ; 
+				}
+            }**/
+            
         }
         
         /**

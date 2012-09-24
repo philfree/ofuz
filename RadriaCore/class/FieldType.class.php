@@ -242,7 +242,7 @@ Class FieldType extends BaseObject {
 						if (strlen($evctl->errorpage)>0) {
 							$urlerror = $evctl->errorpage;
 						} else {
-							$urlerror = $this->getMessagePage() ;
+							$urlerror = $evctl->getMessagePage() ;
 						}
 						$disp = new Display($urlerror);
 						$disp->addParam("message", $strRequiredField) ;
@@ -296,7 +296,7 @@ Class FieldType extends BaseObject {
 						if (strlen($evctl->errorpage)>0) {
 							$urlerror = $evctl->errorpage;
 						} else {
-							$urlerror = $this->getMessagePage() ;
+							$urlerror = $evctl->getMessagePage() ;
 						}
 						$disp = new Display($urlerror);
 						$disp->addParam("message", $validate_message) ;
@@ -1044,7 +1044,7 @@ Class FieldTypeRadioButton extends FieldTypeChar {
  * @package PASClass
  * @see strFBFieldTypeListBoxSmall
  */
-Class FieldTypeRadioButtonSmall extends FieldType {
+Class FieldTypeRadioButtonSmall extends RegistryFieldStyle {
     function default_Form($field_value="") {
         if (strlen( $this->getRData('radiovalues'))>0) {
             $values = explode(":", $this->getRData('radiovalues'));
@@ -1052,17 +1052,21 @@ Class FieldTypeRadioButtonSmall extends FieldType {
             $values = explode(":", $this->getRData('radiolabels'));
         }
         $labels = explode(":", $this->getRData('radiolabels'));
-       // if (strlen($field_value)==0 && strlen($this->default_value)>0) {
-       //    $field_value = $this->default_value;
-       // }
+       
         if (!$this->getRData('hidden') && !$this->getRData('readonly')) {
             for($i=0; $i<count($labels); $i++) {
                 $tmp_selected = "";
                 if (trim($values[$i]) == trim($field_value)) { $tmp_selected = " checked" ; }
-                  $fval .= "\n<input class=\"adformfield\" type=\"radio\" name=\"fields[".$this->field_name."]\" value=\"".htmlentities($values[$i])."\"".$tmp_selected." />".$labels[$i];
-                  if ($this->getRData("vertical") != "no") { $fval.="<br/>"; } else { $fval.="&nbsp;&nbsp;"; }
+                $this->processed .= "\n<input type=\"radio\" ";
+                if (strlen($this->getStyleParam()) > 0) {
+                        $this->processed .= $this->getStyleParam();
+                } else {
+                        $this->processed .= " id=\"".$this->getFieldName()."\"  class=\"adformfield\"";
+                }
+                $this->processed .= "name=\"fields[".$this->field_name."]\" value=\"".htmlentities($values[$i])."\"".$tmp_selected." />".$labels[$i];
+                if ($this->getRData("vertical") != "no") { $fval.="<br/>"; } else { $fval.="&nbsp;&nbsp;"; }
             }
-            $this->processed .= $this->no_PhpCode($fval);
+            $this->processed .= $this->no_PhpCode($this->processed);
         }
     }
 

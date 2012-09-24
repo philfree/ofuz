@@ -198,14 +198,13 @@ class Display extends BaseObject {
      * @version 3.0
      */
   function eventGotoPage(EventControler $evctl) {
-		$goto = $evctl->getParam("goto");
+		$goto = $evctl->goto;
 		$curdisp = $evctl->getDisplayNext();
 		if (is_object($curdisp)) {
-		$curdisp->setPage($goto);
-		$evctl->setDisplayNext($curdisp);
+			$curdisp->setPage($goto);
+			$evctl->setDisplayNext($curdisp);
 		} elseif (strlen($goto) > 0) {
-		$nextpage = new Display($goto);
-		$evctl->setDisplayNext($nextpage);
+			$evctl->setDisplayNext(new Display($goto));
 		}
 	}
   /**

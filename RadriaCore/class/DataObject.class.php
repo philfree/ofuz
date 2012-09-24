@@ -492,7 +492,7 @@ Class DataObject extends sqlQuery {
       $this->newForm($session_object_name.'->eventUpdate'); 
       $this->form->setLevel(1004);
       //$this->form->addEventAction($session_object_name.'->eventValuesFromForm', 543);
-	  $this->form->addEventAction('mydb.gotoPage', 9);
+	  $this->form->addEventAction('Display::eventGotoPage', 9);
       $this->form->table = $this->getTable();
 	  $this->setFieldsFormating(true, 'Form');
     }   
