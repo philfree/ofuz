@@ -1,4 +1,4 @@
- <?php
+<?php
  /**
   *  Apply load and apply the registry rules.
   *
