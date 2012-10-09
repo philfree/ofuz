@@ -70,6 +70,7 @@
                   $do_contact_edit->getContactDetails($idcontact);
                   $do_contact_edit->sessionPersistent("ContactEditSave", "contact.php", 3600);
                   echo _('Contacts are merged successfully.');
+                  $_SESSION['edit_from_page'] = 'contacts.php';                  
 		  echo '<br />';
                   echo _('Please wait page will be redirected in 5 seconds.');
               ?>
