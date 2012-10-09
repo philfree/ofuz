@@ -63,10 +63,14 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 	      $card = $leankitkanban->getCardByExternalId($obj_board->Id, $_GET['idprojecttask']);
 	      //Card found in the Board
 	      if($card->ReplyCode == '200') {
-		$card_presents = true;
-		$board_id = $obj_board->Id;
-		$board_title = $obj_board->Title;
-		$card_exists = $card->ReplyData[0];
+			if($card->ReplyData[0]) {
+				$card_presents = true;
+				$board_id = $obj_board->Id;
+				$board_title = $obj_board->Title;
+				foreach($card->ReplyData[0] as $cd_ex) {
+					$card_exists = $cd_ex;
+				}
+			}
 	      }
 	    }
 
