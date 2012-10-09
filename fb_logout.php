@@ -26,6 +26,18 @@
     <div class="contentfull">
         
 <?php  
+
+				// Destroying the fb session
+				/*include_once 'facebook_client/facebook.php';
+				$facebook = new Facebook(array(
+    'appId'  => FACEBOOK_APP_ID,
+    'secret' => FACEBOOK_APP_SECRET,
+    'cookie' => true,
+    'domain'=> FACEBOOK_CONNECT_DOMAIN
+  ));
+		$facebook->destroySession();
+*/
+
      $expire = time() - 3600;
   @setcookie('cookyogaglouserid', '', $expire, '/');
   @setcookie('cookyogaglouserfirstname', '', $expire, '/');
@@ -43,7 +55,8 @@
 
   // Finally, destroy the session.
   session_destroy();
-
+		
+	//$_SESSION['do_ofuz_fb']->fb_uid = 0 ;
 ?> 
 <script type="text/javascript">
 //<![CDATA[

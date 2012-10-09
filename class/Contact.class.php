@@ -982,6 +982,7 @@ class Contact extends DataObject {
      */
     
     function eventDeleteMultiple(EventControler $event_controler) {
+	$error_message = "";
         if (strlen($event_controler->tags)==0) {
             $this->setLog("\n Not tags deleting contacts");
             $contacts = $event_controler->getParam("ck");
@@ -996,8 +997,7 @@ class Contact extends DataObject {
                       if($idcontact != $logged_in_useridcontact){
                         $do_deleting_contact->delete();
                       }else{
-                        $error_message .='';
-                        $error_message .= 'You cannot delete your own contact.<br />';
+                        $error_message = 'You can not delete your own contact.<br />';
                         $error_delete = true;
                       }
                     }else{

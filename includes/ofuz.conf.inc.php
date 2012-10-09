@@ -108,7 +108,7 @@
   include_once("class/workfeed/WorkFeedContactUnsubscibeEmails.class.php");
   include_once("class/workfeed/WorkFeedTwitterImport.class.php");
   include_once("class/workfeed/WorkFeedProjectAssignCoworker.class.php");
-
+  include_once("class/workfeed/WorkFeedKanbanBlockReasonProjectDiscuss.class.php");
 
 
   // Ofuz API classes
@@ -164,12 +164,12 @@
   //Beanstakd
   include_once("class/OfuzBeanstalkd.class.php");
 
-  //Email Contact Import @note this should be in plug-in only.
+  //Email Contact Import
   //include_once("plugin/EmailImporter/openinviter.php");
   //include_once("plugin/EmailImporter/OfuzEmailImporter.class.php");
+  
 
-
-  define('RADRIA_LOG_RUN_OFUZ', true);
+  define('RADRIA_LOG_RUN_OFUZ', false);
   define('OFUZ_LOG_RUN_TAG', false);
   define('OFUZ_LOG_RUN_CONTACT', false); 
   define('OFUZ_LOG_RUN_WEBFORM', false);
@@ -181,25 +181,32 @@
   define('OFUZ_API_KEY', '');  
   
   define('OFUZ_COM', 'http://www.ofuz.com');
-  define('OFUZ_NET', 'http://ofuz.localhost');
+  define('OFUZ_NET', 'http://www.ofuz.net');
   define('EMAIL_DOMAIN', 'ofuz.net');
 
   //path
   define('XML_EXPORT', 'xml_export/');
-
-  define('FACEBOOK_API_KEY','23664984441');
-  define('FACEBOOK_APP_SECRET','bafc16e12485d362be753fd19bf114ea');
-  /*define('FACEBOOK_XD_RECEIVER_HTTP','http://www.ofuz.net/xd_receiver.htm');
+  /*define('FACEBOOK_API_KEY','86666320566');
+  define('FACEBOOK_APP_SECRET','addc6284f9ea2c548f92334ee1313371');
+  define('FACEBOOK_XD_RECEIVER_HTTP','http://www.ofuz.net/xd_receiver.htm');
   define('FACEBOOK_XD_RECEIVER_HTTPS','https://www.ofuz.net/xd_receiver.htm');
-  */
-  define('FACEBOOK_XD_RECEIVER_HTTP','http://dev.ofuz.net/xd_receiver.htm');
-  define('FACEBOOK_XD_RECEIVER_HTTPS','https://dev.ofuz.net/xd_receiver.htm');
+*/
+		define('FACEBOOK_APP_ID','86666320566'); 
+  define('FACEBOOK_APP_SECRET','addc6284f9ea2c548f92334ee1313371');
+  
+  define('FACEBOOK_CONNECT_DOMAIN','http://www.ofuz.net/'); 
 
-  define('TWITTER_CONSUMER_KEY','');
-  define('TWITTER_CONSUMER_SECRET','');
+  define('FACEBOOK_XD_RECEIVER_HTTP','http://www.ofuz.net/xd_receiver.htm');
+  define('FACEBOOK_XD_RECEIVER_HTTPS','https://www.ofuz.net/xd_receiver.htm');
+
+		define('SITE_URL','http://www.ofuz.net');
+		define('SITE_URL_HTTPS','https://www.ofuz.net');
+
+  define('TWITTER_CONSUMER_KEY','sRbRJ3cwJLHyVYPAy71Qvg');
+  define('TWITTER_CONSUMER_SECRET','Eur6OZm2X79ycJrriZRhRal0XRYIGagQfRmq9qONnY');
 
   
-  define('ENC_SECRECT_KEY','Opensource Rules'); // This is just for SQLFusion Do not disclose
+  define('ENC_SECRECT_KEY','i am legent'); // This is just for SQLFusion Do not disclose
   define('OFUZ_RESTAPIKEY_GEN_SECRECT_KEY','OFUZ_API_AUTHENTICATION_MD5_SECRET_KEY');
   
   // Detect the path to be used for url in emails or forwarded link or message
@@ -211,8 +218,8 @@
   $GLOBALS['email_domain'] = 'ofuz.net';
 
   // Set it as false if beanstalkd is not setup
-  define('ENABLE_JOB_QUEUE',true);
-  $GLOBALS['ENABLE_JOB_QUEUE'] = true;
+  define('ENABLE_JOB_QUEUE',false);
+  $GLOBALS['ENABLE_JOB_QUEUE'] = false;
   define('JOB_QUEUE_IP','72.172.84.167');
   define('JOB_QUEUE_PORT','11300');
   
