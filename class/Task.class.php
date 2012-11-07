@@ -1162,8 +1162,22 @@ class Task extends DataObject {
         $event_controler->addOutputValue(true);
 
     }
-  
-
+	
+	/**
+	 * This method gets the status of the task.
+	 * @param int
+     * @return string : status
+	 */
+	function getStatus($idtask) {
+		$sql = "SELECT status FROM ".$this->getTable()." WHERE idtask = ".$this->quote($idtask);
+		$this->query($sql);
+		$status = '';
+		if($this->getNumRows()) {
+			$this->fetch();
+			$status = $this->status;
+		}
+		return $status;
+	}
 
 }
 ?>
