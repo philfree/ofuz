@@ -1,4 +1,6 @@
-<?php 
+<?php
+error_reporting(E_ALL); 
+ini_set( 'display_errors','1');
 // Copyrights 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /**COPYRIGHTS**/
 
