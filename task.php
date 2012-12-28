@@ -171,7 +171,7 @@ $(document).ready(function() {
 
 function fnSaveDraft(){
   var discuss_text = document.getElementById('discuss').value;
-
+  var idprojectTask = <?php echo $idproject_task; ?>;
   $.ajax({
         type: "GET",
         <?php
@@ -180,13 +180,15 @@ function fnSaveDraft(){
         $e_NoteDraft->setSecure(false);
         ?>
         url: "<?php echo $e_NoteDraft->getUrl(); ?>",
-        data: "text="+escape(discuss_text)+"&id_type=project_discuss&id=<?php echo $idproject_task; ?>",
+        data: {text:discuss_text, id_type:'project_discuss', id:idprojectTask},
+        //data: "text="+escape(discuss_text)+"&id_type=project_discuss&id=<?php echo $idproject_task; ?>",
         success: function(result){
         }
     });
 }
 function fnSaveDraftOnClick(){
   var discuss_text = document.getElementById('discuss').value;
+  var idprojectTask = <?php echo $idproject_task; ?>;
   $.ajax({
         type: "GET",
         <?php
@@ -195,7 +197,8 @@ function fnSaveDraftOnClick(){
         $e_NoteDraft->setSecure(false);
         ?>
         url: "<?php echo $e_NoteDraft->getUrl(); ?>",
-        data: "text="+escape(discuss_text)+"&id_type=project_discuss&id=<?php echo $idproject_task; ?>",
+        //data: "text="+escape(discuss_text)+"&id_type=project_discuss&id=<?php echo $idproject_task; ?>",
+        data: {text:discuss_text, id_type:'project_discuss', id:idprojectTask},
         success: function(result){
             $("#draft_saved").show("fast");
             window.setInterval("reloadPage()", 4000);
