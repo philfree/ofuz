@@ -197,7 +197,7 @@ $("#"+divid).fadeOut("slow");
 				      echo '<div style="position:relative;width:100%;">';
                                       echo '<div class="feed_user_pic" style="positon:relative;float:left;overflow:hidden;">';
                                       
-                                      echo '<a href="/profile/'.$user_name.'" target="_blank"> <img height="50px" alt="" src='.$user_pic.' > </a>';
+                                      echo '<a href="/profile/'.$user_name.'" target="_blank"> <img height="50px" width="50px" alt="" src='.$user_pic.' > </a>';
                                       echo '</div>';
                                       echo '<div style="positon:relative;float:left;width:80%;margin:0px;"><a style="color:#C52EAD;" href="javascript:void(0)" onclick="showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" >'
                                                             .$_SESSION['do_coworker']->firstname.' '.$_SESSION['do_coworker']->lastname.
