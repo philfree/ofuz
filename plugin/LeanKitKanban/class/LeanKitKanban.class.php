@@ -336,6 +336,25 @@ class LeanKitKanban {
     return json_encode($array_data);
   }
 
+ /**
+  * Archive
+  * This method retrieves the archive, all its sub-lanes, and the cards contained in the archive.
+  *
+  * HTTP: GET
+  * @param string
+  * @return JSON
+  * @example http://myaccount.leankitkanban.com/Kanban/Api/Board/101000/Archive
+  * @see http://support.leankitkanban.com/entries/20267951-archive
+  */
+
+  public function getArchive($board_id) {
+    $this->setRequestMethod('GET');
+    $this->setRequestURL($this->api_url."Board/{$board_id}/Archive");
+    $this->get();
+    return $this->getResponseData();
+  }
+
+
 }//End of class
 
 ?>

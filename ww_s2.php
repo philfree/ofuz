@@ -25,7 +25,7 @@ $(document).ready(function () {
     var project = $.trim($('#project').val());
     var task = $.trim($('#task').val());
     if(project == "" || task == "") {
-      $('#pYourFirstProject').append(" <br />requires <br />Project Name and Task Name");
+      $('#pYourFirstProject').html(" Your first project <br />requires <br />Project Name and Task Name");
       return false;
     } else {
       $('#Project__eventAddProjectAndTask').submit();

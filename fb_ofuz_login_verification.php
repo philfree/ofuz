@@ -10,10 +10,11 @@
     $background_color = 'white';
     include_once('config.php');
     include_once 'facebook_client/facebook.php';
-    include_once 'class/OfuzFacebook.class.php';
+    //include_once 'class/OfuzFacebook.class.php';
+				include_once('class/RadriaFacebookConnect.class.php');
     include_once('includes/header.inc.php');
     
-    $facebook = new Facebook(FACEBOOK_API_KEY, FACEBOOK_APP_SECRET);
+    /*$facebook = new Facebook(FACEBOOK_API_KEY, FACEBOOK_APP_SECRET);
     $do_ofuz_fb =  new OfuzFacebook($facebook);
     $do_ofuz_fb->sessionPersistent("do_ofuz_fb", "logout.php", OFUZ_TTL);
     $_SESSION['do_ofuz_fb']->isLoggedInFacebook();
@@ -28,8 +29,38 @@
             $position =  $work_history[0]["position"];
             $company =  $work_history[0]["company_name"];
         }else{$company = '';$position='';}
-    }
+    }*/
+//     error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 
+
+				$facebook = new Facebook(array(
+    'appId'  => FACEBOOK_APP_ID,
+    'secret' => FACEBOOK_APP_SECRET,
+    'cookie' => true,
+    'domain'=> FACEBOOK_CONNECT_DOMAIN
+  ));
+
+		
+
+		
+		$do_ofuz_fb = new RadriaFacebookConnect($facebook,FACEBOOK_APP_ID,FACEBOOK_APP_SECRET); 
+  $do_ofuz_fb->sessionPersistent("do_ofuz_fb", "logout.php", OFUZ_TTL); 
+		$_SESSION['do_ofuz_fb']->isLoggedInFacebook(); // Must be called before any RadriaFacebookConnect :: method() call
+		
+		$user_data = $facebook->api('/me');  
+		if(is_array($user_data) && count($user_data) > 0 && $_SESSION['do_ofuz_fb']->fb_uid != ''){
+				$fname = $user_data["first_name"];
+    $lname = $user_data["last_name"];
+				$work_detail = $user_data["work"][0];
+			 if(is_array($work_detail) && count($work_detail) > 0 ){
+								$position = $work_detail["position"]["name"];
+								$company = 	$work_detail["employer"]["name"];
+				}else{$company = '';$position='';}
+		}
+		
+		
+	//	print_r($user_data);exit;
 
 ?>
 
@@ -37,38 +68,38 @@
 <?php
 if($application_layer_protocol == "https") {
 ?>
-<script type="text/javascript" src="https://ssl.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>
+<!--<script type="text/javascript" src="https://ssl.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>-->
 <?php
 } else {
 ?>
-<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" ></script>
+<!--<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" ></script>-->
 <?php
 }
 ?>
 
 
 <script type="text/javascript">
-    FB_RequireFeatures(["XFBML"], function()
-    {
-    // xd_receiver to pull from a secure location
-    <?php
-	  if($application_layer_protocol == "https") {
-	  ?>
-			  FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTPS ;?>");
-	  <?php
-	  } else {
-	  ?>
-			  FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTP ;?>");
-	  <?php
-	  }
-    ?>
-      FB.Facebook.get_sessionState().waitUntilReady(function(session) {
-        var is_loggedin = session ? true : false;
- 	var fbu = FB.Facebook.apiClient.get_session() ?
-             FB.Facebook.apiClient.get_session().uid :
-             0;
-     }); 
-    });
+//     FB_RequireFeatures(["XFBML"], function()
+//     {
+//     // xd_receiver to pull from a secure location
+//     <?php
+// 	  if($application_layer_protocol == "https") {
+// 	  ?>
+// 			  FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTPS ;?>");
+// 	  <?php
+// 	  } else {
+// 	  ?>
+// 			  FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTP ;?>");
+// 	  <?php
+// 	  }
+//     ?>
+//       FB.Facebook.get_sessionState().waitUntilReady(function(session) {
+//         var is_loggedin = session ? true : false;
+//  	var fbu = FB.Facebook.apiClient.get_session() ?
+//              FB.Facebook.apiClient.get_session().uid :
+//              0;
+//      }); 
+//     });
   </script>
 <script type="text/javascript">
 //<![CDATA[
@@ -142,5 +173,22 @@ function showDiv(){
     <div class="loginbg3">
     </div>
 </div>
+<div id="fb-root"></div>
+
+<script type="text/javascript">
+//<![CDATA[
+
+  window.fbAsyncInit = function() {
+    FB.init({appId: '<?php echo FACEBOOK_APP_ID ; ?>', status: true, cookie: true,
+             xfbml: true});
+  };
+  (function() {
+    var e = document.createElement('script'); e.async = true;
+    e.src = document.location.protocol +
+      '//connect.facebook.net/en_US/all.js';
+    document.getElementById('fb-root').appendChild(e);
+  }());
+//]]>
+</script>
 </body>
 </html>

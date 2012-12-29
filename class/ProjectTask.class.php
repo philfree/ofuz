@@ -874,7 +874,9 @@ class ProjectTask extends Task {
     if($this->getNumRows()) {
       $this->fetch();
       return $this->getData("idtask");
-    }
+    } else {
+		return false;
+	}
   }
 
 

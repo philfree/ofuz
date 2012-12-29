@@ -1,4 +1,6 @@
-<?php 
+<?php
+error_reporting(E_ALL); 
+ini_set( 'display_errors','1');
 // Copyrights 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 /**COPYRIGHTS**/
 
@@ -11,11 +13,25 @@
     $pageTitle = 'Ofuz :: '._('Login');
     include_once('includes/header.inc.php');
     include_once 'facebook_client/facebook.php';
-    include_once 'class/OfuzFacebook.class.php';
-    $facebook = new Facebook(FACEBOOK_API_KEY, FACEBOOK_APP_SECRET);
+    //include_once 'class/OfuzFacebook.class.php';
+				include_once('class/RadriaFacebookConnect.class.php');
+
+    /*$facebook = new Facebook(FACEBOOK_API_KEY, FACEBOOK_APP_SECRET);
     $do_ofuz_fb =  new OfuzFacebook($facebook);
     $do_ofuz_fb->sessionPersistent("do_ofuz_fb", "logout.php", OFUZ_TTL);
-    $_SESSION['do_ofuz_fb']->isLoggedInFacebook();
+    $_SESSION['do_ofuz_fb']->isLoggedInFacebook();*/
+
+				$facebook = new Facebook(array(
+    'appId'  => FACEBOOK_APP_ID,
+    'secret' => FACEBOOK_APP_SECRET,
+    'cookie' => true,
+    'domain'=> FACEBOOK_CONNECT_DOMAIN
+				));
+				$do_ofuz_fb = new RadriaFacebookConnect($facebook,FACEBOOK_APP_ID,FACEBOOK_APP_SECRET);
+				$do_ofuz_fb->sessionPersistent("do_ofuz_fb", "logout.php", OFUZ_TTL);
+				$_SESSION['do_ofuz_fb']->isLoggedInFacebook();
+
+
     $next_page = "index.php";
     if(isset($_GET['reg']) && $_GET['reg'] == '1'){
       $next_page = "welcome_to_ofuz.php";
@@ -37,6 +53,7 @@
   unset($_SESSION['entry']);
  }
  
+
 ?>
 <script type="text/javascript">
 //<![CDATA[
@@ -44,45 +61,44 @@ var counter = <?php echo ($_SESSION['do_ofuz_fb']->fb_uid) ? 1 : 0; ?>;
 window.onload = function(){document.do_User__eventCheckIdentification["fields[username]"].focus();}
 //]]>
 </script>
-<!--<script src="fbconnect.js" type="text/javascript"></script>-->
-<!--<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" ></script>-->
+
 <?php
 if($application_layer_protocol == "https") {
 ?>
-<script type="text/javascript" src="https://ssl.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>
+<!--<script type="text/javascript" src="https://ssl.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>-->
 <?php
 } else {
 ?>
-<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" ></script>
+<!--<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" ></script>-->
 <?php
 }
 ?>
 
 <script type="text/javascript">
-    FB_RequireFeatures(["XFBML"], function()
-    {
-    // xd_receiver to pull from a secure location
-<?php
-if($application_layer_protocol == "https") {
-?>
-  FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTPS ;?>");
-<?php
-} else {
-?>
-  FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTP ;?>");
-<?php
-}
-?>
-      FB.Facebook.get_sessionState().waitUntilReady(function(session) {
-        var is_loggedin = session ? true : false;
-  var fbu = FB.Facebook.apiClient.get_session() ?
-             FB.Facebook.apiClient.get_session().uid :
-             0;
-            if (is_loggedin && !counter) {
-               window.location.reload();
-      }
-     }); 
-    });
+//     FB_RequireFeatures(["XFBML"], function()
+//     {
+//     // xd_receiver to pull from a secure location
+// <?php
+// if($application_layer_protocol == "https") {
+// ?>
+//   FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTPS ;?>");
+// <?php
+// } else {
+// ?>
+//   FB.Facebook.init("<?php echo FACEBOOK_API_KEY ;?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTP ;?>");
+// <?php
+// }
+// ?>
+//       FB.Facebook.get_sessionState().waitUntilReady(function(session) {
+//         var is_loggedin = session ? true : false;
+//   var fbu = FB.Facebook.apiClient.get_session() ?
+//              FB.Facebook.apiClient.get_session().uid :
+//              0;
+//             if (is_loggedin && !counter) {
+//                window.location.reload();
+//       }
+//      }); 
+//     });
   </script>
 <div class="loginbg1">
     <div class="loginheader"><a href="/index.php"><img src="/images/ofuz_logo2.jpg" width="170" height="90" alt="" /></a></div>
@@ -121,11 +137,12 @@ window.location.href = "<?php echo $evctl->getUrl();?>";
             <?php if(FACEBOOK_API_KEY != ''){ ?>
 
                 <?php echo _('Login With Facebook:') ; ?><br />
-<?php if($application_layer_protocol == "https") { ?>
-                <a href="#" onclick="FB.Connect.requireSession(); return false;" > <img id="fb_login_image" src="https://s-static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif" alt="Connect"/> </a>
-<?php } else { ?>
-                <a href="#" onclick="FB.Connect.requireSession(); return false;" > <img id="fb_login_image" src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif" alt="Connect"/> </a>
-<?php } ?>
+																<?php
+																				if($application_layer_protocol == "https") {
+																								$login_url = SITE_URL_HTTPS.'/user_login.php';
+																				}else{ $login_url = SITE_URL.'/user_login.php'; }
+																?>
+																<fb:login-button scope="<?php echo  $_SESSION['do_ofuz_fb']->getFbPermissionList() ; ?>" onlogin='window.location="<?php echo $login_url ; ?>";'>Connect with Facebook</fb:login-button> 
             </p>
       <?php } ?>
             <p>
@@ -151,5 +168,45 @@ window.location.href = "<?php echo $evctl->getUrl();?>";
     </div>
 </div>
 <?php include_once('includes/ofuz_analytics.inc.php'); ?>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+    $("#registration_emailpass_signon :input[name='fields[email]']").focus();
+});
+//]]>
+</script>
+
+
+<div id="fb-root"></div>
+<script type="text/javascript">
+//<![CDATA[
+    window.fbAsyncInit = function()
+            {
+                FB.init
+                ({
+                    appId   : '<?php echo FACEBOOK_APP_ID ; ?>',
+                    status  : true, // check login status
+                    cookie  : true, // enable cookies to allow the server to access the session
+                    xfbml   : true, // parse XFBML
+                    oauth   : true
+                });
+                FB.Event.subscribe('auth.login', function()
+                {
+                    window.location.reload();
+                });
+            };
+          
+          (function()
+          {
+            var e = document.createElement('script');
+            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+            e.async = true;
+            document.getElementById('fb-root').appendChild(e);
+            }());
+            
+            
+            
+//]]>
+</script>
 </body>
 </html>

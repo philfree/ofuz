@@ -11,7 +11,8 @@
         <div class="layout_textlinks">
         <?php
           if($_SESSION['do_User']->global_fb_connected && $_SESSION['do_User']->fb_user_id){
-               echo '<span style="float: left;"><b>Hello , </b>&nbsp;&nbsp;</span><span style="float: left;"><fb:profile-pic uid="'.$_SESSION['do_User']->fb_user_id.'" facebook-logo="true" linked="true" width="50" height="50"></fb:profile-pic></span>';
+               //echo '<span style="float: left;"><b>Hello , </b>&nbsp;&nbsp;</span><span style="float: left;"><fb:profile-pic uid="'.$_SESSION['do_User']->fb_user_id.'" facebook-logo="true" linked="true" width="50" height="50"></fb:profile-pic></span>';
+															 echo 'Welcome, <img src=\'https://graph.facebook.com/'. $_SESSION['do_User']->fb_user_id.'/picture\' height="37"/><span class="username">'.$_SESSION['do_User']->firstname.'</span>';
                echo '<span class="sep1">|</span>';
           }else if($_SESSION['do_User']->iduser){
               echo '<span style="float: left;"><b>Hello , '.$_SESSION['do_User']->firstname.' </b>&nbsp;&nbsp;</span>';
@@ -45,7 +46,19 @@
 
         <?php 
               if($_SESSION['do_User']->global_fb_connected && $_SESSION['do_User']->fb_user_id){
-                  echo '<a href="#" onclick=\'FB.Connect.logoutAndRedirect("/fb_logout.php")\'>Logout</a>';
+																		include_once 'facebook_client/facebook.php';
+																		 $facebook_logout = new Facebook(array(
+																		'appId'  => FACEBOOK_APP_ID,
+																		'secret' => FACEBOOK_APP_SECRET,
+																		'cookie' => true,
+																		'domain'=> FACEBOOK_CONNECT_DOMAIN
+																));
+																if($application_layer_protocol == "https") {
+																				$params = array( 'next' => SITE_URL_HTTPS.'/fb_logout.php' );
+																}else{ $params = array( 'next' => SITE_URL.'/fb_logout.php' ); }
+																//$facebook_logout->getLogoutUrl($params);
+																echo '<a href="'.$facebook_logout->getLogoutUrl($params).'" onclick="">Logout</a>';
+                 // echo '<a href="#" onclick=\'FB.Connect.logoutAndRedirect("/fb_logout.php")\'>Logout</a>';
               }else{
         ?>
         <?php 
