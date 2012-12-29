@@ -111,7 +111,6 @@
   include_once("class/workfeed/WorkFeedKanbanBlockReasonProjectDiscuss.class.php");
 
 
-
   // Ofuz API classes
   include_once("class/OfuzApiBase.class.php");
   include_once("class/OfuzApiMethods.class.php");
@@ -200,7 +199,7 @@
   define('TWITTER_CONSUMER_SECRET','');
 
   
-  define('ENC_SECRECT_KEY','Opensource Rules'); // This is just for SQLFusion Do not disclose
+  define('ENC_SECRECT_KEY','i am legent'); // This is just for SQLFusion Do not disclose
   define('OFUZ_RESTAPIKEY_GEN_SECRECT_KEY','OFUZ_API_AUTHENTICATION_MD5_SECRET_KEY');
   
   // Detect the path to be used for url in emails or forwarded link or message

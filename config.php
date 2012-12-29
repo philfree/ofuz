@@ -64,7 +64,7 @@
 
   $conx = new sqlConnect("ofuzdev", "d3v5") ;
   $conx->setHostname("localhost") ;
-  $conx->setDatabase("ofuzdev") ;
+  $conx->setDatabase("ofuz") ;
   // Directory where pas is located
   $conx->setBaseDirectory($cfg_local_pasdir) ;
   // Directory where the project is located unless your config.php file is outside your project tree is should be "./"
