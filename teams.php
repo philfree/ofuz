@@ -1,4 +1,5 @@
 <?php 
+exit();// The team concept is on hold
 /**COPYRIGHTS**/ 
 // Copyrights 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 
