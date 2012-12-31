@@ -287,6 +287,10 @@ class ProjectDiscuss extends Note {
      */
     function eventSendDiscussMessageByEmail(EventControler $event_controler) {
           $this->setLog("\n eventSendDiscussMessageByEmail: starting (".date("Y/m/d H:i:s"));
+
+	  $_SESSION['do_project_task']->getId($event_controler->idproject_task);
+	  $_SESSION['do_project']->getId($event_controler->idproject);
+
           try {
               $co_workers = $_SESSION["do_project"]->getProjectCoWorkers();
               // print_r($co_workers);exit;
@@ -295,6 +299,7 @@ class ProjectDiscuss extends Note {
                   $email_nudge = new EmailTemplate("ofuz_project_discussion_nudge");
                   $project_task_url = $GLOBALS['cfg_ofuz_site_http_base'].'Task/'.$_SESSION['do_project_task']->idproject_task;
                   $project_link =  $GLOBALS['cfg_ofuz_site_http_base'].'Project/'.$_SESSION['do_project']->idproject;
+
                   if($event_controler->fields['document'] !=''){ // If a file is attached
                       $doc_link = $GLOBALS['cfg_ofuz_site_http_base'].'files/'.$event_controler->fields['document'];
                       $doc_text = '<br />'._('Attachment').': <a href="'.$doc_link.'"> '.$event_controler->fields['document'].'</a>';
