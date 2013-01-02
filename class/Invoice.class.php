@@ -2048,7 +2048,7 @@ class Invoice extends DataObject {
             $_SESSION['in_page_message'] = _("This transaction has been approved. Thank you for your payment");
             
             $do_pay_log = new PaymentLog();
-            $do_pay_log->addPaymentLog($transactionID,"Stripe",$_SESSION['do_invoice']->idinvoice,$total);
+            $do_pay_log->addPaymentLog($result['response']['id'],"Stripe",$_SESSION['do_invoice']->idinvoice,$total);
                                                 $idpayment_log = $do_pay_log->getPrimaryKeyValue();
                                                 $do_payment_inv = new PaymentInvoice();
                                                 $do_payment_inv->addPaymentInvoice($idpayment_log,$_SESSION['do_invoice']->idinvoice,$total);
