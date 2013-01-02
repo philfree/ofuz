@@ -41,7 +41,11 @@ class StripeGateWay extends BaseObject
         $result = Stripe_Charge::create($input);
         
 		if($result['paid'] === true){
+/*
 			$result_array = array("success"=>"1","customer_id"=>$customer->id);	
+			return $result_array;
+*/
+			$result_array = array("success"=>"1","customer_id"=>$customer->id,"response"=>$result);	
 			return $result_array;
 		} else {
 			return $result;
