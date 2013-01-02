@@ -78,7 +78,7 @@ $(document).ready(function() {
 		    echo '<br/><b>'._('Tags for those contacts').':</b></b> '.$do_userform->tags;
 		    echo '<br/><b>'._('Web address to take the user after submitting the form').':</b> '.$do_userform->urlnext;
 		    echo '<br/><b>'._('Receive an email alert when someone submit the form').':</b> '.$do_userform->email_alert;
-		    echo '<div align="right">'.$do_userform->form->getFormFooter(_('Create')).'</div>';
+		    echo '<div align="right">'.$do_userform->form->getFormFooter(_('Update')).'</div>';
                     ?>
                     <div><?php 
 		            $_SESSION['do_userform']->setApplyRegistry(false);
@@ -92,6 +92,50 @@ $(document).ready(function() {
 		<textarea rows="2" cols="100"><script type="text/javascript" src="<?php echo    $GLOBALS['cfg_ofuz_site_http_base'].'js_form.php?fid='.$_SESSION['do_userform']->getPrimaryKeyValue(); ?>"></script>
                 </textarea>
 		</div>
+<!-- Display webform html start -->
+<div>
+		<?php 
+		
+		$fid = $_SESSION['do_userform']->getPrimaryKeyValue();
+		
+		$do_user_rel = new UserRelations();
+		$efid=$do_user_rel->encrypt($fid);
+		
+		$do_webformuser = new WebFormUser();
+		$do_webformuser->getId($_SESSION['do_userform']->getPrimaryKeyValue());
+		$do_webformuser->sessionPersistent("do_webformuser", "index.php", OFUZ_TTL);
+		
+		$do_webformuser->newForm('do_webformuser->eventAddContact');
+		if ($do_webformuser->email_alert == 'y') {
+			$do_webformuser->form->addEventAction("do_webformuser->eventSendEmailAlert", 300);
+		}
+		
+		$js = '';
+		if (strlen($do_webformuser->title)>0) {
+			$js .= $do_webformuser->title . '<br />' ;
+		}
+		if (strlen ($do_webformuser->description ) > 0 ) {
+			$js .= $do_webformuser->description  . '<br />';
+		}
+
+		$uid=$do_webformuser->iduser;
+		$euid=$do_user_rel->encrypt($uid);
+		
+		$js .='<form method="post" action="http://'.$_SERVER['SERVER_NAME'].'/webformeventcontroler.php">' .
+          $do_webformuser->form->getFormEvent();
+          $js.='<input type="hidden" name="fid" id="fid" value='.$efid.'>';
+          $js.='<input type="hidden" name="uid" id="uid" value='.$euid.'>';
+          $js .= $do_webformuser->displayWebFormFields() .
+		  '<div align="right">'.$do_webformuser->form->getFormFooter('Submit').'</div>';
+		//$js = addslashes(str_replace("\n", '', $js));
+		$js = "<table><tr><td>".$js."</td></tr></table>";
+		?>
+		<div>
+		<textarea rows="20" cols="100"><?php echo $js;?></textarea>
+		
+		</div>
+</div>
+<!-- Display webform html ends -->
                     <?php
 
                   }else{

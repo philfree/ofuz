@@ -23,7 +23,7 @@
     <table class="layout_columns"><tr><td class="layout_lcolumn settingsbg">
         <div class="settingsbar"><div class="spacerblock_16"></div>
             <?php
-                $GLOBALS['thistabsetting'] = 'Plugins';
+                $GLOBALS['thistabsetting'] = 'Add On';
                 include_once('includes/setting_tabs.php');
              ?>
         <div class="settingsbottom"></div></div>
