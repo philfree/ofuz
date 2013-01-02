@@ -375,7 +375,7 @@ class UserRelations extends DataObject {
     
 
      function eventAddAsCoWorker(EventControler $evtcl) {
-		$this->addNew();
+				$this->addNew();
         $this->iduser = $evtcl->iduser;
         $this->idcoworker = $evtcl->idcoworker;
         $this->accepted = 'No';
