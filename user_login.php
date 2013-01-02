@@ -21,15 +21,16 @@ ini_set( 'display_errors','1');
     $do_ofuz_fb->sessionPersistent("do_ofuz_fb", "logout.php", OFUZ_TTL);
     $_SESSION['do_ofuz_fb']->isLoggedInFacebook();*/
 
-				$facebook = new Facebook(array(
-    'appId'  => FACEBOOK_APP_ID,
-    'secret' => FACEBOOK_APP_SECRET,
-    'cookie' => true,
-    'domain'=> FACEBOOK_CONNECT_DOMAIN
-				));
-				$do_ofuz_fb = new RadriaFacebookConnect($facebook,FACEBOOK_APP_ID,FACEBOOK_APP_SECRET);
-				$do_ofuz_fb->sessionPersistent("do_ofuz_fb", "logout.php", OFUZ_TTL);
-				$_SESSION['do_ofuz_fb']->isLoggedInFacebook();
+		$facebook = new Facebook(array(
+				'appId'  => FACEBOOK_APP_ID,
+				'secret' => FACEBOOK_APP_SECRET,
+				'cookie' => true,
+				'domain'=> FACEBOOK_CONNECT_DOMAIN
+		));
+
+		$do_ofuz_fb = new RadriaFacebookConnect($facebook,FACEBOOK_APP_ID,FACEBOOK_APP_SECRET);
+		$do_ofuz_fb->sessionPersistent("do_ofuz_fb", "logout.php", OFUZ_TTL);
+		$_SESSION['do_ofuz_fb']->isLoggedInFacebook();
 
 
     $next_page = "index.php";

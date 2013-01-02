@@ -43,11 +43,17 @@ Ofuz Open Source version is released under the GNU Affero General Public License
              }else{ echo _('Please check the URL');}
 
       }else{
-        $_SESSION['do_User']->formRegister('import_contacts.php',
+       /* $_SESSION['do_User']->formRegister('import_contacts.php',
                                                      'regthank',
                                                      'admin_registration_alert',
                                                      'support@sqlfusion.com'
-                                                     ); 
+                                                     ); */
+
+        $_SESSION['do_User']->formRegister('ww_s1.php',
+                                                     'regthank',
+                                                     'admin_registration_alert',
+                                                     'support@sqlfusion.com'
+                                                     );
       }
 
       

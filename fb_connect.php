@@ -18,14 +18,22 @@
       $_SESSION["page_from"] = $ref;
   }
   include_once 'facebook_client/facebook.php';
-  include_once 'class/OfuzFacebook.class.php';
-  $facebook = new Facebook(FACEBOOK_API_KEY, FACEBOOK_APP_SECRET);
-  if (!is_object($_SESSION['do_ofuz_fb'])) {
-      $do_ofuz_fb =  new OfuzFacebook($facebook);
-      $do_ofuz_fb->sessionPersistent("do_ofuz_fb", "index.php", OFUZ_TTL);
-  }
+  include_once('class/RadriaFacebookConnect.class.php');
+  
+	$facebook = new Facebook(array(
+				'appId'  => FACEBOOK_APP_ID,
+				'secret' => FACEBOOK_APP_SECRET,
+				'cookie' => true,
+				'domain'=> FACEBOOK_CONNECT_DOMAIN
+		));
 
-  $_SESSION['do_ofuz_fb']->isLoggedInFacebook();
+		$do_ofuz_fb = new RadriaFacebookConnect($facebook,FACEBOOK_APP_ID,FACEBOOK_APP_SECRET);
+		$do_ofuz_fb->sessionPersistent("do_ofuz_fb", "logout.php", OFUZ_TTL);
+		$_SESSION['do_ofuz_fb']->isLoggedInFacebook();
+
+
+
+//  $_SESSION['do_ofuz_fb']->isLoggedInFacebook();
   //if($fb_uid){
    if($_SESSION['do_ofuz_fb']->fb_uid){
   ?>
@@ -43,50 +51,7 @@
 ?>
 
   <title>Ofuz</title>
-<!--
-  <link rel="stylesheet" href="http://static.ak.connect.facebook.com/css/fb_connect.css" type="text/css" />
-    <script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"
-    type="text/javascript"></script>
--->
- <?php
-if($application_layer_protocol == "https") {
-?>
-<script type="text/javascript" src="https://ssl.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>
-<?php
-} else {
-?>
-<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" ></script>
-<?php
-}
-?>
 
-  <script type="text/javascript">
-    FB_RequireFeatures(["XFBML"], function()
-    {
-      
-	   // xd_receiver to pull from a secure location
-      <?php
-if($application_layer_protocol == "https") {
-?>
-		FB.Facebook.init("<?php echo FACEBOOK_API_KEY; ?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTPS ; ?>");
-<?php
-} else {
-?>
-		FB.Facebook.init("<?php echo FACEBOOK_API_KEY ; ?>", "<?php echo FACEBOOK_XD_RECEIVER_HTTP ;?>");
-<?php
-}
-?>
-      FB.Facebook.get_sessionState().waitUntilReady(function(session) {
-        var is_loggedin = session ? true : false;
- 	var fbu = FB.Facebook.apiClient.get_session() ?
-             FB.Facebook.apiClient.get_session().uid :
-             0;
-            if (is_loggedin && !counter) {
-               window.location.reload();
- 	    }
-     }); 
-    });
-  </script>
 <!--<div id="bar" style="overflow: auto; height:300px; width:500px; margin-top:50px; float:left;" >-->
 <?php $do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
 <table class="layout_columns"><tr><td class="layout_lmargin"></td><td>
@@ -119,14 +84,20 @@ if($application_layer_protocol == "https") {
             exit;
         }
 	try{
-	    @$friends = $_SESSION['do_ofuz_fb']->getFbFriends();// will contain the fbid of friends
+	    //@$friends = $_SESSION['do_ofuz_fb']->getFbFriends();// will contain the fbid of friends
+			if ($_SESSION['do_ofuz_fb']->getFbUserId()) {
+				try {
+					$friends = $facebook->api('/me/friends');
+				} catch (FacebookApiException $e) {}
+			}  
 	}catch(Exception $e){
-		$_SESSION['do_ofuz_fb']->setUserNull(null, null);
+		//$_SESSION['do_ofuz_fb']->setUserNull(null, null);
 		echo _('Oops ! something wrong, seems like the facebook session is no longer valid, please clear the bowser cookies and retry. We appriciate your patience');
 		//echo '<br /><a href="/fb_import_friends.php">'._('Click Here').'</a>';
 		exit();
 	}
-        $list  = $_SESSION['do_ofuz_fb']->getFriendsList();
+	print_r($friends);
+        /*$list  = $_SESSION['do_ofuz_fb']->getFriendsList();
         $count = count(@$friends);
         $i = 1;
         $j=0;
@@ -173,6 +144,7 @@ if($application_layer_protocol == "https") {
             $do_contact->free();
            
         }
+				*/
         //rebuilding the userXX_contact table
         /*$contact_view = new ContactView();
         $contact_view->setUser($_SESSION['do_User']->iduser);
@@ -196,8 +168,7 @@ if($application_layer_protocol == "https") {
         echo _('If you are already connected to facebook please wait for few seconds, page will be auromatically redirected');
         ?>
         <br />
-         <!--<a href="#" onclick="FB.Connect.requireSession(); return false;" > <img id="fb_login_image" src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif" alt="Connect"/> </a>-->
-              <a href="#" onclick="FB.Connect.requireSession(); return false;" > <img id="fb_login_image" src="https://s-static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif" alt="Connect"/> </a>
+         <fb:login-button scope="<?php echo  $_SESSION['do_ofuz_fb']->getFbPermissionList() ; ?>" onlogin='window.location="<?php echo SITE_URL ;?>/fb_connect.php'>Connect with Facebook</fb:login-button> 
         <?php
      }
    
@@ -206,6 +177,37 @@ if($application_layer_protocol == "https") {
     <div class="layout_footer"></div>
 </div>
 </td><td class="layout_rmargin"></td></tr></table>
-<?php include_once('includes/ofuz_facebook.php'); ?>
+<?php //include_once('includes/ofuz_facebook.php'); ?>
+<div id="fb-root"></div>
+<script type="text/javascript">
+//<![CDATA[
+    window.fbAsyncInit = function()
+            {
+                FB.init
+                ({
+                    appId   : '<?php echo FACEBOOK_APP_ID ; ?>',
+                    status  : true, // check login status
+                    cookie  : true, // enable cookies to allow the server to access the session
+                    xfbml   : true, // parse XFBML
+                    oauth   : true
+                });
+                FB.Event.subscribe('auth.login', function()
+                {
+                    window.location.reload();
+                });
+            };
+          
+          (function()
+          {
+            var e = document.createElement('script');
+            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+            e.async = true;
+            document.getElementById('fb-root').appendChild(e);
+            }());
+            
+            
+            
+//]]>
+</script>
 </body>
 </html>

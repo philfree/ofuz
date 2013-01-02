@@ -60,7 +60,7 @@ echo $e_cw_invite->getFormHeader();
 echo $e_cw_invite->getFormEvent();
 ?>
       <div align="center" style="font-size:1.4em;">
-      <p id="pYourFirstProject">Enter the email address of the co-workers you want to work with.</p>
+      <p id="pYourFirstProject">Enter the email address of the Co-Workers you want to work with.</p>
       <p id="msg"></p>
 	<div id="invite_cw">
 	  <div class="spacerblock_20"></div>
