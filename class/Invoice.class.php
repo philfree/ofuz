@@ -1130,7 +1130,7 @@ class Invoice extends DataObject {
                     $do_rec_invoice->getId($idrec);
                     $next_due_date = $do_rec_invoice->nextdate;
                     $recurrence = $do_rec_invoice->recurrence;
-                    $recurrence_type = $do_rec_invoice->recurrence_type;
+                    $recurrence_type = $do_rec_invoice->recurrencetype;
                 }else{
                     $email_template = new EmailTemplate("ofuz_send_invoice");
                 }

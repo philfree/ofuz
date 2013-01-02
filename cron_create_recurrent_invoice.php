@@ -27,7 +27,7 @@
             while($do_recurrent->next()){
                 // Create a new Invoice First
              // if($do_recurrent->idinvoice == '52'  ){ //Testing method by harcoding the idinvoice
-             if($do_recurrent->iduser == 15){
+             //if($do_recurrent->iduser == 15){
                 
                 $do_invoice->addNew();
                 $do_invoice->num = $do_invoice->getUniqueInvoiceNum($do_recurrent->iduser);
@@ -84,7 +84,7 @@
                 //echo 'Calling method sendInvoiceByEmail()..........<br />';
                 $do_inv_add->sendInvoiceByEmail($idinvoice,$do_inv_add->idcontact,$do_inv_add->iduser,true);
                 $do_inv_add->free();
-            }
+            //}
           }
         }
 	 
