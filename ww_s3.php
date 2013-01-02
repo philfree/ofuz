@@ -28,7 +28,7 @@ $(document).ready(function () {
     var email3 = $.trim($('#email3').val());
     var email4 = $.trim($('#email4').val());
     if(email1 == "" && email2 == "" && email3 == "" && email4 == "") {
-      $('#msg').append(" You need to enter at least one email address.");
+      $('#msg').html(" You need to enter at least one email address.");
       return false;
     } else {
        $('#UserRelations__eventInviteMultipleCWs').submit();
