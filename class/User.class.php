@@ -1392,24 +1392,28 @@ class User extends RegisteredUser {
 				group by u.iduser 
 				having (count(inv.iduser >= 0) and (count(p.iduser)>=0) and (count(t.iduser)>=0))";	    */
 				    
-		$sql = "select u.iduser as iduser 
+/*		$sql = "select u.iduser as iduser 
 				from user u left join login_audit la on u.iduser = la.iduser 
 				left join invoice inv on u.iduser=inv.iduser 
 				left join task t on u.iduser=t.iduser 
 				left join project p on u.iduser=p.iduser 
 				where datediff(curdate(),date(la.last_login)) >= '60' 
 				group by u.iduser 
-				having (count(inv.iduser >= 10) and (count(p.iduser)>=10) and (count(t.iduser)>=10))";	    
+				having (count(inv.iduser >= 10) and (count(p.iduser)>=10) and (count(t.iduser)>=10))";	    */
+		$sql = "select u.iduser as iduser 
+				from user u inner join login_audit la on u.iduser = la.iduser 
+				where datediff(curdate(),date(la.last_login)) >= '60' ";	 		
 	 
         $q->query($sql);		    
          
         $nums = $q->getNumRows();
-         
+        $tmp = 0; 
         if ($nums >= 1) {
 			while($q->fetch()) {
 				$iduser = $q->getData('iduser');
+				$count_for_inactive = $this->CountTaskProjectInvoiceContactForUser($iduser);
 				
-				if(($iduser == 'NULL')||(empty($iduser)))
+				if(($iduser == 'NULL')||(empty($iduser)) || ($count_for_inactive == 0))
 				{
 					$nums = 0;	
 					
@@ -1418,11 +1422,12 @@ class User extends RegisteredUser {
 				{
 					$expxml = new OfuzExportXML();
 					$expxml->exportUserAccountandDelete($iduser);
+					$tmp++;
 				}
 				
 			}
 		}
-		$msg = "$nums user record has been deleted";
+		$msg = "$tmp user record has been deleted";
 		return $msg;
 
     }
@@ -1472,6 +1477,39 @@ class User extends RegisteredUser {
         }
 	return $username;
     }
+    
+    /**
+     * Function to count the Number of Tasks Projects Invoices contacts for the user
+     * this function is using for deleting the inactive users 
+     * @param iduser
+     * @return true or false 
+     **/
+    function CountTaskProjectInvoiceContactForUser($iduser){
+		$q = new sqlQuery($this->getDbCon());
+		$q->query("SELECT 
+					(select count(iduser) from task where iduser='$iduser') as task,
+					(select count(iduser) from project where iduser='$iduser') as project,
+					(select count(iduser) from invoice where iduser='$iduser') as invoice,
+					(select count(iduser) from contact where iduser='$iduser') as contact
+					FROM user u
+					WHERE u.iduser = '$iduser'");
+		if($q->getNumRows() >= 1){
+			while($q->fetch()){
+				
+				$task = $q->getData("task");
+				$project = $q->getData("project");
+				$invoice = $q->getData("invoice");
+				$contact = $q->getData("contact");
+			}
+			
+			if(($task <= 10)&&($project <= 10)&&($invoice <= 10)&&($contact <= 10)){
+				$delete = 1;
+			}else{
+				$delete = 0;
+			}
+		}			
+		return $delete;
+	}
 
 }
 

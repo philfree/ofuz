@@ -76,5 +76,17 @@ class LoginAudit extends DataObject {
         }
         return $ip;
     }
+    
+    /**
+     * Get Login audit details [Delete Inactive Users]
+     * @param iduser
+     * @return query object
+   **/
+    function getLoginAuditDetails($iduser){
+		$q = new sqlQuery($this->getDbCon());
+		$sql = "select * from ".$this->table." where iduser = ".$iduser;
+        return $this->query($sql);
+     }
+    
 }
 ?>
