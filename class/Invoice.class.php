@@ -1130,7 +1130,7 @@ class Invoice extends DataObject {
                     $do_rec_invoice->getId($idrec);
                     $next_due_date = $do_rec_invoice->nextdate;
                     $recurrence = $do_rec_invoice->recurrence;
-                    $recurrence_type = $do_rec_invoice->recurrence_type;
+                    $recurrence_type = $do_rec_invoice->recurrencetype;
                 }else{
                     $email_template = new EmailTemplate("ofuz_send_invoice");
                 }
@@ -2048,7 +2048,7 @@ class Invoice extends DataObject {
             $_SESSION['in_page_message'] = _("This transaction has been approved. Thank you for your payment");
             
             $do_pay_log = new PaymentLog();
-            $do_pay_log->addPaymentLog($transactionID,"Stripe",$_SESSION['do_invoice']->idinvoice,$total);
+            $do_pay_log->addPaymentLog($result['response']['id'],"Stripe",$_SESSION['do_invoice']->idinvoice,$total);
                                                 $idpayment_log = $do_pay_log->getPrimaryKeyValue();
                                                 $do_payment_inv = new PaymentInvoice();
                                                 $do_payment_inv->addPaymentInvoice($idpayment_log,$_SESSION['do_invoice']->idinvoice,$total);

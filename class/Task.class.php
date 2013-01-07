@@ -1178,6 +1178,91 @@ class Task extends DataObject {
 		}
 		return $status;
 	}
+	
+	
+  /**
+   * get task associated with contact but task not associated with Project [Inactive Users].
+   * @param int idcontact for the task
+   * @return query object
+   */
 
+  function getContactTaskWithoutProjectAndWithUser($iduser) {
+    $sql = "SELECT t.*
+    FROM `{$this->table}` AS t
+    LEFT JOIN `project_task` AS pt ON t.idtask = pt.idtask
+    WHERE t.iduser = {$iduser}
+    AND t.idcontact = '0'
+    AND pt.idtask IS NULL
+    ";
+    $this->query($sql);
+  }
+  
+  /**
+   * get Contact tasks which are associated with Project and idcontact [Inactive Users].
+   * @return query object
+   * @param int : $idcontact
+   */
+
+  function getContactTaskWithoutProjectAndWithContact($idcontact) {
+    $sql = "SELECT pt.*,t.*
+    FROM `project_task` AS pt
+    INNER JOIN `{$this->table}` AS t ON t.idtask = pt.idtask
+    WHERE t.idcontact = {$idcontact}
+    ";
+    $this->query($sql);
+  }
+  
+   /**
+   * get task associated with contact but task not associated with Project [Inactive Users].
+   * @param int idcontact for the task
+   * @return query object
+   */
+
+  function getContactTasksAssociatedWithProjectWithContact($idcontact) {
+    $sql = "SELECT t.*
+    FROM `{$this->table}` AS t
+    LEFT JOIN `project_task` AS pt ON t.idtask = pt.idtask
+    WHERE t.idcontact = {$idcontact}
+    AND pt.idtask IS NULL
+    ";
+    $this->query($sql);
+  }
+  
+  /**
+   * get Contact tasks which are associated with Project and user [Inactive Users].
+   * @return query object
+   * @param int : $idcontact
+   */
+
+  function getContactTasksAssociatedWithProjectWithUser($iduser) {
+    $sql = "SELECT pt.*,t.*
+    FROM `project_task` AS pt
+    INNER JOIN `{$this->table}` AS t ON t.idtask = pt.idtask
+    WHERE t.iduser = {$iduser}
+    AND t.idcontact = '0';
+    ";
+    $this->query($sql);
+  }
+  
+  /**
+   * Get the Project details which are associatd with user [Inactive Users]
+   * but which do not have any task added yet. 
+   * @param iduser
+   * @return query object
+   **/
+   
+  function getProjectsWithNoTask($iduser) {
+	  $sql = "SELECT p.*
+			  FROM `project` p
+			  LEFT JOIN project_task pt ON p.idproject = pt.idproject
+			  WHERE p.idproject NOT
+			 IN (
+				SELECT idproject
+				FROM project_task
+			 )
+			 AND p.iduser = '$iduser'";
+	  $this->query($sql);
+  }
+	
 }
 ?>

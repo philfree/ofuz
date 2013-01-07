@@ -1,0 +1,25 @@
+## Ofuz rewrites
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteBase   /
+    RewriteRule ^Contact/([0-9].*) /contact.php?id=$1
+    RewriteRule ^Company/([0-9].*) /company.php?id=$1
+    RewriteRule ^Project/([0-9].*) /project.php?idproject=$1
+    RewriteRule ^Task/([0-9].*) /task.php?idprojecttask=$1
+    RewriteRule ^cp/([0-9].*) /contact_portal.php?pc=$1
+    RewriteRule ^unsub/([0-9].+)/([0-9].*) /unsubscribe_email.php?idc=$1&idu=$2
+    RewriteRule ^arunsub/([0-9].+)/([0-9].+)/([0-9].*) /unsubscribe_auto_responder.php?idc=$1&idu=$2&idt=$3 [L]
+    RewriteRule ^form/([0-9].*) /web_form.php?fid=$1
+    RewriteRule ^inv/(.*)/(.*)$ /invoice_view.php?idinv=$1&idcon=$2
+    RewriteRule ^pay/(.*)/(.*)$ /invoice_pay_redirect.php?idinv=$1&idcon=$2
+    RewriteRule ^Invoice/(.*)$ /invoice.php?idinvoice=$1
+    RewriteRule ^PublicProject/([0-9].*) /public_project.php?idproject=$1
+    RewriteRule ^PublicTask/([0-9].*) /public_task.php?idprojecttask=$1
+    RewriteRule ^profile/(.*)$ /public_profile.php?u=$1 [L]
+    RewriteRule ^Tab/(.*)/(.*)/([0-9].*)$ /tab_display.php?plugin=$1&content=$2&item_value=$3
+    RewriteRule ^Tab/(.*)/(.*)$ /tab_display.php?plugin=$1&content=$2 [L]
+    RewriteRule ^PlugIn/(.*)/(.*)/([0-9].*)$ /tab_display.php?plugin=$1&content=$2&item_value=$3
+    RewriteRule ^PlugIn/(.*)/(.*)$ /tab_display.php?plugin=$1&content=$2 [L]
+    RewriteRule ^Setting/(.*)/(.*)$ /tab_setting_display.php?plugin=$1&setting=$2 [L]
+</ifModule>
+php_value include_path ".:/var/www/ofuzlib:/var/www/ofuz"

@@ -94,7 +94,9 @@ function isAmountValid() {
                   echo '</div></div><br /><br />';
               }            
 
-             echo nl2br($_SESSION['do_invoice']->invoice_address);
+             //echo nl2br($_SESSION['do_invoice']->invoice_address);
+			$do_user_detail = $_SESSION['do_invoice']->getParentUser();
+		     echo  $_SESSION['do_invoice']->Only1brFirstLineBlack($_SESSION['do_invoice']->getInvoiceSenderAddr($do_user_detail));
              echo '<br />'. _('Total due :').'<b>'.$_SESSION['do_invoice']->viewAmount($_SESSION['do_invoice']->amt_due).'</b>';
              echo '<br /><br />';
              echo $_SESSION['do_invoice']->preparePaypalForm($_SESSION['do_invoice']->amt_due,$_SESSION['do_invoice']->num,$_SESSION['do_invoice']->description);
