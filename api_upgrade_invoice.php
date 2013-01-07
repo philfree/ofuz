@@ -4,7 +4,7 @@ include_once("config.php");
 include_once("class/OfuzApiMethods.class.php");
 include_once("class/OfuzApiClient.class.php");
 
-$api_key = '23ac6be1febf5975f712ed144006f5a2';// replace this with your API key
+$api_key = 'f1976041736ccb95fbb322e1e5c07cbf';// replace this with your API key
 
 
 
