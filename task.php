@@ -30,7 +30,7 @@
         $do_project = $do_project_task->getParentProject();
         if ($_SESSION['do_project']->idproject != $do_project_task->idproject) {
             $do_project->sessionPersistent("do_project", "project.php", OFUZ_TTL);
-        } echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+        } 
     } elseif (is_object($_SESSION["eDetail_ProjectTask"])) {
         $idproject_task = $_SESSION["eDetail_ProjectTask"]->getparam("idproject_task");
         $do_project_task = new ProjectTask();
