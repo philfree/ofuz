@@ -465,14 +465,6 @@ class ProjectDiscuss extends Note {
           } 
           $this->setLog("\n eventSendDiscussMessageByEmail: ending (".date("Y/m/d H:i:s"));
 
-    echo "sss";
-    echo "<pre>";
-    print_r($email_data);  
-    echo "<pre>";
-
-    exit();
-
-
     }
 
     /**
