@@ -182,13 +182,20 @@ if($_SESSION['hcard_idcontact'] != '' ){
       $id_user=$do_contact->getIdUser($idcontact);      
       $do_userprofile=new UserProfile();
       $profile_information=$do_userprofile->getProfileInformation($id_user);
-    
-      if(empty($profile_information)){ ?>
-        <a href="http://www.ofuz.com"><img src="/images/ofuz_logo_profile.png" width="157" height="100" alt="" /></a>
-      <?php 
+        $ContactWebsite = $_SESSION['do_contact']->getChildContactWebsite();
+        if($ContactWebsite->getNumRows()){                       
+          $ContactWebsite->next();
+          $website_url  = $ContactWebsite->website;        
         }else{
+          $website_url  = '#';
+        }
+
+      if(empty($profile_information)){ ?>
+        <a href="<?php echo $website_url; ?>"><img src="/images/ofuz_logo_profile.png" width="157" height="100" alt="" /></a>
+      <?php 
+        }else{       
       ?>
-        <a href="http://www.ofuz.com"><img src="/dbimage/<?php echo $profile_information['logo']; ?>" width="157" height="100" alt="" /></a>
+        <a href="<?php echo $website_url; ?>"><img src="/dbimage/<?php echo $profile_information['logo']; ?>" width="157" height="100" alt="" /></a>
       
       <?php
         }
