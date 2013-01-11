@@ -34,35 +34,37 @@ $doOfuzLeanKitKanban->getAll();
   }
 
   $external_task_id = array();
-  foreach($board_ids as $brd_id){ 
-    $archive_lane = $leankitkanban->getArchive('16480091');
-    foreach($archive_lane->ReplyData as $lane_archive) {
-      foreach($lane_archive as $archive) {
-        foreach($archive->Lane->Cards as $card) {
-          if($card->ExternalCardID) {    
-            if(!in_array($card->ExternalCardID,$external_task_id)){
-              array_push($external_task_id,$card->ExternalCardID);                                     
-              //getting the idtask from project_task table by sending idproject_task(ExternalCardID)
-              $do_project_task = new ProjectTask();
-              $idtask = $do_project_task->getTaskId($card->ExternalCardID);
-              $do_project_task->free();          
+  foreach($board_ids as $brd_id){
+    if($brd_id = '16480091') {//added for testing
+      $archive_lane = $leankitkanban->getArchive($brd_id);
+      foreach($archive_lane->ReplyData as $lane_archive) {
+        foreach($lane_archive as $archive) {
+          foreach($archive->Lane->Cards as $card) {
+            if($card->ExternalCardID) {    
+              if(!in_array($card->ExternalCardID,$external_task_id)){
+                array_push($external_task_id,$card->ExternalCardID);                                     
+                //getting the idtask from project_task table by sending idproject_task(ExternalCardID)
+                $do_project_task = new ProjectTask();
+                $idtask = $do_project_task->getTaskId($card->ExternalCardID);
+                $do_project_task->free();          
 
-              echo '<br>'.$card->ExternalCardID;
-              //Close the task (update the status to 'closed')              
-              if($idtask) {
-                $do_task = new Task();
-                $status =  $do_task->getStatus($idtask);
-                echo $status.":";
-//                 if($status != 'closed') {
-//                   $do_task->updateStatus($idtask,"closed");
-//                 }
-                $do_task->free();
+                echo '<br>'.$card->ExternalCardID;
+                //Close the task (update the status to 'closed')              
+                if($idtask) {
+                  $do_task = new Task();
+                  $status =  $do_task->getStatus($idtask);
+                  echo $status.":";
+  //                 if($status != 'closed') {
+  //                   $do_task->updateStatus($idtask,"closed");
+  //                 }
+                  $do_task->free();
+                }
               }
             }
           }
         }
       }
-    }
+    }//added for testing
   }
 
 ?>
