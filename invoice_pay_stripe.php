@@ -163,8 +163,7 @@ if(empty($stripe_customer_id)){
 					
 				echo '<div style="margin-left:0px;">';
                 echo '<div class="messages_unauthorized">';
-				echo 'Clicking Below the Submit charge your credit card with the Total due Amount '.$_SESSION['do_invoice']->amt_due.'</div></div>';		
-			
+				echo ' Clicking below will charge your credit card with amount  <b>'.$_SESSION['do_invoice']->viewAmount($_SESSION['do_invoice']->amt_due).'</b></div></div>';			
 				 if(empty($stripe_customer_id)){	
 				echo nl2br($_SESSION['do_invoice']->invoice_address);
 				 //echo '<br />'. _('Total due :').'<b>$'. number_format($invoice_cal_data["total_due_amt"],2, '.', ',' ).'</b>';
