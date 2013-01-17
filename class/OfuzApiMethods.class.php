@@ -698,7 +698,7 @@ class OfuzApiMethods extends OfuzApiBase {
 	
 	/*method add invoice for upgrade 21-01-2012*/
 	
-	function upgrade_plan_add_invoice(){
+	function upgrade_plan_add_invoice(){ 
         $add_call_back_url = false ; 
         $do_contact_invoice = new Contact();
         $do_api_invoice = new Invoice();
@@ -723,26 +723,117 @@ class OfuzApiMethods extends OfuzApiBase {
 		$do_api_invoice->discount = $this->discount;
 		$do_api_invoice->add();
 		$idinvoice = $do_api_invoice->getPrimaryKeyValue();
-		
-		//add to table invoice call back for trail users
-		$url = $this->url;$next_url=$this->next_url;
+
+  /** 
+    * Will Add an entry to the Invoice line table 
+    * */
+  if($_SESSION["upgrade"]){
+    $do_invoice_line = new InvoiceLine();
+    $do_invoice_line ->idinvoice  = $idinvoice;
+    $do_invoice_line->item = 'User Plan Upgrade';
+    $do_invoice_line->price = $this->amt_due;
+    $do_invoice_line->qty = 1;
+    $do_invoice_line->total = $this->amt_due;
+    $do_invoice_line->description = $this->description;
+    $do_invoice_line->add();
+  }
+
+  //add to table invoice call back for trail users
+  $url = $this->url;$next_url=$this->next_url;
 		
 		$invoice_call_back = new InvoiceCallback();
 		$invoice_call_back->addCallBackUrl($idinvoice,$url,$next_url);
 		
-            /*if($add_call_back_url){
-                $do_api_inv_call_back = new InvoiceCallback();
-                $callback = $do_api_inv_call_back->addCallBackUrl($idinvoice,$this->callback_url,$this->next_url);
-            }*/
-        $do_api_user_rel = new UserRelations();
-            //$inv_url =  $GLOBALS['cfg_ofuz_site_https_base'].'inv/'.$do_api_user_rel->encrypt($idinvoice).'/'.$do_api_user_rel->encrypt($this->idcontact);
+  /*if($add_call_back_url){
+      $do_api_inv_call_back = new InvoiceCallback();
+      $callback = $do_api_inv_call_back->addCallBackUrl($idinvoice,$this->callback_url,$this->next_url);
+  }*/
+  $do_api_user_rel = new UserRelations();
+      //$inv_url =  $GLOBALS['cfg_ofuz_site_https_base'].'inv/'.$do_api_user_rel->encrypt($idinvoice).'/'.$do_api_user_rel->encrypt($this->idcontact);
 			$pay_url =  $GLOBALS['cfg_ofuz_site_https_base'].'pay/'.$do_api_user_rel->encrypt($idinvoice).'/'.$do_api_user_rel->encrypt($this->idcontact);
-			//$inv_url =  'http://ofuz.localhost/inv/'.$do_api_user_rel->encrypt($idinvoice).'/'.$do_api_user_rel->encrypt($this->idcontact);
-		//$pay_url =  'http://ofuz.localhost/pay/'.$do_api_user_rel->encrypt($idinvoice).'/'.$do_api_user_rel->encrypt($this->idcontact);
-			
-        return $pay_url;
-          
-    }
+   //$inv_url =  'http://ofuz.localhost/inv/'.$do_api_user_rel->encrypt($idinvoice).'/'.$do_api_user_rel->encrypt($this->idcontact);
+   //$pay_url =  'http://ofuz.localhost/pay/'.$do_api_user_rel->encrypt($idinvoice).'/'.$do_api_user_rel->encrypt($this->idcontact);
+  return $pay_url;          
+  }
+
+
+
+
+
+
+
+
+  /**
+   * Invoice generation for paid customers for recurrent billing 
+   * @param INT $iduser
+   * @return INT $idinvoice
+   * @see corn_billing.php
+   **/
+  function cron_billing_add_invoice($iduser){         
+    $do_contact_invoice = new Contact(NULL,'',$iduser);
+    $do_api_invoice = new Invoice();
+       
+    $do_api_invoice->addNew(); 
+    $do_contact_invoice->setSqlViewName($iduser);//  set the sqlview name
+    $do_api_invoice->idcontact = $this->idcontact ;
+    $do_api_invoice->iduser = $this->iduser ;
+    $do_api_invoice->status = $this->type ; // could be status
+    $do_api_invoice->num = $do_api_invoice->getUniqueInvoiceNum($this->iduser) ;
+    $do_api_invoice->datecreated = date("Y-m-d");
+    $do_api_invoice->due_date = $this->due_date;
+    $do_api_invoice->invoice_address = $do_contact_invoice->ajaxGetInvoiceAddress($this->idcontact);
+    $do_api_invoice->invoice_term = $this->invoice_term;
+    $do_api_invoice->invoice_note = $this->invoice_note;
+    $do_api_invoice->description = $this->description;
+    $do_contact_invoice->getId($this->idcontact);
+    $do_api_invoice->idcompany = $do_contact_invoice->idcompany;
+    $do_api_invoice->amt_due = $this->amt_due;
+    $do_api_invoice->sub_total = $this->sub_total;
+    $do_api_invoice->net_total = $this->net_total;
+    $do_api_invoice->discount = $this->discount;
+    $do_api_invoice->add();
+    $idinvoice = $do_api_invoice->getPrimaryKeyValue();
+
+    /** 
+      * Will Add an entry to the Invoice line table 
+      **/  
+    $do_invoice_line = new InvoiceLine();
+    $do_invoice_line ->idinvoice  = $idinvoice;
+    $do_invoice_line->item = 'User Plan Upgrade';
+    $do_invoice_line->price = $this->amt_due;
+    $do_invoice_line->qty = 1;
+    $do_invoice_line->total = $this->amt_due;
+    $do_invoice_line->description = $this->description;
+    $do_invoice_line->add();
+    return $idinvoice;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 }
