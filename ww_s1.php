@@ -34,12 +34,13 @@
 	<div class="messages" style="font-size:1.8em;">Ofuz Getting started wizard</div>
       </div>
       <div align="center" style="font-size:1.4em;">
-      <p>Select the service where you have most of your working contacts</p>
+      <!--<p>Select the service where you have most of your working contacts</p>-->
+		<p><?php echo _('Add your first Contact');?></p>
 
 
 	<div id="import_address_book">
-	  <div style="vertical-align:middle;"><a id="fb_import" href="ww_s1_fbconnect.php"><img src="/images/Facebook_Logo.jpg" alt="" /></a></div>
-<!--
+<!--	  <div style="vertical-align:middle;"><a id="fb_import" href="ww_s1_fbconnect.php"><img src="/images/Facebook_Logo.jpg" alt="" /></a></div>
+
 	  <table width="60%">
 
 	    <tr>
@@ -55,11 +56,29 @@
 
 	  </table>
 -->
+		<?php 
 
+			$ContactEdit  = new Contact($GLOBALS['conx']);
+			$ContactEdit->sessionPersistent("ContactEditSave", "index.php", 3600);
+			$goto = "ww_s2.php";
+			$contactAddForm = $_SESSION['ContactEditSave']->prepareSavedForm("ofuz_add_first_contact");
+			$contactAddForm->setFormEvent("ContactEditSave->eventAdd",300);
+			$contactAddForm->event->setGotFile(true);		
+			$contactAddForm->addEventAction("ContactEditSave->eventAddWebView", 351);
+			//$contactAddForm->addEventAction("ContactEditSave->eventAddContactToTeam", 380);							
+			$contactAddForm->addEventAction("mydb.gotoPage", 453);
+			$contactAddForm->addParam("goto", $goto);
+			$contactAddForm->setRegistry("ofuz_add_contact");
+			$contactAddForm->setTable("contact");
+			$contactAddForm->setAddRecord();
+			$contactAddForm->setUrlNext($goto);
+			$contactAddForm->setForm();
+			$contactAddForm->execute();
+		?>
 	</div>
-      <div class="spacerblock_40"></div>
+      <!--<div class="spacerblock_40"></div>-->
       <div>
-	<a href="ww_s2.php"><input type="image" src="/images/next.jpg" border="0" /></a> <br />
+	<!--<a href="ww_s2.php"><input type="image" src="/images/next.jpg" border="0" /></a> <br />-->
 	<a href="index.php" title="">Skip >></a>
       </div>
       <div class="spacerblock_80"></div>
