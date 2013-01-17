@@ -14,10 +14,10 @@ class WebFormUserField extends DataObject {
     protected $primary_key = "idwebformuserfield";
 
     function __construct(sqlConnect $conx=NULL, $table_name="") {
-		parent::__construct($conx, $table_name);
-		if (RADRIA_LOG_RUN_OFUZ) {
-			$this->setLogRun(OFUZ_LOG_RUN_WEBFORM);
-		}
+      parent::__construct($conx, $table_name);
+      if (RADRIA_LOG_RUN_OFUZ) {
+        $this->setLogRun(OFUZ_LOG_RUN_WEBFORM);
+      }
     }    
 
     function getFieldsByWebFormUser($id){

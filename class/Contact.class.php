@@ -46,21 +46,28 @@ class Contact extends DataObject {
 	public $sql_qry_end = 50;
     private $last_message_send = false;
 	
-    function __construct(sqlConnect $conx=NULL, $table_name="") {
-		parent::__construct($conx, $table_name);
-		if (RADRIA_LOG_RUN_OFUZ) {
-			$this->setLogRun(OFUZ_LOG_RUN_CONTACT);
-		}
-		if (isset($_SESSION['contact_view_name'])) {
-			$this->sql_view_name = $_SESSION['contact_view_name'];
-		} else {
-			if (isset($_SESSION['do_User'])) {
-				$this->sql_view_name = "userid".$_SESSION['do_User']->iduser."_contact";
-			}
-		}
-		$this->setLog("\n Contact Object instantiated");
-    }
-	
+
+
+
+    function __construct(sqlConnect $conx=NULL, $table_name="",$iduser = '') {
+      parent::__construct($conx, $table_name);
+      if (RADRIA_LOG_RUN_OFUZ) {
+        $this->setLogRun(OFUZ_LOG_RUN_CONTACT);
+      }
+
+      if(empty($iduser)){
+        $iduser = $_SESSION['do_User']->iduser;
+      }
+
+      if (isset($_SESSION['contact_view_name'])) {
+        $this->sql_view_name = $_SESSION['contact_view_name'];
+      }else{
+        if (isset($_SESSION['do_User'])) {
+          $this->sql_view_name = "userid".$iduser."_contact";
+        }
+      }
+        $this->setLog("\n Contact Object instantiated");
+      } 
 	
     /**
      * getSqlViewName()

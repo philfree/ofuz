@@ -158,11 +158,15 @@
   include_once("class/MimeMailParser.class.php");
   include_once("class/OfuzEmailFetcher.class.php");
   
-    include_once("class/UserProfile.class.php");
-
+  include_once("class/UserProfile.class.php");
+	
+  include_once("class/UserGitrepo.class.php");	
 
   //Beanstakd
   include_once("class/OfuzBeanstalkd.class.php");
+  
+    include_once("class/CcDetails.class.php");
+
 
   //Email Contact Import
   //include_once("plugin/EmailImporter/openinviter.php");

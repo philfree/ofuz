@@ -20,6 +20,11 @@
     $do_contact_task = new Contact();
     $invoice_access = true;
 
+    $do_invoice1 = new Invoice();
+    $stripe_details  = $do_invoice1->getUserStripeDetails($_SESSION['do_invoice']->iduser);
+//     echo $stripe_details['stripe_api_key']; echo "<br/>";
+//     echo $stripe_details['stripe_publish_key']; exit();
+
     if($invoice_access){
         if (!is_object($_SESSION['do_invoice'])) {
             echo _('Your page session has been expired. Please go back to the Invoice page and try again.');
@@ -45,7 +50,7 @@ if(empty($stripe_customer_id)){
         <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.min.js"></script>
         <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
         <script type="text/javascript">
-          Stripe.setPublishableKey("<?php echo $_SESSION['do_invoice']->stripe_publish_key;?>");
+          Stripe.setPublishableKey("<?php echo $stripe_details['stripe_publish_key']?>");
             $(document).ready(function() {
                 function addInputNames() {
                     // Not ideal, but jQuery's validate plugin requires fields to have names
@@ -132,7 +137,7 @@ if(empty($stripe_customer_id)){
         </script><?php } //$do_feedback = new Feedback(); $do_feedback->createFeedbackBox(); ?>
 <table class="layout_columns"><tr><td class="layout_lmargin"></td><td>
 <div class="layout_content">
-<?php include_once('includes/ofuz_navtabs_invoice.php'); ?>
+<?php include_once('includes/ofuz_navtabs_invoice.php'); ?> 
 <?php //$do_breadcrumb = new Breadcrumb(); $do_breadcrumb->getBreadcrumbs(); ?>
     <div class="grayline1"></div>
     <div class="spacerblock_20"></div>
@@ -147,15 +152,16 @@ if(empty($stripe_customer_id)){
           }
     ?>
     <table class="layout_columns"><tr><td class="layout_lcolumn">
-    </td><td class="layout_rcolumn">
+    </td><td class="layout_rcolumn">  <h1>Credit Card Payment</h1>
         <div class="contentfull">
+         
 			<?php 
                 if($_SESSION['in_page_message'] != ''){
                     echo '<div style="margin-left:0px;">';
                     echo '<div class="messages_unauthorized">';
                     echo htmlentities($_SESSION['in_page_message']);
                     $_SESSION['in_page_message'] = '';
-                    echo '</div></div><br /><br />';
+                    echo '</div></div><br /><br /><br/>';
                 }
              ?>
 			<div style="margin-left:0px;display:none;" id="msg_unauth"></div>
@@ -163,18 +169,20 @@ if(empty($stripe_customer_id)){
 					
 				echo '<div style="margin-left:0px;">';
                 echo '<div class="messages_unauthorized">';
-				echo ' Clicking below will charge your credit card with amount  <b>'.$_SESSION['do_invoice']->viewAmount($_SESSION['do_invoice']->amt_due).'</b></div></div>';			
+				echo ' Clicking below will charge your credit card with amount  <b>'.$_SESSION['do_invoice']->viewAmount($_SESSION['do_invoice']->amt_due).'</b> </div></div><br/>';			
 				 if(empty($stripe_customer_id)){	
 				echo nl2br($_SESSION['do_invoice']->invoice_address);
 				 //echo '<br />'. _('Total due :').'<b>$'. number_format($invoice_cal_data["total_due_amt"],2, '.', ',' ).'</b>';
 				 echo '<br />'. _('Total due :').'<b>'. $_SESSION['do_invoice']->viewAmount($_SESSION['do_invoice']->amt_due).'</b>';
 				 echo '<br /><br />';
+     
 				 $do_user_rel = new UserRelations();
 				 $invoice_url = $GLOBALS['cfg_ofuz_site_http_base'].'inv/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idinvoice).'/'.$do_user_rel->encrypt($_SESSION['do_invoice']->idcontact);
 				 $do_payment = new Event("do_invoice->eventProcessStripePayment");
 				 $do_payment->addParam("goto", $invoice_url); // send 0 if no CC else send 1
 				 $do_payment->addParam("amt", $_SESSION['do_invoice']->amt_due); 
 				 $do_payment->addParam("error_page", "invoice_pay_stripe.php");
+     $do_payment->addParam("stripe_api_key", $stripe_details['stripe_api_key']);
 				 $idcontact = $_SESSION['do_invoice']->idcontact;
 				 $stripe_customer_id = $_SESSION['do_invoice']->getStripeCustomerId($_SESSION['do_invoice']->iduser,$idcontact);
 				if(!empty($stripe_customer_id)){	
@@ -200,6 +208,7 @@ if(empty($stripe_customer_id)){
 				 $do_payment->addParam("stripecustomer_id",$stripe_customer_id);
 				 $do_payment->addParam("goto", $invoice_url); // send 0 if no CC else send 1
 				 $do_payment->addParam("amt", $_SESSION['do_invoice']->amt_due); 
+     $do_payment->addParam("stripe_api_key", $stripe_details['stripe_api_key']); 
 				 $do_payment->addParam("error_page", "invoice_pay_stripe.php");
 				 echo $do_payment->getFormHeader();
 				 echo $do_payment->getFormEvent();
