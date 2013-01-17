@@ -15,7 +15,10 @@
 
 
 include_once('config.php');
-
+/*
+error_reporting(E_ALL & ~E_NOTICE ^ E_DEPRECATED);
+ini_set('display_errors', '1');
+*/
 
 //mb_convert_encoding($str, "UTF-8",
 //fwrite($fp, "\n\n text/plain content:".$final_message_content);
@@ -41,9 +44,9 @@ $do_project_discuss = new ProjectDiscuss();
 $do_activity = new Activity();
 
 // Take any one as per convinience 
-//$OfuzEmailFetcher->fetchEmailText('http://dev.ofuz.net/files/ofuz_catch.log');
+$OfuzEmailFetcher->fetchEmailText('/var/www/ofuz/files/ofuz_catch.log');
 
-$OfuzEmailFetcher->fetchEmailRow($email);
+//$OfuzEmailFetcher->fetchEmailRow($email);
 //$OfuzEmailFetcher->fetchEmailStream($stream);
 
 
@@ -204,7 +207,7 @@ if($addnote === true){
     if($iduser !== false ){
         // Retrieve the attachment only if its a valid email to be extracted.
         if($attachments_extracted === false){
-            $attachment = $OfuzEmailFetcher->saveAttachments('/var/www/dev.ofuz.net/files/');// Change this file path to your file saving path for Contact Notes and Project discussion
+            $attachment = $OfuzEmailFetcher->saveAttachments('/var/www/ofuz/files/');// Change this file path to your file saving path for Contact Notes and Project discussion
             $attachments_extracted = true ;
         }
         
@@ -503,7 +506,7 @@ if($add_project_task === true){
 
       if($allow_db_operation === true ){
             if($attachments_extracted === false){
-                $attachment = $OfuzEmailFetcher->saveAttachments('/var/www/dev.ofuz.net/files/');// Change this file path to your file saving path for Contact Notes and Project discussion
+                $attachment = $OfuzEmailFetcher->saveAttachments('/var/www/ofuz/files/');// Change this file path to your file saving path for Contact Notes and Project discussion
                 $attachments_extracted = true ;
             }
             
@@ -558,6 +561,7 @@ if($add_project_task === true){
                         $do_project_discuss->discuss = 'Attachment';   
                     $do_project_discuss->date_added = date("Y-m-d");
                     $do_project_discuss->document = $attachment['filename'] ;
+                    $do_project_discuss->hours_work = 0.00;
                     $do_project_discuss->add();
                 }
             }else{
