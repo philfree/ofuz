@@ -127,60 +127,61 @@ class WebFormUser extends DataObject {
 		$do_contact->addNew();
 		$do_contact->iduser = $event_controler->uid;
 		
-		$do_contact->add();
+		$do_contact->add();  //print_r($fields);exit();
 		$this->setLog("\n new contact:".$do_contact->idcontact." for user:".$event_controler->uid);	
 		}	
 		
 		foreach ($fields as $field_name => $field_value) {
-			$this->setLog("\n Processing field:".$field_name." with value:".$field_value);
-			if(isset($this->idwebformuser)){
-			$do_webform_fields = new WebFormUserField();
-			$do_webform_fields->query("SELECT wfu.name, wff.class as class_name, wff.variable, wff.variable_type, wfu.required 
-		                                   FROM webformfields as wff, webformuserfield as wfu 
-										   WHERE wff.name=wfu.name
-										     AND wfu.name = '".$field_name."'
-											 AND wfu.idwebformuser= ".$this->idwebformuser);
-		   } else {
-			 $do_webform_fields = new WebFormUserField();
-			$do_webform_fields->query("SELECT wfu.name, wff.class as class_name, wff.variable, wff.variable_type, wfu.required 
-		                                   FROM webformfields as wff, webformuserfield as wfu 
-										   WHERE wff.name=wfu.name
-										     AND wfu.name = '".$field_name."'
-											 AND wfu.idwebformuser= ".$event_controler->fid);
-		   }
-	        $this->setLog("\n Field information class:".$do_webform_fields->class_name." Variable:".$do_webform_fields->variable); 
-			$this->setLog("\n rows:".$do_webform_fields->getNumRows() );      
-		    if ($do_webform_fields->getNumRows() == 1) {
-				if ($do_webform_fields->class_name == "Contact") {
-					$this->setLog("\n     Updating contact");
-					$do_contact->{$do_webform_fields->variable} = $field_value;
-                    $do_contact->update();
-				} else {
-					$update = false;
-					if (is_object(${'sub_'.$do_webform_fields->class_name})) {
-						if (${'sub_'.$do_webform_fields->class_name}->getType() == $do_webform_fields->variable_type) {
-							$update = true;
-						}
-					}
-					if ($update) {
-						$this->setLog("\n     Updating class:".$do_webform_fields->class_name);
-						$obj = ${'sub_'.$do_webform_fields->class_name};
-						$obj->{$do_webform_fields->variable} = $field_value;
-						$obj->update();
-					} else {
-						$class_name = $do_webform_fields->class_name;
-						${'sub_'.$class_name} = new $class_name();
-						$obj = ${'sub_'.$class_name};
-						$obj->{$do_webform_fields->variable} = $field_value;
-						if (method_exists($obj, "setType") && strlen($do_webform_fields->variable_type) > 0) {
-							$obj->setType($do_webform_fields->variable_type);
-						}
-						$obj->idcontact = $do_contact->getPrimaryKeyValue();
-						$obj->add();
-					}
-				}
-			}	
-		}
+    $this->setLog("\n Processing field:".$field_name." with value:".$field_value);
+    if(isset($this->idwebformuser)){
+      $do_webform_fields = new WebFormUserField();
+      $do_webform_fields->query("SELECT wfu.name, wff.class as class_name, wff.variable, wff.variable_type, wfu.required 
+		                                FROM webformfields as wff, webformuserfield as wfu 
+                                  WHERE wff.name=wfu.name
+                                  AND wfu.name = '".$field_name."'
+                                  AND wfu.idwebformuser= ".$this->idwebformuser);
+    } else {
+      $do_webform_fields = new WebFormUserField();
+      $do_webform_fields->query("SELECT wfu.name, wff.class as class_name, wff.variable, wff.variable_type, wfu.required 
+                                  FROM webformfields as wff, webformuserfield as wfu 
+                                  WHERE wff.name=wfu.name
+                                  AND wfu.name = '".$field_name."'
+                                  AND wfu.idwebformuser= ".$event_controler->fid);
+    }
+    $this->setLog("\n Field information class:".$do_webform_fields->class_name." Variable:".$do_webform_fields->variable); 
+    $this->setLog("\n rows:".$do_webform_fields->getNumRows());      
+    if ($do_webform_fields->getNumRows() == 1) {
+      if ($do_webform_fields->class_name == "Contact") {
+        $this->setLog("\n     Updating contact");
+        $do_contact->{$do_webform_fields->variable} = $field_value;
+        $do_contact->update();
+      } else {
+        $update = false;
+        if (is_object(${'sub_'.$do_webform_fields->class_name})) {
+          if (${'sub_'.$do_webform_fields->class_name}->getType() == $do_webform_fields->variable_type) {
+            $update = true;
+          }
+        }
+        if ($update) {
+          $this->setLog("\n     Updating class:".$do_webform_fields->class_name);
+          $obj = ${'sub_'.$do_webform_fields->class_name};
+          $obj->{$do_webform_fields->variable} = $field_value;
+          $obj->update();
+        } else {
+          $class_name = $do_webform_fields->class_name;
+          ${'sub_'.$class_name} = new $class_name();
+          $obj = ${'sub_'.$class_name};
+          $obj->{$do_webform_fields->variable} = $field_value;
+          if (method_exists($obj, "setType") && strlen($do_webform_fields->variable_type) > 0) {
+            $obj->setType($do_webform_fields->variable_type);
+          }
+          $obj->idcontact = $do_contact->getPrimaryKeyValue();
+          $obj->iduser = $event_controler->uid ;
+          $obj->add();
+        }
+      }
+    }	
+  }
 		if(isset($this->iduser)){
 		$contact_view = new ContactView() ;
 		$contact_view->setUser($this->iduser);

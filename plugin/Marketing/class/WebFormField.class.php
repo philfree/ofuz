@@ -57,39 +57,39 @@ class WebFormField extends DataObject {
 
         
 
-        function displayFieldsOnWebFormEdit($id) {
-              $do_wf_user_field = new WebFormUserField();
-              $data_form_field = $do_wf_user_field->getFieldsByWebFormUser($id);
-              $out = '<table>
-					<tr style="field_form_line">
-						<td>'._('Selected').'</td><td>'._('Label').'</td><td>'._('Size in characters').'</td><!--<td>Required</td>-->
-					</tr>
-               ';
-		while ($this->next()) {
-                        $data = $data_form_field;
-                        $checked = "";
-                        foreach($data as $data){
-                          if($this->name == $data["name"]){
-                              $checked = "Checked"; 
-                              $name = $data["name"];
-                              $label = $data["label"];
-                              $size = $data["size"];
-                          }
-                        }
-                        if($checked == ""){  
-                            $name = $this->name;
-                            $label = $this->label;
-                            $size = $this->size;
-                        }
-			$out .= '<tr style="field_form_line">';
-			$out .= '<td><input type="checkbox" name="field_selected['.$name.']" value="Yes" '.$checked.'></td>';
-			$out .= '<td><input type="text" name="field_label['.$name.']" value="'.$label.'"></td>';
-			$out .= '<td><input type="text" name="field_size['.$name.']" value="'.$size.'"></td>'; 
-			//$out .= '<td><input type="checkbox" name="field_required['.$this->name.']" value="'.$this->required.'"></td>';
-			$out .= '</tr>';
-		}
-		$out .= '</table>';
-		return $out;
+  function displayFieldsOnWebFormEdit($id) {
+    $do_wf_user_field = new WebFormUserField();
+    $data_form_field = $do_wf_user_field->getFieldsByWebFormUser($id);
+    $out = '<table>
+            <tr style="field_form_line">
+            <td>'._('Selected').'</td><td>'._('Label').'</td><td>'._('Size in characters').'</td><!--<td>Required</td>-->
+            </tr>';
+      while ($this->next()) {
+        $data = $data_form_field;
+        $checked = "";
+        foreach($data as $data){
+          if($this->name == $data["name"]){
+              $checked = "Checked"; 
+              $name = $data["name"];
+              $label = $data["label"];
+              $size = $data["size"];
+          }
         }
-}	
+        if($checked == ""){  
+          $name = $this->name;
+          $label = $this->label;
+          $size = $this->size;
+        }
+  
+        $out .= '<tr style="field_form_line">';
+        $out .= '<td><input type="checkbox" name="field_selected['.$name.']" value="Yes" '.$checked.'></td>';
+        $out .= '<td><input type="text" name="field_label['.$name.']" value="'.$label.'"></td>';
+        $out .= '<td><input type="text" name="field_size['.$name.']" value="'.$size.'"></td>'; 
+        //$out .= '<td><input type="checkbox" name="field_required['.$this->name.']" value="'.$this->required.'"></td>';
+        $out .= '</tr>';
+      }
+      $out .= '</table>';
+      return $out;
+  }
+}
 ?>
