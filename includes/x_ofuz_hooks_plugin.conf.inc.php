@@ -51,6 +51,7 @@
                                     Array("ProjectAddProjectTaskBlock",
                                           "ProjectAddCoworkerBlock",
                                           "ProjectAddTaskDropboxBlock",
+                                          "ProjectGitRepositoryAddBlock",
                                           "ProjectDiscussionEmailAlertBlock"
                                         ),
                                    "co_workers"=>
@@ -138,7 +139,8 @@
                                           'NotesAndDiscussionBlock',
                                           'PaymentLogBlock',
                                           'ProjectAddCoworkerBlock',
-                                          'ProjectAddProjectTaskBlock',    
+                                          'ProjectAddProjectTaskBlock', 
+                                          'ProjectGitRepositoryAddBlock',   
                                           'ProjectAddTaskDropboxBlock',
                                           'ProjectDiscussionEmailAlertBlock',
                                           'ProjectsAddProjectBlock',

@@ -145,7 +145,7 @@
   include_once("class/SubMenu.class.php");
   include_once("class/BaseMessageBlock.class.php");
   include_once("class/PluginEnable.class.php");
-  
+  include_once("class/UserGitrepo.class.php");	
 
   // Dynamic Buttons
   include_once("class/DynamicButton.class.php");
@@ -160,7 +160,7 @@
   
   include_once("class/UserProfile.class.php");
 	
-  include_once("class/UserGitrepo.class.php");	
+  
 
   //Beanstakd
   include_once("class/OfuzBeanstalkd.class.php");
