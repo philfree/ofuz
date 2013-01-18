@@ -13,6 +13,9 @@ $api_key = 'f1976041736ccb95fbb322e1e5c07cbf';// replace this with your API key
 
 $membership_amount = 24.00; 
 
+ 
+  set_time_limit(3600);   
+
   $do_user = new User();
   $adm_iduser=$do_user->validateAPIKey($api_key);
 
@@ -29,7 +32,8 @@ $membership_amount = 24.00;
   $do_invoice1 = new Invoice();
   $stripe_details  = $do_invoice1->getUserStripeDetails($adm_iduser);  
   if($stripe_details !== false){
-    $stripe_api_key = $stripe_details['stripe_api_key'];    
+    $stripe_api_key = $stripe_details['stripe_api_key'];  
+    $admin_email = $stripe_details['email'];
   }else{
     echo "Stripe api key is Missing"; 
     exit();
@@ -37,7 +41,7 @@ $membership_amount = 24.00;
   
 
   $read_qry = new sqlQuery($conx);
-  $sql_get_user = "SELECT * FROM recurrentinvoice r INNER JOIN user u ON r.iduser = u.iduser WHERE (u.plan = 'paid') AND r.nextdate <= '".$today."'";
+  $sql_get_user = "SELECT * FROM recurrentinvoice r INNER JOIN user u ON r.iduser = u.iduser WHERE (u.plan = 'paid') AND r.nextdate = '".$today."'";
   $read_qry->query($sql_get_user);
 
   if($read_qry->getNumrows() > 0){ 
@@ -165,19 +169,70 @@ $membership_amount = 24.00;
                                       datepaid  = '$date_paid'
                             where idinvoice = ".$idinvoice;
           $do_invoice->query($sql_update_invoice );
-          //$this->sendPaymentApprovedEmail($total,"Stripe.com",$transactionID);// Sending to customer
-          //$this->sendPaymentApprovedEmail($total,"Stripe.com",$transactionID,true); // Sending to user
-                
-            $do_user = new User();               
-            $date = date('Y-m-d');
-            $do_user->query("update user set plan='paid' where iduser=".$iduser);                              
+      
+        $do_user_data = new User();
+        $do_user_data->getId($iduser);
+  
+        $customer_name = $do_user_data->firstname.' '.$do_user_data->lastname;
+        $customer_email = $do_user_data->email;
+        $signature = $do_user_data->company.'<br />'.$do_user_data->firstname.' '.$do_user_data->lastname;
 
-            $do_recurrentInvoice = new RecurrentInvoice();
-            $do_recurrentInvoice->addRecurrentInvoice($idinvoice,'1','Month',date("Y-m-d"),$iduser);                 
-            echo "Paid";
+
+        $docustomer_invoice = new Invoice();
+        $paid_memebership_amount = $docustomer_invoice->viewAmount($re_membership_amount);
+        $docustomer_invoice->getId($idinvoice);
+        
+        $email_data = Array('name' => $customer_name,
+                            'company'=>$do_user_data->company,
+                            'description'=>$docustomer_invoice->desc,
+                            'signature'=>$signature,
+                            'amount'=>$paid_memebership_amount,
+                            'num'=>$docustomer_invoice->num,
+                            'refnum'=>$result['response']['id'],
+                            'paytype'=>'Stripe', 
+                            'username'=>$do_user_data->firstname,
+                            'invoice_num' =>$docustomer_invoice->num
+                          );
+        
+
+          
+          //Notify User by email about his payment
+          if(!empty($customer_email)){          
+            $emailer = new Radria_Emailer();
+            $email_template = new EmailTemplate("ofuz_inv_payment_confirmation");
+            $email_template->setSenderName($customer_name);
+            $email_template->setSenderEmail($customer_email);
+            $email_template->free();    
+            $emailer->setEmailTemplate($email_template);
+            $emailer->mergeArray($email_data);     
+            
+            $emailer->addTo($customer_email);print_r($emailer);
+            //$emailer->send();
+            
+          }
+
+          //Email for admin
+         
+          $doemail_template_adm = new EmailTemplate("ofuz_inv_payment_confirmation_adm");   
+          $doemail_template_adm->setSenderName('Admin');
+          $doemail_template_adm->setSenderEmail($admin_email);
+          $emailer2 = new Radria_Emailer();
+          $emailer2->setEmailTemplate($doemail_template_adm);
+          $emailer2->mergeArray($email_data);
+          $emailer2->addTo($admin_email); print_r($emailer);
+          //$emailer->send();
+
+              
+          $do_user = new User();               
+          $date = date('Y-m-d');
+          $do_user->query("update user set plan='paid' where iduser=".$iduser);                              
+
+          $do_recurrentInvoice = new RecurrentInvoice();
+          $do_recurrentInvoice->addRecurrentInvoice($idinvoice,'1','Month',date("Y-m-d"),$iduser);                 
+          echo "Paid";
         }else{
           $do_user = new User();                          
-          $do_user->query("update user set plan='declined_paid'  where iduser=".$iduser);  
+          $do_user->query("update user set status='suspend'  where iduser=".$iduser);  
           echo "Not paid declined";
         }
 

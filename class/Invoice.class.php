@@ -3464,6 +3464,7 @@ class Invoice extends DataObject {
         while($this->fetch()){
           $stripeDetails[$this->getData('setting_name')] = $this->getData('setting_value');
           $stripeDetails['iduser'] = $this->getData('iduser');
+          $stripeDetails['email'] = $this->getData('email');
         }
       return $stripeDetails;    
     }else{
