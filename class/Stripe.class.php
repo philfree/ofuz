@@ -63,7 +63,7 @@ class StripeGateWay extends BaseObject
 		$this->setAPIKey();
 		$result = Stripe_Charge::create(array("amount" => "$amount","currency" => "usd","customer" => "$customerId"));
 		if($result['paid'] === true){
-			$result_array = array("success"=>"1");
+			$result_array = array("success"=>"1","response"=>$result);
 			return $result_array;
 		} else {
 			return $result;

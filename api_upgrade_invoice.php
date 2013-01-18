@@ -30,9 +30,9 @@ if($idinvoice != '0'){
 }
 
 
-$do_ofuz = new OfuzApiClient();
-$iduser = $do_ofuz->setAuth($api_key);
-$do_ofuz->format = "php";// json,xml,php
+$do_ofuz = new OfuzApiClient($api_key,'php');
+// $iduser = $do_ofuz->setAuth($api_key);
+// $do_ofuz->format = "php";// json,xml,php
 
 $do_ofuz->firstname = $_SESSION['do_User']->firstname;
 $do_ofuz->lastname = $_SESSION['do_User']->lastname;
