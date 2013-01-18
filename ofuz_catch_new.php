@@ -119,7 +119,7 @@ for($i=0 ;$i<$len_to_emailarr;$i++){
     $email_code = $email_code_split[0];
     $email_code_domain = $email_code_split[1];
     if($email_code_domain == $GLOBALS['email_domain']){ 
-      if(preg_match("/addnote-/",$email_code,$matches)) { 
+      if(preg_match("/\baddnote-\b/",$email_code,$matches)) { 
         $code_split = split("-",$email_code);
         $drop_box_code_note = $code_split[1];
         $code_found = true;
@@ -139,7 +139,7 @@ for($i=0 ;$i<$len_to_emailarr;$i++){
     $email_code_task = $email_code_split_task[0];
     $email_code_domain = $email_code_split_task[1];
     if($email_code_domain == $GLOBALS['email_domain']){
-      if(preg_match("/addtask-/",$email_code_task,$matches)) {
+      if(preg_match("/\baddtask-\b/",$email_code_task,$matches)) {
         $code_split = split("-",$email_code_task);
         $drop_box_code_task = $code_split[1];
         $code_found = true;
@@ -159,7 +159,7 @@ for($i=0 ;$i<$len_to_emailarr;$i++){
     $email_code_proj_task = $email_code_split_proj_task[0];
     $email_code_proj_domain = $email_code_split_proj_task[1];
     if($email_code_proj_domain == $GLOBALS['email_domain']){
-      if(preg_match("/task-/",$email_code_proj_task,$matches)) {
+      if(preg_match("/\btask-\b/",$email_code_proj_task,$matches)) {
         $code_split = split("-",$email_code_proj_task);
         $drop_box_code_proj_task = $code_split[1];
         $addprojectnote = true;
@@ -184,7 +184,7 @@ for($i=0 ;$i<$len_to_emailarr;$i++){
     $email_code_proj_task = $email_code_split_proj_task[0];
     $email_code_proj_domain = $email_code_split_proj_task[1];
     if($email_code_proj_domain == $GLOBALS['email_domain']){
-      if(preg_match("/newtask-/",$email_code_proj_task,$matches)) {
+      if(preg_match("/\bnewtask-\b/",$email_code_proj_task,$matches)) {
         $code_split_proj_task = split("-",$email_code_proj_task);
         $drop_box_code_proj = $code_split_proj_task[1];
         $add_project_task = true;
@@ -463,12 +463,13 @@ if($addprojectnote === true){
 
 
 if($add_project_task === true){
-	
+	  $parse_content = ereg_replace("^\>", "", $final_message_content);
       $allow_db_operation = false;
       $allow_without_project_worker =  false;
       $do_user->getUserDataByEmail($from_address);
       $do_project->getId($drop_box_code_proj);
       $project_owner = $do_project->iduser;
+	  $from_note = "";
 	
 	  	if($do_project->status !='closed'){
 	
