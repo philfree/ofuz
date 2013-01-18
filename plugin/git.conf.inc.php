@@ -17,7 +17,8 @@
    //include_once("plugin/SamplePlugIn/BlockSample.class.php");
 
    // Hook for the block object
-                                          
+
+include_once("plugin/Git/UserGitrepo.class.php");
                                          //Ical
    $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting("Git"));
    $GLOBALS['cfg_setting_tab_placement']->next();
@@ -26,6 +27,11 @@
                                         ->setTitle("Git Integration")
                                         ->setPages(Array ("git_repo"))
                                         ->setDefaultPage("git_repo");
+
+include_once("plugin/Git/GitRepositoryAdd/GitRepoAdd.class.php");
+
+   // Hook for the block object
+   $GLOBALS['cfg_block_placement']['os_git_repo'][] = "GitRepoAdd";
 
 
 ?>
