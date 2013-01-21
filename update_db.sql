@@ -104,3 +104,13 @@ CREATE TABLE `stripe_details` (
 
 
 
+
+CREATE TABLE IF NOT EXISTS `cc_details` (
+  `idcc_details` int(50) NOT NULL AUTO_INCREMENT,
+  `iduser` int(50) NOT NULL COMMENT 'id user ',
+  `token` varchar(100) NOT NULL COMMENT 'token_number',
+  `type` varchar(10) NOT NULL COMMENT 'card_type',
+  `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idcc_details`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
