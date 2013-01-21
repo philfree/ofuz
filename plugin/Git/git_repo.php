@@ -35,7 +35,8 @@ $do_repo->addParam("iduser", $iduser);
 echo $do_repo->getFormHeader();
 echo $do_repo->getFormEvent();
 ?>
-<table><tr><td>Repository Name:</td><td> <input type="text" name="repo_name" id="repo_name" value="<?php echo $repo_name;?>" /></td></tr>
+<table>
+<!--<tr><td>Repository Name:</td><td> <input type="text" name="repo_name" id="repo_name" value="<?php echo $repo_name;?>" /></td></tr>-->
 <tr><td>Repository URL:</td><td> <input type="text" name="repo_url" id="repo_url" value="<?php echo $repo_url;?>" /></td></tr>
 <tr><td colspan="2"><?php echo $do_repo->getFormFooter('Submit');  ?></td></tr></table>
 

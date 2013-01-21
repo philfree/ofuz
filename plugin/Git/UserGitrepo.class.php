@@ -64,18 +64,23 @@ class UserGitrepo extends DataObject {
 		
 		$goto = $evtcl->goto;
 		//check if the below is already exist
-		if(!$this->checkIfGitRepositoryExist($evtcl->repo_name, $evtcl->repo_url,$evtcl->iduser)) {
+		//if(!$this->checkIfGitRepositoryExist($evtcl->repo_name, $evtcl->repo_url,$evtcl->iduser)) {
+		  if(!$this->checkIfGitRepositoryExist($evtcl->repo_url,$evtcl->iduser)) {	
 			//echo $evtcl->repo_name.",".$evtcl->repo_url."--".$evtcl->iduser;die();
-
+			
+			$repo_name1 = split('/',$evtcl->repo_url);
+			$size = sizeof($repo_name1);
+			$repo_name = split('\.git',$repo_name1[$size-1]);
+			
 			$sql = "INSERT INTO user_gitrepo(`iduser`,`git_repo`,`git_repourl`)
-			  VALUES(".$evtcl->iduser.",'".$evtcl->repo_name."','".$evtcl->repo_url."')";
+			  VALUES(".$evtcl->iduser.",'".$repo_name[0]."','".$evtcl->repo_url."')";
 			$this->query($sql);
 
 			//echo "git clone ".$evtcl->repo_url."";die();
 			$path = getcwd()."/plugin/Git/";
 			//echo "git clone ".$evtcl->repo_url."  $path".$evtcl->repo_name."";die();
 			
-			system("git clone ".$evtcl->repo_url."  $path".$evtcl->repo_name."");
+			//system("git clone ".$evtcl->repo_url."  $path".$evtcl->repo_name."");
 			
 			$_SESSION['msg'] = "New Git Repository has been added successfully.";
 		}else{
@@ -92,11 +97,13 @@ class UserGitrepo extends DataObject {
 	 * @return true or flase
 	 **/
 
-	function checkIfGitRepositoryExist($repo_name,$repo_url,$iduser){
+	function checkIfGitRepositoryExist($repo_url,$iduser){
 		
 		$q = new sqlQuery($this->getDbCon());
+		/*$q->query("Select * from ".$this->table. "
+					  where iduser = '".$iduser."' and (git_repo = '".$repo_name."' or git_repourl = '".$repo_url."')");*/
 		$q->query("Select * from ".$this->table. "
-					  where iduser = '".$iduser."' and (git_repo = '".$repo_name."' or git_repourl = '".$repo_url."')");
+					  where iduser = '".$iduser."' and git_repourl = '".$repo_url."'");			  
 		if($q->getNumRows() >= 1){
 			return true;
 		} else {
