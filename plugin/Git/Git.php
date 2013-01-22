@@ -261,7 +261,7 @@ class GitRepo {
 
 public function log() {
 		//return $this->run("log --author=\"vivek@sqlfusion.com\" --grep='#' --pretty=format:'%h %an %ci : %s'");
-		return $this->run("log --grep='#' --pretty=format:' %an--%ad:%s^' --date=short");
+		return $this->run("log --grep='#' --pretty=format:'%aE--%ad:%s^' --date=short");
 	}
 	
 
