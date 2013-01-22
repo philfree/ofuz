@@ -43,7 +43,8 @@
                                   "task" =>
                                     Array("TaskProgressBlock",
                                           "TaskOwnerBlock",
-                                          "TaskDropBoxBlock"
+                                          "TaskDropBoxBlock",
+                                          "TaskGitBranchDetailsBlock"
                                           ),
                                   "projects" =>
                                     Array("ProjectsAddProjectBlock"),
@@ -149,7 +150,8 @@
                                           'TaskOwnerBlock',
                                           'TaskProgressBlock',
                                           'TasksAddTaskBlock',
-                                          'TimesheetBlockCoWorker'
+                                          'TimesheetBlockCoWorker',
+                                          'TaskGitBranchDetailsBlock'
                                           
                           ) ;  
  

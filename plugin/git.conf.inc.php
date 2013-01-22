@@ -18,8 +18,26 @@
 
    // Hook for the block object
 
-include_once("plugin/Git/UserGitrepo.class.php");
-                                         //Ical
+// Plug-in Definition
+// status : devel, alpha, beta, rc, stable
+/*
+$plugins_info['Git'] = 
+		Array ('name' => 'Ofuz Git Repository Integration',
+			'description' => 'This Plug-in integrates Git with Ofuz.',
+			'version' => '0.0.1',
+			'status' => 'beta',
+			'settings' => Array('Git Repository'),                          
+			'blocks' => Array('ProjectGitRepositoryAddBlock')
+			);  
+*/
+
+
+include_once("plugin/Git/class/UserGitrepo.class.php");
+include_once("plugin/Git/GitRepositoryAdd/GitRepoAdd.class.php");
+include_once("plugin/Git/class/ProjectGitRepositoryAddBlock.class.php");
+include_once("plugin/Git/class/TaskGitBranchDetailsBlock.class.php");
+
+
    $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting("Git"));
    $GLOBALS['cfg_setting_tab_placement']->next();
    $GLOBALS['cfg_setting_tab_placement']->current()
@@ -28,7 +46,7 @@ include_once("plugin/Git/UserGitrepo.class.php");
                                         ->setPages(Array ("git_repo"))
                                         ->setDefaultPage("git_repo");
 
-include_once("plugin/Git/GitRepositoryAdd/GitRepoAdd.class.php");
+
 
    // Hook for the block object
    $GLOBALS['cfg_block_placement']['os_git_repo'][] = "GitRepoAdd";

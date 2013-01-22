@@ -6,9 +6,9 @@
 
 include_once('config.php');
 
-include_once('plugin/Git/UserGitrepo.class.php');
+include_once('plugin/Git/class/UserGitrepo.class.php');
 
-include_once('plugin/Git/Git.php');
+include_once('plugin/Git/class/Git.class.php');
 
 $do_usergit = new UserGitrepo();
 $do_usergit->getAll();
