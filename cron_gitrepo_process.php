@@ -49,6 +49,10 @@ while($do_usergit->fetch()){
 					$q->fetch();
 					$iduser = $q->getData('iduser');
 					//echo '<br />Iduser : '.$iduser.'<br /><br /><br />';
+					$do_plugin_enable = new PluginEnable();
+					$id_plugin_enable = $do_plugin_enable->isEnabled("Git Repository",$iduser);
+					if(!empty($id_plugin_enable)){
+						
 					$do_project_task = new ProjectTask();
 					$do_project_task->getid($task_id[0]);
 					if($do_project_task->getNumRows() >= 1){
@@ -67,7 +71,9 @@ while($do_usergit->fetch()){
 							$do_project_diss->add();
 						}
 					}//task id block ends
-				
+					
+				} // Plugin Enable checking ends
+				$do_plugin_enable->free();
 				}// User block ends
 				$q->free();
 				
