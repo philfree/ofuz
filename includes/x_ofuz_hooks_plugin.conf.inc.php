@@ -43,8 +43,7 @@
                                   "task" =>
                                     Array("TaskProgressBlock",
                                           "TaskOwnerBlock",
-                                          "TaskDropBoxBlock",
-                                          "TaskGitBranchDetailsBlock"
+                                          "TaskDropBoxBlock"
                                           ),
                                   "projects" =>
                                     Array("ProjectsAddProjectBlock"),
@@ -52,7 +51,6 @@
                                     Array("ProjectAddProjectTaskBlock",
                                           "ProjectAddCoworkerBlock",
                                           "ProjectAddTaskDropboxBlock",
-                                          "ProjectGitRepositoryAddBlock",
                                           "ProjectDiscussionEmailAlertBlock"
                                         ),
                                    "co_workers"=>
@@ -141,7 +139,6 @@
                                           'PaymentLogBlock',
                                           'ProjectAddCoworkerBlock',
                                           'ProjectAddProjectTaskBlock', 
-                                          'ProjectGitRepositoryAddBlock',   
                                           'ProjectAddTaskDropboxBlock',
                                           'ProjectDiscussionEmailAlertBlock',
                                           'ProjectsAddProjectBlock',
@@ -150,8 +147,8 @@
                                           'TaskOwnerBlock',
                                           'TaskProgressBlock',
                                           'TasksAddTaskBlock',
-                                          'TimesheetBlockCoWorker',
-                                          'TaskGitBranchDetailsBlock'
+                                          'TimesheetBlockCoWorker'
+                                          
                                           
                           ) ;  
  
