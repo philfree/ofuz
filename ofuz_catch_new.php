@@ -23,6 +23,18 @@ ini_set('display_errors', '1');
 //mb_convert_encoding($str, "UTF-8",
 //fwrite($fp, "\n\n text/plain content:".$final_message_content);
 $email = $_POST['email'];
+$key = $_POST['key'];
+
+$secrate_string = "Ofuz is Open Source";
+$date = date("YMDH");
+$s_string = "$secrate_string"."$date";
+$secrate_key = MD5($s_string);
+
+//if($key === $secrate_key){
+
+
+
+
 //echo $email;die();
 
 $code_found = false;
@@ -580,7 +592,7 @@ if($add_project_task === true){
    } //closed
 }
 
-
+//}
 
 ?>
 
