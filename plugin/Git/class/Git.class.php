@@ -261,9 +261,14 @@ class GitRepo {
 
 	public function log() {
 			//return $this->run("log --author=\"vivek@sqlfusion.com\" --grep='#' --pretty=format:'%h %an %ci : %s'");
-			return $this->run("log --all --grep='#' --pretty=format:'%aE--%ad:%s^' --date=short");
+			return $this->run("log --all --grep='#' --pretty=format:'%H;%aE--%ad:%s^' --date=short");
 	}
 		
+	public function commitdetails($commit_hash) {
+			return $this->run("log -p -n 1 $commit_hash");
+	}
+
+
 	public function branchlist($task_id){ 
 		return $this->run("log --all --source --pretty=oneline --grep='#$task_id'");
 	}
