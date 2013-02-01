@@ -818,6 +818,10 @@ class OfuzExportXML extends DataObject {
 
 /**
    * Back up Inactive users data from all the fields and Delete Inactive User's account.
+   * This function is used to generate the xml back up file for the user information from the DB
+   * This function is differnt from exportUserAccount as we have added more table to the backup
+   * And we have function to delete the table once back up is done. And the function exportUserAccount  
+   * was not disturbed as this was already in use. 
    * @param int : $iduser
    * @return void
    */

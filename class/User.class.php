@@ -1375,7 +1375,7 @@ class User extends RegisteredUser {
   
       /**
      * Custom method for inactive user backup delete_inactive_users page.
-     * @delete_inactive_users.php
+     * @cron_delete_inactive_users.php
      * @param object $evtcl
     */
     function eventDeleteInactiveUsers() {

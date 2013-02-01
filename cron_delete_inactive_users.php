@@ -1,7 +1,8 @@
 <?php
 	
 	/**
-	 * delete inactive users.php
+	 * cron_delete inactive users.php
+	 * Cron script to delete the inactive users
 	 * Inactive user which are not logged in from past 2 to 6 months and user with 10 contact / task / project tasks / invoices.
 	 * Get their information backup to an xml file with all the contacts,task,projects,invoices,reccurant invoices,paymets and tags and delete all the related data for the user from the database.
 	 * @see class/User.class.php
