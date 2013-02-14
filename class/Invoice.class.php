@@ -1228,6 +1228,7 @@ class Invoice extends DataObject {
       $invoice_url = $inv_url;
 
 	    //define('FPDF_FONTPATH','font/')
+	    include_once('html2fpdf-3.0.2b/fpdf.php');
 	    include_once('html2fpdf-3.0.2b/html2fpdf.php');
 	    include_once('html2fpdf-3.0.2b/fpdf_ofuz.php');
 	    //echo '<br /> Checking The Session Obj <br />';

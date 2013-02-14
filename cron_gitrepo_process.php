@@ -26,22 +26,37 @@ while($do_usergit->fetch()){
 		$commit_log = split('\^',$commitlog);
 		foreach($commit_log as $commits){
 			if(!empty($commits)){
-				$user = split("--",$commits);
+				$commit_hash = split(";",$commits);
+				$user = split("--",$commit_hash[1]);
 				$user_email = $user[0];
 				$user_email = trim($user_email);
 				$date = split(":",$user[1]);
 				$date_log = $date[0];
 				
 				$note = $date[1];
+				$task_ids = '';
+				$task_ids = split('#',$note);
+				//echo '<pre>';print_r($task_ids);echo'</pre>';
 				
-				//echo 'User Name : '.$user_email.'<br />';
-				//echo 'Date :'.$date_log.'<br />';
+				$task_id = $task_ids[1];
+				if(!empty($task_ids[2])){
+					$time = $task_ids[2];
+				}
 				
-				preg_match("|\d+|", $note, $task_id);
+				
+				echo 'Commit Hash : '.$commit_hash[0].'<br />';
+				echo 'User Name : '.$user_email.'<br />';
+				echo 'Date :'.$date_log.'<br />';
+				if(!empty($time)){
+					echo 'Time :'.$time.'<br />';
+				}
+				//preg_match("|\d+|", $note, $task_id);
 				
 				//echo 'Task ID :'.$task_id[0].'<br />';
+				echo 'Task ID :'.$task_id.'<br />';
 				//var_dump($m);
-				//echo 'Msg : '.$note.'<br /><br />';
+				echo 'Msg : '.$note.'<br />'.'Commit Id : <a href="#">'.$commit_hash[0].'</a><br /><br />';
+				$note .= '<br />Commit Id : <a href="/plugin/Git/git_commitlog.php?repo_name='.$repo_name.'&commithash='.$commit_hash[0].'">'.$commit_hash[0].'</a><br /><br />';
 				
 				$q = new sqlQuery($conx);
 				$q->query("select iduser from user where email='".$user_email."'");
@@ -54,7 +69,7 @@ while($do_usergit->fetch()){
 					if(!empty($id_plugin_enable)){
 						
 					$do_project_task = new ProjectTask();
-					$do_project_task->getid($task_id[0]);
+					$do_project_task->getid($task_id);
 					if($do_project_task->getNumRows() >= 1){
 						
 						$q1 = new sqlQuery($conx);
@@ -62,9 +77,12 @@ while($do_usergit->fetch()){
 						if($q1->getNumRows() == 0){
 							$do_project_diss = new ProjectDiscuss();
 							$do_project_diss->addnew();
-							$do_project_diss->idproject_task = $task_id[0];
+							$do_project_diss->idproject_task = $task_id;
 							$do_project_diss->discuss = $note;
 							$do_project_diss->date_added = $date_log;
+							if(!empty($time)){
+								$do_project_diss->hours_work = $time;
+							}
 							$do_project_diss->iduser = $iduser;
 							$do_project_diss->discuss_edit_access = 'user';
 							$do_project_diss->type = 'Note';

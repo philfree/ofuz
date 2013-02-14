@@ -58,6 +58,6 @@ $GLOBALS['cfg_setting_tab_placement']->next();
 $GLOBALS['cfg_setting_tab_placement']->current()
 				    ->setTabName("Git Repository")
 				    ->setTitle("Set up your Git Repository:")
-				    ->setPages(Array ("git_repo"))
+				    ->setPages(Array ("git_repo","git_commitlog"))
 				    ->setDefaultPage("git_repo");
 ?>

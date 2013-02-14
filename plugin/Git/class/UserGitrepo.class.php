@@ -71,18 +71,26 @@ class UserGitrepo extends DataObject {
 			$repo_name1 = split('/',$evtcl->repo_url);
 			$size = sizeof($repo_name1);
 			$repo_name = split('\.git',$repo_name1[$size-1]);
+			//$path = getcwd()."/plugin/Git/";
+			$path = "/plugin/Git/repos/";
+			$path .= $repo_name[0];
+			//echo $path;die();
+			if(is_dir($path)){
 			
-			$sql = "INSERT INTO user_gitrepo(`iduser`,`git_repo`,`git_repourl`)
-			  VALUES(".$evtcl->iduser.",'".$repo_name[0]."','".$evtcl->repo_url."')";
-			$this->query($sql);
+				$sql = "INSERT INTO user_gitrepo(`iduser`,`git_repo`,`git_repourl`)
+				  VALUES(".$evtcl->iduser.",'".$repo_name[0]."','".$evtcl->repo_url."')";
+				$this->query($sql);
 
-			//echo "git clone ".$evtcl->repo_url."";die();
-			$path = getcwd()."/plugin/Git/";
-			//echo "git clone ".$evtcl->repo_url."  $path".$evtcl->repo_name."";die();
-			
-			//system("git clone ".$evtcl->repo_url."  $path".$evtcl->repo_name."");
-			
-			$_SESSION['msg'] = "New Git Repository has been added successfully.";
+				//echo "git clone ".$evtcl->repo_url."";die();
+				
+				//echo "git clone ".$evtcl->repo_url."  $path".$evtcl->repo_name."";die();
+				
+				//system("git clone ".$evtcl->repo_url."  $path".$evtcl->repo_name."");
+				
+				$_SESSION['msg'] = "New Git Repository has been added successfully.";
+			} else {
+				$_SESSION['msg'] = 'Need do <b>git clone '.$evtcl->repo_url.'</b> inside /plugin/Git/repos/ folder before adding the Git Repository<br /><br />';
+			}
 		}else{
 			$_SESSION['msg'] = "Duplicate Entry, Git Repository Already Exist Please check Repository Name or URL to avoid the duplicates.";
 		}	

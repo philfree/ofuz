@@ -144,11 +144,13 @@ class GitRepo {
 							$this->repo_path = $repo_path;
 							if ($_init) $this->run('init');
 						} else {
-							throw new Exception('"'.$repo_path.'" is not a git repository');
+							//throw new Exception('"'.$repo_path.'" is not a git repository');
+							return ('"'.$repo_path.'" is not a git repository');
 						}
 					}
 				} else {
-					throw new Exception('"'.$repo_path.'" is not a directory');
+					//throw new Exception('"'.$repo_path.'" is not a directory');
+					echo ('"'.$repo_path.'" is not a directory');
 				}
 			} else {
 				if ($create_new) {
@@ -157,10 +159,12 @@ class GitRepo {
 						$this->repo_path = $repo_path;
 						if ($_init) $this->run('init');
 					} else {
-						throw new Exception('cannot create repository in non-existent directory');
+						//throw new Exception('cannot create repository in non-existent directory');
+						return ('cannot create repository in non-existent directory');
 					}
 				} else {
-					throw new Exception('"'.$repo_path.'" does not exist');
+					//throw new Exception('"'.$repo_path.'" does not exist');
+					return ('"'.$repo_path.'" does not exist');
 				}
 			}
 		}
@@ -261,9 +265,14 @@ class GitRepo {
 
 	public function log() {
 			//return $this->run("log --author=\"vivek@sqlfusion.com\" --grep='#' --pretty=format:'%h %an %ci : %s'");
-			return $this->run("log --grep='#' --pretty=format:'%aE--%ad:%s^' --date=short");
+			return $this->run("log --all --grep='#' --pretty=format:'%H;%aE--%ad:%s^' --date=short");
 	}
 		
+	public function commitdetails($commit_hash) {
+			return $this->run("log -p -n 1 $commit_hash");
+	}
+
+
 	public function branchlist($task_id){ 
 		return $this->run("log --all --source --pretty=oneline --grep='#$task_id'");
 	}

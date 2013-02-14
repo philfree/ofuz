@@ -50,25 +50,32 @@ class TaskGitBranchDetailsBlock extends BaseBlock{
 			$idproject_task = (int)$_GET['idprojecttask'];
 			$repo_name = $git_repo['git_repo'];
 			$folder = "$repo_path"."$repo_name";
-			$repo = Git::open($folder);
-			$branch_name = $repo->branchlist($idproject_task);
-			
-			$branch_name = split('	',$branch_name);
-			//echo'<pre>';print_r($branch_name);echo'</pre>';
-			$size = sizeof($branch_name);
-			for($i=1;$i<$size;$i++){
-				$branch_title = split('/',$branch_name[$i]);
-				//echo'<pre>';print_r($branch_title);echo'</pre>';
-				$b_size = sizeof($branch_title);
-				$b_name = split(' ',$branch_title[$b_size-1]);
-				$br_name .= $b_name[0].'<br />';
+			if(is_dir($folder)){
+				$repo = Git::open($folder);
+				$branch_name = $repo->branchlist($idproject_task);
 				
-			}
-			
-			if(!empty($br_name)){
-			$output .= _('Currently The Following Git branches are associated with this Task <br />');
-			//$output .= '<br />Branches assoicated with current task are :<br />';	
-			$output .= '<b>'.$br_name.'</b>';
+				$branch_name = split('	',$branch_name);
+				//echo'<pre>';print_r($branch_name);echo'</pre>';
+				$size = sizeof($branch_name);
+				for($i=1;$i<$size;$i++){
+					$branch_title = split('/',$branch_name[$i]);
+					//echo'<pre>';print_r($branch_title);echo'</pre>';
+					$b_size = sizeof($branch_title);
+					$b_name = split(' ',$branch_title[$b_size-1]);
+					$br_name .= $b_name[0].'<br />';
+					
+				}
+				
+				if(!empty($br_name)){
+				$output .= _('Currently The Following Git branches are associated with this Task <br />');
+				//$output .= '<br />Branches assoicated with current task are :<br />';	
+				$output .= '<b>'.$br_name.'</b>';
+				} else {
+					$output .= _('No Git branches found which are associated with this Task <br />');
+				}
+			} else {
+				$output .= _('Invalid Respository, Missing git repository in the plugin/Git/repos/'.$repo_name.', Please check and try again <br />');
+				
 			}
 			$output .= '</div></div>';
 			

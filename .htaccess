@@ -21,5 +21,6 @@
     RewriteRule ^PlugIn/(.*)/(.*)/([0-9].*)$ /tab_display.php?plugin=$1&content=$2&item_value=$3
     RewriteRule ^PlugIn/(.*)/(.*)$ /tab_display.php?plugin=$1&content=$2 [L]
     RewriteRule ^Setting/(.*)/(.*)$ /tab_setting_display.php?plugin=$1&setting=$2 [L]
+    RewriteRule ^Commitlog/(.*)/(.*)/(.*)/(.*)$ /tab_setting_display.php?plugin=$1&setting=$2&repo_name=$3&commithash=$4 [L]
 </ifModule>
 php_value include_path ".:/var/www/ofuzlib:/var/www/ofuz"
