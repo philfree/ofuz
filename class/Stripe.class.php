@@ -79,20 +79,30 @@ class StripeGateWay extends BaseObject
      * @param amount to charge
      * @param description 
     */
-    public function UpdateExistingCustomer($customerId,$token,$name,$amount,$email="",$description=""){
+public function UpdateExistingCustomer($customerId,$token,$name,$amount,$description=""){
 		$this->setAPIKey();
 		$cu = Stripe_Customer::retrieve($customerId);
-		if(!empty($description)){
-		$cu->description = $description;
-		}
-		$cu->card = $token; 
-		$cu->save();
-		$result = Stripe_Charge::create(array("amount" => "$amount","currency" => "usd","customer" => "$customerId"));
-		if($result['paid'] === true){
-			$result_array = array("success"=>"1");
-			return $result_array;
+		$rr = json_decode($cu,true);//echo'<pre>';print_r($rr);echo'</pre>';die();
+    	$r = $rr['error']['message']; 
+		$error_code = $rr['error']['code'];
+		$error_type = $rr['error']['type']; //echo $error_code.'------------'.$error_type.'<br />';
+		
+		if((empty($error_type))&&(empty($error_code))){ 
+				$cu->card = $token; 	
+				if(!empty($description)){
+				$cu->description = $description;
+				}
+				$cu->save();
+				$result = Stripe_Charge::create(array("amount" => "$amount","currency" => "usd","customer" => "$customerId"));
+				if($result['paid'] === true){
+					$result_array = array("success"=>"1");
+					return $result_array;
+				} else {
+					return $result;
+				}
 		} else {
-			return $result;
+			$result_array = array("update"=>"1");
+			return $result_array;
 		}
 	}
 }

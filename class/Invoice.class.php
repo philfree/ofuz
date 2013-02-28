@@ -1765,10 +1765,10 @@ class Invoice extends DataObject {
 										  <td><input type="text" name="name" class="required" /></td>
 										  </tr>            
 					
-										<tr class="form-row">
+										<!--<tr class="form-row">
 											<td><label for="email"><B>E-mail Address</B></label></td>
 											<td><input type="text" name="email" class="required" /></td>
-										</tr>            
+										</tr>-->            
 					
 										<tr class="form-row">
 											<td><label><B>Card Number</B></label></td>
@@ -1777,7 +1777,7 @@ class Invoice extends DataObject {
 										
 										<tr class="form-row">
 											<td><label><B>CVC</B></label></td>
-											<td><input type="text" maxlength="4" autocomplete="off" class="card-cvc stripe-sensitive required" /></td>
+											<td><input type="text" maxlength="4" autocomplete="off" size="4" class="card-cvc stripe-sensitive required" /></td>
 										</tr>
 							
 										<tr class="form-row">
@@ -1922,8 +1922,8 @@ class Invoice extends DataObject {
                                                 $do_payment_inv = new PaymentInvoice();
                                                 $do_payment_inv->addPaymentInvoice($idpayment_log,$_SESSION['do_invoice']->idinvoice,$total);
             $this->updatePayment($total);
-            $this->sendPaymentApprovedEmail($total,"Authorized.net",$transactionID);// Sending to customer
-            $this->sendPaymentApprovedEmail($total,"Authorized.net",$transactionID,true); // Sending to user
+           // $this->sendPaymentApprovedEmail($total,"Authorized.net",$transactionID);// Sending to customer
+            //$this->sendPaymentApprovedEmail($total,"Authorized.net",$transactionID,true); // Sending to user
             /*
               Lets check if the invoice has an call back URL and process that
             */
@@ -1993,7 +1993,7 @@ class Invoice extends DataObject {
         include_once("stripe-lib/Stripe.php");
         $token = $evtcl->stripeToken;
         $name = $evtcl->name;
-        $email = $evtcl->email;
+        //$email = $evtcl->email;
         $description = $name;
         $srtipecustomer_id = $evtcl->stripecustomer_id;
       
@@ -2023,10 +2023,17 @@ class Invoice extends DataObject {
         $payment = new StripeGateWay(false, $stripe_api_key);
       
         if(empty($srtipecustomer_id)){
-          $result = $payment->CreateCustomer($token,$name,$total,$email,$description);
+          $result = $payment->CreateCustomer($token,$name,$total,$email="",$description);
         }else{
           if($updateStripecustomer === 'Yes'){
-            $result = $payment->UpdateExistingCustomer($srtipecustomer_id,$token,$name,$total,$email="",$description=""); 
+			 
+			 $result = $payment->UpdateExistingCustomer($srtipecustomer_id,$token,$name,$total,$email="",$description=""); 
+			 
+			 if($result['update'] == 1){
+				 $payment = new StripeGateWay(false, $stripe_api_key);
+				 $result = $payment->CreateCustomer($token,$name,$total,$email="",$description);
+			 }
+			 
           }else{
             $result = $payment->ChargeExsistingCustomer($srtipecustomer_id,$total);
           }
@@ -2088,20 +2095,21 @@ class Invoice extends DataObject {
           }
             //$goto = $next_url;             
             $_SESSION['autologin_paid'] = True;
-            // Add the CC info in the RecurrentInvoiceCC
-            if($evtcl->is_rec !=0 && $evtcl->is_cc == 0 ){
-              $RecurrentInvoiceCC = new RecurrentInvoiceCC();
-              $RecurrentInvoiceCC->add_cc_info($cc_number,$expire_year,$expire_month,$evtcl->payment_type,$evtcl->is_rec);
-          }        
+            
+                   
         }else{
           $rr = json_decode($result,true);//echo'<pre>';print_r($rr);echo'</pre>';die();
           $r = $rr['error']['message']; 
           $error_code = $rr['error']['code'];
+          $error_type = $rr['error']['type'];
 
           if(($error_code == 'invalid_expiry_month') || ($error_code == 'invalid_expiry_year') || ($error_code == 'expired_card') || ($error_code == 'missing')){
             $goto = $error_page;
             $_SESSION['updatecustomer'] = 'Yes';		
-          }
+          }elseif($error_type == 'invalid_request_error'){
+			  $goto = $error_page;
+            $_SESSION['updatecustomer'] = 'Yes';		
+		  }
 
           $_SESSION['in_page_message'] = $r;
         }
@@ -2128,8 +2136,15 @@ class Invoice extends DataObject {
 	
 	function saveStripeCustomerId($iduser,$idcontact,$customer_id){
 		
-		$q = new sqlQuery($this->getDbCon()); 
-        $q->query("Insert into stripe_details (iduser,idcontact,stripe_token,createdate) values('$iduser','$idcontact','$customer_id',now())");
+		$q1 = new sqlQuery($this->getDbCon()); 
+		$q1->query("select * from stripe_details where iduser='$iduser' and idcontact='$idcontact'");
+		if($q1->getNumRows() >= 1){
+			$q2 = new sqlQuery($this->getDbCon()); 
+			$q2->query("update from stripe_details set stripe_token='$customer_id',createdate=now()  where iduser='$iduser' and idcontact='$idcontact'");
+		} else {
+			$q = new sqlQuery($this->getDbCon()); 
+			$q->query("Insert into stripe_details (iduser,idcontact,stripe_token,createdate) values('$iduser','$idcontact','$customer_id',now())");
+		}
 		
 	}
 		
