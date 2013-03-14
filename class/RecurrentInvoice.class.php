@@ -179,7 +179,7 @@ class RecurrentInvoice extends DataObject {
                 FROM recurrentinvoice
                 INNER JOIN invoice ON invoice.idinvoice = recurrentinvoice.idinvoice
                 where due_date <=curdate() AND 
-                status = 'Sent' limit 1
+                status = 'Sent' 
                 ";
        $this->query($qry);
 		
