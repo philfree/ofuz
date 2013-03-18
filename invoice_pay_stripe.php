@@ -166,10 +166,6 @@ if(empty($stripe_customer_id)){
              ?>
 			<div style="margin-left:0px;display:none;" id="msg_unauth"></div>
 			<?php
-					
-				echo '<div style="margin-left:0px;">';
-                echo '<div class="messages_unauthorized">';
-				echo ' Clicking below will charge your credit card with amount  <b>'.$_SESSION['do_invoice']->viewAmount($_SESSION['do_invoice']->amt_due).'</b> </div></div><br/>';			
 				 if(empty($stripe_customer_id)){	
 				echo nl2br($_SESSION['do_invoice']->invoice_address);
 				 //echo '<br />'. _('Total due :').'<b>$'. number_format($invoice_cal_data["total_due_amt"],2, '.', ',' ).'</b>';
@@ -197,7 +193,9 @@ if(empty($stripe_customer_id)){
              <script>if (window.Stripe) $("#do_invoice__eventProcessStripePayment").show()</script>
         <noscript><p>JavaScript is required for the registration form.</p></noscript>
        <?php } else { 
-								
+				echo '<div style="margin-left:0px;">';
+                echo '<div class="messages_unauthorized">';
+				echo ' Clicking below will charge your credit card with amount  <b>'.$_SESSION['do_invoice']->viewAmount($_SESSION['do_invoice']->amt_due).'</b> </div></div><br/>';							
 				echo nl2br($_SESSION['do_invoice']->invoice_address);
 				 //echo '<br />'. _('Total due :').'<b>$'. number_format($invoice_cal_data["total_due_amt"],2, '.', ',' ).'</b>';
 				 echo '<br />'. _('Total due :').'<b>'. $_SESSION['do_invoice']->viewAmount($_SESSION['do_invoice']->amt_due).'</b>';

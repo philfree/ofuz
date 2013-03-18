@@ -1935,13 +1935,21 @@ class Invoice extends DataObject {
             Check if there is a next URL if so then set goto variable to that URL. Userful if we want the user to go to someother page
             Than in the goto page. This is triggered only when full payment is done.
             */
-            $next_url = $do_inv_callback->isNextUrl($this->idinvoice);
+            //$next_url = $do_inv_callback->isNextUrl($this->idinvoice);
             //if($next_url !== false){
             //     $due_amt = $this->getDueAmount($this->idinvoice);
             //     if($due_amt == '0.00'){
-              $goto = $next_url; 
+             // $goto = $next_url; 
             //     }
             //}
+            $next_url = $do_inv_callback->isNextUrl($this->idinvoice);
+            if($next_url !== false){
+                 $due_amt = $this->getDueAmount($this->idinvoice);
+                 if($due_amt == '0.00'){
+              $goto = $next_url; 
+               }
+            }
+            
             $_SESSION['autologin_paid'] = True;
             // Add the CC info in the RecurrentInvoiceCC
             if($evtcl->is_rec !=0 && $evtcl->is_cc == 0 ){

@@ -16,7 +16,7 @@
 	include_once('class/Stripe.class.php');
 	include_once('class/stripe-lib/Stripe.php');
 	set_time_limit(3600); 	 
-	
+		//echo '<pre>';print_r($_SESSION);echo '</pre>';
 		$do_recurrent = new RecurrentInvoice();
         $do_invoice = new Invoice();
         $do_inv_line = new InvoiceLine();
@@ -33,7 +33,7 @@
                 $user_settings = $do_user_detail->getChildUserSettings();    
                 if($user_settings->getNumRows()){// Get the setting data for the user who has created the invoice
                     while($user_settings->next()){
-						$payment_mode = false;
+						$payment_mode = false;$payment_selection='';
                         if($user_settings->setting_name == 'invoice_logo' &&  $user_settings->setting_value != ''){
                             $_SESSION['do_invoice']->inv_logo =  $user_settings->setting_value ;
                         }
@@ -43,18 +43,11 @@
                         if($user_settings->setting_name == 'stripe_publish_key' &&  $user_settings->setting_value != ''){
                             $_SESSION['do_invoice']->stripe_publish_key =  $user_settings->setting_value ;
                         }
-                         
-                        if($user_settings->setting_name == 'payment_selection' &&  $user_settings->setting_value != ''){
-							if($user_settings->setting_value == 'stripe.com'){
-								$payment_mode =  true;
-							}
-                        }
                         
-                        if(empty($payment_mode)){
-							if((!empty($_SESSION['do_invoice']->stripe_api_key)) && (!empty($_SESSION['do_invoice']->stripe_publish_key))){
-								$payment_mode =  true;
-							}	
-						}
+                        if($user_settings->setting_name == 'payment_selection' &&  $user_settings->setting_value != ''){
+							$_SESSION['do_invoice']->payment_selection = $user_settings->setting_value;
+						} 
+                         
                         if($user_settings->setting_name == 'currency' &&  $user_settings->setting_value != ''){
                             $currency =  explode("-",$user_settings->setting_value) ;
                             $_SESSION['do_invoice']->currency_iso_code = $currency[0];
@@ -65,7 +58,20 @@
                     }
                 }// User setting data ends here
                 
-                if($payment_mode == true){
+                if(isset($_SESSION['do_invoice']->payment_selection)){							
+					if($_SESSION['do_invoice']->payment_selection == 'stripe.com'){
+						if((!empty($_SESSION['do_invoice']->stripe_api_key)) && (!empty($_SESSION['do_invoice']->stripe_publish_key))){
+								$payment_mode =  true;
+						}	
+					}
+                } else {
+					if((!empty($_SESSION['do_invoice']->stripe_api_key)) && (!empty($_SESSION['do_invoice']->stripe_publish_key))){
+							$payment_mode =  true;
+					}
+				}
+                
+                
+                if($payment_mode == true){echo $_SESSION['do_invoice']->idcontact;
 					$stripe_customer_id = $_SESSION['do_invoice']->getStripeCustomerId($_SESSION['do_invoice']->iduser,$_SESSION['do_invoice']->idcontact);
 					
 					if(!empty($stripe_customer_id)){
@@ -89,7 +95,7 @@
 						  //$this->sendPaymentApprovedEmail($total,"Stripe.com",$transactionID);// Sending to customer
 						  //$this->sendPaymentApprovedEmail($total,"Stripe.com",$transactionID,true); // Sending to user
 							  $inv_qry = new sqlQuery($conx);
-							  $date_paid = $today;
+							  $date_paid = date("Y-m-d");
 							  $status = 'Paid';
 							  $invoice_note = 'Thanks for the business';
 							  $sub_total  = $total;
