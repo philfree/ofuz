@@ -32,7 +32,7 @@ $doOfuzLeanKitKanban->getAll();
           foreach($boards_details as $board){
             if(!in_array($board->Id,$iterated_board_ids)){
               array_push($iterated_board_ids,$board->Id); 
-              if($board->Id = '16480091') {//added for testing
+             // if($board->Id = '16480091') {//added for testing
               $archive_lane = $leankitkanban->getArchive($board->Id);
               if(isset($archive_lane->ReplyData)){
                 foreach($archive_lane->ReplyData as $lane_archive) {
@@ -64,7 +64,7 @@ $doOfuzLeanKitKanban->getAll();
                   }
                 }
               }
-              }//added for testing          
+             // }//added for testing          
           }
         }
       }
