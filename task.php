@@ -45,11 +45,9 @@
         $do_project_task->getProjectTaskDetails( $idproject_task );
     }
 
-    $do_task_name = new ProjectTask();
-    $task_name = $do_task_name->getTaskName($idproject_task);
-    $pageTitle = 'Ofuz :: '.$task_name;
+    
 
-    include_once('includes/header.inc.php');
+    
 
     $_SESSION['do_project']->setBreadcrumb();
 	
@@ -59,6 +57,16 @@
     if(!empty($idproject_task)){
         if($do_project_task->isProjectTaskReletedToUser($idproject_task)){$task_access = true;}
     }
+
+	$do_task_name = new ProjectTask();
+    $task_name = $do_task_name->getTaskName($idproject_task);
+    if($task_access === true){
+		$pageTitle = 'Ofuz :: '.$task_name;
+	} else {
+		$pageTitle = 'Ofuz :: Unauthorized task access';
+	}
+	
+	include_once('includes/header.inc.php');
 
     $_SESSION['projectsession_'.$idproject_task] = $_SESSION['do_project'];
    
