@@ -85,6 +85,9 @@ class TimesheetBlockProjectDiscuss extends ProjectDiscuss {
 
      function getAllProjectHoursForCoWorker($user_array){
             $do_prj_discuss_coworker = new ProjectDiscuss();
+            if(empty($_SESSION['adm_project_report_discuss']->report_month)){
+				$_SESSION['adm_project_report_discuss']->report_month = date('m');
+			}
             $do_prj_discuss->report_month = $_SESSION['adm_project_report_discuss']->report_month;
             $do_prj_discuss->report_year = $_SESSION['adm_project_report_discuss']->report_year;
             $do_prj_discuss->week_start_date = $_SESSION['adm_project_report_discuss']->week_start_date;
