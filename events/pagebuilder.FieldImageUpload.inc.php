@@ -47,6 +47,7 @@
 
         $userfile = $_FILES['userfile']['tmp_name'][$fidx];
         $userfile_name = $_FILES['userfile']['name'][$fidx];
+        $userfile_name = preg_replace('/\s+/', '_', $userfile_name);
         $this->setLog("\nUserfile:".$userfile_name);
 
         if($userfile != "none") {
@@ -78,9 +79,9 @@
                     $val = $chk_file_name;
         
                 } else { 
-                    $val=$userfile_name;;
+                    $val=$userfile_name;
                 }
-    
+				
                 $destpath= $ipath."/".$val;
                 $thumbdestpath = $thumbpath."/".$val;
         

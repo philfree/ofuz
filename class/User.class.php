@@ -219,6 +219,29 @@ class User extends RegisteredUser {
               if (!$this->isPersistent()) {
                 $this->sessionPersistent("do_".$this->getObjectName(), "signout.php", 36000);
               }
+             
+             //Adding contact 
+			 if($fields["company"]) {
+				$do_company = new Company();
+				$idcompany = $do_company->addNewCompany($fields["company"],$last_id);
+			 }
+   			 $do_contact = new Contact();
+			 $do_contact->firstname = $fields["firstname"];
+			 $do_contact->lastname = $fields["lastname"];
+			 $do_contact->iduser = $last_id;
+			 $do_contact->idcompany = $idcompany;
+			 $do_contact->company = $fields["company"];
+			 $do_contact->add();
+			 $do_contact->addEmail($fields["email"],'Home');
+	
+			 $lastInsertedContId = $do_contact->getPrimaryKeyValue();
+	
+			 $this->getId($last_id);
+			 $this->idcontact = $lastInsertedContId;
+			 $this->update();
+			 $contact_view = new ContactView();
+			 $contact_view->setUser($last_id);
+			 $contact_view->rebuildContactUserTable();
 
               // Send an email to the sender that the Co-Worker has registered
               $do_user_rel->sendEmailOnCoWorkerRegistration($id_sender, $_SESSION['do_User']);
