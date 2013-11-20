@@ -57,7 +57,10 @@
 																				$params = array( 'next' => SITE_URL_HTTPS.'/fb_logout.php' );
 																}else{ $params = array( 'next' => SITE_URL.'/fb_logout.php' ); }
 																//$facebook_logout->getLogoutUrl($params);
-																echo '<a href="'.$facebook_logout->getLogoutUrl($params).'" onclick="">Logout</a>';
+																//echo '<a href="'.$facebook_logout->getLogoutUrl($params).'" onclick="">Logout</a>';
+															
+													  //echo '<li><a href="'.$facebook->getLogoutUrl($logout_param).'">Log Out</a></li>';
+																echo '<a href="#" onclick = "yg_fb_logout();" >Log Out</a>';
                  // echo '<a href="#" onclick=\'FB.Connect.logoutAndRedirect("/fb_logout.php")\'>Logout</a>';
               }else{
         ?>
@@ -136,3 +139,14 @@
         ?>
         </div> //-->
     </div>
+<script>
+			function yg_fb_logout(){
+					if (FB.getAuthResponse()) {
+						FB.logout(function(){
+							top.location.href = 'fb_logout.php'
+						});
+					}else{	
+						top.location.href = 'fb_logout.php'
+					}
+			}
+			</script>
