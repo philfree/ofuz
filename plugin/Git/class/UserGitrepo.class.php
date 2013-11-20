@@ -72,7 +72,7 @@ class UserGitrepo extends DataObject {
 			$size = sizeof($repo_name1);
 			$repo_name = split('\.git',$repo_name1[$size-1]);
 			//$path = getcwd()."/plugin/Git/";
-			$path = "/plugin/Git/repos/";
+			$path = "plugin/Git/repos/";
 			$path .= $repo_name[0];
 			//echo $path;die();
 			if(is_dir($path)){
