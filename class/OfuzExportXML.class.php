@@ -862,10 +862,11 @@ class OfuzExportXML extends DataObject {
     $xml .= "</user>\n";
 
 	$i=1;
-    $do_contact = new Contact();
+	//$tbl_name = "userid".$iduser."_contact";
+    $do_contact = new Contact(NULL,NULL,$iduser);
     $do_contact->getUserContacts($iduser);
 	$nums = $do_contact->GetNumRows();
-	
+
 	if($nums >= 1){
     $xml .= "<contacts>\n";
 
