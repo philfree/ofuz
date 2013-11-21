@@ -43,7 +43,7 @@ class RestoreAccount extends TabSetting{
 	$str_xml = file_get_contents($_SERVER['DOCUMENT_ROOT']."/".$target_path);
 	$str_xml = preg_replace('/[^(\x20-\x7F)]*/','', $str_xml);
 	$xml = simplexml_load_string($str_xml);
-
+echo'<pre>';print_r($xml);echo'</pre>';die();
 	if($xml !== FALSE){
 
 	  $c_cnt = count($xml->contact);

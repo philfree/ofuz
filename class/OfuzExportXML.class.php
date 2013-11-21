@@ -476,7 +476,8 @@ class OfuzExportXML extends DataObject {
     $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n";
     $do_user = new User();
     $do_user->getId($iduser);
-
+	
+	$xml .= "<document>\n";
     $xml .= "<user>\n";
     $xml .= " <iduser><![CDATA[".$do_user->iduser."]]></iduser>\n";
     $xml .= " <firstname><![CDATA[".$do_user->firstname."]]></firstname>\n";
@@ -799,6 +800,8 @@ class OfuzExportXML extends DataObject {
     }
 
     $xml .= "</contacts>\n";
+    $xml .= "</document>\n";
+    
 
     $xml_file = XML_EXPORT."adm_".$iduser."_account_bkp.xml";
     $handle_xml = fopen($xml_file, "w+");
@@ -830,7 +833,7 @@ class OfuzExportXML extends DataObject {
     $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n";
     $do_user = new User();
     $do_user->getId($iduser);
-
+	$xml .= "<document>\n";
     $xml .= "<user>\n";
     $xml .= " <iduser><![CDATA[".$do_user->iduser."]]></iduser>\n";
     $xml .= " <firstname><![CDATA[".$do_user->firstname."]]></firstname>\n";
@@ -1346,6 +1349,8 @@ class OfuzExportXML extends DataObject {
        $xml .= "   <ip_address><![CDATA[".$do_login_audit->ip_address."]]></ip_address>\n";
        $xml .= "   <login_type><![CDATA[".$do_login_audit->login_type."]]></login_type>\n";
        $xml .= "  </login_audit>\n";
+       $xml .= "  </document>\n";
+       
 	   
    }
    $do_login_audit->free();
