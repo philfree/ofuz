@@ -590,7 +590,7 @@ class User extends RegisteredUser {
     */
     function formFBLoginVerification($goto,$errPage,$fbid){
 		
-        $form_fields = new Fields("",$this->getDbCon());
+        $form_fields = new Fields();
         $field_username = new FieldTypeChar($this->getUsernameField());
         $field_username->label = _("User name");
         $field_username->size = 20;

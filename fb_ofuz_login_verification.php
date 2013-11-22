@@ -48,7 +48,7 @@
   $do_ofuz_fb->sessionPersistent("do_ofuz_fb", "logout.php", OFUZ_TTL); 
 		$_SESSION['do_ofuz_fb']->isLoggedInFacebook(); // Must be called before any RadriaFacebookConnect :: method() call
 		
-		$user_data = $facebook->api('/me');  
+		$user_data = $facebook->api($_SESSION['do_ofuz_fb']->fb_uid);  
 		if(is_array($user_data) && count($user_data) > 0 && $_SESSION['do_ofuz_fb']->fb_uid != ''){
 				$fname = $user_data["first_name"];
     $lname = $user_data["last_name"];
@@ -157,12 +157,13 @@ function showDiv(){
             <div class="section20">
             		
          <?php 
-                if(!$_SESSION['do_ofuz_fb']->getUserExtendedPermissions("email")){
+                /*if(!$_SESSION['do_ofuz_fb']->getUserExtendedPermissions("email")){
                   //echo '<fb:prompt-permission perms="email" next_fbjs="showDiv()"> Allow Sending Email Notification</fb:prompt-permission>';
                    $style = 'style="display:block;"'; 
                 }else{
                     $style = 'style="display:block;"';
-                }
+                }*/
+                 $style = 'style="display:block;"';
                 echo '<div id="fb_val" '.$style.'>';
                 echo _('Otherwise, sign in here to link your Facebook and Ofuz accounts:'),'<br /><br />';
                 $_SESSION['do_User_login']->formFBLoginVerification("index.php",$_SERVER['PHP_SELF'],$_SESSION['do_ofuz_fb']->fb_uid);
