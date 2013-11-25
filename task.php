@@ -113,6 +113,9 @@
 
 ?>
 <script type="text/javascript">
+domStyle.set(dialogObj.containerNode, {
+position: 'relative'
+})
 //<![CDATA[
 <?php include_once('includes/ofuz_js.inc.php'); ?>
 function fnEditTask(){

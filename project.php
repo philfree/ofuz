@@ -64,6 +64,10 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
   
 <script type="text/javascript">
+domStyle.set(dialogObj.containerNode, {
+position: 'relative'
+})	
+
     //<![CDATA[
  
  <?php include_once('includes/ofuz_js.inc.php'); ?>
