@@ -4,7 +4,7 @@ include_once("config.php");
 include_once("class/OfuzApiMethods.class.php");
 include_once("class/OfuzApiClient.class.php");
 
-$api_key = '23ac6be1febf5975f712ed144006f5a2';// replace this with your API key
+$api_key = 'f1976041736ccb95fbb322e1e5c07cbf';// replace this with your API key
 
 
 
@@ -30,9 +30,9 @@ if($idinvoice != '0'){
 }
 
 
-$do_ofuz = new OfuzApiClient();
-$iduser = $do_ofuz->setAuth($api_key);
-$do_ofuz->format = "php";// json,xml,php
+$do_ofuz = new OfuzApiClient($api_key,'php');
+// $iduser = $do_ofuz->setAuth($api_key);
+// $do_ofuz->format = "php";// json,xml,php
 
 $do_ofuz->firstname = $_SESSION['do_User']->firstname;
 $do_ofuz->lastname = $_SESSION['do_User']->lastname;

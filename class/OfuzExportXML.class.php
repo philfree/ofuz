@@ -476,7 +476,8 @@ class OfuzExportXML extends DataObject {
     $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n";
     $do_user = new User();
     $do_user->getId($iduser);
-
+	
+	$xml .= "<document>\n";
     $xml .= "<user>\n";
     $xml .= " <iduser><![CDATA[".$do_user->iduser."]]></iduser>\n";
     $xml .= " <firstname><![CDATA[".$do_user->firstname."]]></firstname>\n";
@@ -799,6 +800,8 @@ class OfuzExportXML extends DataObject {
     }
 
     $xml .= "</contacts>\n";
+    $xml .= "</document>\n";
+    
 
     $xml_file = XML_EXPORT."adm_".$iduser."_account_bkp.xml";
     $handle_xml = fopen($xml_file, "w+");
@@ -818,6 +821,10 @@ class OfuzExportXML extends DataObject {
 
 /**
    * Back up Inactive users data from all the fields and Delete Inactive User's account.
+   * This function is used to generate the xml back up file for the user information from the DB
+   * This function is differnt from exportUserAccount as we have added more table to the backup
+   * And we have function to delete the table once back up is done. And the function exportUserAccount  
+   * was not disturbed as this was already in use. 
    * @param int : $iduser
    * @return void
    */
@@ -826,7 +833,7 @@ class OfuzExportXML extends DataObject {
     $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n";
     $do_user = new User();
     $do_user->getId($iduser);
-
+	$xml .= "<document>\n";
     $xml .= "<user>\n";
     $xml .= " <iduser><![CDATA[".$do_user->iduser."]]></iduser>\n";
     $xml .= " <firstname><![CDATA[".$do_user->firstname."]]></firstname>\n";
@@ -858,9 +865,12 @@ class OfuzExportXML extends DataObject {
     $xml .= "</user>\n";
 
 	$i=1;
-    $do_contact = new Contact();
+	//$tbl_name = "userid".$iduser."_contact";
+    $do_contact = new Contact(NULL,NULL,$iduser);
     $do_contact->getUserContacts($iduser);
+	$nums = $do_contact->GetNumRows();
 
+	if($nums >= 1){
     $xml .= "<contacts>\n";
 
     while($do_contact->next()) {
@@ -1238,9 +1248,116 @@ class OfuzExportXML extends DataObject {
       $xml .= " </contact>\n";
 		$i++;
     } //end line
+	$xml .= "</contacts>\n";
+   }else { // if no contact 
+	 
+	 $do_task = new Task();
+       $do_task->getContactTasksAssociatedWithProjectWithUser($iduser);
+       while($do_task->next()) {
+        $do_project = new Project();
+        $do_project->getId($do_task->idproject);
 
-    $xml .= "</contacts>\n";
+        $xml .= "  <project>\n";
+        $xml .= "   <idproject><![CDATA[".$do_project->idproject."]]></idproject>\n";
+        $xml .= "   <iduser><![CDATA[".$do_project->iduser."]]></iduser>\n";
+        $xml .= "   <name><![CDATA[".$do_project->name."]]></name>\n";
+        $xml .= "   <end_date_dateformat><![CDATA[".$do_project->end_date_dateformat."]]></end_date_dateformat>\n";
+        $xml .= "   <idcompany><![CDATA[".$do_project->idcompany."]]></idcompany>\n";
+        $xml .= "   <status><![CDATA[".$do_project->status."]]></status>\n";
+        $xml .= "   <effort_estimated_hrs><![CDATA[".$do_project->effort_estimated_hrs."]]></effort_estimated_hrs>\n";
+        $xml .= "   <is_public><![CDATA[".$do_project->is_public."]]></is_public>\n\n";
 
+        $xml .= "   <project_task>\n";
+        $xml .= "    <idproject_task><![CDATA[".$do_task->getData("idproject_task")."]]></idproject_task>\n";
+        $xml .= "    <idtask><![CDATA[".$do_task->getData("idtask")."]]></idtask>\n";
+        $xml .= "    <idproject><![CDATA[".$do_task->getData("idproject")."]]></idproject>\n";
+        $xml .= "    <progress><![CDATA[".$do_task->getData("progress")."]]></progress>\n";
+        $xml .= "    <drop_box_code><![CDATA[".$do_task->getData("drop_box_code")."]]></drop_box_code>\n";
+        $xml .= "    <priority><![CDATA[".$do_task->getData("priority")."]]></priority>\n";
+        $xml .= "    <hrs_work_expected><![CDATA[".$do_task->getData("hrs_work_expected")."]]></hrs_work_expected>\n";
+
+        $xml .= "    <task_description><![CDATA[".$do_task->getData("task_description")."]]></task_description>\n";
+        $xml .= "    <due_date><![CDATA[".$do_task->getData("due_date")."]]></due_date>\n";
+        $xml .= "    <category><![CDATA[".$do_task->getData("category")."]]></category>\n";
+        $xml .= "    <iduser><![CDATA[".$do_task->getData("iduser")."]]></iduser>\n";
+        $xml .= "    <due_date_dateformat><![CDATA[".$do_task->getData("due_date_dateformat")."]]></due_date_dateformat>\n";
+        $xml .= "    <status><![CDATA[".$do_task->getData("status")."]]></status>\n";
+        $xml .= "    <date_completed><![CDATA[".$do_task->getData("date_completed")."]]></date_completed>\n";
+        $xml .= "    <idcontact><![CDATA[".$do_task->getData("idcontact")."]]></idcontact>\n";
+        $xml .= "    <from_note><![CDATA[".$do_task->getData("from_note")."]]></from_note>\n";
+        $xml .= "    <is_sp_date_set><![CDATA[".$do_task->getData("is_sp_date_set")."]]></is_sp_date_set>\n";
+        $xml .= "    <task_category><![CDATA[".$do_task->getData("task_category")."]]></task_category>\n\n";
+
+        $do_prj_discuss = new ProjectDiscuss();
+        $do_prj_discuss->getProjectTaskDiscussions($do_task->getData("idproject_task"));
+        while($do_prj_discuss->next()) {
+          $xml .= "    <project_discuss>\n";
+          $xml .= "     <idproject_discuss><![CDATA[".$do_prj_discuss->getData("idproject_discuss")."]]></idproject_discuss>\n";
+          $xml .= "     <idproject_task><![CDATA[".$do_prj_discuss->getData("idproject_task")."]]></idproject_task>\n";
+          $xml .= "     <idtask><![CDATA[".$do_prj_discuss->getData("idtask")."]]></idtask>\n";
+          $xml .= "     <idproject><![CDATA[".$do_prj_discuss->getData("idproject")."]]></idproject>\n";
+          $xml .= "     <discuss><![CDATA[".$do_prj_discuss->getData("discuss")."]]></discuss>\n";
+          $xml .= "     <date_added><![CDATA[".$do_prj_discuss->getData("date_added")."]]></date_added>\n";
+          $xml .= "     <document><![CDATA[".$do_prj_discuss->getData("document")."]]></document>\n";
+          $xml .= "     <iduser><![CDATA[".$do_prj_discuss->getData("iduser")."]]></iduser>\n";
+          $xml .= "     <drop_box_sender><![CDATA[".$do_prj_discuss->getData("drop_box_sender")."]]></drop_box_sender>\n";
+          $xml .= "     <priority><![CDATA[".$do_prj_discuss->getData("priority")."]]></priority>\n";
+          $xml .= "     <hours_work><![CDATA[".$do_prj_discuss->getData("hours_work")."]]></hours_work>\n";
+          $xml .= "     <discuss_edit_access><![CDATA[".$do_prj_discuss->getData("discuss_edit_access")."]]></discuss_edit_access>\n";
+          $xml .= "    </project_discuss>\n";
+        }
+        $do_prj_discuss->free();
+
+        $xml .= "   </project_task>\n";
+
+        $xml .= "  </project>\n";
+
+        $do_project->free();
+      }
+      $do_task->free();
+      
+      $do_task = new Task();
+      $do_task->getProjectsWithNoTask($iduser);
+      while($do_task->next()){
+		 $do_project = new Project();
+        $do_project->getId($do_task->idproject);
+
+        $xml .= "  <project>\n";
+        $xml .= "   <idproject><![CDATA[".$do_project->idproject."]]></idproject>\n";
+        $xml .= "   <iduser><![CDATA[".$do_project->iduser."]]></iduser>\n";
+        $xml .= "   <name><![CDATA[".$do_project->name."]]></name>\n";
+        $xml .= "   <end_date_dateformat><![CDATA[".$do_project->end_date_dateformat."]]></end_date_dateformat>\n";
+        $xml .= "   <idcompany><![CDATA[".$do_project->idcompany."]]></idcompany>\n";
+        $xml .= "   <status><![CDATA[".$do_project->status."]]></status>\n";
+        $xml .= "   <effort_estimated_hrs><![CDATA[".$do_project->effort_estimated_hrs."]]></effort_estimated_hrs>\n";
+        $xml .= "   <is_public><![CDATA[".$do_project->is_public."]]></is_public>\n";
+        $xml .= "  </project>\n";
+	  }
+	  $do_task->free();
+	
+   }
+   
+   $do_login_audit = new LoginAudit();
+   $do_login_audit->getLoginAuditDetails($iduser);
+   
+   while($do_login_audit->next()){
+	   
+	   $xml .= "  <login_audit>\n";
+       $xml .= "   <idlogin_audit><![CDATA[".$do_login_audit->idlogin_audit."]]></idlogin_audit>\n";
+       $xml .= "   <iduser><![CDATA[".$do_login_audit->iduser."]]></iduser>\n";
+       $xml .= "   <last_login><![CDATA[".$do_login_audit->last_login."]]></last_login>\n";
+       $xml .= "   <ip_address><![CDATA[".$do_login_audit->ip_address."]]></ip_address>\n";
+       $xml .= "   <login_type><![CDATA[".$do_login_audit->login_type."]]></login_type>\n";
+       $xml .= "  </login_audit>\n";
+       $xml .= "  </document>\n";
+       
+	   
+   }
+   $do_login_audit->free();
+   
+	if(!is_dir(XML_EXPORT)){
+        mkdir(XML_EXPORT);         
+        } 
     $xml_file = XML_EXPORT."adm_".$iduser."_inactiveuser_bkp.xml";
     $handle_xml = fopen($xml_file, "w+");
     if (fwrite($handle_xml, $xml) === FALSE) {
@@ -1254,6 +1371,13 @@ class OfuzExportXML extends DataObject {
     //Below method deletes user information
     $deleteuser = new OfuzCancelAccount();
 	$deleteuser->deleteUserAccount($iduser);
+	
+	$do_login_audit = new LoginAudit();
+	$id = $do_login_audit->getLastLogin($iduser);
+	$do_login_audit->getId($id);
+	$do_login_audit->delete();
+	$do_login_audit->free();
+	
 
   }
 

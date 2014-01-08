@@ -42,7 +42,8 @@ class NoteDraft extends DataObject {
       if($text !=''){
           $do_note = new Note();
           $text = $do_note->htmlCleanUp($text);
-          $q = new sqlQuery($this->getDbCon());
+          $q = new sqlQuery($this->getDbCon());          
+          $q->query("SET CHARACTER SET utf8");
           $q->query("select * from ".$this->table. " Where id= ".$id." AND id_type = '".$type."' 
                 AND iduser = ".$_SESSION['do_User']->iduser );
 

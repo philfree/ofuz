@@ -83,6 +83,7 @@ ALTER TABLE `user_profile` ADD `job_type` VARCHAR(100) not null;
 ALTER TABLE `user_profile` ADD `job_description` TEXT not null;
 alter table `user_profile` add `iduser` int(10) NOT NULL;
 
+
 CREATE TABLE leankit_credentials (
 idleankit_credentials INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 iduser INT NOT NULL,
@@ -92,3 +93,37 @@ created_date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 
+CREATE TABLE `stripe_details` (
+`idstripe_details` INT( 100 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`iduser` INT( 50 ) NOT NULL ,
+`idcontact` INT( 50 ) NOT NULL ,
+`stripe_token` VARCHAR( 200 ) NOT NULL ,
+`createdate` TIMESTAMP NOT NULL
+) ENGINE = MYISAM ;
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS `cc_details` (
+  `idcc_details` int(50) NOT NULL AUTO_INCREMENT,
+  `iduser` int(50) NOT NULL COMMENT 'id user ',
+  `token` varchar(100) NOT NULL COMMENT 'token_number',
+  `type` varchar(10) NOT NULL COMMENT 'card_type',
+  `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idcc_details`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+CREATE TABLE `ofuzdev`.`user_gitrepo` (
+`iduser_gitrepo` INT( 50 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`iduser` INT( 50 ) NOT NULL ,
+`git_repo` VARCHAR( 100 ) NOT NULL ,
+`git_repourl` VARCHAR( 200 ) NOT NULL
+) ENGINE = MYISAM
+
+CREATE TABLE `ofuzdev`.`git_project` (
+`idgit_project` INT( 12 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`iduser_gitrepo` INT( 12 ) NOT NULL ,
+`idproject` INT( 12 ) NOT NULL
+) ENGINE = MYISAM ;
+ 

@@ -46,21 +46,28 @@ class Contact extends DataObject {
 	public $sql_qry_end = 50;
     private $last_message_send = false;
 	
-    function __construct(sqlConnect $conx=NULL, $table_name="") {
-		parent::__construct($conx, $table_name);
-		if (RADRIA_LOG_RUN_OFUZ) {
-			$this->setLogRun(OFUZ_LOG_RUN_CONTACT);
-		}
-		if (isset($_SESSION['contact_view_name'])) {
-			$this->sql_view_name = $_SESSION['contact_view_name'];
-		} else {
-			if (isset($_SESSION['do_User'])) {
-				$this->sql_view_name = "userid".$_SESSION['do_User']->iduser."_contact";
-			}
-		}
-		$this->setLog("\n Contact Object instantiated");
-    }
-	
+
+
+
+    function __construct(sqlConnect $conx=NULL, $table_name="",$iduser = '') {
+      parent::__construct($conx, $table_name);
+      if (RADRIA_LOG_RUN_OFUZ) {
+        $this->setLogRun(OFUZ_LOG_RUN_CONTACT);
+      }
+
+      if(empty($iduser)){
+        $iduser = $_SESSION['do_User']->iduser;
+      }
+
+      if (isset($_SESSION['contact_view_name'])) {
+        $this->sql_view_name = $_SESSION['contact_view_name'];
+      }else{
+        if (isset($_SESSION['do_User'])) {
+          $this->sql_view_name = "userid".$iduser."_contact";
+        }
+      }
+        $this->setLog("\n Contact Object instantiated");
+      } 
 	
     /**
      * getSqlViewName()
@@ -990,21 +997,26 @@ class Contact extends DataObject {
                 $error_delete = false;                
                 $do_deleting_contact = new Contact();
                 $logged_in_useridcontact = $_SESSION['do_User']->idcontact;
+				$count_contact = 0;
                 foreach ($contacts as $idcontact) {
-                    $this->setLog("\n deleting contact:".$idcontact);                        
-                    $do_deleting_contact->getId($idcontact);
-                    if($this->isContactOwner($idcontact)){ // if owner then only delete
-                      if($idcontact != $logged_in_useridcontact){
-                        $do_deleting_contact->delete();
-                      }else{
-                        $error_message = 'You can not delete your own contact.<br />';
-                        $error_delete = true;
-                      }
-                    }else{
-                      $error_message = "The following Contacts can not be deleted as these are shared by some of your Co-Workers.<br />";
-                      $error_message .= '<b><i>'.$this->getContactFullName($idcontact).'</i></b><br />';
-                      $error_delete = true;
-                    }
+					$count_contact++;
+					//Delete only 50 contacts at a time.
+					if($count_contact <= 50) {
+						$this->setLog("\n deleting contact:".$idcontact);                        
+						$do_deleting_contact->getId($idcontact);
+						if($this->isContactOwner($idcontact)){ // if owner then only delete
+							if($idcontact != $logged_in_useridcontact){
+								$do_deleting_contact->delete();
+							}else{
+								$error_message = 'You can not delete your own contact.<br />';
+								$error_delete = true;
+							}
+						}else{
+						$error_message = "The following Contacts can not be deleted as these are shared by some of your Co-Workers.<br />";
+						$error_message .= '<b><i>'.$this->getContactFullName($idcontact).'</i></b><br />';
+						$error_delete = true;
+						}
+					}
                 }
                 $do_deleting_contact->free();
                 // When deleting contact by uisng search by tag and if all the contacts are deleted then we must set the query as empty

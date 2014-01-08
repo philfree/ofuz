@@ -45,6 +45,10 @@
 </style>
 
 <script type="text/javascript">
+domStyle.set(dialogObj.containerNode, {
+position: 'relative'
+})	
+
     //<![CDATA[
 domStyle.set(dialogObj.containerNode, {
         position: 'relative'

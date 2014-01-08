@@ -138,7 +138,7 @@
                                           'NotesAndDiscussionBlock',
                                           'PaymentLogBlock',
                                           'ProjectAddCoworkerBlock',
-                                          'ProjectAddProjectTaskBlock',    
+                                          'ProjectAddProjectTaskBlock', 
                                           'ProjectAddTaskDropboxBlock',
                                           'ProjectDiscussionEmailAlertBlock',
                                           'ProjectsAddProjectBlock',
@@ -148,6 +148,7 @@
                                           'TaskProgressBlock',
                                           'TasksAddTaskBlock',
                                           'TimesheetBlockCoWorker'
+                                          
                                           
                           ) ;  
  

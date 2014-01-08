@@ -30,7 +30,7 @@
         $do_project = $do_project_task->getParentProject();
         if ($_SESSION['do_project']->idproject != $do_project_task->idproject) {
             $do_project->sessionPersistent("do_project", "project.php", OFUZ_TTL);
-        }
+        } 
     } elseif (is_object($_SESSION["eDetail_ProjectTask"])) {
         $idproject_task = $_SESSION["eDetail_ProjectTask"]->getparam("idproject_task");
         $do_project_task = new ProjectTask();
@@ -38,18 +38,16 @@
         $do_project = $do_project_task->getParentProject();
         if ($_SESSION['do_project']->idproject != $do_project_task->idproject) {
             $do_project->sessionPersistent("do_project", "project.php", OFUZ_TTL);
-        }
+        } 
     } elseif(is_object($_SESSION['do_project_task'])) {
         $idproject_task = $_SESSION['do_project_task']->idproject_task;
         $do_project_task = new ProjectTask();
         $do_project_task->getProjectTaskDetails( $idproject_task );
     }
 
-    $do_task_name = new ProjectTask();
-    $task_name = $do_task_name->getTaskName($idproject_task);
-    $pageTitle = 'Ofuz :: '.$task_name;
+    
 
-    include_once('includes/header.inc.php');
+    
 
     $_SESSION['do_project']->setBreadcrumb();
 	
@@ -59,6 +57,20 @@
     if(!empty($idproject_task)){
         if($do_project_task->isProjectTaskReletedToUser($idproject_task)){$task_access = true;}
     }
+
+	$do_task_name = new ProjectTask();
+    $task_name = $do_task_name->getTaskName($idproject_task);
+    if($task_access === true){
+		$pageTitle = 'Ofuz :: '.$task_name;
+	} else {
+		$pageTitle = 'Ofuz :: Unauthorized task access';
+	}
+	
+	include_once('includes/header.inc.php');
+
+    $_SESSION['projectsession_'.$idproject_task] = $_SESSION['do_project'];
+   
+ 
     /*if($task_access === false){
         if($do_project_task->isPublicAccess($idproject_task)){
             $task_access = true;
@@ -96,11 +108,14 @@
         $do_note_draft->sessionPersistent("do_note_draft","project.php",OFUZ_TTL);
     }
 	
-	$DiscussNoteExpend  = new ProjectDiscuss($GLOBALS['conx']);
+    $DiscussNoteExpend  = new ProjectDiscuss($GLOBALS['conx']);
     $DiscussNoteExpend->sessionPersistent("DiscussNoteExpend", "contacts.php", OFUZ_TTL);
 
 ?>
 <script type="text/javascript">
+domStyle.set(dialogObj.containerNode, {
+position: 'relative'
+})
 //<![CDATA[
 domStyle.set(dialogObj.containerNode, {
         position: 'relative'
@@ -174,7 +189,7 @@ $(document).ready(function() {
 
 function fnSaveDraft(){
   var discuss_text = document.getElementById('discuss').value;
-
+  var idprojectTask = <?php echo $idproject_task; ?>;
   $.ajax({
         type: "GET",
         <?php
@@ -183,13 +198,15 @@ function fnSaveDraft(){
         $e_NoteDraft->setSecure(false);
         ?>
         url: "<?php echo $e_NoteDraft->getUrl(); ?>",
-        data: "text="+escape(discuss_text)+"&id_type=project_discuss&id=<?php echo $idproject_task; ?>",
+        data: {text:discuss_text, id_type:'project_discuss', id:idprojectTask},
+        //data: "text="+escape(discuss_text)+"&id_type=project_discuss&id=<?php echo $idproject_task; ?>",
         success: function(result){
         }
     });
 }
 function fnSaveDraftOnClick(){
   var discuss_text = document.getElementById('discuss').value;
+  var idprojectTask = <?php echo $idproject_task; ?>;
   $.ajax({
         type: "GET",
         <?php
@@ -198,7 +215,8 @@ function fnSaveDraftOnClick(){
         $e_NoteDraft->setSecure(false);
         ?>
         url: "<?php echo $e_NoteDraft->getUrl(); ?>",
-        data: "text="+escape(discuss_text)+"&id_type=project_discuss&id=<?php echo $idproject_task; ?>",
+        //data: "text="+escape(discuss_text)+"&id_type=project_discuss&id=<?php echo $idproject_task; ?>",
+        data: {text:discuss_text, id_type:'project_discuss', id:idprojectTask},
         success: function(result){
             $("#draft_saved").show("fast");
             window.setInterval("reloadPage()", 4000);
@@ -503,7 +521,7 @@ $(document).ready(function() {
                 //$e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventFormatDiscussInsert', 119);
                 $e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventHTMLCleanUp', 119);
                 $e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventSendDiscussMessageByEmail', 131);
-                $e_addProjectDiscuss->addEventAction('WorkFeedProjectDiscuss->eventAddFeed', 140);
+                $e_addProjectDiscuss->addEventAction('WorkFeedProjectDiscuss->eventAddFeed', 140);                
                 $e_addProjectDiscuss->addParam('goto', $return_page);
                 $e_addProjectDiscuss->addParam('errPage', 'Task/'.$idproject_task);
                 $discussFields = new FieldsForm('ofuz_add_project_discuss');
@@ -678,6 +696,7 @@ $(document).ready(function() {
                     }
 					
                 }
+                  $_SESSION['projecttasksession_'.$idproject_task]  = $_SESSION['do_project_task'];
             ?>
 			<div id="last_prj_loader"></div>
             <div class="dottedline"></div>

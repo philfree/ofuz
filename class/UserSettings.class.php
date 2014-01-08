@@ -252,6 +252,92 @@ class UserSettings extends DataObject {
          $_SESSION['in_page_message'] = _("Data Deleted"); 
     }
 
+	/*
+        Adding Stripe API Key
+    */
+    function eventAddStripeDetail(EventControler $evtcl) { 
+         if($evtcl->stripe_api_key == '' || $evtcl->stripe_publish_key == ''){
+             $_SESSION['in_page_message'] = _("Please Enter API and Publish Key for Stripe.com");
+        }else{
+            $this->addNew();
+            $this->setting_name = 'stripe_api_key';
+            $this->setting_value = $evtcl->stripe_api_key;
+            $this->iduser = $_SESSION['do_User']->iduser;
+            $this->add();
+            $this->addNew();
+            $this->setting_name = 'stripe_publish_key';
+            $this->setting_value = $evtcl->stripe_publish_key;
+            $this->iduser = $_SESSION['do_User']->iduser;
+            $this->add();
+    }
+}
+
+
+    /*
+        Update Stripe API details
+    */
+    function eventUpdateStripeDetails(EventControler $evtcl) { 
+        $this->getId($evtcl->id_stripe_api_key);
+        $this->setting_value = $evtcl->stripe_api_key;
+        $this->update();
+
+        $this->getId($evtcl->id_stripe_publish_key);
+        $this->setting_value = $evtcl->stripe_publish_key;
+        $this->update();
+        $_SESSION['in_page_message'] = _("Data Updated");  
+    }
+
+	/*
+      Delete Paypal business Email
+    */
+    function eventDelStripeDetail(EventControler $evtcl) { 
+         $q = new sqlQuery($this->getDbCon());
+        $qry = "delete from ".$this->table. " 
+                  Where ".$this->primary_key. " IN (".$evtcl->id_stripe_api_key.",".$evtcl->id_stripe_publish_key.") LIMIT 2 ";
+
+        $q->query($qry);
+        $_SESSION['in_page_message'] = _("Data Deleted");
+    }
+	
+
+	/*
+	 * Add Payment selection details
+	*/
+	function eventAddPaymentSelection(EventControler $evtcl) {
+		if($evtcl->payment_selection == ''){
+			$_SESSION['in_page_message'] = _("Please select any one of the payment gateway which you would like to have in payment process");
+		} else {
+			
+			$this->addNew();
+			$this->setting_name = 'payment_selection';
+			$this->setting_value = $evtcl->payment_selection;
+			$this->iduser = $_SESSION['do_User']->iduser;
+			$this->add();
+		}
+	}
+	
+	/*
+	 * Update Payment Selection details
+	*/
+	function eventUpdatePaymentSelection(EventControler $evtcl) {
+		$this->getId($evtcl->id_payment_selection);
+        $this->setting_value = $evtcl->payment_selection;
+        $this->update();
+        $_SESSION['in_page_message'] = _("Data Updated");  
+	}
+	
+	/*
+	 *  Delete Payment Selection details
+	*/ 
+	function eventDelPaymentSelection(EventControler $evtcl) {
+        $this->getId($evtcl->id_payment_selection);
+        $this->delete();
+        $_SESSION['in_page_message'] = _("Data Deleted"); 
+	}
+	
+	
+    
+		
     /*
         Listing the Currency symbols
     */

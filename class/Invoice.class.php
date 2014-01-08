@@ -1130,7 +1130,7 @@ class Invoice extends DataObject {
                     $do_rec_invoice->getId($idrec);
                     $next_due_date = $do_rec_invoice->nextdate;
                     $recurrence = $do_rec_invoice->recurrence;
-                    $recurrence_type = $do_rec_invoice->recurrence_type;
+                    $recurrence_type = $do_rec_invoice->recurrencetype;
                 }else{
                     $email_template = new EmailTemplate("ofuz_send_invoice");
                 }
@@ -1228,6 +1228,7 @@ class Invoice extends DataObject {
       $invoice_url = $inv_url;
 
 	    //define('FPDF_FONTPATH','font/')
+	    include_once('html2fpdf-3.0.2b/fpdf.php');
 	    include_once('html2fpdf-3.0.2b/html2fpdf.php');
 	    include_once('html2fpdf-3.0.2b/fpdf_ofuz.php');
 	    //echo '<br /> Checking The Session Obj <br />';
@@ -1666,12 +1667,15 @@ class Invoice extends DataObject {
 
     /**
       * Method to generate the Authorized.NET payment for to receive the CC info.
+      * Chnaged the method to get the specified Payment Form based on the Payment selection on invoice setting current option is (Authnet,Stripe)
+      * @param from either Authnet or Stripe
       * @param float $due
       * @return string $Authnet_form 
     */
-    function prepareAuthnetForm($due){
-        $Authnet_form = '<table>';
-        if ($this->user_edit_amount !== False) { 
+    function prepareAuthnetForm($form="Authnet",$due){
+        if($form === "Authnet"){
+		$Authnet_form = '<table>';
+        if ($this->user_edit_amount !== False) {
             $Authnet_form .= '
                                   <tr>
                                       <td><B>'._('Total Amount').':</B></td>
@@ -1745,7 +1749,64 @@ class Invoice extends DataObject {
                                   </tr>
                                 </table>
                               ';
-        return $Authnet_form;
+                         $htmlform = $Authnet_form;     
+                      } elseif($form === "stripe"){
+						$stripe_form = '<table>';
+						  if ($this->user_edit_amount !== False) { 
+						$stripe_form .= '
+                                  <tr>
+                                      <td><B>'._('Total Amount').':</B></td>
+                                      <td><input type="text" name="tot_amt" MAXLENGTH=16 value = "'.(float)$due.'"></td>
+                                      <td></td>
+                                  </tr>';
+						} 
+						 $stripe_form .= '<tr  class="form-row">
+										  <td><label for="name" class="stripeLabel"><B>'._('Your Name').':</B></label></td>
+										  <td><input type="text" name="name" class="required" /></td>
+										  </tr>            
+					
+										<!--<tr class="form-row">
+											<td><label for="email"><B>E-mail Address</B></label></td>
+											<td><input type="text" name="email" class="required" /></td>
+										</tr>-->            
+					
+										<tr class="form-row">
+											<td><label><B>Card Number</B></label></td>
+											<td><input type="text" maxlength="20" autocomplete="off" class="card-number stripe-sensitive required" /></td>
+										</tr>
+										
+										<tr class="form-row">
+											<td><label><B>CVC</B></label></td>
+											<td><input type="text" maxlength="4" autocomplete="off" size="4" class="card-cvc stripe-sensitive required" /></td>
+										</tr>
+							
+										<tr class="form-row">
+											<td><label><B>Expiration</B></label></td>
+											<td class="expiry-wrapper">
+												<select class="card-expiry-month stripe-sensitive required">
+												</select>
+												<script type="text/javascript">
+													var select = $(".card-expiry-month"),
+														month = new Date().getMonth() + 1;
+													for (var i = 1; i <= 12; i++) {
+														select.append($("<option value=\'"+i+"\' "+(month === i ? "selected" : "")+">"+i+"</option>"))
+													}
+												</script>
+															<span> / </span>
+															<select class="card-expiry-year stripe-sensitive required"></select>
+															<script type="text/javascript">
+															var select = $(".card-expiry-year"),
+															year = new Date().getFullYear();
+															for (var i = 0; i < 12; i++) {
+																select.append($("<option value=\'"+(i + year)+"\' "+(i === 0 ? "selected" : "")+">"+(i + year)+"</option>"))
+															}
+												</script>
+											</td>
+										</tr>
+										<tr><td colspan="2"><button type="submit" name="submit-button">Submit</button></td></tr></table>'; 
+            $htmlform = $stripe_form;
+			}    
+        return $htmlform;
     }
 
     /**
@@ -1861,8 +1922,8 @@ class Invoice extends DataObject {
                                                 $do_payment_inv = new PaymentInvoice();
                                                 $do_payment_inv->addPaymentInvoice($idpayment_log,$_SESSION['do_invoice']->idinvoice,$total);
             $this->updatePayment($total);
-            $this->sendPaymentApprovedEmail($total,"Authorized.net",$transactionID);// Sending to customer
-            $this->sendPaymentApprovedEmail($total,"Authorized.net",$transactionID,true); // Sending to user
+           // $this->sendPaymentApprovedEmail($total,"Authorized.net",$transactionID);// Sending to customer
+            //$this->sendPaymentApprovedEmail($total,"Authorized.net",$transactionID,true); // Sending to user
             /*
               Lets check if the invoice has an call back URL and process that
             */
@@ -1874,13 +1935,21 @@ class Invoice extends DataObject {
             Check if there is a next URL if so then set goto variable to that URL. Userful if we want the user to go to someother page
             Than in the goto page. This is triggered only when full payment is done.
             */
-            $next_url = $do_inv_callback->isNextUrl($this->idinvoice);
+            //$next_url = $do_inv_callback->isNextUrl($this->idinvoice);
             //if($next_url !== false){
             //     $due_amt = $this->getDueAmount($this->idinvoice);
             //     if($due_amt == '0.00'){
-              $goto = $next_url; 
+             // $goto = $next_url; 
             //     }
             //}
+            $next_url = $do_inv_callback->isNextUrl($this->idinvoice);
+            if($next_url !== false){
+                 $due_amt = $this->getDueAmount($this->idinvoice);
+                 if($due_amt == '0.00'){
+              $goto = $next_url; 
+               }
+            }
+            
             $_SESSION['autologin_paid'] = True;
             // Add the CC info in the RecurrentInvoiceCC
             if($evtcl->is_rec !=0 && $evtcl->is_cc == 0 ){
@@ -1911,6 +1980,198 @@ class Invoice extends DataObject {
 
  }
 
+
+
+
+  /**
+      * Event Method for Stripe Payment Process
+      * test with credit card 4242424242424242
+      * @param object $evtcl 
+     */
+    function eventProcessStripePayment(Eventcontroler $evtcl){
+      $flag = true;
+
+      if($evtcl->tot_amt > $_SESSION['do_invoice']->amt_due) {
+        $_SESSION['in_page_message'] = _("The Total Amount entered is greater than the invoice amount. Please re-enter.");
+        $flag = false;
+      }
+
+      if($flag) {      
+        include_once('class/Stripe.class.php');
+        include_once("stripe-lib/Stripe.php");
+        $token = $evtcl->stripeToken;
+        $name = $evtcl->name;
+        //$email = $evtcl->email;
+        $description = $name;
+        $srtipecustomer_id = $evtcl->stripecustomer_id;
+      
+        if ($evtcl->tot_amt > 0) {
+          $total = $evtcl->tot_amt; 
+        } else {
+          $total = $_SESSION['do_invoice']->amt_due;
+        }       
+      
+        //Amount need to conver to cents 
+        $total = $total*100;
+      
+        $idinvoice = $_SESSION['do_invoice']->idinvoice;
+        $idcontact = $_SESSION['do_invoice']->idcontact;
+        $goto = $evtcl->goto;
+        $error_page = $evtcl->error_page;
+        $updateStripecustomer = $evtcl->updateStripecustomer;
+        $do_contact = new Contact();
+        $arr_user_info = $do_contact->getContactInfo_For_Invoice($idcontact);
+        
+        $inv_info_arr = array();
+        $inv_info_arr['description'] = $_SESSION['do_invoice']->description;
+        $inv_info_arr['inv_num'] = $_SESSION['do_invoice']->num;
+        $stripe_api_key = $evtcl->stripe_api_key;
+      
+      
+        $payment = new StripeGateWay(false, $stripe_api_key);
+      
+        if(empty($srtipecustomer_id)){
+          $result = $payment->CreateCustomer($token,$name,$total,$email="",$description);
+        }else{
+          if($updateStripecustomer === 'Yes'){
+			 
+			 $result = $payment->UpdateExistingCustomer($srtipecustomer_id,$token,$name,$total,$email="",$description=""); 
+			 
+			 if($result['update'] == 1){
+				 $payment = new StripeGateWay(false, $stripe_api_key);
+				 $result = $payment->CreateCustomer($token,$name,$total,$email="",$description);
+			 }
+			 
+          }else{
+            $result = $payment->ChargeExsistingCustomer($srtipecustomer_id,$total);
+          }
+        }
+
+        if($result['success'] == '1'){          
+          //set the amout back to $ value 
+          $total = $total/100;          
+          
+          //echo $result['customer_id'];die();
+				
+          //Add the customer id in to stripe details class
+          if(isset($result['customer_id'])){
+            $this->saveStripeCustomerId($_SESSION['do_invoice']->iduser,$_SESSION['do_invoice']->idcontact,$result['customer_id']);
+          }
+				
+          // Display a printable receipt
+          $_SESSION['in_page_message'] = _("This transaction has been approved. Thank you for your payment");
+          
+          $do_pay_log = new PaymentLog();
+          $do_pay_log->addPaymentLog($result['response']['id'],"Stripe",$_SESSION['do_invoice']->idinvoice,$total);
+                                              $idpayment_log = $do_pay_log->getPrimaryKeyValue();
+                                              $do_payment_inv = new PaymentInvoice();
+                                              $do_payment_inv->addPaymentInvoice($idpayment_log,$_SESSION['do_invoice']->idinvoice,$total);
+          $this->updatePayment($total);
+          //$this->sendPaymentApprovedEmail($total,"Stripe.com",$transactionID);// Sending to customer
+          //$this->sendPaymentApprovedEmail($total,"Stripe.com",$transactionID,true); // Sending to user
+
+          if(isset($_SESSION["upgrade"])){      
+               $do_user = new User();               
+               $date = date('Y-m-d');
+               $do_user->query("update user set plan='paid', regdate = '{$date}' where iduser=".$_SESSION['do_User']->iduser);                              
+                
+                $do_recurrentInvoice = new RecurrentInvoice();
+                $do_recurrentInvoice->addRecurrentInvoice($_SESSION['do_invoice']->idinvoice,'1','Month',date("Y-m-d"),$_SESSION['do_User']->iduser);
+
+                $do_ccdetails = new CcDetails();
+                $do_ccdetails->iduser = $_SESSION['do_User']->iduser;
+                $do_ccdetails->token = $result['customer_id'];
+                $do_ccdetails->type = 'Stripe';
+                $do_ccdetails->add();
+
+                $goto = 'index.php';  
+                unset($_SESSION['upgrade']);
+          }else{     
+            /*
+              Lets check if the invoice has an call back URL and process that
+            */
+            $do_inv_callback = new InvoiceCallback();
+            $do_User = $_SESSION['do_invoice']->getParentUser();
+            $do_inv_callback->processCallBack($this->idinvoice,$this->num,$total,$do_User->iduser,"ok","Stripe",$transactionID);
+            
+            /*
+            Check if there is a next URL if so then set goto variable to that URL. Userful if we want the user to go to someother page
+            Than in the goto page. This is triggered only when full payment is done.
+            */
+            $next_url = $do_inv_callback->isNextUrl($this->idinvoice);
+            
+          }
+            //$goto = $next_url;             
+            $_SESSION['autologin_paid'] = True;
+            
+                   
+        }else{
+          $rr = json_decode($result,true);//echo'<pre>';print_r($rr);echo'</pre>';die();
+          $r = $rr['error']['message']; 
+          $error_code = $rr['error']['code'];
+          $error_type = $rr['error']['type'];
+
+          if(($error_code == 'invalid_expiry_month') || ($error_code == 'invalid_expiry_year') || ($error_code == 'expired_card') || ($error_code == 'missing')){
+            $goto = $error_page;
+            $_SESSION['updatecustomer'] = 'Yes';		
+          }elseif($error_type == 'invalid_request_error'){
+			  $goto = $error_page;
+            $_SESSION['updatecustomer'] = 'Yes';		
+		  }
+
+          $_SESSION['in_page_message'] = $r;
+        }
+      }
+      
+      $disp_next = new Display($goto);
+
+      if(isset($_SESSION['upgrade'])){
+          $msg = "Thank You . Your payment has been apporved and now you are paid user.";
+          $disp_next->addParam("message", $msg);
+      }
+       
+      $evtcl->setDisplayNext($disp_next);
+  }
+
+
+
+	/**
+	 *  Function to add the stripe customer id in to the stripe details table
+	 * @param iduser
+	 * @param idcontact
+	 * @param stripe created customer id
+	*/
+	
+	function saveStripeCustomerId($iduser,$idcontact,$customer_id){
+		
+		$q1 = new sqlQuery($this->getDbCon()); 
+		$q1->query("select * from stripe_details where iduser='$iduser' and idcontact='$idcontact'");
+		if($q1->getNumRows() >= 1){
+			$q2 = new sqlQuery($this->getDbCon()); 
+			$q2->query("update from stripe_details set stripe_token='$customer_id',createdate=now()  where iduser='$iduser' and idcontact='$idcontact'");
+		} else {
+			$q = new sqlQuery($this->getDbCon()); 
+			$q->query("Insert into stripe_details (iduser,idcontact,stripe_token,createdate) values('$iduser','$idcontact','$customer_id',now())");
+		}
+		
+	}
+		
+	
+	/**
+	 * Function to check and get the stripe customer id if present in stripe details table
+	 * @param iduser
+	 * @param idcontact
+	 */
+	 function getStripeCustomerId($iduser,$idcontact){
+		 //echo "SELECT stripe_token FROM stripe_details WHERE idcontact ='$idcontact' and iduser = '$iduser'";die();
+		$q = new sqlQuery($this->getDbCon()); 
+        $q->query("SELECT stripe_token FROM stripe_details WHERE idcontact ='$idcontact' and iduser = '$iduser'");
+        $q->fetch();
+        $stripe_token = $q->getData("stripe_token");
+        
+        return $stripe_token;
+	 }
+	 
     /**
       * Send Payment confirmation email to the customer
       * @param float $amt
@@ -3212,5 +3473,28 @@ class Invoice extends DataObject {
 	 }
      return $idinvoice;
  }
+
+
+  function getUserStripeDetails($iduser=''){
+      if($iduser != ''){      
+        $sql = "SELECT setting_name,setting_value FROM user
+            INNER JOIN  user_settings on  user_settings.iduser = user.iduser where user.iduser = '{$iduser}'";
+      }/*else{
+        $sql = "SELECT setting_name,setting_value,user.iduser FROM user
+                INNER JOIN  user_settings on  user_settings.iduser = user.iduser where isadmin  = 1 ";
+      } */
+    $this->query($sql);
+    if($this->getNumRows() > 0){
+        while($this->fetch()){
+          $stripeDetails[$this->getData('setting_name')] = $this->getData('setting_value');
+          $stripeDetails['iduser'] = $this->getData('iduser');
+          $stripeDetails['email'] = $this->getData('email');
+        }
+      return $stripeDetails;    
+    }else{
+      return 0;
+    }
+  }
+
 }
 ?>

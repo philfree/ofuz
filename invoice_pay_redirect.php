@@ -75,7 +75,11 @@
 	if($reg_user_id !== False) { $_SESSION['autologin_userid'] = $reg_user_id; } 
 	
 	if ($invoice_access) {
-		header("Location: /invoice_pay_auth.php");
+  if(isset($_SESSION["upgrade"])){
+    header("Location: /invoice_pay_stripe.php");
+  }else{
+    header("Location: /invoice_pay_auth.php");
+  }
 	} else { echo "Oups"; }
 	exit;
 	// will delete everything bellow once sure I do not need anything.

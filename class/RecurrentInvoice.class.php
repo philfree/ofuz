@@ -166,5 +166,24 @@ class RecurrentInvoice extends DataObject {
 
 		$this->query($sql);
 	}
+	
+	/**
+	 * Function getRecInvoiceForStripeProcess 
+	 * To get the recurrentinvoice which are ready for the process for current day
+	 * Using for stripe payment process
+	**/
+	
+	function getRecInvoiceForStripeProcess(){
+		
+		$qry = "SELECT *
+                FROM recurrentinvoice
+                INNER JOIN invoice ON invoice.idinvoice = recurrentinvoice.idinvoice
+                where due_date <=curdate() AND 
+                status = 'Sent' 
+                ";
+       $this->query($qry);
+		
+	}
+	
 }
 ?>

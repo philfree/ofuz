@@ -125,9 +125,8 @@ $profile_html .= '</div></div>';
 
 $profile_html .= '<div class="profile_web_layout_main">';
 $profile_html .= '<div class="profile_web_layout_inner">';
-$profile_html .= '<div class="profile_web_layout_photo_block">';
+$profile_html .= '<div class="profile_web_layout_photo_block cf">';
 
-$profile_html .= '<div class="profile_web_layout_photo_left">';
 $profile_html .= '<div class="profile_photo">';
 if ($_SESSION['do_contact']->picture != '') {
 $profile_html .= '<img src="'.$_SESSION['do_contact']->getContactPicture().'" height="120px"  width="120px" alt="" />';
@@ -135,22 +134,18 @@ $profile_html .= '<img src="'.$_SESSION['do_contact']->getContactPicture().'" he
 $profile_html .= '<img src="/images/empty_avatar.gif" height="100%"  width = 100% alt="" />';
 }
 $profile_html .= '</div>';
-$profile_html .= '</div>';
 
-$profile_html .= '<div class="profile_web_layout_photo_right">';
-$profile_html .= '<div class="profile_name">';
-$profile_html .= '<div style="position:relative;float:left;width:70%;">'.$_SESSION['do_contact']->firstname.' '.$_SESSION['do_contact']->lastname.'</div>';
-$profile_html .= '<div style="position:relative;float:right;width:15%;font-size:12px;"><a href="/public_profile_vcard.php"><img src="/images/get_vcard.png" width="91" height="26" alt="" /></a></div>';
-$profile_html .= '<div style="position:relative;float:right;width:15%;">';
+$profile_html .= '<div class="profile_name">'.$_SESSION['do_contact']->firstname.' '.$_SESSION['do_contact']->lastname.'<br />';
+$profile_html .= '<div class="profile_title">'.$_SESSION['do_contact']->position.' at <span class="profile_company">'.$_SESSION['do_contact']->company.'</span></div>';
+$profile_html .= '</div>';
+$profile_html .= '<div class="contact_button"><a href="/public_profile_vcard.php"><img src="/images/get_vcard.png" width="91" height="26" alt="" /></a></div>';
+$profile_html .= '<div class="contact_button">';
 $profile_html .= '<form method="post" action="/public_profile.php">';
-$profile_html .= '<input class="profile_button" type="image" src="/images/profile_add_to_ofuz.png" alt="Add the contact to Ofuz" name="add_cont" />';
+$profile_html .= '<input type="image" src="/images/profile_add_to_ofuz.png" alt="Add the contact to Ofuz" name="add_cont" />';
 $profile_html .= '<input type="hidden" name="hd_add_cont" value="1" />';
 $profile_html .= '</form>';
-$profile_html .= '</div>';
-$profile_html .= '</div>';
 
-$profile_html .= '<div style="clear:both;"></div>';
-$profile_html .= '<div class="profile_title">'.$_SESSION['do_contact']->position.' at <span class="profile_company">'.$_SESSION['do_contact']->company.'</span></div>';
+
 //$profile_html .= '<div style="vertical-align:right;"><input class="profile_button" type="image" src="/images/profile_add_to_ofuz.png" alt="Add the contact to Ofuz" name="add_cont" /></div>';
 $profile_html .= '</div>';
 $profile_html .= '</div>';

@@ -33,6 +33,7 @@
                 $user_settings = $do_user_detail->getChildUserSettings();    
                 if($user_settings->getNumRows()){// Get the setting data for the user who has created the invoice
                     while($user_settings->next()){
+						$payment_mode = false;
                         if($user_settings->setting_name == 'invoice_logo' &&  $user_settings->setting_value != ''){
                             $_SESSION['do_invoice']->inv_logo =  $user_settings->setting_value ;
                         }
@@ -44,7 +45,16 @@
                         }
                         if($user_settings->setting_name == 'paypal_business_email' &&  $user_settings->setting_value != ''){
                             $_SESSION['do_invoice']->paypal_business_email =  $user_settings->setting_value ;
+                        } 
+                        if($user_settings->setting_name == 'payment_selection' &&  $user_settings->setting_value != ''){
+							$_SESSION['do_invoice']->payment_selection = $user_settings->setting_value;
                         }
+                        
+                       /* if(empty($payment_mode)){
+							if((!empty($_SESSION['do_invoice']->authnet_login)) && (!empty($_SESSION['do_invoice']->authnet_merchant_id))){
+								$payment_mode =  true;
+							}	
+						}*/
                         if($user_settings->setting_name == 'currency' &&  $user_settings->setting_value != ''){
                             $currency =  explode("-",$user_settings->setting_value) ;
                             $_SESSION['do_invoice']->currency_iso_code = $currency[0];
@@ -54,6 +64,20 @@
                         }
                     }
                 }// User setting data ends here
+                
+                 if(isset($_SESSION['do_invoice']->payment_selection)){							
+					if($_SESSION['do_invoice']->payment_selection == 'authorized.net'){
+						if((!empty($_SESSION['do_invoice']->authnet_login)) && (!empty($_SESSION['do_invoice']->authnet_merchant_id))){
+								$payment_mode =  true;
+						}	
+					}
+                } else {
+					if((!empty($_SESSION['do_invoice']->authnet_login)) && (!empty($_SESSION['do_invoice']->authnet_merchant_id))){
+							$payment_mode =  true;
+					}
+				}
+                
+                if($payment_mode == true){
                 $do_user_detail->free();
                 $arr_user_info = $do_contact->getContactInfo_For_Invoice($do_recurrent->idcontact);
                 $inv_info_arr = array();
@@ -68,7 +92,7 @@
                 */
                 $payment = new Authnet(false, $arr_user_info,$_SESSION['do_invoice']->authnet_login,$_SESSION['do_invoice']->authnet_merchant_id,$inv_info_arr);
                 $cc_msg = $payment->validateCreditCard($cc_number, $payment_type,"",$expire_year, $expire_month,false);
-               // echo '<br />'.$cc_msg;
+               //echo '<br />'.$cc_msg;
                 if($cc_msg == ""){
                       $invoice = uniqid('ofuz_', true);
                       $expiration = $expire_month.$expire_year;
@@ -98,6 +122,7 @@
                           $do_inv_callback->processCallBack($_SESSION['do_invoice']->idinvoice,$_SESSION['do_invoice']->num,$do_recurrent->net_total,$_SESSION['do_invoice']->iduser,"fail","AuthNet","",$reason);
                       }
                 }
+			  }
             }
             $do_invoice->free();
         }

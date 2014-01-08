@@ -286,14 +286,19 @@ class ProjectDiscuss extends Note {
      * @param Eventcontroler
      */
     function eventSendDiscussMessageByEmail(EventControler $event_controler) {
-          $this->setLog("\n eventSendDiscussMessageByEmail: starting (".date("Y/m/d H:i:s"));
+      $this->setLog("\n eventSendDiscussMessageByEmail: starting (".date("Y/m/d H:i:s"));
 
-	  $_SESSION['do_project_task']->getId($event_controler->idproject_task);
-	  $_SESSION['do_project']->getId($event_controler->idproject);
+      /*$_SESSION['do_project_task']->getId($event_controler->idproject_task);
+        $_SESSION['do_project']->getId($event_controler->idproject);*/
+
+        $idproject_task = $event_controler->fields['idproject_task'];       
+        $_SESSION["do_project"] = $_SESSION['projectsession_'.$idproject_task];         
+        $_SESSION["do_project_task"]  = $_SESSION['projecttasksession_'.$idproject_task];
+
 
           try {
               $co_workers = $_SESSION["do_project"]->getProjectCoWorkers();
-              // print_r($co_workers);exit;
+               print_r($co_workers);
               if ($co_workers !== false) {
                   $email_template = new EmailTemplate("ofuz_project_discussion");
                   $email_nudge = new EmailTemplate("ofuz_project_discussion_nudge");
@@ -460,6 +465,7 @@ class ProjectDiscuss extends Note {
               $this->setError('ProjectDiscuss Could not send email: '.  $e->getMessage());
           } 
           $this->setLog("\n eventSendDiscussMessageByEmail: ending (".date("Y/m/d H:i:s"));
+
     }
 
     /**

@@ -65,7 +65,7 @@
   include_once("class/RegistrationInvoiceLog.class.php");
   include_once("class/DeletePaymentLog.class.php");
   include_once("class/OfuzCancelAccount.class.php");
-  //include_once("class/OfuzExportXML.class.php");
+  include_once("class/OfuzExportXML.class.php");
   include_once("class/OfuzExportAccount.class.php");
   include_once("class/UserInternalMarketing.class.php");
   include_once("class/TagInternalMarketing.class.php");
@@ -145,7 +145,7 @@
   include_once("class/SubMenu.class.php");
   include_once("class/BaseMessageBlock.class.php");
   include_once("class/PluginEnable.class.php");
-  
+  //include_once("class/UserGitrepo.class.php");	
 
   // Dynamic Buttons
   include_once("class/DynamicButton.class.php");
@@ -158,11 +158,15 @@
   include_once("class/MimeMailParser.class.php");
   include_once("class/OfuzEmailFetcher.class.php");
   
-    include_once("class/UserProfile.class.php");
-
+  include_once("class/UserProfile.class.php");
+	
+  
 
   //Beanstakd
   include_once("class/OfuzBeanstalkd.class.php");
+  
+    include_once("class/CcDetails.class.php");
+
 
   //Email Contact Import
   //include_once("plugin/EmailImporter/openinviter.php");
@@ -191,16 +195,23 @@
   define('FACEBOOK_XD_RECEIVER_HTTP','http://www.ofuz.net/xd_receiver.htm');
   define('FACEBOOK_XD_RECEIVER_HTTPS','https://www.ofuz.net/xd_receiver.htm');
 */
-		define('FACEBOOK_APP_ID','86666320566'); 
+	// Live details
+	/*define('FACEBOOK_APP_ID','86666320566'); 
   define('FACEBOOK_APP_SECRET','addc6284f9ea2c548f92334ee1313371');
-  
   define('FACEBOOK_CONNECT_DOMAIN','http://www.ofuz.net/'); 
-
-  define('FACEBOOK_XD_RECEIVER_HTTP','http://www.ofuz.net/xd_receiver.htm');
+	define('FACEBOOK_XD_RECEIVER_HTTP','http://www.ofuz.net/xd_receiver.htm');
   define('FACEBOOK_XD_RECEIVER_HTTPS','https://www.ofuz.net/xd_receiver.htm');
-
-		define('SITE_URL','http://www.ofuz.net');
-		define('SITE_URL_HTTPS','https://www.ofuz.net');
+	define('SITE_URL','http://www.ofuz.net');
+	define('SITE_URL_HTTPS','https://www.ofuz.net');
+*/
+	// Test details
+	define('FACEBOOK_APP_ID','23664984441'); 
+  define('FACEBOOK_APP_SECRET','bafc16e12485d362be753fd19bf114ea');
+  define('FACEBOOK_CONNECT_DOMAIN','http://dev.ofuz.net/'); 
+	define('FACEBOOK_XD_RECEIVER_HTTP','http://dev.ofuz.net/xd_receiver.htm');
+  define('FACEBOOK_XD_RECEIVER_HTTPS','https://dev.ofuz.net/xd_receiver.htm');
+	define('SITE_URL','http://dev.ofuz.net');
+	define('SITE_URL_HTTPS','https://dev.ofuz.net');
 
   define('TWITTER_CONSUMER_KEY','sRbRJ3cwJLHyVYPAy71Qvg');
   define('TWITTER_CONSUMER_SECRET','Eur6OZm2X79ycJrriZRhRal0XRYIGagQfRmq9qONnY');
