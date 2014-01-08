@@ -102,6 +102,9 @@
 ?>
 <script type="text/javascript">
 //<![CDATA[
+domStyle.set(dialogObj.containerNode, {
+        position: 'relative'
+    })
 <?php include_once('includes/ofuz_js.inc.php'); ?>
 function fnEditTask(){
     $("#ptask_ctlbar").slideToggle("fast");
@@ -280,6 +283,15 @@ window.setInterval("fnSaveDraft()", 30000);
 <?php } ?>
 //]]>
 </script>
+
+<style type="text/css">
+  #contact_small{
+    width:34px;
+    align:left;
+  }
+
+</style>
+
 
 <script type="text/javascript">
 function autoLoadPrjDiscussion() {
@@ -647,7 +659,7 @@ $(document).ready(function() {
                         
                         echo '<div id="item_title"> '.$date_added_note.'</b>&nbsp;('._('Added By:').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
                         echo "<br>";
-                        echo '<a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a>';
+                        echo '<div id="contact_small"><a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a></div>';
                         
                         if($task_operation_access === true){
                           echo '<div id="trashcan', $item_count++, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_discuss->idproject_discuss.'\','.$do_discuss->idproject_discuss.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_discuss_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div>';

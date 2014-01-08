@@ -18,6 +18,8 @@
     $do_task_category = new TaskCategory($GLOBALS['conx']);
     $do_contact_task = new Contact();
     $do_project = new Project();
+		
+				
 
 ?>
 <script type="text/javascript">
@@ -93,178 +95,176 @@ $("#"+divid).fadeOut("slow");
 <div class="contentfull">
 <div class="spacerblock_20"></div>
 <?php
-                            $_SESSION['do_coworker']->getAllRequest(); //Get all the requests
-                            if($_SESSION['do_coworker']->getNumrows()){
-                              echo '<br /><b>'._('The following User(s) are waiting for approval from you to become Co-Workers.').'</b><br />';
-                              while($_SESSION['do_coworker']->next()){
-                                $user_name = $_SESSION['do_User']->getFullName($_SESSION['do_coworker']->iduser);
+				$_SESSION['do_coworker']->getAllRequest(); //Get all the requests
+				if($_SESSION['do_coworker']->getNumrows()){
+						echo '<br /><b>'._('The following User(s) are waiting for approval from you to become Co-Workers.').'</b><br />';
+						while($_SESSION['do_coworker']->next()){
+								$user_name = $_SESSION['do_User']->getFullName($_SESSION['do_coworker']->iduser);
 
-                                $e_accept = new Event("do_coworker->eventAcceptInvitation");
-                                $e_accept->addParam("id",$_SESSION['do_coworker']->iduser_relations);
-                                $e_accept->addParam("goto",$_SERVER['PHP_SELF']);
-                                $e_accept->addParam("coworker",$_SESSION['do_coworker']->idcoworker);
-                                $e_accept->addParam("user",$_SESSION['do_coworker']->iduser);
+								$e_accept = new Event("do_coworker->eventAcceptInvitation");
+								$e_accept->addParam("id",$_SESSION['do_coworker']->iduser_relations);
+								$e_accept->addParam("goto",$_SERVER['PHP_SELF']);
+								$e_accept->addParam("coworker",$_SESSION['do_coworker']->idcoworker);
+								$e_accept->addParam("user",$_SESSION['do_coworker']->iduser);
 
-                                $e_reject = new Event("do_coworker->eventRejectInvitation");
-                                $e_reject->addParam("id",$_SESSION['do_coworker']->iduser_relations);
-                                $e_reject->addParam("goto",$_SERVER['PHP_SELF']);
-                                echo '<div style="width:200px;float:left;">'.$user_name.'</div><div style="position:relative;">'.$e_accept->getLink("Accept").'&nbsp;&nbsp;'.$e_reject->getLink("Reject").'</div>';
-                              }
-                            }else{
-                              //echo '<br /><b>You have no Invitations to be a Co-Worker.</b><br />';
-                            }
-                            //echo '<div class="solidline"></div>';
+								$e_reject = new Event("do_coworker->eventRejectInvitation");
+								$e_reject->addParam("id",$_SESSION['do_coworker']->iduser_relations);
+								$e_reject->addParam("goto",$_SERVER['PHP_SELF']);
+								echo '<div style="width:200px;float:left;">'.$user_name.'</div><div style="position:relative;">'.$e_accept->getLink("Accept").'&nbsp;&nbsp;'.$e_reject->getLink("Reject").'</div>';
+						}
+				}else{
+						//echo '<br /><b>You have no Invitations to be a Co-Worker.</b><br />';
+				}
+				//echo '<div class="solidline"></div>';
                           ?>
 <!-- </div>
 </div>
 <div class="contentfull">-->
 <?php
-                          $set_share = false;
-                          if(isset($_POST['ck'])){
-                            $contact_ids = $_POST['ck'];
-                            $set_share = true; // Request comes from Contact page
-                          }
-                          $_SESSION['do_coworker']->getAllCoWorker(); //Get all the Co-Workers
-                          if (!is_object($_SESSION['do_contact_sharing'])) {
-                            $do_contact_sharing = new ContactSharing();
-                            $do_contact_sharing->sessionPersistent("do_contact_sharing", "index.php", 36000);
-                           }
-                           if($_SESSION['do_coworker']->getNumrows()){
-                              if (!is_object($_SESSION['do_Contacts'])) {
-                                  $do_Contacts = new Contact();
-                                  $do_Contacts->setRegistry("all_contacts");
-                                  $do_Contacts->sessionPersistent("do_Contacts", "index.php", 36000);
-                              }
-                               if(!$set_share){ // If not having POST vales
+				$set_share = false;
+				if(isset($_POST['ck'])){
+						$contact_ids = $_POST['ck'];
+						$set_share = true; // Request comes from Contact page
+				}
+				$_SESSION['do_coworker']->getAllCoWorker(); //Get all the Co-Workers
+				if (!is_object($_SESSION['do_contact_sharing'])) {
+						$do_contact_sharing = new ContactSharing();
+						$do_contact_sharing->sessionPersistent("do_contact_sharing", "index.php", 36000);
+				}
+    if($_SESSION['do_coworker']->getNumrows()){
+						if (!is_object($_SESSION['do_Contacts'])) {
+								$do_Contacts = new Contact();
+        $do_Contacts->setRegistry("all_contacts");
+        $do_Contacts->sessionPersistent("do_Contacts", "index.php", 36000);
+     }
+     if(!$set_share){ // If not having POST vales
+								
+						//$user_coworker = new User();
+								while($_SESSION['do_coworker']->next()){
+										//$user_coworker->getId($_SESSION['do_coworker']->idcoworker);
+										// Get the contacts shared for this Co-Worker
+										$shared_contacts = $_SESSION['do_contact_sharing']->getSharedContacts($_SESSION['do_coworker']->idcoworker);
+										if($shared_contacts && is_array($shared_contacts)){
+												$ids_shared_as_user = implode(",",$shared_contacts);
+										}else{$ids_shared_as_user = '';}
+										// Create filter event link
+										$e_shared_contacts_filter = new Event("do_Contacts->eventFilterContactAsCoWorker");
+										$e_shared_contacts_filter->addParam("ids",$ids_shared_as_user);
+										$e_shared_contacts_filter->addParam("goto","contacts.php");
+										$e_shared_contacts_filter->addParam("setShare","No");
+										$e_shared_contacts_filter->addParam("coworker",$_SESSION['do_coworker']->idcoworker);
+										// Get Contacts shared by this contact
+										$shared_contacts_from_coworker = $_SESSION['do_contact_sharing']->getSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
+										if($shared_contacts_from_coworker && is_array($shared_contacts_from_coworker)){
+												$ids_shared_from_coworker = implode(",",$shared_contacts_from_coworker);
+										}else{$ids_shared_from_coworker = '';}
+										$e_shared_contacts_from_coworker_filter = new Event("do_Contacts->eventFilterContactAsCoWorker");
+										$e_shared_contacts_from_coworker_filter->addParam("ids",$ids_shared_from_coworker);
+										$e_shared_contacts_from_coworker_filter->addParam("goto","contacts.php");
+										$e_shared_contacts_from_coworker_filter->addParam("setShare","Yes");
+										$e_shared_contacts_from_coworker_filter->addParam("coworker",$_SESSION['do_coworker']->idcoworker);
+										$no_cont_shared = $_SESSION['do_contact_sharing']->countSharedContacts($_SESSION['do_coworker']->idcoworker);
+										$no_cont_shared_by_co_worker =$_SESSION['do_contact_sharing']->countSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
 
-                                  //$user_coworker = new User();
-                                  while($_SESSION['do_coworker']->next()){
-                                      //$user_coworker->getId($_SESSION['do_coworker']->idcoworker);
-                                      // Get the contacts shared for this Co-Worker
-                                      $shared_contacts = $_SESSION['do_contact_sharing']->getSharedContacts($_SESSION['do_coworker']->idcoworker);
-                                      if($shared_contacts && is_array($shared_contacts)){
-                                        $ids_shared_as_user = implode(",",$shared_contacts);
-                                      }else{$ids_shared_as_user = '';}
-                                      // Create filter event link
-                                      $e_shared_contacts_filter = new Event("do_Contacts->eventFilterContactAsCoWorker");
-                                      $e_shared_contacts_filter->addParam("ids",$ids_shared_as_user);
-                                      $e_shared_contacts_filter->addParam("goto","contacts.php");
-                                      $e_shared_contacts_filter->addParam("setShare","No");
-                                      $e_shared_contacts_filter->addParam("coworker",$_SESSION['do_coworker']->idcoworker);
-                                      // Get Contacts shared by this contact
-                                      $shared_contacts_from_coworker = $_SESSION['do_contact_sharing']->getSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
-                                      if($shared_contacts_from_coworker && is_array($shared_contacts_from_coworker)){
-                                        $ids_shared_from_coworker = implode(",",$shared_contacts_from_coworker);
-                                      }else{$ids_shared_from_coworker = '';}
-                                      $e_shared_contacts_from_coworker_filter = new Event("do_Contacts->eventFilterContactAsCoWorker");
-                                      $e_shared_contacts_from_coworker_filter->addParam("ids",$ids_shared_from_coworker);
-                                      $e_shared_contacts_from_coworker_filter->addParam("goto","contacts.php");
-                                      $e_shared_contacts_from_coworker_filter->addParam("setShare","Yes");
-                                      $e_shared_contacts_from_coworker_filter->addParam("coworker",$_SESSION['do_coworker']->idcoworker);
-                                      $no_cont_shared = $_SESSION['do_contact_sharing']->countSharedContacts($_SESSION['do_coworker']->idcoworker);
-                                      $no_cont_shared_by_co_worker =$_SESSION['do_contact_sharing']->countSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
+										$do_user = new User();                                      
+										$do_contact = new Contact();
+										$do_user->query("select idcontact from user where iduser = ".$_SESSION['do_coworker']->idcoworker);
+										$do_user->getValues();
+										if($do_user->getNumRows() > 0 ){
+																$contact_id = $do_user->idcontact;
+																if($contact_id != '' || $contact_id != 0 ){  
+																				$do_contact->getId($contact_id);
+																				$user_picture = $do_contact->picture;
+																}
+										}
+										/*$do_contact->getUserContacts($_SESSION['do_coworker']->idcoworker);
+										if($do_contact->getNumRows()){
+										//while($do_contact->next()){
+												$co_workers[] = $do_contact->idcoworker;
+												$user_picture = $do_contact->picture;
+												$contact_id = $do_contact->idcontact;
+								// }
+										}*/
+										$user_name = $do_user->getUserNameByIdUser($_SESSION['do_coworker']->idcoworker);
+						
+										//Get Bio Information
+										$do_userprofile = new UserProfile();
+										$profile_information = $do_userprofile->getProfileInformation($_SESSION['do_coworker']->idcoworker);    
+										$job_description = $profile_information['job_description'];
+										$do_userprofile->free();
+
+										if($user_picture!=''){
+												$thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$user_picture;
+												if(file_exists($thumb_name)) {
+														$user_pic="/dbimage/thumbnail/".$user_picture;
+												} else {
+														$user_pic="/images/empty_avatar.gif";
+												}
+										}else{
+												$user_pic='/images/empty_avatar.gif';
+										}                                  
+										echo '<div style="position:relative;width:100%;">';
+										echo '<div class="feed_user_pic" style="positon:relative;float:left;overflow:hidden;">';
+										echo '<a href="/profile/'.$user_name.'" target="_blank"> <img height="50px" alt="" src='.$user_pic.' > </a>';
+										echo '</div>';
+										echo '<div style="positon:relative;float:left;width:80%;margin:0px;"><a style="color:#C52EAD;" href="javascript:void(0)" onclick="showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" >'
+										.$_SESSION['do_coworker']->firstname.' '.$_SESSION['do_coworker']->lastname.
+										'</a><br />'.$job_description.'</div>&nbsp;';
+										$num_project_shared = $do_project->getNumProjectsShared($_SESSION["do_User"]->iduser,$_SESSION['do_coworker']->idcoworker);
+										$no_proj_shared_by_co_worker = $do_project->getNumProjectsShared($_SESSION['do_coworker']->idcoworker,$_SESSION["do_User"]->iduser);
+										echo '<div style="clear:both;padding:10px;"></div>';
+										echo '<div class="feed_user_pic" style="overflow:hidden;">&nbsp;</div><div id="'.$_SESSION['do_coworker']->idcoworker.'" style="display:none;width:80%;margin:0px;">';
+										if ($no_cont_shared > 0) {
+												echo $e_shared_contacts_filter->getLink('<span>'.sprintf(_('You shared %d contacts'), $no_cont_shared).'</span>&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;');
+										}else{
+														echo '<span>'.sprintf(_('You shared %d contacts'), $no_cont_shared).'</span>&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;';
+										}
+
+										$num_project_shared = $do_project->getNumProjectsShared($_SESSION["do_User"]->iduser,$_SESSION['do_coworker']->idcoworker);
+										$no_proj_shared_by_co_worker = $do_project->getNumProjectsShared($_SESSION['do_coworker']->idcoworker,$_SESSION["do_User"]->iduser);
+
+										echo '<div style="clear:both;padding:10px;"></div>';
+										echo '<div id="'.$_SESSION['do_coworker']->idcoworker.'" style="display:none;">';
+										if ($no_cont_shared > 0) {
+												echo $e_shared_contacts_filter->getLink('<span>'.sprintf(_('You shared %d contacts'), $no_cont_shared).'</span>&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;');
+										}else{
+												echo '<span>'.sprintf(_('You shared %d contacts'), $no_cont_shared).'</span>&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;';
+										}
 
 
-                                      $do_user = new User();                                      
-                                      $do_contact = new Contact();
-                                      $do_contact->getUserContacts($_SESSION['do_coworker']->idcoworker);
-                                      if($do_contact->getNumRows()){
-                                          //while($do_contact->next()){
-                                            $co_workers[] = $do_->idcoworker;
-                                            $user_picture = $do_contact->picture;
-                                            $contact_id = $do_contact->idcontact;
-                                         // }
-                                       }
-                                       $user_name = $do_user->getUserNameByIdUser($_SESSION['do_coworker']->idcoworker);
-                                     
-				      //Get Bio Information
-				      $do_userprofile = new UserProfile();
-				      $profile_information = $do_userprofile->getProfileInformation($_SESSION['do_coworker']->idcoworker);    
-				      $job_description = $profile_information['job_description'];
-				      $do_userprofile->free();
+										if ($no_cont_shared_by_co_worker > 0) {
+												echo $e_shared_contacts_from_coworker_filter->getLink('<span>'.sprintf(_("%s shared %d contacts"), $_SESSION['do_coworker']->firstname, $no_cont_shared_by_co_worker).'</span>&nbsp;'.sprintf(_('and %d projects'),$no_proj_shared_by_co_worker));
+										}else{
+												echo '<span>'.sprintf(_("%s shared %d contacts"), $_SESSION['do_coworker']->firstname, $no_cont_shared_by_co_worker).'</span>&nbsp;'.sprintf(_('and %d projects'),$no_proj_shared_by_co_worker);
+										}
+										//if ($no_cont_shared > 0 || $no_cont_shared_by_co_worker > 0) {
+										//echo '<br />';
+										//}
+										echo '</div>';
+										echo '</div>';
+										echo '<div style="clear:both;padding:10px;"></div>';
+										echo '<br />';
+																																								
+						}// class="co_worker_pending"
+				}else{ // Having some POST data from contacts.php
+										$e_share_cont = new Event("do_contact_sharing->eventShareContactsMultiple");
+										$e_share_cont->addEventAction("mydb.gotoPage", 304);
+										$e_share_cont->addParam("goto", "co_workers.php");
+										$e_share_cont->addParam("idcontacts",$contact_ids);
+										echo $e_share_cont->getFormHeader();
+										echo $e_share_cont->getFormEvent();
 
-                                      if($do_contact->picture!=''){
-                                          $thumb_name = $_SERVER['DOCUMENT_ROOT'].'/dbimage/thumbnail/'.$do_contact->picture;
-                                          if(file_exists($thumb_name)) {
-                                              $user_pic="/dbimage/thumbnail/".$do_contact->picture;
-                                          } else {
-                                              $user_pic="/images/empty_avatar.gif";
-                                          }
-                                      }else{
-                                              $user_pic='/images/empty_avatar.gif';
-                                      }                                  
-
-				      echo '<div style="position:relative;width:100%;">';
-                                      echo '<div class="feed_user_pic" style="positon:relative;float:left;overflow:hidden;">';
-                                      
-                                      echo '<a href="/profile/'.$user_name.'" target="_blank"> <img height="50px" alt="" src='.$user_pic.' > </a>';
-                                      echo '</div>';
-                                      echo '<div style="positon:relative;float:left;width:80%;margin:0px;"><a style="color:#C52EAD;" href="javascript:void(0)" onclick="showSharedDetail(\''.$_SESSION['do_coworker']->idcoworker.'\');" >'
-                                                            .$_SESSION['do_coworker']->firstname.' '.$_SESSION['do_coworker']->lastname.
-                                            '</a><br />'.$job_description.'</div>&nbsp;';
-
-                                        $num_project_shared = $do_project->getNumProjectsShared($_SESSION["do_User"]->iduser,$_SESSION['do_coworker']->idcoworker);
-                                        $no_proj_shared_by_co_worker = $do_project->getNumProjectsShared($_SESSION['do_coworker']->idcoworker,$_SESSION["do_User"]->iduser);
-                                        echo '<div style="clear:both;padding:10px;"></div>';
-                                        echo '<div class="feed_user_pic" style="overflow:hidden;">&nbsp;</div><div id="'.$_SESSION['do_coworker']->idcoworker.'" style="display:none;width:80%;margin:0px;">';
-                                                                    if ($no_cont_shared > 0) {
-                                                                      echo $e_shared_contacts_filter->getLink(
-                                                                      '<span>
-'.sprintf(_('You shared %d contacts'), $no_cont_shared).'
-</span>
-&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;');
-                                                                    }else{
-                                                                      echo '<span>'.sprintf(_('You shared %d contacts'), $no_cont_shared).'</span>&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;';
-                                        }
-
-$num_project_shared = $do_project->getNumProjectsShared($_SESSION["do_User"]->iduser,$_SESSION['do_coworker']->idcoworker);
-$no_proj_shared_by_co_worker = $do_project->getNumProjectsShared($_SESSION['do_coworker']->idcoworker,$_SESSION["do_User"]->iduser);
-
-echo '<div style="clear:both;padding:10px;"></div>';
-
-echo '<div id="'.$_SESSION['do_coworker']->idcoworker.'" style="display:none;">';
-if ($no_cont_shared > 0) {
-  echo $e_shared_contacts_filter->getLink('<span>'.sprintf(_('You shared %d contacts'), $no_cont_shared).'</span>&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;');
-}else{
- echo '<span>'.sprintf(_('You shared %d contacts'), $no_cont_shared).'</span>&nbsp;'.sprintf(_('and %d projects'),$num_project_shared).'&nbsp;&nbsp;';
-}
-
-
-if ($no_cont_shared_by_co_worker > 0) {
-  echo $e_shared_contacts_from_coworker_filter->getLink(
-  '<span>'.sprintf(_("%s shared %d contacts"), $_SESSION['do_coworker']->firstname, $no_cont_shared_by_co_worker).'</span>&nbsp;'.sprintf(_('and %d projects'),$no_proj_shared_by_co_worker));
-}else{
-  echo '<span>'.sprintf(_("%s shared %d contacts"), $_SESSION['do_coworker']->firstname, $no_cont_shared_by_co_worker).'</span>&nbsp;'.sprintf(_('and %d projects'),$no_proj_shared_by_co_worker);
-}
-                                                                    //if ($no_cont_shared > 0 || $no_cont_shared_by_co_worker > 0) {
-                                                                      //echo '<br />';
-                                                                    //}
-                                        echo '</div>';
-echo '</div>';
-echo '<div style="clear:both;padding:10px;"></div>';
-                                        echo '<br />';
-                                      
-                                  }// class="co_worker_pending"
-                              }else{ // Having some POST data from contacts.php
-                                   $e_share_cont = new Event("do_contact_sharing->eventShareContactsMultiple");
-                                   $e_share_cont->addEventAction("mydb.gotoPage", 304);
-                                   $e_share_cont->addParam("goto", "co_workers.php");
-                                   $e_share_cont->addParam("idcontacts",$contact_ids);
-                                   echo $e_share_cont->getFormHeader();
-                                   echo $e_share_cont->getFormEvent();
-
-                                   echo '<b>'._('Select Co-Worker you want to give access to the contact(s) and click Share to save :').'</b><br />';
-                                   echo '<div id="coworker_ctlbar" style="display: none;">';
-                                   echo '<span class="redlink"><a href="#" onclick="setContactForCoworker(); return false;" style="font-size:20px;">'._('Share').'</a></span>';
-                                   echo '</div>';
-                                   //$user_coworker = new User();
-                                   while($_SESSION['do_coworker']->next()){
-                                      //$user_coworker->getId($_SESSION['do_coworker']->idcoworker);
-                                      echo '<div class="ofuz_list_contact" id="cw'.$_SESSION['do_coworker']->idcoworker.'" onclick="fnHighlightCoworkers(\''.$_SESSION['do_coworker']->idcoworker.'\')">';
-                                      echo '<input type="checkbox" class="ofuz_list_checkbox" name="cwid[]" id="cwid'.$_SESSION['do_coworker']->idcoworker.'" value="'.$_SESSION['do_coworker']->idcoworker.'" onclick="fnHighlightCoworkers(\''.$_SESSION['do_coworker']->idcoworker.'\')" />&nbsp;&nbsp;';
-                                      $no_cont_shared = $_SESSION['do_contact_sharing']->countSharedContacts($_SESSION['do_coworker']->idcoworker);
-
-                                       $no_cont_shared_by_co_worker =$_SESSION['do_contact_sharing']->countSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
+										echo '<b>'._('Select Co-Worker you want to give access to the contact(s) and click Share to save :').'</b><br />';
+										echo '<div id="coworker_ctlbar" style="display: none;">';
+										echo '<span class="redlink"><a href="#" onclick="setContactForCoworker(); return false;" style="font-size:20px;">'._('Share').'</a></span>';
+										echo '</div>';
+          //$user_coworker = new User();
+          while($_SESSION['do_coworker']->next()){
+          //$user_coworker->getId($_SESSION['do_coworker']->idcoworker);
+												echo '<div class="ofuz_list_contact" id="cw'.$_SESSION['do_coworker']->idcoworker.'" onclick="fnHighlightCoworkers(\''.$_SESSION['do_coworker']->idcoworker.'\')">';
+            echo '<input type="checkbox" class="ofuz_list_checkbox" name="cwid[]" id="cwid'.$_SESSION['do_coworker']->idcoworker.'" value="'.$_SESSION['do_coworker']->idcoworker.'" onclick="fnHighlightCoworkers(\''.$_SESSION['do_coworker']->idcoworker.'\')" />&nbsp;&nbsp;';
+            $no_cont_shared = $_SESSION['do_contact_sharing']->countSharedContacts($_SESSION['do_coworker']->idcoworker);
+            $no_cont_shared_by_co_worker =$_SESSION['do_contact_sharing']->countSharedContactsByCoWorker($_SESSION['do_coworker']->idcoworker);
 /*
 $do_contact = new Contact();
 $do_contact->getUserContacts($_SESSION['do_coworker']->idcoworker);

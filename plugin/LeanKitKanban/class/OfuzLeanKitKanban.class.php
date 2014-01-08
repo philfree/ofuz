@@ -14,8 +14,8 @@
    
 class OfuzLeanKitKanban extends DataObject {
     
-  public $table = "";
-  protected $primary_key = "";
+  public $table = "leankit_credentials";
+  protected $primary_key = "idleankit_credentials";
 
  /**
   * An Ajax Event 

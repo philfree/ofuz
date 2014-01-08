@@ -46,6 +46,9 @@
 
 <script type="text/javascript">
     //<![CDATA[
+domStyle.set(dialogObj.containerNode, {
+        position: 'relative'
+    })
 <?php include_once('includes/ofuz_js.inc.php'); ?>
     
     var allowHighlight = true;
