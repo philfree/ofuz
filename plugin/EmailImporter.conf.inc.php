@@ -25,6 +25,3 @@
                                         ->setPages(Array ("import_email_contacts"))
                                         ->setDefaultPage("import_email_contacts");
 
-                                                                            
-?>
-

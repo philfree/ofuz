@@ -47,5 +47,3 @@ class GitRepoAdd extends BaseBlock{
       
 }
 
-?>
-

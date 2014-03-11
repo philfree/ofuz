@@ -22,4 +22,3 @@ if (isset($_GET['commithash'])) {
 } else {
 	echo 'Invalid Option Please try again. ';
 }
-?>

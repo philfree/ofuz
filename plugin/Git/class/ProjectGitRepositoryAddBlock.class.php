@@ -82,6 +82,3 @@ class ProjectGitRepositoryAddBlock extends BaseBlock{
 
       
 }
-
-?>
-
