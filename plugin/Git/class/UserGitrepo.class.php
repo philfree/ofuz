@@ -165,4 +165,3 @@ class UserGitrepo extends DataObject {
 		$evtcl->setDisplayNext(new Display($goto));
 	} 
 }
-?>

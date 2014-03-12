@@ -12,7 +12,7 @@ fclose($fd);
 // handle email
 
 
-if(!empty($email){
+if(!empty($email)){
 $secrate_string = "Ofuz is Open Source";
 $date = date("YMDH");
 $s_string = "$secrate_string"."$date";

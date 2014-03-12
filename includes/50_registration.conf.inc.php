@@ -14,6 +14,8 @@
   // $GLOBALS['cfg_admin_user_table'] = "clubs";
   // $GLOBALS['cfg_admin_user_primarykey'] = "idclub";
   
-   define("RADRIA_LOG_RUN_REGISTRATION", true);
-  
+   define("RADRIA_LOG_RUN_REGISTRATION", false);
+   
+   
+   
 ?>
