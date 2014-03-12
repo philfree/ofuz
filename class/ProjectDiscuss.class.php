@@ -298,7 +298,7 @@ class ProjectDiscuss extends Note {
 
           try {
               $co_workers = $_SESSION["do_project"]->getProjectCoWorkers();
-               print_r($co_workers);
+               
               if ($co_workers !== false) {
                   $email_template = new EmailTemplate("ofuz_project_discussion");
                   $email_nudge = new EmailTemplate("ofuz_project_discussion_nudge");

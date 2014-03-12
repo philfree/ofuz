@@ -113,13 +113,13 @@
 
 ?>
 <script type="text/javascript">
-domStyle.set(dialogObj.containerNode, {
+/*domStyle.set(dialogObj.containerNode, {
 position: 'relative'
-})
+})*/
 //<![CDATA[
-domStyle.set(dialogObj.containerNode, {
+/*domStyle.set(dialogObj.containerNode, {
         position: 'relative'
-    })
+    })*/
 <?php include_once('includes/ofuz_js.inc.php'); ?>
 function fnEditTask(){
     $("#ptask_ctlbar").slideToggle("fast");
