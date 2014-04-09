@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<user>
+ <iduser><![CDATA[18]]></iduser>
+ <firstname><![CDATA[test]]></firstname>
+ <middlename><![CDATA[]]></middlename>
+ <lastname><![CDATA[t]]></lastname>
+ <email><![CDATA[test@test.com]]></email>
+ <phone><![CDATA[]]></phone>
+ <company><![CDATA[]]></company>
+ <position><![CDATA[]]></position>
+ <address1><![CDATA[]]></address1>
+ <address2><![CDATA[]]></address2>
+ <city><![CDATA[]]></city>
+ <zip><![CDATA[]]></zip>
+ <state><![CDATA[]]></state>
+ <country><![CDATA[]]></country>
+ <username><![CDATA[test]]></username>
+ <password><![CDATA[6M6T1Q==]]></password>
+ <isadmin><![CDATA[0]]></isadmin>
+ <regdate><![CDATA[2012-07-11]]></regdate>
+ <openid><![CDATA[]]></openid>
+ <last_login><![CDATA[0000-00-00]]></last_login>
+ <drop_box_code><![CDATA[0]]></drop_box_code>
+ <idcontact><![CDATA[0]]></idcontact>
+ <fb_user_id><![CDATA[0]]></fb_user_id>
+ <api_key><![CDATA[]]></api_key>
+ <plan><![CDATA[trial]]></plan>
+ <status><![CDATA[active]]></status>
+ <google_openid_identity><![CDATA[]]></google_openid_identity>
+</user>
+  <login_audit>
+   <idlogin_audit><![CDATA[18]]></idlogin_audit>
+   <iduser><![CDATA[18]]></iduser>
+   <last_login><![CDATA[2013-01-14 06:32:09]]></last_login>
+   <ip_address><![CDATA[127.0.1.1]]></ip_address>
+   <login_type><![CDATA[General]]></login_type>
+  </login_audit>

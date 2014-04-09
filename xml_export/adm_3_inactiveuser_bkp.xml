@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<user>
+ <iduser><![CDATA[3]]></iduser>
+ <firstname><![CDATA[raone]]></firstname>
+ <middlename><![CDATA[]]></middlename>
+ <lastname><![CDATA[r]]></lastname>
+ <email><![CDATA[raone@gma.com]]></email>
+ <phone><![CDATA[]]></phone>
+ <company><![CDATA[]]></company>
+ <position><![CDATA[]]></position>
+ <address1><![CDATA[]]></address1>
+ <address2><![CDATA[]]></address2>
+ <city><![CDATA[]]></city>
+ <zip><![CDATA[]]></zip>
+ <state><![CDATA[]]></state>
+ <country><![CDATA[]]></country>
+ <username><![CDATA[raone]]></username>
+ <password><![CDATA[5bDf09M=]]></password>
+ <isadmin><![CDATA[0]]></isadmin>
+ <regdate><![CDATA[2012-01-19]]></regdate>
+ <openid><![CDATA[]]></openid>
+ <last_login><![CDATA[0000-00-00]]></last_login>
+ <drop_box_code><![CDATA[0]]></drop_box_code>
+ <idcontact><![CDATA[210]]></idcontact>
+ <fb_user_id><![CDATA[0]]></fb_user_id>
+ <api_key><![CDATA[]]></api_key>
+ <plan><![CDATA[trial]]></plan>
+ <status><![CDATA[active]]></status>
+ <google_openid_identity><![CDATA[]]></google_openid_identity>
+</user>
+<contacts>
+ <contact>
+  <idcontact><![CDATA[9]]></idcontact>
+  <firstname><![CDATA[raone]]></firstname>
+  <lastname><![CDATA[]]></lastname>
+  <position><![CDATA[]]></position>
+  <company><![CDATA[]]></company>
+  <idcompany><![CDATA[0]]></idcompany>
+  <iduser><![CDATA[3]]></iduser>
+  <picture><![CDATA[]]></picture>
+  <summary><![CDATA[]]></summary>
+  <birthday><![CDATA[]]></birthday>
+  <portal_code><![CDATA[]]></portal_code>
+  <fb_userid><![CDATA[0]]></fb_userid>
+  <tw_user_id><![CDATA[]]></tw_user_id>
+  <email_optout><![CDATA[]]></email_optout>
+
+  <contact_address>
+   <idcontact_address><![CDATA[5]]></idcontact_address>
+   <city><![CDATA[]]></city>
+   <country><![CDATA[]]></country>
+   <state><![CDATA[]]></state>
+   <street><![CDATA[]]></street>
+   <zipcode><![CDATA[]]></zipcode>
+   <idcontact><![CDATA[9]]></idcontact>
+   <address><![CDATA[address
+address
+]]></address>
+   <address_type><![CDATA[Work]]></address_type>
+  </contact_address>
+  <contact_task_with_project>
+   <idproject><![CDATA[]]></idproject>
+   <iduser><![CDATA[]]></iduser>
+   <name><![CDATA[]]></name>
+   <end_date_dateformat><![CDATA[]]></end_date_dateformat>
+   <idcompany><![CDATA[]]></idcompany>
+   <status><![CDATA[]]></status>
+   <effort_estimated_hrs><![CDATA[]]></effort_estimated_hrs>
+   <is_public><![CDATA[]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[]]></idproject_task>
+    <idtask><![CDATA[30]]></idtask>
+    <idproject><![CDATA[]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[]]></hrs_work_expected>
+    <task_description><![CDATA[test111]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[3]]></iduser>
+    <due_date_dateformat><![CDATA[2011-09-19]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[9]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+   </project_task>
+  </contact_task_with_project>
+  <contact_task_with_project>
+   <idproject><![CDATA[9]]></idproject>
+   <iduser><![CDATA[3]]></iduser>
+   <name><![CDATA[ProjectF1]]></name>
+   <end_date_dateformat><![CDATA[0000-00-00]]></end_date_dateformat>
+   <idcompany><![CDATA[]]></idcompany>
+   <status><![CDATA[open]]></status>
+   <effort_estimated_hrs><![CDATA[0.00]]></effort_estimated_hrs>
+   <is_public><![CDATA[0]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[24]]></idproject_task>
+    <idtask><![CDATA[24]]></idtask>
+    <idproject><![CDATA[9]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[24]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[0.00]]></hrs_work_expected>
+    <task_description><![CDATA[Task F1 first task]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[3]]></iduser>
+    <due_date_dateformat><![CDATA[2011-09-19]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[0]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+   </project_task>
+  </contact_task_with_project>
+  <contact_task_with_project>
+   <idproject><![CDATA[10]]></idproject>
+   <iduser><![CDATA[3]]></iduser>
+   <name><![CDATA[ProjectF2]]></name>
+   <end_date_dateformat><![CDATA[0000-00-00]]></end_date_dateformat>
+   <idcompany><![CDATA[]]></idcompany>
+   <status><![CDATA[open]]></status>
+   <effort_estimated_hrs><![CDATA[0.00]]></effort_estimated_hrs>
+   <is_public><![CDATA[0]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[27]]></idproject_task>
+    <idtask><![CDATA[27]]></idtask>
+    <idproject><![CDATA[10]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[27]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[0.00]]></hrs_work_expected>
+    <task_description><![CDATA[new taskf2
+]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[3]]></iduser>
+    <due_date_dateformat><![CDATA[2011-09-19]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[0]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+   </project_task>
+  </contact_task_with_project>
+  <contact_task_with_project>
+   <idproject><![CDATA[10]]></idproject>
+   <iduser><![CDATA[3]]></iduser>
+   <name><![CDATA[ProjectF2]]></name>
+   <end_date_dateformat><![CDATA[0000-00-00]]></end_date_dateformat>
+   <idcompany><![CDATA[]]></idcompany>
+   <status><![CDATA[open]]></status>
+   <effort_estimated_hrs><![CDATA[0.00]]></effort_estimated_hrs>
+   <is_public><![CDATA[0]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[28]]></idproject_task>
+    <idtask><![CDATA[28]]></idtask>
+    <idproject><![CDATA[10]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[28]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[0.00]]></hrs_work_expected>
+    <task_description><![CDATA[new task f3]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[3]]></iduser>
+    <due_date_dateformat><![CDATA[2011-09-19]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[0]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+    <project_discuss>
+     <idproject_discuss><![CDATA[17]]></idproject_discuss>
+     <idproject_task><![CDATA[28]]></idproject_task>
+     <idtask><![CDATA[0]]></idtask>
+     <idproject><![CDATA[0]]></idproject>
+     <discuss><![CDATA[This is new task f3 which is more of a you can add notes and documents. ]]></discuss>
+     <date_added><![CDATA[2011-09-19]]></date_added>
+     <document><![CDATA[]]></document>
+     <iduser><![CDATA[6]]></iduser>
+     <drop_box_sender><![CDATA[]]></drop_box_sender>
+     <priority><![CDATA[0]]></priority>
+     <hours_work><![CDATA[0.00]]></hours_work>
+     <discuss_edit_access><![CDATA[user]]></discuss_edit_access>
+    </project_discuss>
+    <project_discuss>
+     <idproject_discuss><![CDATA[18]]></idproject_discuss>
+     <idproject_task><![CDATA[28]]></idproject_task>
+     <idtask><![CDATA[0]]></idtask>
+     <idproject><![CDATA[0]]></idproject>
+     <discuss><![CDATA[more discussion]]></discuss>
+     <date_added><![CDATA[2011-09-19]]></date_added>
+     <document><![CDATA[]]></document>
+     <iduser><![CDATA[6]]></iduser>
+     <drop_box_sender><![CDATA[]]></drop_box_sender>
+     <priority><![CDATA[0]]></priority>
+     <hours_work><![CDATA[0.00]]></hours_work>
+     <discuss_edit_access><![CDATA[user]]></discuss_edit_access>
+    </project_discuss>
+   </project_task>
+  </contact_task_with_project>
+  <invoice>
+   <idinvoice><![CDATA[6]]></idinvoice>
+   <num><![CDATA[1316449659]]></num>
+   <iduser><![CDATA[3]]></iduser>
+   <description><![CDATA[sdasd]]></description>
+   <amount><![CDATA[0.00]]></amount>
+   <datepaid><![CDATA[0000-00-00]]></datepaid>
+   <datecreated><![CDATA[2011-09-19]]></datecreated>
+   <status><![CDATA[Quote]]></status>
+   <discount><![CDATA[9]]></discount>
+   <idcontact><![CDATA[9]]></idcontact>
+   <due_date><![CDATA[2011-09-19]]></due_date>
+   <invoice_address><![CDATA[raone<br />address
+address
+]]></invoice_address>
+   <invoice_term><![CDATA[Upon Receipt]]></invoice_term>
+   <invoice_note><![CDATA[asd;]]></invoice_note>
+   <sub_total><![CDATA[200.00]]></sub_total>
+   <net_total><![CDATA[185.64]]></net_total>
+   <amt_due><![CDATA[185.64]]></amt_due>
+   <idcompany><![CDATA[0]]></idcompany>
+   <tax><![CDATA[]]></tax>
+   <set_delete><![CDATA[0]]></set_delete>
+   <total_discounted_amt><![CDATA[18.00]]></total_discounted_amt>
+   <total_taxed_amount><![CDATA[3.64]]></total_taxed_amount>
+   <invoiceline>
+    <idinvoiceline><![CDATA[6]]></idinvoiceline>
+    <idinvoice><![CDATA[6]]></idinvoice>
+    <description><![CDATA[asdsdj]]></description>
+    <price><![CDATA[100.00]]></price>
+    <qty><![CDATA[2.00]]></qty>
+    <total><![CDATA[185.64]]></total>
+    <item><![CDATA[sdj]]></item>
+    <line_tax><![CDATA[2.00]]></line_tax>
+    <discounted_amount><![CDATA[18.00]]></discounted_amount>
+    <taxed_amount><![CDATA[3.64]]></taxed_amount>
+   </invoiceline>
+  </invoice>
+ </contact>
+</contacts>
+  <login_audit>
+   <idlogin_audit><![CDATA[3]]></idlogin_audit>
+   <iduser><![CDATA[3]]></iduser>
+   <last_login><![CDATA[2012-12-19 10:57:56]]></last_login>
+   <ip_address><![CDATA[127.0.1.1]]></ip_address>
+   <login_type><![CDATA[General]]></login_type>
+  </login_audit>

@@ -56,9 +56,9 @@ $do_project_discuss = new ProjectDiscuss();
 $do_activity = new Activity();
 
 // Take any one as per convinience 
-$OfuzEmailFetcher->fetchEmailText('/var/www/ofuz/files/ofuz_catch.log');
+//$OfuzEmailFetcher->fetchEmailText('/var/www/ofuz/files/ofuz_catch.log');
 
-//$OfuzEmailFetcher->fetchEmailRow($email);
+$OfuzEmailFetcher->fetchEmailRow($email);
 //$OfuzEmailFetcher->fetchEmailStream($stream);
 
 
