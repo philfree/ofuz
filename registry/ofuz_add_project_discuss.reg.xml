@@ -83,7 +83,17 @@
     <rdata type="readonly"></rdata>
     <rdata type="css_form_class"></rdata>
   </rfield>
-  <rfield name="iduser">
+  <rfield name="date_select">
+    <rdata type="fieldtype">DijitDateTextBox</rdata>
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Date Added</rdata>
+    <rdata type="datetype">dd-MM-y</rdata>
+    <rdata type="errormessage">Wrong date format</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="css_form_class"></rdata>
+  </rfield>
+    <rfield name="iduser">
     <rdata type="default">[do_User->iduser]</rdata>
     <rdata type="hidden">1</rdata>
     <rdata type="label">User</rdata>

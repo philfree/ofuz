@@ -99,6 +99,9 @@ include_once('includes/ofuz_navtabs.php'); ?>
      echo '</div><div class="dottedline"></div>                 
             <div class="headline_fuscia">'._('Projects').'</div>
 			';
+    $discussFields = new FieldsForm('ofuz_add_project_discuss');    
+    echo _('Jump to Day ').':'."<div id='cal_1'></div><div id='cal_1_report'></div>";
+          
      while($_SESSION['adm_project']->next()){
         if($_SESSION['adm_project']->isProjectOwner($_SESSION['adm_project']->idproject) || $_SESSION['adm_project']->isProjectCoWorker($_SESSION['adm_project']->idproject)){
             if($_SESSION['adm_project_discuss']->isAnyDiscussForProject($_SESSION['adm_project']->idproject)){
@@ -170,6 +173,26 @@ include_once('includes/ofuz_navtabs.php'); ?>
  **/   
      
 ?>
+<!DOCTYPE html>
+<html >
+<head>
+
+    <link rel="stylesheet" href="http://dojotoolkit.org/reference-guide/1.10/_static/js/dijit/themes/claro/claro.css">
+	<script>dojoConfig = {parseOnLoad: true}</script>
+	<script src='/_static/dojo/dojo.js'></script>
+	
+	<script>
+$(document).ready(function(){
+dojo.require("dojox.widget.Calendar");
+    // create the dialog:
+    var cal_1 = new dojox.widget.Calendar({}, dojo.byId("cal_1"));
+    dojo.connect(cal_1, "onValueSelected", function(date){
+      dojo.byId("cal_1_report").innerHTML = date;
+    });
+
+});
+	</script>
+</head>
     <div class="dottedline"></div>
     </div></td></tr></table>
     <div class="spacerblock_20"></div>

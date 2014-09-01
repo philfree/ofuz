@@ -596,7 +596,14 @@ class ProjectDiscuss extends Note {
     function eventSetDateToday(EventControler $evtcl){
         $this->report_date = date('Y-m-d');
     }
-
+    
+     /**
+      * Event method to set the report_date as today
+      * @param $evtcl -- Object
+    */
+    function eventSetDateSelected(EventControler $evtcl){
+        $this->report_date = date("Y-m-d",strtotime($evtcl->dateselected));
+    }
     /**
       * Public variable time_spent_on_task is set to true
       * @param $evtcl -- Object
