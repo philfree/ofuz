@@ -69,8 +69,12 @@ include_once('includes/ofuz_navtabs.php'); ?>
      $e_setNextdate = new Event("adm_project_discuss->eventSetNextDate");
      $e_setNextdate->addParam('date_report',$_SESSION['adm_project_discuss']->report_date);
      $e_setNextdate->addParam('goto',$_SERVER['PHP_SELF']);
+     
+     $e_selectDate = new Event("adm_project_discuss->eventSetDateSelected");
+     $e_selectDate->addParam('goto',$_SERVER['PHP_SELF']);
+     
 
-     echo $e_setPredate->getLink(_("Previous Day"))."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$e_setNextdate->getLink(_("Next Day"));
+     echo $e_setPredate->getLink(_("Previous Day"))."&nbsp;&nbsp;&nbsp;".$e_setNextdate->getLink(_("Next Day"));
      if($_SESSION['adm_project_discuss']->report_date != date('Y-m-d')){
           $e_setdatetoday = new Event("adm_project_discuss->eventSetDateToday");
           $e_setdatetoday->addParam('goto',$_SERVER['PHP_SELF']);
@@ -100,8 +104,7 @@ include_once('includes/ofuz_navtabs.php'); ?>
             <div class="headline_fuscia">'._('Projects').'</div>
 			';
     $discussFields = new FieldsForm('ofuz_add_project_discuss');    
-    echo _('Jump to Day ').':'."<div id='cal_1'></div><div id='cal_1_report'></div>";
-          
+    echo _('Jump to Day ').': '.$discussFields->date_select."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$e_selectDate->getLink(_("Go"))."<br />";          
      while($_SESSION['adm_project']->next()){
         if($_SESSION['adm_project']->isProjectOwner($_SESSION['adm_project']->idproject) || $_SESSION['adm_project']->isProjectCoWorker($_SESSION['adm_project']->idproject)){
             if($_SESSION['adm_project_discuss']->isAnyDiscussForProject($_SESSION['adm_project']->idproject)){
@@ -173,26 +176,18 @@ include_once('includes/ofuz_navtabs.php'); ?>
  **/   
      
 ?>
-<!DOCTYPE html>
-<html >
-<head>
+<script type="text/javascript">
+ $(document).ready(function(){
+ var dts = "<?php echo $_COOKIE['dts']?>" ;
+ $('#date_select').val(dts);
+ $("#adm_project_discuss__eventSetDateSelected").click(function(){
+ var dt = $('#date_select').val();
+ document.cookie='dts='+dt;
+  })
+ 
+ });
 
-    <link rel="stylesheet" href="http://dojotoolkit.org/reference-guide/1.10/_static/js/dijit/themes/claro/claro.css">
-	<script>dojoConfig = {parseOnLoad: true}</script>
-	<script src='/_static/dojo/dojo.js'></script>
-	
-	<script>
-$(document).ready(function(){
-dojo.require("dojox.widget.Calendar");
-    // create the dialog:
-    var cal_1 = new dojox.widget.Calendar({}, dojo.byId("cal_1"));
-    dojo.connect(cal_1, "onValueSelected", function(date){
-      dojo.byId("cal_1_report").innerHTML = date;
-    });
-
-});
-	</script>
-</head>
+</script>
     <div class="dottedline"></div>
     </div></td></tr></table>
     <div class="spacerblock_20"></div>

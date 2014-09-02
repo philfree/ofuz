@@ -602,7 +602,9 @@ class ProjectDiscuss extends Note {
       * @param $evtcl -- Object
     */
     function eventSetDateSelected(EventControler $evtcl){
-        $this->report_date = date("Y-m-d",strtotime($evtcl->dateselected));
+        $date_sel  = $_COOKIE['dts'];
+        $this->report_date = date("Y-m-d",strtotime($date_sel));
+        
     }
     /**
       * Public variable time_spent_on_task is set to true
