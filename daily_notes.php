@@ -178,8 +178,11 @@ include_once('includes/ofuz_navtabs.php'); ?>
 ?>
 <script type="text/javascript">
  $(document).ready(function(){
- var dts = "<?php echo $_COOKIE['dts']?>" ;
+ //on load assign date
+ var dts = "<?php echo $_SESSION['adm_project_discuss']->report_date;?>" ;
  $('#date_select').val(dts);
+ 
+ 
  $("#adm_project_discuss__eventSetDateSelected").click(function(){
  var dt = $('#date_select').val();
  document.cookie='dts='+dt;
