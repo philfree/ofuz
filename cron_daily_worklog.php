@@ -23,17 +23,18 @@ include_once('config.php');
                                                                                                      pd.idproject_task=ptsk.idproject_task  and 
                                                                                                      pr.idproject= ptsk.idproject                    
 
-where DATE(date_added)=CURDATE()");
+where DATE(date_added)=CURDATE() order by(pr.name)");
 
   $text ="Projects";
-if($do_all_project->getNumRows()>1) {
+ $last_task = 0;
+if($do_all_project->getNumRows()>0) {
       while($do_all_project->fetch()){
       
              $project_id =  $do_all_project->getdata('idproject');
              $do_project->query('select name from project where idproject='.$project_id);
              $do_project->fetch();
              $name_prj = $do_project->getData('name');
-             $last_id=$project_id;
+             $_SESSION['adm_project_discuss_idtask'] = $project_id;
              
              
              $project_name =  $do_all_project->getdata('name');
@@ -44,11 +45,11 @@ if($do_all_project->getNumRows()>1) {
              $idtask       =  $do_all_project->getdata('idtask');
              $document     =  $do_all_project->getdata('document');
              
-             
+            if ($last_task !=  $_SESSION['adm_project_discuss_idtask']) {
             $text.=' <div>';
             $text.='<b><span ><a href='.$_SERVER[HTTP_HOST].'/Project/'.$project_id.'>'.$name_prj.'</a></span></b>';  
             $text.= '<div>';
-            				
+            }            				
         	$text.='<br/><span ><a href='.$_SERVER[HTTP_HOST].'/Task/'.$idtask.'>'.$task_desc.'</a></span>';
         	$text.='<br /><i>';
             $text.= _('Note By ').$first_name;
@@ -65,6 +66,7 @@ if($do_all_project->getNumRows()>1) {
             $text.='<div class="dottedline"></div>';
             $text.='</div></div>';
             
+            $last_task = $_SESSION['adm_project_discuss_idtask'];
           }
           echo $text;
           $do_template = new EmailTemplate();
@@ -81,9 +83,11 @@ if($do_all_project->getNumRows()>1) {
                   $emailer->setEmailTemplate($do_template);
                   $emailer->mergeArray($values);//required even if there is nothig to merge
                   $emailer->addTo('sarveshsk43@gmail.com');
-                  $emailer->send();
+                  //$emailer->send();
                   //$emailer->cleanup();
                   $message_sent = true;
+}else{
+     echo "No Worklog Found for the Day";
 }      
   
  if($message_sent==true) 
