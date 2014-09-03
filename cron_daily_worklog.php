@@ -80,9 +80,9 @@ if($do_all_project->getNumRows()>1) {
                   $emailer = new Radria_Emailer('UTF-8');
                   $emailer->setEmailTemplate($do_template);
                   $emailer->mergeArray($values);//required even if there is nothig to merge
-                  $emailer->addTo('email@gmail.com');
+                  $emailer->addTo('sarveshsk43@gmail.com');
                   $emailer->send();
-                  $emailer->cleanup();
+                  //$emailer->cleanup();
                   $message_sent = true;
 }      
   
