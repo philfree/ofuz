@@ -9,7 +9,7 @@
 
 include_once('config.php');
 
- $message_sent = false;
+ $message_sent = 0;
  $text ="";
  
  $proj_discuss = new ProjectDiscuss();
@@ -111,15 +111,16 @@ include_once('config.php');
                           $emailer->setEmailTemplate($do_template);
                           $emailer->mergeArray($values);//required even if there is nothig to merge
                           $emailer->addTo('sarveshsk43@gmail.com');
-                          $emailer->send();
-                          $emailer->cleanup();
-                          $message_sent = true;
+                          $message_sent =  (int)$emailer->send();
+                          //$emailer->cleanup();
+                          
+        
         
 }else{
     echo "No Worklog For the Day";
 }
   
- if($message_sent==true) 
+ if($message_sent==1) 
  {
      echo "Notification Sent Successfully";
  }
