@@ -125,6 +125,7 @@ class BlockLeanKitKanbanTaskDiscussion extends BaseBlock{
 	      $e_block->addParam("block_unblock_flag",$block_unblock_flag);
 	      $e_block->addParam("ofuz_task_id", $idtask);
 	      $e_block->addParam("ofuz_idprojecttask", $_GET['idprojecttask']);
+          $_SESSION['idproject_task'] = $_GET['idprojecttask'];//passing idproject_parameter
 	      $e_block->addParam("card_id", $card_exists->Id);
 	      $e_block->addParam("lane_id", $card_exists->LaneId);
 	      $e_block->addParam("title", $card_exists->Title);

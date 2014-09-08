@@ -286,19 +286,20 @@ class ProjectDiscuss extends Note {
      * @param Eventcontroler
      */
     function eventSendDiscussMessageByEmail(EventControler $event_controler) {
+        
       $this->setLog("\n eventSendDiscussMessageByEmail: starting (".date("Y/m/d H:i:s"));
 
       /*$_SESSION['do_project_task']->getId($event_controler->idproject_task);
         $_SESSION['do_project']->getId($event_controler->idproject);*/
 
-        $idproject_task = $event_controler->fields['idproject_task'];       
+        $idproject_task = $_SESSION['idproject_task'];       
         $_SESSION["do_project"] = $_SESSION['projectsession_'.$idproject_task];         
         $_SESSION["do_project_task"]  = $_SESSION['projecttasksession_'.$idproject_task];
 
 
           try {
-                 $co_workers_obj = new Project();
-                 $co_workers = $co_workers_obj->getProjectCoWorkers();
+                 
+                 $co_workers = $_SESSION["do_project"]->getProjectCoWorkers();
               
                
               if ($co_workers !== false) {
