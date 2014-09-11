@@ -100,11 +100,12 @@ include_once('includes/ofuz_navtabs.php'); ?>
         $e_user_search_false->addParam('goto',$_SERVER['PHP_SELF']); 
         echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$e_user_search_false->getLink(_("All Users"));
      }
-     echo '</div><div class="dottedline"></div>                 
-            <div class="headline_fuscia">'._('Projects').'</div>
-			';
-    $discussFields = new FieldsForm('ofuz_add_project_discuss');    
-    echo _('Jump to Day ').': '.$discussFields->date_select."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$e_selectDate->getLink(_("Go"))."<br />";          
+ 
+     echo '</div><div class="dottedline"></div><br/>';                 
+     $discussFields = new FieldsForm('ofuz_add_project_discuss');    
+     echo _('Jump to Day ').': '.$discussFields->date_select."&nbsp;".$e_selectDate->getLink(_("Go"))."<br />";          
+     echo '<div class="headline_fuscia">'._('Projects').'</div>';
+    
      while($_SESSION['adm_project']->next()){
         if($_SESSION['adm_project']->isProjectOwner($_SESSION['adm_project']->idproject) || $_SESSION['adm_project']->isProjectCoWorker($_SESSION['adm_project']->idproject)){
             if($_SESSION['adm_project_discuss']->isAnyDiscussForProject($_SESSION['adm_project']->idproject)){
@@ -179,7 +180,7 @@ include_once('includes/ofuz_navtabs.php'); ?>
 <script type="text/javascript">
  $(document).ready(function(){
  //on load assign date
- var dts = "<?php echo $_SESSION['adm_project_discuss']->report_date;?>" ;
+ var dts = "<?php echo date("n/j/Y", strtotime($_SESSION['adm_project_discuss']->report_date));?>" ;
  $('#date_select').val(dts);
  
  
