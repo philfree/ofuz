@@ -53,7 +53,7 @@ include_once('config.php');
 
            
            $last_task = 0;
-
+           $last_desc = 0;
               while($do_all_project->fetch()){
               
                      $project_id =  $do_all_project->getdata('idproject');
@@ -71,12 +71,18 @@ include_once('config.php');
                      $idtask       =  $do_all_project->getdata('idtask');
                      $document     =  $do_all_project->getdata('document');
                      
+                     $_SESSION['adm_project_task_discuss'] = $idtask;
+                     
+                     
                     if ($last_task !=  $_SESSION['adm_project_discuss_idtask']) {
                     $text.=' <div>';
                     $text.='<b><span ><a href='.$_SERVER[HTTP_HOST].'/Project/'.$project_id.'>'.$name_prj.'</a></span></b>';  
                     $text.= '<div>';
                     }                			
-                	$text.='<br/><span ><a href='.$_SERVER[HTTP_HOST].'/Task/'.$idtask.'>'.$task_desc.'</a></span>';
+                    if ($last_desc !=  $_SESSION['adm_project_task_discuss']) {
+                        $text.='<br/><span ><a href='.$_SERVER[HTTP_HOST].'/Task/'.$idtask.'>'.$task_desc.'</a></span>';
+                    }                    		
+                    
                 	$text.='<br /><i>';
                     $text.= _('Note By ').$first_name;
                     $text.= '<br />';
@@ -93,10 +99,11 @@ include_once('config.php');
                     $text.='</div></div>';
                     
                     $last_task = $_SESSION['adm_project_discuss_idtask'];
+                    $last_desc =  $_SESSION['adm_project_task_discuss'];
                   }
             }
             
-             
+                  //echo $text;
                   $do_template = new EmailTemplate();
                   $do_template->senderemail = "support@sqlfusion.com";
                   $do_template->sendername = "Ofuz";
