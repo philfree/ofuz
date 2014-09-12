@@ -31,8 +31,8 @@ include_once('config.php');
     $user_id = $proj_time->getData('iduser');
     $us_obj = new User();       
     $user_name = $us_obj->getFullName($user_id);
-    $text .= '<u><b>'.$user_name.'</b>'.'&nbsp;&nbsp; Worklog <br/></u>';
-    $text .= "Total Hours Entered : ".$proj_time->getData('total_hrs');
+    $text .= '<h2><u><b>'.$user_name.'</b>'.'&nbsp;&nbsp; Worklog </u></h2>';
+    $text .= "<h3>Total Hours Entered : ".$proj_time->getData('total_hrs')."</h3>";
             
             
              //declare all instances of classes used
@@ -84,15 +84,15 @@ include_once('config.php');
                     }                    		
                     
                 	$text.='<br /><i>';
-                    $text.= _('Note By ').$first_name;
-                    $text.= '<br />';
-                    $text.=_('Time Worked').' : '.$hours_work.' '._('hrs') ;
+                    //$text.= _('Note By ').$first_name;
+                    //$text.= '<br />';
+                    $text.=_('Time Worked').' : <b>'.$hours_work.' '._('hrs') .'</b>';
                     $text.='<br /></i>';
                     $text.= nl2br($discuss_text.'<br />');
                     if($document!= ''){
                         $file_url = "/files/".$document;
                         $file = '<a href="'.$_SERVER[HTTP_HOST].$file_url.'" target="_blank">'.$document.'</a>';
-                        $text.='<br /> '._('Attachment').' : '.$file;
+                        $text.='<br /> <b>'._('Attachment').'</b> : '.$file;
                         }
                     $text.='<br />';
                     $text.='<div class="dottedline"></div>';
@@ -111,7 +111,7 @@ include_once('config.php');
                   $do_template->bodytext = $text;
                   $do_template->bodyhtml = $do_template->bodytext;
                   
-                  
+                  echo $text.'<br />';
                   $values=Array();
                   //Use for sending email here for general users
                           $emailer = new Radria_Emailer('UTF-8');
