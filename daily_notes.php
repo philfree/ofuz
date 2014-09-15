@@ -103,7 +103,7 @@ include_once('includes/ofuz_navtabs.php'); ?>
  
      echo '</div><div class="dottedline"></div><br/>';                 
      $discussFields = new FieldsForm('ofuz_add_project_discuss');    
-     echo _('Jump to Day ').': '.$discussFields->date_select."&nbsp;".$e_selectDate->getLink(_("Go"))."<br />";          
+     echo _('Jump to Day ').': '.$discussFields->date_select."&nbsp;<b>".$e_selectDate->getLink(_("Go"))."</b><br />";          
      echo '<div class="headline_fuscia">'._('Projects').'</div>';
     
      while($_SESSION['adm_project']->next()){
