@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<user>
+ <iduser><![CDATA[9]]></iduser>
+ <firstname><![CDATA[Test]]></firstname>
+ <middlename><![CDATA[]]></middlename>
+ <lastname><![CDATA[t]]></lastname>
+ <email><![CDATA[test@test.com]]></email>
+ <phone><![CDATA[]]></phone>
+ <company><![CDATA[XYZ]]></company>
+ <position><![CDATA[]]></position>
+ <address1><![CDATA[]]></address1>
+ <address2><![CDATA[]]></address2>
+ <city><![CDATA[]]></city>
+ <zip><![CDATA[]]></zip>
+ <state><![CDATA[]]></state>
+ <country><![CDATA[]]></country>
+ <username><![CDATA[test]]></username>
+ <password><![CDATA[6M6T1Q==]]></password>
+ <isadmin><![CDATA[0]]></isadmin>
+ <regdate><![CDATA[]]></regdate>
+ <openid><![CDATA[]]></openid>
+ <last_login><![CDATA[0000-00-00]]></last_login>
+ <drop_box_code><![CDATA[0]]></drop_box_code>
+ <idcontact><![CDATA[0]]></idcontact>
+ <fb_user_id><![CDATA[0]]></fb_user_id>
+ <api_key><![CDATA[]]></api_key>
+ <plan><![CDATA[]]></plan>
+ <status><![CDATA[active]]></status>
+ <google_openid_identity><![CDATA[]]></google_openid_identity>
+</user>
+<contacts>
+ <contact>
+  <idcontact><![CDATA[284]]></idcontact>
+  <firstname><![CDATA[abcd]]></firstname>
+  <lastname><![CDATA[a]]></lastname>
+  <position><![CDATA[abcd]]></position>
+  <company><![CDATA[]]></company>
+  <idcompany><![CDATA[13]]></idcompany>
+  <iduser><![CDATA[9]]></iduser>
+  <picture><![CDATA[]]></picture>
+  <summary><![CDATA[]]></summary>
+  <birthday><![CDATA[]]></birthday>
+  <portal_code><![CDATA[]]></portal_code>
+  <fb_userid><![CDATA[0]]></fb_userid>
+  <tw_user_id><![CDATA[]]></tw_user_id>
+  <email_optout><![CDATA[]]></email_optout>
+
+  <contact_task>
+   <idtask><![CDATA[199]]></idtask>
+   <task_description><![CDATA[test]]></task_description>
+   <due_date><![CDATA[Today]]></due_date>
+   <category><![CDATA[]]></category>
+   <iduser><![CDATA[9]]></iduser>
+   <due_date_dateformat><![CDATA[2013-01-03]]></due_date_dateformat>
+   <status><![CDATA[open]]></status>
+   <date_completed><![CDATA[0000-00-00]]></date_completed>
+   <idcontact><![CDATA[0]]></idcontact>
+   <from_note><![CDATA[0]]></from_note>
+   <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+   <task_category><![CDATA[]]></task_category>
+  </contact_task>
+  <contact_task_with_project>
+   <idproject><![CDATA[22]]></idproject>
+   <iduser><![CDATA[9]]></iduser>
+   <name><![CDATA[Project 2]]></name>
+   <end_date_dateformat><![CDATA[0000-00-00]]></end_date_dateformat>
+   <idcompany><![CDATA[13]]></idcompany>
+   <status><![CDATA[open]]></status>
+   <effort_estimated_hrs><![CDATA[0.00]]></effort_estimated_hrs>
+   <is_public><![CDATA[0]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[145]]></idproject_task>
+    <idtask><![CDATA[200]]></idtask>
+    <idproject><![CDATA[22]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[145]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[0.00]]></hrs_work_expected>
+    <task_description><![CDATA[task 1]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[9]]></iduser>
+    <due_date_dateformat><![CDATA[2013-01-03]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[0]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+   </project_task>
+  </contact_task_with_project>
+  <contact_task_with_project>
+   <idproject><![CDATA[22]]></idproject>
+   <iduser><![CDATA[9]]></iduser>
+   <name><![CDATA[Project 2]]></name>
+   <end_date_dateformat><![CDATA[0000-00-00]]></end_date_dateformat>
+   <idcompany><![CDATA[13]]></idcompany>
+   <status><![CDATA[open]]></status>
+   <effort_estimated_hrs><![CDATA[0.00]]></effort_estimated_hrs>
+   <is_public><![CDATA[0]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[146]]></idproject_task>
+    <idtask><![CDATA[201]]></idtask>
+    <idproject><![CDATA[22]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[146]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[0.00]]></hrs_work_expected>
+    <task_description><![CDATA[task 2]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[9]]></iduser>
+    <due_date_dateformat><![CDATA[2013-01-03]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[0]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+   </project_task>
+  </contact_task_with_project>
+  <contact_task_with_project>
+   <idproject><![CDATA[22]]></idproject>
+   <iduser><![CDATA[9]]></iduser>
+   <name><![CDATA[Project 2]]></name>
+   <end_date_dateformat><![CDATA[0000-00-00]]></end_date_dateformat>
+   <idcompany><![CDATA[13]]></idcompany>
+   <status><![CDATA[open]]></status>
+   <effort_estimated_hrs><![CDATA[0.00]]></effort_estimated_hrs>
+   <is_public><![CDATA[0]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[147]]></idproject_task>
+    <idtask><![CDATA[202]]></idtask>
+    <idproject><![CDATA[22]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[147]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[0.00]]></hrs_work_expected>
+    <task_description><![CDATA[task 4]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[9]]></iduser>
+    <due_date_dateformat><![CDATA[2013-01-03]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[0]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+   </project_task>
+  </contact_task_with_project>
+  <contact_task_with_project>
+   <idproject><![CDATA[22]]></idproject>
+   <iduser><![CDATA[9]]></iduser>
+   <name><![CDATA[Project 2]]></name>
+   <end_date_dateformat><![CDATA[0000-00-00]]></end_date_dateformat>
+   <idcompany><![CDATA[13]]></idcompany>
+   <status><![CDATA[open]]></status>
+   <effort_estimated_hrs><![CDATA[0.00]]></effort_estimated_hrs>
+   <is_public><![CDATA[0]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[148]]></idproject_task>
+    <idtask><![CDATA[203]]></idtask>
+    <idproject><![CDATA[22]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[148]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[0.00]]></hrs_work_expected>
+    <task_description><![CDATA[task 5]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[9]]></iduser>
+    <due_date_dateformat><![CDATA[2013-01-03]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[0]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+   </project_task>
+  </contact_task_with_project>
+  <contact_task_with_project>
+   <idproject><![CDATA[22]]></idproject>
+   <iduser><![CDATA[9]]></iduser>
+   <name><![CDATA[Project 2]]></name>
+   <end_date_dateformat><![CDATA[0000-00-00]]></end_date_dateformat>
+   <idcompany><![CDATA[13]]></idcompany>
+   <status><![CDATA[open]]></status>
+   <effort_estimated_hrs><![CDATA[0.00]]></effort_estimated_hrs>
+   <is_public><![CDATA[0]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[149]]></idproject_task>
+    <idtask><![CDATA[204]]></idtask>
+    <idproject><![CDATA[22]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[149]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[0.00]]></hrs_work_expected>
+    <task_description><![CDATA[task 6]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[9]]></iduser>
+    <due_date_dateformat><![CDATA[2013-01-03]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[0]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+   </project_task>
+  </contact_task_with_project>
+  <contact_task_with_project>
+   <idproject><![CDATA[22]]></idproject>
+   <iduser><![CDATA[9]]></iduser>
+   <name><![CDATA[Project 2]]></name>
+   <end_date_dateformat><![CDATA[0000-00-00]]></end_date_dateformat>
+   <idcompany><![CDATA[13]]></idcompany>
+   <status><![CDATA[open]]></status>
+   <effort_estimated_hrs><![CDATA[0.00]]></effort_estimated_hrs>
+   <is_public><![CDATA[0]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[150]]></idproject_task>
+    <idtask><![CDATA[205]]></idtask>
+    <idproject><![CDATA[22]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[150]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[0.00]]></hrs_work_expected>
+    <task_description><![CDATA[task 7]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[9]]></iduser>
+    <due_date_dateformat><![CDATA[2013-01-03]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[0]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+   </project_task>
+  </contact_task_with_project>
+  <contact_task_with_project>
+   <idproject><![CDATA[22]]></idproject>
+   <iduser><![CDATA[9]]></iduser>
+   <name><![CDATA[Project 2]]></name>
+   <end_date_dateformat><![CDATA[0000-00-00]]></end_date_dateformat>
+   <idcompany><![CDATA[13]]></idcompany>
+   <status><![CDATA[open]]></status>
+   <effort_estimated_hrs><![CDATA[0.00]]></effort_estimated_hrs>
+   <is_public><![CDATA[0]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[151]]></idproject_task>
+    <idtask><![CDATA[206]]></idtask>
+    <idproject><![CDATA[22]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[151]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[0.00]]></hrs_work_expected>
+    <task_description><![CDATA[task 8]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[9]]></iduser>
+    <due_date_dateformat><![CDATA[2013-01-03]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[0]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+   </project_task>
+  </contact_task_with_project>
+  <contact_task_with_project>
+   <idproject><![CDATA[22]]></idproject>
+   <iduser><![CDATA[9]]></iduser>
+   <name><![CDATA[Project 2]]></name>
+   <end_date_dateformat><![CDATA[0000-00-00]]></end_date_dateformat>
+   <idcompany><![CDATA[13]]></idcompany>
+   <status><![CDATA[open]]></status>
+   <effort_estimated_hrs><![CDATA[0.00]]></effort_estimated_hrs>
+   <is_public><![CDATA[0]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[152]]></idproject_task>
+    <idtask><![CDATA[207]]></idtask>
+    <idproject><![CDATA[22]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[152]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[0.00]]></hrs_work_expected>
+    <task_description><![CDATA[task 9]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[9]]></iduser>
+    <due_date_dateformat><![CDATA[2013-01-03]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[0]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+   </project_task>
+  </contact_task_with_project>
+  <contact_task_with_project>
+   <idproject><![CDATA[22]]></idproject>
+   <iduser><![CDATA[9]]></iduser>
+   <name><![CDATA[Project 2]]></name>
+   <end_date_dateformat><![CDATA[0000-00-00]]></end_date_dateformat>
+   <idcompany><![CDATA[13]]></idcompany>
+   <status><![CDATA[open]]></status>
+   <effort_estimated_hrs><![CDATA[0.00]]></effort_estimated_hrs>
+   <is_public><![CDATA[0]]></is_public>
+
+   <project_task>
+    <idproject_task><![CDATA[153]]></idproject_task>
+    <idtask><![CDATA[208]]></idtask>
+    <idproject><![CDATA[22]]></idproject>
+    <progress><![CDATA[]]></progress>
+    <drop_box_code><![CDATA[153]]></drop_box_code>
+    <priority><![CDATA[0]]></priority>
+    <hrs_work_expected><![CDATA[0.00]]></hrs_work_expected>
+    <task_description><![CDATA[task 10]]></task_description>
+    <due_date><![CDATA[Today]]></due_date>
+    <category><![CDATA[]]></category>
+    <iduser><![CDATA[9]]></iduser>
+    <due_date_dateformat><![CDATA[2013-01-03]]></due_date_dateformat>
+    <status><![CDATA[open]]></status>
+    <date_completed><![CDATA[0000-00-00]]></date_completed>
+    <idcontact><![CDATA[0]]></idcontact>
+    <from_note><![CDATA[0]]></from_note>
+    <is_sp_date_set><![CDATA[]]></is_sp_date_set>
+    <task_category><![CDATA[]]></task_category>
+
+   </project_task>
+  </contact_task_with_project>
+ </contact>
+ <contact>
+  <idcontact><![CDATA[285]]></idcontact>
+  <firstname><![CDATA[1]]></firstname>
+  <lastname><![CDATA[1]]></lastname>
+  <position><![CDATA[1]]></position>
+  <company><![CDATA[]]></company>
+  <idcompany><![CDATA[13]]></idcompany>
+  <iduser><![CDATA[9]]></iduser>
+  <picture><![CDATA[]]></picture>
+  <summary><![CDATA[]]></summary>
+  <birthday><![CDATA[]]></birthday>
+  <portal_code><![CDATA[]]></portal_code>
+  <fb_userid><![CDATA[0]]></fb_userid>
+  <tw_user_id><![CDATA[]]></tw_user_id>
+  <email_optout><![CDATA[]]></email_optout>
+
+ </contact>
+ <contact>
+  <idcontact><![CDATA[286]]></idcontact>
+  <firstname><![CDATA[2]]></firstname>
+  <lastname><![CDATA[2]]></lastname>
+  <position><![CDATA[2]]></position>
+  <company><![CDATA[]]></company>
+  <idcompany><![CDATA[13]]></idcompany>
+  <iduser><![CDATA[9]]></iduser>
+  <picture><![CDATA[]]></picture>
+  <summary><![CDATA[]]></summary>
+  <birthday><![CDATA[]]></birthday>
+  <portal_code><![CDATA[]]></portal_code>
+  <fb_userid><![CDATA[0]]></fb_userid>
+  <tw_user_id><![CDATA[]]></tw_user_id>
+  <email_optout><![CDATA[]]></email_optout>
+
+ </contact>
+ <contact>
+  <idcontact><![CDATA[287]]></idcontact>
+  <firstname><![CDATA[Test]]></firstname>
+  <lastname><![CDATA[t]]></lastname>
+  <position><![CDATA[]]></position>
+  <company><![CDATA[]]></company>
+  <idcompany><![CDATA[0]]></idcompany>
+  <iduser><![CDATA[9]]></iduser>
+  <picture><![CDATA[]]></picture>
+  <summary><![CDATA[]]></summary>
+  <birthday><![CDATA[]]></birthday>
+  <portal_code><![CDATA[]]></portal_code>
+  <fb_userid><![CDATA[0]]></fb_userid>
+  <tw_user_id><![CDATA[]]></tw_user_id>
+  <email_optout><![CDATA[]]></email_optout>
+
+ </contact>
+</contacts>

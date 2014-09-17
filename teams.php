@@ -1,5 +1,11 @@
 <?php 
-exit();// The team concept is on hold
+/** 
+ * IMPORTANT NOTE
+ * Change the messaging system on this page to follow other pages messaging.
+ * Task to refer : http://www.ofuz.net/Task/8993
+ * The team concept is on hold
+*/
+exit();
 /**COPYRIGHTS**/ 
 // Copyrights 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
 
