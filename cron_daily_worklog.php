@@ -15,7 +15,7 @@ include_once('config.php');
  $proj_discuss = new ProjectDiscuss();
  $proj_time = new ProjectDiscuss();
  //select all the  user from project discuss table for the day
- $proj_discuss->query('select DISTINCT(iduser) from project_discuss where DATE(date_added)=CURDATE()');
+ $proj_discuss->query('select DISTINCT(pd.iduser) as iduser , usr.email from project_discuss pd inner join user usr on usr.iduser=pd.iduser WHERE DATEDIFF(NOW(), date_added) <= 7;');
  
  //check if any of the user enterd worklog for the day
  if($proj_discuss->getNumRows()>0) {
@@ -28,11 +28,21 @@ include_once('config.php');
           left JOIN project_discuss ON project_discuss.idproject_task = project_task.idproject_task
           where DATE(project_discuss.date_added) = CURDATE() AND project_discuss.iduser = '.$iduser.' '.'group by project_discuss.iduser');
     
-    $user_id = $proj_time->getData('iduser');
-    $us_obj = new User();       
-    $user_name = $us_obj->getFullName($user_id);
-    $text .= '<h2><u><b>'.$user_name.'</b>'.'&nbsp;&nbsp; Worklog </u></h2>';
-    $text .= "<h3>Total Hours Entered : ".$proj_time->getData('total_hrs')."</h3>";
+    if($proj_time->getNumRows() == 0)
+    {
+        //$user_id = $proj_time->getData('iduser');
+        $us_obj = new User();       
+        $user_name = $us_obj->getFullName($iduser);
+        $text .= '<h2><u><b>'.$user_name.'</b>'.'&nbsp;&nbsp; Worklog </u></h2>';
+        $text .= "<h3>Total Hours Entered : 0:00</h3>";
+    }
+    else
+    {
+        $user_id = $proj_time->getData('iduser');
+        $us_obj = new User();       
+        $user_name = $us_obj->getFullName($user_id);
+        $text .= '<h2><u><b>'.$user_name.'</b>'.'&nbsp;&nbsp; Worklog </u></h2>';
+        $text .= "<h3>Total Hours Entered : ".$proj_time->getData('total_hrs')."</h3>";
             
             
              //declare all instances of classes used
@@ -100,10 +110,19 @@ include_once('config.php');
                     
                     $last_task = $_SESSION['adm_project_discuss_idtask'];
                     $last_desc =  $_SESSION['adm_project_task_discuss'];
-                  }
             }
-            
-                  //echo $text;
+        }  
+    }
+    
+    
+   
+  $proj_email = new ProjectDiscuss();
+ //select all the  user from project discuss table for the day
+  $proj_email->query('select DISTINCT(pd.iduser) as iduser , usr.email from project_discuss pd inner join user usr on usr.iduser=pd.iduser WHERE DATEDIFF(NOW(), date_added) <= 7;');
+  
+   while($proj_email->fetch()){    
+       $email_id =  $proj_email->getdata('email');
+                  //echo $email_id;
                   $do_template = new EmailTemplate();
                   $do_template->senderemail = "support@sqlfusion.com";
                   $do_template->sendername = "Ofuz";
@@ -111,17 +130,17 @@ include_once('config.php');
                   $do_template->bodytext = $text;
                   $do_template->bodyhtml = $do_template->bodytext;
                   
-                  echo $text.'<br />';
+                  //echo $text.'<br />';
                   $values=Array();
                   //Use for sending email here for general users
                           $emailer = new Radria_Emailer('UTF-8');
                           $emailer->setEmailTemplate($do_template);
                           $emailer->mergeArray($values);//required even if there is nothig to merge
-                          $emailer->addTo('sarveshsk43@gmail.com');
+                          $emailer->addTo($email_id);
                           $message_sent =  (int)$emailer->send();
                           //$emailer->cleanup();
                           
-        
+   }     
         
 }else{
     echo "No Worklog For the Day";
