@@ -11,7 +11,7 @@ include_once('config.php');
 
  $message_sent = 0;
  $text ="";
- 
+
  $proj_discuss = new ProjectDiscuss();
  $proj_time = new ProjectDiscuss();
  //select all the  user from project discuss table for the day
@@ -34,7 +34,9 @@ include_once('config.php');
         //$user_id = $proj_time->getData('iduser');
         $us_obj = new User();       
         $user_name = $us_obj->getFullName($iduser);
-        $text .= '<h2><u><b>'.$user_name.'</b>'.'&nbsp;&nbsp; Worklog </u></h2>';
+        $text .= '<h2>Dear '.$user_name.',</h2>';
+        $text .= '<h2><u>Your Notes For '.date('jS F Y').'</u></h2>';
+        //$text .= '<h3><b>'.$user_name.'</b>'.'</h3>';
         $text .= "<h3>Total Hours Entered : 0:00</h3>";
         
     }
@@ -43,7 +45,10 @@ include_once('config.php');
         $user_id = $proj_time->getData('iduser');
         $us_obj = new User();       
         $user_name = $us_obj->getFullName($user_id);
-        $text .= '<h2><u><b>'.$user_name.'</b>'.'&nbsp;&nbsp; Worklog </u></h2>';
+        //$text .= '<h2><u><b>'.$user_name.'</b>'.'&nbsp;&nbsp; Worklog </u></h2>';
+        $text .= '<h2>Dear '.$user_name.',</h2>';
+        $text .= '<h3><u>Your Notes For '.date('jS F Y').'</u></h3>';
+        //$text .= '<h3>by: <b>'.$user_name.'</b>'.'</h3>';
         $text .= "<h3>Total Hours Entered : ".$proj_time->getData('total_hrs')."</h3>";
             
             
@@ -106,7 +111,7 @@ include_once('config.php');
                         $file = '<a href="'.$_SERVER[HTTP_HOST].$file_url.'" target="_blank">'.$document.'</a>';
                         $text.='<br /> <b>'._('Attachment').'</b> : '.$file;
                         }
-                    $text.='<br />';
+                    $text.='<br /><br />';
                     $text.='<div class="dottedline"></div>';
                     $text.='</div></div>';
                     
@@ -115,7 +120,7 @@ include_once('config.php');
             }
         }
         
-            echo $text;   
+            //echo $email.'<br />';echo $text;   
         
         // send mails to the ofuz users with their respective worklog
         
@@ -140,12 +145,12 @@ include_once('config.php');
                           $text = '';
     }
 }else{
-    echo "No Worklog For the Day";
+    echo 'No Worklog For the Day <b>'.date('jS F Y').'</b>';
 }
   
- if($message_sent==1) 
+ /*if($message_sent==1) 
  {
      echo "Notification Sent Successfully";
- }
+ }*/
   
   
