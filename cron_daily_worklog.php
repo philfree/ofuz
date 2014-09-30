@@ -22,6 +22,7 @@ include_once('config.php');
             
   while($proj_discuss->fetch()){
     $iduser = $proj_discuss->getdata('iduser');
+    $email =  $proj_discuss->getdata('email');
     $proj_time->query('SELECT project_discuss.discuss,project_discuss.date_added,document,
           project_discuss.iduser,sum( project_discuss.hours_work ) AS total_hrs,
           project_task.idproject, project_task.idtask FROM project_task
@@ -35,6 +36,7 @@ include_once('config.php');
         $user_name = $us_obj->getFullName($iduser);
         $text .= '<h2><u><b>'.$user_name.'</b>'.'&nbsp;&nbsp; Worklog </u></h2>';
         $text .= "<h3>Total Hours Entered : 0:00</h3>";
+        
     }
     else
     {
@@ -111,18 +113,14 @@ include_once('config.php');
                     $last_task = $_SESSION['adm_project_discuss_idtask'];
                     $last_desc =  $_SESSION['adm_project_task_discuss'];
             }
-        }  
-    }
-    
-    
-   
-  $proj_email = new ProjectDiscuss();
- //select all the  user from project discuss table for the day
-  $proj_email->query('select DISTINCT(pd.iduser) as iduser , usr.email from project_discuss pd inner join user usr on usr.iduser=pd.iduser WHERE DATEDIFF(NOW(), date_added) <= 7;');
-  
-   while($proj_email->fetch()){    
-       $email_id =  $proj_email->getdata('email');
-                  //echo $email_id;
+        }
+        
+            echo $text;   
+        
+        // send mails to the ofuz users with their respective worklog
+        
+        
+        
                   $do_template = new EmailTemplate();
                   $do_template->senderemail = "support@sqlfusion.com";
                   $do_template->sendername = "Ofuz";
@@ -136,12 +134,11 @@ include_once('config.php');
                           $emailer = new Radria_Emailer('UTF-8');
                           $emailer->setEmailTemplate($do_template);
                           $emailer->mergeArray($values);//required even if there is nothig to merge
-                          $emailer->addTo($email_id);
+                          $emailer->addTo($email);
                           $message_sent =  (int)$emailer->send();
                           //$emailer->cleanup();
-                          
-   }     
-        
+                          $text = '';
+    }
 }else{
     echo "No Worklog For the Day";
 }
