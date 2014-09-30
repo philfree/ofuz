@@ -113,6 +113,7 @@ class OfuzLeanKitKanban extends DataObject {
 	$lane_id = $this->getCardLaneId($evtcl->board, "Backlog");
 	
 	$task = new Task();
+    $proj_discuss = new ProjectDiscuss();
 	$task->getId($evtcl->ofuz_task_id);
 
 	if($task->due_date_dateformat == "" || $task->due_date_dateformat == "0000-00-00") {
@@ -123,7 +124,7 @@ class OfuzLeanKitKanban extends DataObject {
 
 	$array_card = array(
 	    "Title" => $task->task_description,
-	    "Description" => $task->task_description,
+	    "Description" => $proj_discuss->getFirstNote($evtcl->ofuz_idprojecttask),
 	    "TypeId" => $card_type_id,
 	    "Priority" => 1,
 	    "Size" => "",

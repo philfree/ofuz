@@ -1203,5 +1203,19 @@ class ProjectDiscuss extends Note {
 		    $this->query("INSERT INTO project_discuss (idproject_task,discuss,date_added,document,hours_work,iduser) VALUES (".$this->idproject_task.",'".$this->discuss."','".$this->date_added."','".$this->document."',".$this->hours_work.",".$this->iduser.")");
 	    }
     }	
+    
+    
+    /**
+   * Get the Task first note which entered by any user 
+   * @param idprojecttask
+   * @return dicuss note
+   **/
+   
+      function getFirstNote($idprojecttask) {
+          $sql_first_note = "SELECT discuss FROM `project_discuss` WHERE idproject_task='$idprojecttask' limit 1";
+          $this->query($sql_first_note);
+          return $this->getData('discuss');
+      }
+
 }
 ?>
