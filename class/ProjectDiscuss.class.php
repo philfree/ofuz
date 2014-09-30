@@ -1214,7 +1214,11 @@ class ProjectDiscuss extends Note {
       function getFirstNote($idprojecttask) {
           $sql_first_note = "SELECT discuss FROM `project_discuss` WHERE idproject_task='$idprojecttask' limit 1";
           $this->query($sql_first_note);
+           if($this->getNumRows() >0){
           return $this->getData('discuss');
+           }else{
+               return '';
+           }
       }
 
 }
