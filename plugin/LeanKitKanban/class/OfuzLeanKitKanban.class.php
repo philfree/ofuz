@@ -97,7 +97,7 @@ class OfuzLeanKitKanban extends DataObject {
    */
   public function eventAddTaskToBoard(EventControler $evtcl) {
     $msg = "";
-
+    $card_types = array('Feature','Administration','Testing','Defect','Improovement','Infrastructure');
     $this->getUserLoginCredentials();
 
     if($this->getNumRows()) {
@@ -115,7 +115,11 @@ class OfuzLeanKitKanban extends DataObject {
     $task->getId($evtcl->ofuz_task_id);
     
     //This is the Dynamic Type used for adding a Card, available types in kanban board (Task,Feature,Administration,Testing,Defect,Improovement,Infrastructure).
-    $card_type_id = $this->getCardTypeId($evtcl->board,$task->task_category);
+    $tsk_category = $task->task_category;
+    if(!in_array($task->task_category,$card_types)){
+        $tsk_category = 'Task';
+    }
+    $card_type_id = $this->getCardTypeId($evtcl->board,$tsk_category);
     //echo exit;
     // check for the first note for task description , if not found and task title as description
     $proj_discuss = new ProjectDiscuss();
