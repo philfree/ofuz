@@ -120,7 +120,7 @@ class OfuzLeanKitKanban extends DataObject {
         $tsk_category = 'Task';
     }
     $card_type_id = $this->getCardTypeId($evtcl->board,$tsk_category);
-    //echo exit;
+    
     // check for the first note for task description , if not found and task title as description
     $proj_discuss = new ProjectDiscuss();
     $desc = $proj_discuss->getFirstNote($evtcl->ofuz_idprojecttask);
