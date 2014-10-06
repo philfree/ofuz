@@ -105,8 +105,7 @@ class OfuzLeanKitKanban extends DataObject {
       $password = $this->password;
 
       if($evtcl->board) {     
-	//This is the default Type used for adding a Card.
-	$card_type_id = $this->getCardTypeId($evtcl->board, "Task");
+	
 	//This is the default Board User for adding a Card.
 	$assigned_user_id = $this->getBoardUserId($evtcl->board, $username);
 	//This is the default Lane used for adding a Card.
@@ -114,7 +113,10 @@ class OfuzLeanKitKanban extends DataObject {
 	
 	$task = new Task();
     $task->getId($evtcl->ofuz_task_id);
-
+    
+    //This is the Dynamic Type used for adding a Card, available types in kanban board (Task,Feature,Administration,Testing,Defect,Improovement,Infrastructure).
+    $card_type_id = $this->getCardTypeId($evtcl->board,$task->task_category);
+    //echo exit;
     // check for the first note for task description , if not found and task title as description
     $proj_discuss = new ProjectDiscuss();
     $desc = $proj_discuss->getFirstNote($evtcl->ofuz_idprojecttask);
