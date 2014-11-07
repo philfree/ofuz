@@ -53,7 +53,7 @@ class Zendesk extends DataObject {
 	 function GetUserZendeskDetails($iduser){
 		 
 		$q = new sqlQuery($this->getDbCon());
-		$q->query("Select iduser_zendesk,zend_email,zend_api,zend_url from ".$this->table. "
+		$q->query("Select iduser_zendesk,zend_email,zend_api,zend_url,idproject from ".$this->table. "
 					  where iduser = ".$iduser."");
 		if($q->getNumRows() >= 1){
 			$data = array();
@@ -63,6 +63,7 @@ class Zendesk extends DataObject {
 				  $data["zend_api"][$i] = $q->getData("zend_api");   
 				  $data["zend_url"][$i] = $q->getData("zend_url");   
 				  $data["iduser_zendesk"][$i] = $q->getData("iduser_zendesk");   
+				  $data["idproject"][$i] = $q->getData("idproject");   
 				  $i++;
 			   }
 			   return $data;
@@ -88,8 +89,8 @@ class Zendesk extends DataObject {
 
 			if($data->{'user'}->{'verified'}){
 				$q = new sqlQuery($this->getDbCon());
-				$sql = "INSERT INTO user_zendesk(`iduser`,`zend_email`,`zend_api`,`zend_url`)
-				  VALUES(".$evtcl->iduser.",'".$evtcl->zend_email."','".$evtcl->zend_api."','".$evtcl->zend_url."')";
+				$sql = "INSERT INTO user_zendesk(`iduser`,`zend_email`,`zend_api`,`zend_url`,`idproject`)
+				  VALUES(".$evtcl->iduser.",'".$evtcl->zend_email."','".$evtcl->zend_api."','".$evtcl->zend_url."','".$evtcl->idproject."')";
 				$q->query($sql);
 				
 				$_SESSION['msg'] = "New zendesk details has been added successfully.";
@@ -143,6 +144,26 @@ class Zendesk extends DataObject {
 		 }
 		 $evtcl->setDisplayNext(new Display($goto));
 	 }
+	 
+	 /**
+	  * function to list the projects for zendesk
+	  * @param iduser
+	  **/
+	  function getProjectList($iduser){
+		  
+		   $q = new sqlQuery($this->getDbCon());
+		   $sql = "select idproject,name from project where iduser = ".$iduser." and status='open'";
+		   $q->query($sql);
+		   
+		   while($q->fetch()){
+			   
+			   $idproject = $q->getData("idproject");
+			   $project_name = $q->getData("name");
+			   
+			   $html .= '<option value='.$idproject.'>'.$project_name.'</option>';
+		   }
+		   return $html;
+	  }
 	
 }
 
