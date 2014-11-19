@@ -9,7 +9,7 @@
 
 include_once('config.php');
 
- $admin_emails = array(1 =>'sarveshsk43@gmail.com',2=>'saru.111kulkarni@gmail.com');
+ $admin_emails = array(1 =>'philippe@htmlfusion.com',2=>'elsa@htmlfusion.com',3=>'jared@htmlfusion.com');
  $type = array(1=>'Today',2=>'PreviousDay',3=>'LastWeek');
  $message_sent = 0;
  $text ="";
@@ -42,7 +42,7 @@ include_once('config.php');
      }
  }
  
- echo $text;
+ //echo $text;
  
  // send mails to the ofuz users with their respective worklog
         
@@ -63,8 +63,8 @@ include_once('config.php');
                           $emailer->mergeArray($values);//required even if there is nothig to merge
                         
                              $emailer->addTo($email);
-                             //$message_sent =  (int)$emailer->send();
-                             //$emailer->cleanup();
+                             $message_sent =  (int)$emailer->send();
+                             $emailer->cleanup();
                                 //$text = '';
                              }
                           
