@@ -15,11 +15,23 @@
 
    // We include here our Block Object
    //include_once("plugin/SamplePlugIn/BlockSample.class.php");
-
+		
+// Plug-in Definition
+// status : devel, alpha, beta, rc, stable
+$plugins_info['Zendesk'] = 
+		Array ('name' => 'Zendesk Ofuz Integration',
+			'description' => 'This Plug-in integrates Zendesk API with Ofuz.',
+			'version' => '0.0.1',
+			'status' => 'beta',
+			'settings' => Array('Zendesk'),                          
+			'blocks' => Array('BlockZendeskTicket')
+			);  
    // Hook for the block object
    
    include_once("plugin/Zendesk/class/Zendesk.class.php");
-                                          
+   include_once("plugin/Zendesk/class/BlockZendeskTicket.class.php");
+   
+   $GLOBALS['cfg_block_placement']['task'][] = "BlockZendeskTicket";
                                          //Zendesk
    $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting("Zendesk"));
    $GLOBALS['cfg_setting_tab_placement']->next();
