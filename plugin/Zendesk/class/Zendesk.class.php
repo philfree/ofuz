@@ -164,6 +164,28 @@ class Zendesk extends DataObject {
 		   }
 		   return $html;
 	  }
+	  
+	  /**
+	   * function to check if user with project id has zendapi
+	   * zendeskProjectUserRelation()
+	   * @param iduser 
+	   * @Param idproject
+	   * @see BlockZendeskTicket
+	   * @return boolean
+	   **/
+	   function zendeskProjectUserRelation($iduser,$idproject){
+		   
+		   $q = new sqlQuery($this->getDbCon());
+		   $sql = "Select * from ".$this->table. "
+					  where iduser = '".$iduser."' and idproject = '".$idproject."'";echo $sql;
+		   $q->query($sql);
+		   if($q->getNumRows() >= 1){
+			   return true;
+		   } else {
+				return false;
+			}
+		   
+	   }
 	
 }
 

@@ -28,12 +28,44 @@ class BlockZendeskTicket extends BaseBlock{
         */
       function processBlock(){
         $this->setTitle("Zend Desk Ticket111");
-        
-        $content = '<a href="/Tab/Expense/Add">Add an Expense</a><br/><a href="/Tab/Expense/Import">Auto Responders</a><br/>Oplahh';
-        
-        $this->setContent($content);
-        $this->displayBlock();
+        $content = $this->getZendBlockConent();
+        if(!empty($content)){
+			$this->setContent($content);
+			$this->displayBlock();
+		}
       }
+      
+      function getZendBlockConent(){
+		  
+		  //echo $_GET['idprojecttask'];
+		  
+		  $do_project_task = new ProjectTask();
+		  $idtask = $do_project_task->getTaskId($_GET['idprojecttask']);
+		  
+		  $data = $do_project_task->getProjectTaskDetails($idtask);
+		  $idproject = $data['idproject'];
+		  
+		  $do_zend = new Zendesk();
+		  if($do_zend->zendeskProjectUserRelation($_SESSION['do_User']->iduser,$idproject)){
+			  
+				$output .= '<a href="#" onclick="showZBox();return false;">'._('Add Zendesk Ticket ID').'</a>';
+				$output .= '<div id="task_zbox" style="display:none;">'; 
+				$e_zticket = new Event("do_zend->eventAddZendTicket");
+				$e_zticket->setLevel(100);
+				$e_zticket->addParam("idtask", $idtask);
+				$e_zticket->addParam("goto", "Task/".$_SESSION['do_project_task']->idproject_task);
+				$output .= $e_zticket->getFormHeader();
+				$output .= $e_zticket->getFormEvent();
+				$output .= '<input type="text" name="z_ticket_id" id = "z_ticket_id">';
+				$output .='<input value="'._('Add Zend Ticket').'" type="submit">';
+				$output .= '<br /><br /><a href="#" onclick="hideZbox(); return false;">'._('Hide').'</a>';
+				$output .= $e_zticket->getFormFooter();
+				$output .= '</div>';
+			  
+		  }
+		  
+		  return $output;
+	  }
 }
 
 ?>

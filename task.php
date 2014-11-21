@@ -162,6 +162,12 @@ function showCoWorkers(){
 function hideCoWorkers(){
     $("#task_co_worker").hide("fast");
 }
+function showZBox(){
+    $("#task_zbox").show("fast");
+}
+function hideZbox(){
+    $("#task_zbox").hide("fast");
+}
 var ProgressValue = false;
 function fnSetProgress(progress){
     if (ProgressValue===false){window.setTimeout(fnUpdateProgress,1000);}
