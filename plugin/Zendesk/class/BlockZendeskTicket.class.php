@@ -27,7 +27,7 @@ class BlockZendeskTicket extends BaseBlock{
         * Must extent BaseBlock
         */
       function processBlock(){
-        $this->setTitle("Zend Desk Ticket111");
+        $this->setTitle("Zend Desk Ticket");
         $content = $this->getZendBlockConent();
         if(!empty($content)){
 			$this->setContent($content);
@@ -37,29 +37,54 @@ class BlockZendeskTicket extends BaseBlock{
       
       function getZendBlockConent(){
 		  
-		  //echo $_GET['idprojecttask'];
+		 // echo $_GET['idprojecttask'];
 		  
 		  $do_project_task = new ProjectTask();
 		  $idtask = $do_project_task->getTaskId($_GET['idprojecttask']);
-		  
-		  $data = $do_project_task->getProjectTaskDetails($idtask);
-		  $idproject = $data['idproject'];
-		  
+		 // echo $idtask;
+		  $data = $do_project_task->getProjectTaskDetailsByTaskId($idtask);
+		  //echo $data->getData('idproject');
+		  $idproject = $data->getData('idproject');
+		  //$idproject = $data['idproject'];
+		  //echo '-'.$idproject;
 		  $do_zend = new Zendesk();
-		  if($do_zend->zendeskProjectUserRelation($_SESSION['do_User']->iduser,$idproject)){
+		  $ticket = $do_zend->getZendTicketId($_SESSION['do_User']->iduser,$_GET['idprojecttask']);
+		  $ticket_id = $ticket['ticket'];
+		  if(!empty($ticket_id)){
+			  $idzendesk_task_ticket_releation = $ticket['zendesk_task_ticket_releation'];
 			  
-				$output .= '<a href="#" onclick="showZBox();return false;">'._('Add Zendesk Ticket ID').'</a>';
+			  $output .= '<div class="co_worker_item"><div class="co_worker_desc">' ;
+              $output .= '<div id="invite" class="co_worker_item co_worker_desc">'; 
+              $output .= '<div style="position: relative;">';
+			  $output .= '<b>Ticket ID: '.$ticket_id.'</b>';
+				  $e_remove_invitation =  new Event("Zendesk->eventRemoveZendTicket");
+				  $e_remove_invitation->addParam('idzendesk_task_ticket_releation',$idzendesk_task_ticket_releation);
+				  $e_remove_invitation->addParam("goto",$_SERVER['PHP_SELF']);
+			  
+				 $img_del = '<img src="/images/delete.gif" width="14px" height="14px" alt="" />';
+                  $output .= '<div width="15px" id="trashcan" class="deletenote" style="right:0;">'.$e_remove_invitation->getLink($img_del).'</div>';
+                  $output .= '</div></div>';
+                  $output .= '</div></div>';
+		  }
+		  
+		  if($do_zend->zendeskProjectUserRelation($_SESSION['do_User']->iduser,$idproject)){
+				
+				$ticket_id = $do_zend->getZendTicketId($_SESSION['do_User']->iduser,$_GET['idprojecttask']);
+				
+			    $output .= '<a href="#" onclick="showZBox();return false;">'._('Add/Update Zendesk Ticket ID').'</a>';
 				$output .= '<div id="task_zbox" style="display:none;">'; 
-				$e_zticket = new Event("do_zend->eventAddZendTicket");
-				$e_zticket->setLevel(100);
-				$e_zticket->addParam("idtask", $idtask);
+				$e_zticket = new Event("Zendesk->eventAddZendTicket");
+				//$e_zticket->setLevel(160);
+				$e_zticket->addParam("idproject_task", $_GET['idprojecttask']);
+				$e_zticket->addParam("iduser", $_SESSION['do_User']->iduser);
 				$e_zticket->addParam("goto", "Task/".$_SESSION['do_project_task']->idproject_task);
 				$output .= $e_zticket->getFormHeader();
 				$output .= $e_zticket->getFormEvent();
-				$output .= '<input type="text" name="z_ticket_id" id = "z_ticket_id">';
+				$output .= '<input type="text" name="z_ticket_id" id = "z_ticket_id" value= '.$ticket_id.'>';
 				$output .='<input value="'._('Add Zend Ticket').'" type="submit">';
-				$output .= '<br /><br /><a href="#" onclick="hideZbox(); return false;">'._('Hide').'</a>';
 				$output .= $e_zticket->getFormFooter();
+				$output .= '<br /><br /><a href="#" onclick="hideZbox(); return false;">'._('Hide').'</a>';
+				
 				$output .= '</div>';
 			  
 		  }

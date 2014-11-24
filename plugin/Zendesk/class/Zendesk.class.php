@@ -95,7 +95,7 @@ class Zendesk extends DataObject {
 				
 				$_SESSION['msg'] = "New zendesk details has been added successfully.";
 			} else {
-				$_SESSION['msg'] = 'Provided is information is not correct. Zendesk cannot able to autenticate you. Please try with proper data';
+				$_SESSION['msg'] = 'Provided is information is not correct. Zendesk cannot able to authenticate you. Please try with proper data';
 			}
 		}else{
 			$_SESSION['msg'] = "Duplicate Entry, Zendesk details Already Exist Please check your details provided to avoid the duplicates.";
@@ -177,7 +177,7 @@ class Zendesk extends DataObject {
 		   
 		   $q = new sqlQuery($this->getDbCon());
 		   $sql = "Select * from ".$this->table. "
-					  where iduser = '".$iduser."' and idproject = '".$idproject."'";echo $sql;
+					  where iduser = '".$iduser."' and idproject = '".$idproject."'";//echo $sql;
 		   $q->query($sql);
 		   if($q->getNumRows() >= 1){
 			   return true;
@@ -186,6 +186,73 @@ class Zendesk extends DataObject {
 			}
 		   
 	   }
+	   
+	   /**
+	    * function to add zendesk ticket to task id
+	    * eventAddZendTicket
+	    * @param eventcontroller 
+	    * @see zendeask_api
+	    **/
+	    function eventAddZendTicket(EventControler $evtcl){ 
+		 $goto = $evtcl->goto;
+		 $idproject_task = $evtcl->idproject_task;
+		 $z_ticket_id = $evtcl->z_ticket_id;
+		 $iduser = $evtcl->iduser;
+		 if($z_ticket_id){
+			 
+			 $pre = new sqlQuery($this->getDbCon());
+			 $pre_sql = "select idzendesk_task_ticket_releation from zendesk_task_ticket_releation where iduser = '".$iduser."' and idproject_task = '".$idproject_task."' order by idzendesk_task_ticket_releation desc limit 1";
+			 $pre->query($pre_sql);
+			 
+			 if($pre->getNumRows() >= 1){
+				 
+				 while($pre->fetch()){
+					 
+					 $idzendesk_task_ticket_releation = $pre->getData("idzendesk_task_ticket_releation");
+				 }
+				 $u = new sqlQuery($this->getDbCon());
+				 $u_sql = "update zendesk_task_ticket_releation set ticket = '".$z_ticket_id."',idproject_task = '".$idproject_task."' where idzendesk_task_ticket_releation = '".$idzendesk_task_ticket_releation."' limit 1";
+				 $u->query($u_sql);
+				 $_SESSION['msg'] = "Updated Zendesk Ticket.";
+			 } else {
+			 
+				$q = new sqlQuery($this->getDbCon());
+				$sql = "Insert into  zendesk_task_ticket_releation (ticket,iduser,idproject_task) values ('".$z_ticket_id."','".$iduser."','".$idproject_task."')";
+				$q->query($sql);
+				$_SESSION['msg'] = "Added zendesk Ticket.";
+				
+			}		 
+			 
+		 } else {
+			 $_SESSION['msg'] = "Please enter valid zendesk ticket ID";
+		 }
+		 $evtcl->setDisplayNext(new Display($goto));
+			
+		}
+		
+		/**
+		 * function get Zend Ticket ID
+		 * getZendTicketId
+		 * @param iduser int
+		 * @param idproject_task
+		 * @return ticket
+		 **/
+		 function getZendTicketId($iduser,$idproject_task){
+			 
+			 $q = new sqlQuery($this->getDbCon());
+			 $sql = "select idzendesk_task_ticket_releation,ticket from zendesk_task_ticket_releation where iduser='".$iduser."' and idproject_task = '".$idproject_task."' order by idzendesk_task_ticket_releation desc limit 1";
+			 $q->query($sql);
+			 
+			 if($q->getNumRows() >= 1){
+				 $ticket = array();
+				 while($q->fetch()){					 
+					 $ticket['ticket'] = $q->getData('ticket');					 
+					 $ticket['idzendesk_task_ticket_releation'] = $q->getData('idzendesk_task_ticket_releation');
+				 }
+			 }
+			 
+			 return $ticket;
+		 }
 	
 }
 
