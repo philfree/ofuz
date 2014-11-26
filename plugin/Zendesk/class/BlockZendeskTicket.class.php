@@ -51,25 +51,24 @@ class BlockZendeskTicket extends BaseBlock{
 		  $ticket = $do_zend->getZendTicketId($_SESSION['do_User']->iduser,$_GET['idprojecttask']);
 		  $ticket_id = $ticket['ticket'];
 		  if(!empty($ticket_id)){
-			  $idzendesk_task_ticket_releation = $ticket['zendesk_task_ticket_releation'];
+			  $idzendesk_task_ticket_releation = $ticket['idzendesk_task_ticket_releation'];
 			  
-			  $output .= '<div class="co_worker_item"><div class="co_worker_desc">' ;
-              $output .= '<div id="invite" class="co_worker_item co_worker_desc">'; 
+			  
+             
               $output .= '<div style="position: relative;">';
 			  $output .= '<b>Ticket ID: '.$ticket_id.'</b>';
 				  $e_remove_invitation =  new Event("Zendesk->eventRemoveZendTicket");
 				  $e_remove_invitation->addParam('idzendesk_task_ticket_releation',$idzendesk_task_ticket_releation);
-				  $e_remove_invitation->addParam("goto",$_SERVER['PHP_SELF']);
+				  $e_remove_invitation->addParam("goto", "Task/".$_SESSION['do_project_task']->idproject_task);
 			  
 				 $img_del = '<img src="/images/delete.gif" width="14px" height="14px" alt="" />';
-                  $output .= '<div width="15px" id="trashcan" class="deletenote" style="right:0;">'.$e_remove_invitation->getLink($img_del).'</div>';
-                  $output .= '</div></div>';
-                  $output .= '</div></div>';
+                  $output .= '<div style="float:right;align:right;">'.$e_remove_invitation->getLink($img_del).'</div>';
+                  $output .= '</div><br /><br />';
 		  }
 		  
 		  if($do_zend->zendeskProjectUserRelation($_SESSION['do_User']->iduser,$idproject)){
 				
-				$ticket_id = $do_zend->getZendTicketId($_SESSION['do_User']->iduser,$_GET['idprojecttask']);
+				//$ticket_id = $do_zend->getZendTicketId($_SESSION['do_User']->iduser,$_GET['idprojecttask']);
 				
 			    $output .= '<a href="#" onclick="showZBox();return false;">'._('Add/Update Zendesk Ticket ID').'</a>';
 				$output .= '<div id="task_zbox" style="display:none;">'; 

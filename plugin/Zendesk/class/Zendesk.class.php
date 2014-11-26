@@ -253,6 +253,27 @@ class Zendesk extends DataObject {
 			 
 			 return $ticket;
 		 }
+		 
+		 /**
+		  * function to delete the zend ticket ID 
+		  * eventRemoveZendTicket
+		  * @param evencontroller 
+		  **/
+		  function eventRemoveZendTicket(EventControler $evtcl){
+			  $goto = $evtcl->goto;
+			  $idzendesk_task_ticket_releation = $evtcl->idzendesk_task_ticket_releation;
+			  
+			  if($idzendesk_task_ticket_releation){
+				  
+				$q = new sqlQuery($this->getDbCon());
+				$sql = "delete from zendesk_task_ticket_releation where idzendesk_task_ticket_releation = '".$idzendesk_task_ticket_releation."' limit 1";
+				$q->query($sql);
+				
+				$_SESSION['msg'] = "Unlinked Zendesk Ticket.";
+				  
+			  }
+			  $evtcl->setDisplayNext(new Display($goto));			  
+		  }
 	
 }
 
