@@ -37,9 +37,9 @@ class Zendesk extends DataObject {
 		curl_setopt($ch, CURLOPT_USERAGENT, "MozillaXYZ/1.0");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 100);
 		$output = curl_exec($ch);
-		//echo 'Curl output: ' . curl_error($ch);
+		//echo 'Curl output: ' . curl_error($ch);die();
 		curl_close($ch);
 		$decoded = json_decode($output);
 		return $decoded;
@@ -82,7 +82,7 @@ class Zendesk extends DataObject {
 		
 		$goto = $evtcl->goto;
 		//check if the below is already exist
-		  if(!$this->checkIfZendeskExist($evtcl->iduser,$evtcl->zend_email,$evtcl->zend_api,$evtcl->zend_url)) {	
+		if(!$this->checkIfZendeskExist($evtcl->iduser,$evtcl->zend_email,$evtcl->zend_api,$evtcl->zend_url,$evtcl->idproject)) {	
 			
 			$data = $this->curlWrap("/users/me.json", null, "GET", $evtcl->zend_url, $evtcl->zend_email, $evtcl->zend_api);
 			//echo $data->{'user'}->{'verified'};
@@ -93,13 +93,13 @@ class Zendesk extends DataObject {
 				  VALUES(".$evtcl->iduser.",'".$evtcl->zend_email."','".$evtcl->zend_api."','".$evtcl->zend_url."','".$evtcl->idproject."')";
 				$q->query($sql);
 				
-				$_SESSION['msg'] = "New zendesk details has been added successfully.";
+				$_SESSION['msg'] = "You are now connected to Zendesk.<br /><br />";
 			} else {
-				$_SESSION['msg'] = 'Provided is information is not correct. Zendesk cannot able to authenticate you. Please try with proper data';
+				$_SESSION['msg'] = 'The information provided is invalid. Zendesk is unable to authenticate you. Please try again with valid data.<br /><br />';
 			}
 		}else{
-			$_SESSION['msg'] = "Duplicate Entry, Zendesk details Already Exist Please check your details provided to avoid the duplicates.";
-		}	
+			$_SESSION['msg'] = "Duplicate Entry, Zendesk details Already Exist Please check your details provided to avoid the duplicates.<br /><br />";
+		}
 		//echo $msg;	
 		$evtcl->setDisplayNext(new Display($goto));
 	}
@@ -112,11 +112,11 @@ class Zendesk extends DataObject {
 	 * @param zend_api
 	 * @param zend_url
 	**/ 
-	function checkIfZendeskExist($iduser,$zend_email,$zend_api,$zend_url){
+	function checkIfZendeskExist($iduser,$zend_email,$zend_api,$zend_url,$idproject){
 		
 		$q = new sqlQuery($this->getDbCon());
 		$q->query("Select * from ".$this->table. "
-					  where iduser = '".$iduser."' and zend_email = '".$zend_email."' and zend_url = '".$zend_url."' and zend_api = '".$zend_api."'");
+					  where iduser = '".$iduser."' and zend_email = '".$zend_email."' and zend_url = '".$zend_url."' and zend_api = '".$zend_api."' and idproject='".$idproject."'");
 		if($q->getNumRows() >= 1){
 			return true;
 		} else {
@@ -140,7 +140,7 @@ class Zendesk extends DataObject {
 			 $sql = "delete from ".$this->table." where iduser_zendesk = ".$iduser_zendesk." limit 1";
 			 $q->query($sql);
 			 
-			 $_SESSION['msg'] = "unlinked zendesk from Ofuz.";
+			 $_SESSION['msg'] = "Unlinked zendesk from Ofuz.<br /><br />";
 		 }
 		 $evtcl->setDisplayNext(new Display($goto));
 	 }
@@ -224,7 +224,7 @@ class Zendesk extends DataObject {
 			}		 
 			 
 		 } else {
-			 $_SESSION['msg'] = "Please enter valid zendesk ticket ID";
+			 $_SESSION['msg'] = "Please enter valid zendesk ticket ID.<br /><br />";
 		 }
 		 $evtcl->setDisplayNext(new Display($goto));
 			
@@ -269,7 +269,7 @@ class Zendesk extends DataObject {
 				$sql = "delete from zendesk_task_ticket_releation where idzendesk_task_ticket_releation = '".$idzendesk_task_ticket_releation."' limit 1";
 				$q->query($sql);
 				
-				$_SESSION['msg'] = "Unlinked Zendesk Ticket.";
+				$_SESSION['msg'] = "You have been unlinked from Zendesk.<br /><br />";
 				  
 			  }
 			  $evtcl->setDisplayNext(new Display($goto));			  

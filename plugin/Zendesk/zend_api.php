@@ -1,3 +1,19 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('#submitaction').click(function() {
+		
+		var zend_url = $('#zend_url').val();
+		var zend_email = $('#zend_email').val();
+		var zend_api = $('#zend_api').val();
+		var idproject = $( "#idproject" ).val();
+		if((zend_url == '') || (zend_email == '') || (zend_api == '') || (idproject == '')){
+			alert('Please fill in all the details metioned.');
+			event.preventDefault();
+		}		
+	});
+});
+</script>
+
 <?php
     $iduser = $_SESSION['do_User']->iduser;
 	
@@ -22,13 +38,16 @@
 		  $un_link->addParam("iduser_zendesk", $data['iduser_zendesk'][$i]);		 
 		  $path = '/Setting/Zendesk/zend_api';
 		  $un_link->addParam("goto", $path);
-		  $u_link = $un_link->getLink("Unlink");	  
+		  $un_link = $un_link->getUrl();	  
 		  
 		  $idproject = $data['idproject'][$i];
 		  $do_project  = new Project();
 		  $project_name = $do_project->getProjectName($idproject);
-		  echo"<tr><td>".$data['zend_email'][$i]."</td><td>".$data['zend_api'][$i]."</td><td>".$data['zend_url'][$i]."</td><td>".$project_name."</td><td>".$u_link."</td></tr>";
-		
+		  $d_email = $data['zend_email'][$i];
+		  $d_zend_api = $data['zend_api'][$i];
+		  $d_zend_url = $data['zend_url'][$i];
+		  echo'<tr><td>'.$d_email.'</td><td>'.$d_zend_api.'</td><td>'.$d_zend_url.'</td><td>'.$project_name.'</td><td><a href="'.$un_link.'" onclick="return confirm(\'Are you really want to unlink from zendesk?\')">Unlink</a></td></tr>';
+		//echo'<tr><td>'.$d_email.'</td><td>'.$d_zend_api.'</td><td>'.$d_zend_url.'</td><td>'.$project_name.'</td><td><a href="'.$un_link.'" class="confirmation">Unlink</a></td></tr>';
 	}
 	?>
 	</table>
@@ -47,7 +66,5 @@
 	<tr><td>Zend URL:</td><td> <input type="text" name="zend_url" id="zend_url" value="<?php echo $zend_url;?>" /></td></tr>	
 	<tr><td>Zend Email:</td><td> <input type="text" name="zend_email" id="zend_email" value="<?php echo $zend_email;?>" /></td></tr>
 	<tr><td>Zend API Key:</td><td><input type="text" name="zend_api" id="zend_api" value="<?php echo $zend_api;?>" /></td></tr>
-	<tr><td>Project to Connect:</td><td><select name="idproject"><option value="">[Select Project]</option><?php echo $do_zend->getProjectList($iduser);?></select></td></tr>
-	<tr><td colspan="3"><?php echo $do_repo->getFormFooter('Submit');  ?></td></tr></table>
-
-
+	<tr><td>Project to Connect:</td><td><select id="idproject" name="idproject"><option value="">[Select Project]</option><?php echo $do_zend->getProjectList($iduser);?></select></td></tr>
+	<tr><td colspan="3"><input type="submit" id="submitaction" name="submitaction" value="Submit"></td></tr></table>
