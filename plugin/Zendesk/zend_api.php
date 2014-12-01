@@ -1,6 +1,6 @@
 <script type="text/javascript">
     $(document).ready(function() {
-    $('#submitaction').click(function() {
+    $('#submitaction').click(function(event) {
 		
 		var zend_url = $('#zend_url').val();
 		var zend_email = $('#zend_email').val();
@@ -46,7 +46,7 @@
 		  $d_email = $data['zend_email'][$i];
 		  $d_zend_api = $data['zend_api'][$i];
 		  $d_zend_url = $data['zend_url'][$i];
-		  echo'<tr><td>'.$d_email.'</td><td>'.$d_zend_api.'</td><td>'.$d_zend_url.'</td><td>'.$project_name.'</td><td><a href="'.$un_link.'" onclick="return confirm(\'Are you really want to unlink from zendesk?\')">Unlink</a></td></tr>';
+		  echo'<tr><td>'.$d_email.'</td><td>'.$d_zend_api.'</td><td>'.$d_zend_url.'</td><td>'.$project_name.'</td><td><a href="'.$un_link.'" onclick="return confirm(\'Do you really want to unlink from Zendesk?\')">Unlink</a></td></tr>';
 		//echo'<tr><td>'.$d_email.'</td><td>'.$d_zend_api.'</td><td>'.$d_zend_url.'</td><td>'.$project_name.'</td><td><a href="'.$un_link.'" class="confirmation">Unlink</a></td></tr>';
 	}
 	?>
