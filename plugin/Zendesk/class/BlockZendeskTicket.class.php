@@ -3,7 +3,7 @@
 // All rights reserved
 /**COPYRIGHTS**/
 /**
-  * An Marketing Block plugin class
+  * An Zendesk Block plugin class
   * The class must extends the BaseBlock
   * setTitle() will set the Block Title
   * setContent() will set the content
@@ -48,32 +48,36 @@ class BlockZendeskTicket extends BaseBlock{
 		  //$idproject = $data['idproject'];
 		  //echo '-'.$idproject;
 		  $do_zend = new Zendesk();
-		  $ticket = $do_zend->getZendTicketId($_SESSION['do_User']->iduser,$_GET['idprojecttask']);
-		  $ticket_id = $ticket['ticket'];
-		  if(!empty($ticket_id)){
-			  $idzendesk_task_ticket_releation = $ticket['idzendesk_task_ticket_releation'];
-			  
-			  
-             
-              $output .= '<div style="position: relative;">';
-			  $output .= '<b>Ticket ID: '.$ticket_id.'</b>';
-				  $e_remove_invitation =  new Event("Zendesk->eventRemoveZendTicket");
-				  $e_remove_invitation->addParam('idzendesk_task_ticket_releation',$idzendesk_task_ticket_releation);
-				  $e_remove_invitation->addParam("goto", "Task/".$_SESSION['do_project_task']->idproject_task);
-			  
-				 $img_del = '<img src="/images/delete.gif" width="14px" height="14px" alt="" />';
-                  $output .= '<div style="float:right;align:right;">'.$e_remove_invitation->getLink($img_del).'</div>';
-                  $output .= '</div><br /><br />';
-		  }
-		  
+		 
 		  if($do_zend->zendeskProjectUserRelation($_SESSION['do_User']->iduser,$idproject)){
+			  
+				/*Ticket Block*/
+				  $ticket = $do_zend->getZendTicketId($_SESSION['do_User']->iduser,$_GET['idprojecttask']);
+				  $ticket_id = $ticket['ticket'];
+				  if(!empty($ticket_id)){
+					  $idzendesk_task_ticket_releation = $ticket['idzendesk_task_ticket_releation'];
+					  
+					  
+					 
+					  $output .= '<div style="position: relative;">';
+					  $output .= '<b>Ticket ID: '.$ticket_id.'</b>';
+						  $e_remove_invitation =  new Event("Zendesk->eventRemoveZendTicket");
+						  $e_remove_invitation->addParam('idzendesk_task_ticket_releation',$idzendesk_task_ticket_releation);
+						  $e_remove_invitation->addParam("goto", "Task/".$_SESSION['do_project_task']->idproject_task);
+					  
+						 $img_del = '<img src="/images/delete.gif" width="14px" height="14px" alt="" />';
+						  $output .= '<div style="float:right;align:right;">'.$e_remove_invitation->getLink($img_del).'</div>';
+						  $output .= '</div><br /><br />';
+				  }
+				 /* Ticket Block ends */ 
 				
 				//$ticket_id = $do_zend->getZendTicketId($_SESSION['do_User']->iduser,$_GET['idprojecttask']);
 				
 			    $output .= '<a href="#" onclick="showZBox();return false;">'._('Add/Update Zendesk Ticket ID').'</a>';
 				$output .= '<div id="task_zbox" style="display:none;">'; 
 				$e_zticket = new Event("Zendesk->eventAddZendTicket");
-				//$e_zticket->setLevel(160);
+				//$e_zticket->setLevel(160);				
+				$e_zticket->addParam("idproject", $idproject);
 				$e_zticket->addParam("idproject_task", $_GET['idprojecttask']);
 				$e_zticket->addParam("iduser", $_SESSION['do_User']->iduser);
 				$e_zticket->addParam("goto", "Task/".$_SESSION['do_project_task']->idproject_task);

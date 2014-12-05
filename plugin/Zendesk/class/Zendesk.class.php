@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * PHP Wrapper class for Zendesk API integration
+ *
+ * @author SQLFusion
+ * @date 12-05-2014
+ * @see https://developer.zendesk.com/rest_api/docs/core/
+ */
 class Zendesk extends DataObject {
 	
 	public $table = 'user_zendesk';
@@ -136,6 +142,21 @@ class Zendesk extends DataObject {
 		 
 		 if($iduser_zendesk){
 			 
+			 $q_pre = new sqlQuery($this->getDbCon());
+			 $pre_sql = "select idproject,iduser from ".$this->table." where iduser_zendesk = ".$iduser_zendesk."";
+			 $q_pre->query($pre_sql);
+			 
+			 if($q_pre->getNumRows() >= 1){
+				 while($q_pre->fetch()){
+					 $idproject = $q_pre->getData("idproject");
+					 $iduser = $q_pre->getData("iduser");
+				 }				 
+				 $del_z = new sqlQuery($this->getDbCon());
+				 $del_sql = "delete from zendesk_task_ticket_releation where iduser='".$iduser."' and idproject = '".$idproject."'";
+				 $del_z->query($del_sql);				 
+			}
+			 
+			 
 			 $q = new sqlQuery($this->getDbCon());
 			 $sql = "delete from ".$this->table." where iduser_zendesk = ".$iduser_zendesk." limit 1";
 			 $q->query($sql);
@@ -198,6 +219,7 @@ class Zendesk extends DataObject {
 		 $idproject_task = $evtcl->idproject_task;
 		 $z_ticket_id = $evtcl->z_ticket_id;
 		 $iduser = $evtcl->iduser;
+		 $idproject = $evtcl->idproject;
 		 if($z_ticket_id){
 			 
 			 $pre = new sqlQuery($this->getDbCon());
@@ -217,7 +239,7 @@ class Zendesk extends DataObject {
 			 } else {
 			 
 				$q = new sqlQuery($this->getDbCon());
-				$sql = "Insert into  zendesk_task_ticket_releation (ticket,iduser,idproject_task) values ('".$z_ticket_id."','".$iduser."','".$idproject_task."')";
+				$sql = "Insert into  zendesk_task_ticket_releation (ticket,iduser,idproject,idproject_task) values ('".$z_ticket_id."','".$iduser."','".$idproject."','".$idproject_task."')";
 				$q->query($sql);
 				$_SESSION['msg'] = "Added zendesk Ticket.";
 				
@@ -274,7 +296,55 @@ class Zendesk extends DataObject {
 			  }
 			  $evtcl->setDisplayNext(new Display($goto));			  
 		  }
-	
-}
+	/**
+	 * function to add task note to zendesk as private message
+	 * function eventAddZendeskNote
+	 * @param eventcontroller
+	 * see task.php
+	 **/
+	 function eventAddZendeskNote(EventControler $evtcl){
+		 $fields = $evtcl->fields;
+		 $ticket_id =  $evtcl->z_ticket;
+		 $z_idproject =  $evtcl->z_idproject;
+		 $z_iduser =  $evtcl->z_iduser;
+		 
+		 $comment = array();
+		 //$comment['ticket']['status']='pending';
+		 $comment['ticket']['comment']['public']='false';
+		 $comment['ticket']['comment']['body']=$fields['discuss'];
 
+		$json = json_encode($comment);//print_r($json);		die();
+		
+		$z_data = $this->getZendeskDetails($z_iduser,$z_idproject);
+		if($z_data['zend_api'] != ''){	
+			$ZDAPIKEY =  $z_data['zend_api'];
+			$ZDURL = $z_data['zend_url'];
+			$ZDUSER = $z_data['zend_email'];
+			$this->curlWrap("/tickets/$ticket_id.json", $json, "PUT",$ZDURL, $ZDUSER, $ZDAPIKEY);			
+		}
+	 }
+	 
+	 /**
+	  * function to get Zendeesk autentication details 
+	  * function getZendeskDetails
+	  * @param iduser
+	  * @param idproject
+	  * @return array values
+	  **/
+	  function getZendeskDetails($iduser,$idproject){
+		  
+		  $q = new sqlQuery($this->getDbCon());
+		  $sql = "select * from user_zendesk where iduser='".$iduser."' and idproject='".$idproject."' order by iduser_zendesk desc limit 1";
+		  $q->query($sql);
+		  if($q->getNumRows() >= 1){
+			  $z_data = array();
+			while($q->fetch()){
+			   $z_data['zend_email'] = $q->getData('zend_email');
+			   $z_data['zend_api'] = $q->getData('zend_api');
+			   $z_data['zend_url'] = $q->getData('zend_url');			  
+			}
+		  }
+		  return $z_data;
+	  }
+}
 ?>

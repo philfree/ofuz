@@ -527,7 +527,19 @@ $(document).ready(function() {
                 //$e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventFormatDiscussInsert', 119);
                 $e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventHTMLCleanUp', 119);
                 $e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventSendDiscussMessageByEmail', 131);
-                $e_addProjectDiscuss->addEventAction('WorkFeedProjectDiscuss->eventAddFeed', 140);                
+                $e_addProjectDiscuss->addEventAction('WorkFeedProjectDiscuss->eventAddFeed', 140);        
+                
+                $do_zend = new Zendesk();
+                $t_data = $do_zend->getZendTicketId($_SESSION['do_User']->iduser,$idproject_task);
+                
+                if($t_data['ticket'] != ''){
+					$e_addProjectDiscuss->addEventAction('Zendesk->eventAddZendeskNote', 160);        
+					$e_addProjectDiscuss->addParam('z_ticket', $t_data['ticket']);
+					$e_addProjectDiscuss->addParam('z_iduser', $_SESSION['do_User']->iduser);
+					$e_addProjectDiscuss->addParam('z_idproject', $_SESSION['do_project']->idproject);
+					
+				}
+                    
                 $e_addProjectDiscuss->addParam('goto', $return_page);
                 $e_addProjectDiscuss->addParam('errPage', 'Task/'.$idproject_task);
                 $discussFields = new FieldsForm('ofuz_add_project_discuss');
