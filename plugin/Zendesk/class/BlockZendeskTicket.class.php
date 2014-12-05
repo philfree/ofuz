@@ -27,7 +27,7 @@ class BlockZendeskTicket extends BaseBlock{
         * Must extent BaseBlock
         */
       function processBlock(){
-        $this->setTitle("Zend Desk Ticket");
+        $this->setTitle("ZendDesk Ticket");
         $content = $this->getZendBlockConent();
         if(!empty($content)){
 			$this->setContent($content);
