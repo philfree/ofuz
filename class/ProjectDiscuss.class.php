@@ -1249,9 +1249,7 @@ class ProjectDiscuss extends Note {
         if($iduser!=""){ $where .= " AND project_discuss.iduser = ".$iduser ; }
         
         $q = new sqlQuery($this->getDbCon());
-        $qry = "SELECT project_discuss.discuss,project_discuss.date_added,document,
-                  project_discuss.iduser,sum( project_discuss.hours_work ) AS total_hrs,
-                  project_task.idproject, project_task.idtask FROM project_task
+        $qry = "SELECT sum( project_discuss.hours_work ) AS total_hrs FROM project_task
                   left JOIN project_discuss ON project_discuss.idproject_task = project_task.idproject_task
                   ".$where." ";
         //echo $qry;exit;          
