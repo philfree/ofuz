@@ -110,7 +110,7 @@ class OfuzLeanKitKanban extends DataObject {
 	//This is the default Board User for adding a Card.
 	$assigned_user_id = $this->getBoardUserId($evtcl->board, $username);
 	//This is the default Lane used for adding a Card.
-	$lane_id = $this->getCardLaneId($evtcl->board, "Backlog");
+	$lane_id = $this->getCardLaneId($evtcl->board, "backlog");
 	
 	$task = new Task();
     $task->getId($evtcl->ofuz_task_id);
