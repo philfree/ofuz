@@ -63,8 +63,8 @@
 	echo $do_repo->getFormEvent();
 	?>
 	<table>
-	<tr><td>Zend URL:</td><td> <input type="text" name="zend_url" id="zend_url" value="<?php echo $zend_url;?>" /></td></tr>	
-	<tr><td>Zend Email:</td><td> <input type="text" name="zend_email" id="zend_email" value="<?php echo $zend_email;?>" /></td></tr>
-	<tr><td>Zend API Key:</td><td><input type="text" name="zend_api" id="zend_api" value="<?php echo $zend_api;?>" /></td></tr>
+	<tr><td>Zend URL:</td><td> <input type="text" name="zend_url" id="zend_url" value="<?php echo $zend_url;?>" />(https://your_project.zendesk.com/api/v2)</td></tr>	
+	<tr><td>Zend Email:</td><td> <input type="text" name="zend_email" id="zend_email" value="<?php echo $zend_email;?>" />(Zendesk login Email)</td></tr>
+	<tr><td>Zend API Key:</td><td><input type="text" name="zend_api" id="zend_api" value="<?php echo $zend_api;?>" />(Zendesk API Key)</td></tr>
 	<tr><td>Project to Connect:</td><td><select id="idproject" name="idproject"><option value="">[Select Project]</option><?php echo $do_zend->getProjectList($iduser);?></select></td></tr>
 	<tr><td colspan="3"><input type="submit" id="submitaction" name="submitaction" value="Submit"></td></tr></table>

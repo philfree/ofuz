@@ -183,6 +183,18 @@ class Zendesk extends DataObject {
 			   
 			   $html .= '<option value='.$idproject.'>'.$project_name.'</option>';
 		   }
+		   
+		   //Get project if user is co-worker 
+		   $q1 = new sqlQuery($this->getDbCon());
+		   $q1->query("select ps.idproject as project_id,p.name as project_name from project_sharing ps inner join project p on ps.idproject=p.idproject where ps.idcoworker = ".$iduser);
+		   if($q1->getNumRows()){
+				while($q1->fetch()){
+					$project_id = $q1->getData("project_id");
+					$c_project_name = $q1->getData("project_name");
+					$html .= '<option value='.$project_id.'>'.$c_project_name.'</option>';
+				}
+		    }
+		   
 		   return $html;
 	  }
 	  
