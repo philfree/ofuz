@@ -15,8 +15,12 @@
     include_once('config.php');
     include_once('includes/ofuz_check_access.script.inc.php');
     //include_once('includes/header.inc.php');
-
-	if(is_object($_SESSION['ProjectDiscussCount'])) {
+    
+    include_once('Parsedown.php');
+    $Parsedown = new Parsedown();
+   
+	
+  if(is_object($_SESSION['ProjectDiscussCount'])) {
 		$_SESSION['ProjectDiscussCount']->sql_qry_start = 0;
 	}
 
@@ -704,7 +708,8 @@ $(document).ready(function() {
                         if ($do_discuss->is_truncated) {
                             echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$item_text,'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
                         } else {
-                            echo "<div id='item_text'>".$item_text."</div>";
+                            
+                            echo "<div id='item_text'>".$Parsedown->text($item_text)."</div>";
                         }
                         //echo '<div id="e'.$do_discuss->idproject_discuss.'" style="display: none;" class="note_edit_box"></div>';
                         echo $do_discuss->formatDocumentLink("ProjectTask").'</div>
