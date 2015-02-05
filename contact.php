@@ -579,7 +579,12 @@ include_once('plugin_block.php');
               }
         ?>
         
-        <div class="headline_fuscia">Add a Note About <?php echo $do_contact->firstname; ?></div>
+        <div class="headline_fuscia">Add a Note About <?php echo $do_contact->firstname; ?>
+        <img src="/images/parsedown.png" style="float: right;
+margin-right: 192px;height: 35px;width: 40px;" width="100" height="100" alt="" /><b style="float: right;
+margin-right: -183px;font-size: 14px;margin-top: 10px;">
+        Markdown supported</b>
+        </div>
         <?php
                   $draft = $_SESSION['do_note_draft']->getDraft($idcontact,"contact_note");
                   if($draft && is_array($draft)){
