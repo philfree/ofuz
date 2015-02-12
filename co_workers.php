@@ -279,7 +279,8 @@ if ($_SESSION['do_coworker']->getNumrows())
             <div id="' . $_SESSION['do_coworker']->idcoworker . '" style="display:none;width:80%;margin:0px;">';
       if ($no_cont_shared > 0)
         {
-        echo $e_shared_contacts_filter->getLink('<span>' . sprintf(_('You shared %d contacts') , $no_cont_shared) . '</span>&nbsp;' . sprintf(_('and %d projects') , $num_project_shared) . '&nbsp;&nbsp;');
+        //echo $e_shared_contacts_filter->getLink('<span>' . sprintf(_('You shared %d contacts') , $no_cont_shared) . '</span>&nbsp;' . sprintf(_('and %d projects') , $num_project_shared) . '&nbsp;&nbsp;');
+        echo '<span>' . sprintf(_('You shared %d contacts') , $no_cont_shared) . '</span>&nbsp;' . sprintf(_('and %d projects') , $num_project_shared) . '&nbsp;&nbsp;';
         }
         else
         {
