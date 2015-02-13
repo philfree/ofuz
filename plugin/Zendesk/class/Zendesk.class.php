@@ -175,13 +175,13 @@ class Zendesk extends DataObject {
 		   $q = new sqlQuery($this->getDbCon());
 		   $sql = "select idproject,name from project where iduser = ".$iduser." and status='open'";
 		   $q->query($sql);
-		   
+		   $project = array();
 		   while($q->fetch()){
 			   
 			   $idproject = $q->getData("idproject");
 			   $project_name = $q->getData("name");
-			   
-			   $html .= '<option value='.$idproject.'>'.$project_name.'</option>';
+			   $project[$idproject] = $project_name;
+			   //$html .= '<option value='.$idproject.'>'.$project_name.'</option>';
 		   }
 		   
 		   //Get project if user is co-worker 
@@ -191,10 +191,14 @@ class Zendesk extends DataObject {
 				while($q1->fetch()){
 					$project_id = $q1->getData("project_id");
 					$c_project_name = $q1->getData("project_name");
-					$html .= '<option value='.$project_id.'>'.$c_project_name.'</option>';
+					$project[$project_id] = $c_project_name;
+					//$html .= '<option value='.$project_id.'>'.$c_project_name.'</option>';
 				}
 		    }
-		   
+		    @natcasesort($project);
+		   foreach($project as $key=>$value){
+			   $html .= '<option value='.$key.'>'.$value.'</option>';			   
+		   }
 		   return $html;
 	  }
 	  
