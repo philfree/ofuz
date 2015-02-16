@@ -505,12 +505,12 @@ class ProjectDiscuss extends Note {
         }
         if($this->time_spent_on_task){ $where .= " AND project_discuss.hours_work <>'0.00' ";}
         if($this->set_user_search) { $where .= " AND project_discuss.iduser = ".$this->for_user ; }
-        echo "SELECT project_discuss.discuss,project_discuss.date_added,document,
+        /*echo "SELECT project_discuss.discuss,project_discuss.date_added,document,
                   project_discuss.iduser,project_discuss.hours_work,
                   project_task.idproject, project_task.idtask, project_task.idproject_task FROM project_task
                   left JOIN project_discuss ON project_discuss.idproject_task = project_task.idproject_task
                   ".$where." order by project_task.idproject,project_task.idtask 
-                  ";
+                  ";*/
         $qry = "SELECT project_discuss.discuss,project_discuss.date_added,document,
                   project_discuss.iduser,project_discuss.hours_work,
                   project_task.idproject, project_task.idtask, project_task.idproject_task FROM project_task
