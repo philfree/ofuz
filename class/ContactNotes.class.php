@@ -56,9 +56,10 @@ class ContactNotes extends Note {
     }
 
     function eventAjaxGetContactNote(EventControler $event_controler) {
+        $Parsedown = new Parsedown();
         $this->getId((int)$event_controler->idnote);
         //$this->query("select note from contact_note where idcontact_note = " . $idnote . " and idcontact = ".$_SESSION['do_cont']->idcontact);
-        $event_controler->addOutputValue($this->formatNoteDisplayFull());
+        $event_controler->addOutputValue($Parsedown->text($this->formatNoteDisplayFull()));
     }
 
     function getCompanyNotes($idcompany) {
@@ -282,6 +283,7 @@ class ContactNotes extends Note {
      * It will modify the event_controler values.
      */ 
     function eventFormatNoteInsert(EventControler $event_controler) {
+          $Parsedown = new Parsedown();
           $do_NoteDraft = new NoteDraft();
           $idnote_draft = $do_NoteDraft->isDraftExist($this->idcontact,'contact_note');
           if($idnote_draft){
@@ -290,7 +292,7 @@ class ContactNotes extends Note {
           }
 
           $fields = $event_controler->fields;
-          $fields['note'] = htmlentities($fields['note']);
+          $fields['note'] = $Parsedown->text(htmlentities($fields['note']));
           $event_controler->fields = $fields;
     }
 
@@ -365,6 +367,7 @@ class ContactNotes extends Note {
 	}
 
 	function autoLoadNotesOnScrollDown() {
+    $Parsedown = new Parsedown();
 		if($_SESSION['ContactNotes']->notes_count >= $_SESSION['ContactNotes']->sql_qry_start) {
 			$_SESSION['ContactNotes']->sql_qry_start = $_SESSION['ContactNotes']->sql_qry_start + $_SESSION['ContactNotes']->sql_view_limit;
 
@@ -414,9 +417,9 @@ class ContactNotes extends Note {
 					echo '<b>'.date('l, F j', strtotime($this->date_added)).'</b>&nbsp;(Added By :&nbsp;'.$this->getNoteOwnerFullName().')</div> 
 					<div id="trashcan', $note_count, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$this->idcontact_note.'\','.$this->idcontact_note.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_note_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div></div>';
 					if ($this->is_truncated != '') {
-						echo '<div id="notepreview',$this->idcontact_note,'">',$note_text,'<br /><a href="#" onclick="showFullNote(',$this->idcontact_note,'); return false;" >'._('more ...').'</a><br /></div>';
+						echo '<div id="notepreview',$this->idcontact_note,'">',$Parsedown->text($note_text),'<br /><a href="#" onclick="showFullNote(',$this->idcontact_note,'); return false;" >'._('more ...').'</a><br /></div>';
 					} else {
-						echo $note_text;
+						echo $Parsedown->text($note_text);
 					}
                                         $note_count++;
 					echo $this->formatDocumentLink().'</div>

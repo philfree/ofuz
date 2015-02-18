@@ -696,15 +696,15 @@ $(document).ready(function() {
                         echo '<div id="item_title"> '.$date_added_note.'</b>&nbsp;('._('Added By:').'&nbsp;<i><strong>'.$added_by.'</strong></i>)</div></div>'; 
                         echo "<br>";
                         echo '<div id="contact_small"><a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a></div>';
-                        
+                        $Parsedown = new Parsedown();
                         if($task_operation_access === true){
                           echo '<div id="trashcan', $item_count++, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_discuss->idproject_discuss.'\','.$do_discuss->idproject_discuss.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_discuss_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div>';
                         }
                         echo '</div>';
                         if ($do_discuss->is_truncated) {
-                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$item_text,'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
+                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$Parsedown->text($item_text),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
                         } else {
-                            echo "<div id='item_text'>".$item_text."</div>";
+                            echo "<div id='item_text'>".$Parsedown->text($item_text)."</div>";
                         }
                         //echo '<div id="e'.$do_discuss->idproject_discuss.'" style="display: none;" class="note_edit_box"></div>';
                         echo $do_discuss->formatDocumentLink("ProjectTask").'</div>

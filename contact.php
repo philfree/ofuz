@@ -10,7 +10,7 @@
     $background_color = 'white';
     include_once('config.php');
     include_once('includes/ofuz_check_access.script.inc.php');
-
+     $Parsedown = new Parsedown();
     /*include_once("class/Feed.class.php");*/
     if (isset($_GET['id'])) {
         $idcontact = $_GET['id']; 
@@ -857,10 +857,10 @@ include_once('plugin_block.php');
      echo '<a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' class="note_icon"> </a>';
    
 					if ($do_notes->is_truncated) {
-						echo '<div id="notepreview',$do_notes->idcontact_note,'">',$note_text,'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
+						echo '<div id="notepreview',$do_notes->idcontact_note,'">',$Parsedown->text($note_text),'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
 					} else {
       //echo "<div style='padding:0px 0px 0px 0px;'>";
-          echo "&nbsp;&nbsp;&nbsp;&nbsp;".$note_text;
+          echo "&nbsp;&nbsp;&nbsp;&nbsp;".$Parsedown->text($note_text);
       //echo "</div>";
 					}
 					$note_count++;

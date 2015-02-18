@@ -166,7 +166,8 @@
   include_once("class/OfuzBeanstalkd.class.php");
   
     include_once("class/CcDetails.class.php");
-
+  //Parse down
+  include_once("class/Parsedown.class.php");  
 
   //Email Contact Import
   //include_once("plugin/EmailImporter/openinviter.php");
