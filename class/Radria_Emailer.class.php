@@ -10,6 +10,27 @@
     * Its compatible with the older Emailer.class.php but its based 
     * on the Zend_Mail
     * http://framework.zend.com/
+    * 
+    * Sample use:
+    * $message = '
+
+body html
+';
+
+$do_template = new EmailTemplate();
+	$do_template->setFrom("email", "name")
+	              ->setSubject(".")
+	              ->setBodyText("")
+	              ->setBodyHTML($message);
+	            
+$emailer = new Radria_Emailer('UTF-8');
+          $emailer->setEmailTemplate($do_template);
+          $emailer->mergeArray(Array());//required even if there is nothig to merge
+//          $emailer->addTo("philippe@htmlfusion.com");
+          $emailer->send();
+          $emailer->cleanup();
+echo "done";
+
     *
     * @author Philippe Lewicki  <phil@sqlfusion.com>
     * @version 2.0.3
