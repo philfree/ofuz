@@ -855,13 +855,15 @@ include_once('plugin_block.php');
      <div id="trashcan', $note_count, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_notes->idcontact_note.'\','.$do_notes->idcontact_note.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_note_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div></div>';
      echo "<br>";      
      echo '<a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' class="note_icon"> </a>';
-   
-					if ($do_notes->is_truncated) {
-						echo '<div id="notepreview',$do_notes->idcontact_note,'">',$Parsedown->text($note_text),'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
-					} else {
-      //echo "<div style='padding:0px 0px 0px 0px;'>";
-          echo "&nbsp;&nbsp;&nbsp;&nbsp;".$Parsedown->text($note_text);
-      //echo "</div>";
+     if ($do_notes->is_truncated) {
+        
+        $note_text = preg_replace('/<br \/>/iU', '', $note_text);
+        echo '<div id="notepreview',$do_notes->idcontact_note,'">', $Parsedown->text($note_text),'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
+        //echo '<div id="notepreview',$do_notes->idcontact_note,'">', $note_text,'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
+	 } else {
+        //echo "&nbsp;&nbsp;&nbsp;&nbsp;".$note_text;
+        $note_text = preg_replace('/<br \/>/iU', '', $note_text);
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;".$Parsedown->text($note_text);
 					}
 					$note_count++;
 					

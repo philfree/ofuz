@@ -697,13 +697,18 @@ $(document).ready(function() {
                         echo "<br>";
                         echo '<div id="contact_small"><a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a></div>';
                         $Parsedown = new Parsedown();
+
                         if($task_operation_access === true){
                           echo '<div id="trashcan', $item_count++, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_discuss->idproject_discuss.'\','.$do_discuss->idproject_discuss.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_discuss_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div>';
                         }
                         echo '</div>';
                         if ($do_discuss->is_truncated) {
+                            $item_text = preg_replace('/<br \/>/iU', '', $item_text);
+                            //echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',strip_tags($Parsedown->text($item_text), '<p><br/>'),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
                             echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$Parsedown->text($item_text),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
                         } else {
+                            $item_text = preg_replace('/<br \/>/iU', '', $item_text);
+                            //echo "<div id='item_text'>".strip_tags($Parsedown->text($item_text), '<p><br/>')."</div>";
                             echo "<div id='item_text'>".$Parsedown->text($item_text)."</div>";
                         }
                         //echo '<div id="e'.$do_discuss->idproject_discuss.'" style="display: none;" class="note_edit_box"></div>';
