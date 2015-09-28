@@ -145,7 +145,7 @@ $e_editForm->setSecure(false);
     <table class="layout_columns">
       <tr>
     <td class="layout_lcolumn">
-      <?php include_once('plugin_block.php'); ?>
+      <?php include_once('plugin_block.php'); get_declared_classes();?>
       <div class="center_text">
           <a href="/contacts.php"><img src="/images/icon_contact_150.png" width="150" height="150" alt="" /></a><br />
           <a href="/contacts.php"><?php echo _('Add A Contact'); ?></a>

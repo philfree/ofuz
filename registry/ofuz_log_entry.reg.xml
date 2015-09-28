@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idproject">
+    <rdata type="label">idproject</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="idcontact">
+    <rdata type="default">[getparam:eDetail_contact:idcontact:]</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">idcontact</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="note">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Note</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="cols">110</rdata>
+    <rdata type="row">2</rdata>
+    <rdata type="css_form_class">Verdana</rdata>
+    <rdata type="fieldtype">OfuzExpandingTextArea</rdata>
+  </rfield>
+  <rfield name="document">
+    <rdata type="label">Document</rdata>
+    <rdata type="picture">files/</rdata>
+    <rdata type="showpicture"></rdata>
+    <rdata type="overwrite">no</rdata>
+    <rdata type="fieldtype">OfuzFileUpload</rdata>
+  </rfield>
+  <rfield name="date_added">
+    <rdata type="fieldtype">DijitDateTextBox</rdata>
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Date Added</rdata>
+    <rdata type="datetype">dd-MM-y</rdata>
+    <rdata type="errormessage">Wrong date format</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="css_form_class"></rdata>
+  </rfield>
+  <rfield name="iduser">
+    <rdata type="default">[do_User->iduser]</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">User</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">14:14</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="send_email">
+    <rdata type="fieldtype">strFBFieldTypeCheckBox</rdata>
+    <rdata type="label">Send note to contact</rdata>
+    <rdata type="checked_value">y</rdata>
+    <rdata type="unchecked_value">n</rdata>
+    <rdata type="default">n</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="hours_work">
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+    <rdata type="default">0.00</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Hours Worked</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:10</rdata>
+  </rfield>
+  <rfield name="note_visibility">
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Note Visibility</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+  </rfield>
+</registry>

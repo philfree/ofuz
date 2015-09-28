@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<form>
+    <idform><![CDATA[55]]></idform>
+    <name><![CDATA[ofuz_log_entry]]></name>
+    <descr><![CDATA[This is the form to add worklog entry]]></descr>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[<table>]]></header>
+    <row><![CDATA[
+                  <div class="marginform">
+                      <span class="text8"><?php echo _('Task Number:'); ?></span><br />
+                      [number]
+                  </div>
+                  <div class="marginform">
+                      <span class="text8"><?php echo _('Date:'); ?></span><br />
+                      [date]
+                  </div>
+                  <div class="marginform">
+                      <span class="text8"><?php echo _('Hours Worked:'); ?></span><br />
+                      [hours]
+                  </div>
+
+                  <div class="marginform">
+                      <span class="text8"><?php echo _('Notes:');?></span><br />
+            [note]
+                  </div>
+                  <div class="marginform">
+                      <span class="text8"><?php echo _('Attach a File:');?></span><br />
+                     [document]
+                  </div>
+                  <div class="marginform">
+                      <span class="text8"><?php echo _('Who can Edit?');?></span><br />
+                  </div>
+                   <div class="marginform">
+                          <input type="radio" name="" value=""> <?php echo _('Just me');?> 
+                          <input type="radio" name="" value=""> <?php echo _('My Co-Workers and I');?> <br />
+                  </div>
+                  <div class="dottedline"></div>
+         
+                      <input type="submit" value="<?php echo _('Log Entry');?>" />
+           
+                  </div>
+        ]]></row>
+    <footer><![CDATA[</table></form>]]></footer>
+</form>

@@ -36,7 +36,8 @@
                                           "ContactTagSearchBlock"),
                                   "index" =>
                                     Array("DashboardTodaysTask",
-                                          "DashboardMessageBlock"
+                                          "DashboardMessageBlock",
+                                          'WorklogEntryWorklogBlock'
                                         ),
                                   "tasks" =>
                                     Array("TasksAddTaskBlock"),
@@ -147,7 +148,8 @@
                                           'TaskOwnerBlock',
                                           'TaskProgressBlock',
                                           'TasksAddTaskBlock',
-                                          'TimesheetBlockCoWorker'
+                                          'TimesheetBlockCoWorker',
+                                          'WorklogEntryWorklogBlock'
                                           
                                           
                           ) ;  

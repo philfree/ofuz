@@ -54,6 +54,7 @@
   include_once("class/ProjectDiscuss.class.php");
   include_once("class/OfuzHorizontalSlider.class.php");
   include_once("class/ProjectSharing.class.php");
+  include_once("class/Worklog.class.php");
 
   include_once("class/Invoice.class.php");
   include_once("class/InvoiceLine.class.php");
@@ -166,7 +167,8 @@
   include_once("class/OfuzBeanstalkd.class.php");
   
     include_once("class/CcDetails.class.php");
-
+  //Parse down
+  include_once("class/Parsedown.class.php");  
 
   //Email Contact Import
   //include_once("plugin/EmailImporter/openinviter.php");
