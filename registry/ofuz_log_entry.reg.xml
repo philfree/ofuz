@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <registry>
-  <rfield name="idproject">
-    <rdata type="label">idproject</rdata>
+  <rfield name="idproject_dicuss">
+    <rdata type="label">idproject_dicuss</rdata>
     <rdata type="readonly">1</rdata>
     <rdata type="fieldtype">strFBFieldTypeInt</rdata>
   </rfield>
-  <rfield name="idcontact">
+  <rfield name="idproject">
     <rdata type="default">[getparam:eDetail_contact:idcontact:]</rdata>
     <rdata type="hidden">1</rdata>
     <rdata type="label">idcontact</rdata>

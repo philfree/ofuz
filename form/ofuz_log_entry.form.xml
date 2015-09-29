@@ -8,15 +8,15 @@
     <row><![CDATA[
                   <div class="marginform">
                       <span class="text8"><?php echo _('Task Number:'); ?></span><br />
-                      [number]
+                      [idtask]
                   </div>
                   <div class="marginform">
                       <span class="text8"><?php echo _('Date:'); ?></span><br />
-                      [date]
+                      [date_added]
                   </div>
                   <div class="marginform">
                       <span class="text8"><?php echo _('Hours Worked:'); ?></span><br />
-                      [hours]
+                      [hours_work]
                   </div>
 
                   <div class="marginform">
@@ -31,7 +31,7 @@
                       <span class="text8"><?php echo _('Who can Edit?');?></span><br />
                   </div>
                    <div class="marginform">
-                          <input type="radio" name="" value=""> <?php echo _('Just me');?> 
+                          <input type="radio" name="" value="" checked> <?php echo _('Just me');?> 
                           <input type="radio" name="" value=""> <?php echo _('My Co-Workers and I');?> <br />
                   </div>
                   <div class="dottedline"></div>

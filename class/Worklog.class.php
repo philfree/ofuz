@@ -18,13 +18,18 @@
 
 class Worklog extends DataObject {
     
-    public $table = 'project';
-    protected $primary_key = 'idproject';
+    public $table = 'project_discuss';
+    protected $primary_key = 'idproject_discuss';
     public $project_status = "";
-    function addNewProject($iduser,$name,$idcompany) {
+    function addNewWorklog($idproject_task,$discuss,$date_added,$document,$hours_work,$iduser,$discuss_edit_access,$type) {
+        $this->idproject_task = $idproject_task;
+        $this->note = $discuss;
+        $this->date_added = $date_added;
+        $this->document = $document;
+        $this->hours_work = $hours_work;
         $this->iduser = $iduser;
-        $this->name = $name;
-        $this->idcompany = $idcompany;
+        $this->discuss_edit_access = $discuss_edit_access;
+        $this->type = $type;
         $this->add(); 
     }
 
