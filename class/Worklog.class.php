@@ -3,10 +3,10 @@
 /** Ofuz Open Source version is released under the GNU Affero General Public License, please read the full license at: http://www.gnu.org/licenses/agpl-3.0.html **/
 
     /**
-     * Project class
-     * Managed most of the action, data manipulation and display related to Projects.
+     * Worklog class
+     * Managed most of the action, data manipulation and display related to worklog.
      *
-     * description, due date, category, status (open/closed)
+     * date added, document, hours_work
      *
      * @author SQLFusion's Dream Team <info@sqlfusion.com>
      * @package OfuzPage
@@ -21,9 +21,11 @@ class Worklog extends DataObject {
     public $table = 'project_discuss';
     protected $primary_key = 'idproject_discuss';
     public $project_status = "";
-    function addNewWorklog($idproject_task,$discuss,$date_added,$document,$hours_work,$iduser,$discuss_edit_access,$type) {
+    function addNewWorklog($idproject_task,$idtask,$idproject,$discuss,$iduser,$date_added,$document,$hours_work,$iduser,$discuss_edit_access,$type) {
         $this->idproject_task = $idproject_task;
-        $this->note = $discuss;
+        $this->discuss = $discuss;
+        $this->idproject = $idproject;
+        $this->iduser = $iduser;
         $this->date_added = $date_added;
         $this->document = $document;
         $this->hours_work = $hours_work;
@@ -31,11 +33,12 @@ class Worklog extends DataObject {
         $this->discuss_edit_access = $discuss_edit_access;
         $this->type = $type;
         $this->add(); 
+
     }
 
     /**
-     * display a form to add a project
-     * The form HTML is in the forms/ofuz_add_project.form.xml
+     * display a form to add worklog
+     * The form HTML is in the forms/ofuz_log_entry.form.xml
      * template.
      * @return the HTML code to display the form
      */

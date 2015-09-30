@@ -8,7 +8,7 @@
     <row><![CDATA[
                   <div class="marginform">
                       <span class="text8"><?php echo _('Task Number:'); ?></span><br />
-                      [idtask]
+                      [idproject]
                   </div>
                   <div class="marginform">
                       <span class="text8"><?php echo _('Date:'); ?></span><br />
@@ -21,18 +21,17 @@
 
                   <div class="marginform">
                       <span class="text8"><?php echo _('Notes:');?></span><br />
-            [note]
+                      [discuss]
                   </div>
                   <div class="marginform">
                       <span class="text8"><?php echo _('Attach a File:');?></span><br />
-                     [document]
+                      [document]
                   </div>
                   <div class="marginform">
                       <span class="text8"><?php echo _('Who can Edit?');?></span><br />
-                  </div>
-                   <div class="marginform">
-                          <input type="radio" name="" value="" checked> <?php echo _('Just me');?> 
-                          <input type="radio" name="" value=""> <?php echo _('My Co-Workers and I');?> <br />
+                      <input type="radio" name="" value="user" checked> <?php echo _('Just me');?> 
+                      <input type="radio" name="" value="user coworker"> <?php echo _('My Co-Workers and I');?> <br />
+
                   </div>
                   <div class="dottedline"></div>
          
