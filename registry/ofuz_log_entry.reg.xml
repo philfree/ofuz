@@ -6,8 +6,8 @@
     <rdata type="fieldtype">strFBFieldTypeInt</rdata>
   </rfield>
   <rfield name="idproject_task">
-    <rdata type="default">[do_project_task->idproject_task]</rdata>
-    <rdata type="hidden">1</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
     <rdata type="label">idproject_task</rdata>
     <rdata type="readonly"></rdata>
     <rdata type="required"></rdata>
@@ -33,9 +33,9 @@
     <rdata type="id"></rdata>
     <rdata type="fieldtype">strFBFieldTypeInt</rdata>
   </rfield>
-  <!-- <rfield name="idproject">
-   <rdata type="default"></rdata>
-    <rdata type="hidden"></rdata>
+  <rfield name="idproject">
+   <rdata type="default">[do_project_task->idproject]</rdata>
+    <rdata type="hidden">1</rdata>
     <rdata type="label">idproject</rdata>
     <rdata type="readonly"></rdata>
     <rdata type="required"></rdata>
@@ -46,7 +46,7 @@
     <rdata type="css_disp_style"></rdata>
     <rdata type="id"></rdata>
     <rdata type="fieldtype">strFBFieldTypeInt</rdata>
-  </rfield> -->
+  </rfield>
   <rfield name="discuss">
     <rdata type="databasetype"></rdata>
     <rdata type="label">Discuss</rdata>

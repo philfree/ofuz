@@ -6,9 +6,9 @@
     <idquery><![CDATA[0]]></idquery>
     <header><![CDATA[<table>]]></header>
     <row><![CDATA[
-                  <div class="marginform">
+                  <div class="marginform">[iduser]
                       <span class="text8"><?php echo _('Task Number:'); ?></span><br />
-                      [idproject]
+                      [idtask]
                   </div>
                   <div class="marginform">
                       <span class="text8"><?php echo _('Date:'); ?></span><br />
