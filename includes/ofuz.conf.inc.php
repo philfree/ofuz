@@ -54,7 +54,6 @@
   include_once("class/ProjectDiscuss.class.php");
   include_once("class/OfuzHorizontalSlider.class.php");
   include_once("class/ProjectSharing.class.php");
-  include_once("class/Worklog.class.php");
 
   include_once("class/Invoice.class.php");
   include_once("class/InvoiceLine.class.php");

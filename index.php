@@ -26,12 +26,10 @@
     $do_task = new Task($GLOBALS['conx']);
     $do_task_category = new TaskCategory($GLOBALS['conx']);
     $do_contact_task = new Contact();
-    //$ProjectDiscuss = new ProjectDiscuss();
-    //$ProjectTask = new ProjectTask();
-    echo "tttt===".$idproject_task = $_SESSION["idproject_task"];
-        $do_project_task = new ProjectTask();
-        $do_project_task->getProjectTaskDetails( $idproject_task );
-    //$ProjectDiscuss->sessionPersistent("ProjectDiscuss", "index.php", OFUZ_TTL);
+    $ProjectDiscuss = new ProjectDiscuss();
+    $ProjectTask = new ProjectTask();
+    $do_project_task = new ProjectTask();
+    $ProjectDiscuss->sessionPersistent("ProjectDiscuss", "index.php", OFUZ_TTL);
 
     //$do_notes->sessionPersistent("ContactNotesEditSave", "index.php", OFUZ_TTL);
 	$ContactNoteExpend  = new ContactNotes($GLOBALS['conx']);
@@ -174,7 +172,9 @@ $e_editForm->setSecure(false);
                 // display the note text field:
                 //echo $discussFields->discuss ;
                 //hidden fields
-                echo $discussFields->idproject_task;
+                //echo $discussFields->idproject_task;
+                echo $discussFields->idproject;
+                echo $discussFields->idtask;
                 echo $discussFields->iduser;      
                 echo $discussFields->type;// Hidden Type, default :: Note   
                 
@@ -184,8 +184,8 @@ $e_editForm->setSecure(false);
                 <!--<span id="more_options"><a href="#"><?php //echo _('More Options'); ?></a>-->
                   <!--<a href="#" onclick="showOpt(); return false;"><?php //echo _('More Options'); ?></a>-->
                 <!--</span>-->
-               
-                        <?php echo _('Task Number').': '.$discussFields->task_number; ?><br /><br />
+                        <?php echo '<div class="headline_fuscia">', _('Worklog Entry').'</div>', "<br />";?>
+                        <?php echo _('Task Number').':' .$discussFields->idproject_task;?><br /><br />
                         <?php echo _('Date').': '.$discussFields->date_added; ?><br /><br />
                         <?php echo _('Hours Worked').': '.$discussFields->hours_work; ?>  <br />
                         <br/>  
