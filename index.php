@@ -19,16 +19,20 @@
 	//}
     include_once('includes/ofuz_check_access.script.inc.php');
     include_once('includes/header.inc.php');
-
+    //print_r($_SESSION);
     $do_notes = new ContactNotes($GLOBALS['conx']);
     $do_contact = new Contact($GLOBALS['conx']);
     $do_company = new Company($GLOBALS['conx']);
     $do_task = new Task($GLOBALS['conx']);
     $do_task_category = new TaskCategory($GLOBALS['conx']);
     $do_contact_task = new Contact();
-    $ProjectDiscuss = new ProjectDiscuss();
-    $ProjectTask = new ProjectTask();
-    $ProjectDiscuss->sessionPersistent("ProjectDiscuss", "index.php", OFUZ_TTL);
+    //$ProjectDiscuss = new ProjectDiscuss();
+    //$ProjectTask = new ProjectTask();
+    echo "tttt===".$idproject_task = $_SESSION["idproject_task"];
+        $do_project_task = new ProjectTask();
+        $do_project_task->getProjectTaskDetails( $idproject_task );
+    //$ProjectDiscuss->sessionPersistent("ProjectDiscuss", "index.php", OFUZ_TTL);
+
     //$do_notes->sessionPersistent("ContactNotesEditSave", "index.php", OFUZ_TTL);
 	$ContactNoteExpend  = new ContactNotes($GLOBALS['conx']);
     $ContactNoteExpend->sessionPersistent("ContactNoteExpend", "contacts.php", OFUZ_TTL);
@@ -145,7 +149,60 @@ $e_editForm->setSecure(false);
     <table class="layout_columns">
       <tr>
     <td class="layout_lcolumn">
-      <?php include_once('plugin_block.php'); get_declared_classes();?>
+      <?php include_once('plugin_block.php');
+                $ProjectDiscuss = new ProjectDiscuss();
+                $ProjectDiscuss->sessionPersistent('ProjectDiscussEditSave', 'project.php', OFUZ_TTL);
+                //$_SESSION['ProjectDiscussEditSave']->idproject_task = $_SESSION['do_project_task']->idproject_task;
+                $_SESSION['ProjectDiscussEditSave']->idproject_task = $idproject_task;
+                 
+                $_SESSION['ProjectDiscussEditSave']->setLogRun(true);
+                $e_addProjectDiscuss = $_SESSION['ProjectDiscussEditSave']->newForm('ProjectDiscussEditSave->eventAdd');
+                $e_addProjectDiscuss->setLevel(123);
+                $e_addProjectDiscuss->setGotFile(true);
+                $e_addProjectDiscuss->addEventAction('mydb.gotoPage', 90);
+                //$e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventFormatDiscussInsert', 119);
+                $e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventHTMLCleanUp', 119);
+                //$e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventSendDiscussMessageByEmail', 131);
+                //$e_addProjectDiscuss->addEventAction('WorkFeedProjectDiscuss->eventAddFeed', 140);        
+                   
+                $e_addProjectDiscuss->addParam('goto', $return_page);
+                $e_addProjectDiscuss->addParam('errPage', 'Task/'.$idproject_task);
+                $discussFields = new FieldsForm('ofuz_log_entry');
+
+                echo $e_addProjectDiscuss->getFormHeader();
+                echo $e_addProjectDiscuss->getFormEvent();
+                // display the note text field:
+                //echo $discussFields->discuss ;
+                //hidden fields
+                echo $discussFields->idproject_task;
+                echo $discussFields->iduser;      
+                echo $discussFields->type;// Hidden Type, default :: Note   
+                
+                ?>
+                
+                
+                <!--<span id="more_options"><a href="#"><?php //echo _('More Options'); ?></a>-->
+                  <!--<a href="#" onclick="showOpt(); return false;"><?php //echo _('More Options'); ?></a>-->
+                <!--</span>-->
+               
+                        <?php echo _('Task Number').': '.$discussFields->task_number; ?><br /><br />
+                        <?php echo _('Date').': '.$discussFields->date_added; ?><br /><br />
+                        <?php echo _('Hours Worked').': '.$discussFields->hours_work; ?>  <br />
+                        <br/>  
+                        <?php echo _('Notes').': '.$discussFields->discuss; ?>  <br />
+                        <br/>  
+                        <?php echo _('Attach a file').': '.$discussFields->document; ?> <br />
+                        <br/>
+                       
+                        <?php echo _('Who can Edit ? ') ?>
+                        <input type="radio" name="fields[discuss_edit_access]" value="user" checked> <?php echo _('Just me');?> &nbsp;&nbsp;
+                        <input type="radio" name="fields[discuss_edit_access]" value="user coworker"><?php echo _('Co-Workers and I');?>
+                        <br />
+                  
+                <div class="div_right"><input type="submit" name="submitaction" value="<?php echo _('Log Entry');?>" />
+                
+                </div>         
+            </form>
       <div class="center_text">
           <a href="/contacts.php"><img src="/images/icon_contact_150.png" width="150" height="150" alt="" /></a><br />
           <a href="/contacts.php"><?php echo _('Add A Contact'); ?></a>

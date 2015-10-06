@@ -21,10 +21,9 @@ class Worklog extends DataObject {
     public $table = 'project_discuss';
     protected $primary_key = 'idproject_discuss';
     public $project_status = "";
-    function addNewWorklog($idproject_task,$idtask,$idproject,$discuss,$iduser,$date_added,$document,$hours_work,$iduser,$discuss_edit_access,$type) {
+    function addNewWorklog($idproject_task,$idtask,$discuss,$iduser,$date_added,$document,$hours_work,$iduser,$discuss_edit_access,$type) {
         $this->idproject_task = $idproject_task;
         $this->discuss = $discuss;
-        $this->idproject = $idproject;
         $this->iduser = $iduser;
         $this->date_added = $date_added;
         $this->document = $document;
@@ -44,13 +43,13 @@ class Worklog extends DataObject {
      */
 
     function getWorklogAddForm() {
-        $this->setRegistry('ofuz_log_entry');
+       /* $this->setRegistry('ofuz_log_entry');
         $f_projectForm = $this->prepareSavedForm('ofuz_log_entry');
         $f_projectForm->setAddRecord();
         $f_projectForm->setUrlNext('index.php');
         $f_projectForm->setForm();
         //$f_projectForm->execute();
-	    return $f_projectForm->executeToString();
+	    return $f_projectForm->executeToString();*/
     }
 
     
