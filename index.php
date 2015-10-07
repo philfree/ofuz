@@ -184,24 +184,26 @@ $e_editForm->setSecure(false);
                 <!--<span id="more_options"><a href="#"><?php //echo _('More Options'); ?></a>-->
                   <!--<a href="#" onclick="showOpt(); return false;"><?php //echo _('More Options'); ?></a>-->
                 <!--</span>-->
+                <div class="worklog_form">
                         <?php echo '<div class="headline_fuscia">', _('Worklog Entry').'</div>', "<br />";?>
                         <?php echo _('Task Number').':' .$discussFields->idproject_task;?><br /><br />
                         <?php echo _('Date').': '.$discussFields->date_added; ?><br /><br />
-                        <?php echo _('Hours Worked').': '.$discussFields->hours_work; ?>  <br />
+                        <?php echo _('Hours Worked').':<br /> '.$discussFields->hours_work; ?>  <br />
                         <br/>  
                         <?php echo _('Notes').': '.$discussFields->discuss; ?>  <br />
                         <br/>  
                         <?php echo _('Attach a file').': '.$discussFields->document; ?> <br />
                         <br/>
                        
-                        <?php echo _('Who can Edit ? ') ?>
+                        <?php echo _('Who can Edit ? ') ?><br />
                         <input type="radio" name="fields[discuss_edit_access]" value="user" checked> <?php echo _('Just me');?> &nbsp;&nbsp;
                         <input type="radio" name="fields[discuss_edit_access]" value="user coworker"><?php echo _('Co-Workers and I');?>
-                        <br />
+                        <br /><br />
                   
-                <div class="div_right"><input type="submit" name="submitaction" value="<?php echo _('Log Entry');?>" />
-                
-                </div>         
+                <div class="div_right">
+                <input type="submit" name="submitaction" class="submitaction" value="<?php echo _('Log Entry');?>" />
+
+                </div>        </div> 
             </form>
       <div class="center_text">
           <a href="/contacts.php"><img src="/images/icon_contact_150.png" width="150" height="150" alt="" /></a><br />

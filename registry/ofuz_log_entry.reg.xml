@@ -60,7 +60,7 @@
     <rdata type="hidden"></rdata>
     <rdata type="readonly"></rdata>
     <rdata type="cols">110</rdata>
-    <rdata type="row">3</rdata>
+    <rdata type="row">6</rdata>
     <rdata type="css_form_class">Verdana</rdata>
     <rdata type="fieldtype">OfuzExpandingTextArea</rdata>
   </rfield>

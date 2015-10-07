@@ -634,3 +634,23 @@ padding-top: 66px;
     border-bottom: 1px dotted;} 
     
 .qr_use { clear: both; width: 90%; margin-left: 2px; color: #666666; }
+
+/*worklog entry form css in index page*/
+.worklog_form { padding: 10px;
+    background-color: #f7f7ed;
+    width: 231px;
+    margin: 0px 20px;
+    overflow: hidden;
+    height: auto;}
+
+.submitaction { width: 228px; 
+    float: left;
+    padding: 4px;
+    color: white;
+    background-color: #C25296;
+    border-color: #c25296;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;}
+    
+/*end of worklog entry*/
