@@ -882,7 +882,7 @@ Class DataObject extends SqlQuery {
             }
             $fieldlist = ereg_replace(', $', '', $fieldlist);
             $valuelist = ereg_replace(', $', '', $valuelist);
-            $query = "INSERT INTO '$table' ($fieldlist) VALUES ($valuelist)";
+            $query = "INSERT INTO `$table` ($fieldlist) VALUES ($valuelist)";
 
         }
         $this->setLog("\n Running query:\n".$query);
