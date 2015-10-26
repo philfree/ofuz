@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace RadriaCore\Radria\mysql;
 // Copyright 2001 - 2007 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // For licensing, reuse, modification and distribution see license.txt
    /**
@@ -23,9 +24,9 @@
     * @access public
     */
 
-#namespace radriacore;
+use RadriaCore\Radria\BaseObject;
 
-Class sqlConnect extends BaseObject {
+Class SqlConnect extends BaseObject {
 
   /**  Hostname where the read database is hosted
    * @var String $hostname
@@ -139,7 +140,7 @@ Class sqlConnect extends BaseObject {
    *  @param string login $login    Username to access the database
    *  @param  string password $password    Password to access the database
    */
-  function sqlConnect($login="", $password="") {
+  function sqlConnect($login="root", $password="") {
     $this->login = $login ;
     $this->password = $password ;
   }

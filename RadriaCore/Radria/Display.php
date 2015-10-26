@@ -1,4 +1,5 @@
 <?php
+namespace RadriaCore\Radria;
 // Copyright 2001 - 2007 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // For licensing, reuse, modification and distribution see license.txt
   /**
@@ -18,8 +19,7 @@
    * @version 3.0.0
    * @access public
    */
-
-#namespace radriacore;
+use RadriaCore\Radria\BaseObject;
 
 class Display extends BaseObject {
     

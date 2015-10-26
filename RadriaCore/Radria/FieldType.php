@@ -1,4 +1,5 @@
 <?php
+namespace RadriaCore\Radria;
  /**
   *  Apply load and apply the registry rules.
   *
@@ -20,9 +21,9 @@
   * @version 4.0.0
   * @access public
   */
-  
-#namespace radriacore;
-  
+
+use RadriaCore\Radria\BaseObject;
+
 Class FieldType extends BaseObject {
 
     var $processed = "";

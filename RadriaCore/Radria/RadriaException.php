@@ -1,4 +1,5 @@
 <?php
+namespace RadriaCore\Radria;
 // Copyright 2001 - 2007 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // For licensing, reuse, modification and distribution see license.txt
    /**
@@ -10,7 +11,7 @@
     * @version 4.0
     * @package RadriaCore
     */
-class RadriaException extends Exception {
+class RadriaException extends \Exception {
    // Redefine the exception so message isn't optional
    public function __construct($message, $code = 0) {
        // some code

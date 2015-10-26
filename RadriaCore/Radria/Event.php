@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace RadriaCore\Radria;
 // Copyright 2001 - 2012 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // For licensing, reuse, modification and distribution see license.txt
   /**
@@ -23,7 +24,6 @@
    * @access public
    */
 
-#namespace radriacore;   
    
 class Event extends Display {
 

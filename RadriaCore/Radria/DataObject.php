@@ -1,4 +1,5 @@
 <?php
+namespace RadriaCore\Radria;
 // Copyright 2001 - 2012 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // Licensed under the LGPL V3 
 // For licensing, reuse, modification and distribution see license.txt
@@ -28,9 +29,10 @@
     * @access abstract
     */
 
-#namespace radriacore;
+use RadriaCore\Radria\mysql\SqlQuery;
+use RadriaCore\Radria\mysql\SqlConnect;
 
-Class DataObject extends sqlQuery {
+Class DataObject extends SqlQuery {
     
     public $dbCon;
     protected $squery;
@@ -60,7 +62,7 @@ Class DataObject extends sqlQuery {
      * @return true on success.
      */
     
-    function __construct(sqlConnect $conx=NULL, $table_name="") {
+    function __construct(SqlConnect $conx=NULL, $table_name="") {
         if (is_null($conx)) { $conx = $GLOBALS['conx']; }
         parent::__construct($conx);
         if (defined("RADRIA_LOG_RUN_DATAOBJECT")) {
@@ -91,6 +93,7 @@ Class DataObject extends sqlQuery {
      * @return database result set ressource
      */
     public function query($sql = "", $dbCon =0) {
+        $this->setLog($sql);
         parent::query($sql, $dbCon);
         // This sounds good but could be counter intuitive
         // Improved it by reseting the cursor to zero
@@ -626,7 +629,7 @@ Class DataObject extends sqlQuery {
      * @param mixte string Registry $regname Registry name or Registry object
      * @param sqlConnect connexion object to use to load that query.
      */
-    function setFields($xml_obj_fields="", $extrcon=0) {
+    function setFields($xml_obj_fields="", $extracon=0) {
         if (empty($xml_obj_fields)) { $xml_obj_fields = $this->getTable(); }
         if (is_object($xml_obj_fields)) {
             $this->fields = $xml_obj_fields;
@@ -770,6 +773,7 @@ Class DataObject extends sqlQuery {
      */
 
     function add($mix=null) {
+        var_dump('adding');
         $qGetFields = new sqlQuery($this->getDbCon()) ;
         $qGetFields->setTable($this->getTable()) ;
         $tableFields = $qGetFields->getTableField() ;
@@ -780,6 +784,9 @@ Class DataObject extends sqlQuery {
         $fields = $this->getValues();
         $this->setLogArray($fields);
         $table = $this->getTable();
+
+        $fieldlist = "";
+        $valuelist = "";
         if ($GLOBALS['cfg_local_db'] == "mysql") {
 
             while (list($key, $fieldname) = each($tableFields)) {
@@ -806,13 +813,13 @@ Class DataObject extends sqlQuery {
             $table = str_replace("`", "", $table);
             $fieldlist = ereg_replace(', $', '', $fieldlist);
             $valuelist = ereg_replace(', $', '', $valuelist);
-            $query = "INSERT INTO `$table` ($fieldlist) VALUES ($valuelist)";
+            $query = "INSERT INTO $table ($fieldlist) VALUES ($valuelist)";
 
         } elseif ($GLOBALS['cfg_local_db'] == "pgsql") {
 
             while (list($key, $fieldname) = each($tableFields)) {
                     if (strlen($fields[$fieldname])>0) {
-                        $this->setLog("\n For $key / $fieldname / $var ");
+                        $this->setLog("\n For $key / $fieldname /  ");
                         $no_database_type = true;
                         if (is_object($reg->fields[$fieldname])) {
                             if (strlen($reg->fields[$fieldname]->getRdata("databasetype"))>0) {
@@ -840,7 +847,7 @@ Class DataObject extends sqlQuery {
                                 $no_database_type = false;
                             }
                         } 
-                        if ($no_databasetype) {
+                        if ($no_database_type) {
 
                             $fieldlist .= "\"$fieldname\", ";
                             if ($fields[$fieldname] == "null") { 
@@ -876,7 +883,7 @@ Class DataObject extends sqlQuery {
             }
             $fieldlist = ereg_replace(', $', '', $fieldlist);
             $valuelist = ereg_replace(', $', '', $valuelist);
-            $query = "INSERT INTO `$table` ($fieldlist) VALUES ($valuelist)";
+            $query = "INSERT INTO '$table' ($fieldlist) VALUES ($valuelist)";
 
         }
         $this->setLog("\n Running query:\n".$query);
@@ -1107,6 +1114,5 @@ Class DataObject extends sqlQuery {
     //function getInsertId() {
     //    return $this->insert_id;
     //}
-
-}
+    }
 ?>
