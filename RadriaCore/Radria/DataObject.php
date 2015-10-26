@@ -773,7 +773,6 @@ Class DataObject extends SqlQuery {
      */
 
     function add($mix=null) {
-        var_dump('adding');
         $qGetFields = new sqlQuery($this->getDbCon()) ;
         $qGetFields->setTable($this->getTable()) ;
         $tableFields = $qGetFields->getTableField() ;
@@ -813,7 +812,7 @@ Class DataObject extends SqlQuery {
             $table = str_replace("`", "", $table);
             $fieldlist = ereg_replace(', $', '', $fieldlist);
             $valuelist = ereg_replace(', $', '', $valuelist);
-            $query = "INSERT INTO $table ($fieldlist) VALUES ($valuelist)";
+            $query = "INSERT INTO `$table` ($fieldlist) VALUES ($valuelist)";
 
         } elseif ($GLOBALS['cfg_local_db'] == "pgsql") {
 

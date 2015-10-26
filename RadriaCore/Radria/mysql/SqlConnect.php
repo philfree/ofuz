@@ -140,7 +140,7 @@ Class SqlConnect extends BaseObject {
    *  @param string login $login    Username to access the database
    *  @param  string password $password    Password to access the database
    */
-  function sqlConnect($login="root", $password="") {
+  function sqlConnect($login="", $password="") {
     $this->login = $login ;
     $this->password = $password ;
   }
