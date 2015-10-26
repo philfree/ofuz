@@ -24,7 +24,6 @@ namespace RadriaCore\Radria;
    * @access public
    *
    */
-#namespace radriacore;
 
 class BaseObject {
         var $objErrorId = 0;

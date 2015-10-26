@@ -24,7 +24,7 @@ namespace RadriaCore\Radria;
    * @access public
    */
 
-   
+   use RadriaCore\Radria\Display;
 class Event extends Display {
 
   /**  name of the event
