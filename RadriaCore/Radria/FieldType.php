@@ -51,6 +51,7 @@ Class FieldType extends BaseObject {
      */
 
     function __construct($field_name="", $rtype_rdata=0, $dbc=0) {
+        parent::__construct();
         $this->setFieldName($field_name);
         if (!is_resource($dbc)) {
             $dbc = $GLOBALS['conx'];

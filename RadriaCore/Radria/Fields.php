@@ -99,7 +99,7 @@ Class Fields  extends BaseObject {
      *
      */
     function __construct($table='', $dbc='') {
-      
+      parent::__construct();
       if (is_resource($table)) { $dbc = $table; $table = '';} // temporary hack for backward compatibility. (th4bc)
 	  if ($dbc=='') { $dbc = $GLOBALS['conx']; }
       if ($dbc != "") {

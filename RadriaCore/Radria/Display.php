@@ -41,7 +41,8 @@ class Display extends BaseObject {
    * @param String $page its the full URL of the page where the parameters need to be sent.
    * @access public
    */
-  function Display($page="") {
+  function __construct($page="") {
+      parent::__construct();
     $this->page = $page ;
     if (defined("RADRIA_LOG_RUN_DISPLAY")) {
         $this->setLogRun(RADRIA_LOG_RUN_DISPLAY);

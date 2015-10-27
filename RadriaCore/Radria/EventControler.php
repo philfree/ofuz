@@ -109,7 +109,7 @@ class EventControler extends BaseObject {
    * @param object sqlConnect $dbc
    * @access public
    */
-  function EventControler($dbc=0) {
+  function __construct($dbc=0) {
         parent::__construct();
         $this->dbc = $dbc ;
         if (defined("RADRIA_LOG_RUN_EVENTCONTROLER")) {
