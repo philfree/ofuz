@@ -31,6 +31,8 @@ namespace RadriaCore\Radria;
 
 use RadriaCore\Radria\mysql\SqlQuery;
 use RadriaCore\Radria\mysql\SqlConnect;
+use RadriaCore\Radria\Event;
+use RadriaCore\Radria\RadriaException;
 
 Class DataObject extends SqlQuery {
     
@@ -327,7 +329,7 @@ Class DataObject extends SqlQuery {
 						
                 } else { 
                     $this->setLog("\n DataObject class for ".$tablename." Doesn exist checking if the table exists");
-                    $q_tables = new sqlQuery($this->getDbCon()) ;
+                    $q_tables = new SqlQuery($this->getDbCon()) ;
                     $q_tables->getTables();
                     $table_found = false;
                     while($tables = $q_tables->fetchArray()) {
@@ -360,7 +362,7 @@ Class DataObject extends SqlQuery {
         } catch (RadriaException $e) {
             $this->setError("\n DataObject Exception: ".$e->getMessage());
             throw new RadriaException($e->getMessage()." when calling method:".$method);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             trigger_error("Method".$method." Not found", E_USER_ERROR);
         }
     }
