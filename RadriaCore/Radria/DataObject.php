@@ -367,6 +367,47 @@ Class DataObject extends SqlQuery {
         }
     }
 
+    public function getChild($parentObj)
+    {
+        // lets use the method as an ordering.
+
+        $q_tables = new sqlQuery($this->getDbCon());
+        $q_tables->getTables();
+        $table_found = false;
+        if (strlen($parentObj->getTable()) > 0) {
+            $tablename = $parentObj->getTable();
+        }
+        $parentObj->{$this->getPrimaryKey()} = $this->getPrimaryKeyValue();
+        $sqlQuery = "select * from " . $tablename . " where " . $this->getPrimaryKey() . "=" . $this->getPrimaryKeyValue();
+        $parentObj->query($sqlQuery);
+        $method_found = true;
+        return $parentObj;
+
+//            } else {
+//                $this->setLog("\n DataObject:".$class_name." Doesn't exist checking if the table ".$tablename." exists");
+//                while($tables = $q_tables->fetchArray()) {
+//                    if ($tablename == $tables[0])
+//                        $table_found = true;
+//                }
+//                if ($table_found) {
+//                    $this->setLog("\nDataObject Table Found creating new data object:".$tablename);
+//
+//                    $new_data_object = new DataObject($this->getDbCon());
+//                    $new_data_object->setTable($tablename);
+//                    $new_data_object->setPrimaryKey("id".$tablename);
+//                    $new_data_object->{$this->getPrimaryKey()} = $this->getData($this->getPrimaryKey());
+//                    $new_data_object->query("select * from ".$tablename." where ".$this->getPrimaryKey()."=".$this->getData($this->getPrimaryKey()));
+//                    $method_found = true;
+//                    //$this->{$tablename} = $new_data_object;
+//                    return $new_data_object; ;
+//                } else {
+//                    throw new RadriaException("Table:".$tablename." Not Found Could not create an Object");
+//                }
+//            }
+//
+//        }
+    }
+
     /**
      * __wakeup()
      * This magic method will 
