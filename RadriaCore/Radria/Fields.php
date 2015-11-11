@@ -1,4 +1,5 @@
 <?php
+namespace RadriaCore\Radria;
 // Copyright 2001 - 2007 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // For licensing, reuse, modification and distribution see license.txt
  /**
@@ -34,7 +35,8 @@
   * @access public
   */
 
-#namespace radriacore;
+use RadriaCore\Radria\BaseObject;
+use RadriaCore\Radria\mysql\SqlQuery;
 
 Class Fields  extends BaseObject {
     /**  Name of the folder where serialized fields are.
@@ -67,7 +69,7 @@ Class Fields  extends BaseObject {
     var $datejsinclude = true;
 
     /**  The database connexion where the regtable and table to apply the registry are.
-    * @var sqlConnect $dbc database connexion
+    * @var SqlConnect $dbc database connexion
     */
 
     var $dbc ;
@@ -97,7 +99,7 @@ Class Fields  extends BaseObject {
      *
      */
     function __construct($table='', $dbc='') {
-      
+      parent::__construct();
       if (is_resource($table)) { $dbc = $table; $table = '';} // temporary hack for backward compatibility. (th4bc)
 	  if ($dbc=='') { $dbc = $GLOBALS['conx']; }
       if ($dbc != "") {
@@ -211,9 +213,9 @@ Class Fields  extends BaseObject {
 
     function registryFromTable($table_name) {
 		if (is_object($this->dbc)) {
-			$qTable = new sqlQuery($this->dbc);
+			$qTable = new SqlQuery($this->dbc);
 		} else {
-			$qTable = new sqlQuery($GLOBALS['conx']) ;
+			$qTable = new SqlQuery($GLOBALS['conx']) ;
 		}
         $fields = $qTable->getTableField($table_name) ;
         if (is_array($fields)) {

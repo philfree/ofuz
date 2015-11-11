@@ -1,4 +1,5 @@
 <?php
+namespace RadriaCore\Radria;
 // Copyright 2001 - 2012 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // Licensed under the LGPL 2.0 
 // For licensing details, reuse, modification and distribution see license.txt
@@ -23,7 +24,6 @@
    * @access public
    *
    */
-#namespace radriacore;
 
 class BaseObject {
         var $objErrorId = 0;
@@ -117,6 +117,7 @@ class BaseObject {
                     @fclose($fp) ;
                 }
                 if(is_writable($this->objLogFilesPath.$this->objErrorFile)) {
+                    date_default_timezone_set('UTC');
                     $logm = "\n".date("Y/m/d - H:m:i") ;
                     $logm.= " - (".get_class($this) ;
                     $logm.= ") - ".$message." uri : ".$requesturi." referrer : ".$referer."\n" ;

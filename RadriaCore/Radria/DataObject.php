@@ -1,4 +1,5 @@
 <?php
+namespace RadriaCore\Radria;
 // Copyright 2001 - 2012 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // Licensed under the LGPL V3 
 // For licensing, reuse, modification and distribution see license.txt
@@ -28,9 +29,12 @@
     * @access abstract
     */
 
-#namespace radriacore;
+use RadriaCore\Radria\mysql\SqlQuery;
+use RadriaCore\Radria\mysql\SqlConnect;
+use RadriaCore\Radria\Event;
+use RadriaCore\Radria\RadriaException;
 
-Class DataObject extends sqlQuery {
+Class DataObject extends SqlQuery {
     
     public $dbCon;
     protected $squery;
@@ -60,7 +64,7 @@ Class DataObject extends sqlQuery {
      * @return true on success.
      */
     
-    function __construct(sqlConnect $conx=NULL, $table_name="") {
+    function __construct(SqlConnect $conx=NULL, $table_name="") {
         if (is_null($conx)) { $conx = $GLOBALS['conx']; }
         parent::__construct($conx);
         if (defined("RADRIA_LOG_RUN_DATAOBJECT")) {
@@ -91,6 +95,7 @@ Class DataObject extends sqlQuery {
      * @return database result set ressource
      */
     public function query($sql = "", $dbCon =0) {
+        $this->setLog($sql);
         parent::query($sql, $dbCon);
         // This sounds good but could be counter intuitive
         // Improved it by reseting the cursor to zero
@@ -324,7 +329,7 @@ Class DataObject extends sqlQuery {
 						
                 } else { 
                     $this->setLog("\n DataObject class for ".$tablename." Doesn exist checking if the table exists");
-                    $q_tables = new sqlQuery($this->getDbCon()) ;
+                    $q_tables = new SqlQuery($this->getDbCon()) ;
                     $q_tables->getTables();
                     $table_found = false;
                     while($tables = $q_tables->fetchArray()) {
@@ -357,9 +362,50 @@ Class DataObject extends sqlQuery {
         } catch (RadriaException $e) {
             $this->setError("\n DataObject Exception: ".$e->getMessage());
             throw new RadriaException($e->getMessage()." when calling method:".$method);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             trigger_error("Method".$method." Not found", E_USER_ERROR);
         }
+    }
+
+    public function getChild($parentObj)
+    {
+        // lets use the method as an ordering.
+
+        $q_tables = new sqlQuery($this->getDbCon());
+        $q_tables->getTables();
+        $table_found = false;
+        if (strlen($parentObj->getTable()) > 0) {
+            $tablename = $parentObj->getTable();
+        }
+        $parentObj->{$this->getPrimaryKey()} = $this->getPrimaryKeyValue();
+        $sqlQuery = "select * from " . $tablename . " where " . $this->getPrimaryKey() . "=" . $this->getPrimaryKeyValue();
+        $parentObj->query($sqlQuery);
+        $method_found = true;
+        return $parentObj;
+
+//            } else {
+//                $this->setLog("\n DataObject:".$class_name." Doesn't exist checking if the table ".$tablename." exists");
+//                while($tables = $q_tables->fetchArray()) {
+//                    if ($tablename == $tables[0])
+//                        $table_found = true;
+//                }
+//                if ($table_found) {
+//                    $this->setLog("\nDataObject Table Found creating new data object:".$tablename);
+//
+//                    $new_data_object = new DataObject($this->getDbCon());
+//                    $new_data_object->setTable($tablename);
+//                    $new_data_object->setPrimaryKey("id".$tablename);
+//                    $new_data_object->{$this->getPrimaryKey()} = $this->getData($this->getPrimaryKey());
+//                    $new_data_object->query("select * from ".$tablename." where ".$this->getPrimaryKey()."=".$this->getData($this->getPrimaryKey()));
+//                    $method_found = true;
+//                    //$this->{$tablename} = $new_data_object;
+//                    return $new_data_object; ;
+//                } else {
+//                    throw new RadriaException("Table:".$tablename." Not Found Could not create an Object");
+//                }
+//            }
+//
+//        }
     }
 
     /**
@@ -626,7 +672,7 @@ Class DataObject extends sqlQuery {
      * @param mixte string Registry $regname Registry name or Registry object
      * @param sqlConnect connexion object to use to load that query.
      */
-    function setFields($xml_obj_fields="", $extrcon=0) {
+    function setFields($xml_obj_fields="", $extracon=0) {
         if (empty($xml_obj_fields)) { $xml_obj_fields = $this->getTable(); }
         if (is_object($xml_obj_fields)) {
             $this->fields = $xml_obj_fields;
@@ -780,6 +826,9 @@ Class DataObject extends sqlQuery {
         $fields = $this->getValues();
         $this->setLogArray($fields);
         $table = $this->getTable();
+
+        $fieldlist = "";
+        $valuelist = "";
         if ($GLOBALS['cfg_local_db'] == "mysql") {
 
             while (list($key, $fieldname) = each($tableFields)) {
@@ -812,7 +861,7 @@ Class DataObject extends sqlQuery {
 
             while (list($key, $fieldname) = each($tableFields)) {
                     if (strlen($fields[$fieldname])>0) {
-                        $this->setLog("\n For $key / $fieldname / $var ");
+                        $this->setLog("\n For $key / $fieldname /  ");
                         $no_database_type = true;
                         if (is_object($reg->fields[$fieldname])) {
                             if (strlen($reg->fields[$fieldname]->getRdata("databasetype"))>0) {
@@ -840,7 +889,7 @@ Class DataObject extends sqlQuery {
                                 $no_database_type = false;
                             }
                         } 
-                        if ($no_databasetype) {
+                        if ($no_database_type) {
 
                             $fieldlist .= "\"$fieldname\", ";
                             if ($fields[$fieldname] == "null") { 
@@ -1107,6 +1156,5 @@ Class DataObject extends sqlQuery {
     //function getInsertId() {
     //    return $this->insert_id;
     //}
-
-}
+    }
 ?>

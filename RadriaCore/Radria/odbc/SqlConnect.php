@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace RadriaCore\Radria\odbc;
 // Copyright 2001 - 2007 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // For licensing, reuse, modification and distribution see license.txt
    /**
@@ -20,8 +21,9 @@
     * @package RadriaCoreODBC
     * @access public
     */
+use RadriaCore\Radria\BaseObject;
 
-Class sqlConnect extends BaseObject {
+Class SqlConnect extends BaseObject {
 
   /**  Hostname where the database is hosted
    * @var String $hostname

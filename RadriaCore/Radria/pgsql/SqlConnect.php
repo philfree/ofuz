@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace RadriaCore\Radria\pgsql;
 // Copyright 2001 - 2007 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // For licensing, reuse, modification and distribution see license.txt
   /**
@@ -18,7 +19,7 @@
     * @access public
     */
 
-Class sqlConnect {
+Class SqlConnect {
    /**  Hostname where the database is hosted
    * @var String $hostname
    * @access private

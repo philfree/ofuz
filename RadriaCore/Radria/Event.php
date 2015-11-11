@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace RadriaCore\Radria;
 // Copyright 2001 - 2012 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // For licensing, reuse, modification and distribution see license.txt
   /**
@@ -23,8 +24,7 @@
    * @access public
    */
 
-#namespace radriacore;   
-   
+   use RadriaCore\Radria\Display;
 class Event extends Display {
 
   /**  name of the event
@@ -128,8 +128,9 @@ class Event extends Display {
    * @constant RADRIA_EVENT_SECURE to set the event to secure or none secure mode
    * @access public
    */
-  function Event($name="", $action="") {
+  function __construct($name="", $action="") {
     global $PHP_SELF, $QUERY_STRING ;
+      parent::__construct();
     if (defined("RADRIA_LOG_RUN_EVENT")) {
         $this->setLogRun(RADRIA_LOG_RUN_EVENT);
     }

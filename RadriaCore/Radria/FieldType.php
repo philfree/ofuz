@@ -1,4 +1,5 @@
 <?php
+namespace RadriaCore\Radria;
  /**
   *  Apply load and apply the registry rules.
   *
@@ -20,9 +21,9 @@
   * @version 4.0.0
   * @access public
   */
-  
-#namespace radriacore;
-  
+
+use RadriaCore\Radria\BaseObject;
+
 Class FieldType extends BaseObject {
 
     var $processed = "";
@@ -50,6 +51,7 @@ Class FieldType extends BaseObject {
      */
 
     function __construct($field_name="", $rtype_rdata=0, $dbc=0) {
+        parent::__construct();
         $this->setFieldName($field_name);
         if (!is_resource($dbc)) {
             $dbc = $GLOBALS['conx'];

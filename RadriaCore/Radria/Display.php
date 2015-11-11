@@ -1,4 +1,5 @@
 <?php
+namespace RadriaCore\Radria;
 // Copyright 2001 - 2007 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // For licensing, reuse, modification and distribution see license.txt
   /**
@@ -18,8 +19,7 @@
    * @version 3.0.0
    * @access public
    */
-
-#namespace radriacore;
+use RadriaCore\Radria\BaseObject;
 
 class Display extends BaseObject {
     
@@ -41,7 +41,8 @@ class Display extends BaseObject {
    * @param String $page its the full URL of the page where the parameters need to be sent.
    * @access public
    */
-  function Display($page="") {
+  function __construct($page="") {
+      parent::__construct();
     $this->page = $page ;
     if (defined("RADRIA_LOG_RUN_DISPLAY")) {
         $this->setLogRun(RADRIA_LOG_RUN_DISPLAY);

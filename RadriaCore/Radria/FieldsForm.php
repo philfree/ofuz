@@ -1,4 +1,5 @@
 <?php
+namespace RadriaCore\Radria;
    /**
     * FieldsForm
     * simple class to apply a Registry 

@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace RadriaCore\Radria;
  /**
    * XML Base Load data base class
    * Basic XML manipulation, will need rewrite

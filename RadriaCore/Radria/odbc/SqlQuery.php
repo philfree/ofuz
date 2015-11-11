@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace RadriaCore\Radria\odbc;
 // Copyright 2001 - 2007 SQLFusion LLC, Author: Philippe Lewicki           info@sqlfusion.com
 // For licensing, reuse, modification and distribution see license.txt
    /**
@@ -26,10 +27,9 @@
     * @access public
     */
 
+use RadriaCore\Radria\BaseObject;
     
-    
-    
-Class sqlQuery extends BaseObject {
+Class SqlQuery extends BaseObject {
   /**  Name of the table used in the query, it can be an array for multiple tables.
    * @var String $table
    */
