@@ -29,5 +29,4 @@ class FieldsForm extends Fields {
     function __set($field_name, $value) {
         $this->datafields[$field_name] = $value;
     }
-
 }

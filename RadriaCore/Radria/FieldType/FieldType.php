@@ -1,5 +1,5 @@
 <?php
-namespace RadriaCore\Radria;
+namespace RadriaCore\Radria\FieldType;
  /**
   *  Apply load and apply the registry rules.
   *

@@ -38,7 +38,7 @@ namespace RadriaCore\Radria;
 use RadriaCore\Radria\BaseObject;
 use RadriaCore\Radria\mysql\SqlQuery;
 
-Class Fields  extends BaseObject {
+class Fields  extends BaseObject {
     /**  Name of the folder where serialized fields are.
      * @var String $tbl_registry
      */
