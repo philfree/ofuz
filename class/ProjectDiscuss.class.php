@@ -27,7 +27,7 @@
    * 
    */
 
-
+ 
 class ProjectDiscuss extends Note {
 
     public $table = 'project_discuss';
@@ -55,7 +55,10 @@ class ProjectDiscuss extends Note {
     /**
       * Overriding add() method from the parent class
     */
+    
     function add() {
+        
+        $Parsedown = new Parsedown();
         $do_NoteDraft = new NoteDraft();
         $idnote_draft = $do_NoteDraft->isDraftExist($this->idproject_task,'project_discuss');
         if($idnote_draft){
@@ -72,9 +75,10 @@ class ProjectDiscuss extends Note {
 
         $this->query("INSERT INTO project_discuss (idproject_task,discuss,date_added,document,hours_work,iduser,discuss_edit_access,type)
                       VALUES 
-                      (".$this->idproject_task.",'".$project_discuss."','".$this->date_added."','".$this->document."','".$this->hours_work."','".$this->iduser."','".$this->discuss_edit_access."','Note')");
+                      (".$this->idproject_task.",'".$Parsedown->text($project_discuss)."','".$this->date_added."','".$this->document."','".$this->hours_work."','".$this->iduser."','".$this->discuss_edit_access."','Note')");
                       
         $this->setPrimaryKeyValue($this->getInsertId($this->getTable(), $this->getPrimaryKey()));
+        //$Parsedown->free();
     }
 
     /**
@@ -125,6 +129,7 @@ class ProjectDiscuss extends Note {
       * @param idproject_task
     */
     function getProjectTaskDiscussions($idproject_task) {
+      echo "select * from project_discuss where idproject_task = ".$idproject_task." order by date_added desc";
         $this->query("select * from project_discuss where idproject_task = ".$idproject_task." order by date_added desc");
     }
 
@@ -287,6 +292,7 @@ class ProjectDiscuss extends Note {
      * @param Eventcontroler
      */
     function eventSendDiscussMessageByEmail(EventControler $event_controler) {
+
       $Parsedown = new Parsedown();
       $this->setLog("\n eventSendDiscussMessageByEmail: starting (".date("Y/m/d H:i:s"));
 
@@ -319,6 +325,7 @@ class ProjectDiscuss extends Note {
                   $message_html = nl2br(stripslashes(($Parsedown->text($event_controler->fields['discuss']).$doc_text)));
                   //$message_txt = stripslashes($event_controler->fields['discuss'].$doc_text);
                   $message_txt = stripslashes($Parsedown->text($event_controler->fields['discuss'].$doc_text));
+
                   $email_data = Array('project-name' => $_SESSION['do_project']->name,
 		                    'project-link' => $project_link,
                                     'discussion-owner' => $_SESSION['do_User']->getFullName(),
@@ -327,7 +334,8 @@ class ProjectDiscuss extends Note {
                                     'message_txt' => $message_txt,
                                     'message_html' => $message_html,
                                     'project-task-link' => $project_task_url
-                                    );;
+                                    );
+                  //print_r($email_data);exit;
                  $do_discussion_email_setting = new DiscussionEmailSetting();
                  if ($_SESSION['do_project_task']->drop_box_code < 10 || count($co_workers) > 19) {
                     foreach ($co_workers as $co_worker) {
@@ -502,6 +510,12 @@ class ProjectDiscuss extends Note {
         }
         if($this->time_spent_on_task){ $where .= " AND project_discuss.hours_work <>'0.00' ";}
         if($this->set_user_search) { $where .= " AND project_discuss.iduser = ".$this->for_user ; }
+        /*echo "SELECT project_discuss.discuss,project_discuss.date_added,document,
+                  project_discuss.iduser,project_discuss.hours_work,
+                  project_task.idproject, project_task.idtask, project_task.idproject_task FROM project_task
+                  left JOIN project_discuss ON project_discuss.idproject_task = project_task.idproject_task
+                  ".$where." order by project_task.idproject,project_task.idtask 
+                  ";*/
         $qry = "SELECT project_discuss.discuss,project_discuss.date_added,document,
                   project_discuss.iduser,project_discuss.hours_work,
                   project_task.idproject, project_task.idtask, project_task.idproject_task FROM project_task
@@ -1203,6 +1217,7 @@ class ProjectDiscuss extends Note {
 		    $this->document = $fields["document"];
 		    $this->hours_work = $fields["hours_work"];
 		    $this->iduser = $_SESSION['do_User']->iduser;
+        
 		    $this->query("INSERT INTO project_discuss (idproject_task,discuss,date_added,document,hours_work,iduser) VALUES (".$this->idproject_task.",'".$this->discuss."','".$this->date_added."','".$this->document."',".$this->hours_work.",".$this->iduser.")");
 	    }
     }	

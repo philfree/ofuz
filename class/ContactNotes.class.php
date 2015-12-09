@@ -143,6 +143,8 @@ class ContactNotes extends Note {
 
     function add() {
 	  if (strlen($this->date_added) == 0) { $this->date_added = date("Y-m-d"); }
+      $Parsedown = new Parsedown();
+      $this->note = $Parsedown->text($this->note);
       parent::add();    
         // This below was a try that didn't worked as to global. Created the eventFormatNoteInsert eventaction instead.
         // $this->note = $this->quote(htmlentities($this->note));  
@@ -200,6 +202,7 @@ class ContactNotes extends Note {
     }
 
     function eventAjaxGetEditForm(EventControler $evtcl){ 
+        $Parsedown = new Parsedown();
         $_SESSION['ContactNoteEditSave']->setApplyRegistry(false, "Form");
         $html = '';
         $curdiv = $evtcl->curdiv;
@@ -224,7 +227,7 @@ class ContactNotes extends Note {
             $_SESSION['ContactNoteEditSave']->setRegistry("ofuz_add_contact_note");
             $_SESSION['ContactNoteEditSave']->setApplyRegistry(true, "Form");
 
-            $html .= '<br />'._('Note :').'<br /><textarea id="note_edit" name = "fields[note]" rows="3" cols="110">'.$note_val.'</textarea><br />';
+            $html .= '<br />'._('Note :').'<br /><textarea id="note_edit" name = "fields[note]" rows="3" cols="110">'.$Parsedown->text($note_val).'</textarea><br />';
             $html .= '<div width="100%">';
             $html .= '<div id="edit_note_more" style="position:relative;float:left;text-align:left;width:50%"><a href="#" onclick ="fnEditNoteMoreOpts();return false;">'._('More Options').'</a></div>';
             $html .= '<div style="position:relative;float:left;text-align:left;width:50%"><a href="javascript:;" onclick="showProjectList();">'._('Attached to a project').'</a>';
@@ -283,7 +286,8 @@ class ContactNotes extends Note {
      * It will modify the event_controler values.
      */ 
     function eventFormatNoteInsert(EventControler $event_controler) {
-          $Parsedown = new Parsedown();
+
+          $Parsedown = new Parsedown();  
           $do_NoteDraft = new NoteDraft();
           $idnote_draft = $do_NoteDraft->isDraftExist($this->idcontact,'contact_note');
           if($idnote_draft){
@@ -348,6 +352,7 @@ class ContactNotes extends Note {
     function eventPrioritySortNotes(EventControler $event_controler) {
         $this->query('SELECT priority FROM contact_note WHERE idcontact_note = '.$event_controler->idnote);
         $newpriority = ($this->getData('priority') > 0) ? 0 : 1;
+        echo 'UPDATE contact_note SET priority = '.$newpriority.' WHERE idcontact_note = '.$event_controler->idnote;exit;
         $this->query('UPDATE contact_note SET priority = '.$newpriority.' WHERE idcontact_note = '.$event_controler->idnote);
     }
 
@@ -367,7 +372,9 @@ class ContactNotes extends Note {
 	}
 
 	function autoLoadNotesOnScrollDown() {
-    $Parsedown = new Parsedown();
+
+	   $Parsedown = new Parsedown();
+
 		if($_SESSION['ContactNotes']->notes_count >= $_SESSION['ContactNotes']->sql_qry_start) {
 			$_SESSION['ContactNotes']->sql_qry_start = $_SESSION['ContactNotes']->sql_qry_start + $_SESSION['ContactNotes']->sql_view_limit;
 

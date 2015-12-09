@@ -360,6 +360,8 @@ class Note extends DataObject {
         }
 
         $processed = $this->htmlCleanUp($note);
+        $Parsedown = new Parsedown();
+        $processed = $Parsedown->text($processed); 
         $fields[$from] = $processed;
         $event_controler->fields = $fields;
     }
