@@ -9,7 +9,16 @@
 
 include_once('config.php');
 
- $admin_emails = array(1 =>'philippe@htmlfusion.com',2=>'elsa@htmlfusion.com',3=>'jared@htmlfusion.com');
+$admin_emails = array(
+    1 =>'philippe@htmlfusion.com',
+    2=>'elsa@htmlfusion.com',
+    3=>'jared@htmlfusion.com', 
+    4=>'rafai@htmlfusion.com',
+    5=>'jesse@htmlfusion.com',
+    6=>'evan@htmlfusion.com',
+    7=>'pedro@htmlfusion.com',
+    8=>'binh@htmlfusion.com'
+  );
  $type = array(1=>'Today',2=>'PreviousDay',3=>'LastWeek');
  $message_sent = 0;
  $text ="";

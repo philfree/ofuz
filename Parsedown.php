@@ -13,8 +13,7 @@
 #
 #
 
-
-class Parsedown extends DataObject
+class Parsedown
 {
     # ~
 
