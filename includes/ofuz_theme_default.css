@@ -641,15 +641,36 @@ padding-top: 66px;
     width: 231px;
     margin: 0px 20px;
     overflow: hidden;
+    border-style:groove;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     height: auto;}
 
 .submitaction { width: 228px; 
     float: left;
     padding: 4px;
     color: white;
+    /*background-color: #C25296;*/
     background-color: #C25296;
-    border-color: #c25296;
+    background-repeat: repeat-x;
+
+    /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#C25296), to(#D584BF));
+
+    /* Safari 5.1, Chrome 10+ */
+    background: -webkit-linear-gradient(top, #D584BF, #C25296);
+
+    /* Firefox 3.6+ */
+    background: -moz-linear-gradient(top, #D584BF, #C25296);
+
+    /* IE 10 */
+    background: -ms-linear-gradient(top, #D584BF, #C25296);
+
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, #D584BF, #C25296);
+    /*border-color: #c25296;*/
     border-radius: 5px;
+    border-color: firebrick;
     font-size: 15px;
     font-weight: bold;}
     
