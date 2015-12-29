@@ -637,7 +637,7 @@ padding-top: 66px;
 
 /*worklog entry form css in index page*/
 .worklog_form { padding: 10px;
-    background-color: #f7f7ed;
+    background-color: #F7F7EF;
     width: 231px;
     margin: 0px 20px;
     overflow: hidden;
@@ -651,7 +651,7 @@ padding-top: 66px;
   font-size: 11pt;
   font-weight: bold;
   color: #000616;
-  background-color: #EFEFE5;
+  background-color: #ECECE2;
   width: 241px;
   height: 7px;
   background-size: 157px 60px;
@@ -686,5 +686,9 @@ padding-top: 66px;
     border-color: #aa1771;
     font-size: 15px;
     font-weight: bold;}
+    
+.worklog_form div.worklog_input{
+	margin-bottom: 4px;
+}
     
 /*end of worklog entry*/

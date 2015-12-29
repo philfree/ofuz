@@ -190,16 +190,15 @@ $e_editForm->setSecure(false);
                 <!--</span>-->
                 <div class="worklog_form">
                         <?php echo '<div class="worklogentry_headline">', _('Worklog Entry').'</div>', "<br /></br/>";?>
-                        <?php echo _('Task Number').':' .$discussFields->idproject_task;?><br /><br />
-                        <?php echo _('Date').': '.$discussFields->date_added; ?><br /><br />
-                        <?php echo _('Hours Worked').':<br /> '.$discussFields->hours_work; ?>  <br />
+                        <?php echo '<div class="worklog_input">',_('Task Number').':</div>' .$discussFields->idproject_task;?><br /><br />
+                        <?php echo '<div class="worklog_input">',_('Date').':</div> '.$discussFields->date_added; ?><br /><br />
+                        <?php echo '<div class="worklog_input">',_('Hours Worked').':</div>'.$discussFields->hours_work; ?>  <br />
                         <br/>  
-                        <?php echo _('Notes').': '.$discussFields->discuss; ?>  <br />
-                        <br/>  
-                        <?php echo _('Attach a file').': '.$discussFields->document; ?> <br />
+                        <?php echo '<div class="worklog_input">',_('Notes').':</div> '.$discussFields->discuss; ?><br/>
+                        <?php echo '<div class="worklog_input">',_('Attach a file').':</div> '.$discussFields->document; ?>
                         <br/>
-                       
-                        <?php echo _('Who can Edit ? ') ?><br />
+                       <br/>
+                        <?php echo '<div class="worklog_input">',_('Who can Edit ? ') .'</div>'?>
                         <input type="radio" name="fields[discuss_edit_access]" value="user" checked> <?php echo _('Just me');?> &nbsp;&nbsp;
                         <input type="radio" name="fields[discuss_edit_access]" value="user coworker"><?php echo _('Co-Workers and I');?>
                         <br /><br />
