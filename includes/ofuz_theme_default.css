@@ -641,16 +641,28 @@ padding-top: 66px;
     width: 231px;
     margin: 0px 20px;
     overflow: hidden;
-    border-style:groove;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+    border-style:solid;
+    border-radius:3px;
+    border-width:1px;
+    border-color:#C5C2BE;
     height: auto;}
 
+.worklogentry_headline {
+  font-size: 11pt;
+  font-weight: bold;
+  color: #000616;
+  background-color: #EFEFE5;
+  width: 241px;
+  height: 7px;
+  background-size: 157px 60px;
+  padding: 19px;
+  border: -33px solid navy;
+  margin: -17px;
+}
 .submitaction { width: 228px; 
     float: left;
-    padding: 4px;
+    padding: 6px;
     color: white;
-    /*background-color: #C25296;*/
     background-color: #C25296;
     background-repeat: repeat-x;
 
@@ -669,8 +681,9 @@ padding-top: 66px;
     /* Opera 11.10+ */
     background: -o-linear-gradient(top, #D584BF, #C25296);
     /*border-color: #c25296;*/
-    border-radius: 5px;
-    border-color: firebrick;
+    border-radius: 4px;
+    border-width:1px;
+    border-color: #aa1771;
     font-size: 15px;
     font-weight: bold;}
     

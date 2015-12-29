@@ -181,11 +181,15 @@ $e_editForm->setSecure(false);
                 ?>
                 
                 
-                <!--<span id="more_options"><a href="#"><?php //echo _('More Options'); ?></a>-->
-                  <!--<a href="#" onclick="showOpt(); return false;"><?php //echo _('More Options'); ?></a>-->
+                <!--<span id="more_options"><a href="#">-->
+                <?php //echo _('More Options'); 
+                ?><!--</a>-->
+                  <!--<a href="#" onclick="showOpt(); return false;">-->
+                  <?php //echo _('More Options'); 
+                  ?><!--</a>-->
                 <!--</span>-->
                 <div class="worklog_form">
-                        <?php echo '<div class="headline_fuscia">', _('Worklog Entry').'</div>', "<br />";?>
+                        <?php echo '<div class="worklogentry_headline">', _('Worklog Entry').'</div>', "<br /></br/>";?>
                         <?php echo _('Task Number').':' .$discussFields->idproject_task;?><br /><br />
                         <?php echo _('Date').': '.$discussFields->date_added; ?><br /><br />
                         <?php echo _('Hours Worked').':<br /> '.$discussFields->hours_work; ?>  <br />
