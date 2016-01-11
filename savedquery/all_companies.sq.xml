@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+  <savedquery>
+    <idsavedquery><![CDATA[]]></idsavedquery>
+    <qname><![CDATA[all_companies]]></qname>
+    <query><![CDATA[
+    SELECT company.idcompany as company_id, 
+           count(contact.idcontact) as total_contacts,
+           company.name as company_name,
+           company_email.email_address,
+           company_email.email_type,
+           company_phone.phone_number,
+           company_phone.phone_type
+     FROM company LEFT JOIN company_email on company.idcompany = company_email.idcompany 
+                  LEFT JOIN company_phone on company.idcompany = company_phone.idcompany
+                  LEFT JOIN contact ON (contact.idcompany=company.idcompany)
+     WHERE company.iduser = [do_User->iduser]
+     GROUP BY company.idcompany
+]]></query>
+    <qorder><![CDATA[]]></qorder>
+    <qpos><![CDATA[]]></qpos>
+    <tablenames><![CDATA[company]]></tablenames>
+  </savedquery>

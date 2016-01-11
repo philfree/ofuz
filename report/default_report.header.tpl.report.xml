@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+  <report>
+    <name><![CDATA[Name of the Report]]></name>
+    <idreport><![CDATA[0]]></idreport>
+    <descr><![CDATA[
+    // Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+    This is the header report of the default tpl]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[
+<?php  global $orderdir, $orderfield, $recordpos, $mydb_num, $PHP_SELF, $cfg_eventcontroler  ;
+ $currentpage = basename($_SERVER\['PHP_SELF'\]) ;
+ $revent = new RecordEvent("[tablename]") ;
+ $oevent = new Event("mydb.tableorder") ;
+ $revent->setFormPage("[formpage]");
+ $revent->setPrimaryKeyVar("[primarykey]");
+ $revent->addParamToSave("primarykey");
+ $revent->addParamToSave("primarykeyvar");
+ $revent->addParamToSave("primarykeyvalue");
+ if (strlen("[registryname]") > 0) {
+    $revent->addParam("registryname", "[registryname]");
+ }
+ $revent->addParam("goto", $currentpage) ;
+ $revent->addParam("deleteconfirm", "no") ;
+ $oevent->addParam("goto", $currentpage) ;
+ $revent->addParam("mydb_num", $mydb_num) ;
+ $oevent->addParam("orderfield", $orderfield) ;
+ $oevent->addParam("orderdir", $orderdir) ;
+ $oevent->addParam("recordpos", $recordpos) ;
+ $oevent->addParam("mydb_num", $mydb_num) ;
+ if ($cfg_eventcontroler == "") { $cfg_eventcontroler = "[eventcontroler]"; }
+ $revent->setEventControler($cfg_eventcontroler);
+ $oevent->setEventControler($cfg_eventcontroler);
+ $revent->requestSave("manageData", $currentpage) ; ?>
+<a href="<?php echo $revent->getUrlAdd()?>" class="linkadd">Add New</a>
+<table class="tableform">
+  <tr>
+  <td class="tabletdheader" colspan="2"></td>
+    ]]></header>
+    <row><![CDATA[
+  <td class="tabletdheader">
+<?php  if ($orderfield == "[fieldname]" && $orderdir=="ASC") {
+  $neworderdir = "DESC" ;
+} else {
+$neworderdir = "ASC";
+} $oevent->editParam("recordpos", 0) ;
+$oevent->editParam("orderfield", "[fieldname]") ;
+$oevent->editParam("orderdir", $neworderdir) ;?><a href="<?php echo $oevent->getUrl();?>" class="linkheader">[fieldlabel]</a>
+   </td>
+    ]]></row>
+    <footer><![CDATA[
+</tr>
+    ]]></footer>
+    <recprow><![CDATA[Number of records that need to be proceed for each row template]]></recprow>
+  </report>

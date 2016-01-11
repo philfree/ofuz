@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[56]]></idform>
+    <name><![CDATA[portal_note_form]]></name>
+    <descr><![CDATA[]]></descr>
+    <idquery><![CDATA[]]></idquery>
+    <header><![CDATA[]]></header>
+    <row><![CDATA[
+                 
+                 [note]
+                 <span id="more_options"><a href="#" onclick="showOpt();"><?php echo _('More Options') ;?></a></span>
+                 <span id="hide_more_options" style="display:none;"><a href="#" onclick="hideMoreOpt();"><?php echo _('Hide Options'); ?></a></span>
+                 <div class="div_right">
+                   <div id="notes_options" style="display:none;">
+                     <?php echo _('Attach a file:'); ?> [document]
+                     <br/>
+                     <?php echo _('When this happened:'); ?> [date_added]
+                   </div>
+                        </div>
+        ]]></row>
+                 <footer><![CDATA[<div class="section20">
+                     <input type="submit" value="<?php echo _('Add this note');?>" style="float: right;" />
+                   </div>]]></footer>
+  </form>

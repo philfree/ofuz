@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idexpense">
+    <rdata type="fieldtype">FieldTypeInt</rdata>
+    <rdata type="label">idexpense</rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="hidden">1</rdata>
+  </rfield>
+  <rfield name="suplier">
+    <rdata type="fieldtype">FieldTypeListBox</rdata>
+    <rdata type="label">Supplier</rdata>
+    <rdata type="list">suplier:idsuplier:company:0</rdata>
+    <rdata type="hidden">1</rdata>
+  </rfield>
+  <rfield name="description">
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+    <rdata type="label">Description</rdata>
+    <rdata type="textline">60:255</rdata>
+  </rfield>
+  <rfield name="daterecieve">
+    <rdata type="fieldtype">FieldTypeDateSQL</rdata>
+    <rdata type="label">Received</rdata>
+    <rdata type="datesql">m/d/Y</rdata>
+  </rfield>
+  <rfield name="amount">
+    <rdata type="fieldtype">FieldTypeFloat</rdata>
+    <rdata type="label">Amount</rdata>
+    <rdata type="textline">5:20</rdata>
+  </rfield>
+  <rfield name="datepayed">
+    <rdata type="fieldtype">FieldTypeDateSQL</rdata>
+    <rdata type="label">Payed</rdata>
+    <rdata type="datesql">m/d/Y</rdata>
+  </rfield>
+  <rfield name="type">
+    <rdata type="fieldtype">FieldTypeListBox</rdata>
+    <rdata type="label">Type</rdata>
+    <rdata type="list">expensetype:idexpensetype:name:0</rdata>
+  </rfield>
+  <rfield name="checknum">
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+    <rdata type="label">Check Number</rdata>
+    <rdata type="textline">10:25</rdata>
+  </rfield>
+</registry>

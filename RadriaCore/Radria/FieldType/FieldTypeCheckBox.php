@@ -1,6 +1,8 @@
 <?php
 namespace RadriaCore\Radria\FieldType;
 
+use RadriaCore\Radria\EventControler;
+
 /**
  * Class FieldTypeCheckBox RegistryField class
  * Possibility:

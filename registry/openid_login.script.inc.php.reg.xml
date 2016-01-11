@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="Next_Page">
+    <rdata type="fieldtype">PageBuilderFilesListBox</rdata>
+    <rdata type="label">Next Page</rdata>
+  </rfield>
+  <rfield name="err_string">
+    <rdata type="default">Invalid OpenId</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+    <rdata type="textline">30:80</rdata>
+    <rdata type="label">Error Message</rdata>
+    <rdata type="text">1</rdata>
+  </rfield>
+  <rfield name="Registration_Page">
+    <rdata type="fieldtype">PageBuilderFilesListBox</rdata>
+    <rdata type="label">Registration Page</rdata>
+  </rfield>  
+  <rfield name="login_form_style">
+      <rdata type="default">.text</rdata>
+      <rdata type="emptydefault">no</rdata>
+      <rdata type="fieldtype">PageBuilderFieldListStyles</rdata>    
+  </rfield> 
+</registry>  
+

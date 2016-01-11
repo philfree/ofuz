@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+  <report>
+    <idreport><![CDATA[0]]></idreport>
+    <name><![CDATA[interactive_report.row.tpl]]></name>
+    <idquery><![CDATA[0]]></idquery>
+    <descr><![CDATA[    // Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+    This is the row report of the search report template]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <recprow><![CDATA[0]]></recprow>
+    <header><![CDATA[<TR class="<?php  if ($trclass=="tabletr1") { $trclass="tabletr2"; } else { $trclass="tabletr1";} echo $trclass;?>">    
+   <td class="tabletdsidelink"> <input type="checkbox" name="check_box_values\\[\\]" value="\[noreg:[primarykey]:\]">
+<?php 
+    if (strlen("[display_detail_link]")>0) {
+        if (strlen("[detail_field1_to_save]") > 0) {
+            $e_detail->addParam("[detail_field1_to_save]", "\[noreg:[detail_field1_to_save]:\]");
+        }
+        if (strlen("[detail_field2_to_save]") > 0) {
+            $e_detail->addParam("[detail_field2_to_save]", "\[noreg:[detail_field2_to_save]:\]");
+        }
+        if (strlen("[detail_field3_to_save]") > 0) {
+            $e_detail->addParam("[detail_field3_to_save]", "\[noreg:[detail_field3_to_save]:\]");
+        }
+        if (strlen("[detail_field4_to_save]") > 0) {
+            $e_detail->addParam("[detail_field4_to_save]", "\[noreg:[detail_field4_to_save]:\]");
+        } 
+
+    $e_detail->addParam("id[tablename]", "\[noreg:[primarykey]:\]");  ?>
+  <td class="tabletdsidelink"><a href="<?php echo $e_detail->getUrl();?>" class="linkdetail">Details</a></td>
+  <?php }  ?>
+ <?php if (strlen("[display_update_link]")>0) { ?> 
+    <td class="tabletdsidelink"><a href="<?php echo $revent->getUrlEdit("\[noreg:[primarykey]:\]");?>" class="linkupdate">Update</a></td>
+ <?php } ?>
+ <?php if (strlen("[display_delete_link]")>0) { ?>   
+  <td class="tabletdsidelink"><a href="<?php echo $revent->getUrlDelete("\[noreg:[primarykey]:\]") ;?>" class="linkdelete" onclick="return confirm('Are you sure you want to delete this record');">Delete</a></td>
+  <?php } ?>
+    ]]></header>
+    <row><![CDATA[
+    <td class="tabletdformfield" align="[aligncel]">\[[fieldname]\]</td>
+    ]]></row>
+    <footer><![CDATA[</TR>
+    ]]></footer>
+  </report>

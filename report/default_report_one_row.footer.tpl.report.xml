@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+  <report>
+    <name><![CDATA[Name of the Report]]></name>
+    <idreport><![CDATA[0]]></idreport>
+    <descr><![CDATA[
+	// Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+	This is the row report of the default tpl]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[
+</table>
+    ]]></header>
+    <row><![CDATA[
+
+     ]]></row>
+    <footer><![CDATA[
+    ]]></footer>
+    <recprow><![CDATA[0]]></recprow>
+  </report>

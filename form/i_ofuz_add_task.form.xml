@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[55]]></idform>
+    <name><![CDATA[ofuz_add_task]]></name>
+    <descr><![CDATA[]]></descr>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[]]></header>
+    <row><![CDATA[
+                  <span class="headline11"><?php echo _('Add a task');?></span>
+                  <div class="marginform">[iduser]
+                      [task_description]
+                    </div>
+                    <div class="marginform" id = "when_due">
+                      <span class="text8"><?php echo _('When\'s it due?');?></span><br />
+                      [due_date]&nbsp;<a href="#" onclick="showDateOpt()"><?php echo _('Set Date'); ?></a>
+                    </div>
+                    <div class="marginform" id = "due_sp_date" style="display:none;">
+                      <span class="text8"><?php echo _('When\'s it due? (Specific Date) '); ?></span><br />
+                      [due_date_dateformat]&nbsp;<a href="#" onclick="hideDateOpt()"><?php echo _('Reset'); ?></a>
+                      <input type="hidden" name="sp_date_selected" id="sp_date_selected" value="">
+                    </div>
+                    <div class="marginform">
+                      <span class="text8"><?php echo _('Choose a category');?></span><br />
+                      [category] &nbsp <a href="i_task_category.php"><?php echo _('Edit Category'); ?></a>
+                    </div>
+                    <div class="section20">
+                      <input type="submit" value="<?php echo _('Add this task'); ?>" />
+                     </div>
+                    <div class="dottedline"></div>
+                   
+        ]]></row>
+    <footer><![CDATA[]]></footer>
+  </form>

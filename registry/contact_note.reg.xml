@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idcontact_note">
+    <rdata type="label">idcontact_note</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="idcontact">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">idcontact</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="note">
+    <rdata type="default">test</rdata>
+    <rdata type="html"></rdata>
+    <rdata type="htmleditor"></rdata>
+    <rdata type="label">note</rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textarea">::</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeText</rdata>
+  </rfield>
+  <rfield name="date_added">
+    <rdata type="datesql">Y/m/d::</rdata>
+    <rdata type="databasetype">date</rdata>
+    <rdata type="label"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeDateSQL</rdata>
+  </rfield>
+  <rfield name="document">
+    <rdata type="label">Document</rdata>
+    <rdata type="picture">files/</rdata>
+    <rdata type="showpicture"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeFile</rdata>
+  </rfield>
+  <rfield name="idcompany">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">Company Id</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="iduser">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">User</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:15</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="priority">
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="send_email">
+    <rdata type="label">Send note to contact</rdata>
+    <rdata type="checked_value">y</rdata>
+    <rdata type="default">n</rdata>
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="fieldtype">strFBFieldTypeCheckBox</rdata>
+  </rfield>
+  <rfield name="hours_work">
+    <rdata type="default">0.00</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Hours Worked</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:10</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+  <rfield name="note_visibility">
+	  <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+	  <rdata type="default"></rdata>
+	  <rdata type="hidden"></rdata>
+	  <rdata type="html"></rdata>
+	  <rdata type="label">Note Visibility</rdata>
+	  <rdata type="readonly"></rdata>
+	  <rdata type="required"></rdata>
+	  <rdata type="textline">:</rdata>
+	  <rdata type="css_form_class"></rdata>
+	  <rdata type="css_disp_class"></rdata>
+	  <rdata type="css_form_style"></rdata>
+	  <rdata type="css_disp_style"></rdata>
+	  <rdata type="id"></rdata>
+  </rfield>
+  <rfield name="is_delete">
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="type">
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+  </rfield>
+</registry>

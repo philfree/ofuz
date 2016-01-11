@@ -9,7 +9,7 @@ namespace RadriaCore\Radria\FieldType;
  * Display the value of the displayfield from the other table in the Disp context.
  * @package PASClass
  */
-Class FieldTypeListBox extends FieldType {
+class FieldTypeListBox extends FieldType {
     function default_Form($field_value="") {
         //$rdata = $this->getRData('list');
         $dbc = $this->getDbCon();

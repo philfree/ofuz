@@ -1,0 +1,1 @@
+this file was created on Sat. 05th March 2011 at 15:24:04, after ecoder checked the permissions of the folder /var/www/dev.ofuz.net/events/.

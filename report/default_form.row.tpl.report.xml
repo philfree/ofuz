@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+  <report>
+    <name><![CDATA[default_form.row.tpl]]></name>
+    <idreport><![CDATA[0]]></idreport>
+    <descr><![CDATA[
+    // Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+    This is the row report of the default form tpl]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[
+    <TABLE class="tableform" width="100%">
+    ]]></header>
+    <row><![CDATA[
+<TR>
+  <TD class="tdformlabel" align="[aligncel]">[fieldlabel]</td>
+  <TD class="tabletdformfield" align="[aligncel]">\[[fieldname]\]</td>
+</TR>
+     ]]></row>
+    <footer><![CDATA[
+  <TR>
+  <TD colspan="2" align="right"><INPUT TYPE="submit" value="[submit_label]"></TD>
+ </TR>
+</TABLE>
+    ]]></footer>
+    <recprow><![CDATA[0]]></recprow>
+  </report>

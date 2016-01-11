@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+  <report>
+    <idreport><![CDATA[0]]></idreport>
+    <name><![CDATA[interactive_report_one_row_2cols.header.tpl]]></name>
+    <idquery><![CDATA[0]]></idquery>
+    <descr><![CDATA[    // Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+    This is the header report of the default tpl
+    To display one row of data.
+    ]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <recprow><![CDATA[0]]></recprow>
+    <header><![CDATA[<?php  global $orderdir, $orderfield, $recordpos, $mydb_num, $PHP_SELF, $cfg_eventcontroler  ;
+ $currentpage = basename($PHP_SELF) ;
+ 
+ if (strlen("[display_update_link]")>0 || strlen("[display_delete_link]")>0 || strlen("[display_add_link]")>0) {
+    $revent = new RecordEvent("[tablename]") ;
+    $revent->setFormPage("[formpage]");
+    $revent->setPrimaryKeyVar("[primarykey]");
+    if (strlen("[registryname]") > 0) {
+        $revent->addParam("registryname", "[registryname]");
+    } 
+    $revent->addParam("goto", $currentpage) ;
+    $revent->addParam("deleteconfirm", "no") ;
+    $revent->addParam("mydb_num", $mydb_num) ;
+    if ($cfg_eventcontroler == "") { $cfg_eventcontroler = "[eventcontroler]"; }
+    $revent->setEventControler($cfg_eventcontroler);
+    $revent->requestSave("manageData", $currentpage) ; 
+ }
+ if (strlen("[display_add_link]")>0) {
+ ?>
+<a href="<?php echo $revent->getUrlAdd()?>" class="linkadd">Add a record</a>
+<?php } ?>
+<TABLE class="tableform" width="95%">
+    ]]></header>
+    <row><![CDATA[    ]]></row>
+    <footer><![CDATA[    ]]></footer>
+  </report>

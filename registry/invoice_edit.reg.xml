@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idinvoice">
+    <rdata type="label">idinvoice</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="num">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Unique Number</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:10</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="iduser">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">User</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:14</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="idcontact">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Contact</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="tax">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Tax</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+ <!-- <rfield name="description">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">User</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">70:255</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>-->
+  <rfield name="description">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Note</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="cols">110</rdata>
+    <rdata type="row">2</rdata>
+    <rdata type="css_form_class">Verdana</rdata>
+    <rdata type="fieldtype">OfuzExpandingTextArea</rdata>
+  </rfield>  
+  
+  <rfield name="amount">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Amount</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+  <rfield name="datepaid">
+    <rdata type="datesql">Y/m/d::</rdata>
+    <rdata type="databasetype">date</rdata>
+    <rdata type="label">Date Paid</rdata>
+    <rdata type="fieldtype">strFBFieldTypeDateSQL</rdata>
+  </rfield>
+ <!-- <rfield name="datecreated">
+    <rdata type="datesql">Y/m/d:today:</rdata>
+    <rdata type="databasetype">date</rdata>
+    <rdata type="label">Date Created</rdata>
+    <rdata type="fieldtype">strFBFieldTypeDateSQL</rdata>
+  </rfield>-->
+  <rfield name="datecreated">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Due Date</rdata>
+    <rdata type="datetype">dd-MM-y</rdata>
+    <rdata type="errormessage"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="fieldtype">DijitDateTextBox</rdata>
+  </rfield>
+  <rfield name="status">
+    <rdata type="label">Invoice Status</rdata>
+	<rdata type="listlabels">New:Sent:Paid:Partial</rdata>
+	<rdata type="listvalues">New:Sent:Paid:Partial</rdata>
+	<rdata type="emptydefault">no</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+  </rfield>
+  <rfield name="discount">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Discount</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="due_date">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Due Date</rdata>
+    <rdata type="datetype">dd-MM-y</rdata>
+    <rdata type="errormessage"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="fieldtype">DijitDateTextBox</rdata>
+  </rfield>
+  <rfield name="invoice_address">
+    <rdata type="default"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="htmleditor"></rdata>
+    <rdata type="label">Address</rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textarea">35:5:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeText</rdata>
+  </rfield>
+  <rfield name="invoice_term">
+    <rdata type="default">Upon Receipt</rdata>
+    <rdata type="html"></rdata>
+    <rdata type="htmleditor"></rdata>
+    <rdata type="label"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textarea">24:2:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeText</rdata>
+  </rfield>
+  <rfield name="invoice_note">
+    <rdata type="default"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="htmleditor"></rdata>
+    <rdata type="label">Note</rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textarea">35:5:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeText</rdata>
+  </rfield>
+  <rfield name="sub_total">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">Sub Total</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+  <rfield name="net_total">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">Net Total</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+  <rfield name="amt_due">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">Amount Due</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+  </rfield>
+  <rfield name="idcompany">
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">Company</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+  </rfield>
+</registry>

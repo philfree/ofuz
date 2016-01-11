@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="iduser">
+    <rdata type="label">idusers</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="firstname">
+    <rdata type="default">[getfields;firstname]</rdata>
+    <rdata type="label">First Name</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="required">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="middlename">
+    <rdata type="default">[getfields;middlename]</rdata>
+    <rdata type="label">Middle Name</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="lastname">
+    <rdata type="default">[getfields;lastname]</rdata>
+    <rdata type="label">Last Name</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="required">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="email">
+    <rdata type="default">[getfields;email]</rdata>
+    <rdata type="label">Email</rdata>
+    <rdata type="textline">20:100</rdata>
+    <rdata type="email">1</rdata>
+    <rdata type="required">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeEmail</rdata>
+  </rfield>
+  <rfield name="phone">
+    <rdata type="default">[getfields;phone]</rdata>
+    <rdata type="label">Phone</rdata>
+    <rdata type="textline">20:50</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="company">
+    <rdata type="default">[getfields;company]</rdata>
+    <rdata type="label">Company name</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="position">
+    <rdata type="default">[getfields;position]</rdata>
+    <rdata type="label">Position</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="address1">
+    <rdata type="default">[getfields;address1]</rdata>
+    <rdata type="label">Address</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="address2">
+    <rdata type="default">[getfields;address2]</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="city">
+    <rdata type="default">[getfields;city]</rdata>
+    <rdata type="label">City</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="zip">
+    <rdata type="default">[getfields;zip]</rdata>
+    <rdata type="label">Zip Code</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="state">
+    <rdata type="default">[getfields;state]</rdata>
+    <rdata type="label">State</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="country">
+    <rdata type="default">[getfields;country]</rdata>
+    <rdata type="label">Country</rdata>
+    <rdata type="textline">20:80</rdata>
+    <rdata type="required">0</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="username">
+    <rdata type="default">[getfields;username]</rdata>
+    <rdata type="label">Username</rdata>
+    <rdata type="textline">20:40</rdata>
+    <rdata type="access">login</rdata>
+    <rdata type="required">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeLogin</rdata>
+  </rfield>
+  <rfield name="password">
+    <rdata type="label">Password</rdata>
+    <rdata type="access">password</rdata>
+    <rdata type="required">1</rdata>
+    <rdata type="fieldtype">OfuzFieldTypeEncryptedPassword</rdata>
+  </rfield>
+  <rfield name="isadmin">
+    <rdata type="hidden">1</rdata>
+    <rdata type="textline">2:5</rdata>
+    <rdata type="default">0</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="regdate">
+    <rdata type="hidden">1</rdata>
+    <rdata type="datesql">d/m/Y:today:1:1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeDateSQL</rdata>
+  </rfield>
+  <rfield name="openid">
+    <rdata type="default">[openid_identifier]</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">OpenID</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="last_login">
+    <rdata type="hidden">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeDateSQL</rdata>
+  </rfield>
+  <rfield name="drop_box_code">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">Drop Box Code</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:15</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="idcontact">
+    <rdata type="hidden">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="fb_user_id">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">Facebook User Id</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="api_key">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">API Key</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="plan">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Plan</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="status">
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Status</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+  </rfield>
+  <rfield name="google_openid_identity">
+  <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  <rdata type="default"></rdata>
+  <rdata type="hidden">1</rdata>
+  <rdata type="html"></rdata>
+  <rdata type="label">Google Openid Identity</rdata>
+  <rdata type="readonly"></rdata>
+  <rdata type="required"></rdata>
+  <rdata type="textline">:</rdata>
+  <rdata type="css_form_class"></rdata>
+  <rdata type="css_disp_class"></rdata>
+  <rdata type="css_form_style"></rdata>
+  <rdata type="css_disp_style"></rdata>
+  <rdata type="id"></rdata>
+</rfield>
+</registry>

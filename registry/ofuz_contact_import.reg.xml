@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<registry>
+
+  <rfield name="document">
+    <rdata type="label">Document</rdata>
+    <rdata type="picture">files/</rdata>
+    <rdata type="showpicture"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeFile</rdata>
+  </rfield>
+
+</registry>

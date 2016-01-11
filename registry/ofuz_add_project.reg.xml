@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idproject">
+    <rdata type="label">idproject</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="iduser">
+    <rdata type="default">[do_User->iduser]</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">User</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">14:14</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+ <!-- <rfield name="name">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Name</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="css_form_class">Verdana</rdata>
+    <rdata type="css_form_style">width: 100%</rdata>
+    <rdata type="fieldtype">DijitExpandingTextArea</rdata>
+  </rfield>-->
+  <rfield name="name">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Name</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="cols">30</rdata>
+    <rdata type="row">2</rdata>
+    <rdata type="css_form_class">Verdana</rdata>
+    <rdata type="fieldtype">OfuzExpandingTextArea</rdata>
+  </rfield>
+  <rfield name="end_date_dateformat">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">End Date</rdata>
+    <rdata type="datetype">dd-MM-y</rdata>
+    <rdata type="errormessage">Wrong date format</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="fieldtype">DijitDateTextBox</rdata>
+  </rfield>
+  <!--<rfield name="idcompany">
+    <rdata type="label">Company</rdata>
+    <rdata type="list">company:idcompany:name:0:companies_user_dropdown</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBox</rdata>
+  </rfield>-->
+  <rfield name="company">
+	  <rdata type="databasetype">varchar</rdata>
+	  <rdata type="default"></rdata>
+	  <rdata type="label">Company</rdata>
+	  <rdata type="table_name"></rdata>
+	  <rdata type="field_to_display">name</rdata>
+	  <rdata type="object_method">Company->getUserCompany()</rdata>
+	  <rdata type="saved_query"></rdata>
+	  <rdata type="css_form_class"></rdata>
+	  <rdata type="addevent">ContactEditSave->eventSetCompany:99</rdata>
+	  <rdata type="fieldtype">DijitComboBox</rdata>
+  </rfield>
+  <rfield name="status">
+    <rdata type="label">Project Status</rdata>
+    <rdata type="listlabels">open:closed</rdata>
+    <rdata type="listvalues">open:closed</rdata>
+    <rdata type="default">open</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+  </rfield>
+  <rfield name="effort_estimated_hrs">
+    <rdata type="fieldtype">strFBFieldTypeFloat</rdata>
+    <rdata type="default">0.00</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Effort estimated in hours</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+  </rfield>
+</registry>

@@ -1,0 +1,984 @@
+<html>
+<head>
+ <title>First App Based on Google Gears, By Ofuz</title>
+<script type="text/javascript"  src="gears_init.js"></script>
+<link rel="stylesheet" type="text/css" href="/includes/ofuz_theme_default.css" />
+<script type="text/javascript" src="/jquery/jquery-1.3.1.min.js"></script>
+<style>
+
+</style>
+</head>
+<body>
+
+<!--<a href="javascript:dropTb();">Drop Table</a>-->
+
+<script>
+
+var isIE=false;
+
+var db;
+
+isGearsInstalled();
+
+/*
+function setError(m)
+{
+	var e= getElement('contPane');
+	if ( e!=null ){
+		e.style.color='red';
+		e.innerHTML=m;
+	}
+}
+*/
+
+/*
+function dropTb()
+{
+  if ( confirm('Are you sure? You will lose all the data after dropping table!')){
+
+	try{
+		db.execute('drop table if exists contact');
+		alert('Table dropped!');
+	} catch (ex) {
+		setError('Error: ' + ex.message);
+	}
+  }
+  else
+  {
+		setError('No action!');
+
+  }
+}
+*/
+
+// Open this page's local database.
+function isGearsInstalled() {
+
+  if (!window.google || !google.gears) {
+    if (confirm("This Application requires Gears to be installed. Install now?")) {
+      // Use an absolute URL to allow this to work when run from a local file.
+      //location.href = "http://gears.google.com/";
+       /*location.href = "http://gears.google.com/?action=install&message=welcome" 
+        + "&return=http://dev.ofuz.net/ggears_contact.html";*/
+
+          var message = 'To enable fast client-side search of Ofuz '
+                        + 'please install Gears';
+          var url = 'http://gears.google.com/?action=install'
+                      + '&message=' + encodeURIComponent(message)
+                      + '&return=' + encodeURIComponent(window.location.href);
+
+	  location.href = url;
+
+      return;
+    }
+  }
+	activatingOfuzInLocalComputer();
+
+}
+
+function activatingOfuzInLocalComputer() {
+
+	try {
+		db = google.gears.factory.create('beta.database', '1.0');
+	} catch (ex) {
+		//setError('Could not create database: ' + ex.message);
+		$('#ggears_sync_msg')[0].innerHTML = 'Could not create database: ' + ex.message;
+	}
+	
+	if (db) {
+		db.open('database-record');
+		db.execute('create table if not exists contact' +
+					' (idcontact int, firstname varchar(150), lastname varchar(150), company varchar(150), position varchar(150), email varchar(200), phone varchar(20), tag varchar(200), company_website varchar(200), datecreated int,contact_photo varchar(200), PRIMARY KEY(idcontact))');
+		//This will be added in ofuz v0.5
+		//addForm();
+	}
+	else
+	{
+		//setError('Error, unable to open db!');
+		$('#ggears_sync_msg')[0].innerHTML = 'Error, unable to open db!';
+	}
+}
+
+function getElement(id)
+{
+	var select;
+	if ( document.all )
+	{
+		select = document.all(id);
+		isIE=true;
+	}
+	else
+		select = document.getElementById(id);
+	return select;
+}
+/*
+function deleteRecord(d)
+{
+
+  if (confirm('Are you sure that you wanna remove record ['+d+']??'))
+  {
+
+	try{
+	  db.execute('DELETE FROM contact WHERE idcontact=?', [d]);
+	  listRecords();
+	}
+	catch(ex)
+	{
+	  setError('Error deleting record: ' + ex.message);return;
+
+	}
+  }
+  else
+  {
+  	setError('No action!');
+  }
+
+}
+*/
+
+//commented since 'Search button' is removed.
+/*
+function searchRecords()
+{
+
+	if (!google.gears.factory || !db) {
+	return;
+	}
+
+    var qq= getElement('qq').value;
+
+	var e= getElement('gg_contentfull');
+	if ( e!=null ){
+
+		//swTab(3);
+		var ll = '';
+
+		try
+		{
+
+			var rs = db.execute('select * from contact WHERE firstname LIKE ? OR lastname LIKE ? OR company LIKE ? OR phone LIKE ? OR tag LIKE ? order by firstname',['%'+qq+'%','%'+qq+'%','%'+qq+'%','%'+qq+'%','%'+qq+'%']);
+
+			while (rs.isValidRow())
+			{
+				var company_link = '';
+			
+				if(rs.field(8) == null) {
+					company_link = '<a href="#">'+rs.field(3)+'</a>';
+				} else{
+					company_link = '<a href="'+rs.field(8)+'" target="_ofuz">'+rs.field(3)+'</a>';
+				}
+				var phone = (rs.field(6)) ? rs.field(6) : '';
+				var position = (rs.field(4)) ? '<i>'+rs.field(4)+'</i> at ' : '';
+				var tagnames = (rs.field(7)) ? '<div><B>Tag</B>(s): '+rs.field(7)+'</div>' : '';
+		
+				ll+='<div class="contacts">';
+				ll+='<div class="contacts_main">';
+				if(rs.field(10)) {
+					ll+='<img src="'+rs.field(10)+'" width="34" height="34" alt="" />';
+				} else {
+					ll+='<img src="/images/empty_avatar.gif" width="34" height="34" alt="" />';
+				}
+				ll+='</div>';
+				ll+='<div class="contacts_desc">';
+				ll+='<span class="contacts_name">'+rs.field(1)+' '+rs.field(2)+'</span><br />';
+				ll+= position+company_link;
+				ll+='</div>';
+				if(phone) {
+					ll+='<div class="contacts_email">'+phone+'<br/>';
+				}
+				if(rs.field(5)) {
+					ll+='<a href="mailto:[email_address]">'+rs.field(5)+'</a><br />';
+				}
+				if(tagnames) {
+					ll+= tagnames;
+				}
+				ll+='</div>';
+				ll+='</div>';
+	
+				ll+='<div class="spacerblock_2"></div>';
+				ll+='<div class="solidline"></div>';
+	
+		
+				rs.next();
+	
+			}
+			rs.close();
+			
+			$('#gg_contentfull')[0].innerHTML = ll;
+
+		}
+		catch (e)
+		{
+		throw new Error(e.message);
+		}
+	}
+
+}
+*/
+//search as you type
+function instantSearch()
+{
+	$('#search_indicator').show();
+	if (!google.gears.factory || !db) {
+	return;
+	}
+
+    var qq= getElement('qq').value;
+
+	var e= getElement('gg_contentfull');
+	if ( e!=null ){
+
+		//swTab(3);
+		var ll = '';
+
+		try
+		{
+
+			var rs = db.execute('select * from contact WHERE firstname LIKE ? OR lastname LIKE ? OR company LIKE ? OR phone LIKE ? OR tag LIKE ? order by firstname',[qq+'%',qq+'%',qq+'%',qq+'%',qq+'%']);
+
+			while (rs.isValidRow())
+			{
+				var company_link = '';
+			
+				if(rs.field(8) == null) {
+					company_link = '<a href="#" onclick="allowHighlight=false;">'+rs.field(3)+'</a>';
+				} else{
+					company_link = '<a href="'+rs.field(8)+'" target="_ofuz" onclick="allowHighlight=false;">'+rs.field(3)+'</a>';
+				}
+				var phone = (rs.field(6)) ? rs.field(6) : '';
+				var position = (rs.field(4)) ? '<i>'+rs.field(4)+'</i> at ' : '';
+				var tagnames = (rs.field(7)) ? '<div>'+rs.field(7)+'</div>' : '';
+		
+				ll+='<div class="contacts" id="cid'+rs.field(0)+'" onclick="fnHighlight('+rs.field(0)+')">';
+				ll+='<div class="contacts_main">';
+				ll+='<input type="checkbox" name="ck\[\]" id="ck'+rs.field(0)+'" value="'+rs.field(0)+'" class="ofuz_list_checkbox" onclick="fnHighlight('+rs.field(0)+')" style="visibility:hidden;" />';
+				if(rs.field(10)) {
+					ll+='<img src="'+rs.field(10)+'" width="34" height="34" alt="" />';
+				} else {
+					ll+='<img src="/images/empty_avatar.gif" width="34" height="34" alt="" />';
+				}
+				ll+='</div>';
+				ll+='<div class="contacts_desc">';
+				ll+='<span class="contacts_name"><a href="Contact/'+rs.field(0)+'" onclick="allowHighlight=false;">'+rs.field(1)+' '+rs.field(2)+'</a></span><br />';
+				ll+= position+company_link;
+				ll+='</div>';
+				if(phone) {
+					ll+='<div class="contacts_email">'+phone+'<br/>';
+				}
+				if(rs.field(5)) {
+					ll+='<a href="mailto:'+rs.field(5)+'">'+rs.field(5)+'</a><br />';
+				}
+				if(tagnames) {
+					ll+= tagnames;
+				}
+				ll+='</div>';
+				ll+='</div>';
+	
+				ll+='<div class="spacerblock_2"></div>';
+				ll+='<div class="solidline"></div>';
+	
+		
+				rs.next();
+	
+			}
+			rs.close();
+			
+			$('#gg_contentfull')[0].innerHTML = ll;
+			$('#search_indicator').hide();
+		}
+		catch (e)
+		{
+		throw new Error(e.message);
+		}
+	}
+
+}
+
+function searchRecordsTags(eleObj)
+{
+
+	if (!google.gears.factory || !db) {
+	return;
+	}
+
+    var qq = eleObj.innerHTML;
+
+	var e= getElement('gg_contentfull');
+	if ( e!=null ){
+
+		//swTab(3);
+		var ll = '';
+
+		try
+		{
+
+			var rs = db.execute('select * from contact WHERE tag LIKE ? order by firstname',['%'+qq+'%']);
+
+			while (rs.isValidRow())
+			{
+				var company_link = '';
+			
+				if(rs.field(8) == null) {
+					company_link = '<a href="#">'+rs.field(3)+'</a>';
+				} else{
+					company_link = '<a href="'+rs.field(8)+'" target="_ofuz">'+rs.field(3)+'</a>';
+				}
+				var phone = (rs.field(6)) ? rs.field(6) : '';
+				var position = (rs.field(4)) ? '<i>'+rs.field(4)+'</i> at ' : '';
+				var tagnames = (rs.field(7)) ? '<div><B>Tag</B>(s): '+rs.field(7)+'</div>' : '';
+		
+				ll+='<div class="contacts">';
+				ll+='<div class="contacts_main">';
+				if(rs.field(10)) {
+					ll+='<img src="'+rs.field(10)+'" width="34" height="34" alt="" />';
+				} else {
+					ll+='<img src="/images/empty_avatar.gif" width="34" height="34" alt="" />';
+				}
+				ll+='</div>';
+				ll+='<div class="contacts_desc">';
+				ll+='<span class="contacts_name">'+rs.field(1)+' '+rs.field(2)+'</span><br />';
+				ll+= position+company_link;
+				ll+='</div>';
+				if(phone) {
+					ll+='<div class="contacts_email">'+phone+'<br/>';
+				}
+				if(rs.field(5)) {
+					ll+='<a href="mailto:[email_address]">'+rs.field(5)+'</a><br />';
+				}
+				if(tagnames) {
+					ll+= tagnames;
+				}
+				ll+='</div>';
+				ll+='</div>';
+	
+				ll+='<div class="spacerblock_2"></div>';
+				ll+='<div class="solidline"></div>';
+	
+		
+				rs.next();
+	
+			}
+			rs.close();
+			
+			$('#gg_contentfull')[0].innerHTML = ll;
+
+			//Sub Tags
+			if(qq) {
+				
+				$('#hd_gg_sub_tags_header')[0].innerHTML = qq;
+				var subtag_header = qq+' <span id="'+qq+'" style="cursor:pointer;" onClick="deCumulateSubTags(\''+qq+'\')"><img src="images/delentry.gif" border="0"/></span>';
+
+				$('#gg_sub_tags_header')[0].innerHTML = '<h3>Showing contacts with tags:</h3><h2>'+subtag_header+'</h2>';
+				$('#gg_search').hide();
+				$('#gg_sub_tags_header').show();
+
+				qq = getContactSubTags(qq);
+
+				$('#gg_sub_tags_main').show();
+				$('#gg_sub_tags')[0].innerHTML = qq;
+ 
+			}
+
+		}
+		catch (e)
+		{
+		throw new Error(e.message);
+		}
+	}
+
+}
+
+function listRecords()
+{	
+
+	if (!google.gears.factory || !db) {
+	return;
+	}
+
+	// We re-throw Gears exceptions to make them play nice with certain tools.
+	// This will be unnecessary in a future version of Gears.
+
+	var ll = '';
+	try
+	{
+
+		var rs = db.execute('select * from contact order by firstname');
+
+		while (rs.isValidRow())
+		{
+			var company_link = '';
+		
+			if(rs.field(8) == null) {
+				company_link = '<a href="#">'+rs.field(3)+'</a>';
+			} else{
+				company_link = '<a href="'+rs.field(8)+'" target="_ofuz">'+rs.field(3)+'</a>';
+			}
+			var phone = (rs.field(6)) ? rs.field(6) : '';
+			var position = (rs.field(4)) ? '<i>'+rs.field(4)+'</i> at ' : '';
+			var tagnames = (rs.field(7)) ? '<div><B>Tag</B>(s): '+rs.field(7)+'</div>' : '';
+	
+			ll+='<div class="contacts">';
+			ll+='<div class="contacts_main">';
+			if(rs.field(10)) {
+				ll+='<img src="'+rs.field(10)+'" width="34" height="34" alt="" />';
+			} else {
+				ll+='<img src="/images/empty_avatar.gif" width="34" height="34" alt="" />';
+			}
+			ll+='</div>';
+			ll+='<div class="contacts_desc">';
+			ll+='<span class="contacts_name">'+rs.field(1)+' '+rs.field(2)+'</span><br />';
+			ll+= position+company_link;
+			ll+='</div>';
+			if(phone) {
+				ll+='<div class="contacts_email">'+phone+'<br/>';
+			}
+			if(rs.field(5)) {
+				ll+='<a href="mailto:[email_address]">'+rs.field(5)+'</a><br />';
+			}
+			if(tagnames) {
+				ll+= tagnames;
+			}
+			ll+='</div>';
+			ll+='</div>';
+
+			ll+='<div class="spacerblock_2"></div>';
+			ll+='<div class="solidline"></div>';
+
+	
+			rs.next();
+
+		}
+		rs.close();
+		
+		$('#gg_contentfull')[0].innerHTML = ll;
+
+		//$('#gg_tags')[0].innerHTML = tags;
+	
+	}
+	catch (e)
+	{
+		throw new Error(e.message);
+	}
+
+	var tag;
+	tag = getContactTags();
+	$('#gg_tags')[0].innerHTML = tag;
+
+}
+
+
+function getContactTags() {
+	var str_tag = '';
+	if (!google.gears.factory || !db) {
+	return;
+	}
+
+	var rs = db.execute('select tag from contact order by tag');
+	var tag = '';
+
+	while (rs.isValidRow()) {
+		
+		if(rs.field(0)) {
+			
+			tag += (tag == '') ? rs.field(0) : ','+rs.field(0);
+
+		}
+
+		rs.next();
+	}
+
+	rs.close();
+
+	if(tag) {
+		
+		temp=tag.split(",");
+		
+		newArr=[]
+		
+		for(var i=0;i<temp.length;i++){
+		
+		isIn=0
+		
+		for(var j=0;j<newArr.length;j++){
+		
+		if(temp[i]==newArr[j]){
+		isIn=1
+		}
+		
+		}
+		
+		if(isIn==0){
+		newArr.push(temp[i])
+		}
+		
+		}
+
+		//sorting tags alphabetically
+		newArr.sort();
+
+		for(i in newArr) {
+
+			str_tag += (str_tag=='') ? '<span id="'+newArr[i]+'" style="cursor:pointer;" onClick="searchRecordsTags(this)">'+newArr[i]+'</span>' : ', '+'<span id="'+newArr[i]+'" style="cursor:pointer;" onClick="searchRecordsTags(this)">'+newArr[i]+'</span>';
+
+		}
+
+	}
+
+	return str_tag;
+
+}
+
+function getContactSubTags(qq) {
+	
+	if (!google.gears.factory || !db) {
+	return;
+	}
+
+	var rs = db.execute('select * from contact WHERE tag LIKE ? order by tag',['%'+qq+'%']);
+	var tag = '';
+
+	while (rs.isValidRow()) {
+		
+		if(rs.field(7)) {
+
+			tag += (tag == '') ? rs.field(7) : ','+rs.field(7);
+
+		}
+
+		rs.next();
+	}
+
+	rs.close();
+
+	if(tag) {
+		
+		temp=tag.split(",");
+		
+		newArr=[]
+		
+		for(var i=0;i<temp.length;i++){
+		
+		isIn=0
+		
+		for(var j=0;j<newArr.length;j++){
+		
+		if(temp[i]==newArr[j]){
+		isIn=1
+		}
+		
+		}
+		
+		if(isIn==0){
+		newArr.push(temp[i])
+		}
+		
+		}
+
+		var str_tag = '';
+		//newTagArr=[];
+		if(newArr) {
+			newArr.sort();
+		}
+
+		hd_gg_sub_tags = '';  //hidden value for the subtags string
+		for(i in newArr) {			
+			if(newArr[i] != qq) {
+				hd_gg_sub_tags += (hd_gg_sub_tags == '') ? newArr[i] : ','+newArr[i];
+				//newTagArr.push(newArr[i]);
+				str_tag += (str_tag=='') ? '<span id="'+newArr[i]+'" style="cursor:pointer;" onClick="searchRecordsSubTags(this)">'+newArr[i]+'</span>' : ', '+'<span id="'+newArr[i]+'" style="cursor:pointer;" onClick="searchRecordsSubTags(this)">'+newArr[i]+'</span>';
+			}
+
+		}
+
+		$('#hd_gg_sub_tags')[0].innerHTML = hd_gg_sub_tags;
+	}
+
+	return str_tag;
+
+}
+
+function searchRecordsSubTags(eleObj)
+{
+
+	if (!google.gears.factory || !db) {
+	return;
+	}
+
+    var qq = eleObj.innerHTML;
+
+	//Sub Tags
+	if(qq) {
+
+		cumulateSubTagSearch(qq);
+		arr_subtag_search = $('#hd_gg_sub_tags_header')[0].innerHTML.split(",");
+		var like_wildcard = '';
+		var like_value = '';
+		var query = "select * from contact WHERE";
+		for(i in arr_subtag_search) {
+
+			if(like_wildcard=='') {
+				like_wildcard += " tag LIKE '%"+arr_subtag_search[i]+"%'";
+			} else {
+				like_wildcard += " AND tag LIKE '%"+arr_subtag_search[i]+"%'";
+			}
+
+		}
+		query += like_wildcard+" order by firstname";
+		query += '';
+
+	}
+
+	var e= getElement('gg_contentfull');
+	if ( e!=null ){
+
+		//swTab(3);
+		var ll = '';
+
+		try
+		{
+			//alert(query);
+			//var rs = db.execute('select * from contact WHERE tag LIKE ? order by firstname',['%'+qq+'%']);
+			var rs = db.execute(query);
+
+			while (rs.isValidRow())
+			{
+				var company_link = '';
+			
+				if(rs.field(8) == null) {
+					company_link = '<a href="#">'+rs.field(3)+'</a>';
+				} else{
+					company_link = '<a href="'+rs.field(8)+'" target="_ofuz">'+rs.field(3)+'</a>';
+				}
+				var phone = (rs.field(6)) ? rs.field(6) : '';
+				var position = (rs.field(4)) ? '<i>'+rs.field(4)+'</i> at ' : '';
+				var tagnames = (rs.field(7)) ? '<div><B>Tag</B>(s): '+rs.field(7)+'</div>' : '';
+		
+				ll+='<div class="contacts">';
+				ll+='<div class="contacts_main">';
+				if(rs.field(10)) {
+					ll+='<img src="'+rs.field(10)+'" width="34" height="34" alt="" />';
+				} else {
+					ll+='<img src="/images/empty_avatar.gif" width="34" height="34" alt="" />';
+				}
+				ll+='</div>';
+				ll+='<div class="contacts_desc">';
+				ll+='<span class="contacts_name">'+rs.field(1)+' '+rs.field(2)+'</span><br />';
+				ll+= position+company_link;
+				ll+='</div>';
+				if(phone) {
+					ll+='<div class="contacts_email">'+phone+'<br/>';
+				}
+				if(rs.field(5)) {
+					ll+='<a href="mailto:[email_address]">'+rs.field(5)+'</a><br />';
+				}
+				if(tagnames) {
+					ll+= tagnames;
+				}
+				ll+='</div>';
+				ll+='</div>';
+	
+				ll+='<div class="spacerblock_2"></div>';
+				ll+='<div class="solidline"></div>';
+	
+		
+				rs.next();
+	
+			}
+			rs.close();
+			
+			$('#gg_contentfull')[0].innerHTML = ll;
+
+			/*
+			//Sub Tags
+			if(qq) {
+				cumulateSubTagSearch(qq);
+			}
+			*/
+
+		}
+		catch (e)
+		{
+		throw new Error(e.message);
+		}
+	}
+
+}
+
+function decumulateSearch(qq)
+{
+
+	if (!google.gears.factory || !db) {
+	return;
+	}
+
+	//Sub Tags
+	if(qq) {
+
+		arr_subtag_search = $('#hd_gg_sub_tags_header')[0].innerHTML.split(",");
+		var like_wildcard = '';
+		var like_value = '';
+		var query = "select * from contact WHERE";
+		for(i in arr_subtag_search) {
+
+			if(like_wildcard=='') {
+				like_wildcard += " tag LIKE '%"+arr_subtag_search[i]+"%'";
+			} else {
+				like_wildcard += " AND tag LIKE '%"+arr_subtag_search[i]+"%'";
+			}
+
+		}
+		query += like_wildcard+" order by firstname";
+		query += '';
+
+	}
+
+	var e= getElement('gg_contentfull');
+	if ( e!=null ){
+
+		//swTab(3);
+		var ll = '';
+
+		try
+		{
+			//alert(query);
+			//var rs = db.execute('select * from contact WHERE tag LIKE ? order by firstname',['%'+qq+'%']);
+			var rs = db.execute(query);
+
+			while (rs.isValidRow())
+			{
+				var company_link = '';
+			
+				if(rs.field(8) == null) {
+					company_link = '<a href="#">'+rs.field(3)+'</a>';
+				} else{
+					company_link = '<a href="'+rs.field(8)+'" target="_ofuz">'+rs.field(3)+'</a>';
+				}
+				var phone = (rs.field(6)) ? rs.field(6) : '';
+				var position = (rs.field(4)) ? '<i>'+rs.field(4)+'</i> at ' : '';
+				var tagnames = (rs.field(7)) ? '<div><B>Tag</B>(s): '+rs.field(7)+'</div>' : '';
+		
+				ll+='<div class="contacts">';
+				ll+='<div class="contacts_main">';
+				if(rs.field(10)) {
+					ll+='<img src="'+rs.field(10)+'" width="34" height="34" alt="" />';
+				} else {
+					ll+='<img src="/images/empty_avatar.gif" width="34" height="34" alt="" />';
+				}
+				ll+='</div>';
+				ll+='<div class="contacts_desc">';
+				ll+='<span class="contacts_name">'+rs.field(1)+' '+rs.field(2)+'</span><br />';
+				ll+= position+company_link;
+				ll+='</div>';
+				if(phone) {
+					ll+='<div class="contacts_email">'+phone+'<br/>';
+				}
+				if(rs.field(5)) {
+					ll+='<a href="mailto:[email_address]">'+rs.field(5)+'</a><br />';
+				}
+				if(tagnames) {
+					ll+= tagnames;
+				}
+				ll+='</div>';
+				ll+='</div>';
+	
+				ll+='<div class="spacerblock_2"></div>';
+				ll+='<div class="solidline"></div>';
+	
+		
+				rs.next();
+	
+			}
+			rs.close();
+			
+			$('#gg_contentfull')[0].innerHTML = ll;
+
+			/*
+			//Sub Tags
+			if(qq) {
+				cumulateSubTagSearch(qq);
+			}
+			*/
+
+		}
+		catch (e)
+		{
+		throw new Error(e.message);
+		}
+	}
+
+}
+
+function cumulateSubTagSearch(qq) {
+
+	if(qq=='') {
+		$('#gg_search').show();
+		$('#gg_sub_tags_header').hide();
+	} else {
+		$('#gg_search').hide();
+		$('#gg_sub_tags_header').show();
+	} 
+
+	arr_tags = $('#hd_gg_sub_tags')[0].innerHTML.split(",");
+
+	var tag;
+	var str_tag = '';
+	var new_str_tags = '';
+	tag = $('#hd_gg_sub_tags_header')[0].innerHTML;
+	tag += (tag) ? ','+qq : qq;
+
+	$('#hd_gg_sub_tags_header')[0].innerHTML = tag;
+
+	if(tag) {
+		temp = tag.split(",");
+		for(i in temp) {
+			for(j in arr_tags) {
+				if(arr_tags[j] == temp[i]) {
+					arr_tags = removeByElement(arr_tags,arr_tags[j])
+					break;
+				}
+			}
+		}
+
+
+		var hd_gg_sub_tags = '';
+		for(i in arr_tags) {
+
+				hd_gg_sub_tags += (hd_gg_sub_tags == '') ? arr_tags[i] : ','+arr_tags[i];
+				str_tag += (str_tag=='') ? '<span id="'+arr_tags[i]+'" style="cursor:pointer;" onClick="searchRecordsSubTags(this)">'+arr_tags[i]+'</span>' : ', '+'<span id="'+arr_tags[i]+'" style="cursor:pointer;" onClick="searchRecordsSubTags(this)">'+arr_tags[i]+'</span>';
+		}
+
+		
+		$('#gg_sub_tags')[0].innerHTML = str_tag;
+
+		if(str_tag=='') {
+			$('#gg_sub_tags_main').hide();
+		} else {
+			$('#gg_sub_tags_main').show();
+		}
+		
+		$('#hd_gg_sub_tags')[0].innerHTML = hd_gg_sub_tags;
+
+		var subtag = '';
+		var hd_gg_sub_tags_header = '';
+		for(t in temp) {
+			hd_gg_sub_tags_header += (hd_gg_sub_tags_header == '') ? temp[t] : ','+temp[t];
+			subtag += (subtag == '') ? temp[t]+' <span id="'+temp[t]+'" style="cursor:pointer;" onClick="deCumulateSubTags(\''+temp[t]+'\')"><img src="images/delentry.gif" border="0"/></span>' : ', '+temp[t]+' <span id="'+temp[t]+'" style="cursor:pointer;" onClick="deCumulateSubTags(\''+temp[t]+'\')"><img src="images/delentry.gif" border="0"/></span>';
+		}
+		$('#gg_sub_tags_header')[0].innerHTML = '<h3>Showing contacts with tags:</h3><h2>'+subtag+'</h2>';
+		$('#hd_gg_sub_tags_header')[0].innerHTML = hd_gg_sub_tags_header;
+		
+	}
+}
+
+function removeByElement(arrayName,arrayElement) {
+    for(var i=0; i<arrayName.length;i++ )
+     { 
+        if(arrayName[i]==arrayElement)
+            arrayName.splice(i,1); 
+      }
+	return arrayName;
+}
+
+function deCumulateSubTags(subtag) {
+	arr_subtag = $('#hd_gg_sub_tags')[0].innerHTML.split(",");
+	arr_subtag.push(subtag);
+	if(arr_subtag) {
+		arr_subtag.sort();
+	}
+	var subtags = '';
+	var hd_gg_sub_tags = '';
+	for(i in arr_subtag) {
+		hd_gg_sub_tags += (hd_gg_sub_tags == '') ? arr_subtag[i] : ','+arr_subtag[i];
+
+		subtags += (subtags=='') ? '<span id="'+arr_subtag[i]+'" style="cursor:pointer;" onClick="searchRecordsSubTags(this, arr_subtag)">'+arr_subtag[i]+'</span>' : ','+'<span id="'+arr_subtag[i]+'" style="cursor:pointer;" onClick="searchRecordsSubTags(this, arr_subtag)">'+arr_subtag[i]+'</span>';
+	}
+		//alert(hd_gg_sub_tags)
+	$('#gg_sub_tags')[0].innerHTML = subtags;
+	$('#hd_gg_sub_tags')[0].innerHTML = hd_gg_sub_tags;
+
+	arr_subtag_header = $('#hd_gg_sub_tags_header')[0].innerHTML.split(",");
+
+	arr_subtag_header = removeByElement(arr_subtag_header,subtag)
+	var hd_gg_sub_tags_header = '';
+	var subtag_header = '';
+	for(i in arr_subtag_header) {
+		//alert(arr_subtag_header[i]);
+		hd_gg_sub_tags_header += (hd_gg_sub_tags_header == '') ? arr_subtag_header[i] : ','+arr_subtag_header[i];
+		subtag_header += (subtag_header == '') ? arr_subtag_header[i]+' <span id="'+arr_subtag_header[i]+'" style="cursor:pointer;" onClick="deCumulateSubTags(\''+arr_subtag_header[i]+'\')"><img src="images/delentry.gif" border="0"/></span>' : ', '+arr_subtag_header[i]+' <span id="'+arr_subtag_header[i]+'" style="cursor:pointer;" onClick="deCumulateSubTags(\''+arr_subtag_header[i]+'\')"><img src="images/delentry.gif" border="0"/></span>';
+	}
+	//alert(hd_gg_sub_tags_header+':'+subtag_header)
+	$('#gg_sub_tags_header')[0].innerHTML = '<h3>Showing contacts with tags:</h3><h2>'+subtag_header+'</h2>';
+	$('#hd_gg_sub_tags_header')[0].innerHTML = hd_gg_sub_tags_header;
+
+	if(subtag_header=='') {
+		$('#gg_search').show();
+		$('#gg_sub_tags_header').hide();
+		$('#gg_sub_tags_main').hide();
+	} else {
+		$('#gg_search').hide();
+		$('#gg_sub_tags_header').show();
+		$('#gg_sub_tags_main').show();
+	} 
+	decumulateSearch(subtag);
+}
+
+</script>
+
+<table class="layout_columns"><tr><td class="layout_lmargin"></td><td>
+<div class="layout_content">
+    <div class="layout_header">
+        <div class="layout_logo">
+            <a href="http://www.ofuz.net/"><img src="/images/ofuz_logo.jpg" width="188" height="90" alt="" /></a>
+        </div>
+	</div>
+    <div class="grayline1"></div>
+    <div class="spacerblock_20"></div>
+    <table class="layout_columns"><tr><td class="layout_lcolumn">
+		<div id="gg_sub_tags_main" style="display:none;">
+        <div class="left_menu_header">
+            <div class="left_menu_header_content">Subtags</div>
+        </div>
+        <div class="left_menu">
+            <div class="left_menu_content">
+                <div class="headline10">Cumulate tags to narrow your search</div>
+				<div id="gg_sub_tags"></div>
+            </div>
+        </div>
+        <div class="left_menu_footer"></div><br /><br />
+		</div>
+        <div class="left_menu_header">
+            <div class="left_menu_header_content">Tags</div>
+        </div>
+        <div class="left_menu">
+            <div class="left_menu_content" id="gg_tags">
+            </div>
+        </div>
+
+        <div class="left_menu_footer"></div><br /><br />
+
+    </td><td class="layout_rcolumn">
+        <div class="mainheader"> 
+		<div class="pad20" id="gg_sub_tags_header" style="display:none;"></div>
+		<div class="tundra">
+		<div class="pad20" id="gg_search">
+			<h3>Find someone by typing their Tags, First Name, Last Name, company and Phone.</h3>
+			<input type="text" name="qq" id="qq" size="50" maxlength="150" value="" tabindex="1" onkeydown="instantSearch()" onkeyup="instantSearch()"/>
+			<!--<input type="submit" value="Search" onClick="searchRecords();" tabindex="2" />-->
+			&nbsp;&nbsp;&nbsp;<span id="search_indicator" style="display:none"><img src="/images/wait16g.gif" border="0" /></span>
+			</div>
+			</div>
+		</div>
+		<div class="contentfull" id="gg_contentfull">
+		</div>
+    </td></tr></table>
+    <div class="spacerblock_40"></div>
+    <div class="layout_footer"></div>
+	<div id="hd_gg_sub_tags" style="display:none;"></div>
+	<div id="hd_gg_sub_tags_header" style="display:none;"></div>
+</div>
+</td><td class="layout_rmargin"></td></tr></table>
+<script type="text/javascript">
+listRecords();
+</script>
+</body>
+</html>

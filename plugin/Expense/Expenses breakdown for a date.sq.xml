@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+  <savedquery>
+    <idsavedquery><![CDATA[]]></idsavedquery>
+    <qname><![CDATA[Expenses breakdown for a date]]></qname>
+    <query><![CDATA[select type, sum(amount)+sum(Taxes)-sum(discount) as total 
+   from expense, expensetype 
+   where expense.type=expensetype.idexpensetype and year(datepayed) = year(date_sub(curdate(), interval 1 year)) 
+   group by type 
+   order by expensetype.name
+   ]]></query>
+    <qorder><![CDATA[]]></qorder>
+    <qpos><![CDATA[]]></qpos>
+    <tablenames><![CDATA[expense]]></tablenames>
+  </savedquery>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+  <report>
+    <name><![CDATA[default_report.row.tpl]]></name>
+    <idreport><![CDATA[0]]></idreport>
+    <descr><![CDATA[
+    // Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+    This is the row report of the default tpl]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[
+<TR class="<?php if ($trclass=="tabletr1") { $trclass="tabletr2"; } else { $trclass="tabletr1";} echo $trclass;?>">
+    ]]></header>
+    <row><![CDATA[
+  <TD class="tabletdformfield" align="[aligncel]">\[[fieldname]\]</td>
+     ]]></row>
+    <footer><![CDATA[
+</TR>
+    ]]></footer>
+    <recprow><![CDATA[0]]></recprow>
+  </report>

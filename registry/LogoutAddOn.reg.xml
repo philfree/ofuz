@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="next_page">
+    <rdata type="fieldtype">PageBuilderFilesListBox</rdata>
+    <rdata type="label">Next Page</rdata>
+  </rfield>
+  <rfield name="Users_Class">
+    <rdata type="default">User</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+    <rdata type="textline">10:80</rdata>
+    <rdata type="label">User Class</rdata>
+  </rfield>  
+  <rfield name="link_text">
+    <rdata type="default">Logout</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+    <rdata type="textline">10:80</rdata>
+    <rdata type="label">Logout Text</rdata>
+  </rfield> 
+  <rfield name="full_sign_off">
+    <rdata type="default"></rdata>
+    <rdata type="checked_value">True</rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">Full Sign Off</rdata>
+    <rdata type="fieldtype">strFBFieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    
+  </rfield>
+</registry>  

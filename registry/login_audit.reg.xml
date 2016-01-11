@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idlogin_audit">
+    <rdata type="label">idlogin_audit</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="iduser">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">User</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="last_login">
+    <rdata type="datef">::</rdata>
+    <rdata type="label">Last Login</rdata>
+    <rdata type="fieldtype">strfFBFieldTypeDate</rdata>
+  </rfield>
+  <rfield name="ip_address">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">IP Address</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="login_type">
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+    <rdata type="label"></rdata>
+    <rdata type="listlabels">General:Facebook</rdata>
+    <rdata type="listvalues">General:Facebook</rdata>
+    <rdata type="default">General</rdata>
+  </rfield>
+</registry>

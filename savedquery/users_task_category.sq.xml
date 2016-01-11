@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+  <savedquery>
+    <idsavedquery><![CDATA[]]></idsavedquery>
+    <qname><![CDATA[user_task_category]]></qname>
+    <query><![CDATA[ SELECT idtask_category,name from task_category 
+    WHERE 
+    iduser = [do_User->iduser] 
+    OR iduser = 0
+    order by idtask_category
+]]></query>
+    <qorder><![CDATA[]]></qorder>
+    <qpos><![CDATA[]]></qpos>
+    <tablenames><![CDATA[task_category]]></tablenames>
+  </savedquery>

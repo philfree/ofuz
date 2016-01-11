@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[57]]></idform>
+    <name><![CDATA[ofuz_add_company]]></name>
+    <descr><![CDATA[]]></descr>
+    <idquery><![CDATA[]]></idquery>
+    <header><![CDATA[]]></header>
+    <row><![CDATA[
+    <div class="in290x18">
+      <?php echo _('Company Name');?><br />
+      [name]
+    </div>
+  </div>
+  <div class="dashedline"></div>
+        ]]></row>
+                 <footer><![CDATA[<div class="section20">
+                     <input type="submit" value="<?php echo _('Add this Company'); ?>" />
+                   </div>]]></footer>
+  </form>

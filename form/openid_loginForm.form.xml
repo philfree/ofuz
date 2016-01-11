@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<form>
+    <idform><![CDATA[]]></idform>
+    <name><![CDATA[openidForm]]></name>
+    <descr><![CDATA[This is the form that process the signin of the OpenId users.]]></descr>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[<table>]]></header>
+    <row><![CDATA[
+        <div class="textError"><?php htmlentities(stripslashes($_GET\['openidmessage'\]));?></div>
+<?php $login_form_style = $GLOBALS\['login_form_style'\]; ?>
+        <tr>
+            <td class="<?php echo $login_form_style; ?>" align="right"><img src="images/openid_med_logo_text.png" border="0" /></td>
+        </tr>
+        <tr>
+            <td class="<?php echo $login_form_style; ?>">
+                <input type="text" name="openid_identifier" size="20"
+                style="background: url('images/openid_small_logo.png') no-repeat; padding-left: 18px;" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right" class="<?php echo $login_form_style; ?>"><input type="submit" name="openid_action" value="Login" /></td>
+        </tr>
+    ]]></row>
+    <footer><![CDATA[</table></form>]]></footer>
+    <descr><![CDATA[    
+        This is the login form. It asks users for their username and password.
+        <template>
+<?php 
+if (!is_array($userdata)) {
+    $strWrongLoginPassword = "[err_string]";
+    $registrationPage = "[Registration_Page]";
+    $nextPage = "[Next_Page]";
+    $openidForm = new ReportForm($conx, "openidForm") ;
+    $openidForm->events = new Event("openid.signon") ;
+    $openidForm->events->addParam("goto", $nextPage);
+    $openidForm->events->addParam("errPage", $_SERVER\['PHP_SELF'\]);
+    $openidForm->events->addParam("strWrongLoginPassword", $strWrongLoginPassword) ;
+    $openidForm->setHeader($openidForm->events->getFormHeader()) ;
+    $openidForm->setHeader($openidForm->events->getFormEvent()) ;
+?>
+<br />
+<?php
+    $openidForm->execute();
+?>
+ <?php } ?>
+        </template>
+    ]]></descr>
+</form>

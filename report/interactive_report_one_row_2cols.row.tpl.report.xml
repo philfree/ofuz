@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+  <report>
+    <idreport><![CDATA[0]]></idreport>
+    <name><![CDATA[interactive_report_one_row_2cols.row.tpl]]></name>
+    <idquery><![CDATA[0]]></idquery>
+    <descr><![CDATA[	// Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+	This is the row report of the default tpl]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <recprow><![CDATA[2]]></recprow>
+    <header><![CDATA[<TR>
+<?php if (strlen("[display_update_link]")>0) { ?>
+  <TD class="tabletdsidelink"><a href="<?php echo $revent->getUrlEdit("\[noreg:[primarykey]:\]");?>" class="linkupdate">Update</a></td>
+<?php } 
+      if (strlen("[display_delete_link]")>0) { ?>
+  <TD class="tabletdsidelink"><a href="<?php echo $revent->getUrlDelete("\[noreg:[primarykey]:\]") ;?>" class="linkdelete" onclick="return confirm('Are you sure you want to delete this record');">Delete</a></TD>
+  <?php } ?>
+</TR>	
+    ]]></header>
+    <row><![CDATA[<TR>
+       <TD class="tabletdlabel" align="right">[fieldlabel:1]</td>
+       <TD class="tabletdformfield" align="left">\[[fieldname:1]\]</td>
+       <TD class="tabletdlabel" align="right">[fieldlabel:2]</td>
+       <TD class="tabletdformfield" align="left">\[[fieldname:2]\]</td>
+</TR>
+     ]]></row>
+    <footer><![CDATA[    ]]></footer>
+  </report>

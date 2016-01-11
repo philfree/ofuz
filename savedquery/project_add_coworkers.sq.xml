@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+  <savedquery>
+    <idsavedquery><![CDATA[]]></idsavedquery>
+    <qname><![CDATA[project_add_coworkers]]></qname>
+    <query><![CDATA[
+                    SELECT concat(user.firstname,' ',user.lastname) as  coworker_name from user where
+                    user.iduser IN (select idcoworker from user_relations where iduser = [do_User->iduser]) AND
+      user.iduser NOT IN (select idcoworker from project_sharing where iduser = [do_User->iduser] AND idproject = [do_project->idproject]);
+]]></query>
+    <qorder><![CDATA[ORDER BY coworker_name]]></qorder>
+    <qpos><![CDATA[]]></qpos>
+    <tablenames><![CDATA[company]]></tablenames>
+  </savedquery>

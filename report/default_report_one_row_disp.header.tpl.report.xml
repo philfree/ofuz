@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+  <report>
+    <idreport><![CDATA[0]]></idreport>
+    <name><![CDATA[default_report_one_row_disp.header.tpl]]></name>
+    <descr><![CDATA[	// Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+	This is the header report of the default tpl
+	To display one row of data.
+	]]></descr>
+    <idquery><![CDATA[0]]></idquery>    
+    <numrow><![CDATA[0]]></numrow>
+    <header><![CDATA[
+<TABLE class="tableform">
+    ]]></header>
+    <row><![CDATA[
+    ]]></row>
+    <footer><![CDATA[</tr>
+    ]]></footer>
+    <recprow><![CDATA[0]]></recprow>
+  </report>

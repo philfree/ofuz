@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[]]></idform>
+    <name><![CDATA[ofuz_add_coworker_os]]></name>
+    <descr><![CDATA[            
+            
+        ]]></descr>
+    <idquery><![CDATA[]]></idquery>
+    <header><![CDATA[<table class="tableform" width="400">]]></header>
+    <row><![CDATA[        <tr>
+        </tr>
+        
+        <tr>
+            <td class="tdformlabel"><?php echo _('First Name'); ?></td>
+	</tr>
+	<tr>
+            <td class="tabletdformfield">[firstname] </td>
+        </tr>
+	<tr>
+            <td class="tdformlabel"><?php echo _('Last Name');?></td>
+	</tr>
+	<tr>
+            <td class="tabletdformfield">[lastname]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('Email'); ?></td>
+        </tr>
+	<tr>
+            <td class="tabletdformfield">[email]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _(Username); ?></td>
+        </tr>
+	<tr>
+            <td class="tabletdformfield">[username]</td>
+        </tr>
+        <tr>
+          <td class="tdformlabel"><?php echo _('Password'); ?></td>
+        </tr>
+	<tr>
+            <td class="tabletdformfield">[password]</td>
+        </tr>
+            <td align="left"><input type="submit" value="<?php echo _('Submit')?>"/></td>
+        </tr>
+        ]]></row>
+    <footer><![CDATA[</table><?php echo _('All fields are required.'); ?>]]></footer>
+  </form>

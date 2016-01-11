@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+  <savedquery>
+    <idsavedquery><![CDATA[]]></idsavedquery>
+    <qname><![CDATA[Expenses breakdown for supplier]]></qname>
+    <query><![CDATA[select suplier, sum(amount)+sum(Taxes)-sum(discount) as total 
+  from expense 
+  where year(datepayed) = year(date_sub(curdate(), interval 1 year)) 
+  group by suplier]]></query>
+    <qorder><![CDATA[order by suplier]]></qorder>
+    <qpos><![CDATA[]]></qpos>
+    <tablenames><![CDATA[expense]]></tablenames>
+  </savedquery>

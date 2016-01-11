@@ -1,5 +1,9 @@
 <?php
 namespace RadriaCore\Radria\FieldType;
+use RadriaCore\Radria\Display;
+use RadriaCore\Radria\Event;
+use RadriaCore\Radria\EventControler;
+use RadriaCore\Radria\mysql\SqlQuery;
 
 /**
  * Class strFBFieldType RegistryField class
@@ -104,7 +108,7 @@ class FieldTypePassword  extends RegistryFieldStyle
                 } else {
                     $queryverif = "select * from ".$table." where ".$loginfield."='".$fields[$loginfield]."'" ;
                 }
-                $qVerif = new sqlQuery($evctl->getDbCon()) ;
+                $qVerif = new SqlQuery($evctl->getDbCon()) ;
                 $rverif = $qVerif->query($queryverif) ;
                 if ($qVerif->getNumRows()) {
                     $dispError->editParam("message",$strErrorLoginAlreadyUsed ) ;

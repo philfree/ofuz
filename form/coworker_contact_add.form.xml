@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[55]]></idform>
+	<name><![CDATA[coworker_contact_add]]></name>
+    <descr><![CDATA[]]></descr>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[]]></header>
+    <row><![CDATA[ <div class="dottedline"></div>
+	                  <div class="section20">
+                  <div class="marginform">
+					  <?php echo _('Choose or Type Email address:');?> [email_address]
+                    
+                      <input type="submit" value="<?php echo _('Invite to join your Co-Workers');?>" />
+                     </div></div>
+					 <div class="dottedline"></div>
+        ]]></row>
+    <footer><![CDATA[]]></footer>
+  </form>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="next_page">
+    <rdata type="fieldtype">PageBuilderFilesListBox</rdata>
+    <rdata type="label">Next Page</rdata>
+  </rfield>
+  <rfield name="reg_page">
+    <rdata type="fieldtype">PageBuilderFilesListBox</rdata>
+    <rdata type="label">Registration Page</rdata>
+  </rfield>
+  <rfield name="Users_Class">
+    <rdata type="default">User</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+    <rdata type="textline">10:80</rdata>
+    <rdata type="label">User Class</rdata>
+  </rfield>  
+  <rfield name="error_message">
+    <rdata type="default">Wrong Login</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+    <rdata type="textline">10:80</rdata>
+    <rdata type="label">Error Message</rdata>
+  </rfield>  
+</registry>  

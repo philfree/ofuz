@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idcompany_email">
+    <rdata type="label">idcompany_email</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="idcompany">
+    <rdata type="label">Company</rdata>
+    <rdata type="list">company:idcompany:name::</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBox</rdata>
+  </rfield>
+  <rfield name="email_address">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Email Address</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">40:150</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="email_type">
+    <rdata type="label">Email Type</rdata>
+    <rdata type="listlabels">Work:Home:Other:</rdata>
+    <rdata type="listvalues">Work:Home:Other:</rdata>
+    <rdata type="default">Work</rdata>
+    <rdata type="fieldtype">strFBFieldTypeListBoxSmall</rdata>
+  </rfield>
+  <rfield name="email_isdefault">
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Is Default</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+  </rfield>
+</registry>

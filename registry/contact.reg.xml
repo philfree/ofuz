@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idcontact">
+    <rdata type="label">idcontact</rdata>
+    <rdata type="readonly">1</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="firstname">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="label">First Name</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="css_form_class">.Verdana</rdata>
+    <rdata type="errormessage">Enter the First Name</rdata>
+    <rdata type="fieldtype">DijitTextBox</rdata>
+  </rfield>
+  <rfield name="lastname">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="label">Last Name</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="css_form_class">.Verdana</rdata>
+    <rdata type="errormessage">Enter the Last Name</rdata>
+    <rdata type="fieldtype">DijitTextBox</rdata>
+  </rfield>
+  <rfield name="position">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="label">Last Name</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="css_form_class">.Verdana</rdata>
+    <rdata type="errormessage">Enter the Position</rdata>
+    <rdata type="fieldtype">DijitTextBox</rdata>
+  </rfield>
+  <rfield name="idcompany">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="company">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="label">Company</rdata>
+    <rdata type="table_name"></rdata>
+    <rdata type="field_to_display">name</rdata>
+    <rdata type="object_method">Company->getUserCompany()</rdata>
+    <rdata type="saved_query"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="addevent">ContactEditSave->eventSetCompany:99</rdata>
+    <rdata type="fieldtype">DijitComboBox</rdata>
+  </rfield>
+  <rfield name="iduser">
+    <rdata type="default">[do_User->iduser]</rdata>
+    <rdata type="hidden">1</rdata>
+    <rdata type="label">users</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  
+  
+<!--  
+  <rfield name="picture">
+    <rdata type="label">User Picture</rdata>
+    <rdata type="max_width">200</rdata>
+    <rdata type="max_height">200</rdata>
+    <rdata type="showpicture">1</rdata>
+    <rdata type="picture">dbimage/</rdata>
+    <rdata type="overwrite">no</rdata>
+    <rdata type="fieldtype">PageBuilderFieldImage</rdata>
+  </rfield>-->
+
+  <rfield name="picture">
+    <rdata type="label">User Picture</rdata>
+    <rdata type="max_width">200</rdata>
+    <rdata type="max_height">200</rdata>
+    <rdata type="thumb_max_width">48</rdata>
+    <rdata type="thumb_max_height">48</rdata>
+    <rdata type="showpicture">1</rdata>
+    <rdata type="picture">dbimage/</rdata>
+    <rdata type="overwrite">no</rdata>
+    <rdata type="thumb_folder">dbimage/thumbnail/</rdata>
+    <rdata type="fieldtype">FieldTypeImageThumb</rdata>
+  </rfield>
+
+  
+  
+  <rfield name="summary">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Summary information</rdata>
+    <rdata type="undo"></rdata>
+    <rdata type="redo"></rdata>
+    <rdata type="cut"></rdata>
+    <rdata type="copy"></rdata>
+    <rdata type="paste"></rdata>
+    <rdata type="selectAll"></rdata>
+    <rdata type="bold">Yes</rdata>
+    <rdata type="italic">Yes</rdata>
+    <rdata type="underline">Yes</rdata>
+    <rdata type="strikethrough"></rdata>
+    <rdata type="subscript"></rdata>
+    <rdata type="superscript"></rdata>
+    <rdata type="removeFormat">Yes</rdata>
+    <rdata type="insertOrderedList">Yes</rdata>
+    <rdata type="insertUnorderedList">Yes</rdata>
+    <rdata type="insertHorizontalRule"></rdata>
+    <rdata type="indent">Yes</rdata>
+    <rdata type="outdent">Yes</rdata>
+    <rdata type="justifyLeft">Yes</rdata>
+    <rdata type="justifyRight">Yes</rdata>
+    <rdata type="justifyCenter">Yes</rdata>
+    <rdata type="justifyFull">Yes</rdata>
+    <rdata type="createLink">Yes</rdata>
+    <rdata type="unlink"></rdata>
+    <rdata type="delete"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="fieldtype">DijitEditor</rdata>
+  </rfield>
+  <rfield name="birthday">
+    <rdata type="databasetype"></rdata>
+    <rdata type="label">Birthday</rdata>
+    <rdata type="datetype">dd-MM-y</rdata>
+    <rdata type="errormessage">Wrong date format</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="fieldtype">DijitDateTextBox</rdata>
+  </rfield>
+  <rfield name="portal_code">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Portal Code</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="fb_userid">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="label">Facebook User Id</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">10:14</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+  </rfield>
+  <rfield name="tw_user_id">
+    <rdata type="default"></rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">tw_user_id</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="email_optout">
+    <rdata type="default">n</rdata>
+    <rdata type="hidden"></rdata>
+    <rdata type="html"></rdata>
+    <rdata type="label">Email Optout</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+</registry>

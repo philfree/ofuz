@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+  <savedquery>
+    <qname><![CDATA[registrationForm(users)]]></qname>
+    <idsavedquery><![CDATA[55]]></idsavedquery>
+    <query><![CDATA[select * from user where iduser=[iduser]]]></query>
+    <qorder><![CDATA[]]></qorder>
+    <qpos><![CDATA[]]></qpos>
+    <tablenames><![CDATA[user]]></tablenames>
+  </savedquery>

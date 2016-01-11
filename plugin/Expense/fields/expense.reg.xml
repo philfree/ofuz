@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idexpense">
+    <rdata type="fieldtype">FieldTypeInt</rdata>
+    <rdata type="label">idexpense</rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="readonly">1</rdata>
+  </rfield>
+  <rfield name="num">
+    <rdata type="fieldtype">FieldTypeInt</rdata>
+    <rdata type="label">Num</rdata>
+    <rdata type="textline">5:10</rdata>
+  </rfield>
+  <rfield name="idcompany">
+    <rdata type="fieldtype">FieldTypeListBox</rdata>
+    <rdata type="label">Company</rdata>
+    <rdata type="list">company:idcompany:name:0</rdata>
+  </rfield>
+  <rfield name="description">
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+    <rdata type="label">Description</rdata>
+    <rdata type="textline">60:255</rdata>
+  </rfield>
+  <rfield name="date_receive">
+    <rdata type="label">Received</rdata>
+   <rdata type="datetype">dd-MM-y</rdata>
+    <rdata type="errormessage"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="fieldtype">DijitDateTextBox</rdata>
+  </rfield>
+  <rfield name="amount">
+    <rdata type="fieldtype">FieldTypeFloat</rdata>
+    <rdata type="label">Amount</rdata>
+    <rdata type="textline">5:20</rdata>
+  </rfield>
+  <rfield name="Taxes">
+    <rdata type="fieldtype">FieldTypeFloat</rdata>
+    <rdata type="label">Taxes</rdata>
+    <rdata type="textline">5:20</rdata>
+  </rfield>
+  <rfield name="discount">
+    <rdata type="fieldtype">FieldTypeFloat</rdata>
+    <rdata type="label">Discount</rdata>
+    <rdata type="textline">5:20</rdata>
+  </rfield>
+  <rfield name="date_paid">
+    <rdata type="label">Payed</rdata>
+   <rdata type="datetype">dd-MM-y</rdata>
+    <rdata type="errormessage"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="fieldtype">DijitDateTextBox</rdata>
+  </rfield>
+  <rfield name="idledger_account">
+    <rdata type="fieldtype">FieldTypeListBox</rdata>
+    <rdata type="label">Account</rdata>
+    <rdata type="list">ledger_account:idledger_account:name:0</rdata>
+  </rfield>
+  <rfield name="checknum">
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+    <rdata type="label">Payment Reference</rdata>
+    <rdata type="textline">10:25</rdata>
+  </rfield>
+</registry>

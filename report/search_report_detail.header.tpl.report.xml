@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+  <report>
+    <idreport><![CDATA[0]]></idreport>
+    <name><![CDATA[search_report_detail.header.tpl]]></name>
+    <descr><![CDATA[        // Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+        This is the header report of the search report template]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[    <?php  global $orderdir, $orderfield, $recordpos, $mydb_num, $PHP_SELF, $cfg_eventcontroler, $report_[tablename]_search  ;
+    $currentpage = basename($PHP_SELF) ;
+    $e_set_search = new Event("mydb.setSearch"); 
+    $e_set_search->addParam("search_string", "report_[tablename]_search");
+    $e_set_search->addParam("goto", $currentpage);
+    echo $e_set_search->getFormHeader();
+    echo $e_set_search->getFormEvent();
+    ?>
+        Search for: <input type="text" name="search_value" value="<?php echo $report_[tablename]_search; ?>">
+        <input type="submit" name="Submit" value="Go">   
+        <?php 
+            $e_clear_search = new Event("mydb.clearSearch") ; 
+            $e_clear_search->addParam("search_string", "report_[tablename]_search") ; 
+            $e_clear_search->addParam("goto", $currentpage);     
+        ?>
+        <a href="<?=$e_clear_search->getUrl()?>" class="navlinks">Show All Records</a>
+    <?php
+    echo $e_set_search->getFormFooter();
+    
+    $e_detail = new Event("mydb.gotoPage");
+    $e_detail->addParam("goto", "[detailpage]");
+    $e_detail->addParam("id[tablename]", "");
+    $e_detail->addParam("tablename", "[tablename]");
+    $e_detail->requestSave("eDetail_[tablename]", $currentpage);
+        
+    $revent = new RecordEvent("[tablename]") ;
+    $oevent = new Event("mydb.tableorder") ;
+    $revent->setFormPage("[formpage]");
+    $revent->setPrimaryKeyVar("[primarykey]");
+    if (strlen("[registryname]") > 0) {
+       $revent->addParam("registryname", "[registryname]");
+    }    
+    $revent->addParam("goto", $currentpage) ;
+    $revent->addParam("deleteconfirm", "no") ;
+    $oevent->addParam("goto", $currentpage) ;
+    $revent->addParam("mydb_num", $mydb_num) ;
+    $oevent->addParam("orderfield", $orderfield) ;
+    $oevent->addParam("orderdir", $orderdir) ;
+    $oevent->addParam("recordpos", $recordpos) ;
+    $oevent->addParam("mydb_num", $mydb_num) ;
+    if ($cfg_eventcontroler == "") { $cfg_eventcontroler = "[eventcontroler]"; }
+    $revent->setEventControler($cfg_eventcontroler);
+    $oevent->setEventControler($cfg_eventcontroler);
+    $revent->requestSave("manageData", $currentpage) ; ?>
+    <a href="<?php echo $revent->getUrlAdd()?>" class="linkadd">Add a record</a>
+    <TABLE class="tableform">
+    <TR>
+     <TD colspan="3"></TD>
+        ]]></header>
+    <row><![CDATA[    <TD class="tabletdheader">
+    <?php  if ($orderfield == "[fieldname]" && $orderdir=="ASC") {
+    $neworderdir = "DESC" ;
+    } else {
+    $neworderdir = "ASC";
+    } $oevent->editParam("recordpos", 0) ;
+    $oevent->editParam("orderfield", "[fieldname]") ;
+    $oevent->editParam("orderdir", $neworderdir) ;?><a href="<?php echo $oevent->getUrl();?>" class="linkheader">[fieldlabel]</a>
+    </TD>
+        ]]></row>
+    <footer><![CDATA[    </tr>
+        ]]></footer>
+    <recprow><![CDATA[0]]></recprow>
+  </report>

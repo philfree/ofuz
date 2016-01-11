@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<registry>
+	<rfield name="email_address">
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="label">Emails</rdata>
+    <rdata type="table_name"></rdata>
+	<rdata type="field_to_display">email_address</rdata>
+    <rdata type="object_method">Contact->getContactEmailsForDojo()</rdata>
+    <rdata type="saved_query"></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="fieldtype">DijitComboBox</rdata>
+  </rfield>
+</registry>

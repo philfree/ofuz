@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+  <report>
+    <idreport><![CDATA[555]]></idreport>
+    <name><![CDATA[list_companies]]></name>
+    <idquery><![CDATA[all_companies]]></idquery>
+    <descr><![CDATA[list companies with link on the name for details.]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <recprow><![CDATA[0]]></recprow>
+    <header><![CDATA[    <?php 
+    $currentpage = $_SERVER\['PHP_SELF'\];
+    $e_detail = new Event("mydb.gotoPage");
+    $e_detail->addParam("goto", "company.php");
+    $e_detail->addParam("idcompany", "");
+    $e_detail->addParam("tablename", "company");
+    $e_detail->requestSave("eDetail_company", $currentpage);
+        
+?>
+<script language="javascript">
+ function showedit(id) {
+   //alert(id);
+  // editrec = document.getElementById("editrec"+id);
+  // editrec.style.display="block";
+  // $("editrec"+id).show();
+ }
+
+</script>]]></header>
+    <row><![CDATA[
+<div class="contact">
+    <div class="contact_main">
+        <input type="checkbox" name="c3" class="contact_checkbox" />
+        <img src="images/temp_contact.gif" width="34" height="34" alt="" />
+    </div>
+    <div class="contact_desc">
+      <span class="contact_name"><a href="<?php echo $e_detail->getUrl(); ?>">[company_name]</a></span>
+      <br /> [total_contacts] persone(s).
+    </div>
+    <div class="contact_email">
+      <!--[phone_type]--> [phone_number] <br/>
+      <a href="mailto:[email_address]">[email_address]</a>
+    </div>
+</div>
+<div class="solidline"></div>]]></row>
+    <footer><![CDATA[
+<script type="text/javascript">
+
+ $(".contact_desc").hover(
+   function () {
+     $(this).append("<span>Hello</span>");
+   },
+   function () {
+     $(this).find("span:last").remove();
+   }
+  )
+</script>]]></footer>
+  </report>

@@ -1,0 +1,16 @@
+Contact portal 
+Doesn't worked out of the box. (yet)
+
+Copy the file plugin/ContactPortal/contact_portal.php in /
+
+// Add to your .htaccess file or apache configuration
+
+   RewriteEngine on
+   RewriteBase   /
+   RewriteRule ^cp/([0-9].*) /contact_portal.php?pc=$1
+
+If not already there as it used to be a core plug-in.
+
+
+
+

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+  <report>
+    <idreport><![CDATA[0]]></idreport>
+    <name><![CDATA[default_report_one_row_disp.row.tpl]]></name>
+    <descr><![CDATA[	// Copyright 2001 - 2004 SQLFusion LLC           info@sqlfusion.com
+	This is the row report of the default tpl]]></descr>
+    <numrow><![CDATA[0]]></numrow>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[]]></header>
+    <row><![CDATA[<TR>
+	   <TD class="tabletdlabel">[fieldlabel]</td>
+       <TD class="tabletdformfield">\[[fieldname]\]</td>
+</TR>
+     ]]></row>
+    <footer><![CDATA[    ]]></footer>
+    <recprow><![CDATA[0]]></recprow>
+  </report>

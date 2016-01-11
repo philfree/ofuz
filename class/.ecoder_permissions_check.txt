@@ -1,0 +1,1 @@
+this file was created on Tue. 01st February 2011 at 22:20:05, after ecoder checked the permissions of the folder /var/www/dev.ofuz.net/class/.

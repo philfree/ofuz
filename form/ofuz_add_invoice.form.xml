@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[55]]></idform>
+    <name><![CDATA[ofuz_add_invoice]]></name>
+    <descr><![CDATA[]]></descr>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[]]></header>
+    <row><![CDATA[
+                 
+                   <div class="marginform">
+                     <?php echo _('Terms:'); ?><br />[idterms][iduser][datecreated][status]
+                   </div>
+                   <div class="marginform">
+                     <?php echo _('Company:'); ?><br />[idcompany]
+                   </div>
+                   <div class="marginform">
+                     <?php echo _('Description:');?><br />[description]
+                   </div>
+                  <!-- <div class="marginform">
+                     <?php echo _('Amount:'); ?><br />[amount]
+                   </div>-->
+                   <!--<div class="marginform">
+                     <?php echo _('Quantity:'); ?>&nbsp;&nbsp;[qty]
+                   </div>-->
+        ]]></row>
+    <footer><![CDATA[]]></footer>
+  </form>

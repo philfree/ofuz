@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="databasetype">
+    <rdata type="hidden">1</rdata>
+    <rdata type="default">text</rdata>
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="fieldtype">strFBFieldTypeChar</rdata>
+  </rfield>
+  <rfield name="label">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">Field Label</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="size">30</rdata>
+    <rdata type="maxlenght">150></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+  </rfield>
+  <!--<rfield name="width">
+    <rdata type="default">0</rdata>
+    <rdata type="label">Editor Width</rdata>
+    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
+    <rdata type="databasetype">integer</rdata>
+  </rfield>-->
+  <rfield name="undo">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Undo</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="redo">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Redo</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="cut">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Cut</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="copy">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Copy</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="paste">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Paste</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="selectAll">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Select All</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="bold">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Bold</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="italic">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Italic</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="underline">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>    
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Underline</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="strikethrough">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Strikethrough</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="subscript">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Subscript</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="superscript">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Superscript</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="removeFormat">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">RemoveFormat</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="insertOrderedList">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Insert Ordered List</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="insertUnorderedList">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Insert Unordered List</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="insertHorizontalRule">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Insert Horizontal Rule</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="indent">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Indent</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="outdent">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Outdent</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="justifyLeft">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Justify Left</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="justifyRight">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Justify Right</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="justifyCenter">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Justify Center</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="justifyFull">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Justify Full</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="createLink">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Create Link</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="unlink">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Unlink</rdata>
+    <rdata type="fieldtype">strFBFieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+    <rfield name="hiliteColor">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Hilite Color</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+    <rfield name="foreColor">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Text color</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="delete">
+    <rdata type="checked_value">Yes</rdata>
+    <rdata type="unchecked_value">No</rdata>
+    <rdata type="default">Yes</rdata>
+    <rdata type="label">Delete</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+    <rdata type="databasetype">varchar</rdata>
+  </rfield>
+  <rfield name="hidden">
+    <rdata type="default">0</rdata>
+    <rdata type="unchecked_value">0</rdata>
+    <rdata type="checked_value">1</rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">Hidden</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+  </rfield>
+  <rfield name="readonly">
+    <rdata type="default">0</rdata>
+    <rdata type="unchecked_value">0</rdata>
+    <rdata type="checked_value">1</rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">Readonly</rdata>
+    <rdata type="fieldtype">FieldTypeCheckBox</rdata>
+    <rdata type="checkbox">1</rdata>
+  </rfield>
+  <rfield name="css_form_class">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">CSS class in forms</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="size">50</rdata>
+    <rdata type="maxlenght">150></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">PageBuilderFieldListStyles</rdata>
+  </rfield>
+  <rfield name="css_disp_class">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">CSS class when display</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="size">50</rdata>
+    <rdata type="maxlenght">150></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">PageBuilderFieldListStyles</rdata>
+  </rfield>
+  <rfield name="css_disp_style">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">CSS Styles when display</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="size">50</rdata>
+    <rdata type="maxlenght">150></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+  </rfield>
+    <rfield name="css_form_style">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">CSS Styles in forms</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="size">50</rdata>
+    <rdata type="maxlenght">150></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+  </rfield>
+  <rfield name="id">
+    <rdata type="default"></rdata>
+    <rdata type="hidden">0</rdata>
+    <rdata type="label">DOM id</rdata>
+    <rdata type="readonly"></rdata>
+    <rdata type="required"></rdata>
+    <rdata type="size">20</rdata>
+    <rdata type="maxlenght">150></rdata>
+    <rdata type="css_form_class"></rdata>
+    <rdata type="css_disp_class"></rdata>
+    <rdata type="css_form_style"></rdata>
+    <rdata type="css_disp_style"></rdata>
+    <rdata type="id"></rdata>
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+  </rfield>
+</registry>

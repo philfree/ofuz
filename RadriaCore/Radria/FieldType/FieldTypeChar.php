@@ -11,7 +11,7 @@ namespace RadriaCore\Radria\FieldType;
  * @package PASClass
  */
 
-Class FieldTypeChar extends RegistryFieldStyle
+class FieldTypeChar extends RegistryFieldStyle
 {
     var $style_param = "";
     function rdataForm_textline($field_value="") {

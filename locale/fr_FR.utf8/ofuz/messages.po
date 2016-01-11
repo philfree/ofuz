@@ -1,0 +1,2406 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-06 07:59-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: contact_web_form_url.php:13 contact_web_form.php:13
+msgid "Ofuz :: Contacts Web Form Creator"
+msgstr "Ofuz:: Créateur Contacts Formulaire Web"
+
+#: contact_web_form_url.php:36
+msgid "Web Form Url"
+msgstr "Url Web Form"
+
+#: contact_web_form_url.php:50 settings_wf.php:128
+msgid "The url for the web form "
+msgstr "L&#39;URL du formulaire web"
+
+#: contact_web_form_url.php:50 settings_wf.php:128
+msgid " is "
+msgstr "est"
+
+#: contact_web_form_url.php:55 settings_wf.php:133
+msgid "Embed code to insert in your blog or web site"
+msgstr "Intégrer le code à insérer sur votre blog ou site web"
+
+#: contact_web_form_url.php:63
+msgid "Back"
+msgstr "Dos"
+
+#: user_register.php:34
+msgid "Please check the URL"
+msgstr "S&#39;il vous plaît vérifier l&#39;URL"
+
+#: company_edit.php:31
+msgid "Edit Company"
+msgstr "Modifier Société"
+
+#: company_edit.php:71 ContactDetail.class.php:35 contact_edit.php:117
+#: class/plugin/ContactDetailBlock.class.php:35
+#: plugin/ContactDetail/ContactDetail.class.php:35 settings_myinfo.php:79
+#: company.php:85
+msgid "Phone"
+msgstr "Téléphone"
+
+#: company_edit.php:75 ContactDetail.class.php:45 contact_edit.php:121
+#: class/plugin/ContactDetailBlock.class.php:45
+#: plugin/ContactDetail/ContactDetail.class.php:45 merge_contacts.php:91
+#: settings_myinfo.php:89
+msgid "Email"
+msgstr "Email"
+
+#: company_edit.php:80 contact_edit.php:137
+msgid "Contact Address"
+msgstr "Adresse de contact"
+
+#: company_edit.php:84 ContactDetail.class.php:68 contact_edit.php:133
+#: class/plugin/ContactDetailBlock.class.php:68
+#: plugin/ContactDetail/ContactDetail.class.php:68 merge_contacts.php:120
+#: settings_myinfo.php:111 company.php:96
+msgid "Website"
+msgstr "Site Web"
+
+#: contact_import.php:26 gSync.php:59
+msgid "Import Contacts"
+msgstr "Importer des contacts"
+
+#: contact_import.php:30
+msgid "Step 1 of 2: "
+msgstr "Étape 1 de 2:"
+
+#: contact_import.php:30
+msgid "Select the .CSV File"
+msgstr "Sélectionnez le fichier. Csv"
+
+#: contact_import.php:32
+msgid "Ofuz supports importing records from .csv"
+msgstr "Ofuz charge l&#39;importation de documents. Csv"
+
+#: contact_import.php:32
+msgid "Comma Separated Values"
+msgstr "Valeurs séparées par des virgules"
+
+#: contact_import.php:32
+msgid "files"
+msgstr "fichiers"
+
+#: contact_import.php:33
+msgid ""
+"To start import, browse to locate file .csv file and click on the Next "
+"button to continue."
+msgstr "Pour démarrer l&#39;importation, localisez le fichier. Csv et cliquez sur le bouton Suivant pour continuer."
+
+#: contact_sendemail_save_template.php:11
+msgid "Ofuz :: Contacts Send Email Save Template"
+msgstr "Ofuz:: Contacts Envoyer Enregistrer le modèle"
+
+#: contact_sendemail_save_template.php:40
+msgid "Save Template"
+msgstr "Enregistrer le modèle"
+
+#: contact_sendemail_save_template.php:71
+msgid "Name for this email template:  "
+msgstr "Nom e-mail pour ce modèle:"
+
+#: contact_sendemail_save_template.php:78
+#: settings_auto_responder_email_edit.php:164 settings_email_templ.php:128
+#: settings_auto_responder_edit.php:111
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: contact_sendemail_save_template.php:79
+msgid "or click here to continue"
+msgstr "ou cliquez ici pour continuer"
+
+#: contact_sendemail_save_template.php:81 settings_invoice.php:69
+#: settings_invoice.php:88 settings_invoice.php:122 settings_invoice.php:137
+#: settings_invoice.php:165 settings_invoice.php:181 settings_invoice.php:204
+#: settings_invoice.php:219 invoice_add.php:750 task.php:496 project.php:400
+msgid "Save"
+msgstr "Sauver"
+
+#: contact_sendemail_save_template.php:87
+msgid " or click here to continue without saving"
+msgstr "ou cliquez ici pour continuer sans sauvegarder"
+
+#: invoice_add_bck.php:353 invoice_edit.php:528 invoice_add.php:626
+msgid "Recurrent Invoice?"
+msgstr "Facture récurrentes?"
+
+#: invoice_add_bck.php:360 invoice_edit.php:548 invoice_add.php:633
+msgid "Set this invoice as recurrent"
+msgstr "Définissez cette facture récurrente"
+
+#: invoice_add_bck.php:362 invoice_edit.php:550 invoice_add.php:635
+msgid "Repeat this invoice every: <br />"
+msgstr "Répétez cette facture tous: <br />"
+
+#: invoice_add_bck.php:365 invoice_edit.php:553 invoice_add.php:638
+msgid "(like every 2 Months or every 3 Days)"
+msgstr "(Comme tous les 2 mois ou tous les jours 3)"
+
+#: invoice_add_bck.php:373 invoice_add.php:646 payment_add.php:40
+msgid "Add Invoice"
+msgstr "Ajouter la facture"
+
+#: invoice_add_bck.php:386 invoice_edit.php:582 invoice_add.php:676
+msgid "Contact/Company"
+msgstr "Contact / Société"
+
+#: invoice_add_bck.php:389 invoice_edit.php:585 invoice_add.php:679
+#: merge_contacts.php:134 settings_myinfo.php:120 company.php:70
+msgid "Address"
+msgstr "Adresse"
+
+#: invoice_add_bck.php:395 invoice_print.php:121 invoice_pdf.php:114
+#: invoices_unpaid.php:155 invoices.php:425 invoice_edit.php:594
+#: invoice.php:337 invoice_add.php:685 invoice_view.php:228
+#: invoice_print_bck.php:86
+msgid "Due Date"
+msgstr "Date d&#39;échéance"
+
+#: invoice_add_bck.php:398 invoice_print.php:133 invoice_pdf.php:122
+#: invoice_edit.php:597 invoice.php:347 invoice_add.php:688
+#: invoice_view.php:238 invoice_print_bck.php:99
+msgid "Terms"
+msgstr "Termes"
+
+#: invoice_add_bck.php:413 invoice_print.php:145 invoice_pdf.php:134
+#: invoice_edit.php:617 invoice.php:361 invoice_add.php:703
+#: invoice_view.php:252 invoice_print_bck.php:108
+msgid "Item"
+msgstr "Point"
+
+#: invoice_add_bck.php:414 invoice_print.php:146
+#: class/InvoiceLine.class.php:36 class/InvoiceLine.class.php:110
+#: invoice.php:362 invoice_view.php:253 invoice_print_bck.php:109
+msgid "Description"
+msgstr "Description"
+
+#: invoice_add_bck.php:415 invoice_edit.php:619 invoice.php:363
+#: invoice_add.php:705 invoice_view.php:254
+msgid "Qty."
+msgstr "Qté."
+
+#: invoice_add_bck.php:416 invoice_print.php:147 invoice_pdf.php:136
+#: invoice_edit.php:620 invoice.php:364 invoice_add.php:706
+#: invoice_view.php:255 invoice_print_bck.php:110
+msgid "Price"
+msgstr "Prix"
+
+#: invoice_add_bck.php:417 invoice_print.php:156 invoice_pdf.php:144
+#: invoice_edit.php:622 invoice.php:372 invoice.php:419 invoice_add.php:708
+#: invoice_view.php:263 invoice_view.php:309 invoice_print_bck.php:112
+msgid "Total"
+msgstr "Total"
+
+#: invoice_add_bck.php:438 invoice_edit.php:632 invoice.php:400
+#: invoice_add.php:729 invoice_view.php:291
+msgid "Subtotal"
+msgstr "Total"
+
+#: invoice_add_bck.php:442 invoice_edit.php:636 invoice.php:406
+#: invoice_add.php:733 invoice_view.php:296
+msgid "Discount"
+msgstr "Rabais"
+
+#: invoice_add_bck.php:446 invoice_edit.php:640 invoice.php:414
+#: invoice_add.php:737 invoice_view.php:304
+msgid "Tax"
+msgstr "Impôt"
+
+#: invoice_add_bck.php:450 invoice_edit.php:644 invoice_add.php:741
+msgid "Balance"
+msgstr "Balance"
+
+#: invoice_print.php:66
+msgid "From : "
+msgstr "De:"
+
+#: invoice_print.php:72
+msgid "To :"
+msgstr "Pour:"
+
+#: invoice_print.php:85 invoice_pdf.php:73
+msgid "Q U O T E"
+msgstr "QUOTE"
+
+#: invoice_print.php:87 invoice_pdf.php:75
+msgid "I N V O I C E"
+msgstr "FACTURE"
+
+#: invoice_print.php:108 invoice_pdf.php:99
+msgid "Quote #"
+msgstr "Quote #"
+
+#: invoice_print.php:110 invoice_pdf.php:101 invoices_unpaid.php:153
+#: invoices.php:423 invoice_print_bck.php:78
+msgid "Invoice #"
+msgstr "Facture #"
+
+#: invoice_print.php:117 invoice_pdf.php:109 invoice_edit.php:591
+#: invoice.php:237 invoice_view.php:158 invoice_print_bck.php:82
+msgid "Date Created"
+msgstr "Date de création"
+
+#: invoice_print.php:125 invoice_pdf.php:117 invoice.php:342 invoice.php:434
+#: invoice_view.php:233 invoice_print_bck.php:90
+msgid "Amount Due"
+msgstr "Montant à payer"
+
+#: invoice_print.php:148 invoice_pdf.php:137 invoice_print_bck.php:111
+msgid "Quantity"
+msgstr "Quantité"
+
+#: invoice_print.php:154 invoice_pdf.php:141 invoice.php:370
+#: invoice_view.php:261
+msgid "Tax(%)"
+msgstr "D&#39;impôt (%)"
+
+#: invoice_print.php:212 invoice_pdf.php:176 invoice_print_bck.php:157
+msgid "Subtotal:"
+msgstr "Total partiel:"
+
+#: invoice_print.php:227 invoice_print_bck.php:172
+msgid "Discount -"
+msgstr "Remise -"
+
+#: invoice_print.php:242 invoice_pdf.php:186
+msgid "Tax + :"
+msgstr "TVA +:"
+
+#: invoice_print.php:253 invoice_pdf.php:191 invoice_print_bck.php:184
+msgid "Total :"
+msgstr "Total:"
+
+#: invoice_print.php:265 invoice_pdf.php:194 invoice_print_bck.php:195
+msgid "Amount Paid :"
+msgstr "Montant payé:"
+
+#: invoice_print.php:277 invoice_pdf.php:196 invoice_print_bck.php:206
+msgid "Balance Due :"
+msgstr "En raison de la balance:"
+
+#: fb_import_friends.php:23 fb_connect.php:77
+msgid "Import Contacts From Facebook"
+msgstr "Importez des contacts de Facebook"
+
+#: public_profile_vcard.php:118
+msgid "<b>Contact is sent.</b>"
+msgstr "<b>Contact est envoyé.</b>"
+
+#: public_profile_vcard.php:119 public_profile_vcard.php:123
+#: settings_email_templ.php:50
+msgid "Go Back"
+msgstr "Retour"
+
+#: public_profile_vcard.php:121
+msgid "<b>Error Sending Email, Please try again.</b>"
+msgstr "<b>Erreur envoi de courriels, S&#39;il vous plaît essayez de nouveau.</b>"
+
+#: ContactDetail.class.php:21 class/plugin/ContactDetailBlock.class.php:21
+#: plugin/ContactDetail/ContactDetail.class.php:21
+msgid "Contact Information"
+msgstr "Coordonnées"
+
+#: ContactDetail.class.php:21 class/plugin/ContactDetailBlock.class.php:21
+#: contact.php:844 public_task.php:194
+#: plugin/ContactDetail/ContactDetail.class.php:21 task.php:426 task.php:640
+msgid "edit"
+msgstr "éditer"
+
+#: ContactDetail.class.php:54 contact_edit.php:129
+#: class/plugin/ContactDetailBlock.class.php:54
+#: plugin/ContactDetail/ContactDetail.class.php:54 merge_contacts.php:105
+#: settings_myinfo.php:100
+msgid "IM"
+msgstr "IM"
+
+#: contact_edit.php:38
+msgid "Edit Contact"
+msgstr "Modifier le contact"
+
+#: contact_edit.php:89
+msgid "First name"
+msgstr "Prénom"
+
+#: contact_edit.php:95
+msgid "Last name"
+msgstr "Nom de famille"
+
+#: contact_edit.php:102
+msgid "Title"
+msgstr "Titre"
+
+#: contact_edit.php:106 settings_email_templ.php:111 project.php:370
+#: contact_sendemail.php:141
+msgid "Company"
+msgstr "Entreprise"
+
+#: contact_edit.php:111
+msgid "Picture"
+msgstr "Image"
+
+#: class/ProjectDiscuss.class.php:177 class/ContactNotes.class.php:225
+#: task.php:558
+msgid "More Options"
+msgstr "Plus d&#39;options"
+
+#: class/ProjectDiscuss.class.php:181 task.php:566
+msgid "Who can edit ? "
+msgstr "Qui peut modifier?"
+
+#: class/ProjectDiscuss.class.php:181 contact.php:704 task.php:567
+msgid "Just me"
+msgstr "Just me"
+
+#: class/ProjectDiscuss.class.php:182 contact.php:705 task.php:568
+msgid "My co-workers and I"
+msgstr "Mes collègues et moi"
+
+#: class/ProjectDiscuss.class.php:264 daily_notes.php:133
+msgid "Attachment"
+msgstr "Attachement"
+
+#: class/ProjectDiscuss.class.php:967 class/ProjectDiscuss.class.php:976
+#: class/ContactNotes.class.php:400 class/ContactNotes.class.php:410
+#: contact.php:774 contact.php:788 contact.php:828 contact.php:842
+#: public_task.php:178 public_task.php:189 task.php:624 task.php:635
+msgid "Star this note to move it on top"
+msgstr "Star de cette note pour la déplacer sur le dessus"
+
+#: class/ProjectDiscuss.class.php:976 public_task.php:187 task.php:633
+msgid "Task Discussion"
+msgstr "Groupe de discussion"
+
+#: class/ProjectDiscuss.class.php:978 class/ContactNotes.class.php:412
+#: contact.php:790 contact.php:844 public_task.php:194 task.php:640
+msgid "Delete this note"
+msgstr "Supprimer cette note"
+
+#: class/WebFormUser.class.php:23
+msgid "Please select some labels"
+msgstr "S&#39;il vous plaît sélectionner des étiquettes"
+
+#: class/RegisteredUser.class.php:92 class/User.class.php:244
+msgid "Wrong Username or Password"
+msgstr "Nom d&#39;utilisateur ou mot de passe"
+
+#: class/RegisteredUser.class.php:96 class/User.class.php:248
+#: class/User.class.php:463
+msgid "User name"
+msgstr "Nom d&#39;utilisateur"
+
+#: class/RegisteredUser.class.php:104 class/User.class.php:256
+#: class/User.class.php:471
+msgid "Password"
+msgstr "Mot de passe"
+
+#: class/RegisteredUser.class.php:160 web_form.php:78
+msgid "Submit"
+msgstr "Soumettre"
+
+#: class/RegisteredUser.class.php:161
+msgid "Your Password has been sent"
+msgstr "Votre mot de passe a été envoyé"
+
+#: class/RegisteredUser.class.php:162
+msgid "Enter your email address"
+msgstr "Entrez votre adresse email"
+
+#: class/RegisteredUser.class.php:247
+msgid "Wrong_login_or_password"
+msgstr "Wrong_login_or_password"
+
+#: class/RegisteredUser.class.php:384
+msgid "Log out successful"
+msgstr "Connectez-vous à succès"
+
+#: class/RegisteredUser.class.php:462 class/User.class.php:347
+msgid "Wrong login or password"
+msgstr "mauvais login ou mot de passe"
+
+#: class/RegisteredUser.class.php:574 class/User.class.php:307
+msgid "Your password has been sent to: "
+msgstr "Votre mot de passe a été envoyé à:"
+
+#: class/RegisteredUser.class.php:577 class/User.class.php:310
+msgid "No user found with that email address"
+msgstr "Aucun utilisateur trouvé à cette adresse e-mail"
+
+#: class/workfeed/WorkFeedRssFeedImport.class.php:23
+msgid " posted in  "
+msgstr "publiée dans"
+
+#: class/workfeed/WorkFeedContactNote.class.php:25
+#: class/workfeed/WorkFeedContactNotePortal.class.php:26
+msgid " has a note from "
+msgstr "a une note de"
+
+#: class/workfeed/WorkFeedProjectDiscuss.class.php:31
+msgid " has added a note on discussion <a href =\"/Task/"
+msgstr "<html> a ajouté une note sur la discussion"
+
+#: class/workfeed/WorkFeedProjectDiscuss.class.php:33
+msgid " in project"
+msgstr "dans le projet"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:34
+msgid "Ownership of the task "
+msgstr "Propriétaire de la tâche"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:36
+#: class/workfeed/WorkFeedProjectTask.class.php:41
+#: class/workfeed/WorkFeedProjectTask.class.php:47
+#: class/workfeed/WorkFeedProjectTask.class.php:53
+#: class/workfeed/WorkFeedProjectTask.class.php:57
+#: class/workfeed/WorkFeedProjectTask.class.php:63
+#: class/workfeed/WorkFeedProjectTask.class.php:70
+#: class/workfeed/WorkFeedProjectTask.class.php:76
+msgid " on project "
+msgstr "sur le projet"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:37
+msgid " has been changed to "
+msgstr "a été modifié pour"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:42
+msgid " has been closed by "
+msgstr "a été fermé par"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:48
+msgid " has been re-opened by "
+msgstr "a été rouverte par"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:54
+msgid " has been set to "
+msgstr "a été fixé à"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:54
+msgid "by "
+msgstr "par"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:58
+msgid " is renamed as "
+msgstr "est rebaptisé"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:59
+#: class/workfeed/WorkFeedProjectTask.class.php:64
+#: class/workfeed/WorkFeedProjectTask.class.php:71
+msgid " by "
+msgstr "par"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:62
+msgid "Category of "
+msgstr "Catégorie de"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:64
+#: class/workfeed/WorkFeedProjectTask.class.php:71
+msgid " has been changed to  "
+msgstr "a été modifié pour"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:69
+msgid "Due date of "
+msgstr "Date d&#39;échéance du"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:74
+msgid "A new task "
+msgstr "Une nouvelle tâche"
+
+#: class/workfeed/WorkFeedProjectTask.class.php:77
+msgid " has been added by "
+msgstr "a été ajouté par"
+
+#: class/AutoResponder.class.php:18
+msgid "Please provide one name for the autoresponder"
+msgstr "S&#39;il vous plaît donner un nom pour le répondeur"
+
+#: class/AutoResponder.class.php:21
+msgid "Please Select One Tag"
+msgstr "S&#39;il vous plaît Choisir un tag"
+
+#: class/OfuzCancelAccount.class.php:42
+msgid "Please Provide a reason before cancelling the account"
+msgstr "S&#39;il vous plaît fournir une raison valable, avant d&#39;annuler le compte"
+
+#: class/plugin/PaymentLogBlock.class.php:21 invoice.php:127
+msgid "Payments Log"
+msgstr "Paiements Connectez-vous"
+
+#: class/plugin/PaymentLogBlock.class.php:40
+#: settings_auto_responder_email_edit.php:165 invoices_unpaid.php:146
+#: invoice.php:138 invoice.php:286
+msgid "Cancel"
+msgstr "Annuler"
+
+#: class/plugin/PaymentLogBlock.class.php:43 invoice.php:141
+msgid "Add payment "
+msgstr "Ajouter de paiement"
+
+#: class/plugin/PaymentLogBlock.class.php:43 invoice.php:141
+msgid " with the Ref Num: "
+msgstr "avec le Num Ref:"
+
+#: class/plugin/PaymentLogBlock.class.php:43 invoice.php:141
+msgid " or with the amount you want."
+msgstr "ou avec le montant que vous voulez."
+
+#: class/plugin/PaymentLogBlock.class.php:60
+#: class/plugin/PaymentLogBlock.class.php:62 invoice.php:157 invoice.php:159
+msgid "Amount :"
+msgstr "Montant:"
+
+#: class/plugin/PaymentLogBlock.class.php:63 invoice.php:160
+msgid "Note :"
+msgstr "Note:"
+
+#: class/plugin/PaymentLogBlock.class.php:65 invoice.php:162
+#: payment_add.php:42 payment_add.php:49
+msgid "Add Payment"
+msgstr "Ajouter de paiement"
+
+#: class/plugin/PaymentLogBlock.class.php:68 invoice.php:165
+msgid "No, I'll add later"
+msgstr "Non, je vais ajouter plus tard"
+
+#: class/plugin/PaymentLogBlock.class.php:85 invoice.php:183 project.php:186
+#: project.php:212
+msgid "Remove"
+msgstr "Supprimer"
+
+#: class/plugin/RecurrentInvoiceBlock.class.php:21
+msgid "Recurrent Invoice"
+msgstr "Récidive facture"
+
+#: class/plugin/RecurrentInvoiceBlock.class.php:37
+msgid "This invoice repeats every"
+msgstr "Cette facture se répète tous les"
+
+#: class/plugin/RecurrentInvoiceBlock.class.php:39
+msgid "This invoice repeats"
+msgstr "Cette facture reprend"
+
+#: class/plugin/RecurrentInvoiceBlock.class.php:39
+msgid "every"
+msgstr "tous"
+
+#: class/plugin/RecurrentInvoiceBlock.class.php:43
+msgid "The next invoice will be generated on "
+msgstr "La prochaine facture sera générée à la"
+
+#: class/plugin/ContactInvoiceBlock.class.php:22
+msgid "Invoices"
+msgstr "Factures"
+
+#: class/Note.class.php:243 class/Note.class.php:247
+msgid "has been removed"
+msgstr "a été enlevé"
+
+#: class/Sync.class.php:23 contact_import_parse.php:85
+msgid "Import"
+msgstr "Importation"
+
+#: class/Sync.class.php:28 settings_export.php:27
+msgid "Export"
+msgstr "Exportation"
+
+#: class/Invoice.class.php:201
+msgid "Would you like add payment from the remaining "
+msgstr "Souhaitez-vous ajouter de paiement auprès des autres"
+
+#: class/Invoice.class.php:317
+msgid "Successfully email sent to: "
+msgstr "Réussir email envoyé à:"
+
+#: class/Invoice.class.php:319
+msgid "Unable to send email to "
+msgstr "Impossible d&#39;envoyer un courriel à"
+
+#: class/Invoice.class.php:572 class/Invoice.class.php:600
+msgid ""
+"Recurrent Value is not correct.To set as Recurrent edit the invoice and "
+"enter numeric value"
+msgstr "Récidive valeur n&#39;est pas définie comme correct.To modifier récurrent de la facture et saisir une valeur numérique"
+
+#: class/Invoice.class.php:577
+msgid "Invoice could be created.Possible reason Contact Missing."
+msgstr "Facture pourrait être la raison created.Possible Contact disparus."
+
+#: class/Invoice.class.php:1120
+msgid "Invoice is sent to "
+msgstr "Facture est envoyée au"
+
+#: class/Invoice.class.php:1122
+msgid "Unable to send invocie as no email id found"
+msgstr "Impossible d&#39;envoyer aucun email invocie comme identifiant de"
+
+#: class/Invoice.class.php:1356 class/Invoice.class.php:1403
+#: class/Invoice.class.php:1476
+msgid "Invalid amount has been entered"
+msgstr "montant Blancs a été conclu"
+
+#: class/Invoice.class.php:1358
+msgid ""
+"The payment received is greater than the invoice amount, do you want to "
+"apply "
+msgstr "Le paiement reçu est supérieur au montant de la facture, voulez-vous d&#39;appliquer"
+
+#: class/Invoice.class.php:1373
+msgid "Payment has been added"
+msgstr "Le paiement a été ajoutée"
+
+#: class/Invoice.class.php:1478
+msgid "Amount is greater than the total due"
+msgstr "Le montant est supérieur à la somme due"
+
+#: class/Invoice.class.php:1653
+msgid ""
+"The Total Amount entered is greater than the invoice amount. Please re-enter."
+msgstr "Le montant total inscrit est supérieur au montant de la facture. S&#39;il vous plaît entrer de nouveau."
+
+#: class/Invoice.class.php:1693
+msgid "This transaction has been approved. Thank you for your payment"
+msgstr "Cette transaction a été approuvée. Nous vous remercions de votre paiement"
+
+#: class/PaymentInvoice.class.php:109
+msgid "Ref Num :"
+msgstr "Num Ref:"
+
+#: class/PaymentInvoice.class.php:109
+msgid "Amount Not Added : "
+msgstr "Montant pas ajouté:"
+
+#: class/Contact.class.php:1129 contact_sendemail.php:209
+msgid "Send Mailing"
+msgstr "Envoyer postale"
+
+#: class/Contact.class.php:1229 class/Contact.class.php:1247
+msgid "<br>"
+msgstr "<br>"
+
+#: class/Contact.class.php:1239
+msgid " has send the following message using ofuz"
+msgstr "a envoyé le message suivant à l&#39;aide ofuz"
+
+#: class/Contact.class.php:1244
+msgid "<br>Notification can not be sent to "
+msgstr "<br> Notification ne peut être envoyé à"
+
+#: class/UserSettings.class.php:95
+msgid "Please Enter Login and Transacton Key for Authorized.net"
+msgstr "S&#39;il vous plaît entrez votre login et Transacton clés pour Authorized.net"
+
+#: class/UserSettings.class.php:121 class/UserSettings.class.php:160
+#: class/UserSettings.class.php:228
+msgid "Data Updated"
+msgstr "Mise à jour des données"
+
+#: class/UserSettings.class.php:134 class/UserSettings.class.php:169
+msgid "Data Deleted"
+msgstr "Les données supprimées"
+
+#: class/UserSettings.class.php:142
+msgid "Please Enter Paypal Business Email"
+msgstr "S&#39;il vous plaît Inscrivez Email Business Paypal"
+
+#: class/Project.class.php:228
+msgid "Select One"
+msgstr "Choisissez-en un"
+
+#: class/Project.class.php:234
+msgid "Add this co-worker"
+msgstr "Ajouter cette co-travailleur"
+
+#: class/Project.class.php:235
+msgid "not in this list ? "
+msgstr "pas dans cette liste?"
+
+#: class/Project.class.php:235 project.php:197
+msgid "add co-workers"
+msgstr "co add-travailleurs"
+
+#: class/Project.class.php:238
+msgid "No co-workers found. To share this project with others"
+msgstr "Aucun des collègues trouvés. Pour partager ce projet avec d&#39;autres"
+
+#: class/Project.class.php:238
+msgid "invite co-workers"
+msgstr "co-travailleurs invitons"
+
+#: class/Project.class.php:427
+msgid "Co-worker is assigned successfuly for the project"
+msgstr "Co-travailleur est assigné avec succès pour le projet"
+
+#: class/Project.class.php:429
+msgid "Co-worker is already assigned this project"
+msgstr "Co-travailleurs est déjà affecté à ce projet"
+
+#: class/Project.class.php:433
+msgid "You must select a co-worker"
+msgstr "Vous devez sélectionner un collègue"
+
+#: class/Tag.class.php:441
+msgid "Select Tag to remove"
+msgstr "Sélectionnez Ajouter à supprimer"
+
+#: class/InvoiceLine.class.php:74 class/InvoiceLine.class.php:148
+msgid "Delete this item"
+msgstr "Supprimer cet article"
+
+#: class/ProjectTask.class.php:232
+msgid "closed"
+msgstr "fermé"
+
+#: class/ProjectTask.class.php:234
+msgid "progress"
+msgstr "progrès"
+
+#: class/User.class.php:364
+msgid ""
+"Seems like you have registered through facebook. Please login with facebook !"
+msgstr "On dirait que vous vous êtes inscrit sur Facebook. S&#39;il vous plaît vous connecter avec Facebook!"
+
+#: class/User.class.php:398
+msgid "Your account is not currently active, contact our tech support at "
+msgstr "Votre compte n&#39;est pas actif, contactez notre support technique à"
+
+#: class/User.class.php:406
+msgid "Wrong Login !"
+msgstr "Login incorrect!"
+
+#: class/User.class.php:581
+msgid ""
+"Sorry! But seems like you are not connected to facebook. Please connect "
+"first."
+msgstr "Désolé! Mais semble que vous n&#39;êtes pas connecté à Facebook. S&#39;il vous plaît connecter."
+
+#: class/MultiRecord.class.php:26 class/MultiRecord.class.php:107
+msgid "Delete this fields"
+msgstr "Supprimer ce champs"
+
+#: class/MultiRecord.class.php:64
+msgid "Delete this field"
+msgstr "Supprimer ce domaine"
+
+#: company_add.php:32 contacts.php:221
+msgid "Add a new company"
+msgstr "Ajouter une nouvelle société"
+
+#: contact_share_settings.php:101
+msgid "Share files and Notes"
+msgstr "Partagez des fichiers et des notes"
+
+#: contact_share_settings.php:137
+msgid "The link bellow is a place where you and "
+msgstr "Le lien ci-dessous est un endroit où vous et"
+
+#: contact_share_settings.php:137
+msgid " can share files, documents and notes with you."
+msgstr "peuvent partager des fichiers, des documents et des notes avec vous."
+
+#: contact_share_settings.php:146
+msgid "Generate a new address link"
+msgstr "Générer un lien nouvelle adresse"
+
+#: contact_share_settings.php:147
+msgid "Stop sharing"
+msgstr "Arrêter le partage"
+
+#: contact_share_settings.php:153
+msgid "Set a personalized message"
+msgstr "Définir un message personnalisé"
+
+#: contact_share_settings.php:181
+msgid "Click Here to Turn On <br>File Sharing with "
+msgstr "Cliquez ici pour activer <br> Partage de fichiers avec"
+
+#: daily_notes.php:42
+msgid "Daily Notes & Discussion"
+msgstr "Notes quotidiennes et discussion"
+
+#: daily_notes.php:43 index.php:186 timesheet.php:57
+msgid "Work Feed"
+msgstr "L&#39;avance de"
+
+#: daily_notes.php:43 index.php:186 timesheet.php:57
+msgid "Notes & Discussion"
+msgstr "Notes & Discussion"
+
+#: daily_notes.php:43 index.php:186 timesheet.php:56 timesheet.php:57
+msgid "Timesheet"
+msgstr "Feuille de temps"
+
+#: daily_notes.php:78
+msgid "Today"
+msgstr "Aujourd&#39;hui"
+
+#: daily_notes.php:84
+msgid "Notes With Hours"
+msgstr "Notes sur le temps"
+
+#: daily_notes.php:88
+msgid "All Task"
+msgstr "Toutes les tâches"
+
+#: daily_notes.php:98
+msgid "All Users"
+msgstr "Tous les utilisateurs"
+
+#: daily_notes.php:101 projects.php:56 timesheet.php:83
+msgid "Projects"
+msgstr "Projets"
+
+#: daily_notes.php:123
+msgid "Note By "
+msgstr "Remarque: Par"
+
+#: daily_notes.php:126
+msgid "Time Worked"
+msgstr "Temps de travail"
+
+#: daily_notes.php:126 daily_notes.php:163 timesheet.php:108 timesheet.php:147
+msgid "hrs"
+msgstr "heures"
+
+#: daily_notes.php:151 timesheet.php:137
+msgid "Contacts"
+msgstr "Contacts"
+
+#: daily_notes.php:163
+msgid "Time Recorded"
+msgstr "Temps Recorded"
+
+#: settings_auto_responder_email_edit.php:102 settings_export.php:26
+#: settings_invoice.php:26 settings_auto_responder_email.php:95 sync.php:26
+#: settings_email_templ.php:93 drop_box_task.php:89 settings_twitter.php:29
+#: settings_twitter.php:33 settings_info.php:26 drop_box_note.php:82
+#: settings_discussion_alert.php:26 settings_auto_responder_add.php:113
+#: settings_ggears.php:26 settings_auto_responder_edit.php:68
+#: settings_auto_responder.php:52 api_key.php:26 settings_wf.php:91
+#: settings_myinfo.php:26
+msgid "Account Settings"
+msgstr "Paramètres du compte"
+
+#: settings_auto_responder_email_edit.php:106
+#: settings_auto_responder_email.php:100 settings_auto_responder_email.php:105
+msgid "Auto Responder "
+msgstr "Auto Responder"
+
+#: settings_auto_responder_email_edit.php:106
+msgid " - email template edit "
+msgstr "- Modèle de courrier électronique modifier"
+
+#: settings_auto_responder_email_edit.php:137
+#: settings_auto_responder_email.php:130 settings_auto_responder_add.php:129
+msgid "Select Email Template"
+msgstr "Email Sélectionner un modèle"
+
+#: settings_auto_responder_email_edit.php:159
+#: settings_auto_responder_email.php:151 settings_email_templ.php:126
+#: settings_email_templ.php:136 settings_auto_responder_add.php:173
+msgid "Subject"
+msgstr "Sujet"
+
+#: settings_auto_responder_email_edit.php:160
+#: settings_auto_responder_email.php:152
+msgid "Send it in"
+msgstr "Envoyez-le à"
+
+#: settings_auto_responder_email_edit.php:160
+#: settings_auto_responder_email.php:152
+msgid "day(s)"
+msgstr "jour (s)"
+
+#: settings_auto_responder_email_edit.php:162
+#: settings_auto_responder_email.php:153 settings_email_templ.php:127
+#: settings_email_templ.php:137 settings_auto_responder_add.php:176
+msgid "Message"
+msgstr "Message"
+
+#: fb_connect.php:90
+msgid ""
+"Oops ! something wrong, seems like the facebook session is no longer valid, "
+"please clear the bowser cookies and retry. We appriciate your patience"
+msgstr "Oops! quelque chose de mal, semble être la session facebook n&#39;est plus valide, s&#39;il vous plaît supprimer les cookies de Bowser et de réessayer. Nous appriciate votre patience"
+
+#: fb_connect.php:154
+msgid "Facebook contacts has been imported successfully"
+msgstr "contacts Facebook a été importé avec succès"
+
+#: fb_connect.php:159
+msgid "Please connect to facebook first"
+msgstr "S&#39;il vous plaît vous connecter à Facebook premier"
+
+#: fb_connect.php:161
+msgid ""
+"If you are already connected to facebook please wait for few seconds, page "
+"will be auromatically redirected"
+msgstr "Si vous êtes déjà connecté à Facebook s&#39;il vous plaît attendez quelques secondes, la page sera redirigé auromatically"
+
+#: settings_export.php:41
+msgid "Export My Contacts"
+msgstr "Mes contacts à l&#39;exportation"
+
+#: contact_import_parse.php:42
+msgid "Match Fields"
+msgstr "Correspondance des champs"
+
+#: contact_import_parse.php:47
+msgid "Step 2 of 2: "
+msgstr "Étape 2 de 2:"
+
+#: contact_import_parse.php:47
+msgid "Map your CSV fields with Database Fields."
+msgstr "Plan vos champs CSV avec les champs de base de données."
+
+#: settings_invoice.php:27
+msgid "Invoice Settings"
+msgstr "Facture Paramètres"
+
+#: settings_invoice.php:65 settings_invoice.php:83
+msgid "Logo"
+msgstr "Logo"
+
+#: settings_invoice.php:115 settings_invoice.php:133
+msgid "Authorized.net details"
+msgstr "Détails Authorized.net"
+
+#: settings_invoice.php:115 settings_invoice.php:160
+msgid "delete"
+msgstr "effacer"
+
+#: settings_invoice.php:116 settings_invoice.php:134
+msgid "Login :"
+msgstr "Login:"
+
+#: settings_invoice.php:118 settings_invoice.php:135
+msgid "Transaction Key :"
+msgstr "Transaction clés:"
+
+#: settings_invoice.php:160 settings_invoice.php:177
+msgid "Paypal details"
+msgstr "Détails Paypal"
+
+#: settings_invoice.php:161 settings_invoice.php:178
+msgid "Paypal Business Email :"
+msgstr "Email Business Paypal:"
+
+#: settings_invoice.php:200 settings_invoice.php:215
+msgid "Currency details"
+msgstr "Monnaie de détails"
+
+#: settings_invoice.php:201 settings_invoice.php:216
+msgid "Select Currency :"
+msgstr "Sélectionnez Devise:"
+
+#: index.php:139
+msgid "Today's Tasks"
+msgstr "Aujourd&#39;hui, les tâches"
+
+#: index.php:156
+msgid "All Tasks"
+msgstr "Toutes les tâches"
+
+#: index.php:183
+msgid "'s Work Feed:"
+msgstr "«Feed travail s:"
+
+#: index.php:226
+msgid "Did you know? "
+msgstr "Le saviez-vous?"
+
+#: index.php:226
+msgid "You can create Notes via email by using your"
+msgstr "Vous pouvez créer des notes par courrier électronique en utilisant votre"
+
+#: index.php:226
+msgid "create-a-note-by-email"
+msgstr "Create-A-note par email"
+
+#: index.php:226 tasks_completed.php:127 task_category.php:107 tasks.php:297
+msgid "dropbox addresses."
+msgstr "la sélection des adresses."
+
+#: projects.php:34
+msgid "Add a project"
+msgstr "Ajouter un projet"
+
+#: projects.php:59
+msgid "Open Projects"
+msgstr "Projets Open"
+
+#: projects.php:65
+msgid "Closed Projects"
+msgstr "Projets achevés"
+
+#: settings_auto_responder_email.php:100
+msgid " - email template add form"
+msgstr "- Modèle de courrier électronique sur Ajouter un formulaire"
+
+#: settings_auto_responder_email.php:102 settings_auto_responder_email.php:107
+msgid "Add a new email"
+msgstr "Ajouter un nouvel email"
+
+#: settings_auto_responder_email.php:105
+msgid " - Email templates"
+msgstr "- Email modèles"
+
+#: settings_auto_responder_email.php:154 settings_email_templ.php:138
+#: contact_web_form.php:67 settings_auto_responder_add.php:177
+#: settings_auto_responder.php:82 settings_wf.php:124 settings_wf.php:158
+msgid "Create"
+msgstr "Créer"
+
+#: settings_auto_responder_email.php:180
+msgid "Delete this Auto Responder Email"
+msgstr "Supprimer ce Auto Responder Email"
+
+#: settings_auto_responder_email.php:189
+msgid "You do not have any auto responder Email Templates for "
+msgstr "Vous n&#39;avez pas d&#39;auto répondeur Email Templates pour"
+
+#: settings_auto_responder_email.php:189 user_login.php:113 user_login.php:115
+#: settings_twitter.php:53 settings_auto_responder.php:116
+msgid "here"
+msgstr "ici"
+
+#: user_login.php:113
+msgid "If you have not registered yet, please do so "
+msgstr "Si vous n&#39;êtes pas encore inscrit, s&#39;il vous plaît le faire"
+
+#: user_login.php:115
+msgid "If you forgot your password, you can retrieve it "
+msgstr "Si vous avez oublié votre mot de passe, vous pouvez le récupérer"
+
+#: user_login.php:139
+msgid "You can also sign into our mobile version"
+msgstr "Vous pouvez également vous inscrire dans notre version mobile"
+
+#: contacts.php:231
+msgid "Narrow your search"
+msgstr "Affiner votre recherche"
+
+#: contacts.php:243
+msgid "Search by tags"
+msgstr "Recherche par mots clés"
+
+#: contacts.php:284
+msgid "Showing contacts with tags:"
+msgstr "Liste des contacts avec les tags:"
+
+#: contacts.php:296
+msgid "Find someone by typing their name or company"
+msgstr "Trouver quelqu&#39;un en tapant leur nom ou de la société"
+
+#: contacts.php:304 co_workers.php:52
+msgid "Search"
+msgstr "Recherche"
+
+#: contacts.php:315
+msgid "View contacts:"
+msgstr "Voir les contacts:"
+
+#: contacts.php:318
+msgid "Recently added"
+msgstr "Récemment ajouté"
+
+#: contacts.php:319
+msgid "Recently modified"
+msgstr "Modifiées récemment"
+
+#: contacts.php:320
+msgid "Recently viewed"
+msgstr "Consultés récemment"
+
+#: contacts.php:321
+msgid "With recent activity"
+msgstr "Avec l&#39;activité récente"
+
+#: contacts.php:322
+msgid "Alphabetically"
+msgstr "Alphabétiquement"
+
+#: contacts.php:338
+msgid "With the selected contacts you can:"
+msgstr "Avec les contacts sélectionnés, vous pouvez:"
+
+#: contacts.php:339
+msgid "Delete them"
+msgstr "Supprimez-les"
+
+#: contacts.php:351 contacts.php:354 contacts.php:356 contacts.php:357
+msgid "or "
+msgstr "ou"
+
+#: contacts.php:351
+msgid "Un-Share Contact"
+msgstr "Contactez-Un Partager"
+
+#: contacts.php:354
+msgid "Share With Co-Workers"
+msgstr "Partager avec les collègues"
+
+#: contacts.php:356
+msgid "Merge in one"
+msgstr "Fusionner en un seul"
+
+#: contacts.php:357
+msgid "Send a Message"
+msgstr "Envoyer un message"
+
+#: contacts.php:358
+msgid "select all"
+msgstr "Sélectionner l&#39;ensemble des"
+
+#: contacts.php:358
+msgid "select none"
+msgstr "Aucun sélectionnez"
+
+#: sync.php:27
+msgid "Synchronization"
+msgstr "Synchronisation"
+
+#: settings_email_templ.php:69 settings_auto_responder_add.php:89
+msgid "My Email Templates"
+msgstr "Mon Email Templates"
+
+#: settings_email_templ.php:83 invoice.php:284
+msgid "Delete"
+msgstr "Effacer"
+
+#: settings_email_templ.php:94
+msgid "Email Templates"
+msgstr "Email Templates"
+
+#: settings_email_templ.php:107 contact_sendemail.php:137
+msgid "merge field"
+msgstr "un champ de fusion"
+
+#: settings_email_templ.php:108 contact_sendemail.php:138
+msgid "First Name"
+msgstr "Prénom"
+
+#: settings_email_templ.php:109 contact_sendemail.php:139
+msgid "Last Name"
+msgstr "Nom de famille"
+
+#: settings_email_templ.php:110 contact_sendemail.php:140
+msgid "Position"
+msgstr "Position"
+
+#: settings_email_templ.php:125 settings_email_templ.php:135
+msgid "Template Name"
+msgstr "Nom du modèle"
+
+#: invoice_pay_auth.php:23 invoice_pay_paypal.php:22
+msgid ""
+"Your page session has been expired. Please go back to the Invoice page and "
+"try again."
+msgstr "Votre session a expiré page. S&#39;il vous plaît revenir à la page de facture et essayez à nouveau."
+
+#: invoice_pay_auth.php:64 invoice.php:217 invoice.php:332
+#: invoice_view.php:223
+msgid "Invoice"
+msgstr "Facture"
+
+#: invoice_pay_auth.php:86 invoice_pay_paypal.php:94
+msgid "Total due :"
+msgstr "Total des créances:"
+
+#: tasks_completed.php:82 task_category.php:67 tasks.php:153
+msgid "Add a task"
+msgstr "Ajouter une tâche"
+
+#: tasks_completed.php:97
+msgid "Your completed tasks"
+msgstr "Vos tâches terminées"
+
+#: tasks_completed.php:98 task_category.php:83 tasks.php:183
+msgid "Upcoming"
+msgstr "Prochain"
+
+#: tasks_completed.php:98 task_category.php:83 tasks.php:183
+msgid "Completed"
+msgstr "Terminé"
+
+#: tasks_completed.php:127 task_category.php:107 tasks.php:297
+msgid "Did you know?"
+msgstr "Le saviez-vous?"
+
+#: tasks_completed.php:127 task_category.php:107 tasks.php:297
+msgid "You can create tasks via email by using your"
+msgstr "Vous pouvez créer des tâches par e-mail en utilisant votre"
+
+#: tasks_completed.php:127 task_category.php:107 tasks.php:297
+msgid "create-a-task-by-email"
+msgstr "créer-une tâche-par e-mail"
+
+#: tw_import_friends.php:25
+msgid "Import Contacts From Twitter"
+msgstr "Importez des contacts de Twitter"
+
+#: tw_import_friends.php:68
+msgid "Your Twitter contacts have been successfully imported."
+msgstr "Vos contacts Twitter ont été importées avec succès."
+
+#: tw_import_friends.php:69
+msgid "Go to the Contact Page"
+msgstr "Aller à la page Contact"
+
+#: merge_automated.php:26 merge_contacts.php:45
+msgid "Merge Contacts"
+msgstr "Contacts de fusion"
+
+#: merge_automated.php:47
+msgid ""
+"You have choosen to merge some contacts which are shared by some of your co-"
+"workers and you do not have access to merge them. Here are the contacts that "
+"are not permitted to be merged:"
+msgstr "Vous avez choisi de fusionner certains contacts qui sont partagées par certains de vos collègues et vous n&#39;avez pas accès à les fusionner. Voici les contacts qui ne sont pas autorisés à fusionner:"
+
+#: merge_automated.php:68
+msgid "Contacts are merged successfully."
+msgstr "Des contacts sont fusionnées avec succès."
+
+#: merge_automated.php:70
+msgid "Please wait page will be redirected in 5 seconds."
+msgstr "S&#39;il vous plaît attendre la page allez être redirigé dans 5 secondes."
+
+#: merge_automated.php:79
+msgid "An Error ocured while merging. Please try again"
+msgstr "Une erreur lors de la fusion ocured. S&#39;il vous plaît essayer de nouveau"
+
+#: merge_automated.php:80 merge_contacts.php:56
+msgid "Click To Back"
+msgstr "Cliquez ICI pour revenir"
+
+#: drop_box_task.php:90
+msgid "Drop Box Task Setup"
+msgstr "Le programme d&#39;installation Drop Box de travail"
+
+#: drop_box_task.php:112 drop_box_note.php:104
+msgid "You do not have a drop box email id yet"
+msgstr "Vous n&#39;avez pas un e-mail liste déroulante ID encore"
+
+#: drop_box_task.php:113 drop_box_note.php:105
+msgid "Generate one by clicking "
+msgstr "Générer un en cliquant sur"
+
+#: settings_twitter.php:36
+msgid "Twitter Setup"
+msgstr "Twitter installation"
+
+#: settings_twitter.php:43
+msgid "Your Ofuz account is integrated with your Twitter account: "
+msgstr "Votre compte Ofuz est intégré à votre compte Twitter:"
+
+#: settings_twitter.php:49
+msgid "Click"
+msgstr "Cliquez sur"
+
+#: settings_twitter.php:49
+msgid "HERE"
+msgstr "ICI"
+
+#: settings_twitter.php:49
+msgid "to import your Twitter contacts."
+msgstr "pour importer vos contacts Twitter."
+
+#: settings_twitter.php:51
+msgid "Your account is not yet integrated with Twitter. "
+msgstr "Votre compte n&#39;est pas encore intégré à Twitter."
+
+#: settings_twitter.php:52
+msgid "Please click "
+msgstr "S&#39;il vous plaît cliquez sur"
+
+#: settings_twitter.php:54
+msgid " to allow Ofuz to access your Twitter data."
+msgstr "pour permettre Ofuz accéder à vos données Twitter."
+
+#: contact.php:449
+msgid "Add a Task"
+msgstr "Ajouter une tâche"
+
+#: contact.php:505
+msgid "Contact Tasks"
+msgstr "Contact Tâches"
+
+#: contact.php:566
+msgid " at "
+msgstr "à"
+
+#: contact.php:602
+msgid "Add"
+msgstr "Ajouter"
+
+#: contact.php:630
+msgid "Its a good time to set the next date when to contact "
+msgstr "C&#39;est un bon moment pour définir la prochaine date à contacter"
+
+#: contact.php:630
+msgid " with a "
+msgstr "avec un"
+
+#: contact.php:630
+msgid "Follow UP task"
+msgstr "Suivi des tâches"
+
+#: contact.php:647 task.php:510 contact_sendemail.php:154
+msgid "You have an unsaved note draft on : "
+msgstr "Vous avez un projet de note non enregistrées sur:"
+
+#: contact.php:650 task.php:513 contact_sendemail.php:158
+msgid "Discard this"
+msgstr "Jeter cette"
+
+#: contact.php:660 task.php:523
+msgid "Note is saved as a draft"
+msgstr "Note est enregistré comme un projet"
+
+#: contact.php:699
+msgid " more options"
+msgstr "Plus d&#39;options"
+
+#: contact.php:707
+msgid "Me, co-workers and"
+msgstr "Moi, des collègues et des"
+
+#: contact.php:710
+msgid "Attach a file:"
+msgstr "Joindre un fichier:"
+
+#: contact.php:712
+msgid "When this happened:"
+msgstr "Lorsque cela se produisait:"
+
+#: contact.php:714
+msgid "Hours Worked:"
+msgstr "Heures travaillées:"
+
+#: contact.php:716
+msgid "Send a copy to this contact: "
+msgstr "Envoyer une copie à ce contact:"
+
+#: contact.php:718 task.php:569 contact_sendemail.php:203
+msgid "Save As Draft"
+msgstr "Enregistrer en tant que projet"
+
+#: contact.php:724 contact_portal.php:162 company.php:260
+msgid "Add this note"
+msgstr "Ajouter cette note"
+
+#: contact.php:744 contact_portal.php:167
+msgid " Notes:"
+msgstr "Notes:"
+
+#: contact.php:792 contact.php:846 company.php:319
+msgid "more ..."
+msgstr "Plus d&#39;informations ..."
+
+#: contact.php:837
+msgid "delete "
+msgstr "effacer"
+
+#: contact.php:843 task.php:637 contact_portal.php:206 contact_portal.php:247
+msgid "Added By :"
+msgstr "Ajouté par:"
+
+#: invoices_unpaid.php:137 invoices.php:277
+msgid "Sending Emails......"
+msgstr "Envoi de courriels ......"
+
+#: invoices_unpaid.php:147
+msgid "You can apply the amount "
+msgstr "Vous pouvez demander le montant"
+
+#: invoices_unpaid.php:147
+msgid " for the reference number"
+msgstr "pour le numéro de référence"
+
+#: invoices_unpaid.php:147
+msgid "to any of the following invoices."
+msgstr "à l&#39;une des factures suivantes."
+
+#: invoices_unpaid.php:154 invoices.php:424
+msgid "Client"
+msgstr "Client"
+
+#: invoices_unpaid.php:156 invoices.php:426
+msgid "Total Paid"
+msgstr "Versés"
+
+#: invoices_unpaid.php:157 invoices.php:427
+msgid "Total Due"
+msgstr "Total Due"
+
+#: contact_web_form.php:36 settings_wf.php:92
+msgid "Web Form Builder"
+msgstr "Générateur de formulaire Web"
+
+#: contact_web_form.php:58 settings_wf.php:115 settings_wf.php:149
+msgid "Form Title"
+msgstr "Titre du formulaire"
+
+#: contact_web_form.php:60 settings_wf.php:117 settings_wf.php:151
+msgid "Form Description"
+msgstr "Description Formulaire"
+
+#: contact_web_form.php:64 settings_wf.php:121 settings_wf.php:155
+msgid "Tags for those contacts"
+msgstr "Tags pour les contacts"
+
+#: contact_web_form.php:65 settings_wf.php:122 settings_wf.php:156
+msgid "Web address to take the user after submitting the form"
+msgstr "adresse Web pour prendre de l&#39;utilisateur après la soumission du formulaire"
+
+#: contact_web_form.php:66 settings_wf.php:123 settings_wf.php:157
+msgid "Receive an email alert when someone submit the form"
+msgstr "Recevez une alerte e-mail lorsque quelqu&#39;un soumettre le formulaire"
+
+#: settings_info.php:27
+msgid "My Information"
+msgstr "Mes informations"
+
+#: invoice_paypal_notify.php:51
+msgid "This transaction has been approved."
+msgstr "Cette transaction a été approuvée."
+
+#: drop_box_note.php:83
+msgid "Drop Box Note Setup"
+msgstr "Drop Box Note d&#39;installation"
+
+#: drop_box_note.php:103
+msgid "Dear "
+msgstr "Cher"
+
+#: invoices.php:179
+msgid "This "
+msgstr "Cette"
+
+#: invoices.php:223
+msgid "Invoices Year to date "
+msgstr "Année factures à ce jour"
+
+#: invoices.php:225
+msgid "Totals for"
+msgstr "Totaux pour"
+
+#: invoices.php:273
+msgid "( hide totals )"
+msgstr "(Cacher les totaux)"
+
+#: invoices.php:326
+msgid "You have payments which are not yet applied to invoices."
+msgstr "Vous avez des paiements qui ne sont pas encore appliqués à des factures."
+
+#: invoices.php:326
+msgid "Click here."
+msgstr "Cliquez ici."
+
+#: invoices.php:341
+msgid "Showing:"
+msgstr "Affichage:"
+
+#: invoices.php:355
+msgid "Quote"
+msgstr "Citation"
+
+#: invoices.php:360
+msgid "New"
+msgstr "Nouveau"
+
+#: invoices.php:365
+msgid "Sent"
+msgstr "Sent"
+
+#: invoices.php:369
+msgid "Partial"
+msgstr "Partiel"
+
+#: invoices.php:373
+msgid "Paid"
+msgstr "Payé"
+
+#: invoices.php:378
+msgid "All"
+msgstr "Tous"
+
+#: invoices.php:397
+msgid "View all invoices"
+msgstr "Voir toutes les factures"
+
+#: invoices.php:410
+msgid "show totals"
+msgstr "Afficher les totaux"
+
+#: invoices.php:416
+msgid "show past due"
+msgstr "Voir la souffrance"
+
+#: invoices.php:428
+msgid "Status"
+msgstr "Statut"
+
+#: blog/wp-includes/class-pop3.php:83
+msgid "No server specified"
+msgstr "Pas de serveur spécifié"
+
+#: blog/wp-includes/class-pop3.php:91 blog/wp-includes/class-pop3.php:103
+#: blog/wp-includes/class-pop3.php:124 blog/wp-includes/class-pop3.php:247
+#: blog/wp-includes/class-pop3.php:301 blog/wp-includes/class-pop3.php:312
+#: blog/wp-includes/class-pop3.php:360 blog/wp-includes/class-pop3.php:394
+#: blog/wp-includes/class-pop3.php:427 blog/wp-includes/class-pop3.php:526
+#: blog/wp-includes/class-pop3.php:549
+msgid "Error "
+msgstr "Erreur"
+
+#: blog/wp-includes/class-pop3.php:116
+msgid "no login ID submitted"
+msgstr "pas de connexion ID soumis"
+
+#: blog/wp-includes/class-pop3.php:119 blog/wp-includes/class-pop3.php:139
+msgid "connection not established"
+msgstr "connexion n&#39;est pas établi"
+
+#: blog/wp-includes/class-pop3.php:136 blog/wp-includes/class-pop3.php:172
+msgid "No password submitted"
+msgstr "Aucun mot de passe présenté"
+
+#: blog/wp-includes/class-pop3.php:144
+msgid "Authentication failed"
+msgstr "L&#39;authentification a échoué"
+
+#: blog/wp-includes/class-pop3.php:163 blog/wp-includes/class-pop3.php:206
+#: blog/wp-includes/class-pop3.php:231 blog/wp-includes/class-pop3.php:273
+#: blog/wp-includes/class-pop3.php:347 blog/wp-includes/class-pop3.php:387
+#: blog/wp-includes/class-pop3.php:417 blog/wp-includes/class-pop3.php:451
+#: blog/wp-includes/class-pop3.php:514 blog/wp-includes/class-pop3.php:582
+msgid "No connection to server"
+msgstr "Pas de connexion au serveur"
+
+#: blog/wp-includes/class-pop3.php:169
+msgid "No login ID submitted"
+msgstr "Aucun ID de connexion présenté"
+
+#: blog/wp-includes/class-pop3.php:177
+msgid "No server banner"
+msgstr "Aucune bannière du serveur"
+
+#: blog/wp-includes/class-pop3.php:177 blog/wp-includes/class-pop3.php:187
+msgid "abort"
+msgstr "avorter"
+
+#: blog/wp-includes/class-pop3.php:187
+msgid "apop authentication failed"
+msgstr "authentification APOP échoué"
+
+#: blog/wp-includes/class-pop3.php:324
+msgid "Premature end of list"
+msgstr "Fin prématurée de la liste"
+
+#: blog/wp-includes/class-pop3.php:457
+msgid "Empty command string"
+msgstr "chaîne de commande vide"
+
+#: blog/wp-includes/class-pop3.php:477
+msgid "connection does not exist"
+msgstr "connexion n&#39;existe pas"
+
+#: blog/wp-includes/class-pop3.php:587
+msgid "No msg number submitted"
+msgstr "Aucun numéro msg soumis"
+
+#: blog/wp-includes/class-pop3.php:593
+msgid "Command failed "
+msgstr "Échec de la commande"
+
+#: settings_discussion_alert.php:27
+msgid "Discussion Email Alert Setup"
+msgstr "Le programme d&#39;installation de discussion Alerte Email"
+
+#: settings_discussion_alert.php:42 settings_ggears.php:63
+msgid "Turn Off"
+msgstr "Désactiver"
+
+#: settings_auto_responder_add.php:114 settings_auto_responder.php:55
+msgid "Auto Responder"
+msgstr "Auto Responder"
+
+#: settings_auto_responder_add.php:172 settings_auto_responder_edit.php:108
+#: settings_auto_responder.php:80
+msgid "Auto Responder Name"
+msgstr "Nom répondeur automatique"
+
+#: settings_auto_responder_add.php:174 settings_auto_responder_edit.php:109
+#: settings_auto_responder.php:81
+msgid "Tag Name"
+msgstr "Nom de la balise"
+
+#: settings_auto_responder_add.php:175
+msgid "Number Of Days to send"
+msgstr "Nombre de jours pour envoyer"
+
+#: fb_logout.php:19
+msgid "Logging out ...."
+msgstr "Déconnexion ...."
+
+#: unsubscribe_message.php:11
+msgid "Ofuz :: Contact Unsubscribe"
+msgstr "Ofuz:: Contact Se désabonner"
+
+#: unsubscribe_message.php:47
+msgid "Opt-out"
+msgstr "Opt-out"
+
+#: public_task.php:143 task.php:589
+msgid "This task is closed"
+msgstr "Cette tâche est fermé"
+
+#: public_task.php:148 task.php:594
+msgid "discussion"
+msgstr "discussion"
+
+#: public_task.php:198 task.php:644
+msgid "more..."
+msgstr "Plus d&#39;informations ..."
+
+#: invoice_edit.php:561
+msgid "Edit Invoice"
+msgstr "Modifier la facture"
+
+#: invoice_edit.php:603 invoice_add.php:694
+msgid "Description:"
+msgstr "Description:"
+
+#: invoice_edit.php:604 invoice_add.php:695
+msgid "Discount (%) :"
+msgstr "Remise (%):"
+
+#: invoice_edit.php:610 invoice_add.php:696
+msgid "Add Tax (%)"
+msgstr "Ajouter l&#39;impôt (%)"
+
+#: invoice_edit.php:621 invoice_add.php:707
+msgid "Tax (%)"
+msgstr "D&#39;impôt (%)"
+
+#: invite_as_cw.php:84
+msgid "Invite as co-worker"
+msgstr "Inviter en tant que co-travailleur"
+
+#: invite_as_cw.php:132
+msgid " is already a co-worker"
+msgstr "est déjà un collègue"
+
+#: invite_as_cw.php:133 invite_as_cw.php:136
+msgid "I would like to invite someone else."
+msgstr "Je voudrais inviter quelqu&#39;un d&#39;autre."
+
+#: invite_as_cw.php:135 co_worker_search.php:174
+msgid "Invitation sent, waiting for confirmation"
+msgstr "Invitation envoyée, en attente de confirmation"
+
+#: invite_as_cw.php:139 invite_as_cw.php:143
+msgid "No, this is not the contact I know.Let me send the invitation to:"
+msgstr "Non, ce n&#39;est pas le contact, je me know.Let envoyer l&#39;invitation à:"
+
+#: invite_as_cw.php:154
+msgid "To invite "
+msgstr "Pour inviter"
+
+#: invite_as_cw.php:154
+msgid "please choose or type Email address:"
+msgstr "choisir s&#39;il vous plaît ou tapez l&#39;adresse email:"
+
+#: fb_ofuz_login_verification.php:60
+msgid ""
+"Thank you for connecting to Ofuz with facebook connect.  <br/>\n"
+"		               If you already have a username and password at Ofuz "
+"please sign in bellow to connect your facebook account to Ofuz.</br>\n"
+"					   Otherwize just provide us with your email address to create a "
+"new account."
+msgstr "Merci pour la connexion à Ofuz avec Facebook Connect. <br/> Si vous avez déjà un nom d&#39;utilisateur et mot de passe à Ofuz s&#39;il vous plaît vous connecter ci-dessous pour connecter votre compte Facebook pour Ofuz. </br> Otherwize vient de nous fournir votre adresse e-mail pour créer un nouveau compte."
+
+#: fb_ofuz_login_verification.php:77
+msgid "If you are a new ofuz user please enter your email address bellow"
+msgstr "Si vous êtes un utilisateur ofuz nouvelles s&#39;il vous plaît, entrez votre adresse e-mail ci-dessous"
+
+#: fb_ofuz_login_verification.php:92
+msgid "Your email address: "
+msgstr "Votre adresse e-mail:"
+
+#: fb_ofuz_login_verification.php:93 merge_contacts.php:170
+msgid "Continue"
+msgstr "Continuer"
+
+#: co_workers.php:56 co_worker_search.php:57
+msgid "Search Users by their first or last name to add as co-workers:"
+msgstr "Les utilisateurs de la recherche par leur nom ou le prénom d&#39;ajouter en tant que co-travailleurs:"
+
+#: co_workers.php:84 co_worker_search.php:82
+msgid "Invitations"
+msgstr "Invitations"
+
+#: co_workers.php:97 co_worker_search.php:95
+msgid "Invitations Rejected"
+msgstr "Invitations Rejeté"
+
+#: co_workers.php:117 co_worker_search.php:114
+msgid "Invitations Pending"
+msgstr "Invitations en attente"
+
+#: co_workers.php:230 co_workers.php:263
+msgid " contacts are shared by "
+msgstr "contacts sont partagés par"
+
+#: co_workers.php:259
+msgid "You have shared "
+msgstr "Vous avez partagé"
+
+#: co_workers.php:259
+msgid " contacts"
+msgstr "contacts"
+
+#: co_workers.php:271
+msgid "You have no co-workers"
+msgstr "Vous n&#39;avez pas de co-travailleurs"
+
+#: invoice.php:250 invoice_view.php:171
+msgid "Invoice Status"
+msgstr "État de la facture"
+
+#: invoice.php:255
+msgid "INVOICE:"
+msgstr "FACTURE:"
+
+#: invoice.php:264
+msgid "Convert to Invoice"
+msgstr "Convertir en facture"
+
+#: invoice.php:272
+msgid "Send Quote By Email"
+msgstr "Citation Envoyer par Email"
+
+#: invoice.php:274
+msgid "Send Invoice By Email"
+msgstr "Facture Envoyer par Email"
+
+#: invoice.php:276
+msgid "Edit"
+msgstr "Éditer"
+
+#: invoice.php:284
+msgid "Are you sure you want to Delete?'"
+msgstr "Etes-vous sûr de vouloir supprimer?"
+
+#: invoice.php:286
+msgid "Are you sure you want to Cancel?'"
+msgstr "Etes-vous sûr de vouloir annuler? \""
+
+#: invoice.php:290 invoice_view.php:195
+msgid "Print"
+msgstr "Imprimer"
+
+#: invoice.php:291
+msgid "Client Link"
+msgstr "Lien à la clientèle"
+
+#: invoice.php:296
+msgid "Generate pdf"
+msgstr "Générer pdf"
+
+#: invoice.php:305
+msgid "Upload Logo"
+msgstr "Envoyer Logo"
+
+#: invoice.php:314 invoice_view.php:208
+msgid "FROM"
+msgstr "D&#39;"
+
+#: invoice.php:321 invoice_view.php:213
+msgid "TO"
+msgstr "À"
+
+#: invoice.php:324
+msgid "view customer details"
+msgstr "Voir les détails des internautes"
+
+#: invoice.php:423 invoice_view.php:313
+msgid "Amount Paid"
+msgstr "Montant payé"
+
+#: invoice.php:427 invoice_view.php:317
+msgid "Balance Due"
+msgstr "Solde dû"
+
+#: invoice.php:436 invoice_view.php:324
+msgid "Note"
+msgstr "Note"
+
+#: settings_ggears.php:27
+msgid "Google Gears Setup"
+msgstr "Google Gears d&#39;installation"
+
+#: settings_ggears.php:59
+msgid "Turn On"
+msgstr "Allumer"
+
+#: web_form_thankyou.php:37
+msgid "Thank You !!"
+msgstr "Merci!"
+
+#: task.php:323
+msgid "Progress"
+msgstr "Progrès"
+
+#: task.php:343
+msgid "Task Owner"
+msgstr "Propriétaire de travail"
+
+#: task.php:350
+msgid "Change the task owner"
+msgstr "Changer la tâche propriétaire"
+
+#: task.php:361
+msgid "Hide"
+msgstr "Cacher"
+
+#: task.php:369
+msgid "Task Drop Box"
+msgstr "Drop Box de travail"
+
+#: task.php:375
+msgid "Use the following Email Id to create a note :"
+msgstr "Utiliser l&#39;ID suivants Email pour créer une note:"
+
+#: task.php:381
+msgid "No drop box code is generated"
+msgstr "Aucun code boîte de dépôt est généré"
+
+#: task.php:382
+msgid "Generate one by"
+msgstr "Générer un par"
+
+#: task.php:382
+msgid "clicking here"
+msgstr "en cliquant ici"
+
+#: task.php:455
+msgid "Task Category :"
+msgstr "Catégorie de la tâche:"
+
+#: task.php:479
+msgid "Due Date : "
+msgstr "Date d&#39;échéance:"
+
+#: task.php:480
+msgid "Hours of work expected :"
+msgstr "Heures de travail prévu:"
+
+#: task.php:491
+msgid "Task Status"
+msgstr "Situation de travail"
+
+#: task.php:491 project.php:392
+msgid "Open"
+msgstr "Ouvert"
+
+#: task.php:491 project.php:392
+msgid "Closed"
+msgstr "Fermé"
+
+#: task.php:496
+msgid "or"
+msgstr "ou"
+
+#: task.php:496 project.php:400
+msgid "cancel"
+msgstr "annuler"
+
+#: task.php:503
+msgid "Get into the discussion:"
+msgstr "Entrez dans la discussion:"
+
+#: task.php:513 contact_sendemail.php:158
+msgid "Copy this"
+msgstr "Copiez ce"
+
+#: task.php:561
+msgid "Hours Worked"
+msgstr "Heures travaillées"
+
+#: task.php:563
+msgid "Attach a file"
+msgstr "Joindre un fichier"
+
+#: task.php:565
+msgid "When this happened"
+msgstr "Lorsque cela est arrivé"
+
+#: task.php:572
+msgid "Add this item"
+msgstr "Ajouter cet article"
+
+#: payment_add.php:41
+msgid "Add Quote"
+msgstr "Ajouter Quote"
+
+#: settings_auto_responder_edit.php:71
+msgid "Auto Responder - "
+msgstr "Auto Responder -"
+
+#: includes/ofuz_navtabs.php:29 includes/ofuz_navtabs.php:32
+msgid "Co-Workers"
+msgstr "Co-travailleurs"
+
+#: includes/ofuz_navtabs.php:36
+msgid "Settings"
+msgstr "Paramètres"
+
+#: includes/ofuz_navtabs.php:47
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: events/pagebuilder.ImageFieldResize.inc.php:65
+msgid ""
+"File format not supported. gif, png and jpg format are currently supported"
+msgstr "Format de fichier non pris en charge. gif, png et jpg sont actuellement pris en charge"
+
+#: co_worker_search.php:53
+msgid "Seacrh"
+msgstr "Seacrh"
+
+#: co_worker_search.php:157
+msgid "Search Result"
+msgstr "Résultat de la recherche"
+
+#: co_worker_search.php:172
+msgid "Already a co-worker"
+msgstr "Déjà un collègue"
+
+#: co_worker_search.php:176 co_worker_search.php:179
+msgid "Add as co-worker"
+msgstr "Ajouter en tant que co-travailleur"
+
+#: co_worker_search.php:187
+msgid "No Result Found"
+msgstr "Aucun résultat trouvé"
+
+#: co_worker_search.php:192
+msgid "Can't find the user? Send an invitation by email"
+msgstr "Vous ne trouvez pas l&#39;utilisateur? Envoyez une invitation par e-mail"
+
+#: invoice_view.php:92
+msgid "Payments"
+msgstr "Paiements"
+
+#: invoice_view.php:119
+msgid "Other invoice due"
+msgstr "autre facture en raison"
+
+#: invoice_view.php:179
+msgid "Pay With Paypal"
+msgstr "Payer avec Paypal"
+
+#: invoice_view.php:182
+msgid "Pay with Credit card"
+msgstr "Payer par carte de crédit"
+
+#: invoice_view.php:196
+msgid "Download"
+msgstr "Télécharger"
+
+#: invoice_view.php:327
+msgid "Invoice generated by "
+msgstr "Facture générée par"
+
+#: cancel_account.php:26
+msgid "Cancel Account"
+msgstr "Annuler le compte"
+
+#: cancel_account.php:27
+msgid "Please give us the reason for Cancellation"
+msgstr "S&#39;il vous plaît nous donner la raison de l&#39;annulation"
+
+#: cancel_account.php:54
+msgid "Yes Cancel and delete all my information"
+msgstr "Oui Annuler et supprimer toutes mes informations"
+
+#: settings_auto_responder.php:57
+msgid "Create New"
+msgstr "Créer un nouveau"
+
+#: settings_auto_responder.php:105
+msgid "Delete this Auto Responder"
+msgstr "Supprimer ce répondeur automatique"
+
+#: settings_auto_responder.php:116
+msgid "You do not have any auto responder. To add click "
+msgstr "Vous n&#39;avez pas répondeur automatique. Pour ajouter cliquez sur"
+
+#: project.php:122
+msgid "Add a Project Task"
+msgstr "Ajouter un projet d&#39;étude"
+
+#: project.php:147
+msgid "Add a Co-worker"
+msgstr "Ajouter un collègue"
+
+#: project.php:147
+msgid "Co-workers"
+msgstr "Co-travailleurs"
+
+#: project.php:176
+msgid "Participating co-workers:"
+msgstr "Participation des collègues:"
+
+#: project.php:194
+msgid ""
+"If you want to share this project with others, add co-workers to your Ofuz "
+"account"
+msgstr "Si vous souhaitez faire partager ce projet avec d&#39;autres, ajouter des co-travailleurs à votre compte Ofuz"
+
+#: project.php:226
+msgid "Add Task Dropbox"
+msgstr "Ajouter Dropbox travail"
+
+#: project.php:231
+msgid "Use the following drop box to add a task for this project."
+msgstr "Utilisez la liste déroulante ci-dessous pour ajouter une tâche pour ce projet."
+
+#: project.php:261
+msgid "Discussion Email Alert"
+msgstr "Alerte Email Discussion"
+
+#: project.php:269
+msgid ""
+"You have turned off email alert for this project.<br /> If you want to get "
+"email alerts for this project please turn it on. <br />"
+msgstr "Vous avez désactivé alerte email pour ce projet. <br /> Si vous souhaitez recevoir des alertes email pour ce projet s&#39;il vous plaît tourner sur. <br />"
+
+#: project.php:276
+msgid ""
+"Your email alert for the project discussion is set on by default. You can "
+"turn off if you do not want to receive emails for this project discussion."
+"<br />"
+msgstr "Votre alerte e-mail pour la discussion du projet est défini par défaut. Vous pouvez désactiver si vous ne souhaitez pas recevoir de courriels de cette discussion du projet. <br />"
+
+#: project.php:332
+msgid "-- All Participants --"
+msgstr "- Tous les participants -"
+
+#: project.php:341
+msgid "-- All Task Categories --"
+msgstr "- Toutes les catégories de travail -"
+
+#: project.php:368
+msgid "Project name"
+msgstr "Nom du projet"
+
+#: project.php:369
+msgid "Effort estimated in hours"
+msgstr "Effort estimé en heures"
+
+#: project.php:392
+msgid "Project Status"
+msgstr "État du projet"
+
+#: project.php:393
+msgid "Project accesibility"
+msgstr "Accessibilité du projet"
+
+#: project.php:393
+msgid "Public"
+msgstr "Public"
+
+#: project.php:393
+msgid "Private"
+msgstr "Privé"
+
+#: gSync.php:61
+msgid ""
+"It imports only the active contacts from Gmail.So it doesn't import contact "
+"with no name."
+msgstr "Il importe que les contacts actifs de Gmail.So il n&#39;importe pas de contact avec aucun nom."
+
+#: gSync.php:65
+msgid "Export Contacts"
+msgstr "Exporter les contacts"
+
+#: gSync.php:66
+msgid "Contacts will be exported from Ofuz which have atleast one emailid."
+msgstr "Des contacts seront exportées de Ofuz qui ont atleast une emailid."
+
+#: api_key.php:27
+msgid "API Key"
+msgstr "API Key"
+
+#: api_key.php:42
+msgid "Your API Key is : "
+msgstr "Votre clé API est la suivante:"
+
+#: api_key.php:46
+msgid "You do not yet have an API key. "
+msgstr "Vous n&#39;avez pas encore d&#39;une clé API."
+
+#: api_key.php:47
+msgid "Please generate one "
+msgstr "S&#39;il vous plaît générer un"
+
+#: upgrade_plan.php:142 upgrade_plan.php:171 upgrade_plan.php:202
+msgid "Your current plan"
+msgstr "Votre plan actuel"
+
+#: settings_wf.php:67
+msgid "My Web Forms"
+msgstr "Mon Web Forms"
+
+#: vcard_import.php:26
+msgid "Import Contacts from vCard"
+msgstr "Importer des contacts à partir de vCard"
+
+#: vcard_import.php:30
+msgid "Select your vCard File"
+msgstr "Sélectionnez vCard à votre dossier"
+
+#: vcard_import.php:33
+msgid "Ofuz supports importing contacts from vCard."
+msgstr "Ofuz supporte l&#39;importation des contacts à partir de vCard."
+
+#: vcard_import.php:35
+msgid ""
+"To start import, browse to locate your file and click on the Import button."
+msgstr "Pour démarrer l&#39;importation, localisez votre fichier et cliquez sur le bouton Importer."
+
+#: vcard_import.php:56
+msgid "File Location: "
+msgstr "Emplacement du fichier:"
+
+#: vcard_import.php:58
+msgid "Set Tag "
+msgstr "Set Tag"
+
+#: vcard_import.php:58
+msgid " on the imported contacts."
+msgstr "sur les contacts importés."
+
+#: contact_portal.php:86
+msgid "Welcome to the "
+msgstr "Bienvenue à la"
+
+#: contact_portal.php:86
+msgid " portal"
+msgstr "portail"
+
+#: contact_portal.php:108
+msgid "Add a Note or File"
+msgstr "Ajouter une note ou un fichier"
+
+#: contact_portal.php:149 company.php:254
+msgid "Attach a file: "
+msgstr "Joindre un fichier:"
+
+#: contact_portal.php:156 company.php:256
+msgid "When this happened: "
+msgstr "Lorsque cela se produisait:"
+
+#: contact_portal.php:290
+msgid "Added By"
+msgstr "Ajouté par"
+
+#: contact_sendemail.php:118
+msgid "Send Message"
+msgstr "Envoyer un message"
+
+#: contact_sendemail.php:123
+msgid "Select an email template"
+msgstr "Sélectionnez un modèle de courrier électronique"
+
+#: contact_sendemail.php:124
+msgid "New Template"
+msgstr "Nouveau modèle"
+
+#: contact_sendemail.php:133
+msgid "Manage your templates"
+msgstr "Gérez vos modèles"
+
+#: contact_sendemail.php:134
+msgid "Insert a merge field"
+msgstr "Insérer un champ de fusion"
+
+#: contact_sendemail.php:169
+msgid "Content is saved as a draft"
+msgstr "Le contenu est enregistré comme brouillon"
+
+#: contact_sendemail.php:198
+msgid "Subject: "
+msgstr "Objet:"
+
+#: timesheet.php:105
+msgid "Per Tasks:"
+msgstr "Tâches par:"
+
+#: timesheet.php:111
+msgid "Per Participants:"
+msgstr "Les participants par:"
+
+#: timesheet.php:147
+msgid " spent with "
+msgstr "passé avec"
+
+#: merge_contacts.php:55
+msgid "You should have atleat 2 Contacts to be merged"
+msgstr "Vous devriez avoir atleat 2 contacts à fusionner"
+
+#: merge_contacts.php:139
+msgid "Address Type :"
+msgstr "Type d&#39;adresse:"
+
+#: merge_contacts.php:140 company.php:73
+msgid "Address :"
+msgstr "Adresse:"
+
+#: merge_contacts.php:141 company.php:75
+msgid "Street :"
+msgstr "Rue:"
+
+#: merge_contacts.php:142
+msgid "Zipcode :"
+msgstr "Code postal:"
+
+#: merge_contacts.php:143 company.php:76
+msgid "City :"
+msgstr "Ville:"
+
+#: merge_contacts.php:144 company.php:77
+msgid "State :"
+msgstr "État:"
+
+#: merge_contacts.php:145 company.php:78
+msgid "Country :"
+msgstr "Pays:"
+
+#: merge_contacts.php:159
+msgid "Feed Type :"
+msgstr "Type d&#39;alimentation:"
+
+#: merge_contacts.php:160
+msgid "RSS Feed URL :"
+msgstr "URL de flux RSS:"
+
+#: merge_contacts.php:161
+msgid "Username :"
+msgstr "Nom d&#39;utilisateur:"
+
+#: contact_add.php:23
+msgid "Other ways to add people"
+msgstr "Autres façons d&#39;ajouter des personnes"
+
+#: contact_add.php:28
+msgid "Import from vCard"
+msgstr "Import de vCard"
+
+#: contact_add.php:29
+msgid "Import from CSV"
+msgstr "Import de CSV"
+
+#: contact_add.php:30
+msgid "Import from Google"
+msgstr "Importations en provenance de Google"
+
+#: contact_add.php:31
+msgid "Import from Facebook"
+msgstr "Importations en provenance de Facebook"
+
+#: contact_add.php:32
+msgid "Create a Web Form"
+msgstr "Créer un formulaire Web"
+
+#: contact_add.php:37 company.php:56
+msgid "Add a new contact"
+msgstr "Ajouter un nouveau contact"
+
+#: settings_myinfo.php:27
+msgid "My Profile"
+msgstr "Mon profil"
+
+#: adm_monthly_work_log_detail.php:73
+msgid ""
+"You are trying to access a project which you are not realted to. Please "
+"check the URL"
+msgstr "Vous essayez d&#39;accéder à un projet dont vous n&#39;êtes pas à Realted. S&#39;il vous plaît vérifier l&#39;URL"
+
+#: task_category.php:82
+msgid "Your Task Categories"
+msgstr "Votre tâche Catégories"
+
+#: tasks.php:178
+msgid "Tasks By Date"
+msgstr "Tâches par date"
+
+#: tasks.php:180
+msgid "Task By Projects"
+msgstr "De travail par des projets"
+
+#: tasks.php:221
+msgid "Overdue"
+msgstr "En retard"
+
+#: tasks.php:224 tasks.php:275 tasks.php:290
+msgid "More..."
+msgstr "Plus d&#39;informations ..."
+
+#: tasks.php:271
+msgid "This Month"
+msgstr "Ce mois-ci"
+
+#: company.php:59
+msgid "Company Information"
+msgstr "Information sur l&#39;entreprise"
+
+#: company.php:74
+msgid "Type :"
+msgstr "Type:"
+
+#: company.php:112
+msgid "People in this Company"
+msgstr "Les gens dans cette société"
+
+#: company.php:222
+msgid "Edit this Company"
+msgstr "Modifier cette entreprise"
+
+#: company.php:225
+msgid "Add a Note About "
+msgstr "Ajouter une note"
+
+#: company.php:251
+msgid "more options"
+msgstr "Plus d&#39;options"
+
+#: company.php:283
+msgid " on "
+msgstr "sur"
+
+#: import_contacts.php:39
+msgid "Start by importing your contacts:"
+msgstr "Commencez par importer vos contacts:"
+
+#: import_contacts.php:52
+msgid "Skip Importing Contacts"
+msgstr "Contacts ignorer l&#39;importation"
+

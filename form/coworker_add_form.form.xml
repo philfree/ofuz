@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[55]]></idform>
+    <name><![CDATA[coworker_add_form]]></name>
+    <descr><![CDATA[]]></descr>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[]]></header>
+    <row><![CDATA[ <div class="dottedline"></div>
+	                  <div class="section20">
+                  <div class="marginform" style="text-align:right">
+                      <?php echo _('Email Address of the Co-Worker: ');?><input type="Text" name = "email" id = "email">
+                    
+                      <input type="submit" value="<?php echo _('Invite');?>" />
+                     </div></div>
+					 <div class="dottedline"></div>
+        ]]></row>
+    <footer><![CDATA[]]></footer>
+  </form>

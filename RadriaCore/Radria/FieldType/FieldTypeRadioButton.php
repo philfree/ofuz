@@ -1,5 +1,6 @@
 <?php
 namespace RadriaCore\Radria\FieldType;
+use RadriaCore\Radria\mysql\SqlQuery;
 
 /**
  * Class strFBFieldTypeRadioButton RegistryField class
@@ -47,7 +48,7 @@ class FieldTypeRadioButton extends FieldTypeChar
             $dbc = $this->getDbCon();
             //$dbc = $GLOBALS['conx'];
             list($tablename, $fielduniqid, $fielddisplay, $defaultvalue, $query) = explode (":", $this->getRData('radiobutton')) ;
-            $qFieldDisplay = new sqlQuery($dbc) ;
+            $qFieldDisplay = new SqlQuery($dbc) ;
             $qFieldDisplay->query("select  $fielduniqid, $fielddisplay from $tablename where $fielduniqid='".$field_value."'") ;
             $avfielddisplay = $qFieldDisplay->fetchArray() ;
             $fval = "" ;

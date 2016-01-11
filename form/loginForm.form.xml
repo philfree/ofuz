@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<form>
+    <idform><![CDATA[55]]></idform>
+    <name><![CDATA[loginForm]]></name>
+    <descr><![CDATA[This is the form that process the signin of the already registred affiliates]]></descr>
+    <idquery><![CDATA[0]]></idquery>
+    <header><![CDATA[<table>]]></header>
+    <row><![CDATA[
+        <div class="textError"><?=$_GET\['loginmessage'\];?></div>
+<?php  $login_form_style = $GLOBALS\['login_form_style'\];  ?>
+        <tr>
+            <td class="<?php echo $login_form_style; ?>" align="right">User Name:</td>
+            <td class="<?php echo $login_form_style; ?>"><input type="text" name="auth_username" size="10" /></td>
+        </tr>
+        <tr>
+            <td class="<?php echo $login_form_style; ?>" align="right">Password:</td>
+            <td class="<?php echo $login_form_style; ?>"><input type="password" name="auth_password" size="10" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right" class="<?php echo $login_form_style; ?>"><input type="submit" name="auth_request" value="Login" /></td>
+        </tr>
+    ]]></row>
+    <footer><![CDATA[</table></form>]]></footer>
+    <descr><![CDATA[    
+        This is the login form. It asks users for their username and password.
+        <template>
+<?php 
+if (!is_array($userdata)) {
+    $strWrongLoginPassword = "[err_string]";
+    $registrationPage = "[Registration_Page]";
+    $getpasswordPage = "[Get_Password_Page]";
+    $nextPage = "[Next_Page]";
+    $loginForm = new ReportForm($conx, "loginForm") ;
+    $loginForm->events = new Event("registration.signon") ;
+    $loginForm->events->addParam("goto", $nextPage);
+    $loginForm->events->addParam("errPage", $_SERVER\['PHP_SELF'\]);
+    $loginForm->events->addParam("strWrongLoginPassword", $strWrongLoginPassword) ;
+    $loginForm->setHeader($loginForm->events->getFormHeader()) ;
+    $loginForm->setHeader($loginForm->events->getFormEvent()) ;
+?>
+<br />
+<?php
+    $loginForm->execute();
+?>
+<br />
+If you have not registered yet, please do so <a href="<?php echo $registrationPage?>">here</a> .<br />
+If you forgot your password, you can retrieve it <a href="<?php echo $getpasswordPage?>">here</a>
+<?php } ?>
+        </template>
+    ]]></descr>
+</form>

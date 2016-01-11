@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<registry>
+  <rfield name="idledger_account">
+    <rdata type="fieldtype">FieldTypeInt</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="label">id</rdata>
+    <rdata type="textline">:</rdata>
+    <rdata type="readonly">1</rdata>
+  </rfield>
+  <rfield name="number">
+    <rdata type="fieldtype">FieldTypeInt</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="label">Num</rdata>
+    <rdata type="size">4</rdata>
+    <rdata type="maxlenght">10</rdata>
+    <rdata type="readonly">0</rdata>
+  </rfield>
+  <rfield name="name">
+    <rdata type="fieldtype">FieldTypeChar</rdata>
+    <rdata type="default"></rdata>
+    <rdata type="label">Name</rdata>
+    <rdata type="textline">20:80</rdata>
+  </rfield>
+
+  <rfield name="type">
+    <rdata type="label">Type</rdata>
+    <rdata type="listvalues">Expense:Incomes:Liability:Assets</rdata>
+    <rdata type="listlabels">Expense:Incomes:Liability:Assets</rdata>
+    <rdata type="fieldtype">FieldTypeListBoxSmall</rdata>
+    <rdata type="databasetype">varchar</rdata>
+    <rdata type="emptydefault">no</rdata>
+  </rfield>
+  <rfield name="idpaired">
+    <rdata type="fieldtype">FieldTypeListBox</rdata>
+    <rdata type="label">Account</rdata>
+    <rdata type="list">ledger_account:idledger_account:name:0</rdata>
+  </rfield>
+</registry>

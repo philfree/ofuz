@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+  <form>
+    <idform><![CDATA[]]></idform>
+    <name><![CDATA[registrationForm]]></name>
+    <descr><![CDATA[            <?php echo _('This is the registration form.  It lets users enter their personal info and select a username and password.') ;?>
+            <template>
+<?php
+    $send_email = "[send_email]";
+    $thankyoupage = "[thankyou_page]";
+    $f_regForm = new reportForm($conx, "registrationForm") ;
+    $f_regForm->setAddRecord();
+    if ($send_email) {
+        $f_regForm->event->addEvent("registration.sendEmail", 1002);
+        $f_regForm->event->addParam("templatename", "registrationthank");
+    }
+    $f_regForm->event->addEvent("mydb.addParamToDisplayNext", 5050) ;
+    $f_regForm->event->addParam("errorpage", $_SERVER\['PHP_SELF'\]);
+    $f_regForm->setUrlNext($thankyoupage);
+    $f_regForm->setForm();
+    $f_regForm->execute();
+    if($message) { echo "<b>$message</b>"; }
+?>
+            </template>
+        ]]></descr>
+    <idquery><![CDATA[registrationForm(users)]]></idquery>
+    <header><![CDATA[<table class="tableform" width="400">]]></header>
+    <row><![CDATA[        <tr>
+        </tr>
+        <tr>
+            <td class="tdformlabel"></td>
+            <td class="tabletdformfield">[iduser]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('First Name(*)'); ?></td>
+            <td class="tabletdformfield">[firstname]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('Middle Name'); ?></td>
+            <td class="tabletdformfield">[middlename]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('Last Name(*)');?></td>
+            <td class="tabletdformfield">[lastname]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('Email(*)'); ?></td>
+            <td class="tabletdformfield">[email]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('Phone');?></td>
+            <td class="tabletdformfield">[phone]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('Company name');?></td>
+            <td class="tabletdformfield">[company]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('Position'); ?></td>
+            <td class="tabletdformfield">[position]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('Address'); ?></td>
+            <td class="tabletdformfield">[address1]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('Address2'); ?></td>
+            <td class="tabletdformfield">[address2]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('City'); ?></td>
+            <td class="tabletdformfield">[city]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('State'); ?></td>
+            <td class="tabletdformfield">[state]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('ZIP/Postal Code');?></td>
+            <td class="tabletdformfield">[zip]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _('Country');?></td>
+            <td class="tabletdformfield">[country]</td>
+        </tr>
+        <tr>
+            <td class="tdformlabel"><?php echo _(Username(*)); ?></td>
+            <td class="tabletdformfield">[username]</td>
+        </tr>
+        <tr>
+          <td class="tdformlabel"><?php echo _('Password(*)'),'<br /><br />',_('Repeat password(*)'); ?></td>
+            <td class="tabletdformfield">[password]</td>
+        </tr>
+        <tr>
+            <td class="tabletdformfield" colspan="2">[isadmin][regdate]</td>
+        <tr> 
+            <td colspan="2" align="right"><input type="submit" value="<?php echo _('Submit')?>"/></td>
+        </tr>
+        ]]></row>
+    <footer><![CDATA[</table><?php echo _('Fields with a (*) are required.'); ?>]]></footer>
+  </form>
