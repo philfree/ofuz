@@ -2604,6 +2604,26 @@ class Contact extends DataObject {
     }
   }
   
+  /**
+    * Function to get task completed description for the contact 
+    * param int contact primary  key value.
+    *
+   */ 
+  function getTaskCompletedDetails($idcontact){
+      $q = new sqlQuery($this->getDbCon());
+      $sql = "SELECT task_description FROM task T INNER JOIN contact C ON T.iduser = C.iduser where C.idcontact='".$idcontact."' and T.status='closed' LIMIT 10";
+      $q->query($sql);
+      if($q->getNumRows()) {
+		while($q->fetch()){
+         $task_description .= $q->getData("task_description");
+         $task_description .='<br>';
+      }
+        return $task_description;
+      } else {
+		return false;
+      }
+      
+  }
 
 }
 ?>
