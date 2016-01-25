@@ -2611,12 +2611,13 @@ class Contact extends DataObject {
    */ 
   function getTaskCompletedDetails($idcontact){
       $q = new sqlQuery($this->getDbCon());
-      $sql = "select task_description from task t inner join user u on t.iduser=u.iduser inner join contact c on c.iduser=u.iduser where c.idcontact='".$idcontact."' and t.status= 'closed' LIMIT 10";
+      $sql = "select task_description,name from task t inner join user u on t.iduser=u.iduser inner join contact c on c.iduser=u.iduser inner join project p on p.iduser=c.iduser where c.idcontact=4 and t.status= 'closed' LIMIT 10";
       $q->query($sql);
       if($q->getNumRows()) {
 		while($q->fetch()){
 		 $task_description .= '<span style="">';
-		 $task_description .= '-------> ';
+		 $task_description .= '('.$q->getData("name").')';
+		 $task_description .= ' --> ';
          $task_description .= $q->getData("task_description");
          $task_description .='<br><br>';
          $task_description .='</span>';
