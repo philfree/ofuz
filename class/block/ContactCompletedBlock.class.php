@@ -22,9 +22,9 @@ class ContactCompletedBlock extends BaseBlock{
 	* Must extent BaseBlock
       */
       function processBlock(){
-	  $this->setTitle(_('Task Completed'));
-	  $this->setContent($this->generateTaskDetails());
-	  $this->displayBlock();
+    	  $this->setTitle(_('Latest 10 Completed Tasks'));
+    	  $this->setContent($this->generateTaskDetails());
+    	  $this->displayBlock();
       }
 
       /**
@@ -32,11 +32,11 @@ class ContactCompletedBlock extends BaseBlock{
        * 
       */
       function generateTaskDetails(){
-	   $do_contact = new Contact();
-	   $idcontact = $_SESSION['ContactEditSave']->idcontact;
-       $completed_task .= $do_contact->getTaskCompletedDetails($idcontact);
-       return $completed_task;
-     }
+    	   $do_contact = new Contact();
+    	   $idcontact = $_SESSION['ContactEditSave']->idcontact;
+           $completed_task .= $do_contact->getTaskCompletedDetails($idcontact);
+           return $completed_task;
+      }
 
      
 }
