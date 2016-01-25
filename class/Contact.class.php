@@ -2616,7 +2616,7 @@ class Contact extends DataObject {
       if($q->getNumRows()) {
 		while($q->fetch()){
 		 $task_description .= '<span style="">';
-		 $task_description .= '--> ';
+		 $task_description .= '-------> ';
          $task_description .= $q->getData("task_description");
          $task_description .='<br><br>';
          $task_description .='</span>';
