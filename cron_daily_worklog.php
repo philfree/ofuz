@@ -14,6 +14,7 @@ include_once('config.php');
 
  $proj_discuss = new ProjectDiscuss();
  $proj_time = new ProjectDiscuss();
+
  //select all the  user from project discuss table for the day
  $proj_discuss->query('select DISTINCT(pd.iduser) as iduser , usr.email from project_discuss pd inner join user usr on usr.iduser=pd.iduser WHERE DATEDIFF(NOW(), date_added) <= 7;');
  
@@ -117,11 +118,25 @@ include_once('config.php');
                     
                     $last_task = $_SESSION['adm_project_discuss_idtask'];
                     $last_desc =  $_SESSION['adm_project_task_discuss'];
+
+
+                    $do_adm_contacts = new ContactNotes();
+                      $do_contact = new Contact();
+                      $_SESSION['adm_project_report_discuss']->report_month = date('m');
+                      $_SESSION['adm_project_report_discuss']->report_year = date('Y');
+                      $do_adm_contacts->getUserContactsFromNotesMonthly($_SESSION['adm_project_report_discuss']->report_year,$_SESSION['adm_project_report_discuss']->report_month);
+                      while($do_adm_contacts->next()) {
+                        if($do_contact->isContactRelatedToUser($do_adm_contacts->idcontact)) {
+                            $text .= '<div class="headline_fuscia">'._('Contacts').'</div>';
+                            $text.=$do_adm_contacts->monthly_hours.' '._('hrs').'</b> '._(' spent with ').' <span class="contacts_name"><a href="/Contact/'.$do_adm_contacts->idcontact.'">'.$do_adm_contacts->cname.' </a></span> ';
+                            $text.='<br />';                        
+                        }
+                       }
             }
         }
         
-            //echo $email.'<br />';echo $text;   
-        
+        //echo $email.'<br />';echo $text;   
+        //die();
         // send mails to the ofuz users with their respective worklog
         
         
