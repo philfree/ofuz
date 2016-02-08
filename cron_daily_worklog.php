@@ -23,12 +23,37 @@ include_once('config.php');
   while($proj_discuss->fetch()){
     $iduser = $proj_discuss->getdata('iduser');
     $email =  $proj_discuss->getdata('email');
-    $proj_time->query('SELECT project_discuss.discuss,project_discuss.date_added,document,
+    /*$proj_time->query('SELECT project_discuss.discuss,project_discuss.date_added,document,
           project_discuss.iduser,sum( project_discuss.hours_work ) AS total_hrs,
           project_task.idproject, project_task.idtask FROM project_task
           left JOIN project_discuss ON project_discuss.idproject_task = project_task.idproject_task
-          where DATE(project_discuss.date_added) = CURDATE() AND project_discuss.iduser = '.$iduser.' '.'group by project_discuss.iduser');
-    
+          where DATE(project_discuss.date_added) = CURDATE() AND project_discuss.iduser = '.$iduser.' '.'group by project_discuss.iduser');*/
+    $proj_time->query('SELECT 
+                       project_discuss.discuss, 
+                       project_discuss.date_added, 
+                       project_discuss.document, 
+                       project_discuss.iduser, 
+                       SUM( project_discuss.hours_work ) AS total_hrs, 
+                       SUM( contact_note.hours_work ) AS tot_work, 
+                       project_task.idproject, 
+                       project_task.idtask
+                       FROM 
+                       project_task
+                       LEFT JOIN project_discuss 
+                       ON 
+                       project_discuss.idproject_task = project_task.idproject_task
+                       LEFT JOIN contact_note 
+                       ON 
+                       project_discuss.iduser = contact_note.iduser
+                       WHERE 
+                       DATE(project_discuss.date_added) = CURDATE() 
+                       AND 
+                       DATE(contact_note.date_added) = CURDATE() 
+                       AND 
+                       project_discuss.iduser =  '.$iduser.'
+                       group by 
+                       project_discuss.iduser
+                      ');
     if($proj_time->getNumRows() == 0)
     {
         //$user_id = $proj_time->getData('iduser');
@@ -49,7 +74,8 @@ include_once('config.php');
         $text .= '<h2>Dear '.$user_name.',</h2>';
         $text .= '<h3><u>Your Notes For '.date('jS F Y').'</u></h3>';
         //$text .= '<h3>by: <b>'.$user_name.'</b>'.'</h3>';
-        $text .= "<h3>Total Hours Entered : ".$proj_time->getData('total_hrs')."</h3>";
+        $tot_value = $proj_time->getData('tot_work') + $proj_time->getData('total_hrs');
+        $text .= "<h3>Total Hours Entered : ".$tot_value."</h3>";
             
             
              //declare all instances of classes used
@@ -120,8 +146,8 @@ include_once('config.php');
             }
         }
         
-            //echo $email.'<br />';echo $text;   
-        
+          //  echo $email.'<br />';echo $text;   
+        //die();
         // send mails to the ofuz users with their respective worklog
         
         
