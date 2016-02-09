@@ -14,7 +14,8 @@
    if(!is_object($_SESSION['adm_project_report'])){
         $do_adm_project = new Project();
         $do_adm_project->sessionPersistent("adm_project_report", "index.php", OFUZ_TTL);
-     }
+        
+      }
      $_SESSION['adm_project_report']->getAll();
      
      $do_adm_project_task = new ProjectTask();
@@ -66,12 +67,19 @@ include_once('includes/ofuz_navtabs.php'); ?>
                 $e_filter->addParam("goto", $_PHP['SELF']);
 				?>
           <form id="setFilterProjHrReport" name="setFilterProjHrReport" method="post" action="/eventcontroler.php">
-          <?php echo $e_filter->getFormEvent();
+
+          <?php 
+                if(isset($_SESSION['adm_project_report_discuss'])){
+                echo $e_filter->getFormEvent();
                 echo $_SESSION['adm_project_report_discuss']->getYearDropDown();
                 echo '&nbsp;&nbsp;';
                 echo $_SESSION['adm_project_report_discuss']->getMonthDropDown();
                 echo '&nbsp;&nbsp;';
                 echo $_SESSION['adm_project_report_discuss']->getWeekDropDowns();  
+              }
+              else{
+                $e_filter->addParam("goto", "index.php");
+              }
           ?>
           </form>
           </div>
