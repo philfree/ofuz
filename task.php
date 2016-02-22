@@ -16,7 +16,7 @@
     include_once('includes/ofuz_check_access.script.inc.php');
     //include_once('includes/header.inc.php');
     
-   
+ 
    
    
 	
@@ -710,11 +710,11 @@ $(document).ready(function() {
                         if ($do_discuss->is_truncated) {
                             $item_text = preg_replace('/<br \/>/iU', '', $item_text);
                             //echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',strip_tags($Parsedown->text($item_text), '<p><br/>'),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
-                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$Parsedown->text($item_text),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
+                            echo '<div id="item_text"><pre><code class="html"><div id="notepreview',$do_discuss->idproject_discuss,'">',$Parsedown->text($item_text),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></code></pre></div>';
                         } else {
                             $item_text = preg_replace('/<br \/>/iU', '', $item_text);
                             //echo "<div id='item_text'>".strip_tags($Parsedown->text($item_text), '<p><br/>')."</div>";
-                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$Parsedown->text( $item_text),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
+                            echo '<div id="item_text"><pre><code class="html"><div id="notepreview',$do_discuss->idproject_discuss,'">',$Parsedown->text( $item_text),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></code></pre></div>';
                         }
                         //echo '<div id="e'.$do_discuss->idproject_discuss.'" style="display: none;" class="note_edit_box"></div>';
                         echo $do_discuss->formatDocumentLink("ProjectTask").'</div>
@@ -739,5 +739,10 @@ $(document).ready(function() {
 </div>
 </td><td class="layout_rmargin"></td></tr></table>
 <?php include_once('includes/ofuz_facebook.php'); ?>
+<!-- highlight js for displaying notes-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/highlight.min.js"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/default.min.css" rel="stylesheet" />
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- end -->
 </body>
 </html>
