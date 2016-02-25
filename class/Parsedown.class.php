@@ -776,7 +776,7 @@ class Parsedown extends DataObject
                 'hidden' => true,
             );
 
-            return $Block;
+            return $Block;  
         }
     }
 

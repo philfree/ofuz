@@ -16,7 +16,7 @@
     include_once('includes/ofuz_check_access.script.inc.php');
     //include_once('includes/header.inc.php');
     
-   
+ 
    
    
 	
@@ -739,5 +739,10 @@ $(document).ready(function() {
 </div>
 </td><td class="layout_rmargin"></td></tr></table>
 <?php include_once('includes/ofuz_facebook.php'); ?>
+<!-- highlight js for displaying notes-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/highlight.min.js"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/default.min.css" rel="stylesheet" />
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- end -->
 </body>
 </html>
