@@ -88,6 +88,7 @@ class TimesheetBlockProjectDiscuss extends ProjectDiscuss {
             if(empty($_SESSION['adm_project_report_discuss']->report_month)){
 				$_SESSION['adm_project_report_discuss']->report_month = date('m');
 			}
+            $do_prj_discuss = new ProjectDiscuss();
             $do_prj_discuss->report_month = $_SESSION['adm_project_report_discuss']->report_month;
             $do_prj_discuss->report_year = $_SESSION['adm_project_report_discuss']->report_year;
             $do_prj_discuss->week_start_date = $_SESSION['adm_project_report_discuss']->week_start_date;
