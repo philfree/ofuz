@@ -1,5 +1,4 @@
 <?php
-
 /**
   * A ContactCompletedBlock
   * This is set a block on the left side of contact.php with contact details
@@ -22,7 +21,7 @@ class ContactCompletedBlock extends BaseBlock{
 	* Must extent BaseBlock
       */
       function processBlock(){
-    	  $this->setTitle(_('Latest 10 Completed Tasks'));
+    	  $this->setTitle(_('Completed Tasks'));
     	  $this->setContent($this->generateTaskDetails());
     	  $this->displayBlock();
       }
@@ -34,11 +33,8 @@ class ContactCompletedBlock extends BaseBlock{
       function generateTaskDetails(){
     	   $do_contact = new Contact();
     	   $idcontact = $_SESSION['ContactEditSave']->idcontact;
-           $completed_task .= $do_contact->getTaskCompletedDetails($idcontact);
-           return $completed_task;
+         $completed_task .= $do_contact->getTaskCompletedDetails($idcontact);
+         return $completed_task;
       }
-
-     
 }
-
 ?>

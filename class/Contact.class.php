@@ -2611,23 +2611,18 @@ class Contact extends DataObject {
    */ 
   function getTaskCompletedDetails($idcontact){
       $q = new sqlQuery($this->getDbCon());
-      $sql = "select task_description,name from task t inner join project p on t.iduser = p.iduser inner join user u on t.iduser=u.iduser inner join contact c on c.iduser=u.iduser where c.idcontact='".$idcontact."' and t.status= 'closed' LIMIT 10";
+      $sql = "select note from contact_note where idcontact='".$idcontact."' and note_visibility=' ' order by idcontact_note DESC LIMIT 10";
       $q->query($sql);
       if($q->getNumRows()) {
-		while($q->fetch()){
-		 $task_description .= '<span style="">';
-		 $task_description .= '('.$q->getData("name").')';
-		 $task_description .= ' --> ';
-         $task_description .= $q->getData("task_description");
-         $task_description .='<br><br>';
-         $task_description .='</span>';
-      }
-        return $task_description;
+      		while($q->fetch()) {
+      		    $note_description .= '<span style="">';
+              $note_description .= $q->getData("note");
+              $note_description .='</span>';
+            }
+              return $note_description;
       } else {
-		return "No Records Found";
+      		    return "No Records Found";
       }
-      
   }
-
 }
 ?>
