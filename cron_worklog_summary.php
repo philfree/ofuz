@@ -10,7 +10,7 @@
 include_once('config.php');
 
 $admin_emails = array(
-    1 =>'philippe@htmlfusion.com',
+    /*1 =>'philippe@htmlfusion.com',
     2=>'elsa@htmlfusion.com',
     3=>'jared@htmlfusion.com', 
     4=>'rafai@htmlfusion.com',
@@ -18,6 +18,7 @@ $admin_emails = array(
     6=>'evan@htmlfusion.com',
     7=>'pedro@htmlfusion.com',
     8=>'binh@htmlfusion.com'
+    */
   );
  $type = array(1=>'Today',2=>'PreviousDay',3=>'LastWeek');
  $message_sent = 0;
@@ -44,14 +45,31 @@ $admin_emails = array(
                 
                 $total_hrs = $pd_discuss->getTotalHoursEnteredByIndividual($iduser,$tp);
                 //echo 'sa'.(int)$total_hrs.'<br/>';
+                print_r($total_hrs);
                 
-                if($total_hrs!=''){$text.= '<b>'.$total_hrs.'</b>  Hrs By '. $name.'<br/>';}else{$text.= '<b> 0:00</b>  Hrs  By '.$name.'.<br/>';}
-                
+                if($total_hrs!=''){$text.= '<b>'.$total_hrs['total_hrs'].'</b>  Hrs By '. $name.'<br/>';}else{$text.= '<b> 0:00</b>  Hrs  By '.$name.'.<br/>';}
+                    $do_adm_contacts = new ContactNotes();
+                    $do_contact = new Contact();
+                    $_SESSION['adm_project_report_discuss']->report_month = date('m');
+                    //print_r($_SESSION);
+                    $_SESSION['adm_project_report_discuss']->report_year = date('Y');
+                    $testttt = $do_adm_contacts->getUserContactsFromNotesMonthly($_SESSION['adm_project_report_discuss']->report_year,$_SESSION['adm_project_report_discuss']->report_month);
+                    print_r($testttt);
+                    while($do_adm_contacts->next()) { 
+                      if($do_contact->isContactRelatedToUser($do_adm_contacts->idcontact)) {
+                         $text .= '<div class="headline_fuscia">'._('Contacts').'</div>';
+                         $text.=$do_adm_contacts->monthly_hours.' '._('hrs').'</b> '._(' spent with ').' <span class="contacts_name"><a href="/Contact/'.$do_adm_contacts->idcontact.'">'.$do_adm_contacts->cname.' </a></span> ';
+                         $text.='<br />';                        
+                      }
+                    }    
         }
+
      }
  }
  
- //echo $text;
+ echo $text."<br>";
+ echo $email;
+ die();
  
  // send mails to the ofuz users with their respective worklog
         

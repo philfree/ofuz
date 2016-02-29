@@ -1236,29 +1236,47 @@ class ProjectDiscuss extends Note {
         switch($type)
         {
            case 'Today':
-                $where .= " AND project_discuss.date_added= CURDATE()";  
+                $where .= " AND project_discuss.date_added= CURDATE() 
+                            AND contact_note.date_added = CURDATE() ";  
                 break;
                 
            case 'PreviousDay':
-                $where .= " AND project_discuss.date_added = DATE_SUB(CURDATE(),INTERVAL 1 DAY)";  
+                $where .= " AND project_discuss.date_added = DATE_SUB(CURDATE(),INTERVAL 1 DAY)
+                            AND contact_note.date_added = DATE_SUB(CURDATE(),INTERVAL 1 DAY) ";  
                 break;
                 
            case 'LastWeek':
-                $where .= " where project_discuss.date_added <= CURDATE() AND project_discuss.date_added >= DATE_SUB(CURDATE(),INTERVAL 7 day)";  
+                $where .= " where project_discuss.date_added <= CURDATE() 
+                            AND contact_note.date_added <= CURDATE()
+                            AND project_discuss.date_added >= DATE_SUB(CURDATE(),INTERVAL 7 day)
+                            AND contact_note.date_added >= DATE_SUB(CURDATE(),INTERVAL 7 day)";  
                 break;    
         }
         
-        $where .= " AND project_discuss.hours_work <>'0.00' ";
+        //$where .= " AND project_discuss.hours_work <>'0.00' AND contact_note.hours_work <>'0.00'";
         if($iduser!=""){ $where .= " AND project_discuss.iduser = ".$iduser ; }
         
         $q = new sqlQuery($this->getDbCon());
-        $qry = "SELECT sum( project_discuss.hours_work ) AS total_hrs FROM project_task
-                  left JOIN project_discuss ON project_discuss.idproject_task = project_task.idproject_task
-                  ".$where." ";
-        //echo $qry;exit;          
+        $qry = "SELECT 
+                sum( project_discuss.hours_work ) AS total_hrs,
+                sum( contact_note.hours_work )  AS tot_work
+                FROM project_task
+                JOIN project_discuss 
+                ON 
+                project_discuss.idproject_task = project_task.idproject_task
+                JOIN contact_note
+                ON
+                project_discuss.iduser = contact_note.iduser
+                ".$where." ";
+        //echo $qry."<br><br><br>";//exit;          
         $q->query($qry);
         $q->fetch();
-        return $q->getData("total_hrs");
+        $total_hrs = $q->getData('total_hrs');
+        $tot_work = $q->getData('tot_work');
+        $result = array("total_hrs"=>$total_hrs , "tot_work" => $tot_work);
+        //print_r($result);
+        return $result;
+        //return $q->getData("total_hrs");
         
     }  
       
