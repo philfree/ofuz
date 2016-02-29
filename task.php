@@ -632,7 +632,7 @@ $(document).ready(function() {
                                //$file = '<br /><a href="/files_download.php?e=ProjectTask&id='.$idproject_task.'&file='.$do_discuss->document.'" target="_blank">'.$do_discuss->document.'</a>';
                         }
                         
-                        $item_text = $do_discuss->formatDiscussionItemDisplay($do_discuss->discuss, 500);
+                        $item_text = $do_discuss->formatDiscussionItemDisplay($do_discuss->discuss, 1500);
                         //if (substr_count($item_text, '<br />') > 4) {
                         //	$preview_item = preg_replace('/(.*?<br \/>.*?<br \/>.*?<br \/>.*?<br \/>)(.*)/','$1',str_replace("\n",'',$item_text)).' ';
                         //} else if (strlen($item_text) > 500) {
@@ -710,11 +710,11 @@ $(document).ready(function() {
                         if ($do_discuss->is_truncated) {
                             $item_text = preg_replace('/<br \/>/iU', '', $item_text);
                             //echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',strip_tags($Parsedown->text($item_text), '<p><br/>'),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
-                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$Parsedown->text($item_text),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
+                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$Parsedown->text($item_text),'<!--<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a>--><br /></div></div>';
                         } else {
                             $item_text = preg_replace('/<br \/>/iU', '', $item_text);
                             //echo "<div id='item_text'>".strip_tags($Parsedown->text($item_text), '<p><br/>')."</div>";
-                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$Parsedown->text( $item_text),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
+                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$Parsedown->text( $item_text),'<!--<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a>--><br /></div></div>';
                         }
                         //echo '<div id="e'.$do_discuss->idproject_discuss.'" style="display: none;" class="note_edit_box"></div>';
                         echo $do_discuss->formatDocumentLink("ProjectTask").'</div>
