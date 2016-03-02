@@ -1258,8 +1258,8 @@ class ProjectDiscuss extends Note {
         
         $q = new sqlQuery($this->getDbCon());
         $qry = "SELECT 
-                sum( project_discuss.hours_work ) AS total_hrs,
-                sum( contact_note.hours_work )  AS tot_work
+                COALESCE(sum( project_discuss.hours_work ), 0) AS total_hrs,
+                COALESCE(sum( contact_note.hours_work ), 0)  AS tot_work
                 FROM project_task
                 JOIN project_discuss 
                 ON 
@@ -1274,7 +1274,6 @@ class ProjectDiscuss extends Note {
         $total_hrs = $q->getData('total_hrs');
         $tot_work = $q->getData('tot_work');
         $result = array("total_hrs"=>$total_hrs , "tot_work" => $tot_work);
-        //print_r($result);
         return $result;
         //return $q->getData("total_hrs");
         
