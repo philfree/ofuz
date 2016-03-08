@@ -44,27 +44,15 @@ $admin_emails = array(
             $name = $proj_discuss->getData('firstname');
                 
                 $total_hrs = $pd_discuss->getTotalHoursEnteredByIndividual($iduser,$tp);
-                //echo 'sa'.(int)$total_hrs.'<br/>';               
-                if($total_hrs!=''){$text.= '<b>'.$total_hrs['total_hrs'].'</b>  Hrs By '. $name.'<br/>';}else{$text.= '<b> 0:00</b>  Hrs  By '.$name.'.<br/>';}
+                //echo 'sa'.(int)$total_hrs.'<br/>';
+                $total_hours = $total_hrs['total_hrs'] + $total_hrs['tot_work'];
+                if($total_hrs!=''){$text.= '<b>'.$total_hours.'</b>  Hrs By '. $name.'<br/>';}else{$text.= '<b> 0:00</b>  Hrs  By '.$name.'.<br/>';}
 
         }
 
      }
  }
  
-                    $do_adm_contacts = new ContactNotes();
-                    $do_contact = new Contact();
-                    $_SESSION['adm_project_report_discuss']->report_month = date('m');
-                    $_SESSION['adm_project_report_discuss']->report_year = date('Y');
-                    $monthly_out = $do_adm_contacts->getUserContactsFromNotesMonthly($_SESSION['adm_project_report_discuss']->report_year,$_SESSION['adm_project_report_discuss']->report_month);
-                    while($do_adm_contacts->next()) { 
-                      if($do_contact->isContactRelatedToUser($do_adm_contacts->idcontact)) {
-                         //$text .= '<div class="headline_fuscia" style="margin-top:30px;"><b>'._('Contacts').'</b></div>';
-                         $text .= "<h4><u>Contacts:</h4></u>";
-                         $text.=$do_adm_contacts->monthly_hours.' '._('hrs').'</b> '._(' spent with ').' <span class="contacts_name"><a href="/Contact/'.$do_adm_contacts->idcontact.'">'.$do_adm_contacts->cname.' </a></span> ';
-                         $text.='<br />';                        
-                      }
-                    }  
  //echo $text."<br>";
  //echo $email;
  //die();
