@@ -47,9 +47,6 @@
                                           ),
                                   "timesheets" =>
                                     Array("TimesheetsAddTimesheetBlock"),
-                                  "timesheet" =>
-                                    Array(""
-                                          ),
                                   "projects" =>
                                     Array("ProjectsAddProjectBlock"),
                                   "project" =>
