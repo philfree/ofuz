@@ -18,7 +18,6 @@ $admin_emails = array(
     6=>'evan@htmlfusion.com',
     7=>'pedro@htmlfusion.com',
     8=>'binh@htmlfusion.com'
-    
   );
  $type = array(1=>'Today',2=>'PreviousDay',3=>'LastWeek');
  $message_sent = 0;
@@ -46,6 +45,7 @@ $admin_emails = array(
                 $total_hrs = $pd_discuss->getTotalHoursEnteredByIndividual($iduser,$tp);
                 //echo 'sa'.(int)$total_hrs.'<br/>';
                 $total_hours = $total_hrs['total_hrs'] + $total_hrs['tot_work'];
+                //echo $total_hrs['total_hrs'];
                 if($total_hrs!=''){$text.= '<b>'.$total_hours.'</b>  Hrs By '. $name.'<br/>';}else{$text.= '<b> 0:00</b>  Hrs  By '.$name.'.<br/>';}
 
         }
