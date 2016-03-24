@@ -16,7 +16,7 @@
                   </div>
                    <div class="marginform">
                       <span class="text8"><?php echo _('Notes:');?></span><br />
-                   [note]
+                   [discuss]
                   </div>                
                   <div class="marginform">
                       <span class="text8"><?php echo _('Attach a File:');?></span><br />
@@ -24,11 +24,11 @@
                   </div>
                   <div class="marginform">
                       <span class="text8"><?php echo _('Date:'); ?></span><br />
-                      [date]
+                      [date_added]
                   </div>
                   <div class="marginform">
                       <span class="text8"><?php echo _('Hours Worked:'); ?></span><br />
-                      [hours]
+                      [hours_work]
                   </div>
 
                   <div class="dottedline"></div>

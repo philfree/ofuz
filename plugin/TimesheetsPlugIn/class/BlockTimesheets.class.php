@@ -30,7 +30,7 @@ class BlockTimesheets extends BaseBlock{
         //$this->setTitle("Weather In Los Angeles");
         $this->setContent($this->generateTimeEntryBlock());
         //$this->setContent("The Weather here is pretty cool now a days !!");
-        $this->displayBlock();
+        //$this->displayBlock();
       }
 
       /**
