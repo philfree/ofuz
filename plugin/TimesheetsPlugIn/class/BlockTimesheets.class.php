@@ -43,7 +43,7 @@ class BlockTimesheets extends BaseBlock{
         $output = '';
         $output .= '<div class="percent95">';
         $do_entry_add = new TimesheetsPlugIn();
-        $output .= $do_entry_add->getTimeEntryAddForm($next_page);
+        $output .= $do_entry_add->getTimeEntryAddForm();
         $output .= '</div>';
         return $output;
       }

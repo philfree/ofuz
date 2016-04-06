@@ -1,7 +1,4 @@
 <?php
-// Copyright 2008 - 2010 all rights reserved, SQLFusion LLC, info@sqlfusion.com
-/**COPYRIGHTS**/ 
-
   /**
     * @package TimesheetsPlugIn
     * @license ##License##
@@ -27,7 +24,7 @@ class TimesheetsPlugIn extends DataObject{
         $this->add(); 
     }
 
-	function getTimeEntryAddForm($nextPage=""){
+	function getTimeEntryAddForm(){
         $errPage = $nextPage;
         $this->setRegistry("ofuz_time_entry");
         $f_quoteForm = $this->prepareSavedForm("ofuz_time_entry");
@@ -35,7 +32,7 @@ class TimesheetsPlugIn extends DataObject{
        // $f_taskForm->addEventAction($this->getObjectName()."->eventAddInvoiceLine", 1010);
         $f_quoteForm->setAddRecord();
         //$f_quoteForm->setUrlNext($nextPage);
-        $f_quoteForm->addParam("goto", $nextPage);
+        //$f_quoteForm->addParam("goto", $nextPage);
         $f_quoteForm->setForm();
         $f_quoteForm->execute();
     }

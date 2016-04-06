@@ -43,29 +43,29 @@
    $GLOBALS['cfg_block_placement']['TabContentTimesheet'][] = "BlockTimesheets";
 
    $plugin_timesheet_menu = new SubMenu();
-   $plugin_timesheet_menu->addMenuItem("page 1", $cfg_sample_plugin_path."TabContentTimesheet")
-                      ->addMenuItem("page 2", $cfg_sample_plugin_path."TabContentTimesheet2");
+   $plugin_timesheet_menu->addMenuItem("page 1", $cfg_sample_plugin_path."TabContentTimesheets")
+                      ->addMenuItem("page 2", $cfg_sample_plugin_path."TabContentTimesheets2");
          
    // Hook to display the Tab (they are real page just without the .php)  
    $GLOBALS['cfg_tab_placement']->append(new Tab("TimesheetsPlugIn"));
    $GLOBALS['cfg_tab_placement']->next();
    $GLOBALS['cfg_tab_placement']->current()
-                                ->setTitle("You are on the Sample Plugin")
+                                ->setTitle("You are on the Timesheets Plugin")
                                 ->setPages(Array (
-                                              "TabContentTimesheet",
+                                              "TabContentTimesheets",
                                               "TabContentTimesheet2"))
                                 ->setMenu($plugin_timesheet_menu)
                                 ->setMessage('welcome_timesheet_plugin')
-                                ->setDefaultPage("TabContentTimesheet");
+                                ->setDefaultPage("TabContentTimesheets");
                                    
    // Hook to display this plug-in Configuration in the tab Settings.
-   $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting("TimesheetPlugIn"));
+   $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting("TimesheetsPlugIn"));
    $GLOBALS['cfg_setting_tab_placement']->next();
    $GLOBALS['cfg_setting_tab_placement']->current()
-                                        ->setTabName("TimesheetPlugIn Setting")
+                                        ->setTabName("TimesheetsPlugInPlugIn Setting")
                                         ->setTitle("TimesheetPlugIn Setting or configuration sample")
-                                        ->setPages(Array ("SettingContentSample"))
-                                        ->setDefaultPage("SettingContentSample");
+                                        ->setPages(Array ("SettingContentTimesheet"))
+                                        ->setDefaultPage("SettingContentTimesheet");
 
 
    // Register the SamplePage, its just a plug-in Page not linked to a Tab or SettingTab.

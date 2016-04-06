@@ -19,20 +19,6 @@
     <rdata type="id"></rdata>
     <rdata type="fieldtype">strFBFieldTypeInt</rdata>
   </rfield>
-  <!-- <rfield name="idtask">
-    <rdata type="default">[do_project_task->idtask]</rdata>
-    <rdata type="hidden">1</rdata>
-    <rdata type="label">idtask</rdata>
-    <rdata type="readonly"></rdata>
-    <rdata type="required"></rdata>
-    <rdata type="textline">:</rdata>
-    <rdata type="css_form_class"></rdata>
-    <rdata type="css_disp_class"></rdata>
-    <rdata type="css_form_style"></rdata>
-    <rdata type="css_disp_style"></rdata>
-    <rdata type="id"></rdata>
-    <rdata type="fieldtype">strFBFieldTypeInt</rdata>
-  </rfield> -->
   <rfield name="idproject">
    <rdata type="default">[do_project_task->idproject]</rdata>
     <rdata type="hidden">1</rdata>
