@@ -44,14 +44,18 @@ $admin_emails = array(
                 
                 $total_hrs = $pd_discuss->getTotalHoursEnteredByIndividual($iduser,$tp);
                 //echo 'sa'.(int)$total_hrs.'<br/>';
-                
-                if($total_hrs!=''){$text.= '<b>'.$total_hrs.'</b>  Hrs By '. $name.'<br/>';}else{$text.= '<b> 0:00</b>  Hrs  By '.$name.'.<br/>';}
-                
+                $total_hours = $total_hrs['total_hrs'] + $total_hrs['tot_work'];
+                //echo $total_hrs['total_hrs'];
+                if($total_hrs!=''){$text.= '<b>'.$total_hours.'</b>  Hrs By '. $name.'<br/>';}else{$text.= '<b> 0:00</b>  Hrs  By '.$name.'.<br/>';}
+
         }
+
      }
  }
  
- //echo $text;
+ //echo $text."<br>";
+ //echo $email;
+ //die();
  
  // send mails to the ofuz users with their respective worklog
         
