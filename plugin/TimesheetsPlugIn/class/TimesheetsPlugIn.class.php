@@ -25,16 +25,15 @@ class TimesheetsPlugIn extends DataObject{
     }
 
 	function getTimeEntryAddForm(){
-        $errPage = $nextPage;
         $this->setRegistry("ofuz_time_entry");
         $f_quoteForm = $this->prepareSavedForm("ofuz_time_entry");
         $f_quoteForm->setFormEvent($this->getObjectName()."->eventAdd", 1005);
        // $f_taskForm->addEventAction($this->getObjectName()."->eventAddInvoiceLine", 1010);
         $f_quoteForm->setAddRecord();
-        //$f_quoteForm->setUrlNext($nextPage);
-        //$f_quoteForm->addParam("goto", $nextPage);
+        $f_quoteForm->setUrlNext("TimesheetsPage.php");
         $f_quoteForm->setForm();
         $f_quoteForm->execute();
+        //return $f_taskForm->executeToString();
     }
 }
 ?>

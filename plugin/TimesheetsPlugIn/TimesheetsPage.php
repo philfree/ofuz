@@ -7,6 +7,6 @@
 
 ?>
 <div class="dottedline"></div>
-	<a href="/plugin/TimesheetsPlugIn/TabContentTimesheet">Back</a>
+	<a href="/plugin/Timesheets/TabContentTimesheet">Back</a>
 
 

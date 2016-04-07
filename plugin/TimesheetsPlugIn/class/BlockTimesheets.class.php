@@ -18,8 +18,8 @@
 
 
 class BlockTimesheets extends BaseBlock{
-      public $short_description = 'Sample Plugin block';
-      public $long_description = 'Sample plugin block';
+      public $short_description = 'TImesheet Plugin block';
+      public $long_description = 'Timesheet plugin block';
     
        /**
         * processBlock() , This method must be added  
@@ -27,10 +27,9 @@ class BlockTimesheets extends BaseBlock{
         * Must extent BaseBlock
         */
       function processBlock(){
-        //$this->setTitle("Weather In Los Angeles");
+        $this->setTitle("New Time Entry");
         $this->setContent($this->generateTimeEntryBlock());
-        //$this->setContent("The Weather here is pretty cool now a days !!");
-        //$this->displayBlock();
+        $this->displayBlock();
       }
 
       /**
@@ -41,10 +40,10 @@ class BlockTimesheets extends BaseBlock{
       function generateTimeEntryBlock(){
         
         $output = '';
-        $output .= '<div class="percent95">';
+        //$output .= '<div class="tundra">';
         $do_entry_add = new TimesheetsPlugIn();
         $output .= $do_entry_add->getTimeEntryAddForm();
-        $output .= '</div>';
+        //$output .= '</div>';
         return $output;
       }
 }

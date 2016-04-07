@@ -62,8 +62,8 @@
    $GLOBALS['cfg_setting_tab_placement']->append(new TabSetting("TimesheetsPlugIn"));
    $GLOBALS['cfg_setting_tab_placement']->next();
    $GLOBALS['cfg_setting_tab_placement']->current()
-                                        ->setTabName("TimesheetsPlugInPlugIn Setting")
-                                        ->setTitle("TimesheetPlugIn Setting or configuration sample")
+                                        ->setTabName("Timesheets Setting")
+                                        ->setTitle("Timesheets Setting or configuration sample")
                                         ->setPages(Array ("SettingContentTimesheet"))
                                         ->setDefaultPage("SettingContentTimesheet");
 

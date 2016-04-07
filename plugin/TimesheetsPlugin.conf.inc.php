@@ -35,7 +35,7 @@
    $plugin_timesheet_menu = new SubMenu();
 
    // Hook to display the Tab (they are real page just without the .php)   
-   $GLOBALS['cfg_tab_placement']->append(new Tab("Timesheets"));
+   $GLOBALS['cfg_tab_placement']->append(new Tab("TimesheetsPlugIn"));
    $GLOBALS['cfg_tab_placement']->next();
    $GLOBALS['cfg_tab_placement']->current()
                                 ->setTabName("Timesheets")
