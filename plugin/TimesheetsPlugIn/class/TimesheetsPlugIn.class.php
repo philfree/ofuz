@@ -32,8 +32,8 @@ class TimesheetsPlugIn extends DataObject{
         $f_quoteForm->setAddRecord();
         $f_quoteForm->setUrlNext("TimesheetsPage.php");
         $f_quoteForm->setForm();
-        $f_quoteForm->execute();
-        //return $f_taskForm->executeToString();
+        //$f_quoteForm->execute();
+        return $f_quoteForm->executeToString();
     }
 }
 ?>
