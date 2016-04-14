@@ -45,8 +45,6 @@
                                           "TaskOwnerBlock",
                                           "TaskDropBoxBlock"
                                           ),
-                                  "timesheets" =>
-                                    Array("TimesheetsAddTimesheetBlock"),
                                   "projects" =>
                                     Array("ProjectsAddProjectBlock"),
                                   "project" =>
@@ -186,12 +184,12 @@
                                 ->setPages(Array ("tasks"))
                                 ->setDefaultPage("tasks");
    //Timesheet
-   $GLOBALS['cfg_tab_placement']->append(new Tab(""));
+   /*$GLOBALS['cfg_tab_placement']->append(new Tab(""));
    $GLOBALS['cfg_tab_placement']->next();
    $GLOBALS['cfg_tab_placement']->current()
                                 ->setTabName(_('Timesheets'))
                                 ->setPages(Array ("timesheets"))
-                                ->setDefaultPage("timesheets");
+                                ->setDefaultPage("timesheets");*/
    //Projects
    $GLOBALS['cfg_tab_placement']->append(new Tab(""));
    $GLOBALS['cfg_tab_placement']->next();
@@ -219,7 +217,6 @@
                                       'Dashboard',
                                       'Contacts',
                                       'Tasks',
-                                      'Timesheets',
                                       'Projects',
                                       'Invoices'
                                     );

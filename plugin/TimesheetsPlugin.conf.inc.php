@@ -27,13 +27,15 @@
     
     //define('OFUZ_LOG_RUN_PLUGIN_MARKETING', true); 
 
-   $cfg_plugin_mkt_path = "/Tab/TimesheetsPlugIn/";
+   $cfg_sample_plugin_path = "/Tab/TimesheetsPlugIn/";
   
    // Hook for the block object
    $GLOBALS['cfg_block_placement']['TimesheetsPage'][] = "BlockTimesheets";
       
    $plugin_timesheet_menu = new SubMenu();
-
+   $plugin_sample_menu->addMenuItem("page 1", $cfg_sample_plugin_path."TabContentTimesheet")
+                      ->addMenuItem("page 2", $cfg_sample_plugin_path."TabContentTimesheet2");
+                      
    // Hook to display the Tab (they are real page just without the .php)   
    $GLOBALS['cfg_tab_placement']->append(new Tab("TimesheetsPlugIn"));
    $GLOBALS['cfg_tab_placement']->next();
