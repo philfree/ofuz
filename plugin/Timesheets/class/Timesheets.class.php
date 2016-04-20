@@ -1,0 +1,39 @@
+<?php
+  /**
+    * @package TimesheetsPlugIn
+    * @license ##License##
+    * @version 1.0
+    * @date 2016-03-20
+    */
+class Timesheets extends DataObject{
+	
+	public $table = 'project_discuss';
+    protected $primary_key = 'idproject_discuss';
+    public $project_status = "";
+    
+    function addNewTimesheets($idproject_task,$idtask,$discuss,$iduser,$date_added,$document,$hours_work,$iduser,$discuss_edit_access,$type) {
+        $this->idproject_task = $idproject_task;
+        $this->discuss = $discuss;
+        $this->iduser = $iduser;
+        $this->date_added = $date_added;
+        $this->document = $document;
+        $this->hours_work = $hours_work;
+        $this->iduser = $iduser;
+        $this->discuss_edit_access = $discuss_edit_access;
+        $this->type = $type;
+        $this->add(); 
+    }
+
+	function getTimeEntryAddForm(){
+        $this->setRegistry("ofuz_time_entry");
+        $f_quoteForm = $this->prepareSavedForm("ofuz_time_entry");
+        $f_quoteForm->setFormEvent($this->getObjectName()."->eventAdd", 1005);
+       // $f_taskForm->addEventAction($this->getObjectName()."->eventAddInvoiceLine", 1010);
+        $f_quoteForm->setAddRecord();
+        $f_quoteForm->setUrlNext("TimesheetsPage.php");
+        $f_quoteForm->setForm();
+        //$f_quoteForm->execute();
+        return $f_quoteForm->executeToString();
+    }
+}
+?>
