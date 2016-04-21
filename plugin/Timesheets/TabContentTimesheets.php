@@ -35,7 +35,7 @@ The documentation to create Ofuz Plug-in can be found at: <br/> <a href="http://
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
+				right: 'agendaWeek,agendaDay'
 			},
 			defaultDate: '2016-01-12',
 			editable: true,
