@@ -5,7 +5,7 @@
     <rdata type="readonly">1</rdata>
     <rdata type="fieldtype">strFBFieldTypeInt</rdata>
   </rfield>
-  <rfield name="idproject_task">
+  <!--<rfield name="idproject_task">
     <rdata type="default">[do_project_task->idproject_task]</rdata>
     <rdata type="hidden">1</rdata>
     <rdata type="label">idproject_task</rdata>
@@ -32,7 +32,7 @@
     <rdata type="css_disp_style"></rdata>
     <rdata type="id"></rdata>
     <rdata type="fieldtype">strFBFieldTypeInt</rdata>
-  </rfield>
+  </rfield>-->
   <rfield name="project">
     <rdata type="databasetype">varchar</rdata>
     <rdata type="default"></rdata>
@@ -42,19 +42,19 @@
     <rdata type="object_method">Project->getAllProjects()</rdata>
     <rdata type="saved_query"></rdata>
     <rdata type="css_form_class"></rdata>
-    <rdata type="addevent">Task->eventSetProjectTask:1010</rdata>
+    <!--<rdata type="addevent">Task->eventSetProjectTask:1010</rdata>-->
     <rdata type="fieldtype">DijitComboBox</rdata>
   </rfield>
   <rfield name="task">
     <rdata type="databasetype">varchar</rdata>
     <rdata type="default"></rdata>
-    <rdata type="label">task Category</rdata>
-    <rdata type="table_name">task</rdata>
-    <rdata type="field_to_display">task</rdata>
-    <rdata type="object_method">Task->isProjectRelatedTask()</rdata>
+    <rdata type="label">Task</rdata>
+    <rdata type="table_name"></rdata>
+    <rdata type="field_to_display">task_description</rdata>
+    <rdata type="object_method">Task->isTaskRelated()</rdata>
     <rdata type="saved_query"></rdata>
     <rdata type="css_form_class"></rdata>
-    <rdata type="addevent">Task->eventSetTaskCategory:99</rdata>
+    <!--<rdata type="addevent">Task->eventSetTaskCategory:99</rdata>-->
     <rdata type="fieldtype">DijitComboBox</rdata>
   </rfield> 
   <rfield name="discuss">

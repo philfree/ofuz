@@ -812,6 +812,11 @@ class Task extends DataObject {
           return false;
       }
     }
+    
+    function isTaskRelated(){
+        
+        $this->query("SELECT task_description FROM task t JOIN project_task pt ON t.idtask = pt.idtask JOIN project p ON p.idproject = pt.idproject"); 
+    }
     /**
      * Method to get the distinct completed task dates in 
      * the form Month Year

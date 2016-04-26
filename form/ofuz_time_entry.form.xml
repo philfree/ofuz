@@ -12,7 +12,7 @@
                   </div>
                   <div class="marginform">
                       <span class="text8"><?php echo _('Task:'); ?></span><br />
-                      [idtask]
+                      [task]
                   </div>
                    <div class="marginform">
                       <span class="text8"><?php echo _('Notes:');?></span><br />
