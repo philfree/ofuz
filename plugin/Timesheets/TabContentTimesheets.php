@@ -30,7 +30,19 @@ The documentation to create Ofuz Plug-in can be found at: <br/> <a href="http://
 <script>
 
 	$(document).ready(function() {
-	
+	   /* $("#dijit_form_ComboBox_0").onChange(function(val){
+        alert("Text: " + $("#dijit_form_ComboBox_0").text());
+        //function getState(val) {
+        	$.ajax({
+        	type: "POST",
+        	url: "get_task.php",
+        	data:'get_task='+val,
+        	success: function(data){
+        		$("#state-list").html(data);
+        	}
+        	});
+        //}
+    });*/
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',

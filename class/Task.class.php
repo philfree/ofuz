@@ -813,9 +813,9 @@ class Task extends DataObject {
       }
     }
     
-    function isTaskRelated(){
-        
-        $this->query("SELECT task_description FROM task t JOIN project_task pt ON t.idtask = pt.idtask JOIN project p ON p.idproject = pt.idproject"); 
+    function isTaskRelated($idproject=''){
+        $idproject = $this->getId($idproject);
+        $this->query("SELECT task_description FROM task t JOIN project_task pt ON t.idtask = pt.idtask JOIN project p ON p.idproject = pt.idproject where pt.idproject ='".$idproject."'"); 
     }
     /**
      * Method to get the distinct completed task dates in 

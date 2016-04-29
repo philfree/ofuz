@@ -6,7 +6,7 @@
     <idquery><![CDATA[0]]></idquery>
     <header><![CDATA[]]></header>
     <row><![CDATA[
-                  <div class="marginform">
+                  <div class="marginform">[iduser][idproject_task]
                       <span class="text8"><?php echo _('Project:'); ?></span><br />
                       [project]
                   </div>
@@ -33,7 +33,7 @@
 
                   <div class="dottedline"></div>
          
-                      <input type="submit" value="<?php echo _('Log Entry');?>" />
+                      <input type="submit" class="submitaction" value="<?php echo _('Log Entry');?>" />
            
                   </div>
         ]]></row>
