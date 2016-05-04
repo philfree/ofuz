@@ -31,7 +31,6 @@ class BlockTimesheets extends BaseBlock{
         $this->setContent($this->generateTimeEntryBlock());
         $this->displayBlock();
       }
-
       /**
        * A custom method within the Plugin to generate the content 
        * @return string : HTML form

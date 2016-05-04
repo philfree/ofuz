@@ -22,7 +22,7 @@ Here is an other example of plug in page: <a href="/PlugIn/Timesheets/Timesheets
 <div class="dottedline"></div>
 The documentation to create Ofuz Plug-in can be found at: <br/> <a href="http://www.ofuz.com/opensource/wiki/plugin_api" title="plugin api documentation">http://www.ofuz.com/opensource/wiki/plugin_api</a>-->
 
-<link href='../../includes/fullcalendar.css' rel='stylesheet' />
+<!--<link href='../../includes/fullcalendar.css' rel='stylesheet' />
 <link href='../../includes/fullcalendar.print.css' rel='stylesheet' media='print' />
 <script src='../../includes/moment.min.js'></script>
 <script src='../../includes/jquery.min.js'></script>
@@ -102,9 +102,164 @@ The documentation to create Ofuz Plug-in can be found at: <br/> <a href="http://
 
 </style>
 	<div id='script-warning'>
-		<!--<code>php/get-events.php</code> must be running.-->
+		<!--<code>php/get-events.php</code> must be running.
 	</div>
 
 	<div id='loading'>loading...</div>
 
-	<div id='calendar'></div>
+	<div id='calendar'></div>-->
+  <style>
+  ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+/* Month header */
+.month {
+    padding: 70px 25px;
+    width: 100%;
+    background: #1abc9c;
+}
+
+/* Month list */
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+.month .prev {
+    float: left;
+    padding-top: 10px;
+}
+
+/* Next button */
+.month .next {
+    float: right;
+    padding-top: 10px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+    border-right: 2px ridge silver;
+}
+
+/* Days (1-31) */
+.days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+    height: 300px;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size:12px;
+    color:#777;
+}
+
+/* Highlight the "current" day */
+.days li .active {
+    padding: 5px;
+    background: #1abc9c;
+    color: white !important
+}
+  </style>
+  <script>
+  function hideTotals(){
+
+    $("td.layout_rcolumn").prev('td').hide();
+    $("#totals_txt").show();
+	 $("#close_tot").hide();
+    $.ajax({
+        type: "GET",
+	<?php
+	$e_hide = new Event("do_invoice_list->eventHideTotal");
+	$e_hide->setEventControler("ajax_evctl.php");
+	$e_hide->setSecure(false);
+	?>
+        url: "<?php echo $e_hide->getUrl(); ?>",
+        success: function(hide_inv){ 
+        }
+    });
+}
+
+function showTotals(){
+    //$(".layout_lcolumn").show(0);
+    $("td.layout_rcolumn").prev('td').show();
+    $("#close_tot").show();
+    $("#totals_txt").hide();
+    $.ajax({
+        type: "GET",
+	<?php
+	$e_show = new Event("do_invoice_list->eventShowTotal");
+	$e_show->setEventControler("ajax_evctl.php");
+	$e_show->setSecure(false);
+	?>
+        url: "<?php echo $e_show->getUrl(); ?>",
+        success: function(hide_inv){ 
+        }
+    });
+}
+  </script>
+  
+  <?php
+					if($_SESSION["show_total"]) {
+						$show_total = $_SESSION["show_total"];
+					} else {
+						$show_total = 'display:none;';
+					}
+                    //if($_SESSION['inv_past_due_hide'] == 'Yes'){
+                        echo '<span id="totals_txt" style="'.$show_total.'"><a href="#" onclick="showTotals();return false;">'._('show totals').'</a></span>';   
+                    //}
+                ?>
+
+  <a href="#" id="close_tot" onclick="hideTotals();return false;"><?php echo _('( hide totals )');?></a>
+<ul>
+<ul>
+<li><?php $today = date("D M j"); echo $today; ?> </li><li><input type="button" name="Day" value="Day"><li><input type="button" name="Week" value="Week"></li>
+</ul>
+<li>Total Hours: </li>
+</ul>
+<ul class="weekdays">
+  <li>M</li>
+  <li>T</li>
+  <li>W</li>
+  <li>T</li>
+  <li>F</li>
+  <li>S</li>
+  <li>S</li>
+</ul>
+
+<ul class="days"> 
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li><span class="active"></span></li>
+<li></li>
+</ul>

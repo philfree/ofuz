@@ -57,7 +57,7 @@
     <rdata type="saved_query"></rdata>
     <rdata type="css_form_class"></rdata>
     <rdata type="id_project"></rdata>
-    <!--<rdata type="addevent">Task->eventSetProjectTask:1010</rdata>-->
+    <rdata type="addevent">Task->eventSetProjectTask:1010</rdata>
     <rdata type="fieldtype">DijitComboBox</rdata>
   </rfield>
   <rfield name="task">
@@ -69,7 +69,7 @@
     <rdata type="object_method">Task->isTaskRelated()</rdata>
     <rdata type="saved_query"></rdata>
     <rdata type="css_form_class"></rdata>
-    <!--<rdata type="addevent">Task->eventSetTaskCategory:99</rdata>-->
+    <rdata type="addevent">Task->eventSetTaskCategory:99</rdata>
     <rdata type="fieldtype">DijitComboBox</rdata>
   </rfield> 
   <rfield name="discuss">
