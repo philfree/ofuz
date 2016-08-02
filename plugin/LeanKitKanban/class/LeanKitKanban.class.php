@@ -41,7 +41,7 @@ class LeanKitKanban {
 
   public function __construct($username='', $password='') {
     $this->account = 'sqlfusion';
-    $this->host = 'http://'.$this->account.'.leankitkanban.com';
+    $this->host = 'https://'.$this->account.'.leankit.com';
     $this->api_url = $this->host.'/Kanban/Api/';
     $this->username = $username;
     $this->password = $password;
