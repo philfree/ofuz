@@ -893,7 +893,7 @@ class OfuzExportXML extends DataObject {
       $xml .= "  <email_optout><![CDATA[".$do_contact->getData("email_optout")."]]></email_optout>\n\n";
 
       $contact_address = $do_contact->getChildContactAddress();
-
+	  if($contact_address->getNumRows() >= 1){
       while($contact_address->next()) {
         $xml .= "  <contact_address>\n";
         $xml .= "   <idcontact_address><![CDATA[".$contact_address->idcontact_address."]]></idcontact_address>\n";
@@ -907,88 +907,96 @@ class OfuzExportXML extends DataObject {
         $xml .= "   <address_type><![CDATA[".$contact_address->address_type."]]></address_type>\n";
         $xml .= "  </contact_address>\n";
       }
+	 }
 
       $contact_email = $do_contact->getChildContactEmail();
-
-      while($contact_email->next()) {
-        $xml .= "  <contact_email>\n";
-        $xml .= "   <idcontact_email><![CDATA[".$contact_email->idcontact_email."]]></idcontact_email>\n";
-        $xml .= "   <idcontact><![CDATA[".$contact_email->idcontact."]]></idcontact>\n";
-        $xml .= "   <email_address><![CDATA[".$contact_email->email_address."]]></email_address>\n";
-        $xml .= "   <email_type><![CDATA[".$contact_email->email_type."]]></email_type>\n";
-        $xml .= "   <email_isdefault><![CDATA[".$contact_email->email_isdefault."]]></email_isdefault>\n";
-        $xml .= "  </contact_email>\n";
-      }
+	  if($contact_email->getNumRows() >= 1){
+		  while($contact_email->next()) {
+			$xml .= "  <contact_email>\n";
+			$xml .= "   <idcontact_email><![CDATA[".$contact_email->idcontact_email."]]></idcontact_email>\n";
+			$xml .= "   <idcontact><![CDATA[".$contact_email->idcontact."]]></idcontact>\n";
+			$xml .= "   <email_address><![CDATA[".$contact_email->email_address."]]></email_address>\n";
+			$xml .= "   <email_type><![CDATA[".$contact_email->email_type."]]></email_type>\n";
+			$xml .= "   <email_isdefault><![CDATA[".$contact_email->email_isdefault."]]></email_isdefault>\n";
+			$xml .= "  </contact_email>\n";
+		  }
+	  }
 
       $contact_phone = $do_contact->getChildContactPhone();
-
-      while($contact_phone->next()) {
-        $xml .= "  <contact_phone>\n";
-        $xml .= "   <idcontact_phone><![CDATA[".$contact_phone->idcontact_phone."]]></idcontact_phone>\n";
-        $xml .= "   <phone_number><![CDATA[".$contact_phone->phone_number."]]></phone_number>\n";
-        $xml .= "   <phone_type><![CDATA[".$contact_phone->phone_type."]]></phone_type>\n";
-        $xml .= "   <idcontact><![CDATA[".$contact_phone->email_type."]]></idcontact>\n";
-        $xml .= "  </contact_phone>\n";
-      }
+	 if($contact_phone->getNumRows() >= 1){
+		  while($contact_phone->next()) {
+			$xml .= "  <contact_phone>\n";
+			$xml .= "   <idcontact_phone><![CDATA[".$contact_phone->idcontact_phone."]]></idcontact_phone>\n";
+			$xml .= "   <phone_number><![CDATA[".$contact_phone->phone_number."]]></phone_number>\n";
+			$xml .= "   <phone_type><![CDATA[".$contact_phone->phone_type."]]></phone_type>\n";
+			$xml .= "   <idcontact><![CDATA[".$contact_phone->email_type."]]></idcontact>\n";
+			$xml .= "  </contact_phone>\n";
+		  }
+	  }
 
       $contact_note = $do_contact->getChildContactNotes();
-
-      while($contact_note->next()) {
-        $xml .= "  <contact_note>\n";
-        $xml .= "   <idcontact_note><![CDATA[".$contact_note->idcontact_note."]]></idcontact_note>\n";
-        $xml .= "   <idcontact><![CDATA[".$contact_note->idcontact."]]></idcontact>\n";
-        $xml .= "   <note><![CDATA[".$contact_note->note."]]></note>\n";
-        $xml .= "   <date_added><![CDATA[".$contact_note->date_added."]]></date_added>\n";
-        $xml .= "   <document><![CDATA[".$contact_note->document."]]></document>\n";
-        $xml .= "   <idcompany><![CDATA[".$contact_note->idcompany."]]></idcompany>\n";
-        $xml .= "   <iduser><![CDATA[".$contact_note->iduser."]]></iduser>\n";
-        $xml .= "   <priority><![CDATA[".$contact_note->priority."]]></priority>\n";
-        $xml .= "   <send_email><![CDATA[".$contact_note->send_email."]]></send_email>\n";
-        $xml .= "   <hours_work><![CDATA[".$contact_note->hours_work."]]></hours_work>\n";
-        $xml .= "   <note_visibility><![CDATA[".$contact_note->note_visibility."]]></note_visibility>\n";
-        $xml .= "  </contact_note>\n";
-      }
-	 
+	  if($contact_note->getNumRows() >= 1){
+		  while($contact_note->next()) {
+			$xml .= "  <contact_note>\n";
+			$xml .= "   <idcontact_note><![CDATA[".$contact_note->idcontact_note."]]></idcontact_note>\n";
+			$xml .= "   <idcontact><![CDATA[".$contact_note->idcontact."]]></idcontact>\n";
+			$xml .= "   <note><![CDATA[".$contact_note->note."]]></note>\n";
+			$xml .= "   <date_added><![CDATA[".$contact_note->date_added."]]></date_added>\n";
+			$xml .= "   <document><![CDATA[".$contact_note->document."]]></document>\n";
+			$xml .= "   <idcompany><![CDATA[".$contact_note->idcompany."]]></idcompany>\n";
+			$xml .= "   <iduser><![CDATA[".$contact_note->iduser."]]></iduser>\n";
+			$xml .= "   <priority><![CDATA[".$contact_note->priority."]]></priority>\n";
+			$xml .= "   <send_email><![CDATA[".$contact_note->send_email."]]></send_email>\n";
+			$xml .= "   <hours_work><![CDATA[".$contact_note->hours_work."]]></hours_work>\n";
+			$xml .= "   <note_visibility><![CDATA[".$contact_note->note_visibility."]]></note_visibility>\n";
+			$xml .= "  </contact_note>\n";
+		  }
+	  }
+	  
 	  if($i == '1') {
       $do_task = new Task();
       $do_task->getContactTaskWithoutProjectAndWithUser($iduser);
-      while($do_task->next()) {
-        $xml .= "  <contact_task>\n";
-        $xml .= "   <idtask><![CDATA[".$do_task->getData("idtask")."]]></idtask>\n";
-        $xml .= "   <task_description><![CDATA[".$do_task->getData("task_description")."]]></task_description>\n";
-        $xml .= "   <due_date><![CDATA[".$do_task->getData("due_date")."]]></due_date>\n";
-        $xml .= "   <category><![CDATA[".$do_task->getData("category")."]]></category>\n";
-        $xml .= "   <iduser><![CDATA[".$do_task->getData("iduser")."]]></iduser>\n";
-        $xml .= "   <due_date_dateformat><![CDATA[".$do_task->getData("due_date_dateformat")."]]></due_date_dateformat>\n";
-        $xml .= "   <status><![CDATA[".$do_task->getData("status")."]]></status>\n";
-        $xml .= "   <date_completed><![CDATA[".$do_task->getData("date_completed")."]]></date_completed>\n";
-        $xml .= "   <idcontact><![CDATA[".$do_task->getData("idcontact")."]]></idcontact>\n";
-        $xml .= "   <from_note><![CDATA[".$do_task->getData("from_note")."]]></from_note>\n";
-        $xml .= "   <is_sp_date_set><![CDATA[".$do_task->getData("is_sp_date_set")."]]></is_sp_date_set>\n";
-        $xml .= "   <task_category><![CDATA[".$do_task->getData("task_category")."]]></task_category>\n";
-        $xml .= "  </contact_task>\n";
-      }
+      if($do_task->getNumRows() >= 1){
+		  while($do_task->next()) {
+			$xml .= "  <contact_task>\n";
+			$xml .= "   <idtask><![CDATA[".$do_task->getData("idtask")."]]></idtask>\n";
+			$xml .= "   <task_description><![CDATA[".$do_task->getData("task_description")."]]></task_description>\n";
+			$xml .= "   <due_date><![CDATA[".$do_task->getData("due_date")."]]></due_date>\n";
+			$xml .= "   <category><![CDATA[".$do_task->getData("category")."]]></category>\n";
+			$xml .= "   <iduser><![CDATA[".$do_task->getData("iduser")."]]></iduser>\n";
+			$xml .= "   <due_date_dateformat><![CDATA[".$do_task->getData("due_date_dateformat")."]]></due_date_dateformat>\n";
+			$xml .= "   <status><![CDATA[".$do_task->getData("status")."]]></status>\n";
+			$xml .= "   <date_completed><![CDATA[".$do_task->getData("date_completed")."]]></date_completed>\n";
+			$xml .= "   <idcontact><![CDATA[".$do_task->getData("idcontact")."]]></idcontact>\n";
+			$xml .= "   <from_note><![CDATA[".$do_task->getData("from_note")."]]></from_note>\n";
+			$xml .= "   <is_sp_date_set><![CDATA[".$do_task->getData("is_sp_date_set")."]]></is_sp_date_set>\n";
+			$xml .= "   <task_category><![CDATA[".$do_task->getData("task_category")."]]></task_category>\n";
+			$xml .= "  </contact_task>\n";
+		  }
+	  }
       $do_task->free();
       }
 	  
 	  $do_task = new Task();
       $do_task->getContactTaskWithoutProjectAndWithContact($do_contact->getData("idcontact"));
-      while($do_task->next()) {
-        $xml .= "  <contact_task>\n";
-        $xml .= "   <idtask><![CDATA[".$do_task->getData("idtask")."]]></idtask>\n";
-        $xml .= "   <task_description><![CDATA[".$do_task->getData("task_description")."]]></task_description>\n";
-        $xml .= "   <due_date><![CDATA[".$do_task->getData("due_date")."]]></due_date>\n";
-        $xml .= "   <category><![CDATA[".$do_task->getData("category")."]]></category>\n";
-        $xml .= "   <iduser><![CDATA[".$do_task->getData("iduser")."]]></iduser>\n";
-        $xml .= "   <due_date_dateformat><![CDATA[".$do_task->getData("due_date_dateformat")."]]></due_date_dateformat>\n";
-        $xml .= "   <status><![CDATA[".$do_task->getData("status")."]]></status>\n";
-        $xml .= "   <date_completed><![CDATA[".$do_task->getData("date_completed")."]]></date_completed>\n";
-        $xml .= "   <idcontact><![CDATA[".$do_task->getData("idcontact")."]]></idcontact>\n";
-        $xml .= "   <from_note><![CDATA[".$do_task->getData("from_note")."]]></from_note>\n";
-        $xml .= "   <is_sp_date_set><![CDATA[".$do_task->getData("is_sp_date_set")."]]></is_sp_date_set>\n";
-        $xml .= "   <task_category><![CDATA[".$do_task->getData("task_category")."]]></task_category>\n";
-        $xml .= "  </contact_task>\n";
-      }
+      if($do_task->getNumRows() >= 1){
+		  while($do_task->next()) {
+			$xml .= "  <contact_task>\n";
+			$xml .= "   <idtask><![CDATA[".$do_task->getData("idtask")."]]></idtask>\n";
+			$xml .= "   <task_description><![CDATA[".$do_task->getData("task_description")."]]></task_description>\n";
+			$xml .= "   <due_date><![CDATA[".$do_task->getData("due_date")."]]></due_date>\n";
+			$xml .= "   <category><![CDATA[".$do_task->getData("category")."]]></category>\n";
+			$xml .= "   <iduser><![CDATA[".$do_task->getData("iduser")."]]></iduser>\n";
+			$xml .= "   <due_date_dateformat><![CDATA[".$do_task->getData("due_date_dateformat")."]]></due_date_dateformat>\n";
+			$xml .= "   <status><![CDATA[".$do_task->getData("status")."]]></status>\n";
+			$xml .= "   <date_completed><![CDATA[".$do_task->getData("date_completed")."]]></date_completed>\n";
+			$xml .= "   <idcontact><![CDATA[".$do_task->getData("idcontact")."]]></idcontact>\n";
+			$xml .= "   <from_note><![CDATA[".$do_task->getData("from_note")."]]></from_note>\n";
+			$xml .= "   <is_sp_date_set><![CDATA[".$do_task->getData("is_sp_date_set")."]]></is_sp_date_set>\n";
+			$xml .= "   <task_category><![CDATA[".$do_task->getData("task_category")."]]></task_category>\n";
+			$xml .= "  </contact_task>\n";
+		  }
+	  }
       $do_task->free();
 /**
  * For all the contact tasks which are associated with Project.
@@ -997,6 +1005,7 @@ class OfuzExportXML extends DataObject {
       $do_task = new Task();
       //$do_task->getContactTasksAssociatedWithProject($do_contact->getData("idcontact"));
        $do_task->getContactTasksAssociatedWithProjectWithContact($do_contact->getData("idcontact"));
+      if($do_task->getNumRows() >= 1){
       while($do_task->next()) {
         $do_project = new Project();
         $do_project->getId($do_task->idproject);
@@ -1034,22 +1043,24 @@ class OfuzExportXML extends DataObject {
 
         $do_prj_discuss = new ProjectDiscuss();
         $do_prj_discuss->getProjectTaskDiscussions($do_task->getData("idproject_task"));
-        while($do_prj_discuss->next()) {
-          $xml .= "    <project_discuss>\n";
-          $xml .= "     <idproject_discuss><![CDATA[".$do_prj_discuss->getData("idproject_discuss")."]]></idproject_discuss>\n";
-          $xml .= "     <idproject_task><![CDATA[".$do_prj_discuss->getData("idproject_task")."]]></idproject_task>\n";
-          $xml .= "     <idtask><![CDATA[".$do_prj_discuss->getData("idtask")."]]></idtask>\n";
-          $xml .= "     <idproject><![CDATA[".$do_prj_discuss->getData("idproject")."]]></idproject>\n";
-          $xml .= "     <discuss><![CDATA[".$do_prj_discuss->getData("discuss")."]]></discuss>\n";
-          $xml .= "     <date_added><![CDATA[".$do_prj_discuss->getData("date_added")."]]></date_added>\n";
-          $xml .= "     <document><![CDATA[".$do_prj_discuss->getData("document")."]]></document>\n";
-          $xml .= "     <iduser><![CDATA[".$do_prj_discuss->getData("iduser")."]]></iduser>\n";
-          $xml .= "     <drop_box_sender><![CDATA[".$do_prj_discuss->getData("drop_box_sender")."]]></drop_box_sender>\n";
-          $xml .= "     <priority><![CDATA[".$do_prj_discuss->getData("priority")."]]></priority>\n";
-          $xml .= "     <hours_work><![CDATA[".$do_prj_discuss->getData("hours_work")."]]></hours_work>\n";
-          $xml .= "     <discuss_edit_access><![CDATA[".$do_prj_discuss->getData("discuss_edit_access")."]]></discuss_edit_access>\n";
-          $xml .= "    </project_discuss>\n";
-        }
+        if($do_prj_discuss->getNumRows() >= 1){
+			while($do_prj_discuss->next()) {
+			  $xml .= "    <project_discuss>\n";
+			  $xml .= "     <idproject_discuss><![CDATA[".$do_prj_discuss->getData("idproject_discuss")."]]></idproject_discuss>\n";
+			  $xml .= "     <idproject_task><![CDATA[".$do_prj_discuss->getData("idproject_task")."]]></idproject_task>\n";
+			  $xml .= "     <idtask><![CDATA[".$do_prj_discuss->getData("idtask")."]]></idtask>\n";
+			  $xml .= "     <idproject><![CDATA[".$do_prj_discuss->getData("idproject")."]]></idproject>\n";
+			  $xml .= "     <discuss><![CDATA[".$do_prj_discuss->getData("discuss")."]]></discuss>\n";
+			  $xml .= "     <date_added><![CDATA[".$do_prj_discuss->getData("date_added")."]]></date_added>\n";
+			  $xml .= "     <document><![CDATA[".$do_prj_discuss->getData("document")."]]></document>\n";
+			  $xml .= "     <iduser><![CDATA[".$do_prj_discuss->getData("iduser")."]]></iduser>\n";
+			  $xml .= "     <drop_box_sender><![CDATA[".$do_prj_discuss->getData("drop_box_sender")."]]></drop_box_sender>\n";
+			  $xml .= "     <priority><![CDATA[".$do_prj_discuss->getData("priority")."]]></priority>\n";
+			  $xml .= "     <hours_work><![CDATA[".$do_prj_discuss->getData("hours_work")."]]></hours_work>\n";
+			  $xml .= "     <discuss_edit_access><![CDATA[".$do_prj_discuss->getData("discuss_edit_access")."]]></discuss_edit_access>\n";
+			  $xml .= "    </project_discuss>\n";
+			}
+		}
         $do_prj_discuss->free();
 
         $xml .= "   </project_task>\n";
@@ -1058,6 +1069,7 @@ class OfuzExportXML extends DataObject {
 
         $do_project->free();
       }
+	}
       $do_task->free();
 	  
 	   if($i == '1') {
@@ -1066,7 +1078,7 @@ class OfuzExportXML extends DataObject {
        while($do_task->next()) {
         $do_project = new Project();
         $do_project->getId($do_task->idproject);
-
+		if($do_project->getNumRows() >= 1){
         $xml .= "  <contact_task_with_project>\n";
         $xml .= "   <idproject><![CDATA[".$do_project->idproject."]]></idproject>\n";
         $xml .= "   <iduser><![CDATA[".$do_project->iduser."]]></iduser>\n";
@@ -1076,7 +1088,7 @@ class OfuzExportXML extends DataObject {
         $xml .= "   <status><![CDATA[".$do_project->status."]]></status>\n";
         $xml .= "   <effort_estimated_hrs><![CDATA[".$do_project->effort_estimated_hrs."]]></effort_estimated_hrs>\n";
         $xml .= "   <is_public><![CDATA[".$do_project->is_public."]]></is_public>\n\n";
-
+		}
         $xml .= "   <project_task>\n";
         $xml .= "    <idproject_task><![CDATA[".$do_task->getData("idproject_task")."]]></idproject_task>\n";
         $xml .= "    <idtask><![CDATA[".$do_task->getData("idtask")."]]></idtask>\n";
@@ -1100,22 +1112,24 @@ class OfuzExportXML extends DataObject {
 
         $do_prj_discuss = new ProjectDiscuss();
         $do_prj_discuss->getProjectTaskDiscussions($do_task->getData("idproject_task"));
-        while($do_prj_discuss->next()) {
-          $xml .= "    <project_discuss>\n";
-          $xml .= "     <idproject_discuss><![CDATA[".$do_prj_discuss->getData("idproject_discuss")."]]></idproject_discuss>\n";
-          $xml .= "     <idproject_task><![CDATA[".$do_prj_discuss->getData("idproject_task")."]]></idproject_task>\n";
-          $xml .= "     <idtask><![CDATA[".$do_prj_discuss->getData("idtask")."]]></idtask>\n";
-          $xml .= "     <idproject><![CDATA[".$do_prj_discuss->getData("idproject")."]]></idproject>\n";
-          $xml .= "     <discuss><![CDATA[".$do_prj_discuss->getData("discuss")."]]></discuss>\n";
-          $xml .= "     <date_added><![CDATA[".$do_prj_discuss->getData("date_added")."]]></date_added>\n";
-          $xml .= "     <document><![CDATA[".$do_prj_discuss->getData("document")."]]></document>\n";
-          $xml .= "     <iduser><![CDATA[".$do_prj_discuss->getData("iduser")."]]></iduser>\n";
-          $xml .= "     <drop_box_sender><![CDATA[".$do_prj_discuss->getData("drop_box_sender")."]]></drop_box_sender>\n";
-          $xml .= "     <priority><![CDATA[".$do_prj_discuss->getData("priority")."]]></priority>\n";
-          $xml .= "     <hours_work><![CDATA[".$do_prj_discuss->getData("hours_work")."]]></hours_work>\n";
-          $xml .= "     <discuss_edit_access><![CDATA[".$do_prj_discuss->getData("discuss_edit_access")."]]></discuss_edit_access>\n";
-          $xml .= "    </project_discuss>\n";
-        }
+        if($do_prj_discuss->getNumRows() >= 1){
+			while($do_prj_discuss->next()) {
+			  $xml .= "    <project_discuss>\n";
+			  $xml .= "     <idproject_discuss><![CDATA[".$do_prj_discuss->getData("idproject_discuss")."]]></idproject_discuss>\n";
+			  $xml .= "     <idproject_task><![CDATA[".$do_prj_discuss->getData("idproject_task")."]]></idproject_task>\n";
+			  $xml .= "     <idtask><![CDATA[".$do_prj_discuss->getData("idtask")."]]></idtask>\n";
+			  $xml .= "     <idproject><![CDATA[".$do_prj_discuss->getData("idproject")."]]></idproject>\n";
+			  $xml .= "     <discuss><![CDATA[".$do_prj_discuss->getData("discuss")."]]></discuss>\n";
+			  $xml .= "     <date_added><![CDATA[".$do_prj_discuss->getData("date_added")."]]></date_added>\n";
+			  $xml .= "     <document><![CDATA[".$do_prj_discuss->getData("document")."]]></document>\n";
+			  $xml .= "     <iduser><![CDATA[".$do_prj_discuss->getData("iduser")."]]></iduser>\n";
+			  $xml .= "     <drop_box_sender><![CDATA[".$do_prj_discuss->getData("drop_box_sender")."]]></drop_box_sender>\n";
+			  $xml .= "     <priority><![CDATA[".$do_prj_discuss->getData("priority")."]]></priority>\n";
+			  $xml .= "     <hours_work><![CDATA[".$do_prj_discuss->getData("hours_work")."]]></hours_work>\n";
+			  $xml .= "     <discuss_edit_access><![CDATA[".$do_prj_discuss->getData("discuss_edit_access")."]]></discuss_edit_access>\n";
+			  $xml .= "    </project_discuss>\n";
+			}
+		}
         $do_prj_discuss->free();
 
         $xml .= "   </project_task>\n";
@@ -1130,6 +1144,7 @@ class OfuzExportXML extends DataObject {
 	  
       $do_invoice = new Invoice();
       $do_invoice->getContactInvoiceDetailsWithUser($do_contact->getData("idcontact"),$do_user->iduser);
+      if($do_invoice->getNumRows() >= 1){
       while($do_invoice->next()) {
         $xml .= "  <invoice>\n";
         $xml .= "   <idinvoice><![CDATA[".$do_invoice->getData("idinvoice")."]]></idinvoice>\n";
@@ -1156,38 +1171,43 @@ class OfuzExportXML extends DataObject {
         $xml .= "   <total_taxed_amount><![CDATA[".$do_invoice->getData("total_taxed_amount")."]]></total_taxed_amount>\n";
 
         $invoice_line = $do_invoice->getChildInvoiceLine();
-        while($invoice_line->next()) {
-          $xml .= "   <invoiceline>\n";
-          $xml .= "    <idinvoiceline><![CDATA[".$invoice_line->idinvoiceline."]]></idinvoiceline>\n";
-          $xml .= "    <idinvoice><![CDATA[".$invoice_line->idinvoice."]]></idinvoice>\n";
-          $xml .= "    <description><![CDATA[".$invoice_line->description."]]></description>\n";
-          $xml .= "    <price><![CDATA[".$invoice_line->price."]]></price>\n";
-          $xml .= "    <qty><![CDATA[".$invoice_line->qty."]]></qty>\n";
-          $xml .= "    <total><![CDATA[".$invoice_line->total."]]></total>\n";
-          $xml .= "    <item><![CDATA[".$invoice_line->item."]]></item>\n";
-          $xml .= "    <line_tax><![CDATA[".$invoice_line->line_tax."]]></line_tax>\n";
-          $xml .= "    <discounted_amount><![CDATA[".$invoice_line->discounted_amount."]]></discounted_amount>\n";
-          $xml .= "    <taxed_amount><![CDATA[".$invoice_line->taxed_amount."]]></taxed_amount>\n";
-          $xml .= "   </invoiceline>\n";
-        }
+        if($invoice_line->getNumRows() >= 1){
+			while($invoice_line->next()) {
+			  $xml .= "   <invoiceline>\n";
+			  $xml .= "    <idinvoiceline><![CDATA[".$invoice_line->idinvoiceline."]]></idinvoiceline>\n";
+			  $xml .= "    <idinvoice><![CDATA[".$invoice_line->idinvoice."]]></idinvoice>\n";
+			  $xml .= "    <description><![CDATA[".$invoice_line->description."]]></description>\n";
+			  $xml .= "    <price><![CDATA[".$invoice_line->price."]]></price>\n";
+			  $xml .= "    <qty><![CDATA[".$invoice_line->qty."]]></qty>\n";
+			  $xml .= "    <total><![CDATA[".$invoice_line->total."]]></total>\n";
+			  $xml .= "    <item><![CDATA[".$invoice_line->item."]]></item>\n";
+			  $xml .= "    <line_tax><![CDATA[".$invoice_line->line_tax."]]></line_tax>\n";
+			  $xml .= "    <discounted_amount><![CDATA[".$invoice_line->discounted_amount."]]></discounted_amount>\n";
+			  $xml .= "    <taxed_amount><![CDATA[".$invoice_line->taxed_amount."]]></taxed_amount>\n";
+			  $xml .= "   </invoiceline>\n";
+			}
+		}
         $invoice_line->free();
 
         $do_recurrent_invoice = new RecurrentInvoice();
         $do_recurrent_invoice->getRecurrentInvoiceDetail($do_invoice->getData("idinvoice"));
-        while($do_recurrent_invoice->next()) {
-          $xml .= "   <recurrentinvoice>\n";
-          $xml .= "    <idrecurrentinvoice><![CDATA[".$do_recurrent_invoice->getData("idrecurrentinvoice")."]]></idrecurrentinvoice>\n";
-          $xml .= "    <iduser><![CDATA[".$do_recurrent_invoice->getData("iduser")."]]></iduser>\n";
-          $xml .= "    <idinvoice><![CDATA[".$do_recurrent_invoice->getData("idinvoice")."]]></idinvoice>\n";
-          $xml .= "    <nextdate><![CDATA[".$do_recurrent_invoice->getData("nextdate")."]]></nextdate>\n";
-          $xml .= "    <recurrence><![CDATA[".$do_recurrent_invoice->getData("recurrence")."]]></recurrence>\n";
-          $xml .= "    <recurrencetype><![CDATA[".$do_recurrent_invoice->getData("recurrencetype")."]]></recurrencetype>\n";
-          $xml .= "   </recurrentinvoice>\n";
-        }
+        if($do_recurrent_invoice->getNumRows() >= 1){
+			while($do_recurrent_invoice->next()) {
+			  $xml .= "   <recurrentinvoice>\n";
+			  $xml .= "    <idrecurrentinvoice><![CDATA[".$do_recurrent_invoice->getData("idrecurrentinvoice")."]]></idrecurrentinvoice>\n";
+			  $xml .= "    <iduser><![CDATA[".$do_recurrent_invoice->getData("iduser")."]]></iduser>\n";
+			  $xml .= "    <idinvoice><![CDATA[".$do_recurrent_invoice->getData("idinvoice")."]]></idinvoice>\n";
+			  $xml .= "    <nextdate><![CDATA[".$do_recurrent_invoice->getData("nextdate")."]]></nextdate>\n";
+			  $xml .= "    <recurrence><![CDATA[".$do_recurrent_invoice->getData("recurrence")."]]></recurrence>\n";
+			  $xml .= "    <recurrencetype><![CDATA[".$do_recurrent_invoice->getData("recurrencetype")."]]></recurrencetype>\n";
+			  $xml .= "   </recurrentinvoice>\n";
+			}
+		}
         $do_recurrent_invoice->free();
 
         $do_paymentlog = new PaymentLog();
         $do_paymentlog->getPaymentLogDetails($do_invoice->getData("idinvoice"));
+        if($do_paymentlog->getNumRows() >= 1){
         while($do_paymentlog->next()) {
           $xml .= "   <paymentlog>\n";
           $xml .= "    <idpaymentlog ><![CDATA[".$do_paymentlog->getData("idpaymentlog")."]]></idpaymentlog >\n";
@@ -1200,49 +1220,56 @@ class OfuzExportXML extends DataObject {
 
           $do_payment_invoice = new PaymentInvoice();
           $do_payment_invoice->getInvDetails($do_paymentlog->getData("idpaymentlog"));
-          while($do_payment_invoice->next()) {
-            $xml .= "    <payment_invoice>\n";
-            $xml .= "     <idpayment_invoice><![CDATA[".$do_payment_invoice->getData("idpayment_invoice")."]]></idpayment_invoice>\n";
-            $xml .= "     <idpayment><![CDATA[".$do_payment_invoice->getData("idpayment")."]]></idpayment>\n";
-            $xml .= "     <idinvoice><![CDATA[".$do_payment_invoice->getData("idinvoice")."]]></idinvoice>\n";
-            $xml .= "     <amount><![CDATA[".$do_payment_invoice->getData("amount")."]]></amount>\n";
-            $xml .= "    </payment_invoice>\n";
-          }
+          if($do_payment_invoice->getNumRows() >= 1){
+			  while($do_payment_invoice->next()) {
+				$xml .= "    <payment_invoice>\n";
+				$xml .= "     <idpayment_invoice><![CDATA[".$do_payment_invoice->getData("idpayment_invoice")."]]></idpayment_invoice>\n";
+				$xml .= "     <idpayment><![CDATA[".$do_payment_invoice->getData("idpayment")."]]></idpayment>\n";
+				$xml .= "     <idinvoice><![CDATA[".$do_payment_invoice->getData("idinvoice")."]]></idinvoice>\n";
+				$xml .= "     <amount><![CDATA[".$do_payment_invoice->getData("amount")."]]></amount>\n";
+				$xml .= "    </payment_invoice>\n";
+			  }
+		  }
           $do_payment_invoice->free();
 
           $do_paymentlog_extra_amount = new PaymentLog();
           $do_paymentlog_extra_amount->getPaymentLogExtraAmountDetails($do_paymentlog->getData("idpaymentlog"));
-          while($do_paymentlog_extra_amount->next()) {
-            $xml .= "    <paymentlog_extra_amount>\n";
-            $xml .= "     <idpaymentlog_extra_amount><![CDATA[".$do_paymentlog_extra_amount->getData("idpaymentlog_extra_amount")."]]></idpaymentlog_extra_amount>\n";
-            $xml .= "     <idpaymentlog><![CDATA[".$do_paymentlog_extra_amount->getData("idpaymentlog")."]]></idpaymentlog>\n";
-            $xml .= "     <extra_amt><![CDATA[".$do_paymentlog_extra_amount->getData("extra_amt")."]]></extra_amt>\n";
-            $xml .= "     <iduser><![CDATA[".$do_paymentlog_extra_amount->getData("iduser")."]]></iduser>\n";
-            $xml .= "    </paymentlog_extra_amount>\n";
-          }
+          if($do_paymentlog_extra_amount->getNumRows() >= 1){
+			 while($do_paymentlog_extra_amount->next()) {
+				$xml .= "    <paymentlog_extra_amount>\n";
+				$xml .= "     <idpaymentlog_extra_amount><![CDATA[".$do_paymentlog_extra_amount->getData("idpaymentlog_extra_amount")."]]></idpaymentlog_extra_amount>\n";
+				$xml .= "     <idpaymentlog><![CDATA[".$do_paymentlog_extra_amount->getData("idpaymentlog")."]]></idpaymentlog>\n";
+				$xml .= "     <extra_amt><![CDATA[".$do_paymentlog_extra_amount->getData("extra_amt")."]]></extra_amt>\n";
+				$xml .= "     <iduser><![CDATA[".$do_paymentlog_extra_amount->getData("iduser")."]]></iduser>\n";
+				$xml .= "    </paymentlog_extra_amount>\n";
+			  }
+		  }
           $do_paymentlog_extra_amount->free();
 
           $xml .= "   </paymentlog>\n";
-
-        }
+         }
+		}//num of rows
         $do_paymentlog->free();
 
         $xml .= "  </invoice>\n";
       }
+	 }//get num rows
       $do_invoice->free();
 
       $do_tag = new Tag();
       $do_tag->getUserContactTags($iduser,$do_contact->getData("idcontact"));
-      while($do_tag->next()) {
-        $xml .= "  <tag>\n";
-        $xml .= "   <idtag><![CDATA[".$do_tag->idtag."]]></idtag>\n";
-        $xml .= "   <tag_name><![CDATA[".$do_tag->tag_name."]]></tag_name>\n";
-        $xml .= "   <iduser><![CDATA[".$do_tag->iduser."]]></iduser>\n";
-        $xml .= "   <reference_type><![CDATA[".$do_tag->reference_type."]]></reference_type>\n";
-        $xml .= "   <idreference><![CDATA[".$do_tag->idreference."]]></idreference>\n";
-        $xml .= "   <date_added><![CDATA[".$do_tag->date_added."]]></date_added>\n";
-        $xml .= "  </tag>\n";
-      }
+      if($do_tag->getNumrows() >=1){
+		  while($do_tag->next()) {
+			$xml .= "  <tag>\n";
+			$xml .= "   <idtag><![CDATA[".$do_tag->idtag."]]></idtag>\n";
+			$xml .= "   <tag_name><![CDATA[".$do_tag->tag_name."]]></tag_name>\n";
+			$xml .= "   <iduser><![CDATA[".$do_tag->iduser."]]></iduser>\n";
+			$xml .= "   <reference_type><![CDATA[".$do_tag->reference_type."]]></reference_type>\n";
+			$xml .= "   <idreference><![CDATA[".$do_tag->idreference."]]></idreference>\n";
+			$xml .= "   <date_added><![CDATA[".$do_tag->date_added."]]></date_added>\n";
+			$xml .= "  </tag>\n";
+		  }
+	  }
      $do_tag->free();
  
       $xml .= " </contact>\n";
@@ -1253,85 +1280,91 @@ class OfuzExportXML extends DataObject {
 	 
 	 $do_task = new Task();
        $do_task->getContactTasksAssociatedWithProjectWithUser($iduser);
-       while($do_task->next()) {
-        $do_project = new Project();
-        $do_project->getId($do_task->idproject);
+       if($do_task->getNumRows() >= 1){
+		   while($do_task->next()) {
+			$do_project = new Project();
+			$do_project->getId($do_task->idproject);
 
-        $xml .= "  <project>\n";
-        $xml .= "   <idproject><![CDATA[".$do_project->idproject."]]></idproject>\n";
-        $xml .= "   <iduser><![CDATA[".$do_project->iduser."]]></iduser>\n";
-        $xml .= "   <name><![CDATA[".$do_project->name."]]></name>\n";
-        $xml .= "   <end_date_dateformat><![CDATA[".$do_project->end_date_dateformat."]]></end_date_dateformat>\n";
-        $xml .= "   <idcompany><![CDATA[".$do_project->idcompany."]]></idcompany>\n";
-        $xml .= "   <status><![CDATA[".$do_project->status."]]></status>\n";
-        $xml .= "   <effort_estimated_hrs><![CDATA[".$do_project->effort_estimated_hrs."]]></effort_estimated_hrs>\n";
-        $xml .= "   <is_public><![CDATA[".$do_project->is_public."]]></is_public>\n\n";
+			$xml .= "  <project>\n";
+			$xml .= "   <idproject><![CDATA[".$do_project->idproject."]]></idproject>\n";
+			$xml .= "   <iduser><![CDATA[".$do_project->iduser."]]></iduser>\n";
+			$xml .= "   <name><![CDATA[".$do_project->name."]]></name>\n";
+			$xml .= "   <end_date_dateformat><![CDATA[".$do_project->end_date_dateformat."]]></end_date_dateformat>\n";
+			$xml .= "   <idcompany><![CDATA[".$do_project->idcompany."]]></idcompany>\n";
+			$xml .= "   <status><![CDATA[".$do_project->status."]]></status>\n";
+			$xml .= "   <effort_estimated_hrs><![CDATA[".$do_project->effort_estimated_hrs."]]></effort_estimated_hrs>\n";
+			$xml .= "   <is_public><![CDATA[".$do_project->is_public."]]></is_public>\n\n";
 
-        $xml .= "   <project_task>\n";
-        $xml .= "    <idproject_task><![CDATA[".$do_task->getData("idproject_task")."]]></idproject_task>\n";
-        $xml .= "    <idtask><![CDATA[".$do_task->getData("idtask")."]]></idtask>\n";
-        $xml .= "    <idproject><![CDATA[".$do_task->getData("idproject")."]]></idproject>\n";
-        $xml .= "    <progress><![CDATA[".$do_task->getData("progress")."]]></progress>\n";
-        $xml .= "    <drop_box_code><![CDATA[".$do_task->getData("drop_box_code")."]]></drop_box_code>\n";
-        $xml .= "    <priority><![CDATA[".$do_task->getData("priority")."]]></priority>\n";
-        $xml .= "    <hrs_work_expected><![CDATA[".$do_task->getData("hrs_work_expected")."]]></hrs_work_expected>\n";
+			$xml .= "   <project_task>\n";
+			$xml .= "    <idproject_task><![CDATA[".$do_task->getData("idproject_task")."]]></idproject_task>\n";
+			$xml .= "    <idtask><![CDATA[".$do_task->getData("idtask")."]]></idtask>\n";
+			$xml .= "    <idproject><![CDATA[".$do_task->getData("idproject")."]]></idproject>\n";
+			$xml .= "    <progress><![CDATA[".$do_task->getData("progress")."]]></progress>\n";
+			$xml .= "    <drop_box_code><![CDATA[".$do_task->getData("drop_box_code")."]]></drop_box_code>\n";
+			$xml .= "    <priority><![CDATA[".$do_task->getData("priority")."]]></priority>\n";
+			$xml .= "    <hrs_work_expected><![CDATA[".$do_task->getData("hrs_work_expected")."]]></hrs_work_expected>\n";
 
-        $xml .= "    <task_description><![CDATA[".$do_task->getData("task_description")."]]></task_description>\n";
-        $xml .= "    <due_date><![CDATA[".$do_task->getData("due_date")."]]></due_date>\n";
-        $xml .= "    <category><![CDATA[".$do_task->getData("category")."]]></category>\n";
-        $xml .= "    <iduser><![CDATA[".$do_task->getData("iduser")."]]></iduser>\n";
-        $xml .= "    <due_date_dateformat><![CDATA[".$do_task->getData("due_date_dateformat")."]]></due_date_dateformat>\n";
-        $xml .= "    <status><![CDATA[".$do_task->getData("status")."]]></status>\n";
-        $xml .= "    <date_completed><![CDATA[".$do_task->getData("date_completed")."]]></date_completed>\n";
-        $xml .= "    <idcontact><![CDATA[".$do_task->getData("idcontact")."]]></idcontact>\n";
-        $xml .= "    <from_note><![CDATA[".$do_task->getData("from_note")."]]></from_note>\n";
-        $xml .= "    <is_sp_date_set><![CDATA[".$do_task->getData("is_sp_date_set")."]]></is_sp_date_set>\n";
-        $xml .= "    <task_category><![CDATA[".$do_task->getData("task_category")."]]></task_category>\n\n";
+			$xml .= "    <task_description><![CDATA[".$do_task->getData("task_description")."]]></task_description>\n";
+			$xml .= "    <due_date><![CDATA[".$do_task->getData("due_date")."]]></due_date>\n";
+			$xml .= "    <category><![CDATA[".$do_task->getData("category")."]]></category>\n";
+			$xml .= "    <iduser><![CDATA[".$do_task->getData("iduser")."]]></iduser>\n";
+			$xml .= "    <due_date_dateformat><![CDATA[".$do_task->getData("due_date_dateformat")."]]></due_date_dateformat>\n";
+			$xml .= "    <status><![CDATA[".$do_task->getData("status")."]]></status>\n";
+			$xml .= "    <date_completed><![CDATA[".$do_task->getData("date_completed")."]]></date_completed>\n";
+			$xml .= "    <idcontact><![CDATA[".$do_task->getData("idcontact")."]]></idcontact>\n";
+			$xml .= "    <from_note><![CDATA[".$do_task->getData("from_note")."]]></from_note>\n";
+			$xml .= "    <is_sp_date_set><![CDATA[".$do_task->getData("is_sp_date_set")."]]></is_sp_date_set>\n";
+			$xml .= "    <task_category><![CDATA[".$do_task->getData("task_category")."]]></task_category>\n\n";
 
-        $do_prj_discuss = new ProjectDiscuss();
-        $do_prj_discuss->getProjectTaskDiscussions($do_task->getData("idproject_task"));
-        while($do_prj_discuss->next()) {
-          $xml .= "    <project_discuss>\n";
-          $xml .= "     <idproject_discuss><![CDATA[".$do_prj_discuss->getData("idproject_discuss")."]]></idproject_discuss>\n";
-          $xml .= "     <idproject_task><![CDATA[".$do_prj_discuss->getData("idproject_task")."]]></idproject_task>\n";
-          $xml .= "     <idtask><![CDATA[".$do_prj_discuss->getData("idtask")."]]></idtask>\n";
-          $xml .= "     <idproject><![CDATA[".$do_prj_discuss->getData("idproject")."]]></idproject>\n";
-          $xml .= "     <discuss><![CDATA[".$do_prj_discuss->getData("discuss")."]]></discuss>\n";
-          $xml .= "     <date_added><![CDATA[".$do_prj_discuss->getData("date_added")."]]></date_added>\n";
-          $xml .= "     <document><![CDATA[".$do_prj_discuss->getData("document")."]]></document>\n";
-          $xml .= "     <iduser><![CDATA[".$do_prj_discuss->getData("iduser")."]]></iduser>\n";
-          $xml .= "     <drop_box_sender><![CDATA[".$do_prj_discuss->getData("drop_box_sender")."]]></drop_box_sender>\n";
-          $xml .= "     <priority><![CDATA[".$do_prj_discuss->getData("priority")."]]></priority>\n";
-          $xml .= "     <hours_work><![CDATA[".$do_prj_discuss->getData("hours_work")."]]></hours_work>\n";
-          $xml .= "     <discuss_edit_access><![CDATA[".$do_prj_discuss->getData("discuss_edit_access")."]]></discuss_edit_access>\n";
-          $xml .= "    </project_discuss>\n";
-        }
-        $do_prj_discuss->free();
+			$do_prj_discuss = new ProjectDiscuss();
+			$do_prj_discuss->getProjectTaskDiscussions($do_task->getData("idproject_task"));
+			if($do_prj_discuss->getNumRows() >= 1){
+				while($do_prj_discuss->next()) {
+				  $xml .= "    <project_discuss>\n";
+				  $xml .= "     <idproject_discuss><![CDATA[".$do_prj_discuss->getData("idproject_discuss")."]]></idproject_discuss>\n";
+				  $xml .= "     <idproject_task><![CDATA[".$do_prj_discuss->getData("idproject_task")."]]></idproject_task>\n";
+				  $xml .= "     <idtask><![CDATA[".$do_prj_discuss->getData("idtask")."]]></idtask>\n";
+				  $xml .= "     <idproject><![CDATA[".$do_prj_discuss->getData("idproject")."]]></idproject>\n";
+				  $xml .= "     <discuss><![CDATA[".$do_prj_discuss->getData("discuss")."]]></discuss>\n";
+				  $xml .= "     <date_added><![CDATA[".$do_prj_discuss->getData("date_added")."]]></date_added>\n";
+				  $xml .= "     <document><![CDATA[".$do_prj_discuss->getData("document")."]]></document>\n";
+				  $xml .= "     <iduser><![CDATA[".$do_prj_discuss->getData("iduser")."]]></iduser>\n";
+				  $xml .= "     <drop_box_sender><![CDATA[".$do_prj_discuss->getData("drop_box_sender")."]]></drop_box_sender>\n";
+				  $xml .= "     <priority><![CDATA[".$do_prj_discuss->getData("priority")."]]></priority>\n";
+				  $xml .= "     <hours_work><![CDATA[".$do_prj_discuss->getData("hours_work")."]]></hours_work>\n";
+				  $xml .= "     <discuss_edit_access><![CDATA[".$do_prj_discuss->getData("discuss_edit_access")."]]></discuss_edit_access>\n";
+				  $xml .= "    </project_discuss>\n";
+				}
+			}
+			$do_prj_discuss->free();
 
-        $xml .= "   </project_task>\n";
+			$xml .= "   </project_task>\n";
 
-        $xml .= "  </project>\n";
+			$xml .= "  </project>\n";
 
-        $do_project->free();
-      }
+			$do_project->free();
+		  }
+	 }
       $do_task->free();
       
       $do_task = new Task();
       $do_task->getProjectsWithNoTask($iduser);
-      while($do_task->next()){
-		 $do_project = new Project();
-        $do_project->getId($do_task->idproject);
+      if($do_task->getNumRows() >= 1){
+		  while($do_task->next()){
+			 $do_project = new Project();
+			$do_project->getId($do_task->idproject);
 
-        $xml .= "  <project>\n";
-        $xml .= "   <idproject><![CDATA[".$do_project->idproject."]]></idproject>\n";
-        $xml .= "   <iduser><![CDATA[".$do_project->iduser."]]></iduser>\n";
-        $xml .= "   <name><![CDATA[".$do_project->name."]]></name>\n";
-        $xml .= "   <end_date_dateformat><![CDATA[".$do_project->end_date_dateformat."]]></end_date_dateformat>\n";
-        $xml .= "   <idcompany><![CDATA[".$do_project->idcompany."]]></idcompany>\n";
-        $xml .= "   <status><![CDATA[".$do_project->status."]]></status>\n";
-        $xml .= "   <effort_estimated_hrs><![CDATA[".$do_project->effort_estimated_hrs."]]></effort_estimated_hrs>\n";
-        $xml .= "   <is_public><![CDATA[".$do_project->is_public."]]></is_public>\n";
-        $xml .= "  </project>\n";
+			$xml .= "  <project>\n";
+			$xml .= "   <idproject><![CDATA[".$do_project->idproject."]]></idproject>\n";
+			$xml .= "   <iduser><![CDATA[".$do_project->iduser."]]></iduser>\n";
+			$xml .= "   <name><![CDATA[".$do_project->name."]]></name>\n";
+			$xml .= "   <end_date_dateformat><![CDATA[".$do_project->end_date_dateformat."]]></end_date_dateformat>\n";
+			$xml .= "   <idcompany><![CDATA[".$do_project->idcompany."]]></idcompany>\n";
+			$xml .= "   <status><![CDATA[".$do_project->status."]]></status>\n";
+			$xml .= "   <effort_estimated_hrs><![CDATA[".$do_project->effort_estimated_hrs."]]></effort_estimated_hrs>\n";
+			$xml .= "   <is_public><![CDATA[".$do_project->is_public."]]></is_public>\n";
+			$xml .= "  </project>\n";
+		  }
 	  }
 	  $do_task->free();
 	
@@ -1339,19 +1372,20 @@ class OfuzExportXML extends DataObject {
    
    $do_login_audit = new LoginAudit();
    $do_login_audit->getLoginAuditDetails($iduser);
-   
-   while($do_login_audit->next()){
-	   
-	   $xml .= "  <login_audit>\n";
-       $xml .= "   <idlogin_audit><![CDATA[".$do_login_audit->idlogin_audit."]]></idlogin_audit>\n";
-       $xml .= "   <iduser><![CDATA[".$do_login_audit->iduser."]]></iduser>\n";
-       $xml .= "   <last_login><![CDATA[".$do_login_audit->last_login."]]></last_login>\n";
-       $xml .= "   <ip_address><![CDATA[".$do_login_audit->ip_address."]]></ip_address>\n";
-       $xml .= "   <login_type><![CDATA[".$do_login_audit->login_type."]]></login_type>\n";
-       $xml .= "  </login_audit>\n";
-       $xml .= "  </document>\n";
-       
-	   
+   if($do_login_audit->getNumRows() >= 1){
+	   while($do_login_audit->next()){
+		   
+		   $xml .= "  <login_audit>\n";
+		   $xml .= "   <idlogin_audit><![CDATA[".$do_login_audit->idlogin_audit."]]></idlogin_audit>\n";
+		   $xml .= "   <iduser><![CDATA[".$do_login_audit->iduser."]]></iduser>\n";
+		   $xml .= "   <last_login><![CDATA[".$do_login_audit->last_login."]]></last_login>\n";
+		   $xml .= "   <ip_address><![CDATA[".$do_login_audit->ip_address."]]></ip_address>\n";
+		   $xml .= "   <login_type><![CDATA[".$do_login_audit->login_type."]]></login_type>\n";
+		   $xml .= "  </login_audit>\n";
+		   $xml .= "  </document>\n";
+		   
+		   
+	   }
    }
    $do_login_audit->free();
    
