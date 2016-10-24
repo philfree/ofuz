@@ -1,6 +1,0 @@
-benchmark/extra/
-node_modules/
-coverage/
-demo/
-apidoc/
-*.log
