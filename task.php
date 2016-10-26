@@ -517,6 +517,27 @@ $(document).ready(function() {
                   </div>
               </div>  
             <div class="percent95">
+				<div id="markdown" class="div_right"><a href="javascript:;">Markdown</a></div>
+<div id="markdown-expand" style="display:none;">
+<pre><code>
+<b>To mark up a code block in specific language:</b> <br />
+&lt;pre>&lt;code class="language-php">public $table = "movie";&lt;/code>&lt;/pre>
+<pre><code class="language-php">public $table = "movie";</code></pre>
+<b>To highlight a code block without any language: </b><br /> 
+&lt;pre>&lt;code class="language-none">public $table = "movie";&lt;/code>&lt;/pre>
+<pre><code class="language-none">public $table = "movie";</code></pre>
+<b> Line Numbers</b> <br />
+&lt;pre class="language-none line-numbers">&lt;code>Yout text comes here&lt;/code>&lt;/pre>
+<pre class="language-none line-numbers"><code>This raw text is not highlighted 
+but it still has lines numbers</code></pre>
+<b>Autolinker</b>: To link some text inside a comment <br />
+// [AfterNow](http://www.afternow.io/)
+<pre><code class="language-php">// [AfterNow](http://www.afternow.io/) </code></pre>
+<b>Highlight Keywords</b>
+&lt;code>class&lt;/code>
+</code></pre>
+
+</div>
             <?php              
             if($_SESSION["do_project"]->status != 'closed'){
       
@@ -749,5 +770,13 @@ pre, code {
 </style>
 <link href="/prismjs/prism.css" rel="stylesheet" />
 <script src="/prismjs/prism.js"></script>
+<script>
+$(document).ready(function() {
+	$('#markdown').click(function() {
+		$('#markdown-expand').toggle("slow", function(){
+		});
+	});
+});
+</script>
 </body>
 </html>
