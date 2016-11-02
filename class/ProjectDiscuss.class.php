@@ -67,7 +67,8 @@ class ProjectDiscuss extends Note {
             $project_discuss = $this->discuss;
         }
         else {
-            $project_discuss = htmlentities(addslashes($this->discuss));
+            //$project_discuss = htmlentities(addslashes($this->discuss));
+            $project_discuss = addslashes($this->discuss);
         }
 
         $this->query("INSERT INTO project_discuss (idproject_task,discuss,date_added,document,hours_work,iduser,discuss_edit_access,type)
