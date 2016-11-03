@@ -311,5 +311,15 @@ $e_editForm->setSecure(false);
 </td><td class="layout_rmargin"></td></tr></table>
 <?php include_once('includes/ofuz_facebook.php'); ?>
 <?php include_once('includes/ofuz_analytics.inc.php'); ?>
+<style>
+pre, code { 
+	font-size:100% !important;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+	background-color: #efefef; 
+	border: 0px !important;
+}
+</style>
+<link href="/prismjs/prism.css" rel="stylesheet" />
+<script src="/prismjs/prism.js"></script>
 </body>
 </html>

@@ -390,8 +390,8 @@ class ContactNotes extends Note {
 						$file_url = "/files/".$doc_name;
 						$file = '<br /><a href="'.$file_url.'" target="_blank">'.$this->document.'</a>';
 					}
-					//$note_text = $this->note;
-					$note_text = $this->formatNoteDisplayShort();
+					$note_text = $this->note;
+					//$note_text = $this->formatNoteDisplayShort();
 					//if (substr_count($note_text, '<br />') > 4) {
 					//	$preview_note = preg_replace('/(.*?<br \/>.*?<br \/>.*?<br \/>.*?<br \/>)(.*)/','$1',str_replace("\n",'',$note_text)).' ';
 					//} else if (strlen($note_text) > 500) {
@@ -413,12 +413,15 @@ class ContactNotes extends Note {
 					echo '<div id="notetext', $this->idcontact_note, '" class="vpad10">';
 					echo '<div style="height:24px;position:relative;"><div class="percent95"><img src="/images/note_icon.gif" class="note_icon" width="16" height="16" alt="" />',$e_PrioritySort->getLink($star_img_url, ' title="'._('Star this note to move it on top').'"');
 					echo '<b>'.date('l, F j', strtotime($this->date_added)).'</b>&nbsp;(Added By :&nbsp;'.$this->getNoteOwnerFullName().')</div> 
-					<div id="trashcan', $note_count, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$this->idcontact_note.'\','.$this->idcontact_note.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_note_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div></div>';
+						<div id="trashcan', $note_count, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$this->idcontact_note.'\','.$this->idcontact_note.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_note_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div></div>';
+/*
 					if ($this->is_truncated != '') {
 						echo '<div id="notepreview',$this->idcontact_note,'">',$note_text,'<br /><a href="#" onclick="showFullNote(',$this->idcontact_note,'); return false;" >'._('more ...').'</a><br /></div>';
 					} else {
 						echo $note_text;
 					}
+ */
+						echo $note_text;
                                         $note_count++;
 					echo $this->formatDocumentLink().'</div>
                                         <div id="e'.$this->idcontact_note.'" style="display: none;" class="note_edit_box"></div>
