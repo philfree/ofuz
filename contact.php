@@ -11,8 +11,6 @@
     include_once('config.php');
     include_once('includes/ofuz_check_access.script.inc.php');
 
-    $Parsedown = new Parsedown();
-
     /*include_once("class/Feed.class.php");*/
     if (isset($_GET['id'])) {
         $idcontact = $_GET['id']; 
@@ -581,10 +579,8 @@ include_once('plugin_block.php');
               }
         ?>
         
-        <div class="headline_fuscia">Add a Note About <?php echo $do_contact->firstname; ?>
-         <!--<img src="/images/parsedown.png" style="float: right;margin-right: 192px;height: 35px;width: 40px;" width="100" height="100" alt="" />
-          <b style="float: right;margin-right: -183px;font-size: 14px;margin-top: 10px;">Markdown supported</b>-->
-        </div>
+		<div class="headline_fuscia">Add a Note About <?php echo $do_contact->firstname; ?></div>
+
         <?php
                   $draft = $_SESSION['do_note_draft']->getDraft($idcontact,"contact_note");
                   if($draft && is_array($draft)){
@@ -611,6 +607,26 @@ include_once('plugin_block.php');
                   </div>
               </div>  
         <div class="percent95">
+				<div id="markdown" class="div_right"><a href="javascript:;">Markdown</a></div>
+					<div id="markdown-expand" style="display:none;">
+					<pre><code>
+					<b>To mark up a code block in specific language:</b> <br />
+					&lt;pre>&lt;code class="language-php">public $table = "movie";&lt;/code>&lt;/pre>
+					<pre><code class="language-php">public $table = "movie";</code></pre>
+					<b>To highlight a code block without any language: </b><br /> 
+					&lt;pre>&lt;code class="language-none">public $table = "movie";&lt;/code>&lt;/pre>
+					<pre><code class="language-none">public $table = "movie";</code></pre>
+					<b> Line Numbers</b> <br />
+					&lt;pre class="language-none line-numbers">&lt;code>Yout text comes here&lt;/code>&lt;/pre>
+					<pre class="language-none line-numbers"><code>This raw text is not highlighted 
+					but it still has lines numbers</code></pre>
+					<b>Autolinker</b>: To link some text inside a comment <br />
+					// [AfterNow](http://www.afternow.io/)
+					<pre><code class="language-php">// [AfterNow](http://www.afternow.io/) </code></pre>
+					<b>Highlight Keywords</b>
+					&lt;code>class&lt;/code>
+					</code></pre>
+					</div>
         <?php
             $ContactNotes  = new ContactNotes($GLOBALS['conx']);
             $ProjectDiscuss = new ProjectDiscuss();
@@ -713,13 +729,10 @@ include_once('plugin_block.php');
 							$file_url = "/files/".$doc_name;
 							$file = '<br /><a href="'.$file_url.'" target="_blank">'.$do_notes->document.'</a>';
 						}
-					// Format the note text
-						$note_text = $do_notes->formatNoteDisplayShort();
-						//if (substr_count($note_text, '<br />') > 4) {
-						//	$preview_note = preg_replace('/(.*?<br \/>.*?<br \/>.*?<br \/>.*?<br \/>)(.*)/','$1',str_replace("\n",'',$note_text)).' ';
-						//} else if (strlen($note_text) > 500) {
-						//	$preview_note = substr($note_text, 0, 500).' ';
-						//}
+
+						// Format the note text
+						//$note_text = $do_notes->formatNoteDisplayShort();
+						$note_text = $do_notes->note;
 						// Formating note ends here
 		
 						$added_by = $_SESSION['do_User']->getFullName($do_notes->iduser); 
@@ -774,12 +787,16 @@ include_once('plugin_block.php');
 						echo '<b>'.$added_by.'</b>&nbsp;(Added By :&nbsp;'.$do_notes->getNoteOwnerFullName().')</div>
 						<div id="trashcan', $note_count, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_notes->idcontact_note.'\','.$do_notes->idcontact_note.');return false;">edit</a>&nbsp;|&nbsp;'.$e_note_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div></div>';
       echo "<br>";
-      echo '<a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' class="note_icon"> </a>';
+	  echo '<a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' class="note_icon"> </a>';
+/*
 						if ($do_notes->is_truncated) {
-							echo '<div id="notepreview',$do_notes->idcontact_note,'">',$Parsedown->text($note_text),'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
+							echo '<div id="notepreview',$do_notes->idcontact_note,'">',$note_text,'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
 						} else {
-							echo $Parsedown->text($note_text);
+							echo $note_text;
 						}
+ */
+
+						echo $note_text;
 						$note_count++;
 						
 						echo $do_notes->formatDocumentLink().'</div>
@@ -797,13 +814,10 @@ include_once('plugin_block.php');
 						$file_url = "/files/".$doc_name;
 						$file = '<br /><a href="'.$file_url.'" target="_blank">'.$do_notes->document.'</a>';
 					}
-				// Format the note text
-					$note_text = $do_notes->formatNoteDisplayShort();
-					//if (substr_count($note_text, '<br />') > 4) {
-					//	$preview_note = preg_replace('/(.*?<br \/>.*?<br \/>.*?<br \/>.*?<br \/>)(.*)/','$1',str_replace("\n",'',$note_text)).' ';
-					//} else if (strlen($note_text) > 500) {
-					//	$preview_note = substr($note_text, 0, 500).' ';
-					//}
+
+					// Format the note text
+					//$note_text = $do_notes->formatNoteDisplayShort();
+					$note_text = $do_notes->note;
 					// Formating note ends here
 	
      $added_by = $_SESSION['do_User']->getFullName($do_notes->iduser);
@@ -861,16 +875,18 @@ include_once('plugin_block.php');
      echo "<br>";      
      echo '<a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' class="note_icon"> </a>';
 
+/*
      if ($do_notes->is_truncated) {
-        
         $note_text = preg_replace('/<br \/>/iU', '', $note_text);
-        echo '<div id="notepreview',$do_notes->idcontact_note,'">', $Parsedown->text($note_text),'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
-        //echo '<div id="notepreview',$do_notes->idcontact_note,'">', $note_text,'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
+        echo '<div id="notepreview',$do_notes->idcontact_note,'">', $note_text,'<br /><a href="#" onclick="showFullNote(',$do_notes->idcontact_note,'); return false;" >',_('more ...'),'</a><br /></div>';
 	 } else {
-        //echo "&nbsp;&nbsp;&nbsp;&nbsp;".$note_text;
         $note_text = preg_replace('/<br \/>/iU', '', $note_text);
-        echo "&nbsp;&nbsp;&nbsp;&nbsp;".$Parsedown->text($note_text);
-	}	
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;".$note_text;
+	 }
+*/
+	 //echo "&nbsp;&nbsp;&nbsp;&nbsp;".$note_text;
+	 echo $note_text;
+
 	$note_count++;
 			
 	echo $do_notes->formatDocumentLink().'</div>
@@ -896,5 +912,23 @@ include_once('plugin_block.php');
 </td><td class="layout_rmargin"></td></tr></table>
 <?php include_once('includes/ofuz_facebook.php'); ?>
 <?php include_once('includes/ofuz_analytics.inc.php'); ?>
+<style>
+pre, code { 
+	font-size:100% !important;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+	background-color: #efefef; 
+	border: 0px !important;
+}
+</style>
+<link href="/prismjs/prism.css" rel="stylesheet" />
+<script src="/prismjs/prism.js"></script>
+<script>
+$(document).ready(function() {
+	$('#markdown').click(function() {
+		$('#markdown-expand').toggle("slow", function(){
+		});
+	});
+});
+</script>
 </body>
 </html>
