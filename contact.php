@@ -909,6 +909,7 @@ include_once('plugin_block.php');
 </td><td class="layout_rmargin"></td></tr></table>
 <?php include_once('includes/ofuz_facebook.php'); ?>
 <?php include_once('includes/ofuz_analytics.inc.php'); ?>
+<!-- prismjs style to override dojo style -->
 <style>
 pre, code { 
 	font-size:100% !important;

@@ -757,6 +757,7 @@ but it still has lines numbers</code></pre>
 </div>
 </td><td class="layout_rmargin"></td></tr></table>
 <?php include_once('includes/ofuz_facebook.php'); ?>
+<!-- prismjs style to override dojo style -->
 <style>
 pre, code { 
 	font-size:100% !important;
