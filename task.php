@@ -530,9 +530,6 @@ $(document).ready(function() {
 &lt;pre class="language-none line-numbers">&lt;code>Yout text comes here&lt;/code>&lt;/pre>
 <pre class="language-none line-numbers"><code>This raw text is not highlighted 
 but it still has lines numbers</code></pre>
-<b>Autolinker</b>: To link some text inside a comment <br />
-// [AfterNow](http://www.afternow.io/)
-<pre><code class="language-php">// [AfterNow](http://www.afternow.io/) </code></pre>
 <b>Highlight Keywords</b>
 &lt;code>class&lt;/code>
 </code></pre>
