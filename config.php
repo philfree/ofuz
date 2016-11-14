@@ -43,7 +43,7 @@
   // Turn off errors display on production site
   // or when using the pas pagebuilder
   //error_reporting(0);
-  //error_reporting(E_ERROR | E_WARNING | E_PARSE);
+  error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
   if (file_exists($GLOBALS['cfg_full_path'].'includes/extraconfig.inc.php')) {
       include_once($GLOBALS['cfg_full_path'].'includes/extraconfig.inc.php');
