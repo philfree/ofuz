@@ -79,62 +79,58 @@ fOoUuAIiOoUuUUuUuUu×O×O\]", "", $start);
         
         $this->setLog("\nUserfile:".$userfile_name);
 
-    if($userfile != "none") {
-        if($userfile_name=="") {
-            $val="";
-        } else {
+		if($userfile != "none") {
+			if($userfile_name=="") {
+				$val="";
+			} else {
 
-            $overwrite = $fileoverwrite[$fidx];
-    
-            $filepatharray = explode("/", $userfile_name) ;
-            $numsubdir = count($filepatharray) ;
-            if ($numsubdir >1) {
-                $userfile_name = $filepatharray[$numsubdir-1] ;
-            }
+				$overwrite = $fileoverwrite[$fidx];
+		
+				$filepatharray = explode("/", $userfile_name) ;
+				$numsubdir = count($filepatharray) ;
+				if ($numsubdir >1) {
+					$userfile_name = $filepatharray[$numsubdir-1] ;
+				}
 
-			// Making Process on file with Garbadge values.
-    		$userfile_name = checkfilename($userfile_name, $fields['label']);
+				// Making Process on file with Garbadge values.
+				$userfile_name = checkfilename($userfile_name, $fields['label']);
 
-            $ipath = $filedirectoryuploaded[$fidx] ;
-            if($overwrite == "no") { 
-                $chk_file_name = $userfile_name;
-                $file_num = 0;
-                while (file_exists($ipath."/".$chk_file_name)) {
-                    if (preg_match("/^n[0-9]*_/", $chk_file_name, $match)) {
-                      $chk_file_name = str_replace($match[0], "", $chk_file_name);
-                    }
-                    $chk_file_name = "n".++$file_num."_".$chk_file_name;
-                }
-                $val = $chk_file_name;
-    
-            } else { 
-                $val=$userfile_name;;
-            }
-           
-            $destpath= $ipath."/".$val;
-//			echo "<br>DestPath ==> ".$destpath;
-//			exit;
-    
-            if(!is_uploaded_file($userfile)) {
-                $this->setError("<b>File Upload</b>".$this->getErrorMessage()) ;
-                if (strlen($errorpage)>0) {
-                $urlerror = $errorpage;
-                } else {
-                $urlerror = $this->getMessagePage() ;
-                }
-                $disp = new Display($urlerror);
-                $disp->addParam("message", $strUnabletoSave) ;
-                $this->updateparam("doSave", "no") ;
-                $this->setDisplayNext($disp) ;
-            } else {
-                    move_uploaded_file($userfile, $destpath);
-            }
-            $fields[$filefield[$fidx]] = $val ;
-            $this->updateparam("fields", $fields) ;
-        }
-    }
+				$ipath = $filedirectoryuploaded[$fidx] ;
+				if($overwrite == "no") { 
+					$chk_file_name = $userfile_name;
+					$file_num = 0;
+					while (file_exists($ipath."/".$chk_file_name)) {
+						if (preg_match("/^n[0-9]*_/", $chk_file_name, $match)) {
+						  $chk_file_name = str_replace($match[0], "", $chk_file_name);
+						}
+						$chk_file_name = "n".++$file_num."_".$chk_file_name;
+					}
+					$val = $chk_file_name;
+		
+				} else { 
+					$val=$userfile_name;;
+				}
+			   
+				$destpath= $ipath."/".$val;
+		
+				if(!is_uploaded_file($userfile)) {
+					$this->setError("<b>File Upload</b>".$this->getErrorMessage()) ;
+					if (strlen($errorpage)>0) {
+					$urlerror = $errorpage;
+					} else {
+					$urlerror = $this->getMessagePage() ;
+					}
+					$disp = new Display($urlerror);
+					$disp->addParam("message", $strUnabletoSave) ;
+					$this->updateparam("doSave", "no") ;
+					$this->setDisplayNext($disp) ;
+				} else {
+						move_uploaded_file($userfile, $destpath);
+				}
+				$fields[$filefield[$fidx]] = $val ;
+				$this->updateparam("fields", $fields) ;
+			}
+		}
 
     }
-  
-  
 ?>
