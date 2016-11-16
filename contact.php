@@ -729,7 +729,7 @@ include_once('plugin_block.php');
 
 						// Format the note text
 						//$note_text = $do_notes->formatNoteDisplayShort();
-						$note_text = $do_notes->note;
+                        $note_text = $do_notes->formatNoteDisplay();
 						// Formating note ends here
 		
 						$added_by = $_SESSION['do_User']->getFullName($do_notes->iduser); 
@@ -814,7 +814,7 @@ include_once('plugin_block.php');
 
 					// Format the note text
 					//$note_text = $do_notes->formatNoteDisplayShort();
-					$note_text = $do_notes->note;
+					$note_text = $do_notes->formatNoteDisplay();
 					// Formating note ends here
 	
      $added_by = $_SESSION['do_User']->getFullName($do_notes->iduser);
@@ -881,8 +881,7 @@ include_once('plugin_block.php');
         echo "&nbsp;&nbsp;&nbsp;&nbsp;".$note_text;
 	 }
 */
-	 //echo "&nbsp;&nbsp;&nbsp;&nbsp;".$note_text;
-	 echo $note_text;
+	 echo "&nbsp;&nbsp;&nbsp;&nbsp;".$note_text;
 
 	$note_count++;
 			
