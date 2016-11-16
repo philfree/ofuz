@@ -643,23 +643,12 @@ but it still has lines numbers</code></pre>
                         $preview_item = '';
                         if($do_discuss->document != ''){
                             $doc_name = $do_discuss->document;
-                            //$doc_name = str_replace("  ","%20%20",$do_discuss->document);
-                            //$doc_name = str_replace(" ","%20",$doc_name);
                             $file_url = "/files/".$doc_name;
-                            //$file_url = '/files/'.$do_discuss->document;
                             $file = '<br /><a href="'.$file_url.'" target="_blank">'.$do_discuss->document.'</a>';
-                               //$file = '<br /><a href="/files_download.php?e=ProjectTask&id='.$idproject_task.'&file='.$do_discuss->document.'" target="_blank">'.$do_discuss->document.'</a>';
                         }
                         
                         //$item_text = $do_discuss->formatDiscussionItemDisplay($do_discuss->discuss, 500);
-                        $item_text = $do_discuss->discuss;
-                        //if (substr_count($item_text, '<br />') > 4) {
-                        //	$preview_item = preg_replace('/(.*?<br \/>.*?<br \/>.*?<br \/>.*?<br \/>)(.*)/','$1',str_replace("\n",'',$item_text)).' ';
-                        //} else if (strlen($item_text) > 500) {
-                        //    $preview_item = substr($item_text, 0, 500);
-                        //}
-
-// profile
+                        $item_text = $do_discuss->formatNoteDisplay($do_discuss->discuss);
 
                         $do_user = new User();
                         if($do_discuss->iduser){
