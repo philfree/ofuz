@@ -62,7 +62,7 @@
   //$_SESSION["cfg_lang"] = $cfg_lang ;
   // Database connexions :
 
-  $conx = new sqlConnect("ofuz", "d3v5") ;
+  $conx = new sqlConnect("ofuzdev", "d3v5") ;
   $conx->setHostname("localhost") ;
   $conx->setDatabase("ofuzdev") ;
   // Directory where pas is located
