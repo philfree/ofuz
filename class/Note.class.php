@@ -296,7 +296,7 @@ class Note extends DataObject {
 	  *  @param text of the note to format
 	  *  @return formated text note for html display
 	  */
-     function formatNoteDisplayShort($text='', $num_char=500){
+     function formatNoteDisplayShort($text='', $num_char=30000){
        if (empty($text)) { $text = $this->note; }
         if (strlen($text) > $num_char) {
             $text = substr($text, 0, $num_char);
