@@ -67,7 +67,8 @@ class ProjectDiscuss extends Note {
             $project_discuss = $this->discuss;
         }
         else {
-            $project_discuss = htmlentities(addslashes($this->discuss));
+            //$project_discuss = htmlentities(addslashes($this->discuss));
+            $project_discuss = addslashes($this->discuss);
         }
 
         $this->query("INSERT INTO project_discuss (idproject_task,discuss,date_added,document,hours_work,iduser,discuss_edit_access,type)
@@ -274,10 +275,9 @@ class ProjectDiscuss extends Note {
       * @param $event_controler -- Object
     */
     function eventAjaxProjectTaskDiscussion(EventControler $event_controler) {
-        $Parsedown = new Parsedown();
         $this->getId((int)$event_controler->idnote);
         //$this->query("select discuss from project_discuss where idproject_discuss = ".$idnote." and idproject_task = ". $_SESSION['do_project_task']->idproject_task);
-        $event_controler->addOutputValue($Parsedown->text($this->formatNoteDisplayFull($this->discuss)));
+        $event_controler->addOutputValue($this->formatNoteDisplayFull($this->discuss));
     }
     /** 
      * eventSendDiscussMessageByEmail
@@ -287,7 +287,6 @@ class ProjectDiscuss extends Note {
      * @param Eventcontroler
      */
     function eventSendDiscussMessageByEmail(EventControler $event_controler) {
-      $Parsedown = new Parsedown();
       $this->setLog("\n eventSendDiscussMessageByEmail: starting (".date("Y/m/d H:i:s"));
 
       /*$_SESSION['do_project_task']->getId($event_controler->idproject_task);
@@ -316,9 +315,9 @@ class ProjectDiscuss extends Note {
                       $doc_text = '<br />'._('Attachment').': <a href="'.$doc_link.'"> '.$event_controler->fields['document'].'</a>';
                   }else{$doc_text = '';}
                   //$message_html = nl2br(stripslashes($event_controler->fields['discuss'].$doc_text));
-                  $message_html = nl2br(stripslashes(($Parsedown->text($event_controler->fields['discuss']).$doc_text)));
+                  $message_html = nl2br(stripslashes(($event_controler->fields['discuss'].$doc_text)));
                   //$message_txt = stripslashes($event_controler->fields['discuss'].$doc_text);
-                  $message_txt = stripslashes($Parsedown->text($event_controler->fields['discuss'].$doc_text));
+                  $message_txt = stripslashes($event_controler->fields['discuss'].$doc_text);
                   $email_data = Array('project-name' => $_SESSION['do_project']->name,
 		                    'project-link' => $project_link,
                                     'discussion-owner' => $_SESSION['do_User']->getFullName(),

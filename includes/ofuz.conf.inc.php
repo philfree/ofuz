@@ -167,10 +167,6 @@
   
     include_once("class/CcDetails.class.php");
 
-  //parse down for notes
-    include_once("class/Parsedown.class.php");
-
-
   //Email Contact Import
   //include_once("plugin/EmailImporter/openinviter.php");
   //include_once("plugin/EmailImporter/OfuzEmailImporter.class.php");
