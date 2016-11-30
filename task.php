@@ -71,7 +71,8 @@
 	}
 	
 	include_once('includes/header.inc.php');
-
+?>
+<?php
     $_SESSION['projectsession_'.$idproject_task] = $_SESSION['do_project'];
    
  
@@ -516,6 +517,24 @@ $(document).ready(function() {
                   </div>
               </div>  
             <div class="percent95">
+				<div id="markdown" class="div_right"><a href="javascript:;">Markdown</a></div>
+<div id="markdown-expand" style="display:none;">
+<pre><code>
+<b>To mark up a code block in specific language:</b> <br />
+&lt;pre>&lt;code class="language-php">public $table = "movie";&lt;/code>&lt;/pre>
+<pre><code class="language-php">public $table = "movie";</code></pre>
+<b>To highlight a code block without any language: </b><br /> 
+&lt;pre>&lt;code class="language-none">public $table = "movie";&lt;/code>&lt;/pre>
+<pre><code class="language-none">public $table = "movie";</code></pre>
+<b> Line Numbers</b> <br />
+&lt;pre class="language-none line-numbers">&lt;code>Yout text comes here&lt;/code>&lt;/pre>
+<pre class="language-none line-numbers"><code>This raw text is not highlighted 
+but it still has lines numbers</code></pre>
+<b>Highlight Keywords</b>
+&lt;code>class&lt;/code>
+</code></pre>
+
+</div>
             <?php              
             if($_SESSION["do_project"]->status != 'closed'){
       
@@ -624,22 +643,12 @@ $(document).ready(function() {
                         $preview_item = '';
                         if($do_discuss->document != ''){
                             $doc_name = $do_discuss->document;
-                            //$doc_name = str_replace("  ","%20%20",$do_discuss->document);
-                            //$doc_name = str_replace(" ","%20",$doc_name);
                             $file_url = "/files/".$doc_name;
-                            //$file_url = '/files/'.$do_discuss->document;
                             $file = '<br /><a href="'.$file_url.'" target="_blank">'.$do_discuss->document.'</a>';
-                               //$file = '<br /><a href="/files_download.php?e=ProjectTask&id='.$idproject_task.'&file='.$do_discuss->document.'" target="_blank">'.$do_discuss->document.'</a>';
                         }
                         
-                        $item_text = $do_discuss->formatDiscussionItemDisplay($do_discuss->discuss, 500);
-                        //if (substr_count($item_text, '<br />') > 4) {
-                        //	$preview_item = preg_replace('/(.*?<br \/>.*?<br \/>.*?<br \/>.*?<br \/>)(.*)/','$1',str_replace("\n",'',$item_text)).' ';
-                        //} else if (strlen($item_text) > 500) {
-                        //    $preview_item = substr($item_text, 0, 500);
-                        //}
-
-// profile
+                        //$item_text = $do_discuss->formatDiscussionItemDisplay($do_discuss->discuss, 500);
+                        $item_text = $do_discuss->formatNoteDisplay($do_discuss->discuss);
 
                         $do_user = new User();
                         if($do_discuss->iduser){
@@ -701,20 +710,18 @@ $(document).ready(function() {
                         echo "<br>";
                         echo '<div id="contact_small"><a href="/profile/'.$user_name.'"> <img width="34" height="34"alt="" src='.$contact_picture.' > </a></div>';
 
-                         $Parsedown = new Parsedown();
-
                         if($task_operation_access === true){
                           echo '<div id="trashcan', $item_count++, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$do_discuss->idproject_discuss.'\','.$do_discuss->idproject_discuss.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_discuss_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div>';
                         }
                         echo '</div>';
                         if ($do_discuss->is_truncated) {
-                            $item_text = preg_replace('/<br \/>/iU', '', $item_text);
-                            //echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',strip_tags($Parsedown->text($item_text), '<p><br/>'),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
-                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$Parsedown->text($item_text),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
+                            //$item_text = preg_replace('/<br \/>/iU', '', $item_text);
+                            //echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$item_text,'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
+                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$item_text,'</div></div>';
                         } else {
-                            $item_text = preg_replace('/<br \/>/iU', '', $item_text);
-                            //echo "<div id='item_text'>".strip_tags($Parsedown->text($item_text), '<p><br/>')."</div>";
-                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$Parsedown->text( $item_text),'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
+                            //$item_text = preg_replace('/<br \/>/iU', '', $item_text);
+                            //echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$item_text,'…<br/><br/><a href="#" id="more_item_text" onclick="showFullNote(',$do_discuss->idproject_discuss,'); return false;">'._('<strong>read more…</strong>').'</a><br /></div></div>';
+                            echo '<div id="item_text"><div id="notepreview',$do_discuss->idproject_discuss,'">',$item_text,'</div></div>';
                         }
                         //echo '<div id="e'.$do_discuss->idproject_discuss.'" style="display: none;" class="note_edit_box"></div>';
                         echo $do_discuss->formatDocumentLink("ProjectTask").'</div>
@@ -739,10 +746,24 @@ $(document).ready(function() {
 </div>
 </td><td class="layout_rmargin"></td></tr></table>
 <?php include_once('includes/ofuz_facebook.php'); ?>
-<!-- highlight js for displaying notes-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/highlight.min.js"></script>
-<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/default.min.css" rel="stylesheet" />
-<script>hljs.initHighlightingOnLoad();</script>
-<!-- end -->
+<!-- prismjs style to override dojo style -->
+<style>
+pre, code { 
+	font-size:100% !important;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+	background-color: #efefef; 
+	border: 0px !important;
+}
+</style>
+<link href="/prismjs/prism.css" rel="stylesheet" />
+<script src="/prismjs/prism.js"></script>
+<script>
+$(document).ready(function() {
+	$('#markdown').click(function() {
+		$('#markdown-expand').toggle("slow", function(){
+		});
+	});
+});
+</script>
 </body>
 </html>

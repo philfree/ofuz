@@ -360,8 +360,6 @@ class Note extends DataObject {
         }
 
         $processed = $this->htmlCleanUp($note);
-        $Parsedown = new Parsedown();
-        $processed = $Parsedown->text($processed); 
         $fields[$from] = $processed;
         $event_controler->fields = $fields;
     }
@@ -430,6 +428,24 @@ class Note extends DataObject {
       return ($processed) ;
     }
     
+	/**
+	 *  Format the display of the notes
+	 *  add nl2br, change the urls into links
+	 *  @param text of the note to format
+	 *  @return formated text note for html display
+	 */
+	function formatNoteDisplay($text=''){
+		if (empty($text)) { $text = $this->note; }
+
+		$ret = ' ' . $text;
+		$ret = preg_replace("#(^|[\n ])([\w]+?://[\w]+[^ \"\n\r\t<]*)#ise", "'\\1<a href=\"\\2\" target = \"_blank\">\\2</a>'", $ret);
+		$ret = preg_replace("#(^|[\n ])((www|ftp)\.[^ \"\t\n\r<]*)#ise", "'\\1<a href=\"http://\\2\" target = \"_blank\">\\2</a>'", $ret);
+		$ret = preg_replace("#(^|[\n ])([a-z0-9&\-_\.]+?)@([\w\-]+\.([\w\-\.]+\.)*[\w]+)#i", "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>", $ret);
+		$ret = substr($ret, 1);
+		$ret = nl2br($ret);
+
+		return ($ret) ;
+	}
  
 }
 ?>

@@ -56,10 +56,8 @@ class ContactNotes extends Note {
     }
 
     function eventAjaxGetContactNote(EventControler $event_controler) {
-        $Parsedown = new Parsedown();
         $this->getId((int)$event_controler->idnote);
-        //$this->query("select note from contact_note where idcontact_note = " . $idnote . " and idcontact = ".$_SESSION['do_cont']->idcontact);
-        $event_controler->addOutputValue($Parsedown->text($this->formatNoteDisplayFull()));
+        $event_controler->addOutputValue($this->formatNoteDisplayFull());
     }
 
     function getCompanyNotes($idcompany) {
@@ -143,8 +141,6 @@ class ContactNotes extends Note {
 
     function add() {
 	  if (strlen($this->date_added) == 0) { $this->date_added = date("Y-m-d"); }
-      $Parsedown = new Parsedown();
-      $this->note = $Parsedown->text($this->note);
       parent::add();    
         // This below was a try that didn't worked as to global. Created the eventFormatNoteInsert eventaction instead.
         // $this->note = $this->quote(htmlentities($this->note));  
@@ -202,7 +198,6 @@ class ContactNotes extends Note {
     }
 
     function eventAjaxGetEditForm(EventControler $evtcl){ 
-        $Parsedown = new Parsedown();
         $_SESSION['ContactNoteEditSave']->setApplyRegistry(false, "Form");
         $html = '';
         $curdiv = $evtcl->curdiv;
@@ -227,7 +222,7 @@ class ContactNotes extends Note {
             $_SESSION['ContactNoteEditSave']->setRegistry("ofuz_add_contact_note");
             $_SESSION['ContactNoteEditSave']->setApplyRegistry(true, "Form");
 
-            $html .= '<br />'._('Note :').'<br /><textarea id="note_edit" name = "fields[note]" rows="3" cols="110">'.$Parsedown->text($note_val).'</textarea><br />';
+            $html .= '<br />'._('Note :').'<br /><textarea id="note_edit" name = "fields[note]" rows="3" cols="110">'.$note_val.'</textarea><br />';
             $html .= '<div width="100%">';
             $html .= '<div id="edit_note_more" style="position:relative;float:left;text-align:left;width:50%"><a href="#" onclick ="fnEditNoteMoreOpts();return false;">'._('More Options').'</a></div>';
             $html .= '<div style="position:relative;float:left;text-align:left;width:50%"><a href="javascript:;" onclick="showProjectList();">'._('Attached to a project').'</a>';
@@ -286,8 +281,6 @@ class ContactNotes extends Note {
      * It will modify the event_controler values.
      */ 
     function eventFormatNoteInsert(EventControler $event_controler) {
-
-          $Parsedown = new Parsedown();  
           $do_NoteDraft = new NoteDraft();
           $idnote_draft = $do_NoteDraft->isDraftExist($this->idcontact,'contact_note');
           if($idnote_draft){
@@ -296,7 +289,7 @@ class ContactNotes extends Note {
           }
 
           $fields = $event_controler->fields;
-          $fields['note'] = $Parsedown->text(htmlentities($fields['note']));
+          $fields['note'] = htmlentities($fields['note']);
           $event_controler->fields = $fields;
     }
 
@@ -373,8 +366,6 @@ class ContactNotes extends Note {
 
 	function autoLoadNotesOnScrollDown() {
 
-	   $Parsedown = new Parsedown();
-
 		if($_SESSION['ContactNotes']->notes_count >= $_SESSION['ContactNotes']->sql_qry_start) {
 			$_SESSION['ContactNotes']->sql_qry_start = $_SESSION['ContactNotes']->sql_qry_start + $_SESSION['ContactNotes']->sql_view_limit;
 
@@ -399,8 +390,8 @@ class ContactNotes extends Note {
 						$file_url = "/files/".$doc_name;
 						$file = '<br /><a href="'.$file_url.'" target="_blank">'.$this->document.'</a>';
 					}
-					//$note_text = $this->note;
-					$note_text = $this->formatNoteDisplayShort();
+					$note_text = $this->note;
+					//$note_text = $this->formatNoteDisplayShort();
 					//if (substr_count($note_text, '<br />') > 4) {
 					//	$preview_note = preg_replace('/(.*?<br \/>.*?<br \/>.*?<br \/>.*?<br \/>)(.*)/','$1',str_replace("\n",'',$note_text)).' ';
 					//} else if (strlen($note_text) > 500) {
@@ -422,12 +413,15 @@ class ContactNotes extends Note {
 					echo '<div id="notetext', $this->idcontact_note, '" class="vpad10">';
 					echo '<div style="height:24px;position:relative;"><div class="percent95"><img src="/images/note_icon.gif" class="note_icon" width="16" height="16" alt="" />',$e_PrioritySort->getLink($star_img_url, ' title="'._('Star this note to move it on top').'"');
 					echo '<b>'.date('l, F j', strtotime($this->date_added)).'</b>&nbsp;(Added By :&nbsp;'.$this->getNoteOwnerFullName().')</div> 
-					<div id="trashcan', $note_count, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$this->idcontact_note.'\','.$this->idcontact_note.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_note_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div></div>';
+						<div id="trashcan', $note_count, '" class="deletenote" style="right:0;">'.'<a href="#"  onclick="fnEditNote(\'notetext'.$this->idcontact_note.'\','.$this->idcontact_note.');return false;">'._('edit').'</a>&nbsp;|&nbsp;'.$e_note_del->getLink($del_img_url, ' title="'._('Delete this note').'"').'</div></div>';
+/*
 					if ($this->is_truncated != '') {
-						echo '<div id="notepreview',$this->idcontact_note,'">',$Parsedown->text($note_text),'<br /><a href="#" onclick="showFullNote(',$this->idcontact_note,'); return false;" >'._('more ...').'</a><br /></div>';
+						echo '<div id="notepreview',$this->idcontact_note,'">',$note_text,'<br /><a href="#" onclick="showFullNote(',$this->idcontact_note,'); return false;" >'._('more ...').'</a><br /></div>';
 					} else {
-						echo $Parsedown->text($note_text);
+						echo $note_text;
 					}
+ */
+						echo $note_text;
                                         $note_count++;
 					echo $this->formatDocumentLink().'</div>
                                         <div id="e'.$this->idcontact_note.'" style="display: none;" class="note_edit_box"></div>
