@@ -6,7 +6,8 @@
 
 class GitHubAPI {
 	private $api_endpoint = 'https://api.github.com/graphql';
-	private $authorization_key = 'bf543ffd1ad36b35b56a850365bee445f5b5642e';
+	//private $authorization_key = 'bf543ffd1ad36b35b56a850365bee445f5b5642e';
+	private $authorization_key = '6bc945ee127280b853c417fa70710b7804e905e3'; // ofuz dev
 	private $queryJSON;
 
 	/*
