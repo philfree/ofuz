@@ -114,6 +114,7 @@
   // Ofuz API classes
   include_once("class/OfuzApiBase.class.php");
   include_once("class/OfuzApiMethods.class.php");
+  include_once('class/OfuzGitHubAPI.class.php');
   
 
   //vCard Import
