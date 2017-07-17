@@ -26,6 +26,9 @@
 		.top-margin-10 {
 			margin-top: 10px;
 		}
+		.ajaxIndicator {
+			display: none;
+		}
 	</style>
   </head>
   <body>
@@ -53,6 +56,7 @@ $previous_year = $current_year - 1;
 			<div class="col-md-4">
 				<h4>Time Spent by Authors</h4>
 				<div id="leftContainer" class="top-margin-20"></div>
+				<div class="ajaxIndicator"><img src="images/ajax-loader1.gif"/></div>
 			</div>
 			<div class="col-md-8 right-container-main">
 				<select class="report_selects" id="year" name="year">
@@ -67,6 +71,7 @@ $weeks_dropdown_html = $do_github->getWeekRangeDropDown();
 				<span id="weeksDropdown"><?php echo $weeks_dropdown_html;?></span>
 				<input type="button" id="submit" name="submit" value="Submit" />	
 				<div id="rightContainer" class="top-margin-20"></div>
+				<div class="ajaxIndicator"><img src="images/ajax-loader1.gif"/></div>
 			</div>
 		</div>
 	</div>
@@ -100,7 +105,6 @@ $weeks_dropdown_html = $do_github->getWeekRangeDropDown();
 			var year = $('#year').val();
 			var month = $('#months').val();
 			var weeks = $('#weeks').val();
-
 			$.ajax({
 					type: "GET",
 					<?php
@@ -110,6 +114,12 @@ $weeks_dropdown_html = $do_github->getWeekRangeDropDown();
 					?>
 					url: "<?php echo $e_report->getUrl(); ?>",
 					data: "month="+month+"&year="+year+'&weeks='+weeks,
+					beforeSend: function(){
+						$('.ajaxIndicator').show();
+					},
+					complete: function(){
+						$('.ajaxIndicator').hide();
+					},
 					success: function(result){
 
 						//console.log(result);
@@ -139,7 +149,7 @@ $weeks_dropdown_html = $do_github->getWeekRangeDropDown();
 								});
 							});
 						} else {
-							leftContainer = "Let's enter the TIME in GitHub issues to make our work COUNTABLE";
+							leftContainer = "Time not yet entered.";
 						}
 
 						$("#leftContainer").html(leftContainer);

@@ -126,7 +126,7 @@ class OfuzGitHubAPI extends DataObject {
 				}
             }
 
-            $start_date_splited = explode("-",$start_date);
+            //$start_date_splited = explode("-",$start_date);
             $end_date = strtotime(date("Y-m-d", strtotime($start_date)) . "next sunday");
             $end_date = date("Y-m-d",$end_date);
             $end_date_splited = explode("-",$end_date);
