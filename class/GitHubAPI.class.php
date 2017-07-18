@@ -1,13 +1,20 @@
 <?php
 /*
  *
- *
+ * key and description are from GitHub settings.
  */
 
 class GitHubAPI {
-	private $api_endpoint = 'https://api.github.com/graphql';
-	private $authorization_key = GitHub_API_ACCESS_TOKEN;
+	private $api_endpoint;
+	private $authorization_key;
+	private $authorization_key_description;
 	private $queryJSON;
+
+	function __construct() {
+		$this->api_endpoint = "https://api.github.com/graphql";
+		$this->authorization_key = $_SERVER['GitHub_API_ACCESS_TOKEN'];
+		$this->authorization_key_description = "Time Tracking System";
+	}
 
 	/*
 	 *
@@ -16,7 +23,7 @@ class GitHubAPI {
 		$authorization = 'Authorization: bearer '.$this->authorization_key;
 		$header = array(
 						'Content-Type: application/json',
-						'User-Agent: Time Tracking System',	
+						'User-Agent: '.$this->authorization_key_description,
 						$authorization
 					);
 
