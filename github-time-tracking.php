@@ -26,8 +26,17 @@
 		.top-margin-10 {
 			margin-top: 10px;
 		}
+		.bottom-margin-50 {
+			margin-bottom: 20px;
+		}
 		.ajaxIndicator {
 			display: none;
+		}
+		.heading-hr-red {
+			border-bottom: 1px solid #ff0000;
+		}
+		.heading-hr-green {
+			border-bottom: 1px solid green;
 		}
 	</style>
   </head>
@@ -58,7 +67,7 @@ $previous_year = $current_year - 1;
 				<div id="leftContainer" class="top-margin-20"></div>
 				<div class="ajaxIndicator"><img src="images/ajax-loader1.gif"/></div>
 			</div>
-			<div class="col-md-8 right-container-main">
+			<div class="col-md-8 right-container-main bottom-margin-50">
 				<select class="report_selects" id="year" name="year">
 					<option value="<?php echo $current_year;?>"><?php echo $current_year;?></option>
 					<option value="<?php echo $previous_year;?>"><?php echo $previous_year;?></option>
@@ -135,14 +144,14 @@ $weeks_dropdown_html = $do_github->getWeekRangeDropDown();
 							});
 
 							$.each(data.repositories, function(index, repo){
-								rightContainer += '<div>Total time spent on <b>'+repo.organization + ' / ' + repo.repository+'</b> : '+repo.totalTimeSpent+'</div>';
-								rightContainer += '<div class="top-margin-20"><b>Per Issues:</b></div>';
+								rightContainer += '<div class="top-margin-20"><span class="heading-hr-red">Total time spent on <b>'+repo.organization + ' / ' + repo.repository+'</b> : '+repo.totalTimeSpent+' hrs</span></div>';
+								rightContainer += '<div class="top-margin-20"><b class="heading-hr-green">Per Issues:</b></div>';
 								
 								$.each(repo.issues.issue, function(index, issue){
 									rightContainer += '<div><b>'+issue.time_taken+' hrs</b> on '+issue.title+'</div>';
 								});
 
-								rightContainer += '<div class="top-margin-20"><b>Per Authors:</b></div>';
+								rightContainer += '<div class="top-margin-20"><b class="heading-hr-green">Per Authors:</b></div>';
 								
 								$.each(repo.authors.author, function(index, author){
 									rightContainer += '<div><b>'+author.time_taken+' hrs</b> by '+author.login+'</div>';

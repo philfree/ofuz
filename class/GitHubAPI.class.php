@@ -9,6 +9,8 @@ class GitHubAPI {
 	private $authorization_key;
 	private $authorization_key_description;
 	private $queryJSON;
+	public $organization;
+	public $repository;
 
 	function __construct() {
 		$this->api_endpoint = "https://api.github.com/graphql";
@@ -49,8 +51,14 @@ class GitHubAPI {
 	/*
 	 *
 	 */
-	public function getAllOpenIssuesComments() {
-		$query = '{"query": "query { repository(owner:\"htmlfusion\", name:\"gishwhes\") {id, issues(last:100, states:OPEN) { edges { node { id title url comments(first:100) { edges { node { id createdAt author{ login } bodyText } } } } } } } }"}'; 
+	public function getAllIssues($issues_cursor) {
+		//$query = '{"query": "query { repository(owner:\"htmlfusion\", name:\"gishwhes\") {id, issues(last:5, states:OPEN) { edges { node { id title url comments(last:5) { edges { node { id createdAt author{ login } bodyText } } } } } } } }"}'; 
+
+		if($issues_cursor) {
+			$query = '{"query": "query { repository(owner:\"'.$this->organization.'\", name:\"'.$this->repository.'\") {id, issues(first:100 after:\"'.$issues_cursor.'\") { totalCount nodes { id title url comments(first:100) { totalCount nodes { id createdAt author{ login } bodyText } } } pageInfo {endCursor hasNextPage} } } }"}'; 
+		} else {
+			$query = '{"query": "query { repository(owner:\"'.$this->organization.'\", name:\"'.$this->repository.'\") {id, issues(first:100) { totalCount nodes { id title url comments(first:100) { totalCount nodes { id createdAt author{ login } bodyText } } } pageInfo {endCursor hasNextPage} } } }"}'; 
+		}
 
 		$this->setQuery($query);
 		$data = $this->processQuery();

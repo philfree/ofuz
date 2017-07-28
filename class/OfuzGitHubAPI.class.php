@@ -14,6 +14,9 @@ class OfuzGitHubAPI extends DataObject {
     public $week_range = "";
 	public $report = array();
 	public $repositories = array();
+	private $issues_cursor = "";
+	public $org = "";
+	public $repo = "";
 
     function __construct(sqlConnect $conx=NULL, $table_name="") {
 		parent::__construct($conx, $table_name);
@@ -24,55 +27,57 @@ class OfuzGitHubAPI extends DataObject {
 	 */
 	public function trackTimeFromCommentsSpentOnIssues() {
 		$github_api = new GitHubAPI();
-		$result = $github_api->getAllOpenIssuesComments();
+		$github_api->organization = $this->org;
+		$github_api->repository = $this->repo;
+		$result = $github_api->getAllIssues($this->issues_cursor);
 		$result = $github_api->jsonDecode($result);
-		$org = "htmlfusion";
-		$repo = "gishwhes";
+		$org = $this->org;
+		$repo = $this->repo;
 
 		foreach($result as $data) {
 			foreach($data as $repository) {
 				$idrepository = $repository->id;
 
-				foreach($repository as $issues) {
-					foreach($issues as $edges) {
-						foreach($edges as $nodes) {
-							foreach($nodes as $issue) {
-								foreach($issue->comments as $comments_edges) {
-									foreach($comments_edges as $comment_node) {
-										foreach($comment_node as $comment) {
-											$time_on_comment = preg_match('#\T{(.*?)\}#', $comment->bodyText, $matches) ? $matches[1] : "";
-											if(!empty($time_on_comment)) {
-												$comment_created_at = date('Y-m-d', strtotime($comment->createdAt));
-												$arr_time_taken = explode(":", $time_on_comment);
-												$time_taken = $arr_time_taken[0].".".$arr_time_taken[1];
+				if($repository->issues->totalCount) {
+					foreach($repository->issues->nodes as $issue) {
+						//echo $issue->title."<br />";
+						if($issue->comments->totalCount) {
+							foreach($issue->comments->nodes as $comment) {
+								$time_on_comment = preg_match('#\T{(.*?)\}#', $comment->bodyText, $matches) ? $matches[1] : "";
+								if(!empty($time_on_comment)) {
+									$comment_created_at = date('Y-m-d', strtotime($comment->createdAt));
+									$arr_time_taken = explode(":", $time_on_comment);
+									$time_taken = $arr_time_taken[0].".".$arr_time_taken[1];
 
-												$idgithub_time_tracking = $this->checkIfIssueCommentTimeAlreadyRecorded($org,$repo,$issue->id,$comment->id);
+									$idgithub_time_tracking = $this->checkIfIssueCommentTimeAlreadyRecorded($org,$repo,$issue->id,$comment->id);
 
-												if($idgithub_time_tracking) {
-													$this->getId($idgithub_time_tracking);
-													$this->issue_title = $issue->title;
-													$this->time_taken = $time_taken;
-													$this->update();
-												} else {
-													$this->addNew();
-													$this->organization = $org;
-													$this->idrepository = $idrepository;
-													$this->repository = $repo;
-													$this->idissue = $issue->id;
-													$this->issue_title = $issue->title;
-													$this->issue_url = $issue->url;
-													$this->id_issue_comment = $comment->id;
-													$this->issue_comment_created_at = $comment_created_at;
-													$this->issue_comment_author = $comment->author->login;
-													$this->time_taken = $time_taken;
-													$this->add();
-												}
-											}
-										}
+									if($idgithub_time_tracking) {
+										$this->getId($idgithub_time_tracking);
+										$this->issue_title = $issue->title;
+										$this->time_taken = $time_taken;
+										$this->update();
+									} else {
+										$this->addNew();
+										$this->organization = $org;
+										$this->idrepository = $idrepository;
+										$this->repository = $repo;
+										$this->idissue = $issue->id;
+										$this->issue_title = $issue->title;
+										$this->issue_url = $issue->url;
+										$this->id_issue_comment = $comment->id;
+										$this->issue_comment_created_at = $comment_created_at;
+										$this->issue_comment_author = $comment->author->login;
+										$this->time_taken = $time_taken;
+										$this->add();
 									}
 								}
 							}
 						}
+					}
+
+					if($repository->issues->pageInfo->hasNextPage) {
+						$this->issues_cursor = $repository->issues->pageInfo->endCursor;
+						$this->trackTimeFromCommentsSpentOnIssues();
 					}
 				}
 			}
