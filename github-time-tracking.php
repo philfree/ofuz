@@ -84,90 +84,103 @@ $weeks_dropdown_html = $do_github->getWeekRangeDropDown();
 			</div>
 		</div>
 	</div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<script>
-	$(document).ready(function(){
-		$('.report_selects').on('change', function() {
-			var month = $('#months').val();
-			var year = $('#year').val();
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
 
-			$.ajax({
-					type: "GET",
-					<?php
-					  $e_ofuz_github = new Event("OfuzGitHubAPI->eventGetWeeksRangeDropdown");
-					  $e_ofuz_github->setEventControler("ajax_evctl.php");
-					  $e_ofuz_github->setSecure(false);
-					?>
-					url: "<?php echo $e_ofuz_github->getUrl(); ?>",
-					data: "month="+month+"&year="+year,
-					success: function(result){
-						$("#weeksDropdown").html(result);
-					}
-				  });
-		});
+	getTimeSheetReport();
 
-		$('#submit').on('click', function() {
-			var year = $('#year').val();
-			var month = $('#months').val();
-			var weeks = $('#weeks').val();
-			$.ajax({
-					type: "GET",
-					<?php
-					  $e_report = new Event("OfuzGitHubAPI->eventGetTimesheetReport");
-					  $e_report->setEventControler("ajax_evctl.php");
-					  $e_report->setSecure(false);
-					?>
-					url: "<?php echo $e_report->getUrl(); ?>",
-					data: "month="+month+"&year="+year+'&weeks='+weeks,
-					beforeSend: function(){
-						$('.ajaxIndicator').show();
-					},
-					complete: function(){
-						$('.ajaxIndicator').hide();
-					},
-					success: function(result){
+	$('.report_selects').on('change', function() {
+		var month = $('#months').val();
+		var year = $('#year').val();
 
-						//console.log(result);
-						var data = JSON.parse(result);
-						//console.log(data);
-						var dataLength = Object.keys(data).length;
-						var leftContainer = "";
-						var rightContainer = "";
-
-						if(dataLength) {
-							$.each(data.authorsTime, function(index, value){
-								leftContainer += '<div>'+value.commentAuthor+' : <b>'+value.timeTaken+' hrs</b></div>';
-							});
-
-							$.each(data.repositories, function(index, repo){
-								rightContainer += '<div class="top-margin-20"><span class="heading-hr-red">Total time spent on <b>'+repo.organization + ' / ' + repo.repository+'</b> : '+repo.totalTimeSpent+' hrs</span></div>';
-								rightContainer += '<div class="top-margin-20"><b class="heading-hr-green">Per Issues:</b></div>';
-								
-								$.each(repo.issues.issue, function(index, issue){
-									rightContainer += '<div><b>'+issue.time_taken+' hrs</b> on '+issue.title+'</div>';
-								});
-
-								rightContainer += '<div class="top-margin-20"><b class="heading-hr-green">Per Authors:</b></div>';
-								
-								$.each(repo.authors.author, function(index, author){
-									rightContainer += '<div><b>'+author.time_taken+' hrs</b> by '+author.login+'</div>';
-								});
-							});
-						} else {
-							leftContainer = "Time not yet entered.";
-						}
-
-						$("#leftContainer").html(leftContainer);
-						$("#rightContainer").html(rightContainer);
-
-					}
-				  });
-		});
+		$.ajax({
+				type: "GET",
+				<?php
+				  $e_ofuz_github = new Event("OfuzGitHubAPI->eventGetWeeksRangeDropdown");
+				  $e_ofuz_github->setEventControler("ajax_evctl.php");
+				  $e_ofuz_github->setSecure(false);
+				?>
+				url: "<?php echo $e_ofuz_github->getUrl(); ?>",
+				data: "month="+month+"&year="+year,
+				success: function(result){
+					$("#weeksDropdown").html(result);
+				}
+			  });
 	});
+
+	$('#submit').on('click', function() {
+		getTimeSheetReport();
+	});
+
+});
+
+/*
+ *
+ */
+function getTimeSheetReport() {
+
+	var year = $('#year').val();
+	var month = $('#months').val();
+	var weeks = $('#weeks').val();
+	$.ajax({
+			type: "GET",
+			<?php
+			  $e_report = new Event("OfuzGitHubAPI->eventGetTimesheetReport");
+			  $e_report->setEventControler("ajax_evctl.php");
+			  $e_report->setSecure(false);
+			?>
+			url: "<?php echo $e_report->getUrl(); ?>",
+			data: "month="+month+"&year="+year+'&weeks='+weeks,
+			beforeSend: function(){
+				$('.ajaxIndicator').show();
+			},
+			complete: function(){
+				$('.ajaxIndicator').hide();
+			},
+			success: function(result){
+
+				//console.log(result);
+				var data = JSON.parse(result);
+				//console.log(data);
+				var dataLength = Object.keys(data).length;
+				var leftContainer = "";
+				var rightContainer = "";
+
+				if(dataLength) {
+					$.each(data.authorsTime, function(index, value){
+						leftContainer += '<div>'+value.commentAuthor+' : <b>'+value.timeTaken+' hrs</b></div>';
+					});
+
+					$.each(data.repositories, function(index, repo){
+						rightContainer += '<div class="top-margin-20"><span class="heading-hr-red">Total time spent on <b>'+repo.organization + ' / ' + repo.repository+'</b> : '+repo.totalTimeSpent+' hrs</span></div>';
+						rightContainer += '<div class="top-margin-20"><b class="heading-hr-green">Per Issues:</b></div>';
+						
+						$.each(repo.issues.issue, function(index, issue){
+							rightContainer += '<div><b>'+issue.time_taken+' hrs</b> on '+issue.title+'</div>';
+						});
+
+						rightContainer += '<div class="top-margin-20"><b class="heading-hr-green">Per Authors:</b></div>';
+						
+						$.each(repo.authors.author, function(index, author){
+							rightContainer += '<div><b>'+author.time_taken+' hrs</b> by '+author.login+'</div>';
+						});
+					});
+				} else {
+					leftContainer = "Time not yet entered.";
+				}
+
+				$("#leftContainer").html(leftContainer);
+				$("#rightContainer").html(rightContainer);
+
+			}
+	});
+
+}
 	</script>
   </body>
 </html>

@@ -45,7 +45,8 @@ class OfuzGitHubAPI extends DataObject {
 							foreach($issue->comments->nodes as $comment) {
 								$time_on_comment = preg_match('#\T{(.*?)\}#', $comment->bodyText, $matches) ? $matches[1] : "";
 								if(!empty($time_on_comment)) {
-									$comment_created_at = date('Y-m-d', strtotime($comment->createdAt));
+									$arr_comment_created_at = explode("T", $comment->createdAt);
+									$comment_created_at = $arr_comment_created_at[0];
 									$arr_time_taken = explode(":", $time_on_comment);
 									$time_taken = $arr_time_taken[0].".".$arr_time_taken[1];
 
@@ -289,7 +290,6 @@ class OfuzGitHubAPI extends DataObject {
 
 		$data = $this->jsonEncode($this->report);	
 		echo $data;
-		//print_r($this->report);
 	}
 
 	/*
