@@ -92,6 +92,7 @@ $weeks_dropdown_html = $do_github->getWeekRangeDropDown();
 <script type="text/javascript">
 $(document).ready(function(){
 
+	// On page load, display the Timesheet report
 	getTimeSheetReport();
 
 	$('.report_selects').on('change', function() {
@@ -120,7 +121,10 @@ $(document).ready(function(){
 });
 
 /*
+ * Generates the Timesheet report fetching Data from Database
+ * Uses Radria Ajax event controler
  *
+ * @see class/OfuzGitHubAPI.class.php
  */
 function getTimeSheetReport() {
 
@@ -144,9 +148,7 @@ function getTimeSheetReport() {
 			},
 			success: function(result){
 
-				//console.log(result);
 				var data = JSON.parse(result);
-				//console.log(data);
 				var dataLength = Object.keys(data).length;
 				var leftContainer = "";
 				var rightContainer = "";
@@ -162,6 +164,12 @@ function getTimeSheetReport() {
 						
 						$.each(repo.issues.issue, function(index, issue){
 							rightContainer += '<div><b>'+issue.time_taken+' hrs</b> on '+issue.title+'</div>';
+						});
+
+						rightContainer += '<div class="top-margin-20"><b class="heading-hr-green">Per Pull Requests:</b></div>';
+						
+						$.each(repo.pullRequests.pullRequest, function(index, pr){
+							rightContainer += '<div><b>'+pr.time_taken+' hrs</b> on '+pr.title+'</div>';
 						});
 
 						rightContainer += '<div class="top-margin-20"><b class="heading-hr-green">Per Authors:</b></div>';

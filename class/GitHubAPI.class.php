@@ -49,15 +49,42 @@ class GitHubAPI {
 	}
 
 	/*
+	 * Makes a POST request with a JSON payload.
+	 * Payload must contain a string called "query"
+	 * This makes a request to fetch 100 Issues and each Issue's 100 Comments with other relevant information.
+	 * One query JSON request with pagination cursor to read more than 100 Issues.
 	 *
+	 * @param string : $issues_cursor : default empty or pagination cursor
+	 * @return JSON object
 	 */
 	public function getAllIssues($issues_cursor) {
-		//$query = '{"query": "query { repository(owner:\"htmlfusion\", name:\"gishwhes\") {id, issues(last:5, states:OPEN) { edges { node { id title url comments(last:5) { edges { node { id createdAt author{ login } bodyText } } } } } } } }"}'; 
 
 		if($issues_cursor) {
 			$query = '{"query": "query { repository(owner:\"'.$this->organization.'\", name:\"'.$this->repository.'\") {id, issues(first:100 after:\"'.$issues_cursor.'\") { totalCount nodes { id title url comments(first:100) { totalCount nodes { id createdAt author{ login } bodyText } } } pageInfo {endCursor hasNextPage} } } }"}'; 
 		} else {
 			$query = '{"query": "query { repository(owner:\"'.$this->organization.'\", name:\"'.$this->repository.'\") {id, issues(first:100) { totalCount nodes { id title url comments(first:100) { totalCount nodes { id createdAt author{ login } bodyText } } } pageInfo {endCursor hasNextPage} } } }"}'; 
+		}
+
+		$this->setQuery($query);
+		$data = $this->processQuery();
+		return $data;
+	}
+
+	/*
+	 * Makes a POST request with a JSON payload.
+	 * Payload must contain a string called "query"
+	 * This makes a request to fetch 100 Pull Requests and each Pull Request's 100 Comments with other relevant information.
+	 * One query JSON request with pagination cursor to read more than 100 Pull Requests.
+	 *
+	 * @param string : $pull_request_cursor : default empty or pagination cursor
+	 * @return JSON object
+	 */
+	public function getAllPullRequests($pull_request_cursor) {
+
+		if($pull_request_cursor) {
+			$query = '{"query": "query { repository(owner:\"'.$this->organization.'\", name:\"'.$this->repository.'\") {id, pullRequests(first:100 after:\"'.$pull_request_cursor.'\") { totalCount nodes { id title url comments(first:100) { totalCount nodes { id createdAt author{ login } bodyText } } } pageInfo {endCursor hasNextPage} } } }"}'; 
+		} else {
+			$query = '{"query": "query { repository(owner:\"'.$this->organization.'\", name:\"'.$this->repository.'\") {id, pullRequests(first:100) { totalCount nodes { id title url comments(first:100) { totalCount nodes { id createdAt author{ login } bodyText } } } pageInfo {endCursor hasNextPage} } } }"}'; 
 		}
 
 		$this->setQuery($query);

@@ -1,6 +1,10 @@
 <?php
 /*
- * A class which interacts with GitHub API and Ofuz Database
+ * A class which parses the Issues Object and stores the data in the Ofuz Database
+ *
+ * Node Type: Issue, Pull Request
+ *
+ * @see class/GitHubAPI.class.php
  */
 
 include_once('GitHubAPI.class.php');
@@ -15,6 +19,7 @@ class OfuzGitHubAPI extends DataObject {
 	public $report = array();
 	public $repositories = array();
 	private $issues_cursor = "";
+	private $pull_request_cursor = "";
 	public $org = "";
 	public $repo = "";
 
@@ -23,9 +28,17 @@ class OfuzGitHubAPI extends DataObject {
     }
 
 	/*
-	 *
+	 * This method gets the repository object from GitHub API and 
+	   parses all the issues and it's comments.
+	   Looks for the time format T{} in the Issues' comments, extracts the exact time, 
+	   stores all the info with time in the ofuz Database.
+	   Time format: T{1:30} which is 1 hour 30 minutes.
+	   Since the GitHub API has limit 100 on fetching the issues/comments, this method uses 
+	   recursive function to read all the Issues from the repository.
+
+	 * @see class/GitHubAPI.class.php
 	 */
-	public function trackTimeFromCommentsSpentOnIssues() {
+	public function trackTimeFromIssues() {
 		$github_api = new GitHubAPI();
 		$github_api->organization = $this->org;
 		$github_api->repository = $this->repo;
@@ -54,7 +67,7 @@ class OfuzGitHubAPI extends DataObject {
 
 									if($idgithub_time_tracking) {
 										$this->getId($idgithub_time_tracking);
-										$this->issue_title = $issue->title;
+										$this->title = $issue->title;
 										$this->time_taken = $time_taken;
 										$this->update();
 									} else {
@@ -63,12 +76,13 @@ class OfuzGitHubAPI extends DataObject {
 										$this->idrepository = $idrepository;
 										$this->repository = $repo;
 										$this->idissue = $issue->id;
-										$this->issue_title = $issue->title;
-										$this->issue_url = $issue->url;
-										$this->id_issue_comment = $comment->id;
-										$this->issue_comment_created_at = $comment_created_at;
-										$this->issue_comment_author = $comment->author->login;
+										$this->title = $issue->title;
+										$this->url = $issue->url;
+										$this->id_comment = $comment->id;
+										$this->comment_created_at = $comment_created_at;
+										$this->comment_author = $comment->author->login;
 										$this->time_taken = $time_taken;
+										$this->node_type = "Issue";
 										$this->add();
 									}
 								}
@@ -78,7 +92,7 @@ class OfuzGitHubAPI extends DataObject {
 
 					if($repository->issues->pageInfo->hasNextPage) {
 						$this->issues_cursor = $repository->issues->pageInfo->endCursor;
-						$this->trackTimeFromCommentsSpentOnIssues();
+						$this->trackTimeFromIssues();
 					}
 				}
 			}
@@ -86,14 +100,119 @@ class OfuzGitHubAPI extends DataObject {
 	}
 
 	/*
+	 * This method gets the repository object from GitHub API and 
+	   parses all the Pull Requests and it's comments.
+	   Looks for the time format T{} in the comments, extracts the exact time, 
+	   stores all the info with time in the ofuz Database.
+	   Time format: T{1:30} which is 1 hour 30 minutes.
+	   Since the GitHub API has limit 100 on fetching the Pull Requests, this method uses 
+	   recursive function to read all the Pull Requests from the repository.
+
+	 * @see class/GitHubAPI.class.php
+	 */
+	
+	public function trackTimeFromPullRequests() {
+		$github_api = new GitHubAPI();
+		$github_api->organization = $this->org;
+		$github_api->repository = $this->repo;
+		$result = $github_api->getAllPullRequests($this->pull_request_cursor);
+		$result = $github_api->jsonDecode($result);
+
+		foreach($result as $data) {
+			foreach($data as $repository) {
+				$idrepository = $repository->id;
+
+				if($repository->pullRequests->totalCount) {
+					foreach($repository->pullRequests->nodes as $pull_request) {
+						//echo $pull_request->title."<br />";
+						if($pull_request->comments->totalCount) {
+							foreach($pull_request->comments->nodes as $comment) {
+								$time_on_comment = preg_match('#\T{(.*?)\}#', $comment->bodyText, $matches) ? $matches[1] : "";
+								if(!empty($time_on_comment)) {
+									$arr_comment_created_at = explode("T", $comment->createdAt);
+									$comment_created_at = $arr_comment_created_at[0];
+									$arr_time_taken = explode(":", $time_on_comment);
+									$time_taken = $arr_time_taken[0].".".$arr_time_taken[1];
+
+									$idgithub_time_tracking = $this->checkIfTimeAlreadyTrackedForPullRequest($this->org,$this->repo,$pull_request->id,$comment->id);
+
+									if($idgithub_time_tracking) {
+										$this->getId($idgithub_time_tracking);
+										$this->title = $pull_request->title;
+										$this->time_taken = $time_taken;
+										$this->update();
+									} else {
+										$this->addNew();
+										$this->organization = $this->org;
+										$this->idrepository = $idrepository;
+										$this->repository = $this->repo;
+										$this->idpull_request = $pull_request->id;
+										$this->title = $pull_request->title;
+										$this->url = $pull_request->url;
+										$this->id_comment = $comment->id;
+										$this->comment_created_at = $comment_created_at;
+										$this->comment_author = $comment->author->login;
+										$this->time_taken = $time_taken;
+										$this->node_type = "Pull Request";
+										$this->add();
+									}
+
+								}
+							}
+						}
+					}
+
+					if($repository->pullRequests->pageInfo->hasNextPage) {
+						$this->pull_request_cursor = $repository->pullRequests->pageInfo->endCursor;
+						$this->trackTimeFromPullRequests();
+					}
+				}
+			}
+		}
+	}
+	 
+
+	/*
+	 * Checks if time already tracked in the Database for specific comment for specific Issue.
 	 *
+	 * @param string : $org organization
+	 * @param string : $repo repository
+	 * @param string : $id_issue issue id
+	 * @param string : $id_comment comment id
+	 *
+	 * @return int/bool : if true returns primary key or false
 	 */
 	public function checkIfIssueCommentTimeAlreadyRecorded($org,$repo,$id_issue,$id_comment){
 		$query = "SELECT ".$this->primary_key
 				." FROM ".$this->table
 				." WHERE `organization` = '".$this->quote($org)."' AND `repository` = '".$this->quote($repo)."' 
-				AND `idissue` = '".$this->quote($id_issue)."'  AND `id_issue_comment` = '".$this->quote($id_comment)."'"
-				;
+				AND `idissue` = '".$this->quote($id_issue)."'  AND `id_comment` = '".$this->quote($id_comment)."' 
+				AND node_type = 'Issue'";
+		$this->query($query);
+
+		if($this->getNumRows()) {
+			return $this->idgithub_time_tracking;
+		} else {
+			return false;
+		}
+	}
+
+	/*
+	 * Checks if time already tracked in the Database for specific comment for specific Pull Request.
+	 *
+	 * @param string : $org organization
+	 * @param string : $repo repository
+	 * @param string : $idpull_request Pull Request id
+	 * @param string : $id_comment comment id
+	 *
+	 * @return int/bool : if true returns primary key or false
+	 */
+	public function checkIfTimeAlreadyTrackedForPullRequest($org,$repo,$idpull_request,$id_comment){
+		$query = "SELECT ".$this->primary_key
+				." FROM ".$this->table
+				." WHERE `organization` = '".$this->quote($org)."' AND `repository` = '".$this->quote($repo)."' 
+				AND `idpull_request` = '".$this->quote($idpull_request)."'  AND `id_comment` = '".$this->quote($id_comment)."' 
+				AND node_type = 'Pull Request'";
 		$this->query($query);
 
 		if($this->getNumRows()) {
@@ -299,10 +418,10 @@ class OfuzGitHubAPI extends DataObject {
 
 		$where_clause_date_range = $this->getQueryWhereClauseForDateRange();
 
-		$query = "SELECT issue_comment_author AS comment_author, SUM(time_taken) AS time_taken 
+		$query = "SELECT comment_author, SUM(time_taken) AS time_taken 
 					FROM ".$this->table."
 					WHERE ".$where_clause_date_range."
-					GROUP BY issue_comment_author";
+					GROUP BY comment_author";
 		$this->query($query);
 
 		if($this->getNumRows()) {
@@ -337,6 +456,7 @@ class OfuzGitHubAPI extends DataObject {
 			while($repo = $sql->fetch()) {
 				$time_spent_on_repo  = $this->getTimeSpentOnRepository($repo->idrepository);
 				$time_per_issues = $this->getTimeSpentPerRepositoryPerIssues($repo->idrepository);
+				$time_per_pull_requests = $this->getTimeSpentPerRepositoryPerPullRequests($repo->idrepository);
 				$time_per_authors = $this->getTimeSpentPerRepositoryPerAuthors($repo->idrepository);
 				$arr_repo = array(
 								"organization" => $repo->organization,
@@ -344,6 +464,7 @@ class OfuzGitHubAPI extends DataObject {
 								"repository" => $repo->repository,
 								"totalTimeSpent" => $time_spent_on_repo,
 								"issues" => $time_per_issues,
+								"pullRequests" => $time_per_pull_requests,
 								"authors" => $time_per_authors
 							);
 				$this->repositories["repositories"][] = $arr_repo;
@@ -366,9 +487,9 @@ class OfuzGitHubAPI extends DataObject {
 
 		if($this->week_range) {
 			$arr_week_range = explode('/', $this->week_range);
-			$where_clause_date_range = "`issue_comment_created_at` BETWEEN '".$arr_week_range[0]."' AND '".$arr_week_range[1]."'";
+			$where_clause_date_range = "`comment_created_at` BETWEEN '".$arr_week_range[0]."' AND '".$arr_week_range[1]."'";
 		} else {
-			$where_clause_date_range = "`issue_comment_created_at` LIKE '".$year_month."-%'";
+			$where_clause_date_range = "`comment_created_at` LIKE '".$year_month."-%'";
 		}
 
 		return $where_clause_date_range;
@@ -408,19 +529,50 @@ class OfuzGitHubAPI extends DataObject {
 
 		$data = array();
 		$where_clause_date_range = $this->getQueryWhereClauseForDateRange();
-		$query = "SELECT issue_title, SUM(time_taken) AS time_taken
+		$query = "SELECT title, SUM(time_taken) AS time_taken
 					FROM ".$this->table." 
-					WHERE idrepository = '".$idrepository."' AND ".$where_clause_date_range."
+					WHERE idrepository = '".$idrepository."' AND node_type = 'Issue' AND ".$where_clause_date_range."
 					GROUP BY idissue";
 		$this->query($query);
 
 		if($this->getNumRows()) {
 			while($this->next()) {
 				$issue = array(
-								'title' => $this->issue_title,
+								'title' => $this->title,
 								'time_taken' => $this->time_taken
 							);
 				$data['issue'][] = $issue;	
+			}
+		}
+
+		return $data;
+
+	}
+
+	/*
+	 * This gets total time spent on each Pull Request for specific repository 
+	   for given DATE range
+	 *
+	 * @param string : $idrepository
+	 * @return array : of Pull Requests with time spent on.
+	 */
+	function getTimeSpentPerRepositoryPerPullRequests($idrepository){
+
+		$data = array();
+		$where_clause_date_range = $this->getQueryWhereClauseForDateRange();
+		$query = "SELECT title, SUM(time_taken) AS time_taken
+					FROM ".$this->table." 
+					WHERE idrepository = '".$idrepository."' AND node_type = 'Pull Request' AND ".$where_clause_date_range."
+					GROUP BY idpull_request";
+		$this->query($query);
+
+		if($this->getNumRows()) {
+			while($this->next()) {
+				$pull_request = array(
+								'title' => $this->title,
+								'time_taken' => $this->time_taken
+							);
+				$data['pullRequest'][] = $pull_request;
 			}
 		}
 
@@ -439,16 +591,16 @@ class OfuzGitHubAPI extends DataObject {
 
 		$data = array();
 		$where_clause_date_range = $this->getQueryWhereClauseForDateRange();
-		$query = "SELECT issue_comment_author, SUM(time_taken) AS time_taken
+		$query = "SELECT comment_author, SUM(time_taken) AS time_taken
 					FROM ".$this->table." 
 					WHERE idrepository = '".$idrepository."' AND ".$where_clause_date_range."
-					GROUP BY issue_comment_author";
+					GROUP BY comment_author";
 		$this->query($query);
 
 		if($this->getNumRows()) {
 			while($this->next()) {
 				$time_authors = array(
-								'login' => $this->issue_comment_author,
+								'login' => $this->comment_author,
 								'time_taken' => $this->time_taken
 							);
 				$data['author'][] = $time_authors;	
