@@ -114,6 +114,7 @@
   // Ofuz API classes
   include_once("class/OfuzApiBase.class.php");
   include_once("class/OfuzApiMethods.class.php");
+  include_once('class/OfuzGitHubAPI.class.php');
   
 
   //vCard Import
@@ -232,6 +233,4 @@
   $GLOBALS['ENABLE_JOB_QUEUE'] = false;
   define('JOB_QUEUE_IP','72.172.84.167');
   define('JOB_QUEUE_PORT','11300');
-  
-
 ?>
