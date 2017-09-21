@@ -1534,6 +1534,44 @@ class User extends RegisteredUser {
 		return $delete;
 	}
 
+	/*
+	 * Get all the User Contact tables prefixed with 'userid'
+	 */
+
+	function getUserContactTables() {
+		$sql = "SHOW TABLES LIKE 'userid%_contact'";
+		$this->query($sql);
+	}
+
+	/*
+	 * Check if specific User exists in "user" table.
+	 *
+	 * @param int $iduser
+	 * @return boolean
+	 */
+
+	function doesUserExist($iduser) {
+		$sql = "SELECT * FROM ".$this->table." WHERE iduser = ".$iduser;
+		$this->query($sql);
+
+		if($this->getNumRows()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/*
+	 * Deletes the Table from the Database.
+	 *
+	 * @param string $table
+	 */
+
+	function dropTable($table) {
+		$sql = "DROP TABLE ".$table;
+		$this->query($sql);
+	}
+
 }
 
 ?>
