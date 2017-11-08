@@ -55,4 +55,12 @@ $do_github->org = "AfterNow";
 $do_github->repo = "inhance_sensr";
 $do_github->trackTimeFromIssues();
 $do_github->trackTimeFromPullRequests();
+
+echo "AfterNow / AR-Pres-WebClient<br />";
+
+$do_github = new OfuzGitHubAPI();
+$do_github->org = "AfterNow";
+$do_github->repo = "AR-Pres-WebClient";
+$do_github->trackTimeFromIssues();
+$do_github->trackTimeFromPullRequests();
 ?>
