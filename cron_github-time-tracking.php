@@ -63,4 +63,12 @@ $do_github->org = "AfterNow";
 $do_github->repo = "AR-Pres-WebClient";
 $do_github->trackTimeFromIssues();
 $do_github->trackTimeFromPullRequests();
+
+echo "AfterNow / Sherlock3CG<br />";
+
+$do_github = new OfuzGitHubAPI();
+$do_github->org = "AfterNow";
+$do_github->repo = "Sherlock3CG";
+$do_github->trackTimeFromIssues();
+$do_github->trackTimeFromPullRequests();
 ?>
