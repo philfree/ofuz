@@ -1,74 +1,60 @@
 <?php
 /*
- * A cron script
+ * A cron script to track the time from GitHub Issues/Pull Requests
  *
  */
+
 include_once('config.php');
 
-echo "htmlfusion / gishwhes <br />";
+// Arrays of Organization and Repositories
+$repos = [
+	[
+		"organisation" => "htmlfusion",
+		"repository" => "gishwhes",
+	],
+	[
+		"organisation" => "htmlfusion",
+		"repository" => "gishwhes_admin",
+	],
+/*	[
+		"organisation" => "AfterNow",
+		"repository" => "death2normalcy",
+	],*/
+	[
+		"organisation" => "AfterNow",
+		"repository" => "AR-Pres-Hololens",
+	],
+	[
+		"organisation" => "AfterNow",
+		"repository" => "Hyperlens2",
+	],
+	[
+		"organisation" => "AfterNow",
+		"repository" => "AR-Pres-API",
+	],
+	[
+		"organisation" => "AfterNow",
+		"repository" => "inhance_sensr",
+	],
+	[
+		"organisation" => "AfterNow",
+		"repository" => "AR-Pres-WebClient",
+	],
+	[
+		"organisation" => "AfterNow",
+		"repository" => "Sherlock3CG",
+	],
+];
 
-$do_github = new OfuzGitHubAPI();
-$do_github->org = "htmlfusion";
-$do_github->repo = "gishwhes";
-$do_github->trackTimeFromIssues();
-$do_github->trackTimeFromPullRequests();
+// loops through each repo and calls methods to track the time from GitHub
+foreach($repos as $repo) {
+	echo $repo['organisation']." / ". $repo['repository']."<br />";
 
+	$do_github = new OfuzGitHubAPI();
+	$do_github->org = $repo['organisation'];
+	$do_github->repo = $repo['repository'];
+	$do_github->trackTimeFromIssues();
+	$do_github->trackTimeFromPullRequests();
+}
 
-/*
-echo "AfterNow / death2normalcy <br />";
-
-$do_github = new OfuzGitHubAPI();
-$do_github->org = "AfterNow";
-$do_github->repo = "death2normalcy";
-$do_github->trackTimeFromIssues();
-$do_github->trackTimeFromPullRequests();
-*/
-
-echo "AfterNow / AR-Pres-Hololens<br />";
-
-$do_github = new OfuzGitHubAPI();
-$do_github->org = "AfterNow";
-$do_github->repo = "AR-Pres-Hololens";
-$do_github->trackTimeFromIssues();
-$do_github->trackTimeFromPullRequests();
-
-echo "AfterNow / Hyperlens2<br />";
-
-$do_github = new OfuzGitHubAPI();
-$do_github->org = "AfterNow";
-$do_github->repo = "Hyperlens2";
-$do_github->trackTimeFromIssues();
-$do_github->trackTimeFromPullRequests();
-
-echo "AfterNow / AR-Pres-API<br />";
-
-$do_github = new OfuzGitHubAPI();
-$do_github->org = "AfterNow";
-$do_github->repo = "AR-Pres-API";
-$do_github->trackTimeFromIssues();
-$do_github->trackTimeFromPullRequests();
-
-echo "AfterNow / inhance_sensr<br />";
-
-$do_github = new OfuzGitHubAPI();
-$do_github->org = "AfterNow";
-$do_github->repo = "inhance_sensr";
-$do_github->trackTimeFromIssues();
-$do_github->trackTimeFromPullRequests();
-
-echo "AfterNow / AR-Pres-WebClient<br />";
-
-$do_github = new OfuzGitHubAPI();
-$do_github->org = "AfterNow";
-$do_github->repo = "AR-Pres-WebClient";
-$do_github->trackTimeFromIssues();
-$do_github->trackTimeFromPullRequests();
-
-echo "AfterNow / Sherlock3CG<br />";
-
-$do_github = new OfuzGitHubAPI();
-$do_github->org = "AfterNow";
-$do_github->repo = "Sherlock3CG";
-$do_github->trackTimeFromIssues();
-$do_github->trackTimeFromPullRequests();
 ?>
