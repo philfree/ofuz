@@ -16,6 +16,10 @@ $repos = [
 		"organisation" => "htmlfusion",
 		"repository" => "gishwhes_admin",
 	],
+	[
+		"organisation" => "htmlfusion",
+		"repository" => "gishwhes_api",
+	],
 /*	[
 		"organisation" => "AfterNow",
 		"repository" => "death2normalcy",
