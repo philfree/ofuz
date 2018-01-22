@@ -6,7 +6,8 @@
 
 include_once('config.php');
 
-// Arrays of Organization and Repositories
+
+// Arrays of Organizations and Repositories
 $repos = [
 	[
 		"organisation" => "htmlfusion",
@@ -15,6 +16,10 @@ $repos = [
 	[
 		"organisation" => "htmlfusion",
 		"repository" => "gishwhes_admin",
+	],
+	[
+		"organisation" => "htmlfusion",
+		"repository" => "gishwhes_api",
 	],
 /*	[
 		"organisation" => "AfterNow",
