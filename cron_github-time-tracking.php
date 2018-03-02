@@ -21,10 +21,14 @@ $repos = [
 		"organisation" => "htmlfusion",
 		"repository" => "gishwhes_api",
 	],
-/*	[
+	[
+		"organisation" => "htmlfusion",
+		"repository" => "gish-website",
+	],
+	[
 		"organisation" => "AfterNow",
 		"repository" => "death2normalcy",
-	],*/
+	],
 	[
 		"organisation" => "AfterNow",
 		"repository" => "AR-Pres-Hololens",
@@ -48,6 +52,10 @@ $repos = [
 	[
 		"organisation" => "AfterNow",
 		"repository" => "Sherlock3CG",
+	],
+	[
+		"organisation" => "AfterNow",
+		"repository" => "gishwhes-react-native",
 	],
 ];
 
