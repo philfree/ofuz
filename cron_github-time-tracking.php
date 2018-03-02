@@ -25,10 +25,10 @@ $repos = [
 		"organisation" => "htmlfusion",
 		"repository" => "gish-website",
 	],
-/*	[
+	[
 		"organisation" => "AfterNow",
 		"repository" => "death2normalcy",
-	],*/
+	],
 	[
 		"organisation" => "AfterNow",
 		"repository" => "AR-Pres-Hololens",
