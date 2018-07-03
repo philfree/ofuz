@@ -57,6 +57,14 @@ $repos = [
 		"organisation" => "AfterNow",
 		"repository" => "gishwhes-react-native",
 	],
+	[
+		"organisation" => "AfterNow",
+		"repository" => "hershey-web",
+	],
+	[
+		"organisation" => "AfterNow",
+		"repository" => "Hershey",
+	],
 ];
 
 // loops through each repo and calls methods to track the time from GitHub
