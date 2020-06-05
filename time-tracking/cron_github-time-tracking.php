@@ -4,6 +4,10 @@
  *
  */
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include_once('config.php');
 include_once('OfuzGitHubAPI.class.php');
 
@@ -20,6 +24,14 @@ $repos = [
 		[
 			"organisation" => "htmlfusion",
 			"repository" => "gishwhes_api",
+		],
+		[
+			"organisation" => "htmlfusion",
+			"repository" => "gish-website",
+		],
+		[
+			"organisation" => "AfterNow",
+			"repository" => "AN-Prez",
 		],
 ];
 

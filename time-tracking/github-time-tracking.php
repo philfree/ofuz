@@ -65,7 +65,7 @@ $previous_year = $current_year - 1;
 			<div class="col-md-4">
 				<h4>Time Spent by Authors</h4>
 				<div id="leftContainer" class="top-margin-20"></div>
-				<div class="ajaxIndicator"><img src="../images/ajax-loader1.gif"/></div>
+				<div class="ajaxIndicator"><img src="images/ajax-loader1.gif"/></div>
 			</div>
 			<div class="col-md-8 right-container-main bottom-margin-50">
 				<select class="report_selects" id="year" name="year">

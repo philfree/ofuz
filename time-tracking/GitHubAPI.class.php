@@ -11,7 +11,8 @@ class GitHubAPI {
 	private $queryJSON;
 	public $organization;
 	public $repository;
-	private $git_api_access_token = "fda0312c2fbc063ba3159b0b681258efd3c1d895";
+	//private $git_api_access_token = "fda0312c2fbc063ba3159b0b681258efd3c1d895";
+	private $git_api_access_token = "cda569f9091a1c50cec13548b5eba8c44b2b9593";
 
 	function __construct() {
 		$this->api_endpoint = "https://api.github.com/graphql";
@@ -69,6 +70,7 @@ class GitHubAPI {
 
 		$this->setQuery($query);
 		$data = $this->processQuery();
+		//print_r($data);exit();
 		return $data;
 	}
 
