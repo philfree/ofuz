@@ -11,14 +11,15 @@ class GitHubAPI {
 	private $queryJSON;
 	public $organization;
 	public $repository;
-	//private $git_api_access_token = "fda0312c2fbc063ba3159b0b681258efd3c1d895";
-	private $git_api_access_token = "cda569f9091a1c50cec13548b5eba8c44b2b9593";
+	//private $git_api_access_token = "fda0312c2fbc063ba3159b0b681258efd3c1d895"; // old one
+	//private $git_api_access_token = "cda569f9091a1c50cec13548b5eba8c44b2b9593";
+	private $git_api_access_token = "f72bc253cf41c2ee5dec088ef4b53ab23ed37709";
 
 	function __construct() {
 		$this->api_endpoint = "https://api.github.com/graphql";
 		//$this->authorization_key = $_SERVER['GitHub_API_ACCESS_TOKEN'];
 		$this->authorization_key = $this->git_api_access_token;
-		$this->authorization_key_description = "Time Tracking System";
+		$this->authorization_key_description = "WorklogTracking";
 	}
 
 	/*
