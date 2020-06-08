@@ -11,12 +11,11 @@ class GitHubAPI {
 	private $queryJSON;
 	public $organization;
 	public $repository;
-	private $git_api_access_token = "d50a3e78a381507df00b33ba71a5f2f9227f77b0";
 
 	function __construct() {
 		$this->api_endpoint = "https://api.github.com/graphql";
-		//$this->authorization_key = $_SERVER['GitHub_API_ACCESS_TOKEN'];
-		$this->authorization_key = $this->git_api_access_token;
+		$this->authorization_key = $_SERVER['GitHub_API_ACCESS_TOKEN'];
+		//$this->authorization_key = "";
 		$this->authorization_key_description = "worklog-tracking";
 	}
 
