@@ -80,7 +80,7 @@ $weeks_dropdown_html = $do_github->getWeekRangeDropDown();
 				<span id="weeksDropdown"><?php echo $weeks_dropdown_html;?></span>
 				<input type="button" id="submit" name="submit" value="Submit" />	
 				<div id="rightContainer" class="top-margin-20"></div>
-				<div class="ajaxIndicator"><img src="images/ajax-loader1.gif"/></div>
+				<div class="ajaxIndicator"><img src="ajax-loader1.gif"/></div>
 			</div>
 		</div>
 	</div>
