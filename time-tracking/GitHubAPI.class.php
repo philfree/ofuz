@@ -1,7 +1,8 @@
 <?php
 /*
- *
+ * This script uses GitHub API to fetch data
  * key and description are from GitHub settings.
+ * @author <ravi@afternow.io>
  */
 
 class GitHubAPI {
@@ -15,7 +16,6 @@ class GitHubAPI {
 	function __construct() {
 		$this->api_endpoint = "https://api.github.com/graphql";
 		$this->authorization_key = $_SERVER['GitHub_API_ACCESS_TOKEN'];
-		//$this->authorization_key = "";
 		$this->authorization_key_description = "worklog-tracking";
 	}
 
