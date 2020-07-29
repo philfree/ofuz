@@ -49,11 +49,11 @@ class OfuzGitHubAPI {
 		$result = $github_api->jsonDecode($result);
 		$org = $this->org;
 		$repo = $this->repo;
-	/*	$first_day_this_month_ts = strtotime('first day of this month');
-		$last_day_this_month_ts = strtotime('last day of this month'); */
+		$first_day_this_month_ts = strtotime('first day of this month');
+		$last_day_this_month_ts = strtotime('last day of this month'); 
 
-		$first_day_this_month_ts = strtotime('first day of last month');
-		$last_day_this_month_ts = strtotime('last day of last month');
+		/*$first_day_this_month_ts = strtotime('first day of last month');
+		$last_day_this_month_ts = strtotime('last day of last month');*/
 
 		/*$first_day_this_month_ts = strtotime('first day of April 2020');
 		$last_day_this_month_ts = strtotime('last day of April 2020');*/
@@ -123,11 +123,11 @@ class OfuzGitHubAPI {
 		$github_api->repository = $this->repo;
 		$result = $github_api->getAllPullRequests($this->pull_request_cursor);
 		$result = $github_api->jsonDecode($result);
-		/*$first_day_this_month_ts = strtotime('first day of this month');
-		$last_day_this_month_ts = strtotime('last day of this month');*/
+		$first_day_this_month_ts = strtotime('first day of this month');
+		$last_day_this_month_ts = strtotime('last day of this month');
 
-		$first_day_this_month_ts = strtotime('first day of last month');
-		$last_day_this_month_ts = strtotime('last day of last month');
+		/*$first_day_this_month_ts = strtotime('first day of last month');
+		$last_day_this_month_ts = strtotime('last day of last month');*/
 
 		/*$first_day_this_month_ts = strtotime('first day of April 2020');
 		$last_day_this_month_ts = strtotime('last day of April 2020');*/
