@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>GitHub Issues Time Tracking System</title>
+    <title>AfterNow :: Time Tracking System</title>
 
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -53,7 +53,7 @@ $previous_year = $current_year - 1;
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Ofuz :: GitHub Time Tracking System</a>
+          <a class="navbar-brand" href="#">AfterNow :: Time Tracking System</a>
         </div>
       </div>
     </nav>
@@ -102,7 +102,7 @@ $(document).ready(function(){
 		$.ajax({
 			type: "POST",
 			url: "tracking-process.php",
-			data: "month="+month+"&year="+year+"&weeks="+weeks+"&method=eventGetWeeksRangeDropdown",
+			data: "month="+month+"&year="+year+"&weeks="+weeks+"&feature=week-range",
 			success: function(result){
 				$("#weeksDropdown").html(result);
 			}
@@ -118,7 +118,6 @@ $(document).ready(function(){
  * Generates the Timesheet report fetching Data from Database
  * Uses Radria Ajax event controler
  *
- * @see class/OfuzGitHubAPI.class.php
  */
 function getTimeSheetReport() {
 
@@ -128,7 +127,7 @@ function getTimeSheetReport() {
 	$.ajax({
 			type: "POST",
 			url: "tracking-process.php",
-			data: "month="+month+"&year="+year+'&weeks='+weeks+"&method=eventGetTimesheetReport",
+			data: "month="+month+"&year="+year+'&weeks='+weeks+"&feature=timesheet-all",
 			beforeSend: function(){
 				$('.ajaxIndicator').show();
 			},
@@ -141,14 +140,25 @@ function getTimeSheetReport() {
 				var data = JSON.parse(result);
 				var dataLength = Object.keys(data).length;
 				var leftContainer = "";
-				var rightContainer = "";
+        var rightContainer = "";
 
-				if(dataLength) {
+        console.log(data);
+
+        if(dataLength) {
+          // GitHub
+          leftContainer += '<div><b class="heading-hr-green">GitHub Board</b></div>';
 					$.each(data.authorsTime, function(index, value){
 						leftContainer += '<div>'+value.commentAuthor+' : <b>'+value.timeTaken+' hrs</b></div>';
-					});
+          });
 
-					$.each(data.repositories, function(index, repo){
+          // Wekan
+          leftContainer += '<div><b class="heading-hr-green">Wekan Board</b></div>';
+					$.each(data.users, function(index, value){
+						leftContainer += '<div>'+value.commentAuthor+' : <b>'+value.timeTaken+' hrs</b></div>';
+          });
+
+          $.each(data.repositories, function(index, repo){
+            // GitHub
 						rightContainer += '<div class="top-margin-20"><span class="heading-hr-red">Total time spent on <b>'+repo.organization + ' / ' + repo.repository+'</b> : '+repo.totalTimeSpent+' hrs</span></div>';
 						rightContainer += '<div class="top-margin-20"><b class="heading-hr-green">Per Issues:</b></div>';
 						
@@ -167,7 +177,25 @@ function getTimeSheetReport() {
 						$.each(repo.authors.author, function(index, author){
 							rightContainer += '<div><b>'+author.time_taken+' hrs</b> by '+author.login+'</div>';
 						});
-					});
+          });
+
+          // wekan board
+          $.each(data.boards, function (index, board){
+            rightContainer += '<div class="top-margin-20"><span class="heading-hr-red">Total time spent on <b>'+board.organization + ' / ' + board.board+'</b> : '+board.totalTimeSpent+' hrs</span></div>';
+
+						rightContainer += '<div class="top-margin-20"><b class="heading-hr-green">Per Cards:</b></div>';
+						
+						$.each(board.cards.card, function(index, card){
+							rightContainer += '<div><b>'+card.time_taken+' hrs</b> on '+card.title+'</div>';
+            });
+
+						rightContainer += '<div class="top-margin-20"><b class="heading-hr-green">Per Authors:</b></div>';
+						
+						$.each(board.users.author, function(index, author){
+							rightContainer += '<div><b>'+author.time_taken+' hrs</b> by '+author.login+'</div>';
+						});
+
+          });
 				} else {
 					leftContainer = "Time not yet entered.";
 				}

@@ -7,13 +7,25 @@
  */
 include_once("config.php");
 include_once("OfuzGitHubAPI.class.php");
+include_once("wekan/Wekan.class.php");
 
 $month = $_POST['month'];
 $year = $_POST['year'];
 $weeks = $_POST['weeks'];
-$method = $_POST['method'];
-$do_github = new OfuzGitHubAPI($conn);
-$data = $do_github->$method($year,$month,$weeks);
+$feature = $_POST['feature'];
+$data = array();
+
+if($feature == "week-range") {
+  $do_github = new OfuzGitHubAPI($conn);
+  $data = $do_github->eventGetWeeksRangeDropdown($year,$month,$weeks);
+} else if($feature == "timesheet-all") {
+  $do_github = new OfuzGitHubAPI($conn);
+  $do_github->eventGetTimesheetReport($year,$month,$weeks);
+
+  $data = json_encode($do_github->report);
+} else {
+}
+
 echo $data;
 exit();
 ?>

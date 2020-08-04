@@ -417,11 +417,37 @@ class OfuzGitHubAPI {
 		$this->week_range = $weeks;
 
 		$this->getTimeSpentOnRepositoriesPerAuthors();
-		$this->getTimeTakenOnIssuesPerRepository();
-
-		$data = $this->jsonEncode($this->report);	
-		return $data;
+    $this->getTimeTakenOnIssuesPerRepository();
+		$this->getTimeSpentOnBoardsPerUsers();
+    $this->getTimeTakenOnCardsPerBoard();
+    
+    /*
+    $data = $this->jsonEncode($this->report);	
+    return $data;
+    */
 	}
+
+
+	function getTimeSpentOnBoardsPerUsers(){
+		$where_clause_date_range = $this->getQueryWhereClauseForDateRange();
+		$query = "SELECT `user`, SUM(time_taken) AS time_taken 
+					FROM wekan_time_tracking 
+					WHERE ".$where_clause_date_range."
+					GROUP BY `user`";
+    $result = mysqli_query($this->conn, $query);
+
+		if(mysqli_num_rows($result) > 0) {
+			while($row = mysqli_fetch_object($result)) {
+				$authors_time = array();
+				$authors_time['commentAuthor'] = $row->user;
+				$authors_time['timeTaken'] = $row->time_taken;
+				$this->repositories["users"][] = $authors_time;
+			}
+
+		}
+
+		$this->report = $this->repositories;
+  }
 
 	/*
      *
@@ -535,10 +561,21 @@ class OfuzGitHubAPI {
 
 		$data = array();
 		$where_clause_date_range = $this->getQueryWhereClauseForDateRange();
+		/*
+		 * following query throws error because of SQL_MODE:
+		 * ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 
+		   'ofuz.github_time_tracking.title' which is not functionally dependent on columns in GROUP BY clause; this is 
+		   incompatible with sql_mode=only_full_group_by
+		 *
 		$query = "SELECT title, SUM(time_taken) AS time_taken
 					FROM ".$this->table." 
 					WHERE idrepository = '".$idrepository."' AND node_type = 'Issue' AND ".$where_clause_date_range."
 					GROUP BY idissue";
+		 */
+		$query = "SELECT title, SUM(time_taken) AS time_taken
+					FROM ".$this->table." 
+					WHERE idrepository = '".$idrepository."' AND node_type = 'Issue' AND ".$where_clause_date_range."
+					GROUP BY title";
 		$result = mysqli_query($this->conn, $query);
 
 		if(mysqli_num_rows($result) > 0) {
@@ -569,7 +606,7 @@ class OfuzGitHubAPI {
 		$query = "SELECT title, SUM(time_taken) AS time_taken
 					FROM ".$this->table." 
 					WHERE idrepository = '".$idrepository."' AND node_type = 'Pull Request' AND ".$where_clause_date_range."
-					GROUP BY idpull_request";
+					GROUP BY title";
 		$result = mysqli_query($this->conn, $query);
 
 		if(mysqli_num_rows($result)) {
@@ -615,6 +652,119 @@ class OfuzGitHubAPI {
 
 		return $data;
 
+	}
+
+	function getTimeTakenOnCardsPerBoard(){
+
+		$where_clause_date_range = $this->getQueryWhereClauseForDateRange();
+		$query = "SELECT DISTINCT(board_id) 
+			  FROM wekan_time_tracking 
+			  WHERE ".$where_clause_date_range;
+		$result = mysqli_query($this->conn, $query);
+		$arr = array();	
+		if(mysqli_num_rows($result) > 0) {
+			while($board = mysqli_fetch_object($result)) {
+				$time_spent_on_board  = $this->getTimeSpentOnBoard($board->board_id);
+				$time_per_cards = $this->getTimeSpentPerBoardPerCard($board->board_id);
+				$time_per_authors = $this->getTimeSpentPerBoardPerAuthors($board->board_id);
+				$arr_board= array(
+								"organization" => "AfterNow",
+								"board_id" => $board->board_id,
+								"board" => $board->board_id,
+								"totalTimeSpent" => $time_spent_on_board,
+								"cards" => $time_per_cards,
+								"users" => $time_per_authors
+							);
+				$this->repositories["boards"][] = $arr_board;
+			}
+		}
+
+		$this->report = $this->repositories;
+
+  }
+
+	/*
+	 *
+	 *
+	 */
+	function getTimeSpentOnBoard($board_id){
+
+		$time_spent = "0.00";
+		$where_clause_date_range = $this->getQueryWhereClauseForDateRange();
+		$query = "SELECT SUM(time_taken) AS time_taken
+			FROM wekan_time_tracking  
+			WHERE `board_id` = '".$board_id."' AND ".$where_clause_date_range;
+
+		$result = mysqli_query($this->conn, $query);
+
+		if(mysqli_num_rows($result) > 0) {
+			$row = mysqli_fetch_object($result);	
+			$time_spent = $row->time_taken;
+		}
+
+		return $time_spent;
+	}
+
+
+	/*
+	 * This gets total time spent on each card for specific Board 
+	   for given DATE range
+	 *
+	 * @param string : $board_id
+	 * @return array : of cards with time spent on.
+	 */
+	function getTimeSpentPerBoardPerCard($board_id){
+
+		$data = array();
+		$where_clause_date_range = $this->getQueryWhereClauseForDateRange();
+		$query = "SELECT `card`, SUM(time_taken) AS time_taken
+					FROM wekan_time_tracking 
+					WHERE `board_id` = '".$board_id."' AND ".$where_clause_date_range."
+					GROUP BY card";
+		$result = mysqli_query($this->conn, $query);
+
+		if(mysqli_num_rows($result) > 0) {
+			while($row = mysqli_fetch_object($result)) {
+				$card = array(
+								'title' => $row->card,
+								'time_taken' => $row->time_taken
+							);
+				$data['card'][] = $card;	
+			}
+		}
+
+		return $data;
+
+  }
+
+	/*
+	 * This gets time spent on specific Board by 
+	   each Author for given DATE range
+	 *
+	 * @param string : $board_id
+	 * @return array 
+	 */
+	function getTimeSpentPerBoardPerAuthors($board_id){
+
+		$data = array();
+		$where_clause_date_range = $this->getQueryWhereClauseForDateRange();
+		$query = "SELECT `user`, SUM(time_taken) AS time_taken
+					FROM wekan_time_tracking 
+					WHERE `board_id` = '".$board_id."' AND ".$where_clause_date_range."
+					GROUP BY `user`";
+		$result = mysqli_query($this->conn, $query);
+
+		if(mysqli_num_rows($result)) {
+			while($row = mysqli_fetch_object($result)) {
+				$time_authors = array(
+								'login' => $row->user,
+								'time_taken' => $row->time_taken
+							);
+				$data['author'][] = $time_authors;	
+			}
+		}
+
+		return $data;
 	}
 
 }
