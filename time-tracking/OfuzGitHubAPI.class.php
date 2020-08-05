@@ -418,6 +418,7 @@ class OfuzGitHubAPI {
 
 		$this->getTimeSpentOnRepositoriesPerAuthors();
     $this->getTimeTakenOnIssuesPerRepository();
+    // wekan board
 		$this->getTimeSpentOnBoardsPerUsers();
     $this->getTimeTakenOnCardsPerBoard();
     
@@ -657,7 +658,7 @@ class OfuzGitHubAPI {
 	function getTimeTakenOnCardsPerBoard(){
 
 		$where_clause_date_range = $this->getQueryWhereClauseForDateRange();
-		$query = "SELECT DISTINCT(board_id) 
+		$query = "SELECT DISTINCT(board_id),board
 			  FROM wekan_time_tracking 
 			  WHERE ".$where_clause_date_range;
 		$result = mysqli_query($this->conn, $query);
@@ -670,7 +671,7 @@ class OfuzGitHubAPI {
 				$arr_board= array(
 								"organization" => "AfterNow",
 								"board_id" => $board->board_id,
-								"board" => $board->board_id,
+								"board" => $board->board,
 								"totalTimeSpent" => $time_spent_on_board,
 								"cards" => $time_per_cards,
 								"users" => $time_per_authors

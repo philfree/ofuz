@@ -1,8 +1,2 @@
-INSERT INTO wekan_time_tracking 
-                        (`board_id`,`list_id`,`swimlane_id`,`card_id`,`card`,`comment_id`,`comment`,`description`,`text`,`user`,
-                        `comment_created_at`,`time_taken`)
-                        VALUES ('xG9j36C5ZwQuwZA3F','sdDoLLGBPMxFzoxQw','nhFbMAHr3ArEYXr88','Gw4FdbKJjZ5u3ufRM','create rest api',
-                                'MdMkFBWLoLxSrxJxi','Test comment T{00:30}','act-addComment','ravi commented on card "create rest api": "Test comment T{00:30}" at list "In Progress" at swimlane "Default" at board "ExploreWekan"
-http://wekan.localhost/b/xG9j36C5ZwQuwZA3F/explorewekan/Gw4FdbKJjZ5u3ufRM',
-                                'ravi','2020-08-02 06:02:29','00.30'
-                                )
+{"text":"ravi commented on card \"read mongoDB\": \"test 14 T{2:45}\" at list \"In Progress\" at swimlane \"Default\" at board \"ExploreWekan\"\nhttp://wekan.localhost/b/xG9j36C5ZwQuwZA3F/explorewekan/9JkufRaokf87jZrSz","cardId":"9JkufRaokf87jZrSz","listId":"sdDoLLGBPMxFzoxQw","boardId":"xG9j36C5ZwQuwZA3F","commentId":"Zq68nZdCdqFxMS8HA","card":"read mongoDB","board":"ExploreWekan","comment":"test 14 T{2:45}","user":"ravi","swimlaneId":"nhFbMAHr3ArEYXr88","description":"act-addComment"}
+

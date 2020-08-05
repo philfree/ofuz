@@ -37,10 +37,10 @@ class Wekan {
     if(!empty($time_taken)) {
       $comment_created_at = date("Y-m-d h:i:s");
       $query = "INSERT INTO wekan_time_tracking 
-      (`board_id`,`list_id`,`swimlane_id`,`card_id`,`card`,`comment_id`,`comment`,`description`,`text`,`user`,
+      (`board_id`,`list_id`,`swimlane_id`,`card_id`,`card`,`board`,`comment_id`,`comment`,`description`,`text`,`user`,
       `comment_created_at`,`time_taken`)
       VALUES ('".$input['boardId']."','".$input['listId']."','".$input['swimlaneId']."','".$input['cardId']."','".$input['card']."',
-      '".$input['commentId']."','".$input['comment']."','".$input['description']."','".$input['text']."',
+      '".$input['board']."','".$input['commentId']."','".$input['comment']."','".$input['description']."','".$input['text']."',
       '".$input['user']."','".$comment_created_at."','".$time_taken."'
       )";
 
