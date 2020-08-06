@@ -36,17 +36,18 @@ class Wekan {
 
     if(!empty($time_taken)) {
       $comment_created_at = date("Y-m-d h:i:s");
+      //$comment = mysqli_real_escape_string($this->conn, $input['comment']);
+
       $query = "INSERT INTO wekan_time_tracking 
-      (`board_id`,`list_id`,`swimlane_id`,`card_id`,`card`,`board`,`comment_id`,`comment`,`description`,`text`,`user`,
+      (`board_id`,`list_id`,`swimlane_id`,`card_id`,`card`,`board`,`comment_id`,`description`,`user`,
       `comment_created_at`,`time_taken`)
-      VALUES ('".$input['boardId']."','".$input['listId']."','".$input['swimlaneId']."','".$input['cardId']."','".$input['card']."',
-      '".$input['board']."','".$input['commentId']."','".$input['comment']."','".$input['description']."','".$input['text']."',
-      '".$input['user']."','".$comment_created_at."','".$time_taken."'
+      VALUES ('".$input['boardId']."','".$input['listId']."','".$input['swimlaneId']."','".$input['cardId']."','".$input['card']."','".$input['board']."','".$input['commentId']."','".$input['description']."','".$input['user']."','".$comment_created_at."','".$time_taken."'
       )";
 
-      //logEventToFile($query);
+      //$this->logEventToFile($query);
       mysqli_query($this->conn, $query);
     }
+     
   }
 
  /*
@@ -61,12 +62,11 @@ class Wekan {
 
     if(!empty($time_taken)) {
       $query = "UPDATE wekan_time_tracking 
-              SET `comment` = '".$input['comment']."', `text` = '".$input['text']."', `description` = '".$input['description']."',
-              `time_taken` = '".$time_taken."'
+              SET `description` = '".$input['description']."',`time_taken` = '".$time_taken."'
               WHERE `board_id` = '".$input['boardId']."' AND `card_id`='".$input['cardId']."' AND `comment_id`='".$input['commentId']."'"
               ;
 
-      //logEventToFile($query);
+      //$this->logEventToFile($query);
       mysqli_query($this->conn, $query);
     }
   }
@@ -94,7 +94,6 @@ class Wekan {
 
     return $time_taken;
   }
-
 
 }// end of Class
 ?>
