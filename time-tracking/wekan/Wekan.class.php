@@ -71,17 +71,32 @@ class Wekan {
   }
 
   /*
-   * When a User deletes a comment on Wekan Board, an event act-addComment is triggered 
-     and this method is executed which inserts data(comment details) in the table.
-   *
+   * When a User deletes a comment from current month on Wekan Board, an event act-addComment is triggered 
+     and this method is executed which deletes record from the table.
+   * User can not delete comment from previous month/s.
    * @param array : $input
    */
   public function deleteComment($input) {
-    $query = "DELETE FROM wekan_time_tracking 
-              WHERE `board_id` = '".$input['boardId']."' AND `card_id`='".$input['cardId']."' 
-              AND `comment_id`='".$input['commentId']."'";
 
-      mysqli_query($this->conn, $query);
+    $query = "SELECT `idwekan_time_tracking`,`comment_created_at` 
+              FROM `wekan_time_tracking`
+              WHERE `board_id` = '".$input['boardId']."' AND `card_id` = '".$input['cardId']."' 
+              AND `comment_id`= '".$input['commentId']."'";
+    $result = mysqli_query($this->conn, $query);
+    if(mysqli_num_rows($result)) {
+      $row = mysqli_fetch_object($result);
+      // timestamps
+      $ts_comment_created_at = strtotime($row->comment_created_at);
+      $ts_first_day_this_month = strtotime('first day of this month');
+      $ts_last_day_this_month = strtotime('last day of this month'); 
+
+      if(($ts_comment_created_at >= $ts_first_day_this_month) && ($ts_comment_created_at <= $ts_last_day_this_month)) {
+        $query = "DELETE FROM wekan_time_tracking 
+                  WHERE `idwekan_time_tracking` = ".$row->idwekan_time_tracking;
+
+         mysqli_query($this->conn, $query);
+      }
+    }  
   }
 
   /*
