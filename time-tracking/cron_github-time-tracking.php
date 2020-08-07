@@ -11,42 +11,42 @@ include_once('OfuzGitHubAPI.class.php');
 
 // Arrays of Organizations and Repositories
 $repos = [
-		[
-			"organisation" => "htmlfusion",
-			"repository" => "gishwhes",
-		],
-		[
-			"organisation" => "htmlfusion",
-			"repository" => "gishwhes_admin",
-		],
-		[
-			"organisation" => "htmlfusion",
-			"repository" => "gishwhes_api",
-		],
-		[
-			"organisation" => "htmlfusion",
-			"repository" => "gish-website",
-		],
-		[
-                        "organisation" => "AfterNow",
-                        "repository" => "gishwhes-react-native",
-                ],
-		[
-			"organisation" => "AfterNow",
-			"repository" => "AN-Prez",
-		],
-		[
-                        "organisation" => "AfterNow",
-                        "repository" => "AR-Pres-LB",
-                ],
-		[
-                        "organisation" => "AfterNow",
-                        "repository" => "AN-Prez-Quest",
-                ],
-		[
-                        "organisation" => "AfterNow",
-                        "repository" => "AR-Pres-WebClient",
-                ],
+            [
+              "organisation" => "htmlfusion",
+              "repository" => "gishwhes",
+            ],
+            [
+              "organisation" => "htmlfusion",
+              "repository" => "gishwhes_admin",
+            ],
+            [
+              "organisation" => "htmlfusion",
+              "repository" => "gishwhes_api",
+            ],
+            [
+              "organisation" => "htmlfusion",
+              "repository" => "gish-website",
+            ],
+            [
+              "organisation" => "AfterNow",
+              "repository" => "gishwhes-react-native",
+            ],
+            [
+              "organisation" => "AfterNow",
+              "repository" => "AN-Prez",
+            ],
+            [
+              "organisation" => "AfterNow",
+              "repository" => "AR-Pres-LB",
+            ],
+            [
+              "organisation" => "AfterNow",
+              "repository" => "AN-Prez-Quest",
+            ],
+            [
+              "organisation" => "AfterNow",
+              "repository" => "AR-Pres-WebClient",
+            ],
 ];
 
 // loops through each repo and calls methods to track the time from GitHub

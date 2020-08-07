@@ -66,9 +66,22 @@ class Wekan {
               WHERE `board_id` = '".$input['boardId']."' AND `card_id`='".$input['cardId']."' AND `comment_id`='".$input['commentId']."'"
               ;
 
-      //$this->logEventToFile($query);
       mysqli_query($this->conn, $query);
     }
+  }
+
+  /*
+   * When a User deletes a comment on Wekan Board, an event act-addComment is triggered 
+     and this method is executed which inserts data(comment details) in the table.
+   *
+   * @param array : $input
+   */
+  public function deleteComment($input) {
+    $query = "DELETE FROM wekan_time_tracking 
+              WHERE `board_id` = '".$input['boardId']."' AND `card_id`='".$input['cardId']."' 
+              AND `comment_id`='".$input['commentId']."'";
+
+      mysqli_query($this->conn, $query);
   }
 
   /*

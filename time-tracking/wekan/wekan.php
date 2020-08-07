@@ -63,6 +63,16 @@ if($input['description'] == "act-editComment") {
   $wekan->editComment($input);
 }
 
+/*
+ * When user deletes a comment on the card
+ * The Request Body sent by Webhook is explained on the beginning of this
+   script
+ */
+if($input['description'] == "act-deleteComment") {
+  $wekan = new Wekan($conn);
+  $wekan->deleteComment($input);
+}
+
 // return response to webhook 
 echo "{'status':'ok'}";
 ?>
