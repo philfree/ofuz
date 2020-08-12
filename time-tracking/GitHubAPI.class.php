@@ -16,7 +16,7 @@ class GitHubAPI {
 	function __construct() {
 		$this->api_endpoint = "https://api.github.com/graphql";
 		$this->authorization_key = $_SERVER['GitHub_API_ACCESS_TOKEN'];
-		$this->authorization_key_description = "worklog-tracking";
+		$this->authorization_key_description = "worklog-time-tracking";
 	}
 
 	/*
