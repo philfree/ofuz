@@ -142,7 +142,7 @@ function getTimeSheetReport() {
 				var leftContainer = "";
         var rightContainer = "";
 
-        console.log(data);
+        //console.log(data);
 
         if(dataLength) {
           // GitHub
