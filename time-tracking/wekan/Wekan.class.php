@@ -1,7 +1,8 @@
 <?php
 /*
- * A class file
+ * A class file to interact with DB for all the operations
  *
+ * @author <ravi@afternow.io>
  */
 
 class Wekan {
@@ -61,13 +62,36 @@ class Wekan {
     $time_taken = $this->parseTimeOnComment($input['comment']);
 
     if(!empty($time_taken)) {
-      $query = "UPDATE wekan_time_tracking 
-              SET `description` = '".$input['description']."',`time_taken` = '".$time_taken."'
-              WHERE `board_id` = '".$input['boardId']."' AND `card_id`='".$input['cardId']."' AND `comment_id`='".$input['commentId']."'"
-              ;
+      $idwekan_time_tracking = $this->commentExists($input['boardId'], $input['cardId'], $input['commentId']);
 
-      mysqli_query($this->conn, $query);
+      if($idwekan_time_tracking) {
+        $query = "UPDATE wekan_time_tracking 
+                SET `description` = '".$input['description']."',`time_taken` = '".$time_taken."'
+                WHERE `idwekan_time_tracking` = '".$idwekan_time_tracking."'"
+                ;
+
+        mysqli_query($this->conn, $query);
+      } else {
+        $this->addComment($input);
+      }
     }
+  }
+
+
+  public function commentExists($boardId, $cardId, $commentId) {
+    $idwekan_time_tracking = "";
+    $query = "SELECT `idwekan_time_tracking` 
+              FROM `wekan_time_tracking`
+              WHERE `board_id` = '".$boardId."' AND `card_id` = '".$cardId."' 
+              AND `comment_id`= '".$commentId."'";
+    $result = mysqli_query($this->conn, $query);
+
+    if(mysqli_num_rows($result)) {
+      $row = mysqli_fetch_object($result);
+      $idwekan_time_tracking = $row->idwekan_time_tracking;
+    }
+
+    return $idwekan_time_tracking;
   }
 
   /*
