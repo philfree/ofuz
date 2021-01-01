@@ -34,20 +34,16 @@ class Wekan {
    */
   public function addComment($input) {
     $time_taken = $this->parseTimeOnComment($input['comment']);
+    $comment_created_at = date("Y-m-d h:i:s");
 
-    if(!empty($time_taken)) {
-      $comment_created_at = date("Y-m-d h:i:s");
-      //$comment = mysqli_real_escape_string($this->conn, $input['comment']);
+    $query = "INSERT INTO wekan_time_tracking 
+    (`board_id`,`list_id`,`swimlane_id`,`card_id`,`card`,`board`,`comment_id`,`description`,`user`,
+    `comment_created_at`,`time_taken`)
+    VALUES ('".$input['boardId']."','".$input['listId']."','".$input['swimlaneId']."','".$input['cardId']."','".$input['card']."','".$input['board']."','".$input['commentId']."','".$input['description']."','".$input['user']."','".$comment_created_at."','".$time_taken."'
+    )";
 
-      $query = "INSERT INTO wekan_time_tracking 
-      (`board_id`,`list_id`,`swimlane_id`,`card_id`,`card`,`board`,`comment_id`,`description`,`user`,
-      `comment_created_at`,`time_taken`)
-      VALUES ('".$input['boardId']."','".$input['listId']."','".$input['swimlaneId']."','".$input['cardId']."','".$input['card']."','".$input['board']."','".$input['commentId']."','".$input['description']."','".$input['user']."','".$comment_created_at."','".$time_taken."'
-      )";
-
-      //$this->logEventToFile($query);
-      mysqli_query($this->conn, $query);
-    }
+    //$this->logEventToFile($query);
+    mysqli_query($this->conn, $query);
      
   }
 
@@ -60,20 +56,15 @@ class Wekan {
   */ 
   public function editComment($input) {
     $time_taken = $this->parseTimeOnComment($input['comment']);
+    $idwekan_time_tracking = $this->commentExists($input['boardId'], $input['cardId'], $input['commentId']);
 
-    if(!empty($time_taken)) {
-      $idwekan_time_tracking = $this->commentExists($input['boardId'], $input['cardId'], $input['commentId']);
+    if($idwekan_time_tracking) {
+      $query = "UPDATE wekan_time_tracking 
+              SET `description` = '".$input['description']."',`time_taken` = '".$time_taken."'
+              WHERE `idwekan_time_tracking` = '".$idwekan_time_tracking."'"
+              ;
 
-      if($idwekan_time_tracking) {
-        $query = "UPDATE wekan_time_tracking 
-                SET `description` = '".$input['description']."',`time_taken` = '".$time_taken."'
-                WHERE `idwekan_time_tracking` = '".$idwekan_time_tracking."'"
-                ;
-
-        mysqli_query($this->conn, $query);
-      } else {
-        $this->addComment($input);
-      }
+      mysqli_query($this->conn, $query);
     }
   }
 
@@ -132,7 +123,7 @@ class Wekan {
    */
   public function parseTimeOnComment($comment) {
     $time_on_comment = preg_match('#\T{(.*?)\}#', $comment, $matches) ? $matches[1] : "";
-    $time_taken = "";
+    $time_taken = "0.00";
 
     if($time_on_comment) {
       $arr_time_taken = explode(":", $time_on_comment);
