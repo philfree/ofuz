@@ -2604,6 +2604,25 @@ class Contact extends DataObject {
     }
   }
   
-
+  /**
+    * Function to get task completed description for the contact 
+    * param int contact primary  key value.
+    *
+   */ 
+  function getTaskCompletedDetails($idcontact){
+      $q = new sqlQuery($this->getDbCon());
+      $sql = "select note from contact_note where idcontact='".$idcontact."' and note_visibility=' ' order by idcontact_note DESC LIMIT 10";
+      $q->query($sql);
+      if($q->getNumRows()) {
+      		while($q->fetch()) {
+      		    $note_description .= '<span style="">';
+              $note_description .= $q->getData("note");
+              $note_description .='</span>';
+            }
+              return $note_description;
+      } else {
+      		    return "No Records Found";
+      }
+  }
 }
 ?>

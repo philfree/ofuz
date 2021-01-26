@@ -29,6 +29,7 @@
                                           "ContactInvoiceBlock",
                                           "ContactAddTaskBlock",
                                           "ContactShareCoworkerBlock",
+                                          "ContactCompletedBlock",
                                          // "ContactShareFileNoteBlock",
                                           "ContactTasksBlock"),
                                   "contacts" =>
@@ -131,6 +132,7 @@
                                           'CoworkerListInvitations',
                                           'CoworkerSearch',
                                           'CoworkerSendInvitationEmail',
+                                          'ContactCompletedBlock',
                                           'DashboardMessageBlock',
                                           'DashboardTodaysTask',
                                           'InvoicesMonthlyGraphBlock',
