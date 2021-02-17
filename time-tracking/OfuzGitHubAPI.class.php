@@ -49,11 +49,8 @@ class OfuzGitHubAPI {
 		$result = $github_api->jsonDecode($result);
 		$org = $this->org;
 		$repo = $this->repo;
-		$first_day_this_month_ts = strtotime('first day of this month');
-    $last_day_this_month_ts = strtotime('last day of this month'); 
-
-		/*$first_day_this_month_ts = strtotime('first day of July 2020');
-    $last_day_this_month_ts = strtotime('last day of July 2020');*/
+		$first_day_last_month_ts = strtotime('first day of last month');
+    $today_ts = strtotime('now'); 
 
 		foreach($result as $data) {
 			foreach($data as $repository) {
@@ -77,7 +74,7 @@ class OfuzGitHubAPI {
 
 									$comment_created_at_ts = strtotime($comment_created_at);
 
-									if(($comment_created_at_ts >= $first_day_this_month_ts) && ($comment_created_at_ts <= $last_day_this_month_ts)) {
+									if(($comment_created_at_ts >= $first_day_last_month_ts) && ($comment_created_at_ts <= $today_ts)) {
 									$idgithub_time_tracking = $this->checkIfIssueCommentTimeAlreadyRecorded($org,$repo,$issue->id,$comment->id);
 									if($idgithub_time_tracking) {
 										$query = "UPDATE ".$this->table." SET title = '".mysqli_real_escape_string($this->conn, $issue->title)."', time_taken = '".$time_taken."' WHERE ".$this->primary_key." = ".$idgithub_time_tracking;
@@ -120,11 +117,8 @@ class OfuzGitHubAPI {
 		$github_api->repository = $this->repo;
 		$result = $github_api->getAllPullRequests($this->pull_request_cursor);
 		$result = $github_api->jsonDecode($result);
-		$first_day_this_month_ts = strtotime('first day of this month');
-    $last_day_this_month_ts = strtotime('last day of this month');
-
-		/*$first_day_this_month_ts = strtotime('first day of July 2020');
-    $last_day_this_month_ts = strtotime('last day of July 2020');*/
+		$first_day_last_month_ts = strtotime('first day of last month');
+    $today_ts = strtotime('now'); 
 
 		foreach($result as $data) {
 			foreach($data as $repository) {
@@ -149,7 +143,7 @@ class OfuzGitHubAPI {
 
 									$comment_created_at_ts = strtotime($comment_created_at);
 
-									if(($comment_created_at_ts >= $first_day_this_month_ts) && ($comment_created_at_ts <= $last_day_this_month_ts)) {
+									if(($comment_created_at_ts >= $first_day_last_month_ts) && ($comment_created_at_ts <= $today_ts)) {
 
 									$idgithub_time_tracking = $this->checkIfTimeAlreadyTrackedForPullRequest($this->org,$this->repo,$pull_request->id,$comment->id);
 									if($idgithub_time_tracking) {
