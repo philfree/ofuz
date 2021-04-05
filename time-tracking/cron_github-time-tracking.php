@@ -47,6 +47,10 @@ $repos = [
               "organisation" => "AfterNow",
               "repository" => "AR-Pres-WebClient",
             ],
+            [
+              "organisation" => "AfterNow",
+              "repository" => "AN-Prez-Asset-Library",
+            ],
 ];
 
 // loops through each repo and calls methods to track the time from GitHub
