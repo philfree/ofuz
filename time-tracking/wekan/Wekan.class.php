@@ -121,6 +121,7 @@ class Wekan {
    * @param string : $comment
    * @return string : $time_taken
    */
+/*
   public function parseTimeOnComment($comment) {
     $time_on_comment = preg_match('#\T{(.*?)\}#', $comment, $matches) ? $matches[1] : "";
     $time_taken = "0.00";
@@ -132,6 +133,30 @@ class Wekan {
               $time_taken = $arr_time_taken[0].".".$arr_time_taken[1];
       } else {
               $time_taken = $arr_time_taken[0];
+      }
+    }
+
+    return $time_taken;
+  }
+ */
+
+  /*
+   * This method parses the time format T{hh:mm} from the comment, validates,
+     formats and returns.
+   * 
+   * @param string : $comment
+   * @return string : $time_taken
+   */
+  public function parseTimeOnComment($comment) {
+    preg_match_all('#\T{(.*?)\}#', $comment, $matches);
+
+    $time_taken = "0.00";
+
+    if(count($matches[1])) {
+      foreach($matches[1] as $match) {
+        if(strpos($match, ":") !== false) {
+          $time_taken += str_replace(":", ".", $match);
+        }
       }
     }
 
