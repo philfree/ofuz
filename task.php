@@ -549,7 +549,7 @@ but it still has lines numbers</code></pre>
                 $e_addProjectDiscuss->addEventAction('mydb.gotoPage', 90);
                 //$e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventFormatDiscussInsert', 119);
                 $e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventHTMLCleanUp ', 119);
-                $e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventSendDiscussMessageByEmail', 131);
+                //$e_addProjectDiscuss->addEventAction('ProjectDiscussEditSave->eventSendDiscussMessageByEmail', 131);
                 $e_addProjectDiscuss->addEventAction('WorkFeedProjectDiscuss->eventAddFeed', 140);        
                 
                 $do_zend = new Zendesk();
